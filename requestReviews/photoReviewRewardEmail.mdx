@@ -1,0 +1,76 @@
+---
+description: "Delight customers and boost engagement by rewarding shoppers who upload photos with their reviews."
+title: "2.4 Photo Review Reward Email"
+---
+
+**Navigation:**\
+\
+Yuko Dashboard → Reviews → Emails → Photo Review Reward Email\
+\
+**Overview**\
+\
+Thank customers who share photos along with their reviews by sending a personalized **thank-you email**.\
+You can optionally include a **discount or reward** to encourage more photo submissions — a powerful way to increase trust and showcase real customer experiences.\
+**\
+Settings**
+
+| **Setting**        | **Description**                                                                                                                           |
+| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Discount Type**  | Choose between **Amount** (e.g., \$10 off), **Percentage** (e.g., 10% off), or **Free Shipping**.                                         |
+| **Discount Value** | Set the reward amount or percentage (not needed if you select Free Shipping).                                                             |
+| **Editor**         | Customize the **Title**, **Message**, and **Footer** of the email.  Example title: _“Thanks for the photo! Here’s a little something 🎁”_ |
+| **Timing**         | Send the email **instantly** or after a short delay once a photo review is submitted.                                                     |
+
+### **Available Shortcodes**
+
+#### **Review & Order Details**
+
+{{review_rating}}
+
+{{review_status}}
+
+{{review_author_name}}
+
+{{review_content}}
+
+{{review_created}}
+
+{{review_product_name}}
+
+{{review_product_image}}
+
+{{review_product_url}}
+
+{{review_link}}
+
+{{review_block}}
+
+{{order_id}}
+
+{{order_name}}
+
+#### **Coupon Info**
+
+{{YOUR_IDENTIFIER:COUPON:CODE}}
+
+{{YOUR_IDENTIFIER:COUPON:TYPE}}
+
+{{YOUR_IDENTIFIER:COUPON:VALUE}}
+
+{{YOUR_IDENTIFIER:COUPON:EXPIRY}}
+
+### **Loop Items**
+
+Use this shortcode loop to display all product reviews associated with the same order.
+
+{% for item in order_items %}
+
+{{[item.review](http://item.review)\_block}}
+
+{% endfor %}
+
+**Product Review Block**
+
+This shortcode displays a full review block layout for the products included:
+
+{{product_reviews_block}}
