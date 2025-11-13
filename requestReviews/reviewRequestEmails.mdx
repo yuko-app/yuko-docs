@@ -24,7 +24,7 @@ Use this email to gather authentic reviews while your customer’s experience is
 | **Delay (days)**  | Choose how many days after fulfillment the email should send (e.g., 7 days after delivery). |
 | **Email Subject** | Customize the title line for your request.                                                  |
 | **Message Body**  | Add your message using personalization shortcodes.                                          |
-| **Footer**        | Include signature, contact info, and unsubscribe link                                       |
+| **Footer**        | Include signature, contact info, and unsubscribe link.                                      |
 
 ### **\
 Available Shortcodes**
@@ -42,18 +42,13 @@ Available Shortcodes**
 
 **Coupon/Reward Shortcodes**
 
-- {{YOUR_IDENTIFIER:COUPON: CODE}}
-- {{YOUR_IDENTIFIER:COUPON: TYPE}}
-- {{YOUR_IDENTIFIER:COUPON: VALUE}}
-- {{YOUR_IDENTIFIER:COUPON: EXPIRY}}
-
 **Loop Ordered Items**
 
 {% for item in order_items %}
 
-{{[item.review](http://item.review)\_block}}
+  {{[item.review](http://item.review)\_block}}
 
 {% endfor %}
 
 **Product Review Block**\
-{{product_reviews_block}}
+ {{product_reviews_block}}
