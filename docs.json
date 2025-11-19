@@ -14,9 +14,15 @@
         "tab": "Guides",
         "groups": [
           {
+            "group": "Quick Started",
+            "pages": [
+              "quickstart"
+            ]
+          },
+          {
             "group": "1. Installation & Setup",
             "pages": [
-              "installation-and-setup"
+              "installation-and-setup/woocommerce"
             ]
           },
           {
