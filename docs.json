@@ -7,7 +7,7 @@
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "logos/favicon.svg",
   "navigation": {
     "tabs": [
       {
@@ -161,8 +161,8 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logos/YukoDocs.svg",
+    "dark": "/logos/YukoDocs.svg"
   },
   "navbar": {
     "links": [
