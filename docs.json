@@ -34,7 +34,7 @@
             "group": "3. Collect Reviews",
             "pages": [
               "collectReviews",
-              "collectReviews/3.1ReviewCollectionForm",
+              "collectReviews/ReviewCollectionForm",
               "collectReviews/collectingShopSiteReview",
               "collectReviews/customizingReviewInputs"
             ]
@@ -45,7 +45,7 @@
               "displayReviews",
               "displayReviews/introductionToWidgets",
               "displayReviews/productReviewsDisplayWidget",
-              "displayReviews/4.3SidebarWidget",
+              "displayReviews/SidebarWidget",
               "displayReviews/starRatingWidget",
               "displayReviews/allReviewsWallOfFameWidget",
               "displayReviews/carouselTestimonialWidget",
@@ -106,7 +106,7 @@
             "pages": [
               "integrations",
               "integrations/woocommerce",
-              "integrations/shopify.",
+              "integrations/shopify",
               "integrations/googleSeo",
               "integrations/wployalty",
               "integrations/webhooks",
