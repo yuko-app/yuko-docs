@@ -154,7 +154,7 @@
         },
         {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "https://yuko.so/blog/",
           "icon": "newspaper"
         }
       ]
@@ -174,7 +174,7 @@
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "href": "https://app.yukoapp.com/"
     }
   },
   "contextual": {
