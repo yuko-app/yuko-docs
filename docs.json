@@ -14,31 +14,121 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "1. Installation & Setup",
             "pages": [
-              "quickstart"
+              "installation-and-setup"
             ]
           },
           {
-            "group": "Customization",
+            "group": "2. Request Reviews",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "requestReviews",
+              "requestReviews/reviewRequestEmails",
+              "requestReviews/reviewreminderemail",
+              "requestReviews/photoReviewReminderEmail",
+              "requestReviews/photoReviewRewardEmail",
+              "requestReviews/reviewreplyaddedemail"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "3. Collect Reviews",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "collectReviews",
+              "collectReviews/3.1ReviewCollectionForm",
+              "collectReviews/collectingShopSiteReview",
+              "collectReviews/customizingReviewInputs"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "4. Display Reviews",
             "pages": [
-              "ai-tools/claude-code"
+              "displayReviews",
+              "displayReviews/introductionToWidgets",
+              "displayReviews/productReviewsDisplayWidget",
+              "displayReviews/4.3SidebarWidget",
+              "displayReviews/starRatingWidget",
+              "displayReviews/allReviewsWallOfFameWidget",
+              "displayReviews/carouselTestimonialWidget",
+              "displayReviews/flowingReviewBadgeComingSoon",
+              "displayReviews/reviewDisplayControls"
+            ]
+          },
+          {
+            "group": "5. Import Reviews",
+            "pages": [
+              "importReviews",
+              "importReviews/importingFromWooCommerceReview",
+              "importReviews/importingFromJudgeMeReviews"
+            ]
+          },
+          {
+            "group": "6. Managing Reviews",
+            "pages": [
+              "managingReviews",
+              "managingReviews/autoPublishingReviews",
+              "managingReviews/reviewModeration",
+              "managingReviews/reviewRestrictionsLimits",
+              "managingReviews/emailBlacklist",
+              "managingReviews/productBlacklist",
+              "managingReviews/replyingToReviews",
+              "managingReviews/verifiedBadgesForReviews"
+            ]
+          },
+          {
+            "group": "7. Questions & Answers",
+            "pages": [
+              "questionsAndAnswers",
+              "questionsAndAnswers/qaCollectionForm",
+              "questionsAndAnswers/qaDisplayWidget",
+              "questionsAndAnswers/managingAnsweringQuestions"
+            ]
+          },
+          {
+            "group": "8. Review Settings",
+            "pages": [
+              "reviewSettings",
+              "reviewSettings/branding",
+              "reviewSettings/adminNotifications"
+            ]
+          },
+          {
+            "group": "9. Workflows",
+            "pages": [
+              "workflows",
+              "workflows/gettingStartedWithWorkflows",
+              "workflows/reviewRequestWorkflow",
+              "workflows/reviewReminderWorkflow",
+              "workflows/reviewSubmittedRewardWorkflow"
+            ]
+          },
+          {
+            "group": "10. Integrations",
+            "pages": [
+              "integrations",
+              "integrations/woocommerce",
+              "integrations/shopify.",
+              "integrations/googleSeo",
+              "integrations/wployalty",
+              "integrations/webhooks",
+              "integrations/zapier",
+              "integrations/googleShopping",
+              "integrations/facebook"
+            ]
+          },
+          {
+            "group": "11. Account",
+            "pages": [
+              "account/accountSettings",
+              "account/updatingLogo",
+              "account/multiStoreManagement",
+              "account/securityAndAccess",
+              "account/members"
+            ]
+          },
+          {
+            "group": "12. Support",
+            "pages": [
+              "support"
             ]
           }
         ]
@@ -49,7 +139,7 @@
           {
             "group": "API documentation",
             "pages": [
-              "api-reference/introduction"
+              "collectReviews/openapi"
             ]
           }
         ]
