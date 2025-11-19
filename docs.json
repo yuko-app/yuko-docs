@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Yuko Documentation",
   "colors": {
-    "primary": "#16A34A",
+    "primary": "#685eef",
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "logos/favicon.svg",
+  "favicon": "/logos/favicon.svg",
   "navigation": {
     "tabs": [
       {
