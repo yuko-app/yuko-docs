@@ -154,8 +154,8 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
+          "anchor": "Yuko Dashboard",
+          "href": "https://app.yukoapp.com",
           "icon": "book-open-cover"
         },
         {
@@ -173,8 +173,8 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:support@yuko.so"
+        "label": "Book a Free Setup Call",
+        "href": "https://cal.com/rameshelamathi/yuko-demo"
       }
     ],
     "primary": {
