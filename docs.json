@@ -1,48 +1,134 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Yuko Documentation",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#685eef",
+    "light": "#a6adfb",
+    "dark": "#4231a2"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/logos/favicon.svg",
   "navigation": {
     "tabs": [
       {
         "tab": "Guides",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "1. Installation & Setup",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "installation-and-setup"
             ]
           },
           {
-            "group": "Customization",
+            "group": "2. Request Reviews",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "requestReviews",
+              "requestReviews/reviewRequestEmails",
+              "requestReviews/reviewreminderemail",
+              "requestReviews/photoReviewReminderEmail",
+              "requestReviews/photoReviewRewardEmail",
+              "requestReviews/reviewreplyaddedemail"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "3. Collect Reviews",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "collectReviews",
+              "collectReviews/ReviewCollectionForm",
+              "collectReviews/collectingShopSiteReview",
+              "collectReviews/customizingReviewInputs"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "4. Display Reviews",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "displayReviews",
+              "displayReviews/introductionToWidgets",
+              "displayReviews/productReviewsDisplayWidget",
+              "displayReviews/SidebarWidget",
+              "displayReviews/starRatingWidget",
+              "displayReviews/allReviewsWallOfFameWidget",
+              "displayReviews/carouselTestimonialWidget",
+              "displayReviews/flowingReviewBadgeComingSoon",
+              "displayReviews/reviewDisplayControls"
+            ]
+          },
+          {
+            "group": "5. Import Reviews",
+            "pages": [
+              "importReviews",
+              "importReviews/importingFromWooCommerceReview",
+              "importReviews/importingFromJudgeMeReviews"
+            ]
+          },
+          {
+            "group": "6. Managing Reviews",
+            "pages": [
+              "managingReviews",
+              "managingReviews/autoPublishingReviews",
+              "managingReviews/reviewModeration",
+              "managingReviews/reviewRestrictionsLimits",
+              "managingReviews/emailBlacklist",
+              "managingReviews/productBlacklist",
+              "managingReviews/replyingToReviews",
+              "managingReviews/verifiedBadgesForReviews"
+            ]
+          },
+          {
+            "group": "7. Questions & Answers",
+            "pages": [
+              "questionsAndAnswers",
+              "questionsAndAnswers/qaCollectionForm",
+              "questionsAndAnswers/qaDisplayWidget",
+              "questionsAndAnswers/managingAnsweringQuestions"
+            ]
+          },
+          {
+            "group": "8. Review Settings",
+            "pages": [
+              "reviewSettings",
+              "reviewSettings/branding",
+              "reviewSettings/adminNotifications"
+            ]
+          },
+          {
+            "group": "9. Workflows",
+            "pages": [
+              "workflows",
+              "workflows/gettingStartedWithWorkflows",
+              "workflows/reviewRequestWorkflow",
+              "workflows/reviewReminderWorkflow",
+              "workflows/reviewSubmittedRewardWorkflow"
+            ]
+          },
+          {
+            "group": "10. Integrations",
+            "pages": [
+              "integrations",
+              "integrations/woocommerce",
+              "integrations/shopify",
+              "integrations/googleSeo",
+              "integrations/wployalty",
+              "integrations/webhooks",
+              "integrations/zapier",
+              "integrations/googleShopping",
+              "integrations/facebook"
+            ]
+          },
+          {
+            "group": "11. Account",
+            "pages": [
+              "account/accountSettings",
+              "account/updatingLogo",
+              "account/multiStoreManagement",
+              "account/securityAndAccess",
+              "account/members"
+            ]
+          },
+          {
+            "group": "12. Support",
+            "pages": [
+              "support"
             ]
           }
         ]
@@ -53,16 +139,7 @@
           {
             "group": "API documentation",
             "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "collectReviews/openapi"
             ]
           }
         ]
@@ -77,40 +154,40 @@
         },
         {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "https://yuko.so/blog/",
           "icon": "newspaper"
         }
       ]
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logos/YukoDocs.svg",
+    "dark": "/logos/YukoDocs.svg"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@yuko.so"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "href": "https://app.yukoapp.com/"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
