@@ -28,7 +28,7 @@
           {
             "group": "2. Request Reviews",
             "pages": [
-              "requestReviews",
+              "requestReviews/index",
               "requestReviews/reviewRequestEmails",
               "requestReviews/reviewreminderemail",
               "requestReviews/photoReviewReminderEmail",
