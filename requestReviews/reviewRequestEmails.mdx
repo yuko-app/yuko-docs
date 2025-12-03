@@ -1,71 +1,509 @@
 ---
-description: "Send customers a friendly email asking them to review their recent purchase."
-title: "2.1 Review Request Email"
+description: "Set up automatic review request emails that get sent after customers receive their orders"
+title: "Review Request Email Setup"
 ---
 
-### **Navigation**
+## Ask Every Customer for a Review Automatically
+
+The Review Request Email is your primary tool for collecting customer feedback. Instead of hoping customers review on their own (only 1% do), this email automatically asks them after delivery, increasing review collection by 10x.
+
+**What you'll achieve:**
+- Automatically request reviews from every customer
+- Collect reviews from 5-10% of customers (vs <1% without asking)
+- Personalize emails with customer names and products
+- Control timing to match your product type
+
+<Info>
+**Time to set up:** 10 minutes | **Expected response rate:** 5-10% of customers
+</Info>
+
+---
+
+## How It Works
 
 Yuko Dashboard → **Reviews → Emails → Review Request Email**
 
 ![Reviewrequest Pn](/images/reviewrequest.png)
 
-**Overview**
+### The Automatic Process
 
-This email is automatically sent after an order is fulfilled. It invites your customer to review one or more products they purchased.
+<Steps>
+  <Step title="Order Completed" icon="circle-check">
+    You mark an order as "Completed" in WooCommerce (when customer receives it).
 
-Use this email to gather authentic reviews while your customer’s experience is still fresh.
+    **This triggers the countdown** to send the review request.
+  </Step>
 
-### **Settings**
+  <Step title="Yuko Waits" icon="clock">
+    Yuko waits the number of days you set (default: 7 days).
 
-| **Setting**       | **Description**                                                                             |
-| :---------------- | :------------------------------------------------------------------------------------------ |
-| **Delay (days)**  | Choose how many days after fulfillment the email should send (e.g., 7 days after delivery). |
-| **Email Subject** | Customize the title line for your request.                                                  |
-| **Message Body**  | Add your message using personalization shortcodes.                                          |
-| **Footer**        | Include signature, contact info, and unsubscribe link.                                      |
+    **Why wait?** Customers need time to use the product before reviewing.
+  </Step>
 
-#### **Available Shortcodes**
+  <Step title="Email Sends Automatically" icon="paper-plane">
+    Customer receives personalized email with:
+    - Their name
+    - Products they ordered
+    - One-click link to review form
+    - Optional discount reward
 
-**Customer Shortcodes**
+    **No manual work needed** - happens automatically for every order.
+  </Step>
 
-```
-{{customer_name}}
+  <Step title="Customer Clicks & Reviews" icon="pen-to-square">
+    Customer clicks button, lands on pre-filled review form, writes review.
 
-{{customer_first_name}}
+    **Success rate:** 5-10% of customers complete the review.
+  </Step>
+</Steps>
 
-{{customer_last_name}}
-```
+---
 
-**Order Shortcodes**
+## Email Settings
 
-```
-{{order_id}}
+Configure your review request email to match your products and brand:
 
-{{order_name}}
-```
+<AccordionGroup>
+  <Accordion title="Timing: When to Send" icon="calendar" defaultOpen>
+    **Setting:** Delay (days)
 
-**Coupon / Reward Shortcodes**
+    **What it means:** How many days after the order is marked "Completed" should Yuko send the review request?
 
-```
-{{YOUR_IDENTIFIER:COUPON:CODE}}
+    **Default:** 7 days
 
-{{YOUR_IDENTIFIER:COUPON:TYPE}}
+    **How to choose the right timing:**
 
-{{YOUR_IDENTIFIER:COUPON:VALUE}}
+    | Product Type | Recommended Delay | Reason |
+    |--------------|------------------|--------|
+    | Clothing/Fashion | 5-7 days | Time to wear and wash |
+    | Electronics | 10-14 days | Time to unbox, set up, and use |
+    | Supplements/Health | 21-30 days | Time to see results |
+    | Books/Digital | 3-5 days | Quick to consume |
+    | Home Goods | 7-10 days | Time to set up and use |
+    | Food/Perishables | 3-5 days | Quick consumption |
+    | Furniture | 10-14 days | Time to assemble and use |
 
-{{YOUR_IDENTIFIER:COUPON:EXPIRY}}
-```
+    <Tip>
+    **Pro tip:** Don't send too soon. If you ask before customers use the product, they can't write a helpful review. Better to wait a bit longer than send too early.
+    </Tip>
+  </Accordion>
 
-**Loop Ordered Items**
+  <Accordion title="Subject Line: First Impression" icon="envelope">
+    **Setting:** Email Subject
 
-```
-{% for item in order_items %}
-  {{item.review_block}}
-{% endfor %}
-```
+    **What it means:** The title customers see in their inbox before opening
 
-**Product Review Block**
+    **Best practices:**
 
-```
-{{product_reviews_block}}
-```
+    ✅ **Good subject lines:**
+    - "How's your [Product Name]?"
+    - "[First Name], share your thoughts on your order"
+    - "Quick question about your recent purchase"
+    - "We'd love your feedback on [Product]"
+
+    ❌ **Avoid:**
+    - "WRITE A REVIEW NOW" (too pushy)
+    - "Please leave us a 5-star review" (biased)
+    - Long subjects over 60 characters (get cut off on mobile)
+    - Generic "Review Request" (not personalized)
+
+    **Personalization tip:** Use `{{customer_first_name}}` in subject to increase open rates by 2x
+
+    <Info>
+    **Mobile matters:** 60% of emails are opened on phones. Keep subject lines under 50 characters so they don't get cut off.
+    </Info>
+  </Accordion>
+
+  <Accordion title="Message Body: The Ask" icon="message">
+    **Setting:** Message Body
+
+    **What it means:** The main email content that explains why you're asking for a review
+
+    **Best practices:**
+
+    **Keep it short:**
+    - 3-4 sentences maximum
+    - One clear ask: "Share your feedback"
+    - One call-to-action button
+    - Don't write paragraphs - customers won't read them
+
+    **Example structure:**
+    ```
+    Hi {{customer_first_name}},
+
+    Thank you for choosing [Store Name]! We hope you're enjoying your [Product].
+
+    Would you take 2 minutes to share your experience? Your feedback helps other customers make confident decisions.
+
+    [Review Button]
+    ```
+
+    **Don't do this:**
+    - Beg for reviews
+    - Ask for only positive reviews
+    - Write long explanations
+    - Include multiple links or CTAs
+    - Sound desperate or pushy
+
+    <Warning>
+    **Important:** Never ask for "5-star reviews" or "positive feedback only." Ask for honest feedback. Biased requests violate platform policies and customers can tell.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Footer: Legal & Contact" icon="file-lines">
+    **Setting:** Footer
+
+    **What it includes:**
+    - Company name and address (required by law in many countries)
+    - Unsubscribe link (required)
+    - Contact information
+    - Social media links (optional)
+
+    **Why it matters:**
+    - **Legal compliance:** Anti-spam laws require company address and unsubscribe
+    - **Trust:** Shows you're a legitimate business
+    - **Contact:** Customers can reach you if needed
+
+    **Your footer auto-fills from:** Settings → Organization
+
+    <Tip>
+    **Already set up:** If you completed installation, your footer information was filled in from your business details. You don't need to enter it again.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Available Shortcodes (Personalization Tags)
+
+Make your emails personal by inserting customer and order information:
+
+### Customer Information
+
+<Tabs>
+  <Tab title="Customer Name">
+    **Use these to personalize greetings:**
+
+    - `{{customer_name}}` - Full name (John Smith)
+    - `{{customer_first_name}}` - First name only (John)
+    - `{{customer_last_name}}` - Last name only (Smith)
+
+    **Example:**
+    ```
+    Hi {{customer_first_name}},
+    ```
+    **Result:** "Hi John,"
+
+    <Tip>
+    Using first name in subject line or greeting increases open rates by 26% and response rates by 18%.
+    </Tip>
+  </Tab>
+
+  <Tab title="Order Details">
+    **Reference their specific order:**
+
+    - `{{order_id}}` - Order number (12345)
+    - `{{order_name}}` - Order reference (#WC-12345)
+
+    **Example:**
+    ```
+    Thank you for order {{order_name}}!
+    ```
+    **Result:** "Thank you for order #WC-12345!"
+  </Tab>
+
+  <Tab title="Product Display">
+    **Show the products they bought:**
+
+    **For all products in order:**
+    ```
+    {{product_reviews_block}}
+    ```
+    This displays a formatted block with all products, images, and review buttons.
+
+    **Loop through products individually:**
+    ```
+    {% for item in order_items %}
+      {{item.review_block}}
+    {% endfor %}
+    ```
+    This displays each product separately with its own review button.
+
+    <Info>
+    **What customers see:** Product images, names, and a "Review this product" button for each item. Makes it easy to review multiple products.
+    </Info>
+  </Tab>
+
+  <Tab title="Rewards/Coupons">
+    **If offering a discount for reviewing:**
+
+    - `{{YOUR_IDENTIFIER:COUPON:CODE}}` - The coupon code
+    - `{{YOUR_IDENTIFIER:COUPON:TYPE}}` - Type (percentage, amount, free shipping)
+    - `{{YOUR_IDENTIFIER:COUPON:VALUE}}` - Value (10%, $5, etc.)
+    - `{{YOUR_IDENTIFIER:COUPON:EXPIRY}}` - Expiration date
+
+    **Example:**
+    ```
+    Use code {{REVIEW10:COUPON:CODE}} for {{REVIEW10:COUPON:VALUE}} off your next order!
+    ```
+    **Result:** "Use code REVIEW10 for 10% off your next order!"
+
+    <Warning>
+    **Important:** If offering rewards, offer for completing the review, NOT for leaving a 5-star review. Incentivizing positive reviews is against most platform policies.
+    </Warning>
+  </Tab>
+</Tabs>
+
+---
+
+## Email Design Best Practices
+
+Follow these proven strategies for higher response rates:
+
+<CardGroup cols={2}>
+  <Card title="Mobile-First Design" icon="mobile">
+    **60% of emails open on phones**
+
+    - Keep subject under 50 characters
+    - Use large, tappable buttons (not small links)
+    - Short paragraphs (2-3 lines max)
+    - Images load quickly
+    - Single column layout
+
+    **Test:** Send to yourself, open on phone
+  </Card>
+
+  <Card title="Clear Call-to-Action" icon="hand-pointer">
+    **One button, one purpose**
+
+    - Use action words: "Share Your Feedback", "Write Review"
+    - Make button stand out (color contrast)
+    - Don't hide button below fold
+    - Only one primary button (not 5 links)
+
+    **Best button text:** "Write My Review" or "Share My Experience"
+  </Card>
+
+  <Card title="Build Trust" icon="shield-check">
+    **Show you're legitimate**
+
+    - Include your logo
+    - Use your brand colors
+    - Professional tone
+    - Company address in footer
+    - Real "from" name (not noreply@)
+
+    **From name:** Use "Sarah from [Store]" not "noreply@store.com"
+  </Card>
+
+  <Card title="Set Expectations" icon="clock">
+    **Tell them it's quick**
+
+    - "Takes 2 minutes"
+    - "Just a few questions"
+    - "Quick feedback"
+    - Don't make it sound like work
+
+    **Reality check:** Actual time is 2-3 minutes. Be honest.
+  </Card>
+</CardGroup>
+
+---
+
+## Common Questions
+
+<AccordionGroup>
+  <Accordion title="What's a good response rate?" icon="chart-line">
+    **Industry benchmarks for review request emails:**
+
+    - **5-7%** = Good (average response rate)
+    - **8-12%** = Great (above average)
+    - **13-15%** = Excellent (top performers)
+    - **Below 3%** = Needs improvement
+
+    **Factors that affect your rate:**
+    - **Product quality** - Better products = more reviews
+    - **Customer satisfaction** - Happy customers review more
+    - **Email timing** - Right timing = better response
+    - **Email design** - Professional = higher trust
+    - **Subject line** - Personal = higher opens
+    - **Incentive** - Rewards = 2x response rate
+
+    <Info>
+    **Starting out?** First month may be lower (3-5%) as customers get used to emails. Give it time to improve.
+    </Info>
+  </Accordion>
+
+  <Accordion title="Should I offer a discount for reviewing?" icon="gift">
+    **Pros:**
+    - 2-3x higher response rate (5% → 10-15%)
+    - More detailed reviews (customers put in effort)
+    - Faster review collection
+    - Increased customer loyalty
+
+    **Cons:**
+    - Costs you money (10% discount per review)
+    - May attract only bargain hunters
+    - Some reviews may feel "bought"
+    - Violates policies if you ask for positive reviews only
+
+    **Our recommendation:**
+    - **New stores:** Offer incentive to build review base quickly
+    - **Established stores:** Use incentive only for photo reviews
+    - **Always:** Offer for honest feedback, not just 5 stars
+
+    **Typical incentives:**
+    - 10% off next order (most common)
+    - $5-$10 store credit
+    - Free shipping on next purchase
+    - Entry into monthly $100 giveaway
+  </Accordion>
+
+  <Accordion title="Can I send to all past customers?" icon="users">
+    **Should you email old customers?**
+
+    **Best practice:**
+    - **Recent customers (last 30-60 days):** Yes, send review requests
+    - **Older customers (60-90 days):** Maybe, if they haven't reviewed
+    - **Very old (90+ days):** No, they won't remember the product
+
+    **How to do it:**
+    1. Go to Yuko Dashboard → Customers
+    2. Filter by "No review" and "Last 60 days"
+    3. Send one-time review request (manual send)
+
+    **Don't:**
+    - Email customers from 6 months ago
+    - Spam customers who already reviewed
+    - Send multiple requests for same order
+
+    <Warning>
+    **Risk:** Emailing very old customers may result in spam complaints. Stick to recent orders (under 90 days).
+    </Warning>
+  </Accordion>
+
+  <Accordion title="What if I sell multiple products per order?" icon="boxes">
+    **Two approaches:**
+
+    **Option 1: Single email with all products** (recommended)
+    - Send one email listing all products
+    - Customer can review one, some, or all
+    - Less email clutter for customer
+    - Use `{{product_reviews_block}}` shortcode
+
+    **Option 2: Separate email per product**
+    - Send individual emails for each product
+    - Good for very different product types
+    - Risk of annoying customers with too many emails
+
+    **Our recommendation:** Use single email with product review block. Customers appreciate less inbox clutter.
+
+    <Tip>
+    **Pro tip:** If order has 5+ products, consider asking for one "overall order review" instead of per-product reviews. Customers won't review 10 items individually.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="How do I test my email before sending?" icon="flask">
+    **Always test before enabling:**
+
+    **Steps to test:**
+    1. In Review Request Email settings, scroll to bottom
+    2. Click "Send Test Email"
+    3. Enter your email address
+    4. Click Send
+    5. Check your inbox (and spam folder)
+    6. Open on phone AND computer
+    7. Click all links to make sure they work
+
+    **What to check:**
+    - Subject line looks good
+    - Your name appears in greeting (personalization works)
+    - Products display correctly
+    - Review button works
+    - Mobile version looks professional
+    - Images load quickly
+    - No typos or broken links
+
+    <Tip>
+    **Test on multiple devices:** Check on iPhone, Android, desktop email clients (Gmail, Outlook, Apple Mail). They all display differently.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Can I A/B test different email versions?" icon="flask-vial">
+    **Yes, but do it manually:**
+
+    Yuko doesn't have built-in A/B testing yet, but you can test yourself:
+
+    **Simple testing approach:**
+    1. **Week 1:** Use Subject Line A
+    2. **Week 2:** Use Subject Line B
+    3. **Compare:** Which had better response rate?
+    4. **Keep winner**, test something else
+
+    **What to test:**
+    - Subject lines (biggest impact)
+    - Email length (short vs detailed)
+    - Button text ("Review Now" vs "Share Feedback")
+    - Timing (7 days vs 10 days vs 14 days)
+    - Incentive amount (10% vs 15% vs $10)
+
+    **How to measure:**
+    - Go to Reviews → Analytics (or count manually)
+    - Calculate: (Reviews received ÷ Emails sent) × 100 = Response rate %
+
+    <Info>
+    **Pro tip:** Only test one thing at a time. If you change subject AND timing AND incentive, you won't know what worked.
+    </Info>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next Steps
+
+<Steps titleSize="h3">
+  <Step title="Configure Email Settings" icon="sliders">
+    Set your delay, subject line, and message content.
+
+    **Time:** 5 minutes
+    **Location:** Reviews → Emails → Review Request Email
+  </Step>
+
+  <Step title="Customize with Shortcodes" icon="code">
+    Add personalization tags for customer names and products.
+
+    **Time:** 3 minutes
+    **Use:** `{{customer_first_name}}` and `{{product_reviews_block}}`
+  </Step>
+
+  <Step title="Match Your Brand" icon="palette">
+    Add your logo and colors to make emails professional.
+
+    **Time:** 5 minutes
+
+    → [Customize Email Branding](/reviewSettings/branding)
+  </Step>
+
+  <Step title="Send Test Email" icon="paper-plane">
+    Always test before enabling to make sure everything works.
+
+    **Time:** 2 minutes
+    **Action:** Click "Send Test Email" button at bottom of settings
+  </Step>
+
+  <Step title="Enable & Monitor" icon="toggle-on">
+    Turn on the email and watch reviews start coming in.
+
+    **Expected:** First reviews arrive 7-10 days after enabling (depending on your delay setting)
+  </Step>
+</Steps>
+
+---
+
+## Need Help?
+
+<snippet file="need-help.mdx" />
+
+<Note>
+**Pro tip:** Start with a 7-day delay for most products. After a month, check your response rate. If it's low (<3%), try increasing the delay (customers may need more time) or adding a small incentive.
+</Note>
