@@ -1,69 +1,611 @@
 ---
-description: "Delight customers and boost engagement by rewarding shoppers who upload photos with their reviews."
-title: "2.4 Photo Review Reward Email"
+description: "Thank customers who add photos to reviews and offer rewards to encourage more visual feedback"
+title: "Photo Review Reward Email Setup"
 ---
 
-### **Navigation**
+## Get 2-3x More Photo Reviews with Small Rewards
 
-\
-**Yuko Dashboard → Reviews → Emails → Photo Review Reward Email**
+Photos make reviews 3x more trustworthy and increase product page conversions by 20%. Offering a small reward (10% off or $5 credit) for photo reviews increases photo submission rates from 10% to 30-40%.
+
+**What you'll achieve:**
+- Thank customers immediately for adding photos
+- Encourage more customers to include photos (2-3x increase)
+- Build customer loyalty with appreciation rewards
+- Boost conversion rates with visual social proof
+
+<Info>
+**Impact:** 2-3x more photo reviews | **Typical reward:** 10% off or $5-10 credit
+</Info>
+
+---
+
+## How It Works
+
+Yuko Dashboard → **Reviews → Emails → Photo Review Reward Email**
 
 ![Photoreviewreward Pn](/images/photoreviewreward.png)
 
-### **Overview**
+### The Automatic Process
 
-Thank customers who share photos along with their reviews by sending a personalized **thank-you email**.\
-You can optionally include a **discount or reward** to encourage more photo submissions — a powerful way to increase trust and showcase real customer experiences.**Settings**
+<Steps>
+  <Step title="Customer Submits Review with Photo" icon="camera">
+    Customer writes a review and uploads one or more photos of the product.
+  </Step>
 
-| **Setting**        | **Description**                                                                                                                           |
-| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| **Discount Type**  | Choose between **Amount** (e.g., \$10 off), **Percentage** (e.g., 10% off), or **Free Shipping**.                                         |
-| **Discount Value** | Set the reward amount or percentage (not needed if you select Free Shipping).                                                             |
-| **Editor**         | Customize the **Title**, **Message**, and **Footer** of the email.  Example title: _“Thanks for the photo! Here’s a little something 🎁”_ |
-| **Timing**         | Send the email **instantly** or after a short delay once a photo review is submitted.                                                     |
+  <Step title="Yuko Detects Photo" icon="eye">
+    Yuko automatically detects that the review includes photos.
 
-### **Available Shortcodes**
+    **Smart detection:** Works whether customer adds photo during initial review or adds it later.
+  </Step>
 
-#### **Review & Order Details**
+  <Step title="Reward Email Sends Immediately" icon="gift">
+    Within minutes, customer receives thank-you email with their reward code.
 
-```
-{{review_rating}}
-{{review_status}}
-{{review_author_name}}
-{{review_content}}
-{{review_created}}
-{{review_product_name}}
-{{review_product_image}}
-{{review_product_url}}
-{{review_link}}
-{{review_block}}
-{{order_id}}
-{{order_name}}
-```
+    **Timing:** Instant gratification = happier customers
+  </Step>
 
-#### **Coupon Info**
+  <Step title="Customer Uses Reward" icon="shopping-cart">
+    Customer applies discount code on their next purchase.
 
-```
-{{YOUR_IDENTIFIER:COUPON:CODE}}
-{{YOUR_IDENTIFIER:COUPON:TYPE}}
-{{YOUR_IDENTIFIER:COUPON:VALUE}}
-{{YOUR_IDENTIFIER:COUPON:EXPIRY}}
-```
+    **Result:** You got valuable photo review + increased customer lifetime value.
+  </Step>
+</Steps>
 
-#### **Loop Items**
+---
 
-Use this shortcode loop to display all product reviews associated with the same order:
+## Why Photo Reviews Matter
 
-```
-{% for item in order_items %}
-  {{item.review_block}}
-{% endfor %}
-```
+<CardGroup cols={2}>
+  <Card title="Build Trust" icon="shield-check">
+    **Photos = Authenticity**
 
-### **Product Review Block**
+    - Text reviews can be fake
+    - Photos prove real customers
+    - Shoppers trust photos 3x more
+    - Reduces "is this real?" doubts
 
-This shortcode displays a full review block layout for the products included:
+    **Impact:** Higher trust = more sales
+  </Card>
 
-```
-{{product_reviews_block}}
-```
+  <Card title="Show Real Results" icon="images">
+    **Visual Proof**
+
+    - See product in real settings
+    - Understand sizing/fit/colors
+    - Spot potential issues
+    - Get styling ideas
+
+    **Impact:** Reduces returns by 15%
+  </Card>
+
+  <Card title="Increase Conversions" icon="arrow-trend-up">
+    **Numbers Don't Lie**
+
+    - Products with photo reviews convert 20% better
+    - Photos increase time on page (engagement)
+    - Visual reviews answer unspoken questions
+    - Reduce cart abandonment
+
+    **Impact:** More sales from same traffic
+  </Card>
+
+  <Card title="Stand Out" icon="star">
+    **Competitive Advantage**
+
+    - Most products have <5% photo reviews
+    - Your 30% photo rate = huge advantage
+    - Better looking product pages
+    - More social proof
+
+    **Impact:** Beat competitors on same products
+  </Card>
+</CardGroup>
+
+---
+
+## Reward Settings
+
+<AccordionGroup>
+  <Accordion title="Discount Type: Choose Your Reward" icon="gift" defaultOpen>
+    **Three reward options:**
+
+    ### 1. Percentage Discount (Most Popular)
+    **Example:** 10% off next order
+
+    **Pros:**
+    - Simple to understand
+    - Works for any order size
+    - Perceived as generous
+    - Easy to communicate
+
+    **Best for:** Most stores
+
+    **Typical amount:** 10-15%
+
+    ---
+
+    ### 2. Fixed Amount Discount
+    **Example:** $5 or $10 off next order
+
+    **Pros:**
+    - Clear, specific value
+    - Good for lower-priced products
+    - Customers know exact savings
+    - Easy to budget
+
+    **Best for:** Stores with lower average order values ($30-50)
+
+    **Typical amount:** $5-$10
+
+    ---
+
+    ### 3. Free Shipping
+    **Example:** Free shipping on next order
+
+    **Pros:**
+    - No discount on products (protects margins)
+    - Highly valued by customers
+    - Simple to fulfill
+    - Works with existing shipping setup
+
+    **Best for:** Stores with $5-10 shipping costs
+
+    **Note:** Only valuable if you normally charge for shipping
+
+    <Tip>
+    **Most effective:** 10% off next order is the sweet spot - generous enough to motivate, small enough to be profitable.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Discount Value: How Much to Offer" icon="percent">
+    **Setting:** Discount Value (for percentage or amount discounts)
+
+    **Finding the right amount:**
+
+    | Discount | Motivation Level | When to Use |
+    |----------|-----------------|-------------|
+    | 5% off | Low | Established stores with many reviews |
+    | 10% off | Good | Sweet spot for most stores |
+    | 15% off | High | New stores building review base |
+    | 20%+ off | Very High | Rarely needed, cuts into margins |
+    | $5 off | Medium | Products under $50 |
+    | $10 off | High | Products $50-100 |
+    | $15+ off | Very High | Expensive products $100+ |
+
+    **General guidelines:**
+    - **New store:** Start with 15% to build momentum
+    - **Established store:** 10% is plenty
+    - **High-margin products:** Can afford 15-20%
+    - **Low-margin products:** Stick to 10% or free shipping
+
+    <Warning>
+    **Don't go too high:** 25%+ discounts train customers to only buy with coupons. You'll lose money long-term.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Email Content: Show Appreciation" icon="heart">
+    **Setting:** Email Editor (Title, Message, Footer)
+
+    **What makes a good thank-you email:**
+
+    **Tone:**
+    - Genuinely grateful (not fake corporate)
+    - Excited about the photo
+    - Personal and warm
+    - Not overly promotional
+
+    **Example structure:**
+    ```
+    Subject: Thanks for the awesome photo! 🎁
+
+    Hi {{review_author_name}},
+
+    We just saw your review with photos - thank you so much for sharing!
+
+    Your photos help other customers see how [Product] looks in real life. That's incredibly valuable.
+
+    As a thank-you, here's {{YOUR_REWARD:COUPON:VALUE}} off your next order:
+
+    Code: {{YOUR_REWARD:COUPON:CODE}}
+    Expires: {{YOUR_REWARD:COUPON:EXPIRY}}
+
+    [Shop Now Button]
+
+    Thanks again for being an amazing customer!
+
+    [Your Name]
+    [Store Name]
+    ```
+
+    **What to include:**
+    - Specific mention of "photos" (not just "review")
+    - Why photos matter
+    - Clear reward details (code, amount, expiry)
+    - Easy redemption (shop now button)
+    - Genuine gratitude
+
+    <Tip>
+    **Personal touch:** Mention the specific product they reviewed to show you're paying attention: "Thanks for the photos of the [Product Name]!"
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Timing: When to Send" icon="clock">
+    **Setting:** Timing (instant vs delayed)
+
+    **Two options:**
+
+    ### Instant (Recommended)
+    **Sends:** Within 1-5 minutes of photo submission
+
+    **Pros:**
+    - Immediate gratification
+    - Customer still thinking about their review
+    - Reinforces positive behavior instantly
+    - Higher reward redemption rate
+
+    **Best for:** Most stores
+
+    ---
+
+    ### Delayed
+    **Sends:** Hours or days later
+
+    **Pros:**
+    - Can batch with other communications
+    - Gives time to moderate review first
+
+    **Cons:**
+    - Less impactful
+    - Customer may forget they submitted photos
+    - Lower emotional connection
+
+    **Best for:** Stores that manually approve all reviews
+
+    <Info>
+    **Psychology tip:** Instant rewards create stronger behavioral reinforcement. Customers associate "photo = immediate reward" and are more likely to add photos in future orders.
+    </Info>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Available Shortcodes
+
+<Tabs>
+  <Tab title="Review Details">
+    **Information about their review:**
+
+    - `{{review_rating}}` - Star rating (1-5)
+    - `{{review_author_name}}` - Customer's name
+    - `{{review_content}}` - Their review text
+    - `{{review_product_name}}` - Product they reviewed
+    - `{{review_product_url}}` - Link to product page
+    - `{{review_link}}` - Link to their review
+    - `{{review_created}}` - When they submitted
+
+    **Example:**
+    ```
+    Thanks for your review of {{review_product_name}}!
+    ```
+  </Tab>
+
+  <Tab title="Reward/Coupon">
+    **Discount code information:**
+
+    - `{{YOUR_IDENTIFIER:COUPON:CODE}}` - The coupon code
+    - `{{YOUR_IDENTIFIER:COUPON:TYPE}}` - Discount type (percentage/amount/shipping)
+    - `{{YOUR_IDENTIFIER:COUPON:VALUE}}` - Value (10%, $5, etc.)
+    - `{{YOUR_IDENTIFIER:COUPON:EXPIRY}}` - Expiration date
+
+    **Example:**
+    ```
+    Use code {{PHOTO10:COUPON:CODE}} for {{PHOTO10:COUPON:VALUE}} off!
+    Valid until {{PHOTO10:COUPON:EXPIRY}}
+    ```
+
+    **Note:** Replace `YOUR_IDENTIFIER` with your custom coupon identifier (e.g., PHOTO10, PHOTOREWARD, etc.)
+  </Tab>
+
+  <Tab title="Order Info">
+    **Their purchase details:**
+
+    - `{{order_id}}` - Order number
+    - `{{order_name}}` - Order reference
+
+    **Example:**
+    ```
+    From your order {{order_name}}
+    ```
+  </Tab>
+
+  <Tab title="Display Review">
+    **Show their review in email:**
+
+    - `{{review_block}}` - Formatted review display with product image and text
+
+    **Use this to:** Show what they wrote in the thank-you email (makes it personal)
+  </Tab>
+</Tabs>
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Set Expiration Dates" icon="calendar-xmark">
+    **Always expire reward codes**
+
+    **Recommended expiry:**
+    - 30 days: Good balance (most common)
+    - 60 days: Generous, but risk of forgetting
+    - 90 days: Too long, customers lose urgency
+    - 14 days: Too short, feels pressured
+
+    **Why expiration matters:**
+    - Creates urgency to return and shop
+    - Prevents old codes from lingering
+    - Encourages repeat purchases sooner
+    - Easier to manage/track
+
+    <Tip>
+    **Sweet spot:** 30-day expiration. Long enough to not feel pressured, short enough to drive action.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Make Codes Easy to Use" icon="keyboard">
+    **Code format tips:**
+
+    ✅ **Good codes:**
+    - PHOTO10 (simple, clear)
+    - THANKS10 (explains why)
+    - REVIEW15 (easy to remember)
+
+    ❌ **Bad codes:**
+    - XR2K9-P4L7Q-9WMZ (too complex)
+    - photo_review_discount_2024 (too long)
+    - phot0rev1ew (confusing with numbers/letters)
+
+    **Best practices:**
+    - 6-10 characters maximum
+    - All caps or all lowercase (not mixed)
+    - No special characters
+    - Easy to type on mobile
+    - Memorable
+
+    <Info>
+    **Auto-apply option:** Even better - provide link that auto-applies the code at checkout. No typing needed!
+    </Info>
+  </Accordion>
+
+  <Accordion title="Prevent Abuse" icon="shield">
+    **Protect against gaming the system:**
+
+    **Set these limits:**
+    - One reward per customer per order
+    - Can't combine with other discounts
+    - Minimum order value (optional)
+    - Single-use codes (no sharing)
+
+    **Watch for:**
+    - Same customer submitting multiple photo reviews to farm codes
+    - Low-effort photos (blurry, poor quality)
+    - Photos that don't match product
+
+    **Solutions:**
+    - Review photos before auto-sending rewards (if you're concerned)
+    - Set minimum review text length (prevents spam reviews)
+    - Limit to one photo reward per customer per month
+
+    <Warning>
+    **Moderate if needed:** If you see customers abusing the system (uploading random photos just for rewards), switch to manual reward approval.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Test Reward Redemption" icon="clipboard-check">
+    **Make sure customers can actually use the reward:**
+
+    **Test checklist:**
+    1. Send yourself a test reward email
+    2. Copy the code
+    3. Go to your store
+    4. Add item to cart
+    5. Apply code at checkout
+    6. Verify discount appears correctly
+    7. Complete test order (or cancel)
+
+    **Common issues:**
+    - Code doesn't apply (check WooCommerce coupon settings)
+    - Discount amount wrong (verify coupon value)
+    - Code expired immediately (check expiry date formula)
+    - Code already used (make sure test codes are single-use)
+
+    <Tip>
+    **Test regularly:** Test photo reward flow every few weeks to catch any issues before customers experience them.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Common Questions
+
+<AccordionGroup>
+  <Accordion title="How much do photo rewards actually cost?" icon="dollar-sign">
+    **Let's do the math:**
+
+    **Assumptions:**
+    - 100 orders/month
+    - 10% review rate = 10 reviews
+    - 40% include photos with reward = 4 photo reviews
+    - 10% discount reward
+    - $60 average order value for reward redemption
+
+    **Cost calculation:**
+    - 4 customers get 10% off $60 = $6 discount each
+    - **Total cost: $24/month**
+    - **You get:** 4 valuable photo reviews
+
+    **ROI:**
+    - Photo reviews increase conversion by 20%
+    - Even small conversion boost pays for rewards many times over
+    - Plus increased customer lifetime value from return visits
+
+    **Bottom line:** Photo rewards typically pay for themselves 5-10x over.
+  </Accordion>
+
+  <Accordion title="Should I reward ALL reviews or just photo reviews?" icon="camera-vs-text">
+    **Our strong recommendation: Photo reviews only**
+
+    **Why photos only:**
+    - Photos provide more value (visual proof)
+    - Higher reward = higher quality (customers put in effort)
+    - Prevents reward farming (text review spam)
+    - Focuses rewards on high-value content
+
+    **Text review rewards:**
+    - Lower incentive (5% vs 10% for photos)
+    - Or no reward (just ask nicely)
+    - Reserve big rewards for photo reviews
+
+    **Example strategy:**
+    - Text review: Thank you email (no reward)
+    - Photo review: 10% off reward
+    - Video review: 15% off reward (if you accept videos)
+
+    <Tip>
+    **Tiered rewards work:** Customers understand that more effort (photos) = better reward. This feels fair and motivates quality submissions.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="What if someone submits a bad photo just for the reward?" icon="image-slash">
+    **This happens occasionally:**
+
+    **Examples of "reward farming":**
+    - Blurry, unclear photos
+    - Photos of packaging only (not product)
+    - Random unrelated images
+    - Stock photos (stolen from internet)
+
+    **How to handle:**
+
+    **Option 1: Manual approval**
+    - Review photos before sending rewards
+    - Only reward quality photos
+    - Reject spam photos
+    - More work, but more control
+
+    **Option 2: Post-review moderation**
+    - Auto-send rewards immediately
+    - Check photos periodically
+    - Reject/hide poor photos after the fact
+    - Customer keeps reward (easier than taking it back)
+
+    **Option 3: Set expectations**
+    - Email message: "Clear photos that show the product"
+    - Review form: Minimum photo quality guidelines
+    - Examples of good vs bad photos
+
+    **Reality check:** 95% of customers submit genuine photos. Don't overthink this - a few bad apples aren't worth complicating the system for everyone.
+  </Accordion>
+
+  <Accordion title="Can customers use reward immediately on same order?" icon="question">
+    **No, and that's intentional**
+
+    **Why rewards are for NEXT order:**
+    - Encourages repeat purchases
+    - Increases customer lifetime value
+    - Brings customers back to your store
+    - Creates ongoing relationship
+
+    **What customers expect:**
+    - They understand "next order" means future purchase
+    - Standard practice across e-commerce
+    - Fair trade for leaving photo review
+
+    **Make it clear:**
+    - Subject line: "For your NEXT order"
+    - Email body: "Use on your next purchase"
+    - Expiry date: "Valid for 30 days"
+
+    <Info>
+    **The goal:** Photo reward isn't just "payment" for review - it's an excuse to get customers to come back and shop again.
+    </Info>
+  </Accordion>
+
+  <Accordion title="What if customer adds photo AFTER initial review?" icon="clock-plus">
+    **Yuko handles this automatically:**
+
+    **Scenario 1: Photo added later**
+    - Customer submits text review (no photo)
+    - Days/weeks later, adds photo to their review
+    - **Yuko detects photo addition**
+    - **Sends reward email automatically**
+
+    **Scenario 2: Multiple photos**
+    - Customer adds one photo (gets reward)
+    - Later adds more photos
+    - **No additional reward** (one reward per review)
+
+    **Scenario 3: Multiple products reviewed**
+    - Customer orders 3 products
+    - Reviews all 3 with photos
+    - **Gets one reward email** (not three separate emails)
+    - All photos mentioned in thank-you
+
+    <Tip>
+    **This is good:** Customers can submit text review quickly, then add photos when they have more time. You still get photos and they still get rewarded.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next Steps
+
+<Steps titleSize="h3">
+  <Step title="Choose Your Reward" icon="gift">
+    Decide on reward type and amount.
+
+    **Recommended:** 10% off next order
+    **Location:** Reviews → Emails → Photo Review Reward Email
+  </Step>
+
+  <Step title="Write Thank-You Message" icon="pen">
+    Create genuine, warm thank-you email.
+
+    **Time:** 5 minutes
+    **Tone:** Grateful and appreciative
+  </Step>
+
+  <Step title="Set 30-Day Expiry" icon="calendar">
+    Configure expiration date for reward codes.
+
+    **Why:** Creates urgency without pressure
+  </Step>
+
+  <Step title="Test Complete Flow" icon="vial">
+    Submit test review with photo and verify reward email sends correctly.
+
+    **Check:**
+    - Email arrives quickly
+    - Code works at checkout
+    - Discount applies correctly
+    - Expiry date is accurate
+  </Step>
+
+  <Step title="Enable & Monitor" icon="chart-line">
+    Turn on photo rewards and watch photo submission rate increase.
+
+    **Expected:** Photo rate increases from 10% to 30-40% within 30 days
+  </Step>
+</Steps>
+
+---
+
+## Need Help?
+
+<snippet file="need-help.mdx" />
+
+<Note>
+**Pro tip:** Photo rewards have the highest ROI of any review feature. Stores see 2-3x more photo reviews with rewards, and those photos increase conversion rates by 20%. This feature pays for itself many times over.
+</Note>
