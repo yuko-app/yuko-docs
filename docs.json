@@ -28,83 +28,83 @@
           {
             "group": "2. Request Reviews",
             "pages": [
-              "requestReviews/index",
-              "requestReviews/reviewRequestEmails",
-              "requestReviews/reviewreminderemail",
-              "requestReviews/photoReviewReminderEmail",
-              "requestReviews/photoReviewRewardEmail",
-              "requestReviews/reviewreplyaddedemail"
+              "request-reviews/index",
+              "request-reviews/review-request-emails",
+              "request-reviews/review-reminder-email",
+              "request-reviews/photo-review-reminder-email",
+              "request-reviews/photo-review-reward-email",
+              "request-reviews/review-reply-added-email"
             ]
           },
           {
             "group": "3. Collect Reviews",
             "pages": [
-              "collectReviews",
-              "collectReviews/ReviewCollectionForm",
-              "collectReviews/collectingShopSiteReview",
-              "collectReviews/customizingReviewInputs"
+              "collect-reviews",
+              "collect-reviews/review-collection-form",
+              "collect-reviews/collecting-shop-site-review",
+              "collect-reviews/customizing-review-inputs"
             ]
           },
           {
             "group": "4. Display Reviews",
             "pages": [
-              "displayReviews",
-              "displayReviews/introductionToWidgets",
-              "displayReviews/productReviewsDisplayWidget",
-              "displayReviews/SidebarWidget",
-              "displayReviews/starRatingWidget",
-              "displayReviews/allReviewsWallOfFameWidget",
-              "displayReviews/carouselTestimonialWidget",
-              "displayReviews/flowingReviewBadgeComingSoon",
-              "displayReviews/reviewDisplayControls"
+              "display-reviews",
+              "display-reviews/introduction-to-widgets",
+              "display-reviews/product-reviews-display-widget",
+              "display-reviews/sidebar-widget",
+              "display-reviews/star-rating-widget",
+              "display-reviews/all-reviews-wall-of-fame-widget",
+              "display-reviews/carousel-testimonial-widget",
+              "display-reviews/flowing-review-badge-coming-soon",
+              "display-reviews/review-display-controls"
             ]
           },
           {
             "group": "5. Import Reviews",
             "pages": [
-              "importReviews",
-              "importReviews/importingFromWooCommerceReview",
-              "importReviews/importingFromJudgeMeReviews"
+              "import-reviews",
+              "import-reviews/importing-from-woocommerce-review",
+              "import-reviews/importing-from-judgeme-reviews"
             ]
           },
           {
             "group": "6. Managing Reviews",
             "pages": [
-              "managingReviews",
-              "managingReviews/autoPublishingReviews",
-              "managingReviews/reviewModeration",
-              "managingReviews/reviewRestrictionsLimits",
-              "managingReviews/emailBlacklist",
-              "managingReviews/productBlacklist",
-              "managingReviews/replyingToReviews",
-              "managingReviews/verifiedBadgesForReviews"
+              "managing-reviews",
+              "managing-reviews/auto-publishing-reviews",
+              "managing-reviews/review-moderation",
+              "managing-reviews/review-restrictions-limits",
+              "managing-reviews/email-blacklist",
+              "managing-reviews/product-blacklist",
+              "managing-reviews/replying-to-reviews",
+              "managing-reviews/verified-badges-for-reviews"
             ]
           },
           {
             "group": "7. Questions & Answers",
             "pages": [
-              "questionsAndAnswers",
-              "questionsAndAnswers/qaCollectionForm",
-              "questionsAndAnswers/qaDisplayWidget",
-              "questionsAndAnswers/managingAnsweringQuestions"
+              "questions-and-answers",
+              "questions-and-answers/qa-collection-form",
+              "questions-and-answers/qa-display-widget",
+              "questions-and-answers/managing-answering-questions"
             ]
           },
           {
             "group": "8. Review Settings",
             "pages": [
-              "reviewSettings",
-              "reviewSettings/branding",
-              "reviewSettings/adminNotifications"
+              "review-settings",
+              "review-settings/branding",
+              "review-settings/admin-notifications"
             ]
           },
           {
             "group": "9. Workflows",
             "pages": [
               "workflows",
-              "workflows/gettingStartedWithWorkflows",
-              "workflows/reviewRequestWorkflow",
-              "workflows/reviewReminderWorkflow",
-              "workflows/reviewSubmittedRewardWorkflow"
+              "workflows/getting-started-with-workflows",
+              "workflows/review-request-workflow",
+              "workflows/review-reminder-workflow",
+              "workflows/review-submitted-reward-workflow"
             ]
           },
           {
@@ -113,21 +113,21 @@
               "integrations",
               "integrations/woocommerce",
               "integrations/shopify",
-              "integrations/googleSeo",
+              "integrations/google-seo",
               "integrations/wployalty",
               "integrations/webhooks",
               "integrations/zapier",
-              "integrations/googleShopping",
+              "integrations/google-shopping",
               "integrations/facebook"
             ]
           },
           {
             "group": "11. Account",
             "pages": [
-              "account/accountSettings",
-              "account/updatingLogo",
-              "account/multiStoreManagement",
-              "account/securityAndAccess",
+              "account/account-settings",
+              "account/updating-logo",
+              "account/multi-store-management",
+              "account/security-and-access",
               "account/members"
             ]
           },
@@ -145,7 +145,7 @@
           {
             "group": "API documentation",
             "pages": [
-              "collectReviews/openapi"
+              "collect-reviews/openapi"
             ]
           }
         ]
