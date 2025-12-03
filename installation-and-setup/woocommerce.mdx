@@ -205,15 +205,27 @@ Follow these 5 steps to complete your Yuko installation:
 
     ![Yuko5 Pn](/images/yuko5.png)
 
-    **What happens:** Yuko starts importing your store data:
-    - All products from your catalog
-    - Past 90 days of orders
-    - Customer list (names and emails only)
-    - Existing WooCommerce reviews (if any)
+    **Time:** 2 minutes
+
+    ---
+
+    ### Sync Your Store Data
+
+    After connecting, manually sync your products and customers:
+
+    1. In **Yuko Dashboard**, stay in **Settings → Integrations**
+    2. Find the **WooCommerce** platform integration
+    3. Click the **Configure** button
+    4. Click **Sync Data** button to start importing:
+       - All products from your catalog
+       - Customer list (names and emails only)
+       - Past 90 days of orders
+       - Existing WooCommerce reviews (if any)
+    5. Wait for sync to complete
 
     **Sync time:** 1-5 minutes depending on store size (small stores sync in 1 minute, large stores may take 5 minutes)
 
-    **Time:** 5 minutes total
+    **Total time for this step:** 7 minutes (connection + sync)
 
     <Info>
     **Large store?** If you have 1000+ products or 500+ orders, initial sync may take 10-15 minutes. This is normal. You can continue to the next steps while it syncs in the background.
@@ -244,111 +256,6 @@ Follow these 5 steps to complete your Yuko installation:
 <Check>
 **Installation Complete!** Your WooCommerce store is now connected to Yuko and ready to collect reviews.
 </Check>
-
----
-
-## Verify Your Installation
-
-After completing all steps, verify everything is working correctly:
-
-<AccordionGroup>
-  <Accordion title="Check WordPress Plugin Status" icon="wordpress" defaultOpen>
-    **In WordPress Admin:**
-
-    1. Go to **Plugins → Installed Plugins**
-    2. Look for "Yuko Reviews"
-    3. Status should show "Active" (blue text)
-    4. Version number should be displayed
-
-    **If not active:** Click the "Activate" link
-
-    **If not showing:** Repeat Step 4 (Install Plugin)
-  </Accordion>
-
-  <Accordion title="Check Yuko Dashboard Connection" icon="signal">
-    **In Yuko Dashboard:**
-
-    1. Go to **Settings → Integrations**
-    2. WooCommerce section should show "Connected" (green indicator)
-    3. Your store URL should be displayed
-    4. "Last synced" timestamp should show recent time
-
-    **If not connected:** Click "Reconnect" and authorize again
-
-    **If sync failed:** Click "Retry Sync" button
-  </Accordion>
-
-  <Accordion title="Check Product Import" icon="box">
-    **In Yuko Dashboard:**
-
-    1. Go to **Products** (in left sidebar)
-    2. You should see your WooCommerce products listed
-    3. Product names, images, and prices should match your store
-
-    **If products missing:**
-    - Wait 5-10 minutes for initial sync to complete
-    - Check that products are "Published" in WooCommerce (not Draft)
-    - Click "Sync Now" button to force a refresh
-  </Accordion>
-
-  <Accordion title="Check Order Import" icon="shopping-cart">
-    **In Yuko Dashboard:**
-
-    1. Go to **Orders** (in left sidebar)
-    2. You should see recent orders from the past 90 days
-    3. Order numbers and customer names should match WooCommerce
-
-    **If orders missing:**
-    - Yuko only imports "Completed" orders (not Pending or Processing)
-    - Check that you have completed orders in WooCommerce
-    - Wait for sync to finish (may take 10 minutes for large stores)
-  </Accordion>
-</AccordionGroup>
-
----
-
-## What Happens Next?
-
-After installation, here's what's already working:
-
-<CardGroup cols={2}>
-  <Card title="Automatic Order Syncing" icon="rotate">
-    **Every time a WooCommerce order is marked "Completed":**
-    - Order syncs to Yuko automatically
-    - Customer added to review request queue
-    - Review request sends after your set delay (default: 7 days)
-
-    No manual work needed!
-  </Card>
-
-  <Card title="Product Data Updated" icon="arrows-rotate">
-    **Your product catalog syncs regularly:**
-    - New products added automatically
-    - Product updates sync within 1 hour
-    - Reviews link to correct products
-
-    Always stays in sync!
-  </Card>
-
-  <Card title="Customer Information Secure" icon="shield-check">
-    **Customer data is protected:**
-    - Only names and emails are imported
-    - Data encrypted in transit and at rest
-    - GDPR compliant storage
-    - Customers can request deletion
-
-    Privacy protected!
-  </Card>
-
-  <Card title="Ready for Reviews" icon="star">
-    **Your review system is ready:**
-    - Review forms created automatically
-    - Email templates ready to customize
-    - Widgets ready to add to pages
-
-    Start collecting now!
-  </Card>
-</CardGroup>
 
 ---
 
@@ -579,37 +486,7 @@ Now that installation is complete, set up your review collection system:
 
 ## Need Help?
 
-<CardGroup cols={2}>
-  <Card title="Book Setup Call" icon="phone" href="https://cal.com/rameshelamathi/yuko-demo">
-    **Free 30-minute setup assistance**
-
-    Our team will help you install and configure Yuko on a video call.
-
-    Best for: First-time WordPress users or complex setups
-  </Card>
-
-  <Card title="Email Support" icon="envelope" href="mailto:support@yuko.so">
-    **support@yuko.so**
-
-    Email us your installation questions.
-
-    Response time: Within 24 hours (usually faster)
-  </Card>
-
-  <Card title="Check System Status" icon="clipboard-check" href="/support">
-    **Troubleshooting Guide**
-
-    View detailed troubleshooting steps and common solutions.
-  </Card>
-
-  <Card title="View Video Tutorial" icon="play" href="https://yuko.so/blog/">
-    **Watch Installation Demo**
-
-    Step-by-step video showing the entire installation process.
-
-    Length: 10 minutes
-  </Card>
-</CardGroup>
+<snippet file="need-help.mdx" />
 
 <Note>
 **Pro tip:** After installation, immediately set up review request emails so you don't miss any orders. Go to [Review Request Setup](/requestReviews/reviewRequestEmails) next.
