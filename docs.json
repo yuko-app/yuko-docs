@@ -28,73 +28,73 @@
           {
             "group": "2. Request Reviews",
             "pages": [
-              "requestReviews/index",
-              "requestReviews/reviewRequestEmails",
-              "requestReviews/reviewreminderemail",
-              "requestReviews/photoReviewReminderEmail",
-              "requestReviews/photoReviewRewardEmail",
-              "requestReviews/reviewreplyaddedemail"
+              "request-reviews/index",
+              "request-reviews/reviewRequestEmails",
+              "request-reviews/reviewreminderemail",
+              "request-reviews/photoReviewReminderEmail",
+              "request-reviews/photoReviewRewardEmail",
+              "request-reviews/reviewreplyaddedemail"
             ]
           },
           {
             "group": "3. Collect Reviews",
             "pages": [
-              "collectReviews",
-              "collectReviews/ReviewCollectionForm",
-              "collectReviews/collectingShopSiteReview",
-              "collectReviews/customizingReviewInputs"
+              "collect-reviews",
+              "collect-reviews/ReviewCollectionForm",
+              "collect-reviews/collectingShopSiteReview",
+              "collect-reviews/customizingReviewInputs"
             ]
           },
           {
             "group": "4. Display Reviews",
             "pages": [
-              "displayReviews",
-              "displayReviews/introductionToWidgets",
-              "displayReviews/productReviewsDisplayWidget",
-              "displayReviews/SidebarWidget",
-              "displayReviews/starRatingWidget",
-              "displayReviews/allReviewsWallOfFameWidget",
-              "displayReviews/carouselTestimonialWidget",
-              "displayReviews/flowingReviewBadgeComingSoon",
-              "displayReviews/reviewDisplayControls"
+              "display-reviews",
+              "display-reviews/introductionToWidgets",
+              "display-reviews/productReviewsDisplayWidget",
+              "display-reviews/SidebarWidget",
+              "display-reviews/starRatingWidget",
+              "display-reviews/allReviewsWallOfFameWidget",
+              "display-reviews/carouselTestimonialWidget",
+              "display-reviews/flowingReviewBadgeComingSoon",
+              "display-reviews/reviewDisplayControls"
             ]
           },
           {
             "group": "5. Import Reviews",
             "pages": [
-              "importReviews",
-              "importReviews/importingFromWooCommerceReview",
-              "importReviews/importingFromJudgeMeReviews"
+              "import-reviews",
+              "import-reviews/importingFromWooCommerceReview",
+              "import-reviews/importingFromJudgeMeReviews"
             ]
           },
           {
             "group": "6. Managing Reviews",
             "pages": [
-              "managingReviews",
-              "managingReviews/autoPublishingReviews",
-              "managingReviews/reviewModeration",
-              "managingReviews/reviewRestrictionsLimits",
-              "managingReviews/emailBlacklist",
-              "managingReviews/productBlacklist",
-              "managingReviews/replyingToReviews",
-              "managingReviews/verifiedBadgesForReviews"
+              "managing-reviews",
+              "managing-reviews/autoPublishingReviews",
+              "managing-reviews/reviewModeration",
+              "managing-reviews/reviewRestrictionsLimits",
+              "managing-reviews/emailBlacklist",
+              "managing-reviews/productBlacklist",
+              "managing-reviews/replyingToReviews",
+              "managing-reviews/verifiedBadgesForReviews"
             ]
           },
           {
             "group": "7. Questions & Answers",
             "pages": [
-              "questionsAndAnswers",
-              "questionsAndAnswers/qaCollectionForm",
-              "questionsAndAnswers/qaDisplayWidget",
-              "questionsAndAnswers/managingAnsweringQuestions"
+              "questions-and-answers",
+              "questions-and-answers/qaCollectionForm",
+              "questions-and-answers/qaDisplayWidget",
+              "questions-and-answers/managingAnsweringQuestions"
             ]
           },
           {
             "group": "8. Review Settings",
             "pages": [
-              "reviewSettings",
-              "reviewSettings/branding",
-              "reviewSettings/adminNotifications"
+              "review-settings",
+              "review-settings/branding",
+              "review-settings/adminNotifications"
             ]
           },
           {
@@ -145,7 +145,7 @@
           {
             "group": "API documentation",
             "pages": [
-              "collectReviews/openapi"
+              "collect-reviews/openapi"
             ]
           }
         ]
