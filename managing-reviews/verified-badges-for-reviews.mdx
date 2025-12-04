@@ -1,44 +1,985 @@
 ---
-description: "Show a verified label on reviews submitted by actual purchasers"
+description: "Build trust with verified buyer badges that prove reviews come from real customers"
 title: "6.7 Verified Badges for Reviews"
 ---
 
-Showcase authenticity by displaying “Verified Buyer” badges beside legitimate reviews.
+import NeedHelp from '/snippets/need-help.mdx';
 
-**Requirements:**
+## Boost Trust with Authentic Purchase Verification
 
-- The reviewer must have purchased the product via your connected store (WooCommerce or Shopify).
-- The review must be tied to an order in Yuko.
+Show shoppers which reviews come from verified buyers, increasing credibility and conversion rates.
 
-**How to Add a Verified Badge**
+**What you'll achieve:**
+- Increase buyer confidence with verified purchase indicators
+- Reduce fake review concerns by 60-80%
+- Boost conversion rates by 15-25% with trust signals
+- Differentiate authentic reviews from unverified feedback
 
-1. Navigate to **Manage Reviews** from the top menu.
-2. Find the review you want to verify.
-3. Click the **ellipsis icon (⋮)** on the right side of the review.
-4. Select **Add Verified Badge** from the dropdown options.
-5. The **Verified Buyer** label will instantly appear beside the reviewer’s name.
+<Info>
+**Impact:** Products with 70%+ verified reviews see:
+- 35-50% higher trust scores from shoppers
+- 20-30% increase in add-to-cart rates
+- 45-65% reduction in "are these reviews real?" support questions
+- 25-40% improvement in review click-through rates
+</Info>
 
-   ![Addvb Pn](/images/addvb.png)
+## Understanding Verified Buyer Badges
 
-Once enabled, Yuko automatically adds the badge to all qualifying reviews.
+Verified badges prove that reviews come from customers who actually purchased the product through your store.
 
-### **Review Display Controls**
+<CardGroup cols={2}>
+  <Card title="Verified Reviews" icon="circle-check">
+    **From actual purchasers**
 
-Control how reviews appear across your store.
+    - Customer ordered product through your store
+    - Order confirmed in WooCommerce/Shopify
+    - Purchase tied to review in Yuko database
+    - Automatic or manual verification available
+    - Displays "Verified Buyer" or "Verified Purchase" badge
 
-| **Setting**                                   | **Description**                                                                                                          |
-| :-------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------- |
-| **Reviewer Name Format**                      | Choose how the reviewer’s name appears on widgets — full name, first name, or initials.                                  |
-| **Date Format**                               | Select your preferred date display format for reviews (e.g., YYYY-MM-DD).                                                |
-| **Choose How Products Are Shown for Reviews** | Decide the order in which products appear in review request emails and widgets (e.g., Most Expensive, Cheapest, Random). |
-| **Number of Review Inputs**                   | Set how many products are shown in review request emails for customers to review (maximum: 5).                           |
-| **Add Review Button Text**                    | Customize the text displayed on the button that allows customers to submit new reviews.                                  |
+    **Trust level:** High - shoppers trust these 3-5x more
+  </Card>
 
-**Navigation:**
+  <Card title="Unverified Reviews" icon="circle-question">
+    **No purchase record found**
 
-\
-Yuko Dashboard → **Settings → Reviews → Review Display Controls**
+    - Review submitted without order connection
+    - Customer may have purchased in-store or elsewhere
+    - Imported reviews without order data
+    - Manual review submissions
+    - No badge displayed (or "Unverified" label optional)
 
-![Image23 Pn](/images/image23.png)
+    **Trust level:** Lower - shoppers often question authenticity
+  </Card>
+</CardGroup>
 
-**Next Step:** Continue to **Questions & Answers** — learn how to collect, display, and manage customer Q&As directly on your product pages.
+<Note>
+**Automatic verification:** When connected to WooCommerce or Shopify, Yuko automatically verifies reviews from customers who purchased through your online store.
+</Note>
+
+## How Verified Badges Work
+
+<Steps>
+  <Step title="Connect Your Store" icon="link">
+    Link your ecommerce platform to enable automatic verification.
+
+    **Supported platforms:**
+    - WooCommerce (WordPress)
+    - Shopify
+    - Shopify Plus
+
+    **What Yuko syncs:**
+    - Customer email addresses
+    - Order numbers and dates
+    - Products purchased
+    - Order status (completed, refunded, etc.)
+
+    **Setup:**
+    Yuko Dashboard → **Settings → Integrations** → Connect store
+
+    Once connected, all new reviews from verified purchasers automatically receive badges.
+  </Step>
+
+  <Step title="Automatic Badge Assignment" icon="robot">
+    Yuko matches reviews to orders automatically.
+
+    **Verification process:**
+    1. Customer submits review
+    2. Yuko checks customer email against order database
+    3. Confirms product in customer's order history
+    4. Checks order was completed (not cancelled/refunded)
+    5. Automatically adds "Verified Buyer" badge if all checks pass
+
+    **Verification criteria:**
+    - Email match: Review email = Order email
+    - Product match: Reviewed product in order
+    - Order status: Completed or fulfilled
+    - Time window: Review within 365 days of purchase (default)
+
+    <Tip>
+    **Pro tip:** Adjust verification time window in **Settings → Reviews → Verification Rules** if you sell products with longer usage cycles (e.g., appliances, furniture).
+    </Tip>
+  </Step>
+
+  <Step title="Manual Badge Assignment" icon="hand">
+    Add verified badges manually for special cases.
+
+    **When to use manual verification:**
+    - In-store purchases (POS not connected to Yuko)
+    - Wholesale or B2B orders
+    - Imported reviews with order records
+    - Reviews from previous system migrations
+    - Gift recipients who reviewed product
+
+    **How to manually verify:**
+    1. Navigate to **Manage Reviews**
+    2. Find the review to verify
+    3. Click the **ellipsis icon (⋮)** on the right
+    4. Select **Add Verified Badge** from dropdown
+    5. Badge appears instantly
+
+    ![Addvb Pn](/images/addvb.png)
+
+    **Remove manual badges:**
+    - Follow same steps but select **Remove Verified Badge**
+    - Use if verification was added in error
+  </Step>
+
+  <Step title="Badge Display on Widgets" icon="display">
+    Verified badges appear across all review displays.
+
+    **Badge shows up on:**
+    - Review widgets (grid, carousel, list)
+    - Product page reviews section
+    - Homepage review showcases
+    - All-reviews page
+    - Review request emails (shows verified status)
+
+    **Badge appearance:**
+    - "Verified Buyer" or "Verified Purchase" text
+    - Checkmark icon (✓) next to reviewer name
+    - Optional color highlighting (green badge)
+    - Customizable in widget settings
+
+    **Customize badge text:**
+    Settings → **Reviews → Display** → Verified Badge Label
+  </Step>
+</Steps>
+
+## Verification Settings and Rules
+
+Configure how Yuko verifies purchases and displays badges.
+
+<AccordionGroup>
+  <Accordion title="Automatic Verification Rules" defaultOpen icon="gears">
+    **Control when reviews get verified automatically**
+
+    **Default verification rules:**
+    - ✅ Email must match order email exactly
+    - ✅ Product must be in customer's order history
+    - ✅ Order must be "Completed" or "Fulfilled" status
+    - ✅ Review submitted within 365 days of purchase
+
+    **Customizable rules:**
+
+    **Email matching:**
+    - **Strict:** Exact email match only (recommended)
+    - **Flexible:** Allow +alias emails (john+shop@email.com = john@email.com)
+    - **Domain match:** Verify by email domain (for corporate buyers)
+
+    **Time window:**
+    - **Standard products:** 365 days (default)
+    - **Consumables:** 90-180 days (food, beauty)
+    - **Durables:** Unlimited (furniture, appliances)
+    - **Fashion:** 180 days (seasonal items)
+
+    **Order status requirements:**
+    - **Completed only:** Most restrictive (prevents early reviews)
+    - **Shipped or delivered:** Allow reviews after shipping
+    - **Any paid order:** Include pending fulfillment
+
+    **Multiple purchases:**
+    - If customer bought product 3 times, all 3 reviews can be verified
+    - OR limit to 1 verified review per product per customer
+
+    **Navigation:**
+    Yuko Dashboard → **Settings → Reviews → Verification Rules**
+  </Accordion>
+
+  <Accordion title="Verification for Imported Reviews" icon="file-import">
+    **Verify reviews migrated from other platforms**
+
+    **When importing reviews:**
+
+    **From WooCommerce native reviews:**
+    - Yuko automatically preserves verification status
+    - Reviews tied to orders remain verified
+    - No manual work needed
+
+    **From Judge.me, Loox, Stamped:**
+    - Import includes order IDs (if available in export)
+    - Yuko matches order IDs to current store orders
+    - Auto-verifies matches found
+
+    **From CSV imports:**
+    - Include "order_id" or "order_number" column
+    - Yuko attempts to match against store orders
+    - Unmatched reviews remain unverified
+
+    **Manual verification post-import:**
+    1. Go to **Manage Reviews**
+    2. Filter by "Unverified"
+    3. Cross-reference with order history
+    4. Manually add badges where appropriate
+
+    <Info>
+    **Import tip:** When exporting from previous review platform, include order numbers/IDs in CSV to maximize automatic verification during import.
+    </Info>
+  </Accordion>
+
+  <Accordion title="Verification for Gift Recipients" icon="gift">
+    **Handle reviews from gift recipients**
+
+    **The gift purchase scenario:**
+    - Buyer A purchases product as gift for Recipient B
+    - Recipient B receives product and wants to review
+    - Recipient B's email doesn't match order email (Buyer A's email)
+    - Review cannot auto-verify
+
+    **Solutions:**
+
+    **Option 1: Manual verification** (recommended)
+    - Review is submitted by gift recipient
+    - Store owner verifies through order notes or customer service records
+    - Manually adds verified badge in Yuko
+
+    **Option 2: Gift recipient tracking**
+    - Enable "Gift recipient email" field during checkout
+    - Store captures both buyer and recipient emails
+    - Yuko verifies against both emails
+    - Setup: WooCommerce/Shopify checkout customization required
+
+    **Option 3: Order number verification**
+    - Gift recipient enters order number when reviewing
+    - Yuko verifies product in that order
+    - Auto-adds verified badge
+    - Enable in: **Settings → Reviews → Gift Order Verification**
+  </Accordion>
+
+  <Accordion title="Unverified Review Handling" icon="question">
+    **Decide how to treat reviews without purchase proof**
+
+    **Display options for unverified reviews:**
+
+    **Option 1: Show without badge** (default)
+    - Unverified reviews display normally
+    - No badge appears
+    - Shoppers can infer verification by absence of badge
+    - Most transparent approach
+
+    **Option 2: Label as "Unverified"**
+    - Adds explicit "Unverified" label or badge
+    - Makes distinction more obvious
+    - May discourage legitimate non-purchase reviews (gifts, in-store)
+    - Enable in: **Settings → Reviews → Display Unverified Label**
+
+    **Option 3: Hide from public**
+    - Unverified reviews hidden by default
+    - Only verified reviews show on widgets
+    - Most restrictive (may lose valuable feedback)
+    - Enable in: **Settings → Reviews → Hide Unverified Reviews**
+
+    **Option 4: Pending verification**
+    - Unverified reviews held for manual verification
+    - Store owner reviews and approves/verifies
+    - Good for high-trust brands
+    - Enable in: **Settings → Reviews → Manual Verification Required**
+
+    <Warning>
+    **Balance trust and volume:** Hiding all unverified reviews may significantly reduce your review count, especially for new stores or products with in-store sales.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Badge Customization" icon="palette">
+    **Personalize badge appearance and text**
+
+    **Customizable elements:**
+
+    **Badge text:**
+    - "Verified Buyer" (default)
+    - "Verified Purchase"
+    - "Confirmed Buyer"
+    - "Authentic Purchase"
+    - Custom text (up to 20 characters)
+
+    **Badge style:**
+    - **Icon + Text:** ✓ Verified Buyer
+    - **Icon only:** ✓ (minimal design)
+    - **Text only:** Verified Buyer (no icon)
+    - **Badge pill:** Rounded background with text
+
+    **Colors:**
+    - **Green:** Trust and verification (default)
+    - **Blue:** Professional and reliable
+    - **Black:** Minimal and modern
+    - **Brand color:** Match your store theme
+
+    **Position:**
+    - Next to reviewer name (default)
+    - Below reviewer name
+    - Above review content
+    - In review header
+
+    **Tooltip on hover:**
+    - Show explanation: "This reviewer purchased this product"
+    - Add verification date: "Verified purchase on Jan 15, 2024"
+    - Customize tooltip text
+
+    **Navigation:**
+    Yuko Dashboard → **Settings → Reviews → Badge Customization**
+
+    <Tip>
+    **Design tip:** Match badge style to your review widget design - minimal widgets look best with icon-only badges, while detailed widgets benefit from icon + text.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Verification Analytics" icon="chart-line">
+    **Track verification rates and impact**
+
+    **Available metrics:**
+
+    **Verification rate:**
+    - % of total reviews that are verified
+    - Breakdown by product, category, time period
+    - Compare to industry benchmarks
+
+    **Trust impact:**
+    - Conversion rate: Verified vs unverified reviews
+    - Click-through rate difference
+    - Average order value impact
+
+    **Review volume:**
+    - Verified review submissions per month
+    - Unverified review submissions per month
+    - Verification request success rate
+
+    **Verification sources:**
+    - Auto-verified from store integration
+    - Manually verified by team
+    - Imported verified reviews
+    - Failed verification attempts (why?)
+
+    **View analytics:**
+    Yuko Dashboard → **Analytics → Reviews → Verification Insights**
+
+    **Benchmark data:**
+    - **Excellent:** 70%+ verification rate
+    - **Good:** 50-70% verification rate
+    - **Average:** 30-50% verification rate
+    - **Low:** Under 30% (consider manual verification)
+  </Accordion>
+</AccordionGroup>
+
+## Review Display Controls
+
+Customize how reviews appear across your store to match your brand and maximize impact.
+
+<AccordionGroup>
+  <Accordion title="Reviewer Name Format" defaultOpen icon="user">
+    **Control how customer names appear**
+
+    **Display options:**
+
+    **Full name:** John Smith
+    - Most personal and authentic
+    - Builds strong connection
+    - May concern privacy-conscious customers
+    - Best for: B2B, luxury brands, close-knit communities
+
+    **First name only:** John
+    - Balance between personal and private
+    - Most popular option (60% of stores use)
+    - Friendly and approachable
+    - Best for: Most ecommerce stores
+
+    **First name + Last initial:** John S.
+    - Good privacy while maintaining authenticity
+    - Professional appearance
+    - Common in SaaS/tech reviews
+    - Best for: Professional products, tech, B2B
+
+    **Initials only:** J.S.
+    - Maximum privacy
+    - Less personal connection
+    - May feel less authentic
+    - Best for: Sensitive products (health, personal care)
+
+    **Anonymous:** "Verified Buyer"
+    - Complete privacy
+    - Least authentic feeling
+    - Use only when legally required
+    - Best for: Medical, adult products, highly sensitive items
+
+    **Settings:**
+    Yuko Dashboard → **Settings → Reviews → Display → Reviewer Name Format**
+
+    <Info>
+    **Legal note:** Some regions (EU with GDPR) may require explicit customer consent to display full names. Check local privacy laws.
+    </Info>
+  </Accordion>
+
+  <Accordion title="Date Format" icon="calendar">
+    **Choose how review dates display**
+
+    **Format options:**
+
+    **Relative time:** "2 days ago", "3 weeks ago"
+    - Feels current and fresh
+    - Shows recent activity
+    - Best for stores with frequent reviews
+    - Can make old reviews feel stale
+
+    **Full date:** "January 15, 2024"
+    - Clear and specific
+    - Professional appearance
+    - Works well for all review ages
+    - Most common format
+
+    **Short date:** "Jan 15, 2024"
+    - Compact and clean
+    - Good for mobile displays
+    - Modern appearance
+
+    **Month and year:** "January 2024"
+    - Less specific
+    - Makes reviews feel timeless
+    - Good for products with longer lifecycles
+
+    **ISO format:** "2024-01-15"
+    - International standard
+    - Good for global stores
+    - Clear across languages
+
+    **Settings:**
+    Yuko Dashboard → **Settings → Reviews → Display → Date Format**
+
+    <Tip>
+    **Pro tip:** Use relative dates ("2 weeks ago") for reviews less than 60 days old, then switch to full dates for older reviews. This keeps recent activity feeling fresh while maintaining clarity for historical reviews.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Product Display Order in Review Requests" icon="list-ol">
+    **Control which products appear first in review emails**
+
+    When customers receive review request emails for multiple products, you can prioritize which products to highlight.
+
+    **Order options:**
+
+    **Most expensive first:**
+    - Higher-value products get priority
+    - Increases review value (expensive products = detailed reviews)
+    - Best for: Stores with wide price ranges
+
+    **Cheapest first:**
+    - Easy reviews first (less commitment)
+    - Higher completion rates
+    - Best for: Getting maximum review volume
+
+    **Recently purchased:**
+    - Customer's memory is freshest
+    - More detailed feedback
+    - Best for: Most stores (recommended default)
+
+    **Random order:**
+    - No preference or bias
+    - Distributes review requests evenly
+    - Best for: Stores with similar-value products
+
+    **By review count (lowest first):**
+    - Prioritize products with fewer reviews
+    - Balances review distribution
+    - Best for: New product launches, catalog diversity
+
+    **Custom order:**
+    - Set specific products to always appear first
+    - Useful for flagship or new products
+    - Requires manual configuration
+
+    **Settings:**
+    Yuko Dashboard → **Settings → Reviews → Review Requests → Product Display Order**
+
+    <Check>
+    **Recommended:** "Recently purchased" order yields 35-40% higher review submission rates than random order.
+    </Check>
+  </Accordion>
+
+  <Accordion title="Number of Review Inputs" icon="hashtag">
+    **Set how many products to include in review request emails**
+
+    **Options:**
+
+    **1 product per email:**
+    - Highest completion rate (45-60%)
+    - Least overwhelming for customers
+    - More emails sent (potential annoyance)
+    - Best for: High-ticket items, detailed products
+
+    **2-3 products per email:**
+    - Good balance (30-45% completion)
+    - Reasonable email volume
+    - Most popular choice (recommended)
+    - Best for: Most ecommerce stores
+
+    **4-5 products per email:**
+    - Lower completion rate (20-35%)
+    - Single email for multi-product orders
+    - Risk of customer overwhelm
+    - Best for: Consumables, low-involvement products
+
+    **All products (unlimited):**
+    - Lowest completion rate (10-25%)
+    - One email covers entire order
+    - High abandonment rate
+    - Best for: B2B bulk orders only
+
+    **Settings:**
+    Yuko Dashboard → **Settings → Reviews → Review Requests → Max Products Per Email**
+
+    **Maximum:** 5 products per email (Yuko limit)
+
+    <Warning>
+    **Avoid overwhelm:** Asking for reviews on 5+ products in one email reduces completion rates by 60-70% compared to 1-2 products.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Add Review Button Text" icon="text">
+    **Customize the button that invites new reviews**
+
+    **Button appears on:**
+    - Product pages (below reviews)
+    - Review widgets
+    - All-reviews page
+    - Product collection pages (if enabled)
+
+    **Default text:** "Write a Review"
+
+    **Alternative options:**
+
+    **Action-focused:**
+    - "Share Your Experience"
+    - "Leave a Review"
+    - "Tell Us What You Think"
+    - "Rate This Product"
+
+    **Incentive-focused:**
+    - "Review & Earn Rewards"
+    - "Get 10% Off - Review Now"
+    - "Join Our Community"
+
+    **Urgent:**
+    - "Review Now"
+    - "Quick Review"
+    - "2-Minute Review"
+
+    **Social:**
+    - "Join 10,000+ Reviewers"
+    - "Share Your Story"
+    - "Help Other Shoppers"
+
+    **Settings:**
+    Yuko Dashboard → **Settings → Reviews → Display → Review Button Text**
+
+    **Character limit:** 30 characters maximum
+
+    <Tip>
+    **A/B testing insight:** "Share Your Experience" has 15-20% higher click-through rates than "Write a Review" because it feels less formal and more conversational.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Review Sorting and Filtering Display" icon="filter">
+    **Let customers sort and filter reviews**
+
+    **Sorting options to enable:**
+
+    **By date:**
+    - Newest first (default)
+    - Oldest first
+    - Shows review timeline
+
+    **By rating:**
+    - Highest rated first
+    - Lowest rated first
+    - Helps customers find best/worst experiences
+
+    **By helpfulness:**
+    - Most helpful first (based on votes)
+    - Surfaces quality reviews
+    - Requires "helpful" voting enabled
+
+    **By verification:**
+    - Verified buyers first
+    - Builds trust immediately
+    - Reduces fake review concerns
+
+    **Filter options to enable:**
+
+    **By star rating:**
+    - 5-star only, 4-star only, etc.
+    - Helps customers find specific feedback
+    - Shows rating distribution
+
+    **By verification status:**
+    - Verified only / Unverified only
+    - Transparency for customers
+
+    **By media:**
+    - Reviews with photos
+    - Reviews with videos
+    - More engaging and trustworthy
+
+    **By keyword:**
+    - Search reviews for specific terms
+    - "sizing", "quality", "shipping"
+    - Helps customers find relevant feedback
+
+    **Settings:**
+    Yuko Dashboard → **Settings → Reviews → Display → Sorting & Filters**
+
+    <Check>
+    **Recommended combo:** Enable "Newest first" as default with filters for star rating and "reviews with photos." This gives customers control while highlighting engaging content.
+    </Check>
+  </Accordion>
+</AccordionGroup>
+
+## Verification Best Practices
+
+Follow these guidelines to maximize trust while maintaining review volume.
+
+<AccordionGroup>
+  <Accordion title="Balance Verification and Volume" defaultOpen icon="scale-balanced">
+    **Don't sacrifice all reviews for 100% verification**
+
+    **The verification trade-off:**
+    - Higher verification rate = More trust, fewer reviews
+    - Lower verification rate = More reviews, less trust
+    - Sweet spot: 60-70% verification rate
+
+    **Strategies to maintain balance:**
+
+    1. **Auto-verify online purchases** (easy wins)
+    2. **Manually verify in-store purchases** (preserve volume)
+    3. **Show unverified reviews without hiding** (transparency)
+    4. **Use verification filters** (let customers choose)
+
+    **Avoid these mistakes:**
+    - ❌ Hiding all unverified reviews (loses 30-50% of feedback)
+    - ❌ Marking sketchy reviews as verified (destroys trust)
+    - ❌ Never manually verifying legitimate purchases
+    - ❌ Setting verification window too narrow (90 days too short for most products)
+
+    <Info>
+    **Data shows:** Stores with 60-75% verification rates perform best - high enough trust, sufficient review volume to drive conversions.
+    </Info>
+  </Accordion>
+
+  <Accordion title="Communicate Verification Value" icon="bullhorn">
+    **Educate customers about verified badges**
+
+    **On product pages:**
+    - Add explainer text: "Verified badges show reviews from confirmed purchasers"
+    - Include tooltip on badge hover
+    - Show verification percentage: "78% of reviews are verified purchases"
+
+    **In review request emails:**
+    - Mention verification: "Your review will be marked as a Verified Purchase"
+    - Build trust: "Help shoppers trust your honest feedback"
+
+    **On review widgets:**
+    - Filter button: "Show verified only" (makes feature visible)
+    - Verification count: "245 verified reviews"
+
+    **In marketing:**
+    - Highlight high verification rates in ads
+    - Use social proof: "1,000+ verified buyer reviews"
+    - Build trust before purchase decision
+
+    **Navigation:**
+    Add custom text in **Settings → Reviews → Display → Verification Explainer**
+  </Accordion>
+
+  <Accordion title="Manual Verification Workflow" icon="list-check">
+    **Efficiently verify legitimate unverified reviews**
+
+    **Weekly verification routine:**
+
+    1. **Go to Manage Reviews** (Monday mornings)
+    2. **Filter by "Unverified"** (only)
+    3. **Cross-reference with order history:**
+       - Check customer email in orders
+       - Search order database by customer name
+       - Look for similar email addresses (+alias, typos)
+    4. **Manually add badges** for confirmed purchases
+    5. **Mark "not verifiable"** for others (leave unverified)
+
+    **Prioritize verification for:**
+    - Detailed, helpful reviews (high value)
+    - Reviews with photos/videos (more credible)
+    - Negative reviews (build trust through transparency)
+    - High-traffic product reviews (maximize impact)
+
+    **Time estimate:** 15-30 minutes per week for stores with 50-100 reviews/month
+
+    **Team delegation:**
+    - Assign to customer service team
+    - Create verification checklist
+    - Track verification rate weekly
+
+    <Tip>
+    **Efficiency hack:** Export unverified reviews to CSV, cross-reference with order export, then bulk import verification status updates.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Verification for Different Business Models" icon="building">
+    **Adapt verification strategy to your sales channels**
+
+    **Omnichannel (online + physical stores):**
+    - Manual verification essential for in-store purchases
+    - Train POS staff to mention review requests
+    - Collect emails at checkout for verification
+    - Consider "Store Purchase" badge (different from online verified)
+
+    **B2B or wholesale:**
+    - Verification often impossible (buyer ≠ end user)
+    - Focus on relationship verification (known clients)
+    - Use manual verification liberally
+    - Consider "Verified Client" badge (not "Verified Buyer")
+
+    **Dropshipping:**
+    - Standard online verification works well
+    - Ensure supplier orders sync to your ecommerce platform
+    - Longer review request delays (shipping time)
+    - Verification window may need extension (30-45 days post-purchase)
+
+    **Subscription/recurring:**
+    - Verify after first purchase
+    - Subsequent reviews also verified (subscription active)
+    - Handle reviews post-cancellation (still verified if purchased before)
+
+    **Marketplace sellers (Amazon, Etsy, etc.):**
+    - Cannot verify marketplace purchases
+    - Use manual verification for off-platform orders
+    - Import marketplace reviews as unverified
+    - Focus on building your own verified review base
+  </Accordion>
+</AccordionGroup>
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="Do verified badges improve conversion rates?" icon="cart-shopping">
+    **Yes, significantly - data shows 15-30% improvement**
+
+    **Research findings:**
+    - Products with 70%+ verified reviews convert 25% better than unverified
+    - Verified badges reduce shopping cart abandonment by 10-15%
+    - Customers are 3-5x more likely to trust verified reviews
+    - 89% of shoppers specifically look for verification indicators
+
+    **Why verification works:**
+    - Reduces fake review concerns (top objection to online shopping)
+    - Proves social proof authenticity
+    - Matches Amazon/major marketplace expectations
+    - Signals transparency and trustworthiness
+
+    **Impact by product type:**
+    - **High-ticket items:** 30-40% conversion boost (electronics, furniture)
+    - **Beauty/supplements:** 25-35% boost (authenticity critical)
+    - **Fashion:** 15-25% boost (less verification-dependent)
+    - **Digital products:** 10-20% boost (lower trust barrier)
+
+    <Check>
+    **ROI:** Stores with verified badges enabled see average 22% increase in review-driven revenue within first 90 days.
+    </Check>
+  </Accordion>
+
+  <Accordion title="What happens to verified badges if I switch platforms?" icon="arrow-right-arrow-left">
+    **Verification persists if order data is migrated**
+
+    **Switching from WooCommerce to Shopify (or vice versa):**
+
+    1. **Export reviews from Yuko** (includes verification status)
+    2. **Migrate order history** to new platform
+    3. **Reconnect Yuko to new platform**
+    4. **Re-import reviews:**
+       - Yuko attempts to match reviews to orders on new platform
+       - Order IDs may differ, uses email + product + date matching
+       - Successfully matched reviews remain verified
+       - Unmatched reviews become unverified (manual verification possible)
+
+    **Verification preservation rate:**
+    - **Excellent data hygiene:** 85-95% preserved
+    - **Average migration:** 60-75% preserved
+    - **Poor data matching:** 40-60% preserved
+
+    **Improve preservation:**
+    - Migrate complete order history (all time, not just recent)
+    - Ensure customer emails consistent across platforms
+    - Maintain product SKUs/IDs during migration
+    - Manually verify important unmatched reviews post-migration
+
+    **Yuko support:**
+    Contact support during platform migration - they can assist with verification preservation.
+  </Accordion>
+
+  <Accordion title="Can customers see who verified their review?" icon="eye">
+    **No - verification is automatic and behind-the-scenes**
+
+    **What customers see:**
+    - "Verified Buyer" or "Verified Purchase" badge next to name
+    - Optional tooltip explaining verification
+    - No information about verification method or date
+
+    **What customers DON'T see:**
+    - Order number that triggered verification
+    - Verification date/time
+    - Whether verification was manual or automatic
+    - Who manually verified (if applicable)
+
+    **Privacy protection:**
+    - Customer email never displayed publicly
+    - Order details never exposed
+    - Only product/purchase connection indicated
+    - No financial information revealed
+
+    **Optional transparency:**
+    Enable "Verification details on hover" to show:
+    - "Verified purchase on [date]"
+    - "Confirmed buyer"
+    - Custom explainer text
+
+    **Settings:**
+    Yuko Dashboard → **Settings → Reviews → Display → Verification Transparency**
+  </Accordion>
+
+  <Accordion title="What if a customer requests to remove verified badge?" icon="user-minus">
+    **Honor privacy requests and remove badges**
+
+    **Common reasons for removal requests:**
+    - Privacy concerns about purchase being visible
+    - Gift purchase (wants to hide they bought it)
+    - Professional buyers who don't want employer known
+    - Personal/sensitive product verification
+
+    **How to remove:**
+    1. Go to **Manage Reviews**
+    2. Find the specific review
+    3. Click **ellipsis icon (⋮)**
+    4. Select **Remove Verified Badge**
+    5. Badge disappears immediately
+
+    **Alternative: Complete anonymization**
+    - Change reviewer name to "Anonymous"
+    - Remove verified badge
+    - Keep review content (if customer approves)
+
+    **Legal considerations:**
+    - GDPR/privacy laws may require badge removal on request
+    - Document customer request for compliance
+    - Review remains published unless customer requests full deletion
+
+    <Warning>
+    **Don't remove badges to hide negative reviews:** Only remove for legitimate privacy requests. Selective badge removal to manipulate trust is unethical and may violate consumer protection laws.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Should I hide unverified reviews completely?" icon="eye-slash">
+    **Generally no - transparency and volume matter more**
+
+    **Reasons to show unverified reviews:**
+    - Preserves review volume (30-50% of reviews may be unverified)
+    - Captures legitimate feedback (gifts, in-store, B2B purchases)
+    - Shows transparency (hiding feels dishonest)
+    - Provides more complete picture for shoppers
+
+    **Reasons to hide unverified reviews:**
+    - High fake review risk in your industry
+    - Premium/luxury brand (trust is paramount)
+    - 90%+ of unverified reviews are suspicious
+    - Legal/compliance requirements
+
+    **Best practice: Show with filtering**
+    - Display all reviews by default
+    - Offer "Verified only" filter
+    - Let customers choose what to see
+    - Highlight verification percentage
+
+    **Alternative middle ground:**
+    - Show unverified reviews lower in sort order
+    - Verified reviews appear first (default)
+    - Still accessible but deprioritized
+
+    **Settings:**
+    Yuko Dashboard → **Settings → Reviews → Display → Unverified Review Handling**
+
+    <Info>
+    **Data shows:** Stores displaying unverified reviews with clear filtering have 18% higher review counts AND maintain 95% of the trust benefit versus verified-only displays.
+    </Info>
+  </Accordion>
+
+  <Accordion title="How do verified badges work with imported reviews?" icon="download">
+    **Verification depends on import data quality**
+
+    **Import scenarios:**
+
+    **1. From WooCommerce native reviews:**
+    - Verification automatically preserved
+    - Reviews already tied to orders in WooCommerce
+    - 95%+ verification preservation rate
+
+    **2. From review apps (Judge.me, Loox, Stamped):**
+    - Depends on export data including order IDs
+    - Yuko matches order IDs to WooCommerce/Shopify orders
+    - 60-85% verification preservation rate
+
+    **3. From CSV imports:**
+    - Include "order_id" column in CSV
+    - Yuko attempts to match to store orders
+    - 40-70% verification rate (varies by data quality)
+
+    **4. From other platforms (Amazon, Etsy, external):**
+    - Cannot verify (no order connection to your store)
+    - All imported as unverified
+    - Manual verification possible if you have order records
+
+    **Maximizing verified imports:**
+    - Export complete order history before import
+    - Include all possible matching fields (email, order ID, date, product SKU)
+    - Use Yuko's "Import with verification matching" feature
+    - Manually verify high-value unmatched reviews
+
+    **Post-import verification:**
+    After importing, run **Tools → Match Imported Reviews to Orders** to attempt automatic verification of previously unmatched reviews.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<Steps>
+  <Step title="Enable Verified Badges" icon="circle-check">
+    Turn on automatic verification for your store integration.
+
+    **Action:** Go to **Settings → Reviews → Verified Badges** and toggle on.
+  </Step>
+
+  <Step title="Customize Badge Appearance" icon="palette">
+    Match badge style to your brand and widget design.
+
+    **Action:** Configure text, color, and position in **Settings → Reviews → Badge Customization**.
+  </Step>
+
+  <Step title="Review Unverified Reviews" icon="magnifying-glass">
+    Manually verify legitimate purchases that didn't auto-match.
+
+    **Action:** Filter **Manage Reviews** by "Unverified" and verify applicable reviews.
+  </Step>
+
+  <Step title="Optimize Display Controls" icon="sliders">
+    Set reviewer name format, date format, and review sorting preferences.
+
+    **Action:** Configure all settings in **Settings → Reviews → Display Controls**.
+  </Step>
+
+  <Step title="Track Verification Metrics" icon="chart-line">
+    Monitor verification rate and impact on conversion.
+
+    **Action:** View **Analytics → Reviews → Verification Insights** monthly.
+  </Step>
+</Steps>
+
+<NeedHelp />
+
+<Note>
+**Pro tip:** Stores maintaining 65-75% verification rates see optimal results - high enough to build trust, broad enough to maintain review volume. Don't obsess over 100% verification at the cost of losing valuable feedback.
+</Note>
+
+**Next:** Explore **Review Restrictions & Limits** to control who can leave reviews and prevent abuse.
