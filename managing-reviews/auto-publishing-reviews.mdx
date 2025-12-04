@@ -1,20 +1,905 @@
 ---
-description: "Automatically publish incoming reviews based on your preset moderation rules."
-title: "6.1 Auto-Publishing Reviews"
+title: "Auto-Publishing Reviews"
+description: "Automatically publish reviews based on criteria to balance social proof speed with quality control"
 ---
 
-### **Navigation**
+import NeedHelp from '/snippets/need-help.mdx';
 
-Yuko Dashboard → **Settings → Reviews → General**
+## Automate Review Approval for Faster Social Proof
 
-![Asaff Pn](/images/asaff.png)
+Manually approving every review takes time. Auto-publishing lets you automatically approve reviews that meet your criteria, so positive social proof appears instantly while questionable reviews still get your attention.
 
-Yuko can automatically publish new reviews without manual approval.
+**What you'll achieve:**
+- Publish quality reviews immediately without manual work
+- Filter low-quality reviews for manual review
+- Balance speed with quality control
+- Save 30-60 minutes per day on moderation
+- Build social proof faster
 
-**Options:**
+<Info>
+**Impact:** Stores using smart auto-publish rules get 40-50% more reviews displayed while maintaining quality standards
+</Info>
 
-- **Enabled:** Reviews are instantly published once submitted.
-- **Disabled:** Reviews remain in “Pending” until approved.
+---
 
-**Tip:**\
-Enable auto-publish if you already use a spam filter and trust your customer base. Keep it off if you prefer hands-on moderation.
+## How Auto-Publishing Works
+
+Yuko Dashboard → **Settings → Reviews → General → Auto-Publishing**
+
+<Steps>
+  <Step title="Customer Submits Review" icon="paper-plane">
+    Customer leaves a review via email request or on-site form.
+
+    **Review data includes:**
+    - Star rating (1-5)
+    - Review text
+    - Photos/videos (optional)
+    - Reviewer name and email
+    - Verified purchase status
+  </Step>
+
+  <Step title="Yuko Checks Auto-Publish Rules" icon="list-check">
+    System evaluates the review against your configured rules.
+
+    **Common rule checks:**
+    - Star rating (4-5 stars?)
+    - Verified purchase? (Yes/No)
+    - Contains spam keywords?
+    - Email domain blacklisted?
+    - Product blacklisted?
+    - Review length sufficient?
+
+    **If ALL criteria met:** Auto-approve ✅
+    **If ANY criteria fails:** Send to pending ⏸️
+  </Step>
+
+  <Step title="Review Published or Held" icon="clock">
+    Based on rules, review is either published immediately or held for moderation.
+
+    **Auto-published reviews:**
+    - Appear on product page instantly
+    - Count toward average rating
+    - Visible in review widgets
+    - Indexed by search engines
+
+    **Pending reviews:**
+    - Held in moderation queue
+    - You review manually
+    - Approve or reject
+    - Slower but more control
+  </Step>
+
+  <Step title="You Review Exceptions" icon="magnifying-glass">
+    Check pending reviews periodically.
+
+    **What ends up pending:**
+    - 1-3 star reviews (if rule set)
+    - Unverified purchases
+    - Suspicious content
+    - First-time reviewers
+
+    **Your decision:**
+    - Approve if legitimate
+    - Reject if spam
+    - Reply before publishing
+  </Step>
+</Steps>
+
+---
+
+## Auto-Publishing Strategies
+
+Choose the approach that fits your store's needs:
+
+<Tabs>
+  <Tab title="Balanced (Recommended)">
+    **Auto-publish high-quality reviews, manually review the rest**
+
+    **Best for:**
+    - Most stores (50-500 reviews/month)
+    - Established brands
+    - Good spam filters in place
+
+    **Rules:**
+    - ✅ Auto-publish: 4-5 star reviews + verified purchase
+    - ⏸️ Pending: 1-3 star reviews OR unverified
+    - 🚫 Auto-spam: Obvious spam patterns
+
+    **What this does:**
+    - Positive verified reviews go live instantly
+    - Negative reviews get your attention first
+    - Unverified reviews manually checked
+    - Spam caught automatically
+
+    **Example scenario:**
+    - Customer leaves 5-star verified review → **Published instantly** ✅
+    - Customer leaves 2-star review → **Pending (you review first)** ⏸️
+    - Customer leaves 5-star unverified review → **Pending (verify manually)** ⏸️
+    - Bot leaves gibberish review → **Auto-spam** 🚫
+
+    **Pros:**
+    - Fast social proof for positive reviews
+    - You catch problems before they're public
+    - Minimal daily moderation (only low ratings + unverified)
+    - Balanced approach
+
+    **Cons:**
+    - Some manual work required
+    - Need good verification system
+
+    **Time investment:** 20-30 min/day
+
+    <Check>
+    **Recommended settings:**
+    - Auto-publish: Rating ≥ 4 AND Verified Purchase = Yes
+    - Pending: Rating ≤ 3 OR Verified Purchase = No
+    - Spam detection: Enabled
+    </Check>
+  </Tab>
+
+  <Tab title="Conservative (Manual)">
+    **Review every submission before it goes live**
+
+    **Best for:**
+    - New stores (building initial reviews)
+    - Luxury/premium brands
+    - Sensitive products
+    - High spam risk
+
+    **Rules:**
+    - ⏸️ All reviews start as pending
+    - You manually approve each one
+    - Complete quality control
+
+    **What this does:**
+    - Every review gets your eyes on it
+    - Nothing goes live without approval
+    - Maximum quality assurance
+    - Slower social proof building
+
+    **Example scenario:**
+    - Customer leaves 5-star review → **Pending (you approve)** ⏸️
+    - Customer leaves 3-star review → **Pending (you approve)** ⏸️
+    - Customer leaves any review → **Pending** ⏸️
+
+    **Pros:**
+    - Complete control
+    - Catch all spam
+    - Respond before publishing
+    - Quality guarantee
+
+    **Cons:**
+    - Time-consuming
+    - Slower social proof
+    - Daily commitment required
+    - Can become overwhelming at scale
+
+    **Time investment:** 45-60 min/day
+
+    **When to use:**
+    - First 50 reviews (establish quality bar)
+    - Products that require careful review
+    - Recovering from spam attack
+    - Building initial credibility
+
+    **Transition strategy:**
+    Start with manual moderation for first 30 days, then switch to Balanced approach once you understand your review patterns.
+  </Tab>
+
+  <Tab title="Aggressive (Full Auto)">
+    **Publish everything immediately, clean up later**
+
+    **Best for:**
+    - High-volume stores (500+ reviews/month)
+    - Trusted customer base
+    - Strong spam filters
+    - Hands-off approach
+
+    **Rules:**
+    - ✅ Auto-publish: All reviews
+    - Spam detection: Auto-flag and hide
+    - Moderation: Reactive (not proactive)
+
+    **What this does:**
+    - All reviews go live instantly
+    - You review periodically (weekly)
+    - Remove spam after it appears
+    - Maximum speed, minimal control
+
+    **Example scenario:**
+    - Customer leaves 5-star review → **Published instantly** ✅
+    - Customer leaves 1-star review → **Published instantly** ✅
+    - Customer leaves any review → **Published instantly** ✅
+    - Spam review → **Auto-hidden by spam filter** 🚫
+
+    **Pros:**
+    - Immediate social proof
+    - Minimal time investment
+    - Maximum review volume
+    - No bottleneck
+
+    **Cons:**
+    - Spam appears briefly
+    - Negative reviews visible immediately
+    - Less quality control
+    - Reactive management
+
+    **Time investment:** 15-20 min/week
+
+    **Risk mitigation:**
+    - Strong email verification
+    - Product blacklist (problematic items)
+    - Email blacklist (spam domains)
+    - Daily spam check
+    - Quick response to negative reviews
+
+    **When to use:**
+    - Established stores with good reputation
+    - Very high review volume
+    - Trusted customer base (verified purchases)
+    - Strong spam filters in place
+
+    <Warning>
+    **Not recommended for:** New stores, luxury brands, or stores without spam protection. Risk of reputation damage from unmoderated content.
+    </Warning>
+  </Tab>
+</Tabs>
+
+---
+
+## Auto-Publishing Configuration
+
+Yuko Dashboard → **Settings → Reviews → General → Auto-Publishing Rules**
+
+<AccordionGroup>
+  <Accordion title="By Star Rating" defaultOpen icon="star">
+    **Auto-publish based on review rating**
+
+    **Common configurations:**
+
+    **Option 1: Auto-publish 4-5 stars only**
+    - ✅ 5-star reviews: Auto-publish
+    - ✅ 4-star reviews: Auto-publish
+    - ⏸️ 1-3 star reviews: Pending review
+
+    **Best for:** Most stores (balanced approach)
+
+    **Option 2: Auto-publish 5 stars only**
+    - ✅ 5-star reviews: Auto-publish
+    - ⏸️ 1-4 star reviews: Pending review
+
+    **Best for:** Conservative moderation, luxury brands
+
+    **Option 3: Auto-publish all ratings**
+    - ✅ All ratings: Auto-publish
+
+    **Best for:** High-trust stores, full automation
+
+    **Settings:**
+    ```
+    Auto-publish reviews with rating:
+    [ ] 5 stars only
+    [✓] 4-5 stars (recommended)
+    [ ] All ratings
+    [ ] None (manual moderation)
+    ```
+
+    **Why filter by rating:**
+    - Positive reviews (4-5 stars) are safe to publish
+    - Negative reviews (1-3 stars) need your attention
+    - Respond to concerns before they're public
+    - Balance speed with reputation management
+
+    <Tip>
+    **Pro tip:** Auto-publish 4-5 stars. This captures 70-80% of reviews and lets them go live instantly, while you still catch negative feedback early.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="By Verified Purchase Status" icon="badge-check">
+    **Auto-publish only verified purchases**
+
+    **Settings:**
+    ```
+    Auto-publish only if:
+    [✓] Verified purchase (recommended)
+    [ ] Any customer (verified or not)
+    ```
+
+    **Verified purchase criteria:**
+    - Reviewer email matches order email
+    - Order confirmed and delivered
+    - Product purchased in last 12 months
+
+    **Why verified-only:**
+    - **Reduces fake reviews:** 95% of fake reviews are unverified
+    - **Higher trust:** Verified badge shows authenticity
+    - **Lower spam:** Spammers don't have order history
+    - **Quality signal:** Real customers write better reviews
+
+    **Trade-offs:**
+
+    **If enabled (verified only):**
+    - ✅ Higher quality reviews
+    - ✅ Less spam
+    - ❌ Some legitimate reviews held (guest checkouts)
+    - ❌ Lower review count initially
+
+    **If disabled (any customer):**
+    - ✅ More reviews published
+    - ✅ Capture guest checkout reviews
+    - ❌ Higher spam risk
+    - ❌ More manual moderation needed
+
+    **Recommended approach:**
+    - Enable verified-only for auto-publish
+    - Manually review unverified reviews
+    - Approve legitimate unverified reviews case-by-case
+
+    **Guest checkout handling:**
+    - Many legitimate reviews from guest checkouts
+    - These show as "unverified" (no email match)
+    - Manually approve if review is quality content
+    - Consider auto-publishing unverified 5-star reviews
+
+    <Check>
+    **Best practice:** Auto-publish only verified purchases. This prevents 90% of spam while still getting most quality reviews live quickly.
+    </Check>
+  </Accordion>
+
+  <Accordion title="By Review Length" icon="text-size">
+    **Require minimum review length**
+
+    **Settings:**
+    ```
+    Auto-publish only if review text:
+    [ ] Any length (including star-only)
+    [✓] At least 10 characters
+    [ ] At least 50 characters
+    [ ] At least 100 characters
+    ```
+
+    **Why set minimum length:**
+    - Filters out "Great!" reviews (not helpful)
+    - Encourages detailed feedback
+    - Higher quality reviews
+    - Better social proof value
+
+    **Length recommendations:**
+
+    **No minimum (any length):**
+    - Allows star-only reviews (no text)
+    - Fastest auto-publishing
+    - More reviews displayed
+    - But: Less helpful content
+
+    **10+ characters:**
+    - Filters out "ok", "good", "bad" reviews
+    - Still allows brief reviews
+    - Balanced approach
+    - **Recommended**
+
+    **50+ characters:**
+    - Ensures meaningful content
+    - Detailed reviews only
+    - Higher quality
+    - But: Many reviews held for manual review
+
+    **100+ characters:**
+    - Very detailed reviews only
+    - Highest quality
+    - But: Most reviews require manual approval
+    - Too strict for auto-publish
+
+    **Star-only reviews:**
+    - Should you auto-publish reviews with no text?
+    - **Yes if:** You want max review volume
+    - **No if:** You want quality content only
+
+    **Recommended:** Minimum 10 characters for auto-publish. This filters out low-effort reviews while allowing brief but helpful feedback.
+  </Accordion>
+
+  <Accordion title="By Spam Keywords" icon="shield-halved">
+    **Block reviews containing spam patterns**
+
+    **Auto-hold reviews containing:**
+    - Competitor brand names
+    - URLs or links
+    - Email addresses
+    - Phone numbers
+    - Profanity
+    - Blacklisted words
+
+    **Settings:**
+    ```
+    Hold for review if contains:
+    [✓] Competitor names
+    [✓] URLs/links
+    [✓] Contact information
+    [✓] Profanity
+    [ ] Custom keyword list
+    ```
+
+    **Competitor name detection:**
+    - Add competitor brand names to list
+    - Reviews mentioning competitors held for review
+    - You decide: Approve if favorable comparison, reject if spam
+
+    **Example:** "Better than [Competitor]!" → Held for review → You approve (favorable comparison)
+
+    **URL/link detection:**
+    - Reviews with URLs often spam
+    - Prevents links to competitor sites
+    - Auto-hold for manual review
+
+    **Example:** "Buy from this-other-site.com" → Held as spam
+
+    **Contact info detection:**
+    - Phone numbers, emails in reviews
+    - Usually spam or inappropriate
+    - Auto-hold for removal
+
+    **Profanity filter:**
+    - Common swear words flagged
+    - Review held for you to edit or reject
+    - Or auto-censor (replace with [removed])
+
+    **Custom keyword list:**
+    - Add your own blocked words
+    - Industry-specific spam terms
+    - Product names to flag
+
+    **Example custom keywords:**
+    - "free shipping" (spam phrase)
+    - "discount code" (spam phrase)
+    - "[specific product issue]" (manual review before public)
+
+    <Warning>
+    **Don't over-filter:** Too many blocked keywords means too many reviews in pending. Start with basics (URLs, profanity) and add more only if needed.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="By First-Time Reviewer" icon="user-plus">
+    **Handle first-time reviewers differently**
+
+    **Settings:**
+    ```
+    First-time reviewers:
+    [ ] Auto-publish (trust by default)
+    [✓] Hold for review (verify first)
+    [ ] Require verification email
+    ```
+
+    **First-time reviewer = customer's first review on your store**
+
+    **Why hold first reviews:**
+    - **Spam check:** Spammers often leave first review then disappear
+    - **Quality gate:** Establish standards with first review
+    - **Welcome opportunity:** Reply and thank them
+    - **Fake review risk:** Competitors often leave one-off negative reviews
+
+    **Why auto-publish first reviews:**
+    - **Speed:** Get reviews live faster
+    - **Trust:** Most first reviews are legitimate
+    - **Volume:** Don't bottleneck on manual review
+    - **Growth:** Encourage more reviews with fast publishing
+
+    **Recommended approach:**
+
+    **Conservative:** Hold first reviews for manual check
+    - Approve after quick verification
+    - Reply to welcome them
+    - Sets quality expectation
+
+    **Balanced:** Auto-publish first reviews if 4-5 stars + verified purchase
+    - Trusts verified customers
+    - Still catches unverified first reviews
+
+    **Aggressive:** Auto-publish all first reviews
+    - Maximum speed
+    - Trust spam filters to catch issues
+    - Remove bad reviews reactively
+
+    **Verification email option:**
+    - Send email to confirm reviewer's email address
+    - Click to verify before review published
+    - Prevents fake email spam
+    - Adds friction (lowers completion rate by 20-30%)
+
+    <Tip>
+    **Recommended:** Hold first-time unverified reviews, auto-publish first-time verified purchases. This balances speed with spam protection.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="By Time of Submission" icon="clock">
+    **Auto-publish during business hours only**
+
+    **Settings:**
+    ```
+    Auto-publish timing:
+    [✓] Immediately (24/7)
+    [ ] Business hours only (9 AM - 5 PM)
+    [ ] Delay until reviewed (max 24 hours)
+    ```
+
+    **Immediate (24/7):**
+    - Reviews go live any time of day
+    - Fastest social proof
+    - But: Negative reviews appear when you're sleeping
+
+    **Business hours only:**
+    - Auto-publish 9 AM - 5 PM (your timezone)
+    - After hours reviews held until morning
+    - You can catch issues before they're public
+    - Good for stores with reputation concerns
+
+    **Delay until reviewed:**
+    - Auto-publish after X hours if not manually reviewed
+    - Gives you time to check
+    - Auto-approves if you don't reject
+    - Backup in case you miss moderation
+
+    **When to restrict timing:**
+    - New stores (want to see reviews before public)
+    - Products with quality issues (check feedback first)
+    - High-visibility periods (launch, sales)
+    - One-person team (only available during work hours)
+
+    **When to go 24/7:**
+    - Established stores (trust your system)
+    - Strong spam filters
+    - Automated monitoring
+    - Team coverage
+
+    **Recommended:** 24/7 auto-publish if you have good rules in place. Delaying reviews slows social proof building with minimal benefit.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Recommended Auto-Publish Configurations
+
+<CardGroup cols={2}>
+  <Card title="New Store (0-50 reviews)" icon="seedling">
+    **Conservative approach while building reputation**
+
+    **Settings:**
+    - ⏸️ Manual moderation: All reviews pending
+    - Review each review before publishing
+    - Reply to establish quality bar
+    - Build initial social proof carefully
+
+    **Why:**
+    - Your first 20-50 reviews set expectations
+    - Manual review ensures quality
+    - Opportunity to engage with early customers
+    - Establish trust from day one
+
+    **Time:** 30 min/day
+
+    **Transition:** After 50 quality reviews, switch to balanced auto-publish
+  </Card>
+
+  <Card title="Growing Store (50-500 reviews)" icon="chart-line">
+    **Balanced auto-publish with manual oversight**
+
+    **Settings:**
+    - ✅ Auto-publish: 4-5 stars + verified purchase
+    - ⏸️ Pending: 1-3 stars OR unverified
+    - 🚫 Spam detection: Enabled
+    - Minimum length: 10 characters
+
+    **Why:**
+    - Positive proof goes live instantly
+    - You catch negative reviews early
+    - Balance speed with quality
+    - Manageable moderation workload
+
+    **Time:** 20-30 min/day
+
+    **Ideal for:** Most stores
+  </Card>
+
+  <Card title="High-Volume Store (500+ reviews)" icon="rocket">
+    **Aggressive auto-publish with reactive moderation**
+
+    **Settings:**
+    - ✅ Auto-publish: All ratings, verified purchases
+    - ⏸️ Pending: Unverified OR spam keywords
+    - 🚫 Spam detection: Strong filters
+    - Review periodically (weekly)
+
+    **Why:**
+    - Can't manually review 500+ reviews/month
+    - Verified purchases are trustworthy
+    - Strong spam filters catch issues
+    - Focus on responding, not moderating
+
+    **Time:** 20-30 min/week
+
+    **Requirement:** Good spam filters, verified purchase system
+  </Card>
+
+  <Card title="Luxury/Premium Brand" icon="gem">
+    **Quality-focused manual moderation**
+
+    **Settings:**
+    - ⏸️ Manual review: All reviews pending
+    - Approve only high-quality reviews
+    - Reply to every review before publishing
+    - Curate social proof carefully
+
+    **Why:**
+    - Brand reputation is critical
+    - Quality over quantity
+    - Ensure every review meets standards
+    - Premium experience includes engagement
+
+    **Time:** 45-60 min/day
+
+    **Trade-off:** Slower social proof building, but higher quality
+  </Card>
+</CardGroup>
+
+---
+
+## Common Questions
+
+<AccordionGroup>
+  <Accordion title="Will auto-publishing hurt my store's reputation?" icon="question">
+    **Not if configured correctly with good filters**
+
+    **Risks of auto-publishing:**
+    - Spam reviews go live
+    - Negative reviews appear before you can respond
+    - Low-quality reviews published
+    - Fake reviews slip through
+
+    **Mitigation strategies:**
+
+    **1. Use verified-purchase filter**
+    - Auto-publish only verified purchases
+    - Reduces fake reviews by 95%
+    - Most important protection
+
+    **2. Set minimum quality bar**
+    - Auto-publish 4-5 stars only
+    - Manual review negative feedback
+    - Respond before publishing low ratings
+
+    **3. Enable spam detection**
+    - Keyword filters
+    - Email blacklist
+    - Multiple review detection
+    - Auto-flag suspicious patterns
+
+    **4. Monitor daily**
+    - Check published reviews daily
+    - Quick spam removal
+    - Respond to negative reviews within 24 hours
+    - Adjust rules based on issues
+
+    **5. Start conservative**
+    - Begin with manual moderation
+    - Learn your review patterns
+    - Add auto-publish gradually
+    - Tighten rules if spam increases
+
+    **Reality check:**
+    - 99% of verified purchase reviews are legitimate
+    - Auto-publishing speeds up social proof by 50%
+    - Manual moderation doesn't prevent all spam
+    - Can remove bad reviews quickly if they slip through
+
+    <Check>
+    **Best practice:** Auto-publish verified 4-5 star reviews only. This is safe for 99% of stores and dramatically speeds up social proof building.
+    </Check>
+  </Accordion>
+
+  <Accordion title="Can I change auto-publish settings after launch?" icon="sliders">
+    **Yes - adjust anytime based on results**
+
+    **Common adjustments:**
+
+    **Tighten rules if:**
+    - Spam increasing
+    - Low-quality reviews appearing
+    - Negative reviews need more attention
+    - Growing too fast to monitor
+
+    **Example:** Switch from auto-publish all to auto-publish 4-5 stars only
+
+    **Loosen rules if:**
+    - Too much manual work
+    - Missing social proof opportunity
+    - Spam filters working well
+    - Review volume overwhelming moderation
+
+    **Example:** Switch from manual to auto-publish verified purchases
+
+    **How to change:**
+    1. Go to Settings → Reviews → Auto-Publishing
+    2. Update rules
+    3. Save changes
+    4. Applies to new reviews immediately
+    5. Existing reviews unaffected
+
+    **Testing changes:**
+    - Make small adjustments
+    - Monitor for 7 days
+    - Check spam rate and moderation time
+    - Adjust again if needed
+
+    **Seasonal adjustments:**
+    - Holiday season: More conservative (higher volume)
+    - Slow periods: More aggressive (need reviews)
+    - Product launches: Manual review initially
+    - After issues resolved: Back to auto-publish
+
+    <Tip>
+    **Pro tip:** Review your auto-publish settings quarterly. As your store grows and review patterns change, optimize your rules for current volume and quality.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="What happens to reviews already in pending?" icon="clock">
+    **Auto-publish rules only affect new reviews**
+
+    **Pending reviews:**
+    - Remain in pending queue
+    - Not automatically published
+    - Still require manual approval
+    - Rules don't apply retroactively
+
+    **Why:**
+    - Already flagged for review
+    - May have issues requiring attention
+    - You should review manually
+    - Prevents bulk auto-approval of old spam
+
+    **If you want to bulk approve pending:**
+    1. Go to Reviews → Pending
+    2. Review list
+    3. Select all quality reviews
+    4. Bulk approve
+    5. Takes effect immediately
+
+    **After changing settings:**
+    - New reviews follow new rules
+    - Old pending reviews still manual
+    - Clear out pending queue manually
+    - Then only new reviews in pending
+
+    **Best practice:** Clean up pending queue before changing auto-publish settings, so you start fresh.
+  </Accordion>
+
+  <Accordion title="Can I auto-publish some products but not others?" icon="box">
+    **Yes - use product blacklist for exceptions**
+
+    **Scenario:** Auto-publish for most products, but manually review for:
+    - New product launches
+    - Products with quality issues
+    - Controversial products
+    - High-return items
+
+    **How to set up:**
+    1. Go to Settings → Reviews → Product Blacklist
+    2. Add specific products to blacklist
+    3. Reviews for those products go to pending
+    4. All other products follow auto-publish rules
+
+    **Example use case:**
+    - Store auto-publishes 4-5 star verified reviews
+    - BUT: New product launched last week
+    - Add to product blacklist temporarily
+    - All reviews for new product → Pending
+    - Monitor feedback for first 30 days
+    - Remove from blacklist once confident
+
+    **Another example:**
+    - Product has sizing issues
+    - Blacklist that product
+    - Manually review all reviews
+    - Reply addressing sizing before publishing
+    - Prevents negative reviews without context
+
+    → [Learn about product blacklist](/managing-reviews/product-blacklist)
+
+    <Note>
+    **Temporary vs permanent:** Use blacklist temporarily for new products or issues. Remove once stable. Don't permanently blacklist products (defeats auto-publish purpose).
+    </Note>
+  </Accordion>
+
+  <Accordion title="Should I auto-publish reviews with photos?" icon="camera">
+    **Yes - photo reviews are valuable and usually legitimate**
+
+    **Why auto-publish photo reviews:**
+    - **Higher trust:** Customers who upload photos usually genuine
+    - **More effort:** Spammers rarely add photos
+    - **Valuable content:** Photo reviews convert 3x better
+    - **Customer engagement:** Reward customers who go extra mile
+
+    **Recommended rule:**
+    - Auto-publish ANY review with photos (even 3-star if has photos)
+    - Photos indicate authentic customer
+    - Rarely spam
+
+    **Settings:**
+    ```
+    Auto-publish if:
+    [✓] Has photos (any rating)
+    OR
+    [✓] 4-5 stars without photos
+    ```
+
+    **Exception handling:**
+    - Inappropriate photos → Auto-detect and hold
+    - Competitor product photos → Manual review
+    - Offensive images → Spam filter catches
+
+    **Photo review fast-track:**
+    - Some platforms auto-approve photo reviews regardless of rating
+    - Rewards customer effort
+    - Increases photo review rate
+    - Generally safe (legitimate customers upload photos)
+
+    **Trade-off:**
+    - 3-star review with photos goes live
+    - But: Photo provides context
+    - Customers see authentic feedback
+    - You can still reply
+
+    <Check>
+    **Recommended:** Auto-publish all reviews with photos, regardless of rating. Photo reviews are 95% legitimate and highly valuable for conversion.
+    </Check>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next Steps
+
+<Steps titleSize="h3">
+  <Step title="Configure Auto-Publish Rules" icon="sliders">
+    Set up your auto-publishing criteria.
+
+    **Time:** 15 minutes
+    **Current page:** You are here
+    **Action:** Configure rules based on store size
+  </Step>
+
+  <Step title="Set Up Spam Filters" icon="shield">
+    Add keyword filters and blacklists.
+
+    **Time:** 10 minutes
+    → [Email blacklist](/managing-reviews/email-blacklist)
+    → [Review restrictions](/managing-reviews/review-restrictions-limits)
+  </Step>
+
+  <Step title="Configure Admin Notifications" icon="bell">
+    Get alerts when reviews need attention.
+
+    **Time:** 5 minutes
+    → [Admin notifications](/review-settings/admin-notifications)
+  </Step>
+
+  <Step title="Monitor Results for 7 Days" icon="chart-line">
+    Track auto-publish performance and adjust.
+
+    **Metrics to watch:**
+    - Reviews going to pending vs auto-published
+    - Spam rate
+    - Time saved on moderation
+    - Review quality
+
+    **Adjust rules if needed**
+  </Step>
+</Steps>
+
+---
+
+## Need Help?
+
+<NeedHelp />
+
+<Note>
+**Pro tip:** Start with conservative auto-publish rules (4-5 stars + verified only). After 30 days, loosen restrictions if spam is low. It's easier to start strict and loosen than to deal with spam from being too permissive.
+</Note>

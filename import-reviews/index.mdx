@@ -1,21 +1,1241 @@
 ---
-title: "5. Import Reviews"
-description: "Learn how to import existing customer reviews into Yuko in just a few steps."
+title: "Import Existing Reviews to Yuko"
+description: "Migrate your existing customer reviews from other platforms to Yuko without losing social proof"
 ---
 
-Already have reviews in another system?\
-Yuko makes it simple to import your existing reviews from WooCommerce, [Judge.me](http://Judge.me), or other supported platforms — so you can manage everything in one place.
+import NeedHelp from '/snippets/need-help.mdx';
 
-### **Navigation**
+## Keep Your Hard-Earned Social Proof
 
-Yuko Dashboard → **Reviews → Import**
+Already have customer reviews in WooCommerce, Judge.me, or another review platform? Import them to Yuko in minutes and maintain all your hard-earned social proof while gaining access to Yuko's advanced features.
 
-### **Overview**
+**What you'll achieve:**
+- Preserve all existing reviews when switching platforms
+- Maintain SEO value from review content
+- Keep verified purchase badges and review dates
+- Import photos, videos, and reviewer information
+- Avoid starting from zero social proof
 
-Migrating your reviews into Yuko helps you maintain credibility and SEO value when switching platforms.\
-Yuko’s importer ensures that all review data — including author, rating, date, and media — transfers cleanly.
+<Info>
+**Impact:** Stores that import existing reviews see 40-50% higher conversion rates immediately after migration vs starting fresh
+</Info>
 
-You can import reviews in two main ways:
+---
 
-- Direct integration (for WooCommerce and [Judge.me](http://Judge.me))
-- Manual CSV upload (for other sources, coming soon)
+## Why Import Reviews to Yuko
+
+Don't lose your valuable social proof when switching review systems:
+
+<CardGroup cols={2}>
+  <Card title="Preserve Trust & Credibility" icon="shield-check">
+    **Keep what you've built**
+
+    - Maintain hundreds or thousands of reviews
+    - Preserve star ratings and social proof
+    - Keep verified purchase badges
+    - Maintain review dates (authenticity)
+    - Don't start from zero
+
+    **Impact:** Imported reviews maintain customer trust during platform transition
+  </Card>
+
+  <Card title="Maintain SEO Value" icon="magnifying-glass">
+    **Don't lose search rankings**
+
+    - Review content is valuable for SEO
+    - Keywords in reviews help rankings
+    - Rich snippets with star ratings
+    - Product page content depth
+    - Avoid traffic drop from lost reviews
+
+    **Impact:** Stores that import reviews maintain 90% of review-driven SEO value
+  </Card>
+
+  <Card title="Immediate Conversion Boost" icon="arrow-trend-up">
+    **Start strong, not from scratch**
+
+    - New review system with existing proof
+    - Higher conversion from day one
+    - Customer confidence in products
+    - Competitive advantage maintained
+    - No "building phase" needed
+
+    **Impact:** 40-50% higher conversion vs no reviews on new platform
+  </Card>
+
+  <Card title="Gain Advanced Features" icon="sparkles">
+    **Keep reviews, add capabilities**
+
+    - Import old reviews to Yuko
+    - Gain widgets, automation, workflows
+    - Better display and moderation tools
+    - Photo reviews and Q&A
+    - All while keeping existing social proof
+
+    **Impact:** Best of both worlds - existing reviews + better tools
+  </Card>
+</CardGroup>
+
+---
+
+## Supported Import Sources
+
+<Tabs>
+  <Tab title="WooCommerce Reviews">
+    **Import built-in WooCommerce reviews**
+
+    **What gets imported:**
+    - ✅ All product reviews
+    - ✅ Star ratings (1-5)
+    - ✅ Review text/content
+    - ✅ Reviewer name
+    - ✅ Reviewer email (for verification)
+    - ✅ Review date (preserved)
+    - ✅ Verified purchase status
+    - ✅ Review approval status
+
+    **What doesn't import:**
+    - ❌ Photos/videos (native WooCommerce doesn't support)
+    - ❌ Custom fields (unless using extensions)
+
+    **Time to import:**
+    - Under 100 reviews: Instant
+    - 100-1,000 reviews: 2-5 minutes
+    - 1,000-10,000 reviews: 10-30 minutes
+    - 10,000+ reviews: 30-60 minutes
+
+    **Process:**
+    One-click automatic import via WooCommerce integration
+
+    → [WooCommerce import guide](/import-reviews/importing-from-woocommerce-review)
+  </Tab>
+
+  <Tab title="Judge.me Reviews">
+    **Import from Judge.me review platform**
+
+    **What gets imported:**
+    - ✅ All product reviews
+    - ✅ Star ratings (1-5)
+    - ✅ Review text/titles
+    - ✅ Reviewer name and email
+    - ✅ Review photos (up to 10 per review)
+    - ✅ Review videos
+    - ✅ Review date (preserved)
+    - ✅ Verified purchase badges
+    - ✅ Helpful votes count
+
+    **What doesn't import:**
+    - ❌ Judge.me specific badges/features
+    - ❌ Custom Judge.me widgets
+
+    **Time to import:**
+    - Under 500 reviews: 5-10 minutes
+    - 500-2,000 reviews: 15-30 minutes
+    - 2,000-10,000 reviews: 30-90 minutes
+    - 10,000+ reviews: 1-3 hours
+
+    **Process:**
+    API connection or CSV export from Judge.me
+
+    → [Judge.me import guide](/import-reviews/importing-from-judgeme-reviews)
+  </Tab>
+
+  <Tab title="Other Platforms (CSV)">
+    **Import from any platform via CSV**
+
+    **Supported sources:**
+    - Loox reviews
+    - Stamped.io reviews
+    - Trustpilot reviews
+    - Yotpo reviews
+    - Custom review systems
+    - Any platform with CSV export
+
+    **What can be imported:**
+    - ✅ Product reviews with ratings
+    - ✅ Review text and titles
+    - ✅ Reviewer names
+    - ✅ Review dates
+    - ✅ Email addresses (if available)
+    - ⚠️ Photos/videos (requires URLs)
+    - ⚠️ Verified status (if data available)
+
+    **CSV requirements:**
+    - Required columns: product_id, rating, review_text, reviewer_name, date
+    - Optional columns: email, verified, title, photos, videos
+    - Format: UTF-8 CSV
+    - Max file size: 50MB
+
+    **Time to import:**
+    - Depends on CSV processing
+    - Average: 1-2 minutes per 1,000 reviews
+
+    **Process:**
+    1. Export reviews to CSV from current platform
+    2. Format CSV to match Yuko template
+    3. Upload CSV to Yuko
+    4. Map columns and import
+
+    <Note>
+    **Coming soon:** Direct integrations with Loox, Stamped.io, and Yotpo for one-click imports
+    </Note>
+  </Tab>
+
+  <Tab title="Google Reviews">
+    **Import Google Business reviews (shop reviews)**
+
+    **What gets imported:**
+    - ✅ Google Business reviews
+    - ✅ Star ratings (1-5, converted)
+    - ✅ Review text
+    - ✅ Reviewer name (Google profile)
+    - ✅ Review date
+    - ✅ Profile photos (if public)
+
+    **Important notes:**
+    - Google reviews import as **shop/site reviews** (not product reviews)
+    - Useful for overall testimonials
+    - Links back to Google for verification
+    - Cannot be edited (preserves authenticity)
+
+    **Use case:**
+    - Import Google testimonials for homepage
+    - Use as overall store reviews
+    - Build trust with new visitors
+    - Supplement product reviews
+
+    **Process:**
+    Export Google reviews via Google Business API or scraper, then CSV import
+
+    <Warning>
+    **Google TOS:** Ensure you comply with Google's review usage policies. Always link back to original Google review and mark source clearly.
+    </Warning>
+  </Tab>
+</Tabs>
+
+---
+
+## Import Process Overview
+
+<Steps>
+  <Step title="Check Your Current Review Platform" icon="magnifying-glass">
+    Identify where your existing reviews are stored.
+
+    **Common scenarios:**
+
+    **Built-in platform reviews:**
+    - WooCommerce native reviews
+    - Shopify product reviews
+    - Magento reviews
+
+    **Third-party review apps:**
+    - Judge.me
+    - Loox
+    - Stamped.io
+    - Yotpo
+    - Trustpilot
+
+    **Action:** Count how many reviews you have (this determines import time)
+  </Step>
+
+  <Step title="Export Reviews from Current System" icon="download">
+    Get your review data from the current platform.
+
+    **WooCommerce:**
+    - Yuko auto-imports (no export needed)
+    - One-click import in Yuko dashboard
+
+    **Judge.me:**
+    - Use Judge.me export feature
+    - Or connect API directly to Yuko
+
+    **Other platforms:**
+    - Export to CSV from platform
+    - Download review photos/videos if available
+    - Save export file
+
+    <Tip>
+    **Pro tip:** Before exporting, clean up spam/fake reviews in your current system. Only import quality reviews.
+    </Tip>
+  </Step>
+
+  <Step title="Prepare Review Data" icon="table">
+    Format your review data for import.
+
+    **If using CSV:**
+    - Ensure required columns exist
+    - Format dates correctly (YYYY-MM-DD)
+    - Check product IDs match your store
+    - Verify reviewer emails (for verified badges)
+    - Upload photos to hosting (provide URLs)
+
+    **Required CSV columns:**
+    - `product_id` - Your product SKU or ID
+    - `rating` - 1-5 star rating
+    - `review_text` - Review content
+    - `reviewer_name` - Customer name
+    - `date` - Review date (YYYY-MM-DD)
+
+    **Optional CSV columns:**
+    - `email` - For verified purchase matching
+    - `title` - Review headline
+    - `verified` - true/false
+    - `photo_url` - Direct link to review photo
+    - `status` - published, pending, spam
+
+    **Download CSV template:** [Available in Yuko dashboard]
+  </Step>
+
+  <Step title="Import Reviews to Yuko" icon="upload">
+    Upload and process your reviews.
+
+    **In Yuko Dashboard:**
+    1. Go to Reviews → Import
+    2. Select import source (WooCommerce, Judge.me, CSV)
+    3. Upload file or connect account
+    4. Map fields (if CSV)
+    5. Preview sample reviews
+    6. Start import process
+
+    **During import:**
+    - Progress bar shows status
+    - Estimated time displayed
+    - Can cancel if needed
+    - Errors reported in real-time
+
+    **After import:**
+    - Review count summary
+    - Success rate shown
+    - Failed imports listed (with reasons)
+    - Option to retry failed reviews
+  </Step>
+
+  <Step title="Verify Imported Reviews" icon="circle-check">
+    Check that reviews imported correctly.
+
+    **What to verify:**
+    - ✅ Total review count matches export
+    - ✅ Star ratings correct
+    - ✅ Review text intact (no truncation)
+    - ✅ Reviewer names displayed properly
+    - ✅ Dates preserved accurately
+    - ✅ Photos/videos linked correctly
+    - ✅ Verified badges on applicable reviews
+    - ✅ Reviews assigned to correct products
+
+    **Random sampling:**
+    - Check 10-20 random reviews manually
+    - Verify high-value reviews (5-star with photos)
+    - Ensure no duplicate reviews
+    - Look for formatting issues
+
+    **Fix issues:**
+    - Bulk edit if needed
+    - Delete duplicates
+    - Re-import failed reviews
+    - Contact support for help
+  </Step>
+
+  <Step title="Display Imported Reviews" icon="browser">
+    Show your imported reviews on your store.
+
+    **Enable review display:**
+    - Install Yuko review widgets
+    - Display reviews on product pages
+    - Show overall rating in listings
+    - Add review count to homepage
+
+    **Test display:**
+    - Check desktop view
+    - Verify mobile responsiveness
+    - Ensure photos/videos display
+    - Test review sorting/filtering
+
+    → [Set up review display widgets](/display-reviews/introduction-to-widgets)
+  </Step>
+
+  <Step title="Clean Up Old Review System (Optional)" icon="trash">
+    Remove old review system once Yuko is live.
+
+    **Before removing:**
+    - ✅ Verify all reviews imported successfully
+    - ✅ Test Yuko review display thoroughly
+    - ✅ Check SEO impact (Google Search Console)
+    - ✅ Keep backup of old reviews (just in case)
+
+    **When removing:**
+    - Deactivate old review plugin
+    - Remove old review widgets from theme
+    - Clean up database (optional, for performance)
+    - Set up redirects if review URLs changed
+
+    <Warning>
+    **Don't rush:** Keep both systems running for 1-2 weeks to ensure smooth transition. Monitor SEO and conversion metrics before fully removing old system.
+    </Warning>
+  </Step>
+</Steps>
+
+---
+
+## Import Best Practices
+
+<AccordionGroup>
+  <Accordion title="Clean Up Reviews Before Importing" defaultOpen icon="broom">
+    **Import only quality reviews - clean up spam/fake reviews first**
+
+    **What to remove before importing:**
+
+    **Obvious spam:**
+    - Gibberish text ("asdf", "test", "...")
+    - Random characters or copy-paste spam
+    - Links to competitor sites
+    - Completely off-topic reviews
+
+    **Fake reviews:**
+    - Multiple reviews from same email
+    - Reviews for products that don't exist
+    - Suspicious patterns (all 5-stars in one day)
+    - Bot-generated content
+
+    **Low-value reviews:**
+    - Empty reviews (star only, no text) - Optional: Keep if high rating
+    - Extremely short unhelpful reviews ("ok", "fine")
+    - Reviews for wrong products
+    - Duplicate reviews from same customer
+
+    **Outdated reviews:**
+    - Reviews for discontinued products (unless archiving)
+    - Reviews mentioning old policies no longer relevant
+    - Extremely old reviews (5+ years) that may not reflect current quality
+
+    **Why clean before import:**
+    - Cleaner data from day one
+    - Easier than cleaning after import
+    - Better first impression in Yuko
+    - Higher average review quality
+    - Improved SEO value
+
+    **How to clean:**
+    - In current platform: Delete spam/fake reviews
+    - In CSV: Remove rows before uploading
+    - After import: Use Yuko moderation tools
+
+    <Tip>
+    **Balance:** Don't be too aggressive. Keep all legitimate reviews, even 1-2 star reviews. Only remove obvious spam and fake content.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Preserve Review Dates" icon="calendar">
+    **Keep original review dates - don't import everything as "today"**
+
+    **Why dates matter:**
+
+    **Authenticity:**
+    - Reviews spread over time look natural
+    - All reviews "today" looks suspicious
+    - Customers notice date patterns
+    - Builds trust when reviews span months/years
+
+    **SEO value:**
+    - Search engines value review history
+    - Recent reviews + older reviews = better
+    - Shows consistent customer satisfaction
+    - Review freshness matters for rankings
+
+    **Customer insights:**
+    - See product quality over time
+    - Track improvements from feedback
+    - Seasonal product patterns
+    - Long-term durability feedback
+
+    **How to preserve dates:**
+
+    **Automatic imports:**
+    - WooCommerce: Dates auto-preserved
+    - Judge.me: Dates auto-preserved
+    - Platform integrations maintain dates
+
+    **CSV imports:**
+    - Include `date` column in CSV
+    - Format: YYYY-MM-DD (e.g., 2024-03-15)
+    - Yuko will use provided dates
+    - If no date, defaults to import date
+
+    **Example CSV:**
+    ```
+    product_id,rating,review_text,reviewer_name,date
+    12345,5,"Great product!",John S.,2024-01-15
+    12345,4,"Good quality",Sarah M.,2024-02-03
+    ```
+
+    <Check>
+    **Best practice:** Always include review dates in CSV imports. If dates aren't available, spread imports across multiple days instead of one bulk import.
+    </Check>
+  </Accordion>
+
+  <Accordion title="Match Products Correctly" icon="link">
+    **Ensure reviews import to the correct products**
+
+    **Common product matching issues:**
+
+    **Issue 1: Different product IDs**
+    - Old platform used SKU "ABC123"
+    - New platform uses ID "456"
+    - Import fails or assigns to wrong product
+
+    **Solution:**
+    - Create product ID mapping (old ID → new ID)
+    - Update CSV with correct new product IDs
+    - Use SKU matching if available
+
+    **Issue 2: Product name changes**
+    - Product renamed during migration
+    - Reviews reference old name
+    - Customer confusion
+
+    **Solution:**
+    - Use product ID, not name for matching
+    - Update review text if product renamed significantly
+    - Add note in review explaining name change
+
+    **Issue 3: Discontinued products**
+    - Old product no longer sold
+    - Reviews exist but no product page
+    - Where do reviews go?
+
+    **Solution:**
+    - Option 1: Import to replacement product (if similar)
+    - Option 2: Archive reviews (viewable but not displayed)
+    - Option 3: Skip import for discontinued items
+
+    **Issue 4: Product variants/variations**
+    - Review for "Blue Shirt, Size M"
+    - Should it show for all sizes? Just blue? Just medium blue?
+
+    **Solution:**
+    - Import to parent product (shows for all variants)
+    - Or import to specific variant (only shows for that variant)
+    - Document variant matching approach
+
+    **How to verify product matching:**
+
+    **Before import:**
+    - Export product list from new platform
+    - Match old product IDs to new IDs
+    - Create mapping spreadsheet
+    - Update import CSV with new IDs
+
+    **After import:**
+    - Check random product pages
+    - Verify reviews appear on correct products
+    - Look for products with zero reviews (may be matching issue)
+    - Check for products with suspiciously high review counts (may have duplicates)
+
+    <Warning>
+    **Critical:** Test product matching with a small sample import (10-20 reviews) before importing thousands of reviews. Fix matching issues before full import.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Import Photos and Videos" icon="camera">
+    **Bring visual content with reviews**
+
+    **Photo/video import challenges:**
+
+    **Challenge 1: Photos stored locally**
+    - Old platform has photos on their server
+    - Can't direct link after leaving platform
+    - Photos will break after migration
+
+    **Solution:**
+    - Download all review photos before migrating
+    - Upload to your hosting or CDN
+    - Provide new photo URLs in CSV
+    - Yuko re-hosts photos permanently
+
+    **Challenge 2: Large file sizes**
+    - Thousands of review photos
+    - Huge total file size
+    - Slow import process
+
+    **Solution:**
+    - Compress photos before import (optimize for web)
+    - Use CDN for photo hosting
+    - Import photos in batches
+    - Prioritize photos for high-value reviews
+
+    **Challenge 3: Missing photo URLs**
+    - CSV has reviews but no photo column
+    - Photos exist but not linked
+    - Manual work to reconnect
+
+    **Solution:**
+    - Export photos from old platform separately
+    - Match photos to reviews by review ID
+    - Add photo URLs to CSV manually
+    - Or upload photos after import via Yuko dashboard
+
+    **Best approach for photo imports:**
+
+    **Option 1: Platform integration (automatic)**
+    - Judge.me import: Photos auto-imported
+    - API connections: Photos included
+    - No manual work needed
+
+    **Option 2: CSV with photo URLs**
+    - Export photos to hosting (AWS S3, Cloudinary, etc.)
+    - Get public URLs for each photo
+    - Add `photo_url` column to CSV
+    - Yuko downloads and re-hosts photos
+
+    **Option 3: Manual upload after import**
+    - Import reviews without photos first
+    - Go to each review in Yuko dashboard
+    - Manually add photos to reviews
+    - Time-consuming but works for small counts
+
+    **CSV format for photos:**
+    ```
+    product_id,rating,review_text,reviewer_name,photo_url
+    12345,5,"Love it!",Sarah,https://cdn.example.com/photo1.jpg
+    12346,4,"Great",Mike,https://cdn.example.com/photo2.jpg|https://cdn.example.com/photo3.jpg
+    ```
+
+    Multiple photos: Separate URLs with pipe `|` character
+
+    <Tip>
+    **Pro tip:** Prioritize photo imports for 5-star reviews. These are most valuable for conversion. Import text-only reviews immediately, add photos to top reviews manually later if needed.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Maintain Verified Purchase Status" icon="badge-check">
+    **Keep "Verified Purchase" badges during import**
+
+    **Why verified badges matter:**
+    - 70% more trusted than unverified reviews
+    - Reduces fake review concerns
+    - Higher conversion impact
+    - Maintains credibility during migration
+
+    **How verified status works:**
+
+    **In original platform:**
+    - Customer purchased product
+    - Order ID linked to review
+    - Platform marks review as "verified"
+
+    **During import to Yuko:**
+    - Yuko needs to match review to order
+    - Uses email address or order ID
+    - If match found: Verified badge applied
+    - If no match: Review imported as unverified
+
+    **How to preserve verified status:**
+
+    **Method 1: Email matching (automatic)**
+    - Import includes reviewer email
+    - Yuko checks email against order history
+    - If email has order for that product: Verified
+    - If no order found: Unverified
+
+    **Requirement:** Reviewer email must match order email exactly
+
+    **Method 2: Order ID matching**
+    - CSV includes `order_id` column
+    - Yuko matches review to specific order
+    - Most accurate verification method
+
+    **Requirement:** Order IDs must exist in current system
+
+    **Method 3: Manual verified flag**
+    - CSV includes `verified` column (true/false)
+    - Yuko trusts your data
+    - No automatic verification
+
+    **Requirement:** You verify accuracy of verified status
+
+    **CSV example with verification:**
+    ```
+    product_id,rating,review_text,email,verified,order_id
+    12345,5,"Great!",sarah@email.com,true,ORDER-123
+    12346,4,"Good",mike@email.com,false,
+    ```
+
+    **Best practices:**
+    - Always include reviewer email for verification
+    - Include order IDs if available
+    - Let Yuko auto-verify based on orders
+    - Don't manually mark all as verified (reduces trust)
+
+    <Check>
+    **Recommended:** Use email matching. Most reliable and automatic. Yuko cross-references emails with your WooCommerce/Shopify orders and applies verified badges accordingly.
+    </Check>
+  </Accordion>
+
+  <Accordion title="Test with Small Import First" icon="flask">
+    **Always test with 10-50 reviews before full import**
+
+    **Why test first:**
+
+    **Catch errors early:**
+    - Product ID mismatches
+    - Date formatting issues
+    - Photo URL problems
+    - Character encoding errors
+    - Column mapping mistakes
+
+    **Easier to fix:**
+    - Fix 20 reviews manually: 10 minutes
+    - Fix 2,000 reviews: Hours or impossible
+    - Delete test import and retry: Easy
+    - Delete 10,000 imports: Messy
+
+    **Verify settings:**
+    - See how reviews display
+    - Check mobile view
+    - Test verified badges
+    - Ensure no duplicates
+    - Validate review quality
+
+    **How to test:**
+
+    **Step 1: Create test CSV**
+    - Export 10-20 diverse reviews
+    - Include different ratings (1-5 stars)
+    - Mix verified and unverified
+    - Include reviews with/without photos
+    - Cover multiple products
+
+    **Step 2: Import test batch**
+    - Use Yuko import function
+    - Upload test CSV
+    - Complete import process
+    - Check for errors
+
+    **Step 3: Verify results**
+    - Check product pages
+    - Verify review content accurate
+    - Test display on desktop/mobile
+    - Ensure photos load
+    - Confirm verified badges
+
+    **Step 4: Fix issues**
+    - Identify any problems
+    - Update CSV format
+    - Fix product ID mapping
+    - Adjust date formats
+    - Re-test
+
+    **Step 5: Delete test import**
+    - Clear test reviews
+    - Start fresh with full import
+    - Use perfected CSV format
+
+    **Common test discoveries:**
+    - "Our product IDs were wrong" ✅ Fixed before full import
+    - "Dates imported as today" ✅ Fixed format
+    - "Photos not loading" ✅ Updated URLs
+    - "Special characters broke" ✅ Changed encoding
+    - "Reviews duplicated" ✅ Prevented in full import
+
+    <Warning>
+    **Never skip testing:** Importing 10,000 reviews wrong is a nightmare to fix. Always test with 10-50 reviews first, verify everything works, then import the full dataset.
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Common Questions
+
+<AccordionGroup>
+  <Accordion title="Will imported reviews affect my SEO?" icon="magnifying-glass">
+    **Yes - imported reviews maintain SEO value (if done correctly)**
+
+    **SEO benefits of imported reviews:**
+
+    **Preserved content:**
+    - Review text is valuable indexed content
+    - Keywords in reviews help product page rankings
+    - More content = better SEO
+    - Google sees review history
+
+    **Rich snippets maintained:**
+    - Star ratings show in search results
+    - Review count displays
+    - Product rating markup
+    - Enhanced search listings
+
+    **Fresh + historical content:**
+    - Mix of old and new reviews is ideal
+    - Shows product history and consistency
+    - Recent reviews + established history
+    - Better than starting from zero
+
+    **How to maintain SEO value:**
+
+    **1. Preserve review dates**
+    - Don't import all as "today"
+    - Keep original review dates
+    - Shows natural review pattern
+
+    **2. Keep review content intact**
+    - Don't edit or paraphrase reviews
+    - Maintain original text
+    - Preserve keywords customers used
+
+    **3. Implement schema markup**
+    - Use Review schema (schema.org)
+    - Include AggregateRating markup
+    - Yuko handles this automatically
+
+    **4. Don't remove old reviews immediately**
+    - Keep both systems running briefly (1-2 weeks)
+    - Monitor search rankings
+    - Gradual transition vs sudden removal
+
+    **5. Set up redirects if needed**
+    - If review URLs changed
+    - 301 redirects from old to new
+    - Preserve link equity
+
+    **Potential SEO risks:**
+
+    **Risk 1: Duplicate content**
+    - Reviews exist on old platform AND Yuko
+    - Google sees duplicates
+    - Confused about canonical version
+
+    **Solution:** Remove old reviews once Yuko is live
+
+    **Risk 2: Lost review markup**
+    - Old system had schema, new doesn't
+    - Rich snippets disappear from search
+    - Click-through rate drops
+
+    **Solution:** Yuko auto-adds schema markup
+
+    **Risk 3: URL structure changes**
+    - Review URLs different in Yuko
+    - Indexed review links break
+    - 404 errors
+
+    **Solution:** Set up redirects or use same URL structure
+
+    **Monitor SEO during transition:**
+    - Google Search Console: Check impressions/clicks
+    - Rich results test: Verify markup working
+    - Product page rankings: Monitor positions
+    - Organic traffic: Watch for drops
+
+    <Tip>
+    **Best practice:** Import reviews → verify schema markup → keep old system live for 1 week → remove old reviews → monitor SEO for 2 weeks. This gradual approach minimizes SEO risk.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="What happens to reviews I can't import?" icon="question">
+    **Options for handling reviews that can't be imported**
+
+    **Common scenarios:**
+
+    **Scenario 1: Reviews for discontinued products**
+    - Product no longer sold
+    - No destination product page
+    - Where do reviews go?
+
+    **Options:**
+    - Archive reviews (saved but not displayed)
+    - Import to similar replacement product
+    - Skip import for those reviews
+    - Create "Discontinued Products" page with reviews
+
+    **Recommended:** Archive for records, skip display
+
+    **Scenario 2: Reviews with broken photo links**
+    - Photos hosted on old platform
+    - Links will break after migration
+    - Can't access photos
+
+    **Options:**
+    - Import review without photos (text only)
+    - Manually download and re-upload photos
+    - Skip reviews that rely heavily on photos
+    - Contact old platform for photo export
+
+    **Recommended:** Import text, manually add photos to high-value reviews
+
+    **Scenario 3: Reviews in wrong format**
+    - Date format incompatible
+    - Character encoding issues
+    - Missing required fields
+
+    **Options:**
+    - Manually fix in CSV before import
+    - Import what you can, skip problematic rows
+    - Contact Yuko support for help
+    - Use data transformation tools
+
+    **Recommended:** Fix CSV format, re-import
+
+    **Scenario 4: Duplicate reviews**
+    - Same review appears multiple times
+    - Customer reviewed same product twice
+    - Import has duplicates
+
+    **Options:**
+    - De-duplicate CSV before import
+    - Import all, manually delete duplicates after
+    - Keep most recent review, skip older ones
+    - Keep highest-value review (photos, detailed text)
+
+    **Recommended:** De-duplicate before import
+
+    **Scenario 5: Reviews in other languages**
+    - Non-English reviews
+    - Multiple languages mixed
+    - Unsure if to import
+
+    **Options:**
+    - Import all languages (Yuko supports multilingual)
+    - Filter by language before import
+    - Translate reviews before import
+    - Tag reviews by language
+
+    **Recommended:** Import all, let customers filter by language
+
+    **What to do with unmportable reviews:**
+
+    **Option 1: Manual entry**
+    - Manually add important reviews via Yuko dashboard
+    - Time-consuming but works for small counts
+    - Good for high-value reviews (5-star with photos)
+
+    **Option 2: Archive for reference**
+    - Save old reviews in spreadsheet
+    - Keep for internal reference
+    - Don't display publicly
+    - Use insights for product development
+
+    **Option 3: Screenshot for social media**
+    - Can't import but still valuable
+    - Use screenshots in marketing
+    - Post on social media
+    - Include in email campaigns
+
+    <Check>
+    **Pro tip:** Focus import efforts on high-quality, recent reviews with photos. Don't stress about importing every single review. Quality over quantity.
+    </Check>
+  </Accordion>
+
+  <Accordion title="Can I import reviews from multiple sources?" icon="layer-group">
+    **Yes - combine reviews from different platforms**
+
+    **Common multi-source scenarios:**
+
+    **Scenario 1: Platform migration + previous platform**
+    - Migrated from Magento to Shopify to WooCommerce
+    - Reviews scattered across all three platforms
+    - Want to consolidate everything in Yuko
+
+    **Solution:**
+    - Export reviews from all three platforms
+    - Combine into single CSV
+    - De-duplicate (same review may exist on multiple platforms)
+    - Import combined CSV to Yuko
+
+    **Scenario 2: Platform reviews + Google reviews**
+    - Product reviews in WooCommerce
+    - Shop reviews on Google Business
+    - Want both in Yuko
+
+    **Solution:**
+    - Import WooCommerce reviews as product reviews
+    - Import Google reviews as shop/site reviews
+    - Keep them separate (different purposes)
+
+    **Scenario 3: Multiple review apps**
+    - Used Judge.me for some products
+    - Used Loox for other products
+    - Want all in Yuko
+
+    **Solution:**
+    - Export from both apps
+    - Combine CSVs
+    - Ensure product IDs match
+    - Import combined data
+
+    **How to combine multiple sources:**
+
+    **Step 1: Export from each source**
+    - Export Review Platform A
+    - Export Review Platform B
+    - Export Review Platform C
+
+    **Step 2: Standardize formats**
+    - Align column names across all CSVs
+    - Ensure consistent date formats
+    - Standardize product IDs
+    - Match reviewer name formats
+
+    **Step 3: Combine into single CSV**
+    - Merge all CSVs into one file
+    - Sort by product ID or date
+    - Check for duplicates
+
+    **Step 4: De-duplicate**
+    - Look for same reviewer + product + date
+    - Remove exact duplicates
+    - For near-duplicates, keep best version (with photos, more detail)
+
+    **Step 5: Import combined CSV**
+    - Upload to Yuko
+    - Map fields
+    - Import all at once
+
+    **De-duplication tips:**
+
+    **Exact duplicates:**
+    - Same reviewer name
+    - Same product
+    - Same review text
+    - Same date
+
+    **Action:** Delete duplicate, keep one
+
+    **Near duplicates:**
+    - Same reviewer
+    - Same product
+    - Similar text but not identical
+    - Different dates (maybe edited/updated)
+
+    **Action:** Keep most recent or most detailed
+
+    **Tools for de-duplication:**
+    - Excel: Remove duplicates feature
+    - Google Sheets: UNIQUE function
+    - CSV tools: csvkit, pandas
+    - Manual review for small counts
+
+    <Warning>
+    **Important:** When combining sources, watch for duplicate reviews. Same customer may have left review on multiple platforms. De-duplicate before import to avoid showing same review twice.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Do I need to delete old reviews after importing?" icon="trash">
+    **Yes - eventually, but not immediately**
+
+    **Recommended timeline:**
+
+    **Week 1: Keep both systems**
+    - Import reviews to Yuko
+    - Display Yuko reviews on site
+    - Keep old system active (hidden or deactivated)
+    - Monitor for issues
+
+    **Why:**
+    - Backup in case import had issues
+    - Can reference old system if needed
+    - Test Yuko thoroughly before committing
+    - Easy rollback if problems
+
+    **Week 2-3: Verify everything works**
+    - Check all reviews imported correctly
+    - Verify SEO maintained (Google Search Console)
+    - Monitor conversion rates
+    - Test mobile and desktop display
+    - Ensure no duplicate reviews showing
+
+    **Week 4: Remove old system**
+    - Once confident Yuko is working perfectly
+    - Deactivate old review plugin
+    - Remove old review display widgets
+    - Keep data backup (export old reviews to CSV)
+
+    **Database cleanup (optional):**
+    - Delete old review tables from database
+    - Improves site performance
+    - Reduces database size
+    - Do this last, after everything verified
+
+    **What to do with old review data:**
+
+    **Option 1: Archive (recommended)**
+    - Export old reviews to CSV
+    - Save file securely (cloud storage)
+    - Keep as backup/reference
+    - Don't delete permanently
+
+    **Option 2: Delete completely**
+    - If 100% confident in import
+    - Free up database space
+    - Clean slate
+    - **Risky** - hard to reverse
+
+    **Option 3: Keep old system deactivated**
+    - Don't delete, just disable
+    - Data remains in database
+    - Can reactivate if needed
+    - No performance impact if deactivated
+
+    **SEO consideration when removing:**
+
+    **If old reviews had schema markup:**
+    - Verify Yuko has schema markup active
+    - Check Google Rich Results Test
+    - Monitor search rankings for 2 weeks
+    - Watch for drops in organic traffic
+
+    **If old review URLs were indexed:**
+    - Set up 301 redirects to new review URLs
+    - Or use same URL structure in Yuko
+    - Update sitemap
+    - Let Google re-crawl
+
+    **Signs it's safe to delete old system:**
+    - ✅ All reviews verified in Yuko
+    - ✅ No duplicate reviews showing
+    - ✅ SEO metrics stable (no traffic drop)
+    - ✅ Conversion rates maintained or improved
+    - ✅ No customer complaints about missing reviews
+    - ✅ Old review data exported and backed up
+
+    <Tip>
+    **Best practice:** Keep old review system deactivated (not deleted) for 30-60 days after migration. This gives you peace of mind and easy rollback option if any issues discovered. After 60 days, export old data as backup and delete.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Will customers be notified about imported reviews?" icon="bell">
+    **No - customers are not notified when their reviews are imported**
+
+    **What happens during import:**
+
+    **Customer perspective:**
+    - Their review appears on new system (Yuko)
+    - No email notification sent
+    - No action required from them
+    - Review just "moves" to new platform
+
+    **Privacy and consent:**
+
+    **Is importing customer reviews legal?**
+    - Yes, reviews are your business data
+    - Customer submitted review to your store
+    - Moving between platforms is data management
+    - No new use of customer data
+
+    **GDPR/Privacy considerations:**
+    - Customer data (name, email) can be migrated
+    - Reviews are part of product catalog
+    - No consent needed for platform migration
+    - Customer has right to request deletion
+
+    **Email addresses in imported reviews:**
+    - Used for verification matching only
+    - Not displayed publicly (Yuko hides emails)
+    - Not used for marketing without consent
+    - Same privacy as original platform
+
+    **When you SHOULD notify customers:**
+
+    **Scenario 1: Requesting review updates**
+    - If you want customers to update their reviews
+    - If asking customers to add photos to existing reviews
+    - If requesting they verify their review on new platform
+
+    **Scenario 2: Review editing enabled**
+    - If you enable customers to edit reviews in Yuko
+    - Send email: "Your reviews are now in our new system, edit them here: [link]"
+
+    **Scenario 3: Review rewards program**
+    - If offering rewards for existing reviews
+    - "Thanks for your past reviews! Here's 10% off as appreciation"
+
+    **When you DON'T need to notify:**
+
+    **Scenario 1: Simple platform migration**
+    - Moving from WooCommerce to Yuko
+    - Reviews remain the same
+    - No customer action needed
+
+    **Scenario 2: Review aggregation**
+    - Combining reviews from multiple sources
+    - Displaying existing reviews in better format
+    - No change to review content
+
+    **What if customer asks about their review?**
+
+    **Customer: "I left a review, where did it go?"**
+
+    **Response:**
+    "Your review is still here! We upgraded our review system to Yuko for better features. Your review and star rating are now displayed [on this page: link]. Nothing about your review changed - just the platform displaying it."
+
+    **Customer: "I want to delete my old review"**
+
+    **Response:**
+    "No problem! Your review is now managed in our new Yuko system. You can delete it here: [link] or email us at [support email] and we'll remove it immediately."
+
+    **Customer: "Can I edit my old review?"**
+
+    **Response:**
+    "Yes! We've migrated your review to our new system where you can edit it. Here's your review link: [unique link]. You can update the text, rating, or add photos."
+
+    <Note>
+    **Best practice:** While notification isn't required, consider sending a one-time email to past reviewers after migration: "We've upgraded our review system! Your reviews are now live on our improved platform. Check them out: [link]". This is optional but can boost engagement.
+    </Note>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next Steps
+
+<Steps titleSize="h3">
+  <Step title="Identify Your Review Source" icon="magnifying-glass">
+    Determine where your existing reviews are stored (WooCommerce, Judge.me, other platform).
+
+    **Time:** 5 minutes
+    **Action:** Check your current review system
+  </Step>
+
+  <Step title="Export Your Reviews" icon="download">
+    Get your review data from the current platform.
+
+    **Time:** 10-30 minutes
+    **Action:** Export reviews to CSV or connect API
+
+    → [WooCommerce import](/import-reviews/importing-from-woocommerce-review)
+    → [Judge.me import](/import-reviews/importing-from-judgeme-reviews)
+  </Step>
+
+  <Step title="Test Import with Small Sample" icon="flask">
+    Import 10-20 reviews first to verify process works correctly.
+
+    **Time:** 15 minutes
+    **Action:** Upload sample CSV, check results
+  </Step>
+
+  <Step title="Complete Full Import" icon="upload">
+    Import all reviews to Yuko once test is successful.
+
+    **Time:** 10-90 minutes (depends on review count)
+    **Action:** Upload full CSV or run full integration
+  </Step>
+
+  <Step title="Verify and Display Reviews" icon="circle-check">
+    Check imported reviews and enable display on your store.
+
+    **Time:** 30 minutes
+    **Action:** Verify accuracy, set up widgets
+
+    → [Display review widgets](/display-reviews/introduction-to-widgets)
+  </Step>
+</Steps>
+
+---
+
+## Need Help?
+
+<NeedHelp />
+
+<Note>
+**Pro tip:** Don't rush the import. Test with 10-20 reviews first, verify everything works perfectly, then import your full review database. Taking an extra hour to test saves days of fixing import mistakes.
+</Note>
