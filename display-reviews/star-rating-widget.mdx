@@ -3,21 +3,117 @@ description: "Learn how to add star ratings to your product pages using Yuko’s
 title: "4.4 Star Rating Widget"
 ---
 
+The Star Rating Widget displays your product’s average rating and total review count. It usually appears under the product title or price, and on collection pages. This small visual cue helps customers quickly understand product quality, increasing click-through rates and overall trust.
+
 ### **Navigation**
 
 Yuko Dashboard → **Reviews → Widgets → Star Rating**\
 \
-**Overview**
+**How the Star Rating Widget works**
 
-The **Star Rating Widget** shows your product’s average rating and review count, usually displayed under the product title or price.
+Yuko calculates the product’s average rating based on approved reviews and displays the star icons and count following your chosen settings.
 
-This quick visual indicator improves click-throughs and buyer trust.
+You can choose to show:
 
-### **Options**
+- Stars only
+- Review count only
+- Stars + review count (recommended)
 
-| **Setting**              | **Description**                                                |
-| :----------------------- | :------------------------------------------------------------- |
-| **Show / Hide Elements** | Choose whether to display stars, count, or both.               |
-| **Empty Star Display**   | Keep widths consistent across products by showing empty stars. |
-| **Placeholders**         | count = review count, rating = average rating.                 |
-| **Style**                | Match color, size, and spacing with your product card design.  |
+You can also enable empty stars so each product’s badge stays the same width — even if it has fewer reviews.
+
+Placeholders help you customize text:
+
+- **{{count}}** → number of reviews
+- **{{rating}}** → average rating (rounded to one decimal)
+
+## **Set up your Star Rating Widget**
+
+- _How to add the Star Rating Widget to product pages_
+- _How to display star ratings on collection pages_
+- _How to install the widget using shortcodes or theme snippets_
+
+## **Customize the Star Rating Widget with built-in settings**
+
+You can adjust all display options from the Yuko Dashboard and see instant previews before saving.
+
+---
+
+## **1. Show / Hide Elements**
+
+Choose which parts of the widget you want to display.
+
+**Options:**
+
+- **Show stars only**
+- **Show count only**
+- **Show stars + count** (default)
+
+**To change this setting:**
+
+1. Go to **Yuko Dashboard → Reviews → Widgets → Star Rating**
+2. Open **Show / Hide Elements**
+3. Select your preferred option
+4. Click **Save**
+
+---
+
+## **2. Empty Star Display**
+
+Use this if you want all star badges to have equal width across your store.
+
+**When enabled:**\
+Grey (empty) star outlines appear when the product has fewer filled stars.
+
+**Useful for:**
+
+- Collection pages
+- Product lists
+- Clean, consistent layouts
+
+---
+
+## **3. Placeholders (Dynamic Text)**
+
+You can adjust the text that appears next to the stars using placeholders:
+
+- **{{count}}** → total number of reviews
+- **{{rating}}** → average rating
+
+**Examples:**
+
+- “Rated {{rating}} based on {{count}} reviews”
+- “{{count}} customers rated this {{rating}} stars”
+
+This helps you customize the badge text while keeping it dynamic.
+
+---
+
+## **4. Style Settings**
+
+Customize the look of your Star Rating Widget so it matches your theme.
+
+You can adjust:
+
+- Star color
+- Text color
+- Font size
+- Spacing
+- Alignment
+- Badge size
+
+Use live preview to see changes instantly.
+
+---
+
+### **Advanced Customization (CSS)**
+
+You can add custom CSS to fine-tune spacing, alignment, or visibility.
+
+**To add custom CSS:**
+
+1. Go to the Star Rating Widget settings
+2. Scroll to **Advanced CSS**
+3. Add your CSS code
+4. Click **Save**
+
+---
