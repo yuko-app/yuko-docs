@@ -49,7 +49,6 @@
             "group": "4. Display Reviews",
             "pages": [
               "display-reviews",
-              "display-reviews/introduction-to-widgets",
               "display-reviews/product-reviews-display-widget",
               "display-reviews/sidebar-widget",
               "display-reviews/star-rating-widget",
