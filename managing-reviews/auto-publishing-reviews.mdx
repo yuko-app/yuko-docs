@@ -27,66 +27,61 @@ Manually approving every review takes time. Auto-publishing lets you automatical
 
 Yuko Dashboard → **Settings → Reviews → General → Auto-Publishing**
 
-<Steps>
-  <Step title="Customer Submits Review" icon="paper-plane">
-    Customer leaves a review via email request or on-site form.
+Yuko automatically checks each incoming review and decides whether to publish it instantly or hold it for manual moderation — based on the rules you set.
 
-    **Review data includes:**
+### When a customer submits a review:
 
-    - Star rating (1-5)
-    - Review text
-    - Photos/videos (optional)
-    - Reviewer name and email
-    - Verified purchase status
-  </Step>
-  <Step title="Yuko Checks Auto-Publish Rules" icon="list-check">
-    System evaluates the review against your configured rules.
+- Review is received with rating, text, media, and reviewer details
+- Yuko evaluates it using your auto-publish settings
 
-    **Common rule checks:**
+### Auto-Publish New Reviews:
 
-    - Star rating (4-5 stars?)
-    - Verified purchase? (Yes/No)
-    - Contains spam keywords?
-    - Email domain blacklisted?
-    - Product blacklisted?
-    - Review length sufficient?
+**If enabled:**
 
-    **If ALL criteria met:** Auto-approve ✅ **If ANY criteria fails:** Send to pending ⏸️
-  </Step>
-  <Step title="Review Published or Held" icon="clock">
-    Based on rules, review is either published immediately or held for moderation.
+- New reviews are auto-approved
+- Review becomes visible on product pages immediately
+- Added to all review widgets
+- Included in average rating\
+  If disabled:
+- All reviews go to Pending
+- You manually approve each one
 
-    **Auto-published reviews:**
+### Star Rating Rules:
 
-    - Appear on product page instantly
-    - Count toward average rating
-    - Visible in review widgets
-    - Indexed by search engines
+You choose which ratings auto-publish:
 
-    **Pending reviews:**
+- Example: Only 5-star reviews go live automatically
+- Other ratings (1–4 stars) move to Pending
+- Gives you tighter control over low-rated reviews
 
-    - Held in moderation queue
-    - You review manually
-    - Approve or reject
-    - Slower but more control
-  </Step>
-  <Step title="You Review Exceptions" icon="magnifying-glass">
-    Check pending reviews periodically.
+### If review meets your rules → **Published**
 
-    **What ends up pending:**
+- Visible instantly
+- No moderation needed
+- Adds to social proof
+- Helps increase conversion rates
 
-    - 1-3 star reviews (if rule set)
-    - Unverified purchases
-    - Suspicious content
-    - First-time reviewers
+### If review does NOT meet your rules → **Pending**
 
-    **Your decision:**
+- Hidden from customers
+- Requires manual approval
+- You can approve, reject, or reply before publishing
+- Recommended to check pending reviews daily
 
-    - Approve if legitimate
-    - Reject if spam
-    - Reply before publishing
-  </Step>
-</Steps>
+### What typically ends up Pending:
+
+- Ratings outside your auto-publish selection
+- Low-star reviews (1–3 stars)
+- First-time reviewers
+- Reviews with suspicious patterns
+- Reviews you want to inspect manually
+
+### What you achieve with auto-publishing:
+
+- Faster display of positive reviews
+- Reduced daily moderation workload
+- Stronger and more frequent social proof
+- Control over negative or uncertain reviews
 
 ---
 
@@ -94,8 +89,10 @@ Yuko Dashboard → **Settings → Reviews → General → Auto-Publishing**
 
 Yuko Dashboard → **Settings → Reviews → General → Auto-Publishing Rules**
 
+![auto.png](/images/auto.png)
+
 <AccordionGroup>
-  <Accordion title="Auto Publish New Reviews" defaultOpen={false} icon="star">
+  <Accordion title="Auto Publish New Reviews" defaultOpen="false" icon="star">
     **Auto-publish based on review rating**
 
     - Automatically publish all new incoming reviews.
@@ -120,129 +117,13 @@ Yuko Dashboard → **Settings → Reviews → General → Auto-Publishing Rules*
       **Pro tip:** Auto-publish 4-5 stars. This captures 70-80% of reviews and lets them go live instantly, while you still catch negative feedback early.
     </Tip>
   </Accordion>
-  <Accordion title="Profanity Filter" icon="badge-check">
-    Control how Yuko handles reviews containing offensive words.
-
-    Options:
-
-    **Disabled** – No filtering
-
-    **Replace banned words with asterisks (**\* )\*\* – Review is published, profanity masked
-
-    **Hide review containing banned words**\
-    Review is prevented from publishing and marked as Unpublished in your Reviews Dashboard
-
-    - Many legitimate reviews from guest checkouts
-    - These show as "unverified" (no email match)
-    - Manually approve if review is quality content
-    - Consider auto-publishing unverified 5-star reviews
-
-    <Check>
-      **Best practice:** Enable profanity filtering with “hide review” to keep your review section clean and professional without exposing offensive language to customers.
-    </Check>
-  </Accordion>
-  <Accordion title="Spam Filter" icon="text-size">
-    - Automatically catch suspicious or low-quality reviews.
-    - When enabled:
-    - Spam reviews are filtered out
-    - Flagged as Spam in the dashboard
-    - Not published on your store
-    - When to enable:
-    - You receive frequent fake/spam reviews
-    - You want cleaner moderation without manual checks
+  <Accordion title="Star Ratings">
+    **Star Ratings (Auto-Publish Rules)**\
+    Choose which star ratings should be auto-published (e.g., only 5⭐, 4–5⭐, or all). Reviews outside your selected range will be sent to **Pending** for manual moderation.
   </Accordion>
 </AccordionGroup>
 
 ---
-
-## Recommended Auto-Publish Configurations
-
-<CardGroup cols={2}>
-  <Card title="New Store (0-50 reviews)" icon="seedling">
-    **Conservative approach while building reputation**
-
-    **Settings:**
-
-    - ⏸️ Manual moderation: All reviews pending
-    - Review each review before publishing
-    - Reply to establish quality bar
-    - Build initial social proof carefully
-
-    **Why:**
-
-    - Your first 20-50 reviews set expectations
-    - Manual review ensures quality
-    - Opportunity to engage with early customers
-    - Establish trust from day one
-
-    **Time:** 30 min/day
-
-    **Transition:** After 50 quality reviews, switch to balanced auto-publish
-  </Card>
-  <Card title="Growing Store (50-500 reviews)" icon="chart-line">
-    **Balanced auto-publish with manual oversight**
-
-    **Settings:**
-
-    - ✅ Auto-publish: 4-5 stars + verified purchase
-    - ⏸️ Pending: 1-3 stars OR unverified
-    - 🚫 Spam detection: Enabled
-    - Minimum length: 10 characters
-
-    **Why:**
-
-    - Positive proof goes live instantly
-    - You catch negative reviews early
-    - Balance speed with quality
-    - Manageable moderation workload
-
-    **Time:** 20-30 min/day
-
-    **Ideal for:** Most stores
-  </Card>
-  <Card title="High-Volume Store (500+ reviews)" icon="rocket">
-    **Aggressive auto-publish with reactive moderation**
-
-    **Settings:**
-
-    - ✅ Auto-publish: All ratings, verified purchases
-    - ⏸️ Pending: Unverified OR spam keywords
-    - 🚫 Spam detection: Strong filters
-    - Review periodically (weekly)
-
-    **Why:**
-
-    - Can't manually review 500+ reviews/month
-    - Verified purchases are trustworthy
-    - Strong spam filters catch issues
-    - Focus on responding, not moderating
-
-    **Time:** 20-30 min/week
-
-    **Requirement:** Good spam filters, verified purchase system
-  </Card>
-  <Card title="Luxury/Premium Brand" icon="gem">
-    **Quality-focused manual moderation**
-
-    **Settings:**
-
-    - ⏸️ Manual review: All reviews pending
-    - Approve only high-quality reviews
-    - Reply to every review before publishing
-    - Curate social proof carefully
-
-    **Why:**
-
-    - Brand reputation is critical
-    - Quality over quantity
-    - Ensure every review meets standards
-    - Premium experience includes engagement
-
-    **Time:** 45-60 min/day
-
-    **Trade-off:** Slower social proof building, but higher quality
-  </Card>
-</CardGroup>
 
 ---
 
