@@ -10,17 +10,19 @@ import NeedHelp from '/snippets/need-help.mdx';
 Exclude specific products from your review system to maintain quality and relevance.
 
 **What you'll achieve:**
+
 - Prevent irrelevant reviews on non-reviewable products
 - Reduce clutter from gift cards and service fees
 - Maintain review quality by excluding inappropriate items
 - Save moderation time on products that shouldn't have reviews
 
 <Info>
-**Impact:** Stores using product blacklists see:
-- 30-40% reduction in irrelevant review submissions
-- 25-35% decrease in moderation workload
-- 50-60% fewer customer support questions about non-reviewable items
-- Cleaner, more relevant review database
+  **Impact:** Stores using product blacklists see:
+
+  - 30-40% reduction in irrelevant review submissions
+  - 25-35% decrease in moderation workload
+  - 50-60% fewer customer support questions about non-reviewable items
+  - Cleaner, more relevant review database
 </Info>
 
 ## Understanding Product Blacklisting
@@ -28,238 +30,28 @@ Exclude specific products from your review system to maintain quality and releva
 Product blacklisting prevents customers from submitting reviews for specific products or categories.
 
 <CardGroup cols={2}>
-  <Card title="Individual Product Exclusion" icon="box">
+  <Card title="Manual Entry" icon="box">
     **Block reviews for specific products**
 
-    - Single product by SKU or Product ID
-    - Exact match required
-    - Blocks that product only
-    - Good for one-off exclusions
-
-    **Example:**
-    - Gift Card $50 (SKU: GIFT-50)
-    - Free Sample Pack (SKU: SAMPLE-001)
-    - Discontinued Shirt (SKU: SHIRT-1234)
+    - Enter numeric Product IDs separated by commas
+    - Only valid numeric IDs are accepted; invalid IDs are ignored without an error
+    - Example: `123, 456, 789`
+    - Ideal for a small number of products
 
     **Use for:** Targeted product-level control
   </Card>
-
   <Card title="Bulk Category Exclusion" icon="layer-group">
     **Block reviews for entire categories**
 
-    - All products in category
-    - Wildcard or tag-based matching
-    - Blocks many products at once
-    - Good for product types
+    - Upload a CSV file containing a list of Product IDs
+    - Useful for excluding many products at once
+    - File is securely processed and applied to your review workflow
+    - Ensures large-scale exclusions are quick and accurate
 
-    **Example:**
-    - All Gift Cards (category: gift-cards)
-    - All Free Samples (tag: sample)
-    - All Shipping Fees (category: fees)
-
-    **Use for:** Broad protection across product types
+      **Use for:** Broad protection across product types
   </Card>
+  ## How to Blacklist Products
 </CardGroup>
-
-## Common Product Blacklist Uses
-
-Understand which products typically should not have reviews.
-
-<Tabs>
-  <Tab title="Gift Cards & Vouchers">
-    **Block all gift cards and store credit**
-
-    **Why blacklist gift cards:**
-    - Nothing meaningful to review ("it works" or "didn't work")
-    - No product quality or fit information
-    - Review doesn't help future buyers
-    - Clutters review database
-
-    **Types to blacklist:**
-    - Physical gift cards
-    - Digital gift cards / e-gift cards
-    - Store credit vouchers
-    - Prepaid cards
-    - Discount codes sold as products
-
-    **How to identify:**
-    - Product category: "Gift Cards"
-    - Product tag: "gift-card", "voucher", "credit"
-    - Product type: "Virtual"
-    - SKU pattern: "GIFT-*", "GIFTCARD-*"
-
-    **Example products:**
-    ```
-    $25 Gift Card (SKU: GIFT-25)
-    $50 Gift Card (SKU: GIFT-50)
-    $100 E-Gift Card (SKU: EGIFT-100)
-    Store Credit Voucher (SKU: CREDIT-VAR)
-    ```
-
-    **Customer impact:**
-    - Review request emails won't include gift cards
-    - Review form won't show gift card option
-    - Product page shows "Reviews not available for this product"
-
-    <Check>
-    **Recommended:** Blacklist all gift cards across the board. Zero value in gift card reviews for shoppers.
-    </Check>
-  </Tab>
-
-  <Tab title="Free Samples & Promotional Items">
-    **Block free products to prevent biased reviews**
-
-    **Why blacklist free samples:**
-    - Not purchased products (unfair advantage)
-    - Biased positive reviews (got it free)
-    - Manipulates ratings (artificially high)
-    - Violates review authenticity
-
-    **Types to blacklist:**
-    - Free samples given with orders
-    - Promotional trial products
-    - Contest/giveaway prizes
-    - Influencer seeding products
-    - Beta test products
-
-    **How to identify:**
-    - Product price: $0.00
-    - Product tag: "sample", "free", "promo"
-    - Product category: "Samples", "Freebies"
-    - SKU pattern: "SAMPLE-*", "FREE-*"
-
-    **Example scenarios:**
-
-    **Free sample with purchase:**
-    - Customer orders $100 skincare set
-    - Receives free 5ml sample
-    - Only paid products should be reviewable
-    - Free sample should be blacklisted
-
-    **Influencer seeding:**
-    - Send free products to influencers
-    - Track via special SKU (INFLUENCER-*)
-    - Blacklist influencer SKUs
-    - Prevents biased positive reviews
-
-    **Beta testing:**
-    - New product sent to 50 testers
-    - Use special tag "beta-test"
-    - Blacklist until official launch
-    - Collect internal feedback separately
-
-    <Warning>
-    **Legal compliance:** FTC requires disclosure of free/discounted product reviews. Easiest approach: blacklist entirely to avoid compliance issues.
-    </Warning>
-  </Tab>
-
-  <Tab title="Discontinued & Out-of-Stock Items">
-    **Block reviews for products no longer sold**
-
-    **Why blacklist discontinued products:**
-    - No longer available to purchase
-    - Reviews don't help (can't buy anyway)
-    - Confuses customers
-    - Wastes review moderation time
-
-    **When to blacklist:**
-
-    **Permanently discontinued:**
-    - Product will never return
-    - Blacklist immediately
-    - Hide existing reviews (optional)
-    - Example: Last season's fashion, old electronics model
-
-    **Temporarily out of stock:**
-    - Product will return eventually
-    - DON'T blacklist (keep collecting reviews)
-    - Reviews remain valuable when restocked
-    - Example: Seasonal items, bestseller restock
-
-    **Recalled products:**
-    - Product recalled for safety
-    - Blacklist immediately
-    - Hide existing reviews
-    - Prevent further reviews during investigation
-
-    **How to manage:**
-
-    **Option 1: Manual blacklisting**
-    1. Product discontinued
-    2. Add to product blacklist
-    3. Existing reviews remain (optional: hide)
-    4. No new reviews accepted
-
-    **Option 2: Auto-blacklist by status**
-    - Enable "Auto-blacklist discontinued products"
-    - Yuko checks product status daily
-    - Auto-adds discontinued products
-    - Settings → **Product Blacklist → Automation**
-
-    **Option 3: Scheduled removal**
-    - Product discontinued Jan 1
-    - Allow reviews for 90 days (customers may still have it)
-    - Auto-blacklist after April 1
-    - Balances late reviews with relevance
-
-    <Tip>
-    **Pro tip:** Wait 60-90 days after discontinuing before blacklisting. Customers who purchased near end-of-life still deserve to review, and those reviews help with warranty/support decisions.
-    </Tip>
-  </Tab>
-
-  <Tab title="Service Products & Fees">
-    **Block non-physical items and fees**
-
-    **Why blacklist service products:**
-    - Not tangible products to review
-    - More appropriate for service ratings
-    - Confuses product review system
-    - Should use different feedback mechanism
-
-    **Types to blacklist:**
-
-    **Shipping fees:**
-    - Express shipping ($25)
-    - International shipping ($50)
-    - Rush processing ($15)
-    - Nothing to review about a fee
-
-    **Services:**
-    - Consultation fees
-    - Setup/installation services
-    - Warranty extensions
-    - Membership fees
-
-    **Virtual/digital products (sometimes):**
-    - PDF downloads (if no meaningful review)
-    - Licenses (software, music)
-    - Digital courses (use separate review system)
-
-    **Customization fees:**
-    - Engraving fee
-    - Gift wrapping fee
-    - Personalization charges
-
-    **Example blacklist:**
-    ```
-    Express Shipping (SKU: SHIP-EXPRESS)
-    Gift Wrapping Service (SKU: GIFTWRAP-001)
-    Extended Warranty 2-Year (SKU: WARRANTY-2Y)
-    Consultation - 30 Min (SKU: CONSULT-30)
-    ```
-
-    **Better alternatives:**
-    - Service ratings (separate from product reviews)
-    - Shipping feedback (post-delivery surveys)
-    - Customer satisfaction scores (overall experience)
-
-    <Info>
-    **Exception:** Some digital products SHOULD have reviews (ebooks, online courses with content). Use judgment based on whether review would help future buyers.
-    </Info>
-  </Tab>
-</Tabs>
-
-## How to Blacklist Products
 
 Step-by-step guide for excluding products from reviews.
 
@@ -267,409 +59,93 @@ Step-by-step guide for excluding products from reviews.
   <Step title="Navigate to Product Blacklist Settings" icon="gear">
     Access the product exclusion management interface.
 
-    **Path:**
-    Yuko Dashboard → **Settings → Reviews → Manage Exclusions → Product Blacklist**
+    **Path:** Yuko Dashboard → **Settings → Reviews → Manage Exclusions → Product Blacklist**
 
     **You'll see:**
+
     - Current blacklisted products (list with SKU/name)
-    - Total blocked product count
-    - Category-based exclusions
     - Add product button
     - Bulk import option
 
     ![Pb Pn](/images/pb.png)
   </Step>
-
   <Step title="Add Individual Product" icon="plus">
-    Block a specific product by ID, SKU, or name.
+    Block a specific product by their IDs.
 
-    **Method 1: By Product ID**
-    1. Click **Add Product**
+    **By Product ID** 
+
+    1. Click **Add Manually**
     2. Enter Product ID (from WooCommerce/Shopify)
     3. Example: "12345"
     4. Add optional note: "Gift card - not reviewable"
     5. Click **Save**
 
-    **Method 2: By SKU**
-    1. Click **Add Product**
-    2. Select "Search by SKU"
-    3. Enter SKU: "GIFT-50"
-    4. System finds matching product
-    5. Click **Save**
-
-    **Method 3: By Product Name**
-    1. Click **Add Product**
-    2. Select "Search by Name"
-    3. Type product name: "Gift Card"
-    4. Select from dropdown results
-    5. Click **Save**
-
-    **Verification:**
-    - Product appears in blacklist table
-    - Shows product name, SKU, ID
-    - Status shows "Active" or "Blacklisted"
-
     <Note>
-    **Multiple variants:** If product has multiple variants (sizes, colors), blacklisting parent product blacklists all variants.
+      **Multiple variants:** If product has multiple variants (sizes, colors), blacklisting parent product blacklists all variants.
     </Note>
   </Step>
-
-  <Step title="Add Products by Category" icon="folder">
-    Blacklist all products in a category at once.
-
-    **How it works:**
-    - Select category (e.g., "Gift Cards")
-    - All current products in category blacklisted
-    - All future products added to category auto-blacklisted
-    - Dynamic - no need to update manually
-
-    **Setup:**
-    1. Click **Add Category Rule**
-    2. Select category from dropdown
-    3. Choose WooCommerce or Shopify category
-    4. Add note: "All gift cards excluded"
-    5. Click **Save**
-
-    **Example category rules:**
-    ```
-    Category: Gift Cards → Blacklist all
-    Category: Free Samples → Blacklist all
-    Category: Shipping & Fees → Blacklist all
-    Category: Services → Blacklist all
-    ```
-
-    **Benefits:**
-    - Set once, forget forever
-    - New products auto-excluded
-    - Clean bulk management
-    - No manual updates needed
-
-    <Check>
-    **Recommended:** Use category rules for product types (gift cards, services). Use individual blacklisting for one-off exclusions.
-    </Check>
-  </Step>
-
-  <Step title="Add Products by Tag" icon="tag">
-    Blacklist products with specific tags.
-
-    **How it works:**
-    - Products tagged "sample", "free", or "no-reviews"
-    - Automatically blacklisted from reviews
-    - Dynamic updates as tags change
-    - Good for flexible categorization
-
-    **Setup:**
-    1. Click **Add Tag Rule**
-    2. Enter tag name: "free-sample"
-    3. Choose match type:
-       - Exact match: "free-sample" only
-       - Contains: Any tag with "sample"
-       - Starts with: Tags beginning with "sample-"
-    4. Add note explaining rule
-    5. Click **Save**
-
-    **Common tag patterns:**
-    ```
-    Tag: "free" → Blacklist
-    Tag: "sample" → Blacklist
-    Tag: "no-reviews" → Blacklist
-    Tag: "gift-card" → Blacklist
-    Tag: "discontinued" → Blacklist
-    Tag: "internal" → Blacklist
-    ```
-
-    **Best practices:**
-    - Create consistent tagging convention
-    - Document tag meanings
-    - Use tags for temporary exclusions
-    - Example: "beta-test" tag during product testing
-
-    <Tip>
-    **Pro tip:** Use "no-reviews" tag for any product you don't want reviewed. Simpler than remembering which categories or IDs to blacklist.
-    </Tip>
-  </Step>
-
   <Step title="Bulk Import Products" icon="file-csv">
     Upload multiple products at once via CSV.
 
-    **CSV format:**
-    ```csv
-    product_id,product_sku,note
-    12345,GIFT-25,Gift card $25
-    12346,GIFT-50,Gift card $50
-    12347,GIFT-100,Gift card $100
-    12348,SAMPLE-001,Free sample pack
-    ```
-
     **Import process:**
-    1. Prepare CSV (product_id OR product_sku column)
-    2. Click **Bulk Import** button
+
+    1. Prepare CSV (product_id)
+    2. Click **Upload CSV** button
     3. Select CSV file
     4. Review preview (shows products to blacklist)
-    5. Click **Confirm Import**
+    5. Click **Update**
     6. Products blacklisted instantly
 
-    **Import limits:**
-    - Maximum 5,000 products per import
-    - Maximum 10,000 total blacklisted products
-    - CSV file size limit: 2 MB
-
-    **Use cases:**
-    - Initial setup (blacklist all gift cards)
-    - Seasonal cleanup (blacklist last season)
-    - Migration (import from old system)
-    - Bulk discontinued products
-
     <Warning>
-    **Double-check before import:** Bulk operations are hard to undo. Verify CSV contents before confirming import.
+      **Double-check before import:** Bulk operations are hard to undo. Verify CSV contents before confirming import.
     </Warning>
-  </Step>
-
-  <Step title="Test Product Blacklist" icon="flask">
-    Verify blacklisted products can't be reviewed.
-
-    **Testing methods:**
-
-    **Method 1: Check review request email**
-    1. Place test order with blacklisted product
-    2. Trigger review request email manually
-    3. Verify blacklisted product NOT included in email
-    4. Only reviewable products shown
-
-    **Method 2: Try review submission form**
-    1. Open review form on blacklisted product page
-    2. Should see: "Reviews are not available for this product"
-    3. No review form displayed
-    4. OR review form disabled
-
-    **Method 3: Check product page**
-    1. Visit blacklisted product page
-    2. Review widget hidden or shows "Not available"
-    3. No "Write a Review" button
-    4. Clean product page without review section
-
-    **Method 4: Analytics check**
-    1. Go to **Analytics → Products**
-    2. Filter by blacklisted products
-    3. Verify zero review submissions
-    4. Confirm exclusion working
-
-    **What customers see:**
-    - **On product page:** "Reviews are not available for this product"
-    - **In review emails:** Product not listed
-    - **If they try anyway:** Form shows error or is disabled
   </Step>
 </Steps>
 
-## Managing Blacklisted Products
+## Managing Blacklisted Products 
 
-Edit, remove, or temporarily re-enable products for reviews.
+Once products are added to your blacklist, you can manage them directly inside **Yuko Dashboard → Settings → Reviews → Manage Exclusions → Product Blacklist**.\
+\
+Here’s what you can do:
 
 <AccordionGroup>
-  <Accordion title="Viewing Blacklisted Products" defaultOpen icon="list">
-    **See all currently excluded products**
-
-    **Blacklist table shows:**
-    - Product name and image
-    - SKU and Product ID
-    - Blacklist reason/note
-    - Date blacklisted
-    - Added by (team member)
-    - Status (Active/Inactive)
-
-    **Sorting and filtering:**
-    - Sort by: Name, Date Added, Category
-    - Filter by: Category, Tag, Status
-    - Search by: Name, SKU, ID
-    - Export to CSV for backup
-
-    **Quick actions:**
-    - Edit note or details (pencil icon)
-    - Remove from blacklist (trash icon)
-    - Temporarily disable (toggle switch)
-    - View product details (external link)
-
-    **Navigation:**
-    Settings → **Manage Exclusions → Product Blacklist → View All**
-
-    <Tip>
-    **Pro tip:** Export blacklist monthly as CSV backup. Useful for audits, reporting, and disaster recovery.
-    </Tip>
+  <Accordion title="Add Products" defaultOpen={false} icon="list">
+    - Add new Product IDs manually
+    - Enter multiple IDs separated by commas
+    - Only numeric IDs are accepted
+    - Invalid IDs are ignored silently
   </Accordion>
-
-  <Accordion title="Removing Products from Blacklist" icon="circle-minus">
-    **Re-enable reviews for previously blacklisted products**
-
-    **When to remove:**
-    - Product returned to stock (was temporarily out)
-    - No longer a free sample (now paid product)
-    - Changed from service to physical product
-    - Blacklisted by mistake
+  <Accordion title="Delete Products" icon="circle-minus">
+    - Remove any product ID from your blacklist
+    - Immediately re-enables review requests for that product
+    - Useful for seasonal items or newly reactivated products
+    - Confirmation prevents accidental deletions
 
     **How to remove:**
 
     **Option 1: Remove individual product**
+
     1. Find product in blacklist table
     2. Click **Remove** (trash icon)
     3. Confirm removal
     4. Product immediately reviewable
 
     **Option 2: Bulk removal**
+
     1. Select multiple products (checkboxes)
     2. Click **Bulk Actions** dropdown
-    3. Select **Remove from Blacklist**
+    3. Select**Delete** 
     4. Confirm bulk removal
 
-    **Option 3: Remove category rule**
-    1. Go to **Category Rules** tab
-    2. Find rule (e.g., "Gift Cards")
-    3. Click **Delete Rule**
-    4. All products in category become reviewable
-
-    **What happens after removal:**
-    - Product appears in future review request emails
-    - Review form available on product page
-    - Customers can submit new reviews
-    - Existing reviews remain unaffected (if any)
-
     <Note>
-    **Existing reviews:** Removing from blacklist doesn't delete old reviews collected before blacklisting. Only affects future review submissions.
+      **Existing reviews:** Removing from blacklist doesn't delete old reviews collected before blacklisting. Only affects future review submissions.
     </Note>
   </Accordion>
-
-  <Accordion title="Temporarily Disabling Blacklist Entries" icon="pause">
-    **Test or temporarily allow reviews without deleting entry**
-
-    **Use cases:**
-
-    **Testing:**
-    - Test if product should remain blacklisted
-    - See if reviews are valuable
-    - Gather sample feedback
-    - Re-enable blacklist after test
-
-    **Seasonal products:**
-    - Gift cards blacklisted most of year
-    - Temporarily enable during holiday season
-    - Collect seasonal feedback
-    - Re-blacklist in January
-
-    **Product updates:**
-    - Product redesigned significantly
-    - Temporarily enable reviews
-    - Collect feedback on new version
-    - Decide whether to keep reviewable
-
-    **How to temporarily disable:**
-    1. Find product in blacklist
-    2. Toggle **Active** switch to OFF
-    3. Entry stays in list but doesn't block
-    4. Product becomes reviewable
-
-    **How to re-enable blacklist:**
-    1. Toggle **Active** switch back to ON
-    2. Product blocked again
-    3. Reviews collected during disabled period remain
-
-    **Benefits:**
-    - Don't lose blacklist entry
-    - Easy to re-enable
-    - Notes and history preserved
-    - Good for temporary situations
-
-    <Check>
-    **Recommended:** Use temporary disable instead of delete/re-add for seasonal or testing scenarios. Maintains history and simplifies management.
-    </Check>
-  </Accordion>
-
-  <Accordion title="Editing Blacklist Notes and Reasons" icon="pen">
-    **Update documentation for blacklist entries**
-
-    **Why edit notes:**
-    - Add more context over time
-    - Update reason for blacklist
-    - Add expiration date reminder
-    - Link to related tickets/decisions
-
-    **Good notes examples:**
-    ```
-    Gift Card $50 (SKU: GIFT-50)
-    Note: All gift cards excluded, no meaningful product review possible
-    Added: 2024-01-15 by Sarah M.
-
-    Free Sample - Moisturizer (SKU: SAMPLE-MOIST-5ML)
-    Note: Free samples biased positive, FTC compliance issue
-    Added: 2024-03-20 by Marketing Team
-    Review: Check quarterly if should remain
-
-    2023 Winter Jacket (SKU: JACKET-W23-001)
-    Note: Discontinued product, last sold Dec 2023
-    Added: 2024-01-05 by Inventory Manager
-    Consider removing: Jan 2025 (1 year after discontinuation)
-    ```
-
-    **How to edit:**
-    1. Find product in blacklist
-    2. Click **Edit** (pencil icon)
-    3. Update note field
-    4. Optionally add expiration reminder
-    5. Save changes
-
-    **Best practices:**
-    - Document reason clearly
-    - Include date and person who added
-    - Add review schedule if temporary
-    - Link to decisions or tickets
-
-    <Tip>
-    **Pro tip:** Use consistent note format: "[Reason] | Added: [Date] by [Person] | Review: [When]". Makes quarterly audits much faster.
-    </Tip>
-  </Accordion>
-
-  <Accordion title="Automation Rules" icon="robot">
-    **Auto-blacklist products based on criteria**
-
-    **Available automation:**
-
-    **Auto-blacklist discontinued products:**
-    - Monitors product status daily
-    - When status changes to "Discontinued"
-    - Auto-adds to blacklist
-    - No manual work needed
-
-    **Auto-blacklist out-of-stock (optional):**
-    - When product out of stock longer than 90 days
-    - Auto-blacklists
-    - Auto-removes when restocked
-    - Good for long-term unavailability
-
-    **Auto-blacklist zero-price products:**
-    - Any product with price = $0.00
-    - Auto-blacklists (likely free samples)
-    - Prevents biased reviews
-    - Removes if price added later
-
-    **Auto-blacklist new products temporarily:**
-    - Block reviews for first 7-30 days after launch
-    - Allows team testing and QA
-    - Auto-removes after period
-    - Collects reviews from real customers only
-
-    **How to enable:**
-    1. Go to **Product Blacklist → Automation**
-    2. Toggle desired automation rules
-    3. Configure thresholds (days, price limits)
-    4. Save settings
-
-    **Automation log:**
-    - View **Automation History** tab
-    - See all auto-blacklist actions
-    - Product name, date, rule triggered
-    - Override if needed
-
-    <Check>
-    **Recommended:** Enable "Auto-blacklist discontinued products" and "Auto-blacklist zero-price products". Handles 90% of blacklist needs automatically.
-    </Check>
+  <Accordion title="Sort & Search" icon="pause">
+    - Sort list A–Z or Z–A (ascending/descending by Product ID)
+    - Search by Product ID to find entries quickly
+    - Useful for large stores with many exclusions
+    - Helps maintain a clean, organized blacklist
   </Accordion>
 </AccordionGroup>
 
@@ -684,6 +160,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     **Conditional examples:**
 
     **Block only if unverified purchase:**
+
     ```
     Product: High-end electronics
     Rule: Block reviews IF verified_purchase = false
@@ -692,6 +169,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     **Block only if discounted above threshold:**
+
     ```
     Product: Any product
     Rule: Block reviews IF discount greater than 80%
@@ -700,6 +178,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     **Block only if quantity equals 1:**
+
     ```
     Product: Sample-size items (5ml, trial size)
     Rule: Block IF quantity_type = "sample"
@@ -708,6 +187,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     **Block only during pre-order period:**
+
     ```
     Product: New releases
     Rule: Block IF current_date less than release_date
@@ -715,10 +195,10 @@ Sophisticated product blacklist techniques for specific scenarios.
     Result: Reviews enabled automatically on release date
     ```
 
-    **Configuration:**
-    Settings → **Product Blacklist → Advanced Rules**
+    **Configuration:** Settings → **Product Blacklist → Advanced Rules**
 
     **Example conditional rule:**
+
     ```
     IF product_category = "Electronics"
     AND verified_purchase = false
@@ -728,16 +208,16 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     <Info>
-    **Enterprise feature:** Conditional blacklisting requires Yuko Pro or Enterprise plan. Contact support to enable.
+      **Enterprise feature:** Conditional blacklisting requires Yuko Pro or Enterprise plan. Contact support to enable.
     </Info>
   </Accordion>
-
   <Accordion title="Scheduled Blacklist Changes" icon="calendar">
     **Auto-enable or disable blacklisting on specific dates**
 
     **Use cases:**
 
     **Seasonal products:**
+
     ```
     Product: Holiday Gift Basket
     Blacklist: Jan 1 - Nov 1 (off-season)
@@ -746,6 +226,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     **Limited editions:**
+
     ```
     Product: Limited Edition Sneaker (1,000 units)
     Blacklist: When sold out
@@ -754,6 +235,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     **Product refresh cycles:**
+
     ```
     Product: 2024 Model Widget
     Blacklist: Jan 1, 2025 (when 2025 model launches)
@@ -762,6 +244,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     **Beta testing periods:**
+
     ```
     Product: New software feature
     Blacklist: Day 1 - Day 90 (beta period)
@@ -770,6 +253,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     **How to schedule:**
+
     1. Add product to blacklist
     2. Set **Start Date** (when blacklist begins)
     3. Set **End Date** (when auto-removes, optional)
@@ -777,6 +261,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     5. Save scheduled rule
 
     **Scheduled rule format:**
+
     ```
     Product: 2024 Winter Jacket
     Blacklist Start: 2025-01-01 00:00
@@ -785,14 +270,14 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     <Tip>
-    **Pro tip:** Use scheduled blacklisting for product lifecycle management. Set end dates when adding discontinued products to auto-cleanup after 1 year.
+      **Pro tip:** Use scheduled blacklisting for product lifecycle management. Set end dates when adding discontinued products to auto-cleanup after 1 year.
     </Tip>
   </Accordion>
-
   <Accordion title="Blacklist Exceptions and Whitelisting" icon="circle-check">
     **Allow reviews for specific users even if product is blacklisted**
 
     **Why exceptions:**
+
     - Beta testers can review despite blacklist
     - Influencers given free samples want to review
     - B2B clients get special pricing but should review
@@ -801,6 +286,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     **Exception types:**
 
     **User-based exceptions:**
+
     ```
     Product: Blacklisted free sample
     Exception: Allow user@example.com to review
@@ -808,6 +294,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     **Order-based exceptions:**
+
     ```
     Product: Gift card (normally blacklisted)
     Exception: Allow if order contains physical product too
@@ -815,6 +302,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     **Tag-based exceptions:**
+
     ```
     Product: Any blacklisted product
     Exception: Allow if user has tag "VIP" or "Beta Tester"
@@ -822,6 +310,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     **How to create exceptions:**
+
     1. Go to blacklisted product
     2. Click **Add Exception**
     3. Specify user email, order ID, or user tag
@@ -829,20 +318,21 @@ Sophisticated product blacklist techniques for specific scenarios.
     5. Save exception
 
     **Exception management:**
+
     - View all exceptions per product
     - Set expiration dates
     - Remove when no longer needed
     - Audit log of who added
 
     <Warning>
-    **FTC compliance:** If allowing reviews from influencers or free sample recipients, ensure they disclose material connection in review text.
+      **FTC compliance:** If allowing reviews from influencers or free sample recipients, ensure they disclose material connection in review text.
     </Warning>
   </Accordion>
-
   <Accordion title="Cascading Blacklist Rules" icon="sitemap">
     **Hierarchical rules from parent to child products**
 
     **How cascading works:**
+
     - Blacklist parent product → All variants blacklisted
     - Blacklist category → All products in category blacklisted
     - Blacklist brand → All products from brand blacklisted
@@ -850,6 +340,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     **Parent-child relationships:**
 
     **Example 1: T-Shirt with variants**
+
     ```
     Parent: T-Shirt (Product ID: 100)
     Blacklist: Parent product
@@ -861,6 +352,7 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     **Example 2: Gift Card family**
+
     ```
     Parent Category: Gift Cards
     Blacklist: Category
@@ -872,12 +364,14 @@ Sophisticated product blacklist techniques for specific scenarios.
     ```
 
     **Override cascading:**
+
     - Blacklist parent (all variants blacklisted)
     - Manually un-blacklist specific variant
     - That variant becomes reviewable
     - Other variants remain blacklisted
 
     **Example override:**
+
     ```
     Parent: Widget 2024 (blacklisted - discontinued)
     Override: Widget 2024 - Special Edition (still selling)
@@ -886,11 +380,10 @@ Sophisticated product blacklist techniques for specific scenarios.
       - Widget 2024 Special Edition → Reviewable
     ```
 
-    **Configuration:**
-    Settings → **Product Blacklist → Cascading Rules → Enable**
+    **Configuration:** Settings → **Product Blacklist → Cascading Rules → Enable**
 
     <Check>
-    **Recommended:** Enable cascading for simpler management. Blacklist once at top level instead of individually managing hundreds of variants.
+      **Recommended:** Enable cascading for simpler management. Blacklist once at top level instead of individually managing hundreds of variants.
     </Check>
   </Accordion>
 </AccordionGroup>
@@ -904,37 +397,41 @@ Follow these guidelines for effective product blacklist management.
     **Focus on products with zero review value first**
 
     **Phase 1: Obvious exclusions (Day 1)**
+
     - All gift cards
     - All shipping/service fees
-    - All free samples (price = $0)
+    - All free samples (price = \$0)
     - **Result:** Eliminates 80% of irrelevant reviews
 
     **Phase 2: Strategic exclusions (Month 1)**
+
     - Discontinued products
     - Out-of-stock products (longer than 90 days)
     - Internal test products
     - **Result:** Cleans up remaining irrelevant reviews
 
     **Phase 3: Fine-tuning (Month 3+)**
+
     - Conditional rules
     - Scheduled blacklisting
     - Exception management
     - **Result:** Optimized review system
 
     **Don't blacklist too broadly:**
+
     - ❌ Entire categories just because a few products don't need reviews
     - ❌ All new products (collect authentic feedback from early buyers)
     - ❌ Products just because they have low ratings (address quality, not hide)
 
     <Check>
-    **Recommended starter blacklist:** Gift cards, shipping fees, products with price = $0. This alone eliminates 70-90% of non-valuable reviews.
+      **Recommended starter blacklist:** Gift cards, shipping fees, products with price = \$0. This alone eliminates 70-90% of non-valuable reviews.
     </Check>
   </Accordion>
-
   <Accordion title="Document Blacklist Reasons" icon="file-text">
     **Always explain why each product is blacklisted**
 
     **Why documentation matters:**
+
     - Remember why product was blacklisted months later
     - Train new team members
     - Justify decisions to stakeholders
@@ -942,6 +439,7 @@ Follow these guidelines for effective product blacklist management.
     - Plan quarterly reviews
 
     **Good documentation format:**
+
     ```
     Product: [Name] (SKU: [SKU])
     Reason: [Why blacklisted]
@@ -952,6 +450,7 @@ Follow these guidelines for effective product blacklist management.
     ```
 
     **Good examples:**
+
     ```
     Product: $50 Gift Card (SKU: GIFT-50)
     Reason: Gift cards have no product attributes to review, zero value for shoppers
@@ -959,7 +458,7 @@ Follow these guidelines for effective product blacklist management.
     Added: 2024-01-15 by Product Team
     Review Schedule: Annual (January)
     Notes: All gift cards blacklisted per policy
-
+    
     Product: Free Lotion Sample 5ml (SKU: SAMPLE-LOTION-5ML)
     Reason: Free sample - biased reviews, FTC compliance concern
     Category: Free Sample
@@ -969,56 +468,62 @@ Follow these guidelines for effective product blacklist management.
     ```
 
     **Bad examples:**
+
     ```
     Product: Widget
     Reason: No reviews
     (too vague - why no reviews?)
-
+    
     Product: Thing 123
     Reason: Discontinued
     (when? by whom? should it be reviewed in future?)
     ```
 
     <Tip>
-    **Pro tip:** Use consistent templates for blacklist notes. Makes quarterly audits 10x faster when all entries follow same format.
+      **Pro tip:** Use consistent templates for blacklist notes. Makes quarterly audits 10x faster when all entries follow same format.
     </Tip>
   </Accordion>
-
   <Accordion title="Review Blacklist Quarterly" icon="calendar-days">
     **Audit product blacklist every 90 days**
 
     **Quarterly review checklist:**
 
     **1. Remove outdated blacklists**
+
     - Products returned to stock (no longer discontinued)
     - Former free samples now paid products
     - Temporary blacklists that should end
     - Test products moved to production
 
     **2. Add new blacklists**
+
     - Products discontinued in past quarter
     - New gift card SKUs added
     - New service products launched
     - New free sample programs
 
     **3. Verify automation**
+
     - Check auto-blacklist rules still working
     - Review automation log for errors
     - Adjust thresholds if needed
     - Test automation with sample product
 
     **4. Check for leakage**
+
     - Reviews submitted for blacklisted products (shouldn't happen)
     - Products that should be blacklisted but aren't
     - Category rules not catching all products
 
     **5. Update documentation**
+
     - Refresh notes on existing entries
     - Add context learned over quarter
     - Update review schedules
     - Export backup CSV
 
     **Schedule:**
+
     - Q1: January audit
     - Q2: April audit
     - Q3: July audit
@@ -1027,47 +532,51 @@ Follow these guidelines for effective product blacklist management.
     **Time investment:** 30-45 minutes per quarter
 
     <Info>
-    **Pro tip:** Schedule quarterly review same day as email blacklist audit (if using both). Kill two birds with one stone, saves time.
+      **Pro tip:** Schedule quarterly review same day as email blacklist audit (if using both). Kill two birds with one stone, saves time.
     </Info>
   </Accordion>
-
   <Accordion title="Use Category Rules Over Individual Products" icon="folder-tree">
     **Prefer category-based blacklisting for scalability**
 
     **Why category rules are better:**
+
     - Set once, applies forever
     - New products auto-blacklisted
     - No manual maintenance
     - Scales to thousands of products
 
     **When to use category rules:**
+
     - All products of a type (all gift cards)
     - Product families (all samples, all services)
     - Entire brands (if applicable)
     - Consistent product groups
 
     **Example category strategy:**
+
     ```
     Category: Gift Cards → Blacklist entire category
     Result: 47 current gift cards + all future cards blacklisted
     Maintenance: Zero
-
+    
     Category: Free Samples → Blacklist entire category
     Result: 23 current samples + all future samples blacklisted
     Maintenance: Zero
-
+    
     Category: Shipping & Services → Blacklist entire category
     Result: 8 current services + all future services blacklisted
     Maintenance: Zero
     ```
 
     **When to use individual blacklisting:**
+
     - One-off exclusions
     - Specific discontinued products
     - Exceptions within otherwise-reviewable category
     - Temporary blacklists
 
     **Example individual strategy:**
+
     ```
     Product: 2023 Winter Jacket (SKU: JACKET-W23)
     Reason: Discontinued, use individual blacklist
@@ -1076,14 +585,14 @@ Follow these guidelines for effective product blacklist management.
     ```
 
     <Check>
-    **80/20 rule:** 80% of blacklisting via category rules (gift cards, samples, services), 20% via individual products (specific discontinued items).
+      **80/20 rule:** 80% of blacklisting via category rules (gift cards, samples, services), 20% via individual products (specific discontinued items).
     </Check>
   </Accordion>
-
   <Accordion title="Communicate Blacklist to Team" icon="users">
     **Ensure all team members understand product review policy**
 
     **Who needs to know:**
+
     - Product team (adding new products)
     - Marketing team (review requests)
     - Customer service (handling questions)
@@ -1092,30 +601,35 @@ Follow these guidelines for effective product blacklist management.
     **What they need to know:**
 
     **Product team:**
+
     - Which product types should be blacklisted
     - How to tag products for auto-blacklisting
     - Who to notify when adding gift cards, samples, etc.
     - Process for requesting exceptions
 
     **Marketing team:**
+
     - Why certain products don't have reviews
     - How to explain to customers
     - Which products to promote with reviews
     - Alternative feedback methods for non-reviewable products
 
     **Customer service:**
+
     - Why customers can't review gift cards
     - How to handle complaints about missing review option
     - Escalation process for exceptions
     - Alternative ways to collect feedback
 
     **Training materials:**
+
     - Blacklist policy document (one-pager)
     - Product categorization guide
     - Tagging convention reference
     - FAQ for common questions
 
     **Example one-pager sections:**
+
     1. What products should be blacklisted (with examples)
     2. How to blacklist products (step-by-step)
     3. How to check if product is blacklisted
@@ -1124,7 +638,7 @@ Follow these guidelines for effective product blacklist management.
     6. Contact person for questions
 
     <Tip>
-    **Pro tip:** Create "no-reviews" tag convention. Train product team to tag any non-reviewable product on creation. Automates 95% of blacklisting.
+      **Pro tip:** Create "no-reviews" tag convention. Train product team to tag any non-reviewable product on creation. Automates 95% of blacklisting.
     </Tip>
   </Accordion>
 </AccordionGroup>
@@ -1136,12 +650,14 @@ Follow these guidelines for effective product blacklist management.
     **Existing reviews remain, only new submissions blocked**
 
     **When you blacklist a product:**
+
     - ✅ Blocks all future review submissions
     - ❌ Does NOT delete existing reviews
     - ❌ Does NOT hide existing reviews (unless you do it manually)
     - ❌ Does NOT notify customers they can't review anymore
 
     **If you want to remove existing reviews:**
+
     1. Blacklist product (prevents new reviews)
     2. Go to **Manage Reviews**
     3. Filter by product (use SKU or product ID)
@@ -1151,24 +667,26 @@ Follow these guidelines for effective product blacklist management.
     **Should you delete existing reviews?**
 
     **Delete if:**
+
     - Product permanently discontinued (no value to shoppers)
     - Gift card reviews (never had value)
     - Free sample reviews (biased and inappropriate)
 
     **Keep if:**
+
     - Product temporarily out of stock (may return)
     - Reviews provide warranty/support value
     - Historical reference helpful
 
     <Info>
-    **Recommended:** Blacklist product immediately, then decide on existing reviews case-by-case. Prioritize deleting gift card and free sample reviews (zero value).
+      **Recommended:** Blacklist product immediately, then decide on existing reviews case-by-case. Prioritize deleting gift card and free sample reviews (zero value).
     </Info>
   </Accordion>
-
   <Accordion title="Can I blacklist a product temporarily?" icon="clock">
     **Yes, use temporary disable or scheduled blacklisting**
 
     **Method 1: Manual temporary disable**
+
     1. Add product to blacklist
     2. Toggle **Active** switch to OFF when needed
     3. Product reviewable during disabled period
@@ -1176,32 +694,35 @@ Follow these guidelines for effective product blacklist management.
     5. Entry remains in list with full history
 
     **Method 2: Scheduled blacklisting**
+
     1. Add product to blacklist
     2. Set **End Date** for auto-removal
     3. Product auto-removed from blacklist on that date
     4. Example: Blacklist during out-of-stock period, auto-unblacklist when restocked
 
     **Method 3: Conditional blacklisting**
+
     1. Set rule: "Blacklist IF stock = 0"
     2. Auto-blacklists when out of stock
     3. Auto-unblacklists when restocked
     4. No manual work needed
 
     **Use cases:**
+
     - Out of stock temporarily
     - Beta testing period
     - Seasonal products
     - Pre-release products
 
     <Check>
-    **Recommended:** Use scheduled blacklisting for known timeframes (beta testing 90 days). Use conditional blacklisting for dynamic situations (stock levels).
+      **Recommended:** Use scheduled blacklisting for known timeframes (beta testing 90 days). Use conditional blacklisting for dynamic situations (stock levels).
     </Check>
   </Accordion>
-
   <Accordion title="Should I blacklist products with low ratings?" icon="star-half">
     **No - address quality issues, don't hide reviews**
 
     **Why NOT to blacklist low-rated products:**
+
     - Hiding negative reviews is unethical
     - Damages customer trust if discovered
     - May violate consumer protection laws
@@ -1210,46 +731,52 @@ Follow these guidelines for effective product blacklist management.
     **What to do instead:**
 
     **Option 1: Fix the product**
+
     - Investigate quality issues
     - Address manufacturing defects
     - Improve design based on feedback
     - Re-launch improved version
 
     **Option 2: Discontinue the product**
+
     - If unfixable, stop selling
     - THEN blacklist (because discontinued, not because of ratings)
     - Be transparent with customers
 
     **Option 3: Respond to reviews**
+
     - Reply to negative reviews
     - Explain what went wrong
     - Offer solutions (refund, replacement)
     - Show you care about quality
 
     **When blacklisting IS appropriate:**
+
     - Product discontinued due to quality issues
     - Product recalled for safety
     - Product fundamentally changed (v2.0 different than v1.0)
 
     <Warning>
-    **Legal risk:** Selectively hiding negative reviews while showing positive ones violates FTC guidelines and consumer protection laws in many jurisdictions. Don't do it.
+      **Legal risk:** Selectively hiding negative reviews while showing positive ones violates FTC guidelines and consumer protection laws in many jurisdictions. Don't do it.
     </Warning>
   </Accordion>
-
   <Accordion title="How do I blacklist variants (sizes, colors) separately?" icon="palette">
     **Blacklist at variant level, not parent product**
 
     **How product variants work:**
+
     - Parent: T-Shirt (Product ID: 100)
     - Variants: Small, Medium, Large, XL (each has own ID)
 
     **Option 1: Blacklist individual variant**
+
     1. Find variant product ID (not parent ID)
     2. Add variant ID to blacklist
     3. Only that variant blacklisted
     4. Other variants remain reviewable
 
     **Example:**
+
     ```
     Parent: T-Shirt
     Blacklist: T-Shirt XL (Variant ID: 104) - Discontinued size
@@ -1261,11 +788,13 @@ Follow these guidelines for effective product blacklist management.
     ```
 
     **Option 2: Blacklist parent (all variants)**
+
     1. Add parent product ID to blacklist
     2. All variants automatically blacklisted
     3. Entire product family excluded
 
     **Example:**
+
     ```
     Parent: T-Shirt (Product ID: 100) - Entire line discontinued
     Result:
@@ -1276,27 +805,28 @@ Follow these guidelines for effective product blacklist management.
     ```
 
     **Override parent blacklist:**
+
     1. Blacklist parent (all variants blacklisted)
     2. Manually un-blacklist specific variant
     3. That variant becomes exception
 
     <Tip>
-    **Pro tip:** Use parent blacklist for discontinued product lines (all variants gone). Use variant blacklist for discontinued sizes/colors (some still available).
+      **Pro tip:** Use parent blacklist for discontinued product lines (all variants gone). Use variant blacklist for discontinued sizes/colors (some still available).
     </Tip>
   </Accordion>
-
   <Accordion title="Can customers see why a product can't be reviewed?" icon="eye">
     **By default no, but you can customize the message**
 
     **Default message:**
+
     ```
     Reviews are not available for this product.
     ```
 
-    **Customizable messages:**
-    You can customize per blacklist reason:
+    **Customizable messages:** You can customize per blacklist reason:
 
     **For gift cards:**
+
     ```
     Gift cards are not eligible for product reviews. If you have
     feedback about your gift card experience, please contact
@@ -1304,44 +834,49 @@ Follow these guidelines for effective product blacklist management.
     ```
 
     **For free samples:**
+
     ```
     Reviews are available only for purchased products. This item
     was provided as a free sample.
     ```
 
     **For discontinued products:**
+
     ```
     This product has been discontinued and is no longer available
     for review. See our latest products in [category].
     ```
 
     **For services:**
+
     ```
     Service products use a different feedback system. You'll receive
     a service satisfaction survey via email after completion.
     ```
 
     **How to customize:**
+
     1. Go to **Settings → Product Blacklist → Messages**
     2. Select blacklist reason category
     3. Write custom message
     4. Save changes
 
     **Best practices:**
+
     - Be transparent but brief
     - Offer alternative feedback method if applicable
     - Don't over-explain (customers don't need full reasoning)
     - Maintain professional tone
 
     <Note>
-    **Privacy note:** Don't reveal internal reasons (e.g., "blocked because competitor reviews" or "blocked due to quality issues"). Keep messages customer-focused.
+      **Privacy note:** Don't reveal internal reasons (e.g., "blocked because competitor reviews" or "blocked due to quality issues"). Keep messages customer-focused.
     </Note>
   </Accordion>
-
   <Accordion title="Does product blacklisting affect SEO?" icon="magnifying-glass-chart">
     **Minimal impact if handled correctly**
 
     **Potential SEO concerns:**
+
     - Review schema markup missing (rich snippets)
     - Review count in search results = 0
     - Less user-generated content on page
@@ -1349,6 +884,7 @@ Follow these guidelines for effective product blacklist management.
     **How to minimize SEO impact:**
 
     **1. Keep review section HTML (just empty)**
+
     ```html
     <div class="reviews-section">
       <p>Reviews are not available for this product.</p>
@@ -1357,29 +893,33 @@ Follow these guidelines for effective product blacklist management.
     ```
 
     **2. Don't remove entire review block**
+
     - Keep div/section in place
     - Just show "not available" message
     - Maintains page structure for crawlers
 
     **3. Use other content to compensate**
+
     - Detailed product descriptions
     - Q&A section (if product has one)
     - FAQ about the product
     - Related products section
 
     **4. Only blacklist truly non-reviewable products**
+
     - Gift cards (SEO not important, no real search volume)
     - Services (alternate feedback methods)
     - Discontinued (no longer selling, SEO irrelevant)
 
     **Products that SHOULD have reviews for SEO:**
+
     - All actively sold physical products
     - High-traffic category leaders
     - Competitive product segments
     - New products building authority
 
     <Check>
-    **Recommended:** Blacklist only products with zero SEO value (gift cards, fees, discontinued). Keep reviews enabled for all actively marketed products.
+      **Recommended:** Blacklist only products with zero SEO value (gift cards, fees, discontinued). Keep reviews enabled for all actively marketed products.
     </Check>
   </Accordion>
 </AccordionGroup>
@@ -1392,25 +932,21 @@ Follow these guidelines for effective product blacklist management.
 
     **Action:** Review your catalog and identify gift cards, samples, services, and fees.
   </Step>
-
   <Step title="Setup Category Rules" icon="folder">
     Blacklist entire categories of non-reviewable products.
 
     **Action:** Go to **Settings → Product Blacklist** and add category rules for gift cards and services.
   </Step>
-
   <Step title="Blacklist Discontinued Products" icon="box-archive">
     Add products no longer sold to blacklist.
 
     **Action:** Export discontinued products and bulk import to blacklist, or enable auto-blacklist automation.
   </Step>
-
   <Step title="Enable Automation" icon="robot">
     Setup rules to auto-blacklist products based on status.
 
     **Action:** Enable "Auto-blacklist discontinued products" and "Auto-blacklist zero-price products" in automation settings.
   </Step>
-
   <Step title="Schedule Quarterly Review" icon="calendar">
     Set reminder to audit product blacklist.
 
@@ -1421,7 +957,7 @@ Follow these guidelines for effective product blacklist management.
 <NeedHelp />
 
 <Note>
-**Pro tip:** Focus blacklisting on product types with zero review value (gift cards, services, fees). Don't blacklist products just because they have low ratings - that's unethical and potentially illegal. Address quality issues instead.
+  **Pro tip:** Focus blacklisting on product types with zero review value (gift cards, services, fees). Don't blacklist products just because they have low ratings - that's unethical and potentially illegal. Address quality issues instead.
 </Note>
 
 **Next:** Continue exploring other review management features to maintain high-quality customer feedback across your store.
