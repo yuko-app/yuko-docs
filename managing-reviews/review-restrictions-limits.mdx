@@ -73,125 +73,87 @@ Control who is allowed to submit reviews on your products.
 
 <AccordionGroup>
   <Accordion title="Who Can Write a Review" defaultOpen icon="users">
-    **Choose between open access and verified buyers only**
+    Choose between **open access** or **verified buyers only**
 
-    **Option 1: Anyone can review**
+    **Option 1: Anyone Can Review**
 
     - No purchase verification required
-    - Highest review volume potential
+    - Higher review volume potential
     - Includes gift recipients, in-store purchases, non-customers
-    - Higher spam risk
+    - Slightly higher spam risk
 
     **When to use:**
 
     - New stores building initial reviews
-    - Products with multi-channel sales (online + retail)
+    - Multi-channel products (online + retail)
     - Gift-heavy products
     - High-trust, low-spam industries
 
-    **Option 2: Verified buyers only**
+    **Option 2: Verified Buyers Only**
 
     - Must have purchased through your online store
     - Lower review volume
     - Highest authenticity and trust
-    - Minimal spam
+    - Minimal spam risk
 
     **When to use:**
 
-    - Established stores with good review volume
+    - Established stores with consistent review volume
     - High-fraud-risk industries
     - Premium/luxury brands prioritizing trust
     - Products prone to competitor fake reviews
 
     **Settings:**
 
-    - Go to **Settings → Reviews → General**
-    - Under **Review Eligibility**, select:
-      - "Anyone can write a review" (default)
-      - "Verified Buyers only"
+    - Go to **Yuko Dashboard → Settings → Reviews → General**
+    - Under **Review Eligibility**, select either:
+      - **Anyone Can Write a Review** (default)
+      - **Verified Buyers Only **
 
     <Check>
       **Recommended:** Start with "Anyone" to build initial reviews, then switch to "Verified Buyers only" once you have 50+ reviews per key product.
     </Check>
     ![Reviewlim Pn](/images/reviewlim.png)
   </Accordion>
-  <Accordion title="Minimum Purchase Requirements" icon="dollar-sign">
-    **Require minimum order value for review eligibility**
+  <Accordion title="Personal Information Restriction" iconType="regular">
+    **Control what customer data is collected with reviews**
 
-    **How it works:**
+    **Option: Restrict Personal Info**
 
-    - Only customers who spent above threshold can review
-    - Prevents free sample/discount abuse reviews
-    - Ensures reviewers have genuine financial stake
+    - Prevent collection of email, phone number, or other sensitive data
+    - Protects customer privacy and ensures compliance with data regulations
+    - Useful for GDPR or privacy-focused stores
 
-    **Threshold options:**
+    **When to use:**
 
-    - No minimum (default)
-    - Greater than $0 (any paid purchase, excludes $0 test orders)
-    - Greater than \$10 (excludes very low-value items)
-    - Greater than \$25 (meaningful purchase threshold)
-    - Custom amount
+    - Stores prioritizing privacy compliance
+    - Brands handling sensitive customer segments
+    - Multi-region stores with varying privacy laws
 
-    **Use cases:**
+    **Settings:**
 
-    **Exclude free samples:**
-
-    - Set minimum at $1 or $5
-    - Prevents review manipulation via free products
-
-    **Exclude deeply discounted orders:**
-
-    - Set minimum at $15-$25
-    - Reduces impact of 90%+ off review incentive abuse
-
-    **B2B minimum orders:**
-
-    - Set minimum at $50-$100
-    - Ensures business buyers only
-
-    **Settings:** Yuko Dashboard → **Settings → Reviews → Eligibility → Minimum Order Value**
-
-    <Warning>
-      **Trade-off:** Higher minimums reduce review volume. Only use when spam/manipulation is a real problem.
-    </Warning>
+    - Go to **Yuko Dashboard → Settings → Reviews → General → Review Eligibility**
+    - Toggle **Restrict collection of personal information in reviews**
   </Accordion>
-  <Accordion title="Email Verification Requirement" icon="envelope-circle-check">
-    **Require customers to verify email before review publishes**
+  <Accordion title="Maximum Upload Image Size" icon="envelope-circle-check">
+    Control the size of images customers can attach to reviews
 
-    **How email verification works:**
+    **Option: Set Maximum Upload Size**
 
-    1. Customer submits review
-    2. Review status: "Pending Email Verification"
-    3. Customer receives verification email
-    4. Customer clicks verification link
-    5. Review status changes to "Pending Approval" or "Published"
+    - Limit image uploads to a specific size (up to 5 MB)
+    - Ensures faster page load times and avoids server overload
+    - Maintains review quality without large, unnecessary files
 
-    **Benefits:**
+    **When to use:**
 
-    - Eliminates 90%+ of bot-submitted spam
-    - Confirms real email addresses
-    - Provides contact method for follow-up
-    - Shows customer commitment (verified reviews = higher quality)
+    - Stores with many photo reviews
+    - Sites with hosting/storage limits
+    - To optimize site performance and user experience
 
-    **Drawbacks:**
+    **Settings:**
 
-    - Reduces review completion by 15-30%
-    - Adds friction to review process
-    - Some legitimate reviews lost (customers forget, ignore email)
-
-    **When to enable:**
-
-    - High spam environment (fashion, tech accessories)
-    - Anonymous review submissions (not verified buyers)
-    - After detecting review manipulation attempts
-
-    **When to disable:**
-
-    - Verified buyer-only reviews (already authenticated)
-    - Low spam rates
-    - Review volume is priority
-
-    **Settings:** Yuko Dashboard → **Settings → Reviews → Eligibility → Require Email Verification**
+    - Go to **Yuko Dashboard → Settings → Reviews → General → Review Eligibility**
+    - Set **Maximum Upload Size** (e.g., 5 MB)
 
     <Tip>
       **Pro tip:** Enable email verification only for unverified buyers, not verified buyers who already authenticated during purchase.
