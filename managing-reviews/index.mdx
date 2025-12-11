@@ -193,7 +193,7 @@ Every review has a status that determines whether it's visible to customers:
 Find specific reviews quickly with advanced filtering:
 
 <AccordionGroup>
-  <Accordion title="Search by Review Status" defaultOpen={false} icon="filter">
+  <Accordion title="Search by Review Status" defaultOpen="false" icon="filter">
     **View reviews by approval status**
 
     **All Reviews:**
@@ -330,6 +330,24 @@ Find specific reviews quickly with advanced filtering:
     - Recover if needed
     - Empty trash periodically
     - Daily workflow: Filter by "Pending" each morning, moderate new reviews, then check "Published" for quality
+  </Accordion>
+  <Accordion title="Filter by Spam">
+    - Flagged spam reviews
+    - Review false positives
+    - Delete permanently
+    - Check weekly
+  </Accordion>
+  <Accordion title="Filter by With Reply:">
+    - Reviews you have already responded to
+    - Check for customer follow-up
+    - Verify reply quality
+    - Engagement complete
+  </Accordion>
+  <Accordion title="Filter by No Reply">
+    - Reviews awaiting your response
+    - Requires attention, prioritize negative reviews
+    - Thank positive reviewers
+    - Respond within 24–48 hours
   </Accordion>
 </AccordionGroup>
 
