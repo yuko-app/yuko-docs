@@ -365,253 +365,53 @@ Find specific reviews quickly with advanced filtering:
 
 ---
 
-## Review Management Actions
-
-<CardGroup cols={2}>
-  <Card title="Approve Reviews" icon="check">
-    **Publish reviews to your store**
-
-    **How to approve:**
-
-    - Select pending review(s)
-    - Click "Approve" button
-    - Review goes live immediately
-    - Customers can see it
-
-    **Bulk approval:**
-
-    - Select multiple reviews
-    - Approve all at once
-    - Faster moderation
-    - Save time
-
-    **What to approve:**
-
-    - Genuine customer feedback
-    - Helpful, detailed reviews
-    - Constructive criticism
-    - Well-written content
-
-    **Before approving:**
-
-    - Read full review
-    - Check for spam/fake indicators
-    - Verify purchase if possible
-    - Consider reply (especially negative)
-  </Card>
-  <Card title="Reject/Delete Reviews" icon="ban">
-    **Remove unwanted reviews**
-
-    **How to reject:**
-
-    - Select review
-    - Choose "Trash" or "Spam"
-    - Review hidden from public
-    - Can recover from trash
-
-    **What to reject:**
-
-    - Spam or fake reviews
-    - Offensive/inappropriate language
-    - Competitor attacks
-    - Reviews for wrong product
-
-    **Reject vs Spam:**
-
-    - Spam: Fake/malicious (permanent)
-    - Trash: Legitimate but removed (recoverable)
-
-    **Legal note:**
-
-    - Don't delete negative reviews just for being negative
-    - Only remove if violates policies
-    - Transparency builds trust
-  </Card>
-  <Card title="Reply to Reviews" icon="reply">
-    **Engage with reviewers**
-
-    **Why reply:**
-
-    - Show you care about feedback
-    - Address concerns publicly
-    - Thank happy customers
-    - Build relationships
-    - Encourage more reviews
-
-    **Reply workflow:**
-
-    - Click "Reply" on review
-    - Write response
-    - Save and publish
-    - Reply appears below review
-
-    **Reply templates:**
-
-    - Positive reviews: Thank you message
-    - Negative reviews: Apology + solution
-    - Questions: Helpful answer
-
-    → [Reply guidelines](/managing-reviews/replying-to-reviews)
-  </Card>
-  <Card title="Edit Reviews" icon="pen-to-square">
-    **Modify review content (carefully)**
-
-    **What you can edit:**
-
-    - Fix typos (minor corrections)
-    - Remove offensive words
-    - Correct product assignment
-    - Update reviewer name (if requested)
-
-    **What NOT to edit:**
-
-    - Change review sentiment
-    - Remove valid criticism
-    - Alter meaning
-    - Fake positive reviews
-
-    **When to edit:**
-
-    - Customer requests correction
-    - Remove personal information
-    - Fix obvious typos
-    - Correct product mismatch
-
-    **Ethical editing:**
-
-    - Transparency always
-    - Don't manipulate meaning
-    - Keep edits minimal
-    - Note edits if significant
-  </Card>
-</CardGroup>
-
----
-
 ## Review Moderation Strategies
 
 <Tabs>
-  <Tab title="Manual Moderation">
+  <Tab title="Auto-Publish New Reviews">
     **Review and approve each review individually**
 
-    **Best for:**
+    Choose whether new reviews should appear on your store immediately or stay in moderation until you approve them.
 
-    - New stores (building initial reviews)
-    - Luxury brands (quality control)
-    - Sensitive products (need careful review)
-    - Stores with spam issues
+    **When enabled:**
 
-    **Process:**
+    - All new reviews are published automatically
+    - Updates storefront instantly with fresh reviews
+    - Good for stores with high review volume
 
-    1. All reviews start as "Pending"
-    2. You review each one daily
-    3. Approve quality reviews
-    4. Reject spam/inappropriate
-    5. Reply before publishing (optional)
+    **When disabled:**
 
-    **Pros:**
+    - New reviews stay Unpublished
+    - You approve each review manually
+    - Better for strict moderation
 
-    - Complete control
-    - Catch all spam
-    - Quality assurance
-    - Opportunity to reply first
-
-    **Cons:**
-
-    - Time-consuming
-    - Slower social proof building
-    - Daily commitment required
-
-    **Recommended for:** Stores under 50 reviews/month
-
-    → [Set up manual moderation](/managing-reviews/review-moderation)
+    > Auto-publish applies only to _future_ reviews; existing reviews remain unchanged.
   </Tab>
-  <Tab title="Auto-Publish with Filters">
-    **Automatically approve most reviews, manually review some**
+  <Tab title="Profanity Filter">
+    **Replace banned words with  asterisks \*:**
 
-    **Best for:**
+    - Masks offensive words
+    - Review stays published
+    - Keeps content family-friendly
 
-    - Growing stores (50-500 reviews/month)
-    - Established brands
-    - Verified purchase focus
-    - Balanced approach
+    **Hide review containing banned words:**
 
-    **Process:**
-
-    1. Auto-publish 4-5 star reviews
-    2. Auto-publish verified purchases
-    3. Pending: 1-3 star reviews (manual check)
-    4. Pending: Unverified reviews
-    5. Auto-spam detection
-
-    **Settings:**
-
-    - Auto-approve: 4-5 stars + verified purchase
-    - Manual review: 1-3 stars OR unverified
-    - Auto-spam: Obvious spam patterns
-
-    **Pros:**
-
-    - Faster social proof
-    - Less daily work
-    - Catch problems (low ratings)
-    - Respond to negative reviews before public
-
-    **Cons:**
-
-    - Some spam may get through
-    - Less control over every review
-    - Need good spam filters
-
-    **Recommended for:** Most stores
-
-    → [Configure auto-publish rules](/managing-reviews/auto-publishing-reviews)
+    - Marks review as Unpublished
+    - Hidden from storefront
+    - Suitable for brands with strict guidelines
   </Tab>
-  <Tab title="Full Auto-Publish">
-    **All reviews go live immediately**
+  <Tab title="Spam Filter">
+    **When enabled:**
 
-    **Best for:**
+    - Automatically flags suspicious reviews
+    - Prevents spam from appearing publicly
+    - You can review and restore if needed
 
-    - High-volume stores (500+ reviews/month)
-    - Trusted customer base
-    - Strong spam filters
-    - Hands-off approach
+    **Why use it:**
 
-    **Process:**
-
-    1. All reviews auto-published instantly
-    2. You review periodically (weekly)
-    3. Remove spam after the fact
-    4. Reply to reviews as time allows
-
-    **Settings:**
-
-    - Auto-publish: All reviews
-    - Spam detection: Auto-flag and hide
-    - Moderation: Reactive (not proactive)
-
-    **Pros:**
-
-    - Immediate social proof
-    - Minimal time investment
-    - Max review volume displayed
-    - No moderation bottleneck
-
-    **Cons:**
-
-    - Spam appears briefly
-    - Negative reviews live immediately
-    - Less quality control
-    - Reactive vs proactive
-
-    **Recommended for:** Large stores with good spam filters
-
-    **Risk mitigation:**
-
-    - Strong email verification
-    - Product blacklist for problematic items
-    - Email blacklist for spam domains
-    - Daily spam check
+    - Protects store credibility
+    - Reduces bot or fake reviews
+    - Keeps review section clean
   </Tab>
 </Tabs>
 
@@ -842,246 +642,6 @@ Find specific reviews quickly with advanced filtering:
     - Offer small thank you (discount code)
   </Accordion>
 </AccordionGroup>
-
----
-
-## Common Questions
-
-<AccordionGroup>
-  <Accordion title="How often should I check for new reviews?" icon="clock">
-    **Daily moderation recommended for best results**
-
-    **Minimum:**
-
-    - Check pending reviews daily (once per day)
-    - Respond to 1-2 star reviews within 24 hours
-    - Weekly spam folder review
-
-    **Recommended:**
-
-    - Check pending reviews twice daily (morning, evening)
-    - Respond to all reviews within 24 hours
-    - Daily spam folder review
-
-    **Optimal:**
-
-    - Real-time alerts for new reviews (email notifications)
-    - Respond within 1-4 hours
-    - Continuous moderation
-
-    **Set up workflow:**
-
-    - Morning: Check pending, approve quality reviews, reply to negative
-    - Evening: Second check, thank 5-star reviewers
-    - Weekly: Review spam folder for false positives
-
-    **Time investment:**
-
-    - Small stores (less than 20 reviews/month): 15 min/day
-    - Medium stores (20-100 reviews/month): 30-45 min/day
-    - Large stores (100+ reviews/month): 1-2 hours/day or hire VA
-
-    <Tip>
-      **Hire help:** Once you're getting 100+ reviews/month, consider hiring a virtual assistant for moderation. Save yourself 1-2 hours daily.
-    </Tip>
-  </Accordion>
-  <Accordion title="What if a review is unfair or inaccurate?" icon="scale-unbalanced">
-    **You can reply, but usually shouldn't delete**
-
-    **If review is factually wrong:**
-
-    **Example:** "Product is plastic, description says metal" **Your options:**
-
-    1. Reply correcting error: "Our product is actually stainless steel as described. We'd love to resolve this. Please email support@..."
-    2. If customer ordered wrong product variant, explain politely
-    3. If genuinely misunderstood, clarify
-
-    **Don't delete** - reply corrects misinformation publicly
-
-    **If review is subjectively negative:**
-
-    **Example:** "I don't like the color" **Your options:**
-
-    1. Reply: "Sorry it wasn't what you expected! We offer free returns within 30 days."
-    2. Leave it - legitimate opinion
-    3. Use feedback to improve product photos (color accuracy)
-
-    **Don't delete** - subjective opinions are valid
-
-    **If review is unfair/unreasonable:**
-
-    **Example:** "1 star - shipping took 3 days" (when 3-5 days promised) **Your options:**
-
-    1. Reply: "Thanks for your feedback! We delivered within our 3-5 day window. Sorry it felt too long. For faster shipping, we offer 2-day express option."
-    2. Kill them with kindness
-    3. Other customers see you're reasonable
-
-    **Don't delete** - your reasonable response makes reviewer look unreasonable
-
-    **When you CAN delete:**
-
-    - Review for completely wrong product
-    - Contains false claims (defamation)
-    - Offensive/profane language
-    - Violates review policies
-
-    **When in doubt:**
-
-    - Reply don't delete
-    - Professional response wins hearts
-    - Future customers see you handle criticism well
-  </Accordion>
-  <Accordion title="Should I reply to every review or just negative ones?" icon="reply-all">
-    **Reply strategy depends on review volume**
-
-    **Low volume (less than 20 reviews/month):**
-
-    - Reply to ALL reviews
-    - Thank 5-star reviewers
-    - Address all concerns
-    - Shows high engagement
-    - Encourages more reviews
-
-    **Medium volume (20-100 reviews/month):**
-
-    - Reply to all 1-3 star reviews (required)
-    - Reply to 5-star reviews with photos (thank them)
-    - Reply to 4-star reviews (address minor concern)
-    - Skip brief 5-star "Great!" reviews (too many)
-
-    **High volume (100+ reviews/month):**
-
-    - Reply to all 1-2 star reviews (urgent)
-    - Reply to detailed 5-star reviews
-    - Reply to reviews with questions
-    - Skip generic positive reviews (unsustainable)
-
-    **What to prioritize:**
-
-    1. **1-2 star reviews** (respond within 24 hours) - damage control
-    2. **Reviews with questions** (answer publicly) - helps other shoppers
-    3. **Detailed 5-star reviews** (thank customer) - recognition
-    4. **4-star reviews** (address concern) - could become 5-star
-    5. **3-star reviews** (understand issue) - improvement opportunity
-
-    **Template responses:**
-
-    - 5-star: "Thank you, [Name]! We're thrilled you're happy with [product]. Customers like you make our day! 💙"
-    - 1-2 star: "We're sorry about your experience, [Name]. This isn't our standard. Please email support@ and we'll make it right."
-    - Question: "Great question! [Answer]. Hope this helps!"
-
-    <Check>
-      **Quality over quantity:** One thoughtful response to a negative review is worth more than 10 generic "thanks!" to positive reviews.
-    </Check>
-  </Accordion>
-  <Accordion title="Can I edit customer reviews after they're submitted?" icon="pen">
-    **Yes, but use carefully and ethically**
-
-    **What you CAN edit:**
-
-    - Fix obvious typos ("amzing" → "amazing")
-    - Remove customer's personal information (phone, address)
-    - Remove offensive language (replace with "[removed]")
-    - Correct product assignment (review on wrong product)
-    - Fix formatting (add line breaks for readability)
-
-    **What you CANNOT edit:**
-
-    - Change review sentiment (negative → positive)
-    - Remove valid criticism
-    - Add fake positive content
-    - Alter star rating
-    - Change meaning of review
-
-    **Ethical guidelines:**
-
-    - Edit minimally
-    - Never change meaning
-    - Transparent edits (note if significant)
-    - Only edit for clear improvements
-    - Get customer permission if major changes
-
-    **When to edit:**
-
-    **Scenario 1: Customer asks** "Customer emails: "Can you remove my phone number from my review?" **Action:** Edit review, remove phone number, note: "Edited to remove personal info"
-
-    **Scenario 2: Profanity** Review: "This f\*\*\_ing product is sh_t" **Action:** Edit to "This [removed] product is [removed]" OR delete entirely (violates policy)
-
-    **Scenario 3: Wrong product** Review on Product A mentions Product B **Action:** Move review to Product B, note: "Review moved to correct product"
-
-    **Scenario 4: Typo affects meaning** Review: "Product is NOT amazing" Customer meant: "Product is NOW amazing" (typo) **Action:** Email customer asking permission to fix typo
-
-    **What to avoid:**
-
-    - Editing reviews to remove criticism
-    - Making negative reviews sound positive
-    - Changing star ratings
-    - Adding content customer didn't write
-
-    **Transparency wins:**
-
-    - If edit is significant, add note: "(Edited by store to [reason])"
-    - Builds trust vs hiding edits
-  </Accordion>
-  <Accordion title="What should I do with really old reviews?" icon="calendar-days">
-    **Keep, archive, or delete based on relevance**
-
-    **Keep old reviews if:**
-
-    - Product hasn't changed significantly
-    - Reviews still accurate and relevant
-    - Historical social proof valuable
-    - Review content high quality
-
-    **Archive/hide old reviews if:**
-
-    - Product significantly improved (old reviews don't reflect current quality)
-    - Reviews mention old pricing/policies
-    - Product redesigned (old version reviews confusing)
-    - Very old (5+ years) and product evolved
-
-    **How to handle:**
-
-    **Option 1: Keep with context**
-
-    - Keep old reviews visible
-    - Add store note: "This review is from 2019. We've since updated the product with [improvements]."
-    - Shows transparency and improvement
-
-    **Option 2: Archive separately**
-
-    - Move old reviews (3+ years) to "Archived Reviews" section
-    - Not displayed by default
-    - Available if customers want to see
-    - Maintains history without confusion
-
-    **Option 3: Delete if truly irrelevant**
-
-    - Product completely different now
-    - Old reviews misleading
-    - Reviews for discontinued version
-    - Delete but export first (historical record)
-
-    **Best practice:**
-
-    - For products 1-3 years old: Keep all reviews
-    - For products 3-5 years old: Archive reviews mentioning outdated info
-    - For products 5+ years old: Hide/delete if product significantly changed
-
-    **Add new reviews:**
-
-    - If product improved based on old negative feedback
-    - Request new reviews from recent customers
-    - Build fresh review base
-    - Old negative reviews become less prominent
-
-    <Note>
-      **Don't mass-delete:** Gradual archiving better than sudden deletion. Keeps SEO value while maintaining relevance.
-    </Note>
-  </Accordion>
-</AccordionGroup>
-
----
 
 ## Next Steps
 
