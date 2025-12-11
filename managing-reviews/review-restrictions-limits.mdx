@@ -129,11 +129,6 @@ Control who is allowed to submit reviews on your products.
     - Stores prioritizing privacy compliance
     - Brands handling sensitive customer segments
     - Multi-region stores with varying privacy laws
-
-    **Settings:**
-
-    - Go to **Yuko Dashboard → Settings → Reviews → General → Review Eligibility**
-    - Toggle **Restrict collection of personal information in reviews**
   </Accordion>
   <Accordion title="Maximum Upload Image Size" icon="envelope-circle-check">
     Control the size of images customers can attach to reviews
@@ -150,64 +145,44 @@ Control who is allowed to submit reviews on your products.
     - Sites with hosting/storage limits
     - To optimize site performance and user experience
 
-    **Settings:**
-
-    - Go to **Yuko Dashboard → Settings → Reviews → General → Review Eligibility**
-    - Set **Maximum Upload Size** (e.g., 5 MB)
-
     <Tip>
       **Pro tip:** Enable email verification only for unverified buyers, not verified buyers who already authenticated during purchase.
     </Tip>
   </Accordion>
-  <Accordion title="Time Delay After Purchase" icon="clock">
-    **Prevent reviews until X days after delivery**
+  <Accordion title="Manage Exclusions" icon="clock">
+    Control who should _not_ receive review requests or be included in review workflows.
 
-    **How it works:**
+    **Email Blacklist**
 
-    - Customer cannot submit review until delay period passes
-    - Based on delivery date (if tracked) or order date
-    - Prevents premature reviews before product use
+    Exclude specific customers from all review-related emails.
 
-    **Delay options:**
+    What it does:
 
-    - 0 days (immediate reviews allowed) - Default
-    - 3 days (quick products - food, consumables)
-    - 7 days (standard products - apparel, accessories)
-    - 14 days (products requiring break-in - shoes, furniture)
-    - 30 days (long-term products - appliances, tech)
-    - Custom days
+    - Blocks selected email addresses from receiving **review requests, reminders, or follow-ups**
+    - Ensures sensitive customers or internal testers don’t get review prompts
+    - Useful for test orders, wholesale clients, or customers who request not to receive review emails
 
-    **Use cases:**
+    How to add:
 
-    **Fashion/apparel:**
+    - Add emails manually
+    - OR upload a CSV file containing multiple emails
+    - Easily update or remove entries anytime
 
-    - 7-day delay
-    - Ensures customer wore/washed item
-    - Reduces "looks great in box" premature 5-stars
+    **Product Blacklist :**
 
-    **Electronics:**
+    Prevent certain products from generating or receiving review requests.
 
-    - 14-30 day delay
-    - Ensures proper setup and usage
-    - Reduces "just opened, looks good" reviews
+    What it does:
 
-    **Furniture/appliances:**
+    - Excludes products (by **Product ID**) from all review workflows
+    - Stops review requests for items not meant for public feedback (samples, free gifts, internal products)
+    - Helps maintain clean and relevant review data
 
-    - 30-60 day delay
-    - Ensures assembly and real-world use
-    - Captures durability feedback
+    Use cases:
 
-    **Consumables/food:**
-
-    - 0-3 day delay
-    - Products used quickly
-    - Immediate feedback valuable
-
-    **Settings:** Yuko Dashboard → **Settings → Reviews → Eligibility → Minimum Days Since Purchase**
-
-    <Info>
-      **Data shows:** 7-day delays increase average review rating accuracy by 15-20% for physical products, but reduce review volume by 10-15%.
-    </Info>
+    - Sample/PR products
+    - Free gifts / bonus items
+    - Internal testing or discontinued SKUs
   </Accordion>
 </AccordionGroup>
 
