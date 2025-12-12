@@ -88,7 +88,11 @@ Yuko Dashboard → **Settings → Integration → WooCommerce**
     - Authorize access
     - Once connected, the integration will show as **Active**\
       \
+      \
+      \
       **Fix:** Ensure correct store URL format (https://yourstore.com)
+
+      ![conn.png](/images/conn.png)
 
     <Tip>
       **Pro tip:** Test WooCommerce connection by importing 1-2 reviews first (you'll do this in Step 4). If connection works for test import, it will work for full import.
@@ -101,15 +105,28 @@ Yuko Dashboard → **Settings → Integration → WooCommerce**
   <Accordion title="Step 4: Click “Fetch Data”" icon="flask">
     - Click **Fetch Data** to pull customer, product, and review information from WooCommerce
     - Yuko will display how many items were found (e.g., customers, products)
+
+      \
+      \
+      Why this matters:
+
+
+    - Allows Yuko to fetch WooCommerce review records.
   </Accordion>
   <Accordion title="Step 5: Enable Review Import" icon="play">
-    - Under **Store Data**, find the checkbox **Include Reviews**
-    - Check this box to import all WooCommerce reviews during the sync
-    - If WooCommerce has 0 reviews, the interface will still show the toggle
+    - Go to **Settings → Integrations → WooCommerce**
+    - Scroll to **Data Synchronisation / Store Data**
+    - Under **Store Data**, find the checkbox **Include Reviews **
+    - Enable **Include Reviews** (check the box)
+
+      ![sy.png](/images/sy.png)
+    - Save settings
   </Accordion>
   <Accordion title="Step 6: Review Import Summary" icon="clipboard-check">
     - After enabling the checkbox, the sync will continue
     - Status indicators (Customers, Products, Reviews) will show **In progress**
+
+      ![com.png](/images/com.png)
     - They will automatically switch to **Completed** once the sync finishes
   </Accordion>
 </AccordionGroup>
