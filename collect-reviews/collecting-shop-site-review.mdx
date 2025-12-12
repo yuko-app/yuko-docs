@@ -10,6 +10,7 @@ import NeedHelp from '/snippets/need-help.mdx';
 Shop reviews (also called Site Reviews or Store Reviews) let customers rate their entire shopping experience — not just individual products. These testimonials showcase your customer service, shipping speed, checkout experience, and overall brand quality.
 
 **What you'll achieve:**
+
 - Collect testimonials about overall shopping experience
 - Showcase service quality and reliability
 - Build trust with first-time visitors
@@ -17,7 +18,7 @@ Shop reviews (also called Site Reviews or Store Reviews) let customers rate thei
 - Display store-wide social proof on homepage
 
 <Info>
-**Impact:** Stores with shop reviews see 15-25% higher trust scores and convert 12% more first-time visitors
+  **Impact:** Stores with shop reviews see 15-25% higher trust scores and convert 12% more first-time visitors
 </Info>
 
 ---
@@ -38,7 +39,6 @@ Understanding the difference helps you collect the right feedback at the right t
 
     **Goal:** Help shoppers decide on specific products
   </Card>
-
   <Card title="Shop Reviews" icon="store">
     **About overall store experience**
 
@@ -53,7 +53,7 @@ Understanding the difference helps you collect the right feedback at the right t
 </CardGroup>
 
 <Warning>
-**Important:** Don't ask for shop reviews in first purchase emails. Wait until customers have 2-3 orders or a great service interaction. Shop reviews work best from loyal customers who know your brand.
+  **Important:** Don't ask for shop reviews in first purchase emails. Wait until customers have 2-3 orders or a great service interaction. Shop reviews work best from loyal customers who know your brand.
 </Warning>
 
 ---
@@ -62,21 +62,24 @@ Understanding the difference helps you collect the right feedback at the right t
 
 Yuko Dashboard → **Reviews → Settings → Review Collection Form**
 
+![mmm.png](/images/mmm.png)
+
 <Steps>
   <Step title="Enable Shop Reviews" icon="toggle-on">
     Navigate to the Review Collection Form settings and enable **Shop Reviews** as a collection option.
 
     **What this does:**
+
     - Adds "Leave Store Review" option to your site
     - Creates dedicated shop review submission form
     - Allows customers to review overall experience
     - Separate from product review forms
   </Step>
-
   <Step title="Customize Shop Review Form" icon="sliders">
     Configure the form fields and questions for shop reviews.
 
     **Recommended fields:**
+
     - Overall star rating (required)
     - Review text: "Tell us about your experience" (optional)
     - Reviewer name (required)
@@ -84,20 +87,21 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     - Would you recommend us? (Yes/No toggle)
 
     **Optional fields:**
+
     - Shipping speed rating (1-5)
     - Customer service rating (1-5)
     - Website ease of use (1-5)
     - Upload photo (optional)
 
     <Tip>
-    **Keep it simple:** Shop review forms should be even shorter than product reviews. 3-4 fields maximum. Focus on overall rating and open-ended experience question.
+      **Keep it simple:** Shop review forms should be even shorter than product reviews. 3-4 fields maximum. Focus on overall rating and open-ended experience question.
     </Tip>
   </Step>
-
   <Step title="Add Shop Review Links to Your Site" icon="link">
     Place "Leave a Review" links in strategic locations.
 
     **Best placements:**
+
     - Footer: "Rate Your Experience"
     - Thank you page after checkout
     - Order confirmation emails (for repeat customers)
@@ -105,17 +109,18 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     - About Us page
 
     **Link format:**
+
     ```
     https://your-store.com/shop-reviews
     ```
 
     Yuko provides embeddable widgets and direct links.
   </Step>
-
   <Step title="Display Shop Reviews" icon="browser">
     Choose where to showcase your shop reviews.
 
     **Recommended locations:**
+
     - Homepage hero section (testimonial carousel)
     - About Us page (trust section)
     - Footer (trust badges)
@@ -124,11 +129,11 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
 
     → [Learn about display widgets](/display-reviews/introduction-to-widgets)
   </Step>
-
   <Step title="Encourage Shop Reviews from Loyal Customers" icon="heart">
     Strategically ask for shop reviews from your best customers.
 
     **When to ask:**
+
     - After 2-3 successful orders
     - After great customer service interaction
     - When customer contacts support with praise
@@ -136,7 +141,7 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     - When loyalty program member reaches milestone
 
     <Warning>
-    **Never auto-request shop reviews** to all customers like you do with product reviews. Shop reviews should be selectively requested from customers who have had enough experience with your brand.
+      **Never auto-request shop reviews** to all customers like you do with product reviews. Shop reviews should be selectively requested from customers who have had enough experience with your brand.
     </Warning>
   </Step>
 </Steps>
@@ -146,161 +151,214 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
 ## Shop Review Form Customization
 
 <AccordionGroup>
-  <Accordion title="Rating Style Options" defaultOpen icon="star">
-    **Choose how customers rate their experience:**
+  <Accordion title="Settings" defaultOpen={false} iconType="solid">
+    ### **Appearance Controls**
 
-    **Star Rating (1-5 stars)** - Most common
-    - Universal, familiar format
-    - Easy to understand across all cultures
-    - Matches product review format
-    - Best for: All store types
+    | Element                       | Description                                                                                        |
+    | :---------------------------- | :------------------------------------------------------------------------------------------------- |
+    | **Background Color**          | Sets the main background color of the review form dialog.                                          |
+    | **Rating Icon Color**         | Adjusts the color of the star icons (or alternative rating icons). Helps match your brand palette. |
+    | **Title Color**               | Controls the color of headings, such as the main form title.                                       |
+    | **Description Color**         | Defines the color used for descriptions, helper text, and subheadings.                             |
+    | **Button — Background Color** | Sets the fill color of all primary action buttons (e.g., “Submit Review”).                         |
+    | **Button — Text Color**       | Sets the text color inside buttons.                                                                |
+    | **Input — Border Color**      | Changes the border color of all input fields (name, email, text fields, etc.).                     |
+    | **Input — Label Color**       | Defines the color of labels appearing above each input field.                                      |
+    | **Error Color**               | Sets the color for error states (field validation warnings, required field alerts).                |
 
-    **Emoji Rating (5 emoji faces)** - More engaging
-    - Sad to happy face scale
-    - More visual, fun interaction
-    - Higher engagement on mobile
-    - Best for: Casual brands, younger audiences
+    ### **When to Use This**
 
-    **Thumbs Up/Down** - Simple binary
-    - Quick one-click feedback
-    - Great for "Would you recommend us?"
-    - Less detailed, but easier
-    - Best for: Quick testimonials
-
-    **Recommended:** Stick with star ratings for consistency with product reviews.
+    Use these settings to ensure your review form visually blends with your store theme — especially important for on-site review collection where consistency increases trust.
   </Accordion>
+  <Accordion title="Rating Section" iconType="regular">
+    Controls how customers rate your product and how the rating prompt appears.
 
-  <Accordion title="Review Form Questions" icon="clipboard-question">
-    **Customize what you ask in shop review forms:**
+    ### **General Settings**
 
-    **Essential questions:**
-    - Overall experience rating (1-5 stars) - **Required**
-    - "Tell us about your shopping experience" (text) - **Optional**
-    - Name - **Required**
-    - Email - **Required**
+    | Field                              | Description                                                                                                                                                        |
+    | :--------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | **Text**                           | The main prompt asking the customer to rate the product. Supports dynamic tags like `{product_name}`. <br />**Example:** _“How Would You Rate {product_name}?”_    |
+    | **Description**                    | Optional subtext providing context or encouragement. <br />**Example:** _“Your feedback helps us make every fit even better. Tap a star to rate your experience.”_ |
+    | **Lowest Rating Text (Optional)**  | Label displayed under the 1-star rating. <br />Ideal for guiding expectations (“Dislike it”).                                                                      |
+    | **Highest Rating Text (Optional)** | Label displayed under the 5-star rating. <br />Helps frame positive feedback (“Love it!”).                                                                         |
 
-    **Optional questions to consider:**
-    - "Would you shop with us again?" (Yes/No)
-    - "How would you rate our shipping speed?" (1-5)
-    - "How was our customer service?" (1-5)
-    - "What did you love most about shopping with us?" (text)
-    - "What could we improve?" (text)
+    ### **Best Practices**
 
-    **Questions to avoid:**
-    - Specific product questions (use product reviews instead)
-    - Too many rating scales (1-2 maximum)
-    - Sensitive personal information
-    - Questions requiring research/effort
+    - Keep the main question short and direct.
+    - Use positive and helpful tone in the description to encourage participation.
+    - Lowest/Highest rating labels help customers understand the meaning of each end of the scale.
 
     <Tip>
-    **Best practice:** Keep shop review forms to 3-4 fields total. The easier it is, the more testimonials you'll collect.
+      **Best practice:** Keep shop review forms to 3-4 fields total. The easier it is, the more testimonials you'll collect.
     </Tip>
   </Accordion>
+  <Accordion title="Photos Section" icon="message">
+    Allow customers to upload images that enhance the authenticity of their reviews.
 
-  <Accordion title="Thank You Message Customization" icon="message">
-    **What customers see after submitting a shop review:**
+    ### **General Settings**
 
-    **Default message:**
-    "Thank you for your review! Your feedback helps us improve."
+    | Field                 | Description                                                                                          |
+    | :-------------------- | :--------------------------------------------------------------------------------------------------- |
+    | **Title**             | Heading for the photo upload section. <br />**Example:** _“Show it Off”_                             |
+    | **Description**       | Optional helper text encouraging visual uploads. <br />**Example:** _“We’d love to see it again.”_   |
+    | **Button Text**       | Text displayed on the upload button. <br />**Default Example:** _“Add Photos”_                       |
+    | **Image Upload Text** | Instruction text inside the drag-and-drop zone. <br />**Example:** _“Drag and drop to upload image”_ |
 
-    **Better customized messages:**
+    ### **Why Enable Photo Uploads**
 
-    **Friendly approach:**
-    "Thank you for taking the time to share your experience! We read every review and use your feedback to serve you better. 💙"
-
-    **Incentive approach:**
-    "Thanks for your review! Check your email for a special thank you gift — 10% off your next order as our appreciation."
-
-    **Community approach:**
-    "Your review helps other shoppers discover us! Thank you for being part of our community. We appreciate you!"
-
-    **Personalized approach:**
-    "Thank you, [Name]! Your feedback means the world to our small team. We're honored to have you as a customer."
+    Photo reviews dramatically increase trust and conversion rates. Yuko allows customers to upload multiple images with mobile-friendly controls.
 
     <Check>
-    **Pro tip:** If offering a thank-you discount, send it via email (not on-screen). This ensures you capture their email for future marketing.
+      **Pro tip:** If offering a thank-you discount, send it via email (not on-screen). This ensures you capture their email for future marketing.
     </Check>
   </Accordion>
+  <Accordion title="Review Content" icon="circle-check">
+    Customize the fields where customers share the main body of their review. This is the section that captures the actual written feedback.
 
-  <Accordion title="Auto-Publish Settings" icon="circle-check">
-    **Control which shop reviews appear automatically:**
+    ### **General Settings**
 
-    **Option 1: Auto-publish all shop reviews**
-    - All submitted reviews go live immediately
-    - Fastest way to build social proof
-    - Risk: Negative reviews appear instantly
+    | Field                           | Description                                                                                                               |
+    | :------------------------------ | :------------------------------------------------------------------------------------------------------------------------ |
+    | **Title**                       | The heading shown above the review text input. <br />**Example:** _“Tell Us More!”_                                       |
+    | **Sub Title**                   | A short description that encourages customers to elaborate. <br />**Example:** _“Shape the experience. Share a thought.”_ |
+    | **Review Content Placeholder**  | Placeholder text shown inside the review text area. <br />**Example:** _“Share a few words”_                              |
+    | **Enable Collect Review Title** | Adds a separate field for a review title (e.g., “Perfect Fit!”). Disable this to collect only a body text.                |
+    | **Enable Anonymous Review**     | Allows customers to submit the review without displaying their name publicly.                                             |
 
-    **Option 2: Auto-publish 4-5 star reviews only**
-    - Positive reviews appear automatically
-    - Lower-rated reviews go to moderation queue
-    - Balanced approach - fast positive proof, manual review of critical feedback
+    ### **Best Practices**
 
-    **Option 3: Manual approval for all reviews**
-    - You approve every shop review before it goes live
-    - Most control, but slower
-    - Best for: New stores, sensitive industries
-
-    **Recommended:** Auto-publish 4-5 star shop reviews, manually review 1-3 star reviews
-
-    → [Learn more about review moderation](/managing-reviews/review-moderation)
+    - Keep the title inviting and friendly.
+    - Use a simple placeholder so customers don’t feel overwhelmed.
+    - Enable anonymous reviews if you want to encourage shy reviewers or sensitive categories.
   </Accordion>
+  <Accordion title="Reviewer Info" iconType="regular">
+    Controls the fields used to collect customer details for verification and display.
 
-  <Accordion title="Display Location Settings" icon="location-dot">
-    **Where shop reviews appear on your site:**
+    ### **General Settings**
 
-    **Dedicated shop review page:**
-    - Standalone page: yourstore.com/shop-reviews
-    - All store testimonials in one place
-    - Good for "See what customers say" links
-    - Can be added to main navigation
+    | Field                                 | Description                                                                                                                      |
+    | :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------- |
+    | **Title**                             | Heading for the reviewer information section. <br />**Example:** _“About You”_                                                   |
+    | **Description**                       | Subtext that explains why the info is needed. <br />**Example:** _“Tell us a little about yourself.”_                            |
+    | **First Name Label**                  | Label for the first-name input.                                                                                                  |
+    | **Last Name Label**                   | Label for the last-name input.                                                                                                   |
+    | **Email Label**                       | Label for the email field.                                                                                                       |
+    | **First Name Placeholder**            | Example placeholder inside first-name input. <br />**Example:** _“John”_                                                         |
+    | **Last Name Placeholder**             | Example placeholder. <br />**Example:** _“Doe”_                                                                                  |
+    | **Email Placeholder**                 | Example placeholder. <br />**Example:** _“Enter email address”_                                                                  |
+    | **Review Disclaimer Text (optional)** | Shows a note about terms, privacy, and public posting. <br />**Example:** _“By submitting, I acknowledge the Terms of Service…”_ |
 
-    **Homepage integration:**
-    - Testimonial carousel widget
-    - Trust badge section
-    - Social proof above fold
-    - Most visible placement
+    ### **Why This Matters**
 
-    **Footer integration:**
-    - Small review snippet in footer
-    - "Rated 4.8/5 by 500+ customers"
-    - Site-wide trust signal
-    - Doesn't take up main content space
-
-    **Multiple locations (recommended):**
-    - Homepage hero: Featured shop reviews carousel
-    - Footer: Average rating + total reviews
-    - Dedicated page: Full shop reviews archive
-    - Checkout page: Trust reassurance
+    Accurate reviewer information increases trust and enables “verified buyer” checks. The disclaimer ensures transparency.
 
     <Tip>
-    **Maximize impact:** Display shop reviews in 2-3 locations. Homepage gets attention, footer provides consistent trust signal, dedicated page gives detailed social proof.
+      **Maximize impact:** Display shop reviews in 2-3 locations. Homepage gets attention, footer provides consistent trust signal, dedicated page gives detailed social proof.
     </Tip>
   </Accordion>
+  <Accordion title="Thank You Screen" icon="badge-check">
+    Customize the success message shown after a review is submitted.
 
-  <Accordion title="Verified Shop Review Badges" icon="badge-check">
-    **Show which shop reviews are from verified purchasers:**
+    ### **General Settings**
 
-    **Verified shop reviews:**
-    - Customer has completed at least one order
-    - Order confirmed and delivered
-    - Email verified in your system
-    - Shows "Verified Customer" badge
+    | Field           | Description                                                                                        |
+    | :-------------- | :------------------------------------------------------------------------------------------------- |
+    | **Title**       | The confirmation heading. <br />**Example:** _“Thank You!”_                                        |
+    | **Description** | Subtext confirming submission. <br />**Example:** _“Your review has been submitted successfully.”_ |
+    | **Button Text** | Label for the optional follow-up action button. <br />**Example:** _“Review Another Item”_         |
 
-    **Unverified shop reviews:**
-    - No purchase record found
-    - Submitted via public form
-    - Could be from anyone (tester, friend, prospect)
-    - No badge displayed
+    ### **Tip**
 
-    **Settings:**
-    - ✅ Show verified badge on verified reviews
-    - ✅ Allow unverified shop reviews (for early testimonials)
-    - ✅ Sort verified reviews higher in display
-    - ❌ Hide unverified reviews (too restrictive for shop reviews)
+    Use this screen to reinforce appreciation and prompt additional reviews.
+  </Accordion>
+  <Accordion title="Next Products">
+    Encourage shoppers to continue reviewing other products in their order.
 
-    **Reality check:** Shop reviews are often unverified because customers use different emails or purchased as guests. That's okay — the testimonial is still valuable, just mark it appropriately.
+    ### **General Settings**
 
-    → [Learn about verified badges](/managing-reviews/verified-badges-for-reviews)
+    | Field                  | Description                                                                                                            |
+    | :--------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+    | **Title**              | Header inviting customers to review another product.                                                                   |
+    | **Description**        | A friendly nudge encouraging additional reviews. <br />**Example:** _“That’s helpful! Want to review something else?”_ |
+    | **Review Button Text** | Label for the action button. <br />**Example:** _“Write a review”_                                                     |
+  </Accordion>
+  <Accordion title="Store Reviews (Shop Reviews)">
+    Enable and customize your **store-wide review form**, separate from product reviews.
+
+    ### **Store Review Settings**
+
+    | Field                                     | Description                                                                                                                                                        |
+    | :---------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | **Enable Store Reviews**                  | Activates the store review functionality.                                                                                                                          |
+    | **Store Rating Slide**                    | Allows customers to rate their overall shopping experience.                                                                                                        |
+    | **Product Review Completion Title**       | Heading shown after a product review, prompting the customer to also leave a store review. <br />**Example:** _“Thank you for your review! It means a lot to us!”_ |
+    | **Product Review Completion Description** | Follow-up text guiding them toward the store review form. <br />**Example:** _“We appreciate your feedback…”_                                                      |
+
+    ---
+
+    ### **Store Review Form Content**
+
+    | Field        | Description                                                                                                      |
+    | :----------- | :--------------------------------------------------------------------------------------------------------------- |
+    | **Title**    | Main store review form title. <br />**Example:** _“Write a review for our store!”_                               |
+    | **Subtitle** | Supporting message explaining the purpose. <br />**Example:** _“Share your shopping experience with our store!”_ |
+
+    ---
+
+    ### **Photo Slide**
+
+    | Field                  | Description                                               |
+    | :--------------------- | :-------------------------------------------------------- |
+    | **Enable Photo Slide** | Allows customers to upload images with their shop review. |
+
+    ---
+
+    ### **Review Content Slide**
+
+    | Field                           | Description                                                                                            |
+    | :------------------------------ | :----------------------------------------------------------------------------------------------------- |
+    | **Title**                       | Heading for written store feedback. <br />**Example:** _“Tell us about your experience”_               |
+    | **Sub Title**                   | Context or encouragement. <br />**Example:** _“Share your overall shopping experience with our store”_ |
+    | **Review Content Placeholder**  | Placeholder text. <br />**Example:** _“We’d love to hear what you think!”_                             |
+    | **Enable Collect Review Title** | Adds a review title field for store reviews.                                                           |
+    | **Enable Anonymous Review**     | Allows anonymous submission.                                                                           |
+
+    ### **Tip**
+
+    Keep the store review form short—1 rating and 1 text field is enough.
+  </Accordion>
+  <Accordion title="Footer">
+    Customize the navigation controls shown at the bottom of the review form.
+
+    ### **Footer Text Options**
+
+    | Field                    | Description                                                    |
+    | :----------------------- | :------------------------------------------------------------- |
+    | **Skip Button Text**     | Label for the skip button. <br />**Example:** _“SKIP”_         |
+    | **Back Button Text**     | Label for the back button. <br />**Example:** _“Back”_         |
+    | **Continue Button Text** | Label for the continue button. <br />**Example:** _“Continue”_ |
+    | **Submit Button Text**   | Label for the final submit button. <br />**Example:** _“Done”_ |
+
+    ### **Tip**
+
+    Clear, short button labels improve mobile usability.
+  </Accordion>
+  <Accordion title="Advanced CSS">
+    For full design control, you can inject custom CSS to override any default style.
+
+    ### **General Settings**
+
+    | Field                 | Description                                         |
+    | :-------------------- | :-------------------------------------------------- |
+    | **Enable Custom CSS** | Turns on custom CSS overrides.                      |
+    | **CSS Editor**        | A text editor where you can add your own CSS rules. |
+
+    Example usage:
+
+    - Adjust spacing for mobile
+    - Override fonts
+    - Hide or reorder form elements
+    - Create branded button styles
   </Accordion>
 </AccordionGroup>
 
@@ -317,13 +375,10 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     - Shows star rating + customer quote
     - First thing visitors see
 
-    **Example:**
-    "Fast shipping and amazing quality! I've ordered 5 times and never disappointed."
-    ⭐⭐⭐⭐⭐ — Sarah M., Verified Customer
+    **Example:** "Fast shipping and amazing quality! I've ordered 5 times and never disappointed." ⭐⭐⭐⭐⭐ — Sarah M., Verified Customer
 
     **Impact:** 20-30% trust increase for first-time visitors
   </Card>
-
   <Card title="Dedicated Reviews Page" icon="file-lines">
     **Full testimonials archive**
 
@@ -333,6 +388,7 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     - Good for "Read Customer Stories" links
 
     **Example link locations:**
+
     - Main navigation
     - Footer
     - About Us page
@@ -340,7 +396,6 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
 
     **Impact:** Increases time on site by 40-60 seconds
   </Card>
-
   <Card title="Footer Trust Section" icon="arrow-down">
     **Site-wide reassurance**
 
@@ -349,13 +404,10 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     - Links to full reviews page
     - Appears on every page
 
-    **Example:**
-    ⭐⭐⭐⭐⭐ 4.8/5 (1,234 reviews)
-    [Read what customers say →]
+    **Example:** ⭐⭐⭐⭐⭐ 4.8/5 (1,234 reviews) [Read what customers say →]
 
     **Impact:** Subtle but consistent trust signal
   </Card>
-
   <Card title="Checkout Page" icon="credit-card">
     **Last-minute reassurance**
 
@@ -364,9 +416,7 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     - Focus on shipping, service, quality
     - Reduces cart abandonment
 
-    **Example:**
-    "Received my order in 3 days! Exactly as described."
-    ⭐⭐⭐⭐⭐ — Mike T.
+    **Example:** "Received my order in 3 days! Exactly as described." ⭐⭐⭐⭐⭐ — Mike T.
 
     **Impact:** 5-10% reduction in cart abandonment
   </Card>
@@ -383,6 +433,7 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     **Focus:** Get your first 20-30 shop reviews from best customers
 
     **Strategy:**
+
     1. ❌ Don't auto-request shop reviews from all customers yet
     2. ✅ Manually email 20-30 happy customers asking for testimonials
     3. ✅ Add "Leave a Review" link in footer
@@ -390,28 +441,29 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     5. ✅ Offer small thank-you (5-10% off) for shop reviews
 
     **Expected results in 30 days:**
+
     - 15-25 shop reviews
     - 3-5% response rate when personally asked
     - Higher quality, detailed testimonials
 
     **Why this works:**
+
     - Personal requests get better responses
     - You control who you ask (select happy customers)
     - Early shop reviews set quality standard
     - Small incentive shows appreciation
 
     <Tip>
-    **Template email:**
-    "Hi [Name], we noticed you've ordered from us 3 times now! Would you mind sharing your experience with other shoppers? It only takes 60 seconds: [link]. As a thank you, here's 10% off your next order."
+      **Template email:** "Hi [Name], we noticed you've ordered from us 3 times now! Would you mind sharing your experience with other shoppers? It only takes 60 seconds: [link]. As a thank you, here's 10% off your next order."
     </Tip>
   </Tab>
-
   <Tab title="Growing (50-200 Reviews)">
     **Best for:** Established stores, want more shop reviews
 
     **Focus:** Systematic collection from loyal customers
 
     **Strategy:**
+
     1. ✅ Auto-request shop reviews from customers with 2+ orders
     2. ✅ Add shop review form to "My Account" dashboard
     3. ✅ Show "Leave a Review" prompt on order confirmation page
@@ -419,27 +471,29 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     5. ✅ Display shop reviews prominently on homepage
 
     **Expected results in 30 days:**
+
     - 30-60 new shop reviews
     - 2-4% conversion rate from requests
     - Mix of product + service feedback
 
     **Why this works:**
+
     - Targeting repeat customers (they know your brand)
     - Multiple touchpoints increase participation
     - Homepage display encourages others to review
     - Automated system scales with order volume
 
     <Warning>
-    **Don't spam:** Only send shop review requests to customers who haven't recently received product review requests. Space them out (minimum 14 days apart).
+      **Don't spam:** Only send shop review requests to customers who haven't recently received product review requests. Space them out (minimum 14 days apart).
     </Warning>
   </Tab>
-
   <Tab title="Maximizing (200+ Reviews)">
     **Best for:** Large stores, systematic testimonial collection
 
     **Focus:** Optimize collection and showcase best reviews
 
     **Strategy:**
+
     1. ✅ Segment shop review requests by customer tier (VIP, repeat, new)
     2. ✅ A/B test timing (30 days vs 60 days after first order)
     3. ✅ Feature best shop reviews in marketing (emails, ads, social)
@@ -448,11 +502,13 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     6. ✅ Add shop review highlights to product pages
 
     **Expected results in 30 days:**
+
     - 80-150+ new shop reviews
     - 4-6% conversion rate (optimized)
     - Rich testimonials used across marketing
 
     **Why this works:**
+
     - Segmentation personalizes requests (higher response)
     - Testing finds optimal timing
     - Featured reviews encourage more submissions
@@ -460,7 +516,7 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     - Multi-purpose use maximizes ROI
 
     <Check>
-    **Pro move:** Turn your best shop reviews into case studies. Reach out to customers who left detailed positive reviews and ask if they'd be willing to do a short interview or video testimonial. Offer $50-100 gift card as compensation.
+      **Pro move:** Turn your best shop reviews into case studies. Reach out to customers who left detailed positive reviews and ask if they'd be willing to do a short interview or video testimonial. Offer \$50-100 gift card as compensation.
     </Check>
   </Tab>
 </Tabs>
@@ -474,37 +530,40 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     **Different timing for different feedback types**
 
     **Product reviews - Ask soon after delivery:**
+
     - 7-10 days after product delivered
     - Customer has used the product enough to review
     - Focus on product quality, fit, features
     - Send to all customers (automated)
 
     **Shop reviews - Ask after customer knows your brand:**
+
     - After 2-3 successful orders (repeat customer)
     - 30-60 days after first purchase (enough experience)
     - After great customer service interaction
     - When customer becomes loyalty member
     - Selectively to happy customers (not automated for everyone)
 
-    **Can I ask for both?**
-    Yes, but space them out:
+    **Can I ask for both?** Yes, but space them out:
+
     - Order 1: Send product review request (7 days after delivery)
     - Order 2: Send product review request (7 days after delivery)
     - Order 3: Send shop review request (focus on overall experience)
 
     Or:
+
     - Send product review request 7 days after delivery
     - Send shop review request 30 days after first order
 
     <Warning>
-    **Don't overwhelm:** Never send product review request and shop review request in the same week. Space them at least 14 days apart to avoid review fatigue.
+      **Don't overwhelm:** Never send product review request and shop review request in the same week. Space them at least 14 days apart to avoid review fatigue.
     </Warning>
   </Accordion>
-
   <Accordion title="Should shop reviews be separate from product reviews?" icon="split">
     **It depends on your display strategy**
 
     **Option 1: Keep them completely separate** (recommended)
+
     - Shop reviews appear only in testimonial sections
     - Product reviews appear only on product pages
     - Clear distinction for customers
@@ -512,6 +571,7 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     - Less confusing
 
     **Where shop reviews go:**
+
     - Homepage testimonial carousel
     - About Us page
     - Dedicated shop reviews page
@@ -519,11 +579,13 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     - Checkout reassurance
 
     **Where product reviews go:**
+
     - Individual product pages
     - Product listing grids
     - Review widgets throughout site
 
     **Option 2: Combine them in some locations**
+
     - Show both on homepage (mixed testimonials)
     - Filter option: "Shop Reviews" vs "Product Reviews"
     - All reviews on dedicated reviews page
@@ -531,77 +593,80 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
 
     **Recommended approach:** Keep them separate for clarity. Shop reviews are testimonials about your brand, product reviews are buying guides for specific items. Different purposes, different placements.
   </Accordion>
-
   <Accordion title="How do I get customers to leave detailed shop reviews?" icon="pen">
     **Most shop reviews are too brief - here's how to get detailed testimonials:**
 
-    **1. Ask specific questions in the form:**
-    Instead of: "How was your experience?"
-    Ask: "What did you love most about shopping with us?"
+    **1. Ask specific questions in the form:** Instead of: "How was your experience?" Ask: "What did you love most about shopping with us?"
 
     Other good questions:
+
     - "How did our product/service help you?"
     - "What made you choose us over other stores?"
     - "How was your shipping and customer service experience?"
     - "What would you tell a friend about us?"
 
-    **2. Show examples of good reviews:**
-    Display 2-3 detailed review examples above the form:
+    **2. Show examples of good reviews:** Display 2-3 detailed review examples above the form:
+
     - "Check out what Sarah shared about her experience"
     - Shows customers what "good" looks like
     - Increases average review length by 40%
 
-    **3. Offer incentive for detailed reviews:**
-    "Leave a detailed review (50+ words) and get 15% off your next order"
+    **3. Offer incentive for detailed reviews:** "Leave a detailed review (50+ words) and get 15% off your next order"
+
     - Longer reviews only (system can count words)
     - Better quality feedback
     - 2-3x more detailed testimonials
 
-    **4. Follow up with top customers personally:**
-    Email: "Hi [Name], we'd love to feature your story. Would you be willing to share more about your experience with us? We can send you a few questions, and as a thank you, here's a $25 gift card."
+    **4. Follow up with top customers personally:** Email: "Hi [Name], we'd love to feature your story. Would you be willing to share more about your experience with us? We can send you a few questions, and as a thank you, here's a \$25 gift card."
+
     - Personal outreach gets best testimonials
     - Can turn into case study or video
     - Shows you value their feedback
 
     <Tip>
-    **Pro tip:** The best shop reviews come from conversations, not forms. When a customer emails you with praise, reply: "Thank you! Would you mind sharing this on our reviews page? [link]. Your words would really help other shoppers discover us."
+      **Pro tip:** The best shop reviews come from conversations, not forms. When a customer emails you with praise, reply: "Thank you! Would you mind sharing this on our reviews page? [link]. Your words would really help other shoppers discover us."
     </Tip>
   </Accordion>
-
   <Accordion title="Can I import shop reviews from other platforms?" icon="file-import">
     **Yes, you can migrate existing testimonials to Yuko**
 
     **Common sources to import from:**
 
     **Google Reviews:**
+
     - Export your Google Business reviews
     - Import to Yuko as shop reviews
     - Maintain star rating and text
     - Link to Google for verification
 
     **Trustpilot / Feefo / Reviews.io:**
+
     - Export CSV of store reviews
     - Import to Yuko shop reviews
     - Note: May lose verified status
     - Keep original platform link
 
     **Facebook Reviews:**
+
     - Manually copy or use export tool
     - Import as shop reviews
     - Reference Facebook in review source
 
     **Yelp Reviews:**
+
     - Export or manually migrate
     - Use for shop testimonials
     - Link back to Yelp profile
 
     **Email testimonials:**
+
     - Customer sent you praise via email
     - Manually add as shop review
     - Mark as "Verified Customer" if they have order
     - Get permission first
 
     **Important notes:**
+
     - ✅ Always get permission to republish reviews
     - ✅ Maintain original star rating and date
     - ✅ Credit the original platform if required
@@ -611,11 +676,11 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
 
     → [Learn about importing reviews](/import-reviews/index)
   </Accordion>
-
   <Accordion title="Should I respond to shop reviews?" icon="reply">
     **Yes - responding shows you care and builds trust**
 
     **Why respond to shop reviews:**
+
     - Shows you read and value feedback
     - Humanizes your brand
     - Addresses concerns publicly (transparency)
@@ -625,55 +690,56 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     **When to respond:**
 
     **Always respond to:**
+
     - ⭐⭐⭐⭐⭐ 5-star reviews: Thank them personally
     - ⭐ 1-2 star reviews: Address concerns, offer solution
     - Reviews with specific feedback: Acknowledge and explain
     - First-time reviewers: Welcome them to community
 
     **Optional to respond:**
+
     - ⭐⭐⭐⭐ 4-star reviews: If they mention something specific
     - ⭐⭐⭐ 3-star reviews: Depends on content
 
     **Response templates:**
 
-    **For 5-star reviews:**
-    "Thank you so much, [Name]! We're thrilled to hear you had a great experience. Customers like you make what we do so rewarding. We can't wait to serve you again! 💙"
+    **For 5-star reviews:** "Thank you so much, [Name]! We're thrilled to hear you had a great experience. Customers like you make what we do so rewarding. We can't wait to serve you again! 💙"
 
-    **For negative reviews:**
-    "Hi [Name], we're sorry to hear about your experience. This isn't the standard we hold ourselves to. I'd love to make this right. Could you email me directly at [email] so we can resolve this? - [Your Name], [Title]"
+    **For negative reviews:** "Hi [Name], we're sorry to hear about your experience. This isn't the standard we hold ourselves to. I'd love to make this right. Could you email me directly at [email] so we can resolve this? - [Your Name], [Title]"
 
-    **For detailed feedback:**
-    "Thank you for taking the time to share such detailed feedback, [Name]! We really appreciate hearing about [specific point they mentioned]. We're always working to improve, and your insights help us do that."
+    **For detailed feedback:** "Thank you for taking the time to share such detailed feedback, [Name]! We really appreciate hearing about [specific point they mentioned]. We're always working to improve, and your insights help us do that."
 
     <Check>
-    **Best practice:** Respond to shop reviews within 24-48 hours. Fast responses show you're engaged and care about customer feedback.
+      **Best practice:** Respond to shop reviews within 24-48 hours. Fast responses show you're engaged and care about customer feedback.
     </Check>
-
     → [Learn more about replying to reviews](/managing-reviews/replying-to-reviews)
   </Accordion>
-
   <Accordion title="How many shop reviews do I need to build trust?" icon="chart-line">
     **Minimum thresholds for credibility:**
 
     **10-20 shop reviews: Basic trust**
+
     - Better than nothing
     - Shows some customer validation
     - Not enough to be convincing
     - Keep collecting
 
     **50-100 shop reviews: Good trust level**
+
     - Enough for credibility
     - Shoppers feel reassured
     - Can showcase on homepage
     - Baseline for most stores
 
     **200-500 shop reviews: Strong trust**
+
     - Significant social proof
     - Comparable to competitors
     - Can feature in marketing
     - Strong conversion impact
 
     **500+ shop reviews: Excellent trust**
+
     - Major credibility signal
     - Industry leader status
     - Can be competitive advantage
@@ -682,10 +748,12 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     **Quality matters more than quantity:**
 
     **Better to have:**
+
     - 30 detailed, 5-star shop reviews with photos
     - Than 200 brief "Great!" reviews
 
     **What makes shop reviews more credible:**
+
     - ✅ Detailed testimonials (50+ words)
     - ✅ Recent reviews (within last 6 months)
     - ✅ Mix of ratings (not all 5-stars)
@@ -695,7 +763,7 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
     - ✅ Specific details mentioned
 
     <Info>
-    **Reality check:** Don't wait until you have 100+ shop reviews to start displaying them. Show shop reviews as soon as you have 5-10. Seeing even a few testimonials is better than seeing none.
+      **Reality check:** Don't wait until you have 100+ shop reviews to start displaying them. Show shop reviews as soon as you have 5-10. Seeing even a few testimonials is better than seeing none.
     </Info>
   </Accordion>
 </AccordionGroup>
@@ -704,33 +772,26 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
 
 ## Next Steps
 
-<Steps titleSize="h3">
+<Steps>
   <Step title="Enable Shop Review Collection" icon="toggle-on">
     Set up your shop review form and add "Leave a Review" links to your site.
 
-    **Time:** 10 minutes
-    **Current page:** You are here
+    **Time:** 10 minutes **Current page:** You are here
   </Step>
-
   <Step title="Request Shop Reviews from Loyal Customers" icon="envelope">
     Email 20-30 repeat customers asking for testimonials about their experience.
 
-    **Time:** 30 minutes
-    → [Use review request emails](/request-reviews/review-request-emails)
+    **Time:** 30 minutes → [Use review request emails](/request-reviews/review-request-emails)
   </Step>
-
   <Step title="Display Shop Reviews on Homepage" icon="browser">
     Add a testimonial carousel widget to your homepage hero section.
 
-    **Time:** 15 minutes
-    → [Carousel testimonial widget setup](/display-reviews/carousel-testimonial-widget)
+    **Time:** 15 minutes → [Carousel testimonial widget setup](/display-reviews/carousel-testimonial-widget)
   </Step>
-
   <Step title="Set Up Auto-Publishing for Positive Reviews" icon="circle-check">
     Configure automatic publishing for 4-5 star shop reviews.
 
-    **Time:** 5 minutes
-    → [Auto-publishing settings](/managing-reviews/auto-publishing-reviews)
+    **Time:** 5 minutes → [Auto-publishing settings](/managing-reviews/auto-publishing-reviews)
   </Step>
 </Steps>
 
@@ -741,5 +802,5 @@ Yuko Dashboard → **Reviews → Settings → Review Collection Form**
 <NeedHelp />
 
 <Note>
-**Pro tip:** Don't try to collect shop reviews from everyone. Focus on customers who have ordered 2-3 times or had exceptional service interactions. These customers know your brand well enough to give meaningful testimonials.
+  **Pro tip:** Don't try to collect shop reviews from everyone. Focus on customers who have ordered 2-3 times or had exceptional service interactions. These customers know your brand well enough to give meaningful testimonials.
 </Note>
