@@ -10,6 +10,7 @@ import NeedHelp from '/snippets/need-help.mdx';
 Already have product reviews in WooCommerce? Import them to Yuko instantly with our automatic one-click import. All your reviews, ratings, and verified purchase badges transfer seamlessly — no CSV files or manual work required.
 
 **What you'll achieve:**
+
 - Import all WooCommerce reviews automatically
 - Preserve star ratings and review dates
 - Maintain verified purchase status
@@ -17,7 +18,7 @@ Already have product reviews in WooCommerce? Import them to Yuko instantly with 
 - Switch to Yuko without losing social proof
 
 <Info>
-**Impact:** WooCommerce import takes 2-30 minutes depending on review count. All reviews automatically mapped to correct products.
+  **Impact:** WooCommerce import takes 2-30 minutes depending on review count. All reviews automatically mapped to correct products.
 </Info>
 
 ---
@@ -36,7 +37,6 @@ Already have product reviews in WooCommerce? Import them to Yuko instantly with 
 
     **Result:** Import completes in minutes without any manual effort
   </Card>
-
   <Card title="Complete Data Transfer" icon="database">
     **Everything transfers**
 
@@ -49,7 +49,6 @@ Already have product reviews in WooCommerce? Import them to Yuko instantly with 
 
     **Result:** Perfect 1:1 migration from WooCommerce to Yuko
   </Card>
-
   <Card title="Verified Purchase Status" icon="badge-check">
     **Maintain trust badges**
 
@@ -60,7 +59,6 @@ Already have product reviews in WooCommerce? Import them to Yuko instantly with 
 
     **Result:** No loss of review authenticity during migration
   </Card>
-
   <Card title="Safe Migration" icon="shield-check">
     **Your data stays safe**
 
@@ -75,363 +73,44 @@ Already have product reviews in WooCommerce? Import them to Yuko instantly with 
 
 ---
 
-## How WooCommerce Import Works
-
-Yuko connects directly to your WooCommerce database to pull all product reviews:
-
-<Steps>
-  <Step title="Yuko Connects to WooCommerce" icon="plug">
-    Via the WooCommerce integration, Yuko accesses your review data.
-
-    **What Yuko reads:**
-    - `wp_comments` table (where WooCommerce stores reviews)
-    - Comment meta data (rating, verified status)
-    - User data (reviewer name, email)
-    - Post relationships (which product each review belongs to)
-
-    **Your data security:**
-    - Read-only access (cannot modify WooCommerce data)
-    - Secure API connection
-    - No data shared with third parties
-  </Step>
-
-  <Step title="Reviews Are Fetched" icon="download">
-    Yuko retrieves all WooCommerce product reviews.
-
-    **What gets fetched:**
-    - All approved reviews
-    - Pending reviews (awaiting moderation)
-    - Spam reviews (marked as spam)
-    - Review metadata (ratings, dates, verified status)
-
-    **Filtering options:**
-    - Import all reviews (default)
-    - Import only approved reviews
-    - Skip reviews older than X months
-    - Import specific products only
-  </Step>
-
-  <Step title="Automatic Product Matching" icon="link">
-    Yuko automatically matches reviews to the correct products.
-
-    **Matching process:**
-    - Review linked to WooCommerce post ID
-    - Yuko finds matching product in your store
-    - Review assigned to correct Yuko product
-    - 99% automatic match rate
-
-    **If product not found:**
-    - Review marked as "unassigned"
-    - Can manually assign in Yuko dashboard
-    - Or re-import after adding missing products
-  </Step>
-
-  <Step title="Data Transformation" icon="arrows-rotate">
-    WooCommerce review data converts to Yuko format.
-
-    **Transformations:**
-    - WooCommerce "Verified Owner" → Yuko "Verified Purchase"
-    - WooCommerce approval status → Yuko published/pending
-    - Comment meta → Yuko review fields
-    - Original dates preserved
-
-    **No data loss:**
-    - All review text copied exactly
-    - Formatting maintained
-    - No truncation or editing
-  </Step>
-
-  <Step title="Reviews Imported to Yuko" icon="check">
-    Reviews appear in your Yuko dashboard.
-
-    **Where to find imported reviews:**
-    - Yuko Dashboard → Reviews → Manage Reviews
-    - Filter by "Imported from WooCommerce"
-    - See import summary statistics
-    - Individual product pages updated
-
-    **Automatic tagging:**
-    - All imported reviews tagged with source
-    - Easy to identify which reviews came from WooCommerce
-    - Can filter/sort by import source
-  </Step>
-
-  <Step title="Verify and Display" icon="eye">
-    Check imported reviews and enable display.
-
-    **Verification checklist:**
-    - Total review count matches WooCommerce
-    - Random sampling shows accurate data
-    - Verified badges appear correctly
-    - Reviews on correct product pages
-    - Dates preserved accurately
-
-    **Enable display:**
-    - Reviews auto-display once widgets installed
-    - Check product pages
-    - Verify review widgets showing data
-    - Test mobile and desktop views
-  </Step>
-</Steps>
-
----
-
 ## Step-by-Step Import Instructions
 
-Yuko Dashboard → **Reviews → Import → WooCommerce**
+Yuko Dashboard → **Settings → Integration → WooCommerce**
 
 <AccordionGroup>
-  <Accordion title="Step 1: Connect WooCommerce to Yuko" defaultOpen icon="plug">
-    **Ensure WooCommerce integration is active**
-
-    **First-time setup:**
-    1. Go to Yuko Dashboard → Integrations → WooCommerce
-    2. Click "Connect WooCommerce Store"
-    3. Enter your store URL
-    4. Authorize connection (API key generation)
-    5. Verify connection successful
-
-    **Already connected:**
-    - Skip to Step 2
-    - WooCommerce integration already active
-    - Check status: Dashboard → Integrations
-
-    **Connection requirements:**
-    - WooCommerce 3.0 or higher
-    - WordPress REST API enabled
-    - Yuko API key with read permissions
-    - SSL certificate (HTTPS recommended)
-
-    **Troubleshooting connection:**
-    - **Error:** "Cannot connect to WooCommerce"
-      - **Fix:** Check REST API enabled in WooCommerce settings
-    - **Error:** "Permission denied"
-      - **Fix:** Verify API key has read access to products and reviews
-    - **Error:** "Store not found"
-      - **Fix:** Ensure correct store URL format (https://yourstore.com)
+  <Accordion title="Step 1 : Open WooCommerce Integration" defaultOpen={false} icon="plug">
+    - Go to **Settings → Integrations → WooCommerce**
+    - This page manages your store connection and sync settings
+  </Accordion>
+  <Accordion title="Step 2: Connect Your WooCommerce Store" icon="location-arrow">
+    - If your store is **not connected**, click **Connect WooCommerce Store**
+    - Enter your store URL
+    - Authorize access
+    - Once connected, the integration will show as **Active**\
+      \
+      **Fix:** Ensure correct store URL format (https://yourstore.com)
 
     <Tip>
-    **Pro tip:** Test WooCommerce connection by importing 1-2 reviews first (you'll do this in Step 4). If connection works for test import, it will work for full import.
+      **Pro tip:** Test WooCommerce connection by importing 1-2 reviews first (you'll do this in Step 4). If connection works for test import, it will work for full import.
     </Tip>
   </Accordion>
-
-  <Accordion title="Step 2: Navigate to Import Page" icon="location-arrow">
-    **Access the WooCommerce import tool**
-
-    **Navigation path:**
-    1. Log in to Yuko Dashboard
-    2. Click "Reviews" in left sidebar
-    3. Click "Import" sub-menu
-    4. Select "Import from WooCommerce"
-
-    **What you'll see:**
-    - WooCommerce import wizard
-    - Summary of reviews in WooCommerce
-    - Import options and settings
-    - Estimated import time
-
-    **Review count detection:**
-    - Yuko automatically scans your WooCommerce database
-    - Shows total review count
-    - Displays breakdown: Approved, Pending, Spam
-    - Estimates import duration
-
-    **Example display:**
-    ```
-    WooCommerce Reviews Found: 1,247
-    - Approved: 1,156 reviews
-    - Pending: 78 reviews
-    - Spam: 13 reviews
-
-    Estimated import time: 5-8 minutes
-    ```
+  <Accordion title="Step 3:  “Data Synchronisation”" icon="sliders">
+    - Locate the **Data Synchronisation** section
+    - This area controls how customers, products, and reviews are imported into Yuko
   </Accordion>
-
-  <Accordion title="Step 3: Configure Import Options" icon="sliders">
-    **Choose what to import and how**
-
-    **Import scope options:**
-
-    **Option 1: Import all reviews** (recommended)
-    - ✅ All approved reviews
-    - ✅ All pending reviews (you can moderate after)
-    - ❌ Spam reviews (automatically excluded)
-    - Best for: Most stores
-
-    **Option 2: Import approved only**
-    - ✅ Approved reviews only
-    - ❌ Skip pending reviews
-    - ❌ Skip spam reviews
-    - Best for: Want clean start, will collect new pending reviews
-
-    **Option 3: Import recent reviews**
-    - ✅ Reviews from last 6-12 months
-    - ❌ Skip older reviews
-    - Best for: Have very old reviews not relevant anymore
-
-    **Option 4: Specific products only**
-    - ✅ Reviews for selected product categories
-    - ❌ Skip other categories
-    - Best for: Migrating specific product lines
-
-    **Date range filter:**
-    - Import reviews after: [Date picker]
-    - Import reviews before: [Date picker]
-    - Useful for excluding very old reviews
-
-    **Product filter:**
-    - Import from all products (default)
-    - Import from specific categories only
-    - Import from specific product IDs only
-
-    **Verified purchase handling:**
-    - ✅ Import verified purchase status (recommended)
-    - ❌ Import all as unverified
-    - ✅ Re-verify against order history (most accurate)
-
-    **Recommended settings for most stores:**
-    - Import scope: All approved and pending reviews
-    - Exclude spam: Yes
-    - Date range: All time (don't filter)
-    - Products: All products
-    - Verified status: Re-verify against orders
-
-    <Check>
-    **Best practice:** Import everything except spam. You can moderate pending reviews in Yuko after import. Including all approved reviews preserves your full social proof history.
-    </Check>
+  <Accordion title="Step 4: Click “Fetch Data”" icon="flask">
+    - Click **Fetch Data** to pull customer, product, and review information from WooCommerce
+    - Yuko will display how many items were found (e.g., customers, products)
   </Accordion>
-
-  <Accordion title="Step 4: Test Import First (Recommended)" icon="flask">
-    **Import 10-20 reviews as a test before full import**
-
-    **Why test first:**
-    - Verify product matching works
-    - Check review formatting correct
-    - Ensure verified badges transfer
-    - Test data accuracy
-    - Identify any issues before full import
-
-    **How to run test import:**
-    1. In import settings, select "Test import (20 reviews)"
-    2. Yuko imports first 20 reviews only
-    3. Review results in Dashboard
-    4. Verify accuracy
-    5. Delete test import
-    6. Run full import
-
-    **What to check in test results:**
-    - ✅ Review text matches WooCommerce
-    - ✅ Star ratings correct
-    - ✅ Reviewer names accurate
-    - ✅ Dates preserved
-    - ✅ Verified badges showing
-    - ✅ Reviews assigned to correct products
-
-    **Common test discoveries:**
-    - "Verified badges not showing" → Enable re-verification option
-    - "Some products have no reviews" → Product matching issue, check SKUs
-    - "Dates all showing as today" → Bug, contact support
-    - "Review text truncated" → Formatting issue, report to support
-
-    **After successful test:**
-    1. Delete test reviews: Dashboard → Reviews → Delete imported test data
-    2. Return to import wizard
-    3. Select "Full import (all reviews)"
-    4. Proceed with confidence
+  <Accordion title="Step 5: Enable Review Import" icon="play">
+    - Under **Store Data**, find the checkbox **Include Reviews**
+    - Check this box to import all WooCommerce reviews during the sync
+    - If WooCommerce has 0 reviews, the interface will still show the toggle
   </Accordion>
-
-  <Accordion title="Step 5: Start Full Import" icon="play">
-    **Launch the complete import process**
-
-    **Starting the import:**
-    1. Review import settings one final time
-    2. Click "Start Import" button
-    3. Import begins immediately
-    4. Progress bar shows status
-
-    **During import:**
-    - **Don't close browser window** (import runs server-side but page shows progress)
-    - Import continues even if you close tab (can check back later)
-    - Progress bar updates in real-time
-    - Estimated time shown and updated
-
-    **Import progress indicators:**
-    ```
-    Importing WooCommerce Reviews...
-
-    Progress: 423 / 1,247 reviews (34%)
-    Estimated time remaining: 4 minutes
-
-    Currently importing: Product "Blue Cotton T-Shirt"
-    ```
-
-    **Import speed:**
-    - Small stores (less than 100 reviews): 30-60 seconds
-    - Medium stores (100-1,000 reviews): 2-5 minutes
-    - Large stores (1,000-10,000 reviews): 10-30 minutes
-    - Very large stores (10,000+ reviews): 30-60 minutes
-
-    **Can you cancel?**
-    - Yes, "Cancel Import" button available during process
-    - Canceling stops import mid-way
-    - Reviews already imported remain (not rolled back)
-    - Can re-import later (Yuko skips duplicates)
-
-    **What happens if import fails?**
-    - Import pauses
-    - Error message displayed
-    - Reviews imported so far remain
-    - Can retry from where it stopped
-    - Common issues: Connection timeout, server resource limits
-  </Accordion>
-
   <Accordion title="Step 6: Review Import Summary" icon="clipboard-check">
-    **Check import results and verify accuracy**
-
-    **Import completion summary:**
-    ```
-    Import Complete!
-
-    Total reviews imported: 1,234 / 1,247
-    Successfully matched: 1,234 reviews
-    Unassigned (no matching product): 0 reviews
-    Duplicates skipped: 13 reviews
-
-    Verified Purchase badges: 892 reviews
-    Pending moderation: 78 reviews
-    Auto-published: 1,156 reviews
-
-    Import time: 6 minutes 23 seconds
-    ```
-
-    **Understanding the summary:**
-
-    **Successfully imported:**
-    - Reviews copied from WooCommerce to Yuko
-    - Matched to correct products
-    - All data intact
-
-    **Unassigned reviews:**
-    - Reviews for products not found in Yuko
-    - Likely discontinued products
-    - Need manual assignment or can be ignored
-
-    **Duplicates skipped:**
-    - Reviews already in Yuko (from previous import)
-    - Prevents double-showing same review
-    - Safe to ignore
-
-    **Verified Purchase count:**
-    - Reviews with "Verified Purchase" badge
-    - Matched customer email to order history
-    - More trusted than unverified
-
-    **What to do next:**
-    1. Click "View Imported Reviews"
-    2. Go to Reviews → Manage Reviews
-    3. Filter by "Source: WooCommerce"
-    4. Spot-check random reviews for accuracy
-    5. Check product pages for review display
+    - After enabling the checkbox, the sync will continue
+    - Status indicators (Customers, Products, Reviews) will show **In progress**
+    - They will automatically switch to **Completed** once the sync finishes
   </Accordion>
 </AccordionGroup>
 
@@ -444,21 +123,25 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     **All review content and metadata**
 
     **Review text:**
+
     - Full review content (no truncation)
     - Original formatting preserved
     - Line breaks maintained
     - Special characters handled correctly
 
     **Review titles:**
+
     - If using plugin that adds titles (otherwise empty)
     - Preserved if exists in WooCommerce
 
     **Star ratings:**
+
     - 1-5 star ratings
     - Exact rating value transferred
     - Displayed in Yuko widgets
 
     **Review status:**
+
     - Approved → Published in Yuko
     - Pending → Pending in Yuko (requires moderation)
     - Spam → Not imported (automatically excluded)
@@ -466,72 +149,79 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
 
     **Imported accurately:** ✅ Yes, 100% data fidelity
   </Tab>
-
   <Tab title="Reviewer Information">
     **Customer details and verification**
 
     **Reviewer name:**
+
     - Display name from WooCommerce
     - Exactly as customer entered it
     - Shown on reviews in Yuko
 
     **Email address:**
+
     - Reviewer email (if provided)
     - Used for verified purchase matching
     - Hidden from public display
     - Used for future communication
 
     **Verified Purchase status:**
+
     - WooCommerce "Verified Owner" badge
     - Converted to Yuko "Verified Purchase"
     - Based on customer order history
     - Re-verified against Yuko order database
 
     **User role (optional):**
+
     - If reviewer is WordPress user
     - Guest vs registered customer
     - Used for display (e.g., "Verified Customer")
 
     **Imported accurately:** ✅ Yes, all reviewer data preserved
   </Tab>
-
   <Tab title="Dates & Timestamps">
     **Review dates and timing**
 
     **Review submission date:**
+
     - Original date review was submitted
     - Preserved exactly (not changed to import date)
     - Important for authenticity and SEO
 
     **Review modification date:**
+
     - If review was edited in WooCommerce
     - Last modified timestamp
     - Tracked for audit purposes
 
     **Why dates matter:**
+
     - Shows review history over time
     - Looks natural (not all "today")
     - SEO value (review freshness and history)
     - Customer trust (spread over months/years)
 
     **Example:**
+
     - Review submitted: March 15, 2023
     - Imported to Yuko: December 1, 2024
     - Displays on Yuko: "Reviewed on March 15, 2023" ✅
 
     **Imported accurately:** ✅ Yes, original dates preserved
   </Tab>
-
   <Tab title="Product Mapping">
     **Which products reviews belong to**
 
     **Product matching:**
+
     - WooCommerce review linked to post ID
     - Yuko finds matching product automatically
     - Based on product ID, SKU, or slug
     - 99% automatic match rate
 
     **How matching works:**
+
     1. Yuko reads which WooCommerce product review belongs to
     2. Searches for same product in Yuko database
     3. Matches by product ID (most reliable)
@@ -539,53 +229,61 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     5. Assigns review to matched product
 
     **Successful match:**
+
     - Review appears on correct product page
     - Review count updates for product
     - Average rating recalculated
 
     **No match found (rare):**
+
     - Review marked as "Unassigned"
     - Can manually assign to product in Yuko
     - Or ignore if product discontinued
 
     **Product variations:**
+
     - Reviews for product variations (size, color) import to parent product
     - Shown for all variations
     - Variation info in review text (if customer mentioned)
 
     **Imported accurately:** ✅ Yes, automatic matching very reliable
   </Tab>
-
   <Tab title="What Doesn't Import">
     **Limitations and exclusions**
 
     **Photos and videos:**
+
     - ❌ Native WooCommerce doesn't support review photos
     - ❌ If using plugin for photos, may not import automatically
     - ✅ Can manually add photos to imported reviews after
     - ✅ Some plugin integrations supported (check compatibility)
 
     **Custom fields:**
+
     - ❌ Custom meta fields from plugins may not import
     - ❌ Plugin-specific data (badges, custom ratings)
     - ✅ Standard WooCommerce fields always import
 
     **Review replies:**
+
     - ❌ Store owner replies to reviews (not standard in WooCommerce)
     - ❌ If using plugin for replies, may not import
     - ✅ Can add replies in Yuko after import
 
     **Helpful votes:**
+
     - ❌ "Was this review helpful?" vote counts
     - ❌ Not standard in WooCommerce, plugin-dependent
     - Starts fresh in Yuko
 
     **Review reports:**
+
     - ❌ Customer reports of inappropriate reviews
     - Doesn't transfer from WooCommerce
     - Use Yuko moderation tools after import
 
     **Why these don't import:**
+
     - Not standard WooCommerce features
     - Stored in plugin-specific database tables
     - Would require custom integration for each plugin
@@ -597,11 +295,12 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
 
 ## After Import: Next Steps
 
-<Steps titleSize="h3">
+<Steps>
   <Step title="Verify Imported Reviews" icon="circle-check">
     Check that reviews imported correctly.
 
     **Verification checklist:**
+
     1. Total count: Reviews → Dashboard shows count matching WooCommerce
     2. Random sampling: Check 10-20 random product pages
     3. Verified badges: Ensure verified purchases show badge
@@ -610,45 +309,47 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
 
     **Time:** 15-30 minutes
   </Step>
-
   <Step title="Handle Unassigned Reviews" icon="link-slash">
     Manually assign reviews that couldn't auto-match.
 
     **If you have unassigned reviews:**
+
     1. Go to Reviews → Unassigned Reviews
     2. See list of reviews without product match
     3. For each review, manually select correct product
     4. Save assignment
 
     **Common causes:**
+
     - Product discontinued in Yuko
     - Product ID/SKU changed
     - Product imported after reviews
 
     **Time:** 5-10 minutes (if any unassigned)
   </Step>
-
   <Step title="Moderate Pending Reviews" icon="hourglass">
     Review and publish pending reviews from WooCommerce.
 
     **If you have pending reviews:**
+
     1. Go to Reviews → Pending
     2. Review each pending review
     3. Approve legitimate reviews
     4. Reject spam or inappropriate content
 
     **Why pending:**
+
     - Were awaiting moderation in WooCommerce
     - Status preserved during import
     - You can approve/reject in Yuko now
 
     **Time:** 10-30 minutes (depending on pending count)
   </Step>
-
   <Step title="Set Up Review Display Widgets" icon="browser">
     Install Yuko widgets to show imported reviews on your store.
 
     **Required for reviews to appear:**
+
     1. Go to Yuko Dashboard → Widgets
     2. Install Product Review Widget
     3. Install Star Rating Widget
@@ -661,16 +362,17 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
 
     **Time:** 20-30 minutes
   </Step>
-
   <Step title="Remove WooCommerce Native Reviews (Optional)" icon="trash">
     Disable WooCommerce reviews once Yuko is live.
 
     **Before disabling:**
+
     - ✅ Verify all reviews imported successfully
     - ✅ Test Yuko widget display on product pages
     - ✅ Keep WooCommerce reviews active for 1-2 weeks (backup)
 
     **How to disable WooCommerce reviews:**
+
     1. WooCommerce → Settings → Products
     2. Uncheck "Enable product reviews"
     3. Save changes
@@ -680,7 +382,7 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     **Time:** 5 minutes
 
     <Warning>
-    **Don't rush:** Keep WooCommerce reviews enabled for 1-2 weeks after import to ensure Yuko is working perfectly. Monitor conversion rates and review submission before fully disabling.
+      **Don't rush:** Keep WooCommerce reviews enabled for 1-2 weeks after import to ensure Yuko is working perfectly. Monitor conversion rates and review submission before fully disabling.
     </Warning>
   </Step>
 </Steps>
@@ -694,6 +396,7 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     **Import progress bar frozen or taking too long**
 
     **Possible causes:**
+
     - Large review count (10,000+ reviews)
     - Server resource limits (PHP timeout, memory limit)
     - Connection timeout between Yuko and WooCommerce
@@ -702,33 +405,37 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     **Solutions:**
 
     **Solution 1: Wait it out**
+
     - Large imports (5,000+ reviews) can take 30-60 minutes
     - Import continues server-side even if progress bar seems stuck
     - Refresh page to see updated progress
     - Don't cancel unless truly stuck for hours
 
     **Solution 2: Import in batches**
+
     - Instead of "Import all reviews"
     - Select "Import 1,000 reviews at a time"
     - Run multiple import batches
     - Yuko auto-skips duplicates
 
     **Solution 3: Increase server limits**
+
     - Contact your hosting provider
     - Request increased PHP memory limit (256MB minimum)
     - Request increased max execution time (300 seconds minimum)
     - Try import again
 
     **Solution 4: Contact Yuko support**
+
     - If import consistently failing
     - Provide: Review count, error messages, server environment
     - Support can manually process large imports
   </Accordion>
-
   <Accordion title="Verified Purchase badges not showing" icon="badge-check">
     **Imported reviews missing verified purchase status**
 
     **Why this happens:**
+
     - Email in review doesn't match email in order
     - Customer used different email for review vs purchase
     - Order history not synced to Yuko yet
@@ -737,33 +444,37 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     **Solutions:**
 
     **Solution 1: Enable re-verification**
+
     - In import settings, enable "Re-verify against order history"
     - Yuko checks each reviewer email against order database
     - Applies verified badge if order found
     - More accurate than importing WooCommerce verified status directly
 
     **Solution 2: Sync order history first**
+
     - Ensure WooCommerce orders imported to Yuko
     - Go to Integrations → WooCommerce → Sync Orders
     - Then re-import reviews (or run verification batch)
     - Verified badges will appear
 
     **Solution 3: Manually verify high-value reviews**
+
     - For important reviews (5-star with photos)
     - Manually check if customer ordered that product
     - Mark as "Verified Purchase" in Yuko dashboard
 
     **Expected verified rate:**
+
     - 60-80% of reviews should be verified
     - Guest checkouts often lack matching email
     - Some customers use different emails
     - Normal to have some unverified reviews
   </Accordion>
-
   <Accordion title="Reviews imported to wrong products" icon="link-slash">
     **Reviews showing on incorrect product pages**
 
     **Why this happens:**
+
     - Product ID mismatch between WooCommerce and Yuko
     - Product SKU changed during migration
     - Variation reviews assigned to parent
@@ -772,34 +483,38 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     **Solutions:**
 
     **Solution 1: Check product ID mapping**
+
     - Export product list from WooCommerce
     - Export product list from Yuko
     - Compare IDs - should match exactly
     - If different, update Yuko product IDs to match WooCommerce
 
     **Solution 2: Manually reassign mismatched reviews**
+
     - Find reviews on wrong products
     - Edit review in Yuko dashboard
     - Change assigned product to correct one
     - Save
 
     **Solution 3: Delete and re-import**
+
     - If many reviews mismatched
     - Delete all imported reviews (backup first)
     - Fix product ID mismatches
     - Re-import reviews
 
     **Prevent this:**
+
     - Before importing reviews, ensure products imported correctly
     - Verify product IDs match between WooCommerce and Yuko
     - Run test import (20 reviews) to verify matching
     - Check test results before full import
   </Accordion>
-
   <Accordion title="Review dates showing as today" icon="calendar">
     **All imported reviews have today's date instead of original date**
 
     **Why this happens:**
+
     - Date preservation setting disabled
     - Database date field not read correctly
     - Import bug (rare)
@@ -807,64 +522,72 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     **Solutions:**
 
     **Solution 1: Check import settings**
+
     - In import wizard, verify "Preserve original review dates" is enabled
     - Should be enabled by default
     - If disabled, re-import with setting enabled
 
     **Solution 2: Contact support (bug)**
+
     - If date preservation enabled but still not working
     - This is a bug - report to Yuko support
     - Provide: Screenshot of import settings, sample affected reviews
     - Support can run corrective script to restore original dates
 
     **Why dates matter:**
+
     - All reviews dated "today" looks suspicious to customers
     - Loses SEO value of historical reviews
     - Appears inauthentic
     - Should always preserve original dates
   </Accordion>
-
   <Accordion title="Import fails with error message" icon="triangle-exclamation">
     **Import stops with error notification**
 
     **Common error messages and fixes:**
 
     **Error: "Cannot connect to WooCommerce"**
+
     - **Cause:** WooCommerce API not accessible
     - **Fix:** Check WooCommerce → Settings → Advanced → REST API enabled
     - **Fix:** Verify Yuko API key has correct permissions
 
     **Error: "Database query timeout"**
+
     - **Cause:** Too many reviews to process at once
     - **Fix:** Import in smaller batches (1,000 at a time)
     - **Fix:** Contact hosting to increase database query timeout
 
-    **Error:** "Product not found for review ID 12345"**
+    **Error:** "Product not found for review ID 12345"\*\*
+
     - **Cause:** Review references product that doesn't exist in Yuko
     - **Fix:** Import will continue, review marked as "Unassigned"
     - **Fix:** Manually assign to correct product after import
 
     **Error: "Memory limit exceeded"**
+
     - **Cause:** PHP memory limit too low for large import
     - **Fix:** Contact hosting to increase memory_limit to 256MB+
     - **Fix:** Or import in smaller batches
 
     **Error: "Duplicate review detected"**
+
     - **Not an error:** Yuko auto-skips duplicates
     - **Cause:** Review already imported previously
     - **Fix:** No action needed, import continues
 
     **If error persists:**
+
     - Screenshot error message
     - Note: Review count, WooCommerce version, PHP version
     - Contact Yuko support with details
     - Support can troubleshoot specific issues
   </Accordion>
-
   <Accordion title="Photos didn't import from WooCommerce" icon="image">
     **Review photos missing after import**
 
     **Why this happens:**
+
     - Native WooCommerce doesn't support review photos
     - Using plugin for photos (not standard feature)
     - Plugin stores photos differently
@@ -873,18 +596,21 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     **Solutions:**
 
     **Solution 1: Check plugin compatibility**
+
     - What plugin are you using for WooCommerce review photos?
     - Supported: [List of plugins Yuko integrates with]
     - If your plugin supported, enable plugin import in settings
     - If not supported, use Solution 2 or 3
 
     **Solution 2: Manually add photos to important reviews**
+
     - Identify 20-30 highest-value reviews (5-star, detailed)
     - Download photos from WooCommerce
     - Upload to those reviews in Yuko dashboard
     - Time-consuming but works for select reviews
 
     **Solution 3: Request photo URLs and re-import**
+
     - Export review photos from WooCommerce plugin
     - Get public URLs for each photo
     - Create CSV with review ID + photo URL
@@ -892,12 +618,14 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     - Yuko attaches photos to existing reviews
 
     **Solution 4: Start collecting new photo reviews**
+
     - Accept that old review photos won't transfer
     - Focus on collecting new photo reviews in Yuko
     - Offer incentive (10% off) for customers to add photos
     - Build photo review library over time
 
     **Reality check:**
+
     - Photo import is challenging across platforms
     - Text reviews are most important (import those first)
     - Photos are bonus - don't let missing photos block migration
@@ -914,42 +642,47 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     **No - Yuko automatically detects and skips duplicates**
 
     **How duplicate detection works:**
+
     - Yuko checks if review already exists in database
     - Matches by: Product ID + Reviewer email + Review date
     - If match found: Skips import (doesn't create duplicate)
     - If no match: Imports as new review
 
     **What this means:**
+
     - Safe to run import multiple times
     - Won't double-show same reviews
     - If import fails mid-way, can retry without duplicates
     - Can re-import after adding new WooCommerce reviews
 
     **Import summary shows:**
+
     ```
     Duplicates skipped: 13 reviews
     ```
 
     **Why duplicates might exist:**
+
     - Previously imported reviews from WooCommerce
     - Ran test import, then full import
     - Re-imported after fixing issues
 
     **What happens to duplicates:**
+
     - Not imported again
     - Original review remains unchanged
     - Count shown in import summary
     - Can safely ignore
 
     <Check>
-    **Best practice:** If you previously imported WooCommerce reviews to Yuko, running import again is safe. Yuko skips duplicates and imports only new reviews added since last import.
+      **Best practice:** If you previously imported WooCommerce reviews to Yuko, running import again is safe. Yuko skips duplicates and imports only new reviews added since last import.
     </Check>
   </Accordion>
-
   <Accordion title="Can I re-import if I made a mistake?" icon="arrow-rotate-right">
     **Yes - delete imported reviews and re-import**
 
     **When to re-import:**
+
     - Forgot to enable verified purchase verification
     - Product IDs were wrong (reviews on wrong products)
     - Imported spam/pending reviews accidentally
@@ -958,6 +691,7 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     **How to re-import:**
 
     **Step 1: Delete previous import**
+
     1. Go to Reviews → Manage Reviews
     2. Filter by "Source: WooCommerce"
     3. Select all imported reviews
@@ -965,52 +699,59 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     5. Confirm deletion
 
     **Step 2: Run import again**
+
     1. Go to Reviews → Import → WooCommerce
     2. Adjust import settings (fix previous mistake)
     3. Run import again
     4. Reviews import fresh with new settings
 
     **What gets deleted:**
+
     - Only imported reviews
     - Any new reviews collected in Yuko remain untouched
     - WooCommerce reviews unchanged (still in WooCommerce)
 
     **What to watch out for:**
+
     - If you replied to any imported reviews in Yuko, those replies deleted too
     - If you edited any imported reviews, edits lost
     - Better to re-import sooner than later (before too many changes)
 
     <Warning>
-    **Before deleting:** Export your Yuko reviews as backup first. Just in case you need to reference deleted data later.
+      **Before deleting:** Export your Yuko reviews as backup first. Just in case you need to reference deleted data later.
     </Warning>
   </Accordion>
-
   <Accordion title="Does import affect my WooCommerce reviews?" icon="question">
     **No - WooCommerce reviews remain completely unchanged**
 
     **What import does:**
+
     - **Reads** WooCommerce review data
     - **Copies** to Yuko database
     - **Does not modify** WooCommerce
 
     **Your WooCommerce reviews:**
+
     - Still exist in WooCommerce
     - Still visible (until you disable WooCommerce reviews)
     - Can still be edited in WooCommerce
     - Not deleted or changed during import
 
     **Think of import as copying, not moving:**
+
     - Like copying files from one folder to another
     - Original files remain intact
     - Copy independent of original
 
     **After import:**
+
     - WooCommerce reviews: Still in WooCommerce database
     - Yuko reviews: Copy in Yuko database
     - Two separate systems with same review data
     - You choose which to display on storefront
 
     **Recommended approach:**
+
     1. Import WooCommerce reviews to Yuko
     2. Verify Yuko working correctly
     3. Test for 1-2 weeks
@@ -1019,54 +760,59 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     6. Keep WooCommerce reviews in database as backup
 
     **Can you delete WooCommerce reviews after import?**
+
     - Yes, technically possible
     - **Not recommended** - keep as backup
     - Just disable display, don't delete data
     - Allows rollback if needed
   </Accordion>
-
   <Accordion title="How often should I run the import?" icon="clock">
     **One-time import vs regular syncing**
 
     **Most common: One-time migration**
+
     - Import WooCommerce reviews once
     - Switch to Yuko for all future reviews
     - Disable WooCommerce review collection
     - Don't need to import again
 
     **Alternative: Regular syncing**
+
     - Keep WooCommerce reviews enabled
     - Import new WooCommerce reviews to Yuko periodically
     - Useful if collecting reviews via both systems
     - Run import weekly or monthly
 
     **Why one-time is recommended:**
+
     - Cleaner separation of systems
     - Avoid confusion (which system is primary?)
     - Yuko has better features than WooCommerce
     - Simpler management
 
     **When to do regular syncing:**
+
     - Collecting reviews on multiple platforms temporarily
     - Migrating gradually (some products WooCommerce, some Yuko)
     - Want backup of reviews in both systems
     - Using WooCommerce for internal reviews, Yuko for display
 
     **How to sync regularly:**
+
     - Run import weekly/monthly
     - Yuko auto-skips duplicates
     - Only new reviews added to Yuko
     - Takes seconds (only imports new reviews)
 
     <Tip>
-    **Recommended:** One-time import → Switch to Yuko → Disable WooCommerce reviews. This is the cleanest migration path. Regular syncing adds complexity without much benefit.
+      **Recommended:** One-time import → Switch to Yuko → Disable WooCommerce reviews. This is the cleanest migration path. Regular syncing adds complexity without much benefit.
     </Tip>
   </Accordion>
-
   <Accordion title="What if I add new products after import?" icon="plus">
     **Import only imports reviews for existing products**
 
     **Scenario:**
+
     1. You import WooCommerce reviews to Yuko (1,000 products)
     2. Reviews import successfully
     3. You add 100 new products to store
@@ -1074,6 +820,7 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     5. New product reviews not imported automatically
 
     **Solution: Run partial re-import**
+
     - Go to Import → WooCommerce
     - Select "Import from specific products only"
     - Choose the 100 new products
@@ -1081,18 +828,21 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
     - Existing reviews skipped (duplicates)
 
     **Or: Run full import again**
+
     - Safe to run full import again
     - Yuko skips all previously imported reviews
     - Imports only new product reviews
     - Fast (most reviews skipped as duplicates)
 
     **Prevention:**
+
     - Import products before importing reviews
     - Ensure all products in Yuko first
     - Then import reviews
     - Reviews auto-match to products
 
     **What if product added but has no reviews yet?**
+
     - No action needed
     - When reviews come in WooCommerce, import later
     - Or just collect new reviews in Yuko (don't import)
@@ -1106,5 +856,5 @@ Yuko Dashboard → **Reviews → Import → WooCommerce**
 <NeedHelp />
 
 <Note>
-**Pro tip:** Before importing, verify all your WooCommerce products are already in Yuko. This ensures perfect product matching. Then run a test import with 20 reviews to verify everything works before importing your full review database.
+  **Pro tip:** Before importing, verify all your WooCommerce products are already in Yuko. This ensures perfect product matching. Then run a test import with 20 reviews to verify everything works before importing your full review database.
 </Note>
