@@ -1,24 +1,416 @@
 ---
-description: "Manually review, approve, edit, or reject customer reviews before they go live."
-title: "6.2 Review Moderation"
+title: "Review Moderation"
+description: "Control review quality with profanity filters, spam detection, and manual approval workflows"
 ---
 
-### Overview: 
+import NeedHelp from '/snippets/need-help.mdx';
 
-Yuko includes built-in tools for moderation and quality control.
+## Keep Your Review Section Clean and Professional
 
-**Available Controls:**
+Review moderation tools help you maintain quality standards while preventing spam, fake reviews, and inappropriate content. Set up automated filters and manual approval workflows that match your brand's needs.
 
-- **Profanity Filter:**
-  - Replace banned words with \*\*\*
-  - Or hide reviews containing offensive content
-- **Spam Filter:**
-  - Automatically detects suspicious submissions
-  - Keeps your store clean from bots or spam
+**What you'll achieve:**
 
-**Navigation:**
+- Block spam and fake reviews automatically
+- Filter profanity and inappropriate language
+- Set up approval workflows for quality control
+- Maintain professional review section
+- Protect brand reputation
 
-\
-\*\*Yuko Dashboard → Settings → Reviews →General \*\*
+<Info>
+  **Impact:** Stores with active moderation see 60% less spam and maintain 25% higher trust scores than unmoderated stores
+</Info>
 
-![Profespam Pn](/images/profespam.png)
+---
+
+## Navigation:
+
+Yuko Dashboard → **Settings → Reviews → General → Review Publishing & Moderation**
+
+![p&m.png](/images/p&m.png)
+
+## Profanity Filter
+
+Block or censor offensive language automatically:
+
+<Tabs>
+  <Tab title="Replace with Asterisks">
+    **Automatically censor profanity**
+
+    - Offensive words or phrases in a review are automatically replaced with `***`.
+    - The review remains visible on your product pages, widgets, and contributes to the average rating.
+    - Ensures that genuine feedback is not lost while keeping content appropriate for all audiences.
+    - Best practice: Use this for minor profanity to maintain flow of reviews without hiding customer sentiment.
+
+    **Best for:** Casual brands, high review volume
+
+    <Tip>
+      **Recommended:** Use replacement for mild profanity. For severe language, use "hold for review" instead.
+    </Tip>
+  </Tab>
+  <Tab title="Hide review containing banned words">
+    **Block reviews with profanity**
+
+    - Reviews with blocked words are automatically marked as unpublished.
+    - These reviews will not appear on your store or in review widgets.
+    - Ideal for severe language or inappropriate content that could harm your store’s reputation.
+    - You can manually review hidden content in the dashboard to recover if needed.
+
+      **Best for:** Stores prioritizing a fully clean review section over visibility of flagged reviews.
+
+      **Time investment:** Medium – requires occasional review of hidden content.
+  </Tab>
+  <Tab title="Use standard blocklist (Default)">
+    **Applies Yuko’s pre-configured list of common offensive words automatically.**
+
+    - Saves time and ensures consistency in moderating inappropriate content.
+    - You can combine this with custom words or phrases to tailor moderation to your store’s requirements.
+
+    **Optional:** Upload a CSV file containing custom blocklist words. The file is securely stored and applied to all incoming reviews. You can remove or update the file anytime.
+
+    \
+    **Best for:** Stores starting with profanity filtering or without custom blocklist needs.
+
+    **Time investment:** Very low – ready-to-use out of the box.
+
+    <Check>
+      **Best practice:** Regularly review your blocked words list to ensure it aligns with your brand tone and keeps your reviews trustworthy and family-friendly.
+    </Check>
+  </Tab>
+</Tabs>
+
+### Profanity Filter Settings
+
+<AccordionGroup>
+  <Accordion title="Default Word List" defaultOpen icon="list">
+    **Common profanity automatically detected**
+
+    **Included by default:**
+
+    - Common swear words (English)
+    - Offensive slurs
+    - Inappropriate content
+    - Vulgar language
+
+    **How it works:**
+
+    - Yuko maintains updated list
+    - Detects variations (f\*ck, fvck, etc.)
+    - Case-insensitive matching
+    - Partial word matching
+
+    **Limitations:**
+
+    - English-focused (limited multilingual)
+    - May miss creative spellings
+    - Context-blind (can't tell positive vs negative)
+
+    **False positives:**
+
+    - "Damn good" → Flagged (but positive)
+    - Brand names that contain flagged words
+    - Place names (Scunthorpe problem)
+    - Medical terms
+
+    **Recommendation:** Use "hold for review" to catch false positives
+  </Accordion>
+  <Accordion title="Custom Word List" icon="plus">
+    **Add your own blocked words**
+
+    **When to add custom words:**
+
+    - Industry-specific offensive terms
+    - Competitor brand names (if you want to moderate)
+    - Product names you want to review manually
+    - Spam phrases ("click here", "free gift")
+
+    **How to add:**
+
+    1. Go to Settings → Reviews → Profanity Filter
+    2. Click "Add Custom Words"
+    3. Enter words (one per line)
+    4. Save
+
+    **Example custom word list:**
+
+    ```
+    [competitor brand]
+    [competitor product]
+    fake
+    scam
+    lawsuit
+    lawyer
+    refund (hold for review, may be legitimate)
+    ```
+
+    **Action for custom words:**
+
+    - Same as default profanity (replace, hide, or hold)
+    - Or set per-word action (advanced)
+
+    **Warning:** Don't over-block. Words like "refund" or "return" may be legitimate complaints you should address, not hide.
+  </Accordion>
+  <Accordion title="CSV Upload" icon="check">
+    _Upload a CSV file containing your blocklist words_
+
+    - Stored securely and used for profanity filtering
+    - Can remove or replace the file anytime
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Spam Filter
+
+Enable Yuko’s Spam Filter to automatically block suspicious or spammy reviews from appearing on your store. This keeps your review section clean and your ratings trustworthy.
+
+### How It Works
+
+- Once enabled, Yuko scans incoming reviews for common spam indicators.
+- Reviews flagged as spam are automatically hidden and moved to the **Spam** section in your dashboard.
+
+### Key Points
+
+- **Automatic Protection:** Reduces fake, duplicate, or malicious reviews.
+- **Minimal Manual Work:** Just enable the filter—Yuko handles the rest.
+- **Review Spam Folder Occasionally:** Check periodically for any legitimate reviews mistakenly flagged.
+
+### Best For
+
+- Stores receiving frequent reviews
+- Stores wanting to maintain accurate ratings and customer trust
+
+### Time Investment
+
+- Very low: Enable once and let Yuko filter spam automatically. Periodic checks are optional.
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Check Spam Folder Weekly" defaultOpen icon="calendar-check">
+    **Don't let legitimate reviews get lost**
+
+    **Why:**
+
+    - Spam filters have false positives
+    - Legitimate reviews accidentally flagged
+    - Customer complaint looks like spam
+    - Profanity filter caught mild language
+
+    **Weekly spam review:**
+
+    1. Go to Reviews → Spam
+    2. Sort by date (newest first)
+    3. Scan for false positives
+    4. Approve legitimate reviews
+    5. Delete real spam
+
+    **What to look for:**
+
+    - Detailed negative reviews (not spam, real complaint)
+    - Reviews with mild profanity in positive context
+    - First-time reviewers flagged incorrectly
+    - Product names triggering keyword filters
+
+    **Action:**
+
+    - Approve false positives
+    - Update filters to prevent repeat false flags
+    - Reply to recovered negative reviews
+
+    **Time:** 10 minutes weekly
+  </Accordion>
+  <Accordion title="Start Conservative, Loosen Gradually" icon="gauge-simple-high">
+    **Begin with strict moderation, relax as you learn patterns**
+
+    **Month 1: Manual moderation**
+
+    - Review every single review
+    - Learn your spam patterns
+    - Understand review quality
+    - Set standards
+
+    **Month 2: Add auto-approve for 5-star verified**
+
+    - 5-star + verified = auto-publish
+    - Everything else = manual review
+    - See if spam increases
+    - Adjust if needed
+
+    **Month 3: Add auto-approve for 4-star verified**
+
+    - 4-5 star + verified = auto-publish
+    - 1-3 star OR unverified = manual
+    - Faster social proof
+    - Still catching problems
+
+    **Month 4+: Fine-tune based on data**
+
+    - Analyze spam rate
+    - Check moderation time
+    - Optimize rules
+    - May loosen further or keep as-is
+
+    **Why this works:**
+
+    - Learn before automating
+    - Build confidence in filters
+    - Catch issues early
+    - Scale moderation gradually
+
+    <Tip>
+      **Don't rush automation:** Taking 3 months to fully automate is better than dealing with spam attack from being too permissive too soon.
+    </Tip>
+  </Accordion>
+  <Accordion title="Monitor Your Spam Rate" icon="chart-line">
+    **Track spam to know if filters are working**
+
+    **Key metrics:**
+
+    - Spam rate: % of reviews marked as spam
+    - False positive rate: % of spam that should have been approved
+    - Manual moderation time: Hours per week
+    - Auto-publish rate: % of reviews auto-approved
+
+    **Good spam rate:**
+
+    - less than 5% spam = Excellent (filters working)
+    - 5-10% spam = Good (normal level)
+    - 10-20% spam = High (tighten filters)
+    - 20%+ spam = Crisis (major filter issue)
+
+    **If spam increasing:**
+
+    1. Check spam folder for patterns
+    2. Identify common spam sources (emails, IPs)
+    3. Add to blacklist
+    4. Tighten auto-publish rules
+    5. Enable email verification
+
+    **If spam too low (with high false positives):**
+
+    1. Filters may be too strict
+    2. Check spam folder for legitimate reviews
+    3. Loosen keyword filters
+    4. Adjust profanity sensitivity
+    5. Review false positive patterns
+
+    **Monthly review:**
+
+    - Export spam reviews to spreadsheet
+    - Look for patterns
+    - Adjust filters accordingly
+    - Track improvement
+  </Accordion>
+  <Accordion title="Use Blacklists Strategically" icon="ban">
+    **Block repeat offenders, not entire categories**
+
+    **Email blacklist:**
+
+    - Add specific spam email addresses
+    - Block disposable email domains
+    - Blacklist competitor domains (optional)
+
+    **Don't blacklist:**
+
+    - Entire email providers (Gmail, Yahoo, etc.)
+    - Customer who left one negative review
+    - Domains used legitimately
+
+    → [Email blacklist guide](/managing-reviews/email-blacklist)
+
+    **Product blacklist:**
+
+    - Temporarily blacklist new products (manual review first 30 days)
+    - Blacklist problematic products (quality issues)
+    - Remove from blacklist once stable
+
+    **Don't blacklist:**
+
+    - Products permanently (defeats auto-publish)
+    - Products just because they get negative reviews
+    - All products (use manual moderation instead)
+
+    → [Product blacklist guide](/managing-reviews/product-blacklist)
+
+    **Best practice:** Blacklists are for exceptions, not rules. Use sparingly and review quarterly.
+  </Accordion>
+  <Accordion title="Respond Before Moderating Negatives" icon="reply">
+    **Address concerns privately, then decide on publishing**
+
+    **Workflow for negative reviews:**
+
+    1. Negative review in pending
+    2. Read carefully
+    3. Contact customer privately via email
+    4. Offer solution, apology, replacement
+    5. THEN decide: Approve with reply, or resolve privately
+
+    **Example:**
+
+    - Customer: "Product broke after 2 days" (2-star review)
+    - You (email): "So sorry! This isn't typical. We'll send replacement immediately + 20% refund. Can we make this right?"
+    - Customer: "Yes, thank you!"
+    - You: Approve review with public reply: "We're sorry about this issue and have sent a replacement. We stand behind our quality."
+    - OR: Customer updates to 5-star after resolution
+
+    **Why this works:**
+
+    - You resolve the issue
+    - Customer often updates review or doesn't mind it being public
+    - Your public reply shows you care
+    - Other customers see you fix problems
+
+    **Don't:**
+
+    - Hide legitimate complaints without addressing
+    - Approve negative reviews without responding
+    - Only publish positive reviews (looks suspicious)
+
+    <Check>
+      **Best practice:** Reply to ALL negative reviews before approving. Show you care publicly. This turns negative reviews into trust builders.
+    </Check>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next Steps
+
+<Steps>
+  <Step title="Configure Profanity Filter" icon="filter">
+    Set up offensive language handling.
+
+    **Time:** 10 minutes **Current page:** You are here **Action:** Choose replace, hide, or hold for review
+  </Step>
+  <Step title="Enable Spam Detection" icon="shield">
+    Turn on automatic spam filtering.
+
+    **Time:** 5 minutes **Action:** Enable spam detection, set sensitivity
+  </Step>
+  <Step title="Set Up Email Blacklist" icon="ban">
+    Block known spam domains.
+
+    **Time:** 10 minutes → [Email blacklist setup](/managing-reviews/email-blacklist)
+  </Step>
+  <Step title="Choose Moderation Workflow" icon="diagram-project">
+    Decide: Manual, filtered auto-publish, or full auto.
+
+    **Time:** 15 minutes → [Auto-publishing configuration](/managing-reviews/auto-publishing-reviews)
+  </Step>
+  <Step title="Monitor and Adjust" icon="chart-line">
+    Check spam rate weekly, adjust filters as needed.
+
+    **Time:** 10 min/week **Action:** Review spam folder, check false positives
+  </Step>
+</Steps>
+
+---
+
+## Need Help?
+
+<NeedHelp />
+
+<Note>
+  **Pro tip:** Start with "hold for manual review" for profanity and spam. After 30 days, you'll understand your false positive rate and can switch to more aggressive auto-hide if filters are working well.
+</Note>

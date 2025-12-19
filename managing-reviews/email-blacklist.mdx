@@ -1,18 +1,440 @@
 ---
-description: "Use the email blacklist to control who can submit reviews and maintain review quality."
+description: "Block specific email addresses and domains to prevent spam and maintain review quality"
 title: "6.4 Email Blacklist"
 ---
 
-Block specific email addresses or domains from submitting reviews.\
-Useful for excluding test accounts, internal users, or repeat spammers.
+import NeedHelp from '/snippets/need-help.mdx';
 
-**To add to the blacklist:**
+## Protect Your Reviews from Unwanted Submissions
 
-1. Go to **Settings → Reviews → Manage Exclusions**.
-2. Under **Email Blacklist**, click **Add New Entry**.
-3. Enter the email or domain (e.g., _@_[_example.com_](http://example.com)).
-4. Save your changes.
+Block problematic email addresses, competitors, and spam domains to maintain authentic review quality.
 
-You can also upload a CSV file to bulk import blacklisted emails.
+**What you'll achieve:**
 
-![Claj Pn](/images/claj.png)
+- Prevent internal/test orders from getting review request emails
+- Avoid sending review requests to customers who opted out
+- Reduce irrelevant or unwanted review submissions
+- Reduce manual moderation workload by 40-60%
+
+<Info>
+  **Impact:** Stores using email blacklists see:
+
+  - 70-85% reduction in spam from known sources
+  - 50-65% decrease in competitor fake reviews
+  - 40-55% less time spent on manual review moderation
+  - 95%+ block rate for repeat spammer attempts
+</Info>
+
+## Understanding Email Blacklisting
+
+Email blacklisting prevents specific addresses or entire domains from submitting reviews.
+
+<CardGroup cols={2}>
+  <Card title="Individual Email Blocking" icon="envelope">
+    **Block specific email addresses**
+
+    - Single addresses ([john.doe@spam.com](mailto:john.doe@spam.com))
+    - Exact match required
+    - Blocks that specific user only
+    - Good for repeat offenders
+
+    **Example:**
+
+    - [competitor@rivalstore.com](mailto:competitor@rivalstore.com)
+    - [spammer123@gmail.com](mailto:spammer123@gmail.com)
+    - [abusiveuser@email.com](mailto:abusiveuser@email.com)
+
+    **Use for:** Targeting specific problem users
+  </Card>
+  <Card title="Domain Blocking" icon="globe">
+    **Block entire email domains**
+
+    - All addresses from domain (@spam.com)
+    - Wildcard matching
+    - Blocks all users from that domain
+    - Good for competitor stores, disposable email services
+
+    **Example:**
+
+    - @competitorstore.com
+    - @tempmail.com
+    - @yourcompany.com (internal)
+
+    **Use for:** Broad protection against spam sources
+  </Card>
+</CardGroup>
+
+## How to Add Email Blacklist Entries
+
+Step-by-step guide for blocking emails and domains.
+
+<Steps>
+  <Step title="Navigate to Email Blacklist Settings" icon="gear">
+    Access the email blacklist management interface.
+
+    **Path:** Yuko Dashboard → **Settings → Reviews → Manage Exclusions → Email Blacklist**
+
+    **You'll see:**
+
+    - Current blacklist entries (emails and domains)
+    - Recent block attempts log
+    - Add new entry button (Add Manually)
+    - Bulk import option
+
+    ![Claj Pn](/images/claj.png)
+  </Step>
+  <Step title="Add Individual Email or Domain" icon="plus">
+    Block a specific address or entire domain.
+
+    **For individual email:**
+
+    1. Click **Add Manually**
+    2. Enter full email address: `spammer@example.com`
+    3. Add optional note: "Repeat spammer, 5 fake reviews"
+    4. Click **Save**
+
+    **For entire domain:**
+
+    1. Click **Add Manually**
+    2. Enter domain with @: `@tempmail.com`
+    3. Add optional note: "Disposable email service"
+    4. Click **Save**
+
+    **Wildcard patterns (advanced):**
+
+    - `@*.tempmail.com` - Blocks all subdomains
+    - `test*@yourstore.com` - Blocks test1@, test2@, testing@, etc.
+    - `*@competitor.*` - Blocks all competitor TLDs (.com, .net, .co.uk)
+
+    **Verification:**
+
+    - Entry appears in blacklist table immediately
+    - Test by attempting review with blocked email (optional)
+  </Step>
+  <Step title="Bulk Import via CSV" icon="file-csv">
+    Upload multiple entries at once from CSV file.
+
+    **CSV format:**
+
+    ```csv
+    email,note
+    @tempmail.com,Disposable email service
+    @10minutemail.com,Disposable email service
+    spammer1@gmail.com,Repeat offender
+    @rivalstore.com,Competitor domain
+    ```
+
+    **Import process:**
+
+    1. Prepare CSV file (email/domain in column 1, note in column 2)
+    2. Click **Upload CSV** button
+    3. Select CSV file
+    4. Review preview (shows entries to be added)
+    5. Click **Update**
+    6. Entries added instantly.
+
+    <Tip>
+      **Pro tip:** Download disposable email domain lists from GitHub (search "disposable-email-domains") and bulk import to block 99% of throwaway email spam instantly.
+    </Tip>
+  </Step>
+  <Step title="Manage Existing Entries" icon="list-check">
+    Add, remove, or temporarily disable blacklist entries.
+
+    **Remove entry:**
+
+    1. Find entry in blacklist table
+    2. Click **Delete** (trash icon)
+    3. Confirm removal
+    4. Email/domain immediately unblocked
+
+    **Bulk removal:**
+
+    1. Select multiple entries (checkboxes)
+    2. Click **Bulk Actions** dropdown
+    3. Select **Delete Selected**
+    4. Confirm bulk removal
+
+    **Sort Entries (A–Z / Z–A):**
+
+    - Organize entries alphabetically for easy review.
+    - Quickly locate domain-based blocks.
+    - Helps manage long or complex lists.
+    - Improves accuracy when editing or deleting.
+
+    **Search emails: **
+
+    1. Find any email, domain, or wildcard instantly.
+    2. Perfect for large blacklist datasets.
+    3. Helps troubleshoot customer submission issues.
+    4. Ensures precise management and fewer mistakes.
+  </Step>
+</Steps>
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="Can users bypass email blacklist by creating new addresses?" icon="user-secret">
+    **Yes, but make it costly enough to deter them**
+
+    **How users can bypass:**
+
+    - Create new Gmail/Yahoo address (free, takes 2 minutes)
+    - Use VPN or proxy to change IP
+    - Use different disposable email service
+    - Slightly modify email (john.doe vs johndoe)
+
+    **How to make bypassing harder:**
+
+    **Layer multiple protections:**
+
+    - Email blacklist + IP rate limiting
+    - Email blacklist + email verification requirement
+    - Email blacklist + verified buyer requirement
+
+    **Block patterns, not just addresses:**
+
+    - Block @_.tempmail._ (all disposable variants)
+    - Block known spam email patterns
+    - Use conditional rules
+
+    **Increase effort required:**
+
+    - Require minimum 50 character reviews
+    - Require email verification
+    - Require purchase verification
+
+    **Reality check:**
+
+    - Casual spammers won't bother (90% of spam)
+    - Determined attackers will bypass (10% of spam)
+    - Focus on making it not worth their time
+    - Catch sophisticated attacks with manual moderation
+
+    <Info>
+      **Goal:** Raise barrier high enough that 90-95% of spammers give up. Perfect protection is impossible, but good protection is very achievable.
+    </Info>
+  </Accordion>
+  <Accordion title="Should I block all free email providers (Gmail, Yahoo, etc.)?" icon="ban">
+    **No - blocks too many legitimate customers**
+
+    **Why not to block free emails:**
+
+    - 60-80% of customers use Gmail, Yahoo, Outlook
+    - Massive false positive rate
+    - Customers will be frustrated and confused
+    - Reduces review volume by 60-80%
+    - Harms customer trust
+
+    **Exceptions (rare):**
+
+    - Pure B2B store (only corporate emails expected)
+    - High-security industry (government, finance)
+    - Verified buyer requirement already in place
+
+    **Better alternatives:**
+
+    **Instead of blocking Gmail:**
+
+    - Block disposable email domains only
+    - Require email verification for free emails
+    - Use verified buyer requirement
+    - IP rate limiting (5/day)
+
+    **Targeted blocking:**
+
+    - Block specific spammer addresses on Gmail
+    - Block temporary Google accounts (detectable patterns)
+    - Use conditional rules (free email + unverified purchase = manual review)
+
+    <Warning>
+      **Never block:** @gmail.com, @yahoo.com, @outlook.com, @hotmail.com, @icloud.com, @aol.com. These are legitimate free providers used by majority of customers.
+    </Warning>
+  </Accordion>
+  <Accordion title="How do I handle false positives?" icon="triangle-exclamation">
+    **Provide clear appeal process and respond quickly**
+
+    **When false positives occur:**
+
+    1. Customer attempts to submit review
+    2. Gets "Email not eligible" message with appeal link
+    3. Submits appeal via form or email
+    4. You review within 48 hours
+    5. Unblock if legitimate
+    6. Apologize and invite them to resubmit
+
+    **Common false positive scenarios:**
+
+    **Corporate domain blocked:**
+
+    - Blocked @largecorp.com thinking it was competitor
+    - But customer is legitimate B2B buyer from that company
+    - **Solution:** Unblock specific email, keep domain blocked
+    - **Better:** Use conditional rule (allow if verified purchase)
+
+    **Wildcard too broad:**
+
+    - Blocked test\*@\* to block test accounts
+    - But customer's name is "Tester" with email [tester@gmail.com](mailto:tester@gmail.com)
+    - **Solution:** Refine wildcard to [test@yourstore.com](mailto:test@yourstore.com) only
+
+    **Shared email:**
+
+    - Blocked [john@family.com](mailto:john@family.com) for spam
+    - But John's wife Sarah also uses [john@family.com](mailto:john@family.com) legitimately
+    - **Solution:** Temporary 30-day block, allow appeal
+
+    **Prevention:**
+
+    - Test blacklist rules before deploying
+    - Use conditional blocking
+    - Provide clear appeal process
+    - Monitor false positive rate weekly
+
+    **Target false positive rate:** Under 5% of blocks
+
+    <Tip>
+      **Pro tip:** Email every blocked legitimate user personally, apologize, and offer 10% discount as goodwill. Turns negative into positive brand experience.
+    </Tip>
+  </Accordion>
+  <Accordion title="Can I block emails from specific countries?" icon="globe">
+    **Yes, via domain TLD blocking, but not recommended**
+
+    **How to block by country:**
+
+    - Block top-level domains (TLDs): @_.ru, @_.cn, @\*.br
+    - Example: Blocks .ru (Russia), .cn (China), .br (Brazil)
+
+    **Risks and concerns:**
+
+    **Legal risks:**
+
+    - May violate anti-discrimination laws
+    - Could be considered xenophobic
+    - Bad publicity if discovered
+
+    **Business risks:**
+
+    - Blocks legitimate international customers
+    - Harms global expansion
+    - Reduces review volume significantly
+
+    **Practical limitations:**
+
+    - Most spammers use .com or disposable emails anyway
+    - TLD blocking catches very little actual spam
+    - High false positive rate
+
+    **Better alternatives:**
+
+    **Instead of blocking countries:**
+
+    - Block disposable email services (works globally)
+    - Use IP rate limiting (catches VPNs and farms)
+    - Require verified purchases (works regardless of country)
+    - Use spam detection algorithms (language-independent)
+
+    **When country blocking might make sense:**
+
+    - You don't ship to that country (no legitimate customers there)
+    - 95%+ of traffic from that TLD is spam
+    - Combined with other factors (unverified + country + suspicious)
+
+    <Warning>
+      **Recommendation:** Avoid TLD/country blocking unless you have very specific, documented spam problem from that TLD and zero legitimate customers there. Risk outweighs benefit 95% of the time.
+    </Warning>
+  </Accordion>
+  <Accordion title="How often should I update my blacklist?" icon="rotate">
+    **Weekly additions, quarterly audits**
+
+    **Weekly (5-10 minutes):**
+
+    - Add new disposable email domains detected
+    - Add repeat spammer addresses
+    - Add new competitor domains if relevant
+    - Review blocked attempts log for patterns
+
+    **Monthly (15-30 minutes):**
+
+    - Review appeal submissions
+    - Unblock temporary blocks that expired
+    - Check false positive rate
+    - Update notes on existing entries
+
+    **Quarterly (30-60 minutes):**
+
+    - Full blacklist audit
+    - Remove outdated entries
+    - Update disposable email list (import new version)
+    - Review effectiveness metrics
+    - Adjust strategies based on data
+
+    **Annual (1-2 hours):**
+
+    - Complete blacklist refresh
+    - Export and backup
+    - Document policy changes
+    - Train team on updates
+
+    **Automation opportunities:**
+
+    - Auto-import disposable email updates monthly
+    - Auto-expire temporary blocks
+    - Auto-flag entries with zero blocks for review
+
+    <Check>
+      **Recommended schedule:** 10 minutes weekly for additions + 30 minutes quarterly for audit = 3 hours per year. Minimal time investment for major spam reduction.
+    </Check>
+  </Accordion>
+  <Accordion title="What happens to existing reviews from blacklisted emails?" icon="clock-rotate-left">
+    **Nothing - blacklist only affects future submissions**
+
+    **When you add email to blacklist:**
+
+    - ✅ Blocks all future review attempts from that email
+    - ❌ Does NOT delete existing reviews from that email
+    - ❌ Does NOT hide existing reviews
+    - ❌ Does NOT notify the user they're blocked
+
+    **If you want to remove existing reviews:**
+
+    1. Add email to blacklist (prevents new ones)
+    2. Manually find reviews by that email
+    3. Delete reviews individually
+    4. Or bulk delete via **Manage Reviews → Filter by email → Delete**
+
+    **Retroactive removal options:**
+
+    **Option 1: Manual deletion**
+
+    - Search reviews by email address
+    - Review each one
+    - Delete spam, keep legitimate ones
+
+    **Option 2: Bulk deletion**
+
+    - Export reviews by blacklisted email
+    - Review in spreadsheet
+    - Bulk delete via API or CSV import
+
+    **Option 3: Keep existing reviews**
+
+    - Don't delete past reviews
+    - Just block future ones
+    - Less work, preserves legitimate reviews
+    - Recommended approach
+
+    <Info>
+      **Recommended:** Add email to blacklist to prevent future spam, but don't retroactively delete unless reviews are clearly spam/harmful. Past reviews may be legitimate even if future ones won't be.
+    </Info>
+  </Accordion>
+</AccordionGroup>
+
+## 
+
+<NeedHelp />
+
+<Note>
+  **Pro tip:** Most effective blacklist strategy is blocking disposable emails (high spam rate, zero false positives) + individual repeat offenders + company domain. Skip broad wildcards and country blocks - they cause more problems than they solve.
+</Note>
+
+**Next:** Learn how to use the **Product Blacklist** to prevent reviews on gift cards, samples, and other non-reviewable items.

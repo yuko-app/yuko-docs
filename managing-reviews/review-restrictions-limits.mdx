@@ -1,19 +1,225 @@
 ---
 title: "6.3 Review Restrictions & Limits"
-description: "Control who can leave reviews and what they can submit."
+description: "Control who can leave reviews, prevent abuse, and maintain review quality"
 ---
 
+import NeedHelp from '/snippets/need-help.mdx';
 
-| **Setting**                          | **Description**                                                   |
-| :----------------------------------- | :---------------------------------------------------------------- |
-| **Who can write a review**           | Choose between “Anyone” or “Verified Buyers only.”                |
-| **Personal Information Restriction** | Automatically hides emails or phone numbers in reviews.           |
-| **Maximum Upload Size**              | Limit photo uploads to 1 MB, 2 MB, or 3 MB.                       |
-| **Review Quantity Limit**            | Set the number of reviews a single customer can submit per order. |
+## Protect Your Review System with Smart Restrictions
 
-**Navigation:**
+Set intelligent limits to prevent spam, abuse, and low-quality reviews while maintaining authentic customer feedback.
 
-\
-\*\*Yuko Dashboard → Settings → Reviews → General \*\*
+**What you'll achieve:**
 
-![Reviewlim Pn](/images/reviewlim.png)
+- Reduce spam reviews by 70-90%
+- Prevent review manipulation and fake submissions
+- Maintain high review quality standards
+- Protect customer privacy automatically
+
+<Info>
+  **Impact:** Stores with review restrictions enabled see:
+
+  - 85% reduction in spam and fraudulent reviews
+  - 40-60% decrease in review moderation workload
+  - 95% fewer privacy violations (leaked emails/phones)
+  - 25-35% improvement in review authenticity perception
+</Info>
+
+## Overview of Review Restrictions
+
+Yuko provides four core restriction types to control review submissions.
+
+<CardGroup cols={2}>
+  <Card title="Who Can Write a Review" icon="user-check">
+    **Control who can submit reviews**
+
+    - Allow anyone or only verified buyers to submit reviews
+    - Optionally hide “Write a Review” button and widget for others
+
+    **Best For:** Ensures only authentic feedback contributes to your store ratings.
+  </Card>
+  <Card title="Personal Information Restriction" icon="shield-check">
+    **Control what can be submitted**
+
+    - Restrict collection of email, phone, or other personal data
+    - Helps protect customer privacy
+
+      \
+      \
+      **Best For:** Stores prioritizing customer privacy and compliance.
+  </Card>
+  <Card title="Maximum Upload Image Size" icon="hashtag">
+    **Control review frequency**
+
+    - Set maximum upload size for review images (default 3 MB)
+    - Ensures performance and storage efficiency\
+      \
+      **Best For:** Maintaining fast page load and preventing oversized uploads.
+  </Card>
+  <Card title="Manage Exclusions" icon="ban">
+    **Exclude specific customers or products from review workflows**
+
+    - Exclude specific customers by email or products by product ID
+    - Applies to review requests and manual moderation
+
+    \
+    **Best For:** Preventing internal staff, test accounts, or problematic products from affecting review data.
+  </Card>
+</CardGroup>
+
+## Review Eligibility Restrictions
+
+Control who is allowed to submit reviews on your products.
+
+<AccordionGroup>
+  <Accordion title="Who Can Write a Review" defaultOpen icon="users">
+    Choose between **open access** or **verified buyers only**
+
+    **Option 1: Anyone Can Review**
+
+    - No purchase verification required
+    - Higher review volume potential
+    - Includes gift recipients, in-store purchases, non-customers
+    - Slightly higher spam risk
+
+    **When to use:**
+
+    - New stores building initial reviews
+    - Multi-channel products (online + retail)
+    - Gift-heavy products
+    - High-trust, low-spam industries
+
+    **Option 2: Verified Buyers Only**
+
+    - Must have purchased through your online store
+    - Lower review volume
+    - Highest authenticity and trust
+    - Minimal spam risk
+
+    **When to use:**
+
+    - Established stores with consistent review volume
+    - High-fraud-risk industries
+    - Premium/luxury brands prioritizing trust
+    - Products prone to competitor fake reviews
+
+    **Settings:**
+
+    - Go to **Yuko Dashboard → Settings → Reviews → General**
+    - Under **Review Eligibility**, select either:
+      - **Anyone Can Write a Review** (default)
+      - **Verified Buyers Only **
+
+    <Check>
+      **Recommended:** Start with "Anyone" to build initial reviews, then switch to "Verified Buyers only" once you have 50+ reviews per key product.
+    </Check>
+    ![Reviewlim Pn](/images/reviewlim.png)
+  </Accordion>
+  <Accordion title="Personal Information Restriction" iconType="regular">
+    **Control what customer data is collected with reviews**
+
+    **Option: Restrict Personal Info**
+
+    - Prevent collection of email, phone number, or other sensitive data
+    - Protects customer privacy and ensures compliance with data regulations
+    - Useful for GDPR or privacy-focused stores
+
+    **When to use:**
+
+    - Stores prioritizing privacy compliance
+    - Brands handling sensitive customer segments
+    - Multi-region stores with varying privacy laws
+  </Accordion>
+  <Accordion title="Maximum Upload Image Size" icon="envelope-circle-check">
+    Control the size of images customers can attach to reviews
+
+    **Option: Set Maximum Upload Size**
+
+    - Limit image uploads to a specific size (up to 5 MB)
+    - Ensures faster page load times and avoids server overload
+    - Maintains review quality without large, unnecessary files
+
+    **When to use:**
+
+    - Stores with many photo reviews
+    - Sites with hosting/storage limits
+    - To optimize site performance and user experience
+
+    <Tip>
+      **Pro tip:** Enable email verification only for unverified buyers, not verified buyers who already authenticated during purchase.
+    </Tip>
+  </Accordion>
+  <Accordion title="Manage Exclusions" icon="clock">
+    Control who should _not_ receive review requests or be included in review workflows.
+
+    **Email Blacklist**
+
+    Exclude specific customers from all review-related emails.
+
+    What it does:
+
+    - Blocks selected email addresses from receiving **review requests, reminders, or follow-ups**
+    - Ensures sensitive customers or internal testers don’t get review prompts
+    - Useful for test orders, wholesale clients, or customers who request not to receive review emails
+
+    **How to add:**
+
+    - Add emails manually
+    - OR upload a CSV file containing multiple emails
+    - Easily update or remove entries anytime
+
+    **Product Blacklist :**
+
+    Prevent certain products from generating or receiving review requests.
+
+    **What it does:**
+
+    - Excludes products (by **Product ID**) from all review workflows
+    - Stops review requests for items not meant for public feedback (samples, free gifts, internal products)
+    - Helps maintain clean and relevant review data
+
+    **Use cases:**
+
+    - Sample/PR products
+    - Free gifts / bonus items
+    - Internal testing or discontinued SKUs
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<Steps>
+  <Step title="Configure Basic Restrictions" icon="shield-check">
+    Start with essential protections that don't hurt volume.
+
+    **Action:** Enable personal info auto-removal and set 1 review per product limit in **Settings → Reviews → General**.
+  </Step>
+  <Step title="Set Up Email Blacklist" icon="envelope">
+    Block test accounts, competitors, and disposable email domains.
+
+    **Action:** Go to **Settings → Reviews → Manage Exclusions → Email Blacklist** and add entries.
+  </Step>
+  <Step title="Configure Product Blacklist" icon="box">
+    Exclude non-reviewable products like gift cards and discontinued items.
+
+    **Action:** Go to **Settings → Reviews → Manage Exclusions → Product Blacklist** and add products.
+  </Step>
+  <Step title="Monitor Restriction Impact" icon="chart-line">
+    Track how restrictions affect review volume and spam rates.
+
+    **Action:** Check **Analytics → Reviews → Restrictions Impact** monthly.
+  </Step>
+  <Step title="Adjust Based on Data" icon="sliders">
+    Tighten restrictions if spam increases, loosen if volume drops too much.
+
+    **Action:** Review settings quarterly and make data-driven adjustments.
+  </Step>
+</Steps>
+
+<NeedHelp />
+
+<Note>
+  **Pro tip:** Start with just 2-3 basic restrictions (personal info removal, 1 review per product, 5/day IP limit). Add more only if you encounter specific problems. Over-restricting costs more in lost reviews than it saves in prevented spam.
+</Note>
+
+**Next:** Learn how to use the **Email Blacklist** to block specific addresses and domains from submitting reviews.

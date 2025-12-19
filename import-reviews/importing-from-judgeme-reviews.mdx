@@ -1,47 +1,949 @@
 ---
-description: "Learn how to import your Judge.me reviews into Yuko quickly and easily."
-title: "5.2 Importing from Judge.me Reviews"
+title: "Importing from Judge.me Reviews"
+description: "Migrate your Judge.me reviews to Yuko with all photos, videos, and verified badges intact"
 ---
 
-### **Navigation**
+import NeedHelp from '/snippets/need-help.mdx';
 
-Yuko Dashboard → \*\*Reviews → Import → \*\*[**Judge.me**](http://Judge.me)
+## Migrate from Judge.me to Yuko Seamlessly
 
-### **Overview**
+Switching from Judge.me to Yuko? Import all your existing reviews, photos, videos, and customer data in minutes. Our Judge.me import preserves your hard-earned social proof while giving you access to Yuko's advanced features and better pricing.
 
-If you’re migrating from [**Judge.me**](http://Judge.me), Yuko allows a quick and seamless import.\
-All product reviews — including ratings, text, and media — are carried over to your Yuko dashboard.
+**What you'll achieve:**
 
-### **Steps to Import**
+- Import all Judge.me reviews automatically
+- Preserve review photos and videos
+- Maintain verified purchase badges
+- Keep all star ratings and review dates
+- Transfer customer testimonials intact
 
-1. Go to **Yuko Dashboard → Reviews → Import**.
-2. Click \*\*Import from \*\*[**Judge.me**](http://Judge.me).
-3. Upload your [**Judge.me**](http://Judge.me)\*\* Export CSV file\*\* (downloadable from your [Judge.me](http://Judge.me) account under _Settings → Export Reviews_).
-4. Review your import summary and confirm.
+<Info>
+  **Impact:** Judge.me import typically takes 10-60 minutes depending on review count and media files. All reviews, photos, and videos transfer automatically.
+</Info>
 
-Yuko will match products automatically based on SKU or Product ID.
+---
 
-### **What Gets Imported**
+## Why Migrate from Judge.me to Yuko
 
-| **Data**                  | **Description**                                      |
-| :------------------------ | :--------------------------------------------------- |
-| **Reviewer Name & Email** | Preserved from your export.                          |
-| **Product SKU / ID**      | Used to match reviews to products in Yuko.           |
-| **Rating & Content**      | Full text and star rating values.                    |
-| **Media**                 | Photos and videos, if URLs are included in your CSV. |
-| **Dates**                 | Original submission dates are retained.              |
+<CardGroup cols={2}>
+  <Card title="Better Features" icon="sparkles">
+    **More capabilities, better UX**
 
-### **Important**
+    - Advanced review workflows
+    - Better widgets and customization
+    - Q&A functionality
+    - Review moderation tools
+    - Improved analytics
 
-- Before importing, ensure your product SKUs match between [Judge.me](http://Judge.me) and Yuko to avoid mismatched assignments.
-- Reviews that can’t be matched automatically will appear in the **Unassigned** section for manual review.
+    **Result:** More control and flexibility than Judge.me
+  </Card>
+  <Card title="Better Pricing" icon="dollar-sign">
+    **Save money, get more**
 
-### **After Import**
+    - More affordable plans
+    - Better value for features
+    - No hidden fees
+    - Scales with your business
 
-Once your import is complete:
+    **Result:** Lower costs while getting better features
+  </Card>
+  <Card title="Complete Data Migration" icon="database">
+    **Everything transfers**
 
-- Imported reviews appear under **Manage Reviews**.
-- You can approve, edit, or reply to them as usual.
-- All imported reviews are automatically tagged with “Imported from [Judge.me](http://Judge.me)” for easy tracking.
+    - All reviews (text, ratings)
+    - Photos and videos
+    - Verified purchase badges
+    - Review dates preserved
+    - Customer information
 
-**Next Step:** Continue to **Managing Reviews** — learn how to moderate, publish, and respond to customer reviews effectively.
+    **Result:** No loss of social proof during switch
+  </Card>
+  <Card title="Easy Setup" icon="rocket">
+    **Quick migration process**
+
+    - CSV export from Judge.me
+    - Upload to Yuko
+    - Automatic product matching
+    - Reviews live in under an hour
+
+    **Result:** Minimal downtime during migration
+  </Card>
+</CardGroup>
+
+---
+
+## Step-by-Step Import Instructions
+
+Yuko Dashboard → **Reviews → Import → Judge.me**
+
+<AccordionGroup>
+  <Accordion title="Step 1: Export Reviews from Judge.me" defaultOpen icon="download">
+    **Download all your review data from Judge.me**
+
+    **Navigation in Judge.me:**
+
+    1. Log in to your Judge.me account
+    2. Click "Settings" in left sidebar
+    3. Scroll to "Export Reviews" section
+    4. Click "Export to CSV"
+
+    **Export options:**
+
+    **What to include:**
+
+    - ✅ All reviews (approved + pending)
+    - ✅ Review photos and videos
+    - ✅ Verified purchase status
+    - ✅ Review dates
+    - ✅ Reviewer information
+    - ✅ Product mappings (SKU or ID)
+
+    **Date range:**
+
+    - All time (recommended)
+    - Or specific date range if you only want recent reviews
+
+    **Export file:**
+
+    - Judge.me generates CSV file
+    - Download to your computer
+    - File typically named: `judgeme-reviews-export.csv`
+    - Size depends on review count (1KB - 50MB)
+
+    **What's included in CSV:**
+
+    ```
+    product_sku, review_title, review_body, rating, reviewer_name,
+    reviewer_email, verified_buyer, review_date, photo_urls, video_urls
+    ```
+
+    <Tip>
+      **Pro tip:** Export all reviews, even pending ones. You can filter in Yuko after import. Better to have everything than discover you're missing reviews later.
+    </Tip>
+  </Accordion>
+  <Accordion title="Step 2: Prepare CSV for Yuko Import" icon="table">
+    **Format Judge.me export for Yuko compatibility**
+
+    **Open CSV file:**
+
+    - Use Excel, Google Sheets, or text editor
+    - Review column headers
+    - Check data formatting
+
+    **Required columns for Yuko:**
+
+    - `product_id` or `product_sku` - Product identifier
+    - `rating` - Star rating (1-5)
+    - `review_text` - Review content
+    - `reviewer_name` - Customer name
+    - `date` - Review submission date (YYYY-MM-DD)
+
+    **Optional but recommended:**
+
+    - `email` - For verified purchase matching
+    - `title` - Review headline
+    - `verified` - true/false
+    - `photo_urls` - Comma-separated photo URLs
+    - `video_url` - Video URL
+
+    **Common formatting issues to fix:**
+
+    **Issue 1: Date format**
+
+    - Judge.me exports: `12/15/2023` or `2023-12-15T10:30:00`
+    - Yuko needs: `2023-12-15`
+    - Fix: Use Excel date formatting or find/replace
+
+    **Issue 2: Product SKU mismatch**
+
+    - Judge.me SKU might not match your current store
+    - Verify SKUs match Yuko product database
+    - Update CSV if needed before import
+
+    **Issue 3: Photo URLs**
+
+    - Ensure photo URLs start with `http://` or `https://`
+    - Multiple photos: Separate with pipe `|` character
+    - Example: `https://cdn.judgeme.com/photo1.jpg|https://cdn.judgeme.com/photo2.jpg`
+
+    **Issue 4: Special characters**
+
+    - Ensure CSV is UTF-8 encoded
+    - Handles international characters, emojis
+    - Save as "CSV UTF-8" in Excel
+
+    **Download Yuko CSV template:**
+
+    - Yuko provides Judge.me import template
+    - Shows exact column names needed
+    - Includes sample data
+    - Available in import wizard
+
+    <Check>
+      **Best practice:** Don't edit review content. Only fix formatting (dates, URLs). Keep reviews exactly as customers wrote them for authenticity.
+    </Check>
+  </Accordion>
+  <Accordion title="Step 3: Upload CSV to Yuko" icon="upload">
+    **Import your prepared CSV file**
+
+    **In Yuko Dashboard:**
+
+    1. Go to Reviews → Import
+
+       ![j.png](/images/j.png)
+    2. Select "Import from Judge.me"
+    3. Click "Upload CSV File"
+
+    ![revie.png](/images/revie.png)
+
+    6. Choose your prepared CSV file
+
+       ![next.png](/images/next.png)
+    6.  Click Continue to Import
+    6. Wait for upload to complete
+    6.  Import will be successful
+  </Accordion>
+  <Accordion title="Step 4: Review Import Summary" icon="clipboard-check">
+    **Verify import results**
+
+    **Import summary example:**
+
+    ```
+    Import Complete!
+    
+    Total reviews processed: 1,000
+    Successfully imported: 987 reviews (98.7%)
+    Failed imports: 13 reviews (1.3%)
+    
+    Product matching:
+    - Matched automatically: 965 reviews (97.8%)
+    - Unmatched (manual assignment): 22 reviews (2.2%)
+    
+    Photos:
+    - Downloaded successfully: 432 photos
+    - Failed downloads: 18 photos (will retry)
+    
+    Verified Purchase badges: 743 reviews (75.3%)
+    
+    Import time: 12 minutes 34 seconds
+    ```
+
+    **Understanding the summary:**
+
+    **Successfully imported:**
+
+    - Reviews now in Yuko database
+    - Visible in Manage Reviews section
+    - Ready to display on site
+
+    **Failed imports:**
+
+    - Reviews that couldn't import
+    - Usually due to missing required fields
+    - Or data format errors
+    - Can manually add these reviews later
+
+    **Unmatched reviews:**
+
+    - Reviews without product match
+    - Product SKU not found in Yuko
+    - Need manual product assignment
+    - Or ignore if discontinued products
+
+    **Photo download failures:**
+
+    - Photos that couldn't download
+    - URL broken or inaccessible
+    - Can retry or manually upload
+    - Review text still imported
+
+    **Next steps:**
+
+    1. Review failed imports (if any)
+    2. Assign unmatched reviews to products
+    3. Retry failed photo downloads
+    4. Verify random sample of reviews
+    5. Enable review display widgets
+  </Accordion>
+</AccordionGroup>
+
+### What Gets Imported from Judge.me
+
+---
+
+**After Import: Next Steps**
+
+<Steps>
+  <Step title="Verify Imported Reviews" icon="circle-check">
+    Check that reviews imported correctly.
+
+    **Quick verification:**
+
+    1. Total count: Should match Judge.me export
+    2. Random sampling: Check 10-20 reviews manually
+    3. Photos: Verify photos displaying
+    4. Verified badges: Ensure showing correctly
+    5. Product assignment: Reviews on correct products
+
+    **Time:** 20-30 minutes
+  </Step>
+  <Step title="Assign Unmatched Reviews" icon="link">
+    Manually assign reviews that couldn't auto-match.
+
+    **If you have unmatched reviews:**
+
+    1. Go to Reviews → Unassigned
+    2. Review list of unmatched reviews
+    3. For each review, select correct product
+    4. Save assignment
+
+    **Common reasons:**
+
+    - Product SKU changed
+    - Product discontinued
+    - Product not yet imported to Yuko
+
+    **Time:** 10-30 minutes (depending on unmatched count)
+  </Step>
+  <Step title="Retry Failed Photo Downloads" icon="image">
+    Re-download photos that failed initially.
+
+    **If photos failed:**
+
+    1. Reviews → Import History → Judge.me Import
+    2. View "Failed Photos" list
+    3. Click "Retry Download" for each
+    4. Or manually upload photos to reviews
+
+    **Why photos fail:**
+
+    - Judge.me URL expired
+    - Network timeout
+    - Photo deleted from Judge.me
+    - File format not supported
+
+    **Time:** 15-30 minutes (if needed)
+  </Step>
+  <Step title="Set Up Review Display Widgets" icon="browser">
+    Install Yuko widgets to show reviews on your store.
+
+    **Required steps:**
+
+    1. Yuko Dashboard → Widgets
+    2. Install Product Review Widget
+    3. Install Star Rating Widget
+    4. Configure widget settings
+    5. Verify reviews displaying on product pages
+
+    → [Widget installation guide](/display-reviews/introduction-to-widgets)
+
+    **Time:** 30-45 minutes
+  </Step>
+  <Step title="Disable Judge.me (After Verification)" icon="power-off">
+    Remove Judge.me once Yuko is working.
+
+    **Before disabling:**
+
+    - ✅ All reviews verified in Yuko
+    - ✅ Photos displaying correctly
+    - ✅ Widgets installed and working
+    - ✅ Test for 1-2 weeks minimum
+
+    **How to disable Judge.me:**
+
+    1. Uninstall Judge.me app from store
+    2. Remove Judge.me widgets from theme
+    3. Cancel Judge.me subscription
+    4. Keep export file as backup
+
+    **Time:** 15 minutes
+
+    <Warning>
+      **Don't rush:** Keep Judge.me active for 1-2 weeks after import to ensure Yuko working perfectly. Monitor conversion rates before fully removing Judge.me.
+    </Warning>
+  </Step>
+</Steps>
+
+---
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Photos not importing from Judge.me" icon="image">
+    **Review photos missing or failing to download**
+
+    **Common causes:**
+
+    - Photo URLs in CSV are broken/expired
+    - Judge.me deleted photos after export
+    - Network timeout during download
+    - File format not supported
+
+    **Solutions:**
+
+    **Solution 1: Retry photo download**
+
+    - In Yuko, go to Import History
+    - Find Judge.me import
+    - Click "Retry Failed Photos"
+    - Yuko attempts re-download
+
+    **Solution 2: Re-export from Judge.me with fresh URLs**
+
+    - Some photo URLs expire quickly
+    - Export reviews from Judge.me again
+    - Get fresh photo URLs
+    - Re-import (Yuko skips duplicate reviews, only imports photos)
+
+    **Solution 3: Manually upload important photos**
+
+    - Identify high-value reviews (5-star, detailed)
+    - Download photos from Judge.me manually
+    - Upload to those reviews in Yuko dashboard
+    - Time-consuming but works for select reviews
+
+    **Solution 4: Contact Judge.me support**
+
+    - If many photos failing
+    - Judge.me may have export issue
+    - Request proper photo export
+    - Or photo CDN URLs
+
+    **Expected photo import rate:**
+
+    - 90-95% success rate normal
+    - 5-10% failure acceptable (often old/deleted photos)
+    - If less than 80% success, investigate
+  </Accordion>
+  <Accordion title="Product matching issues" icon="link-slash">
+    **Reviews not matching to correct products**
+
+    **Why this happens:**
+
+    - Product SKU different in Judge.me vs your store
+    - Product name changed
+    - Product deleted/discontinued
+    - SKU typo in CSV
+
+    **Solutions:**
+
+    **Solution 1: Update CSV product SKUs**
+
+    - Export product list from your store
+    - Compare SKUs with Judge.me CSV
+    - Update Judge.me CSV to match current store SKUs
+    - Re-import (faster than manual assignment)
+
+    **Solution 2: Use product ID instead of SKU**
+
+    - If SKUs changed but IDs stable
+    - In import settings, select "Match by Product ID"
+    - Re-import reviews
+
+    **Solution 3: Manually assign unmatched reviews**
+
+    - Go to Reviews → Unassigned
+    - For each review, select correct product
+    - Save
+    - Works but time-consuming for many reviews
+
+    **Solution 4: Create mapping file**
+
+    - Old SKU → New SKU mapping
+    - Upload to Yuko
+    - Yuko applies mapping during import
+    - Good for large migrations with many SKU changes
+
+    **Prevent this:**
+
+    - Before importing reviews, ensure products imported correctly to Yuko
+    - Verify SKUs match between Judge.me and Yuko
+    - Run test import (20 reviews) to verify matching
+    - Fix issues before full import
+  </Accordion>
+  <Accordion title="Verified badges not showing" icon="badge-check">
+    **Imported reviews missing verified purchase status**
+
+    **Why this happens:**
+
+    - Reviewer email doesn't match order email
+    - Orders not imported to Yuko yet
+    - Verification setting disabled during import
+    - Judge.me verified status not in export
+
+    **Solutions:**
+
+    **Solution 1: Enable re-verification**
+
+    - In import settings, enable "Re-verify against order history"
+    - Re-import reviews (or run verification batch)
+    - Yuko checks each email against orders
+    - Applies verified badge if order found
+
+    **Solution 2: Import orders first**
+
+    - Ensure all orders imported to Yuko
+    - Then re-verify reviews against orders
+    - Verified badges appear
+
+    **Solution 3: Trust Judge.me verified status**
+
+    - If Judge.me CSV has "verified_buyer" column
+    - Import that flag directly
+    - Skip re-verification
+    - Faster but less accurate
+
+    **Expected verified rate:**
+
+    - 60-80% of reviews should be verified
+    - Lower if many guest checkouts
+    - Or customers use different emails
+    - Normal to have some unverified
+  </Accordion>
+  <Accordion title="CSV upload errors" icon="file-excel">
+    **CSV file won't upload or has errors**
+
+    **Common CSV errors:**
+
+    **Error: "Invalid CSV format"**
+
+    - **Cause:** File not saved as CSV
+    - **Fix:** In Excel, "Save As → CSV (Comma delimited)"
+
+    **Error: "Required column missing"**
+
+    - **Cause:** CSV missing product_id, rating, or review_text column
+    - **Fix:** Add missing columns or use Yuko template
+
+    **Error: "Character encoding issue"**
+
+    - **Cause:** Special characters not supported
+    - **Fix:** Save as "CSV UTF-8" (handles international characters)
+
+    **Error: "File too large"**
+
+    - **Cause:** CSV over 50MB
+    - **Fix:** Split into multiple files, import separately
+
+    **Error: "Invalid date format"**
+
+    - **Cause:** Dates not in YYYY-MM-DD format
+    - **Fix:** Reformat dates in Excel before import
+
+    **How to fix CSV errors:**
+
+    1. Download Yuko CSV template
+    2. Copy your data into template
+    3. Ensure all required fields filled
+    4. Save as CSV UTF-8
+    5. Try upload again
+  </Accordion>
+  <Accordion title="Import taking too long" icon="clock">
+    **Import stuck or running for hours**
+
+    **Normal import times:**
+
+    - 100 reviews: 2-5 minutes
+    - 1,000 reviews: 10-20 minutes
+    - 5,000 reviews: 30-60 minutes
+    - 10,000+ reviews: 1-3 hours
+
+    **If import exceeds these times:**
+
+    **Cause 1: Many photos to download**
+
+    - Photos are slowest part of import
+    - 2-5 seconds per photo
+    - 1,000 photos = 30-60 minutes minimum
+
+    **Solution:** Be patient, photo downloads take time
+
+    **Cause 2: Large photo files**
+
+    - High-resolution photos slow download
+    - Judge.me photos sometimes very large
+
+    **Solution:** Let import complete, photos will compress
+
+    **Cause 3: Server resource limits**
+
+    - Hosting server timeout
+    - Memory limits
+
+    **Solution:** Contact support to run import server-side
+
+    **Cause 4: Network issues**
+
+    - Slow internet connection
+    - Interrupted download
+
+    **Solution:** Refresh page to see updated progress
+
+    **Can you cancel and restart?**
+
+    - Yes, can cancel any time
+    - Reviews already imported remain
+    - Re-import resumes where left off (skips duplicates)
+  </Accordion>
+  <Accordion title="Some reviews missing after import" icon="question">
+    **Review count lower than Judge.me export**
+
+    **Why reviews might be missing:**
+
+    **Reason 1: Spam/pending excluded**
+
+    - Import settings: "Skip spam and pending"
+    - Intentionally not imported
+    - Check import settings
+
+    **Reason 2: Duplicate detection**
+
+    - Reviews already in Yuko
+    - Automatically skipped to prevent duplicates
+    - Check import summary for duplicate count
+
+    **Reason 3: Invalid data**
+
+    - Some reviews missing required fields
+    - Failed validation during import
+    - Listed in "Failed imports" section
+
+    **Reason 4: Product not found**
+
+    - Reviews for discontinued products
+    - No matching product in Yuko
+    - Marked as "Unassigned"
+
+    **How to find missing reviews:**
+
+    **Check 1: Import summary**
+
+    - View failed imports list
+    - See reason for failure
+    - Fix and re-import those reviews
+
+    **Check 2: Unassigned reviews**
+
+    - Go to Reviews → Unassigned
+    - See reviews without product match
+    - Manually assign or ignore
+
+    **Check 3: Pending moderation**
+
+    - Go to Reviews → Pending
+    - Pending reviews from Judge.me
+    - Approve to publish
+
+    **Check 4: Compare counts**
+
+    - Judge.me total: Count from export
+    - Yuko total: Imported + Failed + Unassigned + Pending
+    - Should add up to Judge.me total
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Common Questions
+
+<AccordionGroup>
+  <Accordion title="Do I need to keep Judge.me subscription during import?" icon="credit-card">
+    **Yes - keep Judge.me active until migration complete**
+
+    **Why keep Judge.me active:**
+
+    - Need access to export reviews
+    - Photo URLs must remain accessible during download
+    - Can re-export if issues with first export
+    - Backup in case import fails
+
+    **Recommended timeline:**
+
+    **Day 1: Export and import**
+
+    - Export reviews from Judge.me
+    - Import to Yuko
+    - Verify import successful
+
+    **Week 1-2: Testing**
+
+    - Keep both systems active
+    - Test Yuko thoroughly
+    - Monitor for issues
+    - Judge.me as backup
+
+    **Week 3: Disable Judge.me**
+
+    - Once confident Yuko working perfectly
+    - Uninstall Judge.me app
+    - Cancel Judge.me subscription
+    - Keep export file as backup
+
+    **Can you cancel Judge.me immediately?**
+
+    - Technically yes, after export
+    - **Not recommended** - keep as backup
+    - Photos may break if Judge.me deleted too soon
+    - Better safe than sorry
+
+    <Tip>
+      **Cost-saving tip:** Most Judge.me plans are monthly. Do export, import, and verification within one billing cycle. Cancel before next month to save cost while keeping backup active during migration.
+    </Tip>
+  </Accordion>
+  <Accordion title="Will Judge.me reviews still show on my site after import?" icon="eye">
+    **Yes - until you remove Judge.me widgets**
+
+    **During migration:**
+
+    - Judge.me reviews: Still displayed (Judge.me widgets)
+    - Yuko reviews: Also displayed (Yuko widgets)
+    - Both visible simultaneously (can be confusing)
+
+    **After migration:**
+
+    - Remove Judge.me widgets from theme
+    - Only Yuko widgets remain
+    - Reviews now from Yuko only
+
+    **Recommended approach:**
+
+    **Phase 1: Import to Yuko**
+
+    - Import reviews
+    - Install Yuko widgets (hidden or test mode)
+    - Verify Yuko reviews displaying correctly
+    - Judge.me still live on site
+
+    **Phase 2: Test side-by-side**
+
+    - Display both Judge.me and Yuko widgets
+    - Compare side-by-side
+    - Verify Yuko shows all reviews
+    - Test for 1-2 days
+
+    **Phase 3: Switch to Yuko only**
+
+    - Remove Judge.me widgets from theme
+    - Activate Yuko widgets fully
+    - Judge.me reviews no longer visible
+    - Only Yuko reviews show
+
+    **Phase 4: Uninstall Judge.me**
+
+    - Uninstall Judge.me app
+    - Cancel subscription
+    - Complete migration
+
+    **Can reviews be on both platforms?**
+
+    - Yes, during transition
+    - Not recommended long-term (confusing for customers)
+    - Choose one system for display
+  </Accordion>
+  <Accordion title="Can I import reviews from Judge.me AND other sources?" icon="layer-group">
+    **Yes - combine reviews from multiple sources**
+
+    **Common scenario:**
+
+    - Judge.me reviews (most recent)
+    - WooCommerce reviews (before Judge.me)
+    - Want both in Yuko
+
+    **How to import from multiple sources:**
+
+    **Step 1: Import from each source separately**
+
+    - Import WooCommerce reviews first
+    - Then import Judge.me reviews
+    - Yuko combines both automatically
+
+    **Step 2: Duplicate detection**
+
+    - Yuko checks for duplicates across imports
+    - Same review won't appear twice
+    - Matched by: Product + Reviewer email + Date
+
+    **Step 3: Verify combined data**
+
+    - Check total review count
+    - Ensure no duplicates showing
+    - Verify all sources represented
+
+    **Example:**
+
+    - WooCommerce: 500 reviews (2020-2022)
+    - Judge.me: 1,000 reviews (2022-2024)
+    - Yuko total: 1,500 reviews (combined)
+    - 0 duplicates (different time periods)
+
+    **Can I combine Judge.me + Loox + Yotpo?**
+
+    - Yes, import from each separately
+    - Yuko de-duplicates automatically
+    - All reviews in one system
+
+    **Order of imports:**
+
+    - Doesn't matter which you import first
+    - Recommend: Oldest platform first, newest last
+    - Easier to track what came from where
+  </Accordion>
+  <Accordion title="What happens to my Judge.me reviews after I cancel?" icon="trash">
+    **Your reviews remain in Yuko - Judge.me data is separate**
+
+    **After canceling Judge.me:**
+
+    **In Judge.me:**
+
+    - Your Judge.me account deactivated
+    - Reviews still in Judge.me database (they keep data)
+    - No longer accessible to you
+    - Can't be displayed on your site (widgets removed)
+
+    **In Yuko:**
+
+    - Reviews you imported remain completely intact
+    - Not affected by Judge.me cancellation
+    - Independent copy in Yuko database
+    - Continue displaying normally
+
+    **Think of import as copying, not moving:**
+
+    - Import copies reviews from Judge.me to Yuko
+    - Original reviews remain in Judge.me
+    - Your copy remains in Yuko
+    - Two separate, independent systems
+
+    **Can you get Judge.me reviews back after canceling?**
+
+    - Contact Judge.me support
+    - They may provide export of your data
+    - Or reactivate account temporarily
+    - Better to export before canceling
+
+    **What if you need Judge.me reviews later?**
+
+    - Keep Judge.me CSV export file forever
+    - Backup of all review data
+    - Can import elsewhere if needed
+    - Or reference for historical data
+
+    <Warning>
+      **Before canceling Judge.me:** Export and backup your reviews! Keep the CSV file permanently. Once you cancel Judge.me, you lose dashboard access and can't export reviews later.
+    </Warning>
+  </Accordion>
+  <Accordion title="Can I re-import if I made mistakes?" icon="arrow-rotate-right">
+    **Yes - delete and re-import Judge.me reviews**
+
+    **When to re-import:**
+
+    - Product matching was wrong
+    - Forgot to include photos
+    - Wrong import settings
+    - Want to update data
+
+    **How to re-import:**
+
+    **Step 1: Delete previous Judge.me import**
+
+    1. Go to Reviews → Manage Reviews
+    2. Filter by "Source: Judge.me"
+    3. Select all Judge.me reviews
+    4. Bulk delete
+    5. Confirm deletion
+
+    **Step 2: Fix issues**
+
+    - Update CSV (fix SKUs, dates, etc.)
+    - Adjust import settings
+    - Re-export from Judge.me if needed
+
+    **Step 3: Run import again**
+
+    - Upload updated CSV
+    - Configure settings correctly
+    - Import fresh
+
+    **What gets deleted:**
+
+    - Only reviews from Judge.me import
+    - Other reviews (WooCommerce, manual, new) untouched
+    - Store owner replies to Judge.me reviews also deleted
+    - Any edits you made to Judge.me reviews lost
+
+    **Best practices:**
+
+    - Re-import sooner rather than later
+    - Before customers see reviews
+    - Before you invest time replying/editing
+    - Test first import with small sample (100 reviews)
+  </Accordion>
+  <Accordion title="How do I know import was successful?" icon="circle-check">
+    **Verification checklist after Judge.me import**
+
+    **Quick checks:**
+
+    **1. Review count matches**
+
+    - Count reviews in Judge.me: Export file line count
+    - Count reviews in Yuko: Dashboard total
+    - Should be close (within 1-2%)
+    - Small differences normal (spam/duplicates excluded)
+
+    **2. Photos displaying**
+
+    - Check 10-20 random reviews with photos
+    - Verify photos show in Yuko
+    - Click to enlarge (lightbox working)
+    - Photos load quickly
+
+    **3. Product matching**
+
+    - Check random product pages
+    - Reviews appearing on correct products
+    - Review counts accurate on product pages
+    - No unassigned reviews (or very few)
+
+    **4. Verified badges**
+
+    - Spot-check verified reviews
+    - "Verified Purchase" badge showing
+    - Matches expected verification rate (60-80%)
+
+    **5. Dates preserved**
+
+    - Check review dates
+    - Should show original submission dates
+    - Not all "today"
+    - Spread over months/years
+
+    **6. Sample review content**
+
+    - Compare 5-10 reviews between Judge.me export and Yuko
+    - Text matches exactly
+    - Ratings correct
+    - Reviewer names accurate
+
+    **If all checks pass:**
+
+    - ✅ Import successful
+    - ✅ Safe to proceed with setup
+    - ✅ Can remove Judge.me when ready
+
+    **If any checks fail:**
+
+    - ❌ Investigate issue
+    - ❌ Fix and consider re-import
+    - ❌ Contact Yuko support if needed
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Need Help?
+
+<NeedHelp />
+
+<Note>
+  **Pro tip:** Keep your Judge.me CSV export file permanently as a backup. Even after successful import to Yuko, this file is your insurance policy and historical record of all customer reviews.
+</Note>

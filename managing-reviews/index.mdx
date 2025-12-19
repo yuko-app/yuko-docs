@@ -1,51 +1,681 @@
 ---
-description: "Easily manage, edit, approve, and organize all customer reviews from a single dashboard."
-title: "6. Managing Reviews"
+title: "Managing Customer Reviews"
+description: "Control what reviews appear on your store with moderation, approval, and organization tools"
 ---
 
-Keep full control over every review your customers submit.\
-In Yuko, you can approve, reject, reply, or tag reviews — all from one clean dashboard.
+import NeedHelp from '/snippets/need-help.mdx';
 
-### **Navigation**
+## Stay in Control of Your Review Content
 
-Yuko Dashboard → \*\*Reviews → Manage Reviews \*\*
+Your reviews shape how shoppers perceive your store.\
+Yuko’s Review Management Dashboard gives you all the tools you need to moderate, organize, and maintain a clean, trustworthy review section.
 
-![MANAGE Pn](/images/MANAGE.png)
+With clear statuses, powerful filters, and quick actions, you can keep your reviews accurate, authentic, and aligned with your brand.
 
-### **Overview**
+### **What You Can Do**
 
- The **Manage Reviews** page displays all customer reviews received through your store, whether collected via email requests or on-site widgets.
+- Approve or reject reviews before they appear on your store
+- Flag or remove spam and inappropriate submissions
+- Reply directly to customers to build trust and transparency
+- Filter reviews by status, replies, and favorites for easier management
+- Maintain a consistent, high-quality review presence across your store
 
-From here, you can view, filter, approve, or remove reviews — all in one place.
+<Info>
+  **Impact:** Stores that actively moderate and reply to reviews see 20-30% higher conversion rates and better customer trust scores
+</Info>
 
-### **Review Status**
+---
 
-| **Status**   | **Description**                                                              |
-| :----------- | :--------------------------------------------------------------------------- |
-| **Approved** | Reviews that have been published and are visible on your storefront widgets. |
-| **Pending**  | Reviews awaiting moderation or manual approval before going live.            |
-| **Trash**    | Reviews that have been removed but can still be restored if needed.          |
-| **Spam**     | Reviews flagged as spam or inappropriate — hidden from public display.       |
+## Why Active Review Management Matters
 
-### **Review Filters**
+<CardGroup cols={2}>
+  <Card title="Maintain Quality Standards" icon="shield-check">
+    **Filter out low-quality content**
 
-Use filters at the top of the page to quickly sort reviews based on their status or interaction type.
+    - Approve genuine reviews
+    - Reject low-quality or irrelevant content
+    - Remove spam or fake reviews
+    - Hide reviews with inappropriate language
+    - Ensure published reviews add value\
+      \
+      **Result:** Higher quality reviews = higher conversion rates
+  </Card>
+  <Card title="Engage with Customers" icon="comments">
+    **Show you care about feedback**
 
-| **Filter**     | **Description**                                          |
-| :------------- | :------------------------------------------------------- |
-| **All**        | Displays all reviews regardless of their status.         |
-| **Approved**   | Shows only published reviews.                            |
-| **Pending**    | Lists reviews waiting for moderation or action.          |
-| **Trash**      | Displays reviews moved to Trash.                         |
-| **Spam**       | Displays flagged spam reviews.                           |
-| **With Reply** | Shows reviews that have received a reply from your team. |
-| **No Reply**   | Shows reviews awaiting a response.                       |
+    - Reply to positive reviews (thank customers)
+    - Address negative reviews (resolve issues)
+    - Answer questions in reviews
+    - Show responsiveness
+    - Build relationships
 
-### **Available Actions**
+    **Result:** 35% more customers leave reviews when they see store responses
+  </Card>
+  <Card title="Prevent Reputation Damage" icon="ban">
+    **Stop harmful content early**
 
-| **Action**  | **Description**                                                 |
-| :---------- | :-------------------------------------------------------------- |
-| **Approve** | Publishes the review and marks it as visible on-site.           |
-| **Pending** | Moves the review back to moderation for further review.         |
-| **Trash**   | Deletes the review from the active list but allows restoration. |
-| **Spam**    | Flags the review as spam and hides it from display.             |
+    - Flag suspicious or spammy content
+    - Remove competitor attacks
+    - Hide offensive or harmful language
+    - Prevent fake reviews from appearing\
+      \
+      **Result:** Clean review section maintains customer trust
+  </Card>
+  <Card title="Gain Business Insights" icon="chart-line">
+    **Learn from customer feedback**
+
+    - Identify repeated customer issues
+    - Spot product quality trends
+    - Discover improvement opportunities
+    - Track sentiment over time\
+      \
+      **Result:** Better products and customer satisfaction
+  </Card>
+</CardGroup>
+
+---
+
+## Review Management Dashboard
+
+Yuko Dashboard → **Reviews → Manage Reviews**
+
+![manage.png](/images/manage.png)
+
+### Review Status Types
+
+Every review has a status that determines whether it's visible to customers:
+
+<Tabs>
+  <Tab title=" Published">
+    **Reviews visible on your store**
+
+    **What this means:**
+
+    - Shown on product pages and review widgets
+    - Counted toward average ratings
+    - Included in search-indexed content
+    - Fully visible to shoppers
+
+    **When to publish:**
+
+    - Helpful, constructive feedback
+    - Verified or genuine reviews
+    - Clear and appropriate language
+    - Reviews that add value to your store
+
+    Publishing quality reviews strengthens trust and increases conversions.
+
+    **Approved reviews are your social proof** - they drive sales
+  </Tab>
+  <Tab title="Pending ">
+    **Reviews waiting for your approval**
+
+    **What this means:**
+
+    - Not yet visible to customers
+    - Do not affect average rating
+    - Require a manual action from you
+    - Can be published or moved to spam/trash
+
+    **How reviews become pending:**
+
+    - Auto-publish disabled (all reviews pending)
+    - Low star ratings (1-3 stars if auto-publish only 4-5)
+    - First-time reviewers (trust verification)
+    - Flagged by spam filters (needs manual check)
+    - Contains certain keywords (custom moderation rules)
+
+    **What to do with pending reviews:**
+
+    - Review content for quality and appropriateness
+    - Approve if legitimate
+    - Reject if spam or inappropriate
+    - Reply before publishing (address concerns)
+
+    **Response time matters** - approve within 24 hours for best results
+  </Tab>
+  <Tab title="Spam">
+    **Reviews marked as spam or fake**
+
+    **What this means:**
+
+    - Hidden from all customer-facing areas
+    - Not counted in ratings
+    - Stored in the Spam folder
+    - Can be restored if incorrectly flagged
+
+    **Common spam indicators:**
+
+    - Irrelevant, nonsensical, or promotional content
+    - Attempts to post links or advertisements
+    - Duplicate submissions
+    - Reviews clearly not linked to real customers
+
+    Use the Spam folder to keep harmful or misleading content out of your store.
+
+    **Don't delete immediately** - review spam folder occasionally for false positives
+  </Tab>
+  <Tab title="Trash ">
+    **Reviews removed but recoverable**
+
+    **What this means:**
+
+    - Not visible anywhere
+    - Stored in the Trash section
+    - Can be restored
+    - Permanently deleted after 30 days
+
+    **Why move to trash:**
+
+    - Customer requested deletion
+    - Duplicate reviews
+    - Review for wrong product
+    - Outdated information
+    - Policy violation
+
+    **Trash vs Spam:**
+
+    - Trash: Legitimate reviews you don't want displayed
+    - Spam: Fake/malicious reviews
+
+    **Recovery option:**
+
+    - Trash allows 30-day recovery period
+    - Restore if deleted by mistake
+    - Permanent after 30 days
+
+    **Best practice:** Use trash for legitimate deletions, spam for fake reviews
+  </Tab>
+</Tabs>
+
+---
+
+## Review Filters and Search
+
+Find specific reviews quickly with advanced filtering:
+
+<AccordionGroup>
+  <Accordion title="Search by Review Status" defaultOpen="false" icon="filter">
+    **View reviews by approval status**
+
+    **All Reviews:**
+
+    - Shows every review regardless of status
+    - Includes Approved + Pending + Spam + Trash
+    - Displays total review count
+    - Default dashboard view
+
+    **Approved Only:**
+
+    - Reviews currently live on your store
+    - Visible to customers on product pages
+    - Count toward average rating
+    - Best for checking review quality
+
+    **Pending Only:**
+
+    - Reviews awaiting your action
+    - Not yet visible to customers
+    - Approve or reject required
+    - Check daily for new submissions
+
+    **Spam Only:**
+
+    - Reviews flagged as spam or fake
+    - Review for false positives
+    - Permanently delete if required
+    - Check weekly
+
+    **Trash Only:**
+
+    - Reviews intentionally removed
+    - Recover within 30 days
+    - Permanently delete when needed
+    - Helpful for cleanup
+
+    **Daily workflow:**
+
+    - Filter “Pending” → moderate new reviews
+    - Filter “Approved” → quick quality check
+
+    <Tip>
+      **Daily workflow:** Filter by "Pending" each morning, moderate new reviews, then check "Approved" for quality.
+    </Tip>
+  </Accordion>
+  <Accordion title="Search by Star Rating" icon="star">
+    **View reviews by rating level**
+
+    **5-Star Reviews:**
+
+    - Your best social proof
+    - Feature in marketing
+    - Thank these customers
+    - Share on social media
+
+    **4-Star Reviews:**
+
+    - Generally positive
+    - May have minor concerns
+    - Address feedback
+    - Still valuable proof
+
+    **3-Star Reviews:**
+
+    - Mixed feedback
+    - Identify improvements
+    - Reply to concerns
+    - Opportunity to win back
+
+    **1-2 Star Reviews:**
+
+    - Negative feedback
+    - URGENT: Reply quickly
+    - Resolve issues
+    - Prevent reputation damage
+
+    **Strategic uses:**
+
+    - Export 5-star reviews for testimonials
+    - Monitor 1-2 star trends (product issues?)
+    - Address 3-4 star concerns (improvements)
+  </Accordion>
+  <Accordion title="Search by From Date" icon="box">
+    **Custom date range:**
+
+    - Filter reviews from a specific start date
+    - Monitor feedback after a product launch
+    - Analyze review impact during marketing campaigns
+    - Compare periods for product improvements
+
+    **Why use “From Date” filters:**
+
+    - Focus on recent customer feedback
+    - Track improvement over time
+    - Measure impact of changes or campaigns
+    - Identify actionable trends and insights
+  </Accordion>
+  <Accordion title="Search by To Date" icon="calendar">
+    **Custom end date:**
+
+    - Set any end date for a specific period
+    - Filter reviews before product updates or campaigns
+    - Analyze performance for marketing initiatives
+    - Compare trends across time periods
+
+    **Why use end date filters:**
+
+    - Track performance over specific periods
+    - Measure impact of campaigns or product changes
+    - Identify seasonal or long-term trends
+    - Focus on actionable insights
+  </Accordion>
+  <Accordion title="Filter by All">
+    - Shows every review regardless of status
+    - Published + Pending + Trash + Spam
+    - Total count visible
+    - Default view
+  </Accordion>
+  <Accordion title="Filer by Published">
+    - Reviews currently live on site
+    - What customers see
+    - Check for quality
+    - Most commonly used filter
+  </Accordion>
+  <Accordion title="Filter by Pending">
+    - Reviews awaiting your action
+    - Action required filter
+    - Check daily
+    - Approve or reject
+  </Accordion>
+  <Accordion title="Filter by Trash">
+    - Deleted reviews
+    - Recover if needed
+    - Empty trash periodically
+    - Daily workflow: Filter by "Pending" each morning, moderate new reviews, then check "Published" for quality
+  </Accordion>
+  <Accordion title="Filter by Spam">
+    - Flagged spam reviews
+    - Review false positives
+    - Delete permanently
+    - Check weekly
+  </Accordion>
+  <Accordion title="Filter by With Reply:">
+    - Reviews you have already responded to
+    - Check for customer follow-up
+    - Verify reply quality
+    - Engagement complete
+  </Accordion>
+  <Accordion title="Filter by No Reply">
+    - Reviews awaiting your response
+    - Requires attention, prioritize negative reviews
+    - Thank positive reviewers
+    - Respond within 24–48 hours
+  </Accordion>
+  <Accordion title="Filter by Favorites">
+    - Reviews you’ve marked as favorites
+    - Quick access to important feedback
+    - Highlight reviews for marketing or internal reference
+    - Monitor top-quality content easily
+  </Accordion>
+  <Accordion title="Filter by Verified Reviews">
+    - Reviews from genuine, confirmed customers
+    - Helps identify high-trust feedback
+    - Best for showcasing authentic experiences
+    - Useful when exporting or displaying verified-only reviews on widgets
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Review Moderation Strategies
+
+<Tabs>
+  <Tab title="Auto-Publish New Reviews">
+    **Review and approve each review individually**
+
+    Choose whether new reviews should appear on your store immediately or stay in moderation until you approve them.
+
+    **When enabled:**
+
+    - All new reviews are published automatically
+    - Updates storefront instantly with fresh reviews
+    - Good for stores with high review volume
+
+    **When disabled:**
+
+    - New reviews stay Unpublished
+    - You approve each review manually
+    - Better for strict moderation
+
+    > Auto-publish applies only to _future_ reviews; existing reviews remain unchanged.
+  </Tab>
+  <Tab title="Profanity Filter">
+    **Replace banned words with  asterisks \*:**
+
+    - Masks offensive words
+    - Review stays published
+    - Keeps content family-friendly
+
+    **Hide review containing banned words:**
+
+    - Marks review as Unpublished
+    - Hidden from storefront
+    - Suitable for brands with strict guidelines
+  </Tab>
+  <Tab title="Spam Filter">
+    **When enabled:**
+
+    - Automatically flags suspicious reviews
+    - Prevents spam from appearing publicly
+    - You can review and restore if needed
+
+    **Why use it:**
+
+    - Protects store credibility
+    - Reduces bot or fake reviews
+    - Keeps review section clean
+  </Tab>
+</Tabs>
+
+---
+
+## Best Practices for Review Management
+
+<AccordionGroup>
+  <Accordion title="Respond to Reviews Quickly" defaultOpen icon="clock">
+    **Speed matters for reputation management**
+
+    **Response time impact:**
+
+    - Within 24 hours: 70% positive perception
+    - Within 48 hours: 50% positive perception
+    - Within 1 week: 30% positive perception
+    - After 1 week: Minimal impact
+
+    **Prioritize by urgency:**
+
+    **Urgent (respond within 4 hours):**
+
+    - 1-star reviews with specific complaints
+    - Reviews mentioning legal issues
+    - Reviews with safety concerns
+    - Reviews going viral (social media shares)
+
+    **High priority (within 24 hours):**
+
+    - 2-3 star reviews (address concerns)
+    - Reviews asking questions
+    - First-time reviewer (encourage more)
+    - Verified purchase negative feedback
+
+    **Medium priority (within 48 hours):**
+
+    - 4-star reviews (thank + address minor concern)
+    - 5-star reviews without photos
+    - Reviews mentioning competitors
+
+    **Low priority (within 1 week):**
+
+    - 5-star reviews with photos (thank customer)
+    - Generic positive reviews
+    - Brief "Great!" reviews
+
+    <Check>
+      **Set up alerts:** Get email notification for 1-2 star reviews so you can respond immediately before reputation damage.
+    </Check>
+  </Accordion>
+  <Accordion title="Don't Delete Negative Reviews (Usually)" icon="shield-exclamation">
+    **Authenticity builds more trust than perfection**
+
+    **Why keep negative reviews:**
+
+    - **Authenticity:** All 5-star reviews look fake
+    - **SEO value:** Review variety ranks better
+    - **Learning:** Identify improvement opportunities
+    - **Trust:** Customers know no product is perfect
+    - **Legal:** Some regions prohibit selective deletion
+
+    **What % of negative reviews is normal:**
+
+    - 5-10% = Excellent (realistic, trusted)
+    - 10-20% = Good (authentic, competitive)
+    - 20-30% = Acceptable (work on quality)
+    - 30%+ = Problem (address quality issues)
+
+    **When you CAN delete:**
+
+    - ✅ Spam or fake reviews
+    - ✅ Offensive/profane language
+    - ✅ Competitor sabotage
+    - ✅ Review for wrong product
+    - ✅ Personal information (privacy)
+    - ✅ Violates review policies
+
+    **When you SHOULD NOT delete:**
+
+    - ❌ Just because it's negative
+    - ❌ Customer didn't like product (valid opinion)
+    - ❌ Unfair but legitimate criticism
+    - ❌ 3-star "meh" reviews
+    - ❌ Constructive feedback
+
+    **Better than deleting:**
+
+    - Reply professionally
+    - Address the concern
+    - Offer solution privately
+    - Show you care
+    - Other customers see your response
+
+    **Real example:**
+
+    - Negative review: "Product broke after 2 weeks"
+    - Bad response: _Delete review_
+    - Good response: "We're sorry to hear this! This isn't typical. Please email [support@store.com](mailto:support@store.com) with your order # and we'll send a replacement immediately. We stand behind our quality."
+
+    **Result:** Other customers see you care and fix problems = higher trust
+  </Accordion>
+  <Accordion title="Use Review Insights for Business Decisions" icon="lightbulb">
+    **Your reviews are free market research**
+
+    **Product development:**
+
+    - What features do customers want? (Read 3-4 star reviews)
+    - What's missing? ("I wish it had...")
+    - What's confusing? (Common questions)
+    - What should you improve? (Recurring complaints)
+
+    **Example:** 20 reviews mention "wish it came in blue" → Launch blue color variant
+
+    **Marketing insights:**
+
+    - What words do customers use? (Use in copy)
+    - What benefits matter most? (Feature in ads)
+    - What objections do they have? (Address in description)
+    - What surprises them? ("Better than expected")
+
+    **Example:** Reviews often say "surprisingly lightweight" → Add "Ultra-lightweight design" to product title
+
+    **Customer service improvements:**
+
+    - Where do customers get confused? (Improve instructions)
+    - What questions are asked repeatedly? (Add FAQ)
+    - What part of process frustrates? (Streamline checkout)
+
+    **Example:** 10 reviews ask "How to clean?" → Add cleaning instructions to product page
+
+    **Competitive intelligence:**
+
+    - How do customers compare to competitors? (Your advantages)
+    - What do they switch from? (Messaging opportunity)
+    - Where do you fall short? (Improvement areas)
+
+    **Monthly review analysis routine:**
+
+    1. Filter reviews from last 30 days
+    2. Read ALL 1-3 star reviews (identify patterns)
+    3. Note 5 most common themes
+    4. Create action plan to address
+    5. Track improvement next month
+
+    <Tip>
+      **Pro tip:** Export all reviews to spreadsheet monthly. Use word cloud tool to visualize most common words. Spot trends visually.
+    </Tip>
+  </Accordion>
+  <Accordion title="Encourage Reviewers to Add Photos" icon="camera">
+    **Photo reviews convert 3x better than text-only**
+
+    **If customer submits text-only review:**
+
+    - Reply thanking them
+    - Ask if they'd add photos
+    - Offer incentive (10% off next order)
+    - Make it easy (email link to add photos)
+
+    **Reply template:** "Thank you so much for your review, [Name]! We'd love to see a photo of you using [product]. Would you be willing to add a photo? As our thank you, here's 10% off your next order: [code]. You can add photos here: [link]"
+
+    **Success rate:**
+
+    - 15-25% of customers add photos when asked
+    - Works best within 3 days of review submission
+    - Highest success with 5-star reviewers
+
+    **Why this works:**
+
+    - Customers already engaged (just left review)
+    - Incentive feels like reward, not bribe
+    - Easy to do (direct link)
+    - Flatters customer (you want to feature them)
+
+    **Result:** More photo reviews without changing review request emails
+  </Accordion>
+  <Accordion title="Feature Best Reviews in Marketing" icon="star">
+    **Turn reviews into marketing content**
+
+    **Where to use reviews:**
+
+    **Email marketing:**
+
+    - Feature 5-star review in newsletter
+    - Use customer quote as header
+    - Link to product page
+    - "See what Sarah says about [product]"
+
+    **Social media:**
+
+    - Screenshot review + product photo
+    - Post as testimonial
+    - Tag customer (if public profile)
+    - Ask permission first
+
+    **Product pages:**
+
+    - Pin best reviews to top
+    - Feature review in hero section
+    - Use quote as product benefit
+    - Before/after photos from reviews
+
+    **Ads:**
+
+    - Use review quotes in ad copy
+    - "Rated 5 stars by 1,000+ customers"
+    - Real customer photos in ads
+    - Testimonial-style ads
+
+    **Packaging/Inserts:**
+
+    - Print best quotes on packaging
+    - Include review cards in shipments
+    - "Join 5,000+ happy customers"
+
+    **How to select reviews to feature:**
+
+    - 5-star reviews with photos
+    - Detailed, specific feedback
+    - Mentions specific benefits
+    - Enthusiastic tone
+    - Recent (less than 6 months)
+
+    **Get permission:**
+
+    - Email customer asking to feature review
+    - "We'd love to share your review! Okay if we post on social media?"
+    - Most say yes (flattered)
+    - Offer small thank you (discount code)
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<Steps>
+  <Step title="Set Up Moderation Workflow" icon="list-check">
+    Choose your review approval process.
+
+    **Time:** 10 minutes → [Configure auto-publishing](/managing-reviews/auto-publishing-reviews) → [Set up moderation rules](/managing-reviews/review-moderation)
+  </Step>
+  <Step title="Create Review Response Templates" icon="message">
+    Prepare templates for common review types.
+
+    **Time:** 20 minutes → [Reply guidelines and templates](/managing-reviews/replying-to-reviews)
+  </Step>
+  <Step title="Set Up Email Notifications" icon="bell">
+    Get alerted when new reviews arrive.
+
+    **Time:** 5 minutes → [Configure admin notifications](/review-settings/admin-notifications)
+  </Step>
+  <Step title="Configure Spam Filters" icon="shield">
+    Protect against fake and spam reviews.
+
+    **Time:** 15 minutes → [Email blacklist setup](/managing-reviews/email-blacklist) → [Review restrictions](/managing-reviews/review-restrictions-limits)
+  </Step>
+</Steps>
+
+---
+
+## Need Help?
+
+<NeedHelp />
+
+<Note>
+  **Pro tip:** Spend your first 30 days manually moderating every review to understand your customers and establish quality standards. Then switch to auto-publish with filters based on what you learned.
+</Note>

@@ -3,21 +3,81 @@ description: "Learn how to add star ratings to your product pages using Yuko’s
 title: "4.4 Star Rating Widget"
 ---
 
+The Star Rating Widget displays your product’s average rating and total review count. It usually appears under the product title or price, and on collection pages. This small visual cue helps customers quickly understand product quality, increasing click-through rates and overall trust.
+
 ### **Navigation**
 
-Yuko Dashboard → **Reviews → Widgets → Star Rating**\
+Yuko Dashboard → **Reviews → Widgets → Star Rating**
+
+![Star Pn](/images/star.png)
+
 \
-**Overview**
+\
+**How the Star Rating Widget Works**
 
-The **Star Rating Widget** shows your product’s average rating and review count, usually displayed under the product title or price.
+The widget calculates the product’s average rating based on approved reviews and displays stars and review counts according to your chosen settings.
 
-This quick visual indicator improves click-throughs and buyer trust.
+You can choose to display:
 
-### **Options**
+- Stars only
+- Review count only
+- Stars + review count
 
-| **Setting**              | **Description**                                                |
-| :----------------------- | :------------------------------------------------------------- |
-| **Show / Hide Elements** | Choose whether to display stars, count, or both.               |
-| **Empty Star Display**   | Keep widths consistent across products by showing empty stars. |
-| **Placeholders**         | count = review count, rating = average rating.                 |
-| **Style**                | Match color, size, and spacing with your product card design.  |
+You can also enable **empty stars** so that every product’s badge stays the same width, even for products with fewer reviews.
+
+**Dynamic Text Placeholders**\
+You can customize the text next to the stars using placeholders:
+
+| Placeholder  | Description                             |
+| :----------- | :-------------------------------------- |
+| `{{count}}`  | Total number of reviews                 |
+| `{{rating}}` | Average rating (rounded to one decimal) |
+
+Example formats:
+
+- “Rated {rating} based on {count} reviews”
+- “{count} customers rated this {rating} stars”
+
+---
+
+## Settings
+
+The Star Rating Widget is fully customizable in the Yuko Dashboard.
+
+### 1. General / Text Settings
+
+| Option               | Description                                                                       |
+| :------------------- | :-------------------------------------------------------------------------------- |
+| **Text**             | Customize the text content using placeholders                                     |
+| **Text (Singular)**  | Customize text for singular review scenarios                                      |
+| **Show Q&A Count**   | Enable or disable the Q&A count display                                           |
+| **Hide Text**        | Hide all text content next to the stars                                           |
+| **Hide Stars**       | Hide all star icons                                                               |
+| **Show Empty Stars** | Enable empty stars to maintain consistent badge width; check store to see changes |
+
+---
+
+### 2. Style Settings
+
+| Option                | Description                                 |
+| :-------------------- | :------------------------------------------ |
+| **Widget Alignment**  | Align the widget (Left, Center, Right)      |
+| **Icon Position**     | Position of the star icons relative to text |
+| **Icon Alignment**    | Alignment of the icons themselves           |
+| **Text Color**        | Customize the color of the text             |
+| **Rating Icon Color** | Customize the star color                    |
+
+> All style changes can be **previewed live in Yuko** before saving.
+
+---
+
+### 3. Advanced Customization (CSS)
+
+For additional control over spacing, alignment, or visibility, you can add custom CSS:
+
+**Steps:**
+
+1. Go to **Star Rating Widget settings**
+2. Scroll to **Advanced CSS**
+3. Add your custom CSS code
+4. Click **Save**
