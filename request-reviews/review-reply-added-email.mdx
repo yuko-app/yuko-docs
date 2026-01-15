@@ -27,7 +27,7 @@ When you reply to customer reviews, most reviewers never see your response unles
 
 Yuko Dashboard → **Reviews → Emails → Review Reply Added Email**
 
-![Image9 Pn](/images/image9.png)
+![Rra New](/images/rranew.png)
 
 ### The Automatic Process
 
@@ -113,169 +113,163 @@ Yuko Dashboard → **Reviews → Emails → Review Reply Added Email**
 
 <AccordionGroup>
   <Accordion title="Timing: When to Send Notification" defaultOpen icon="clock">
-    **Setting:** Notify After
+    **Setting: Days after to notify a reply**
 
-    **What it means:** When should the notification email send after you publish your reply?
+    ![Ss](/images/ss.png)
 
-    **Options:**
+    **What this setting does**
 
-    | Timing              | When to Use                          | Why                                                           |
-    | ------------------- | ------------------------------------ | ------------------------------------------------------------- |
-    | Instantly           | High-touch customer service approach | Customer sees reply within minutes, feels immediate attention |
-    | 1 day (recommended) | Most businesses                      | Gives you time to batch replies, less overwhelming            |
-    | Custom delay        | Special workflows                    | Match your customer service schedule                          |
+    Controls how many days YUKO waits **after a reply is added to a customer’s review** before notifying the customer by email.
 
-    **Why 1-day delay works:**
+    This notification lets customers know their feedback has been seen and responded to.
 
-    - You can reply to multiple reviews in one session
-    - Customer gets digest of all your replies (if they left multiple reviews)
-    - Less email bombardment
-    - Still fast enough to feel responsive
+    **Default value:** 1 day
 
-    <Tip>
-      **Recommended:** Use 1-day delay unless you're specifically focused on immediate customer service. It balances responsiveness with customer inbox management.
-    </Tip>
-    <Warning>
-      **Don't delay too long:** More than 3 days and customers forget they left a review. Keep it within 1-2 days for best engagement.
-    </Warning>
+    ### When to use this setting
+
+    | Delay                   | When to use               | Why                                           |
+    | :---------------------- | :------------------------ | :-------------------------------------------- |
+    | **1 day (recommended)** | Most stores               | Timely notification without feeling intrusive |
+    | **2–3 days**            | High review volume stores | Avoids frequent notifications                 |
+    | **0 days**              | ❌ Not recommended         | Can feel immediate and disruptive             |
+
+    **Best practice:**\
+    A short delay keeps the interaction human and thoughtful, rather than automated.
   </Accordion>
   <Accordion title="Subject Line: Make it Personal" icon="envelope">
     **Setting:** Email Subject
 
-    **Best practices for reply notification subjects:**
+    ### What this setting does
 
-    ✅ **Good reply notification subjects:**
+    Defines the subject line shown in the customer’s inbox when a reply is added to their review.
 
-    - "[Your Name] replied to your review"
-    - "Thanks for your feedback, [First Name]!"
-    - "We responded to your [Product] review"
-    - "About your review of [Product]..."
+    ---
 
-    ❌ **Avoid:**
+    ### Best practices for reply notification subject lines
 
-    - "New notification" (too vague)
-    - "Review reply" (too corporate)
-    - "Your review has a response" (too formal)
-    - No subject personalization (missed opportunity)
+    Subjects should feel personal and appreciative, not transactional.
 
-    **Key elements:**
+    #### ✅ Recommended examples
 
-    - Include your store name or personal name
-    - Mention "reply" or "response" clearly
-    - Reference the product if possible
-    - Keep it warm and personal, not robotic
+    - _We replied to your review on {{review_product_name}}_
+    - _Thanks for your feedback on {{review_product_name}}_
+    - _Your review has a new reply_
+    - _We’ve responded to your review_
+
+    #### ❌ Avoid
+
+    - Urgent or promotional language
+    - Discount-related wording
+    - Vague system messages (“Notification update”)
 
     <Info>
       **Personal touch:** Using your actual name ("Sarah replied to your review") feels more human than "[Store Name] replied."
     </Info>
   </Accordion>
-  <Accordion title="Message: Show Appreciation" icon="message">
-    **Setting:** Message Body
+  <Accordion title="Preview Text" icon="message">
+    ### What this setting does
 
-    **What makes a good reply notification email:**
+    Controls the short line of text shown next to the subject line in inboxes.
 
-    **Structure:**
+    ### Best practices
 
-    1. Thank them for their feedback
-    2. Let them know you replied
-    3. Include preview of your reply (optional)
-    4. Link to see full reply and conversation
+    - Clearly state that a reply was added
+    - Keep it short and friendly
 
-    **Example structure:**
+    **Examples**
+
+    - _We’ve added a reply to your review_
+    - _Thanks for sharing your experience_
+    - _Your feedback matters to us_
+  </Accordion>
+  <Accordion title="Email Title" icon="eye">
+    ### What this setting does
+
+    Sets the heading displayed at the top of the email.
+
+    ### Best practices
+
+    - Appreciation-focused
+    - Calm and respectful
+
+    **Examples**
+
+    - _We’ve Replied to Your Review_
+    - _Thanks for Your Feedback_
+    - _Your Review Matters_
+  </Accordion>
+  <Accordion title="Message (Body)">
+    ### What makes a good reply notification email
+
+    - Acknowledges the customer’s original review
+    - Clearly shows the reply content
+    - Keeps the tone conversational
+    - No calls to action or promotions
+
+    ---
+
+    ### Example message structure (shortcode-safe)
 
     ```
     Hi {{review_author_name}},
     
-    Thank you so much for taking the time to review {{review_product_name}}!
+    Thank you for sharing your feedback on {{review_product_name}}.
+    We’ve added a reply to your review.
     
-    We wanted to let you know that we've personally responded to your review. You can read our reply and continue the conversation on your product page:
+    Your review:
+    "{{review_content}}"
     
-    [View Your Review and Our Reply]
+    Our reply:
+    "{{reply_content}}"
     
-    We truly appreciate your feedback and hope to serve you again soon!
+    Thanks again for taking the time to share your experience.
     
-    Best regards,
-    [Your Name]
-    [Store Name]
     ```
 
-    **What to include:**
+    ---
 
-    - Genuine thank you
-    - Brief mention they received a reply
-    - Clear call-to-action to view reply
-    - Personal sign-off (not "The Team")
+    ### Optional review elements
 
-    **What NOT to do:**
+    You can also include:
 
-    - ❌ Copy entire reply in email (save it for the site)
-    - ❌ Generic corporate language
-    - ❌ Make it transactional
-    - ❌ Forget to link back to the review
+    - **{{review_rating}}** – Display the rating
+    - **{{review_product_image}}** – Show the product image
+    - **{{review_product_url}}** – Link to the product page
+
+    ---
+
+    ### What to avoid
+
+    - Promotional or sales language
+    - Asking for another review
+    - Urgent or automated-sounding messages
+    - Long explanations
 
     <Tip>
-      **Pro tip:** Sign with a real person's name, not "Customer Service Team." Personal replies feel more authentic and build stronger connections.
+      Pro tip: Reply notifications work best when they feel like a real conversation, not a system alert.
     </Tip>
   </Accordion>
-  <Accordion title="Reply Preview: Show or Hide?" icon="eye">
-    **Setting:** Reply Visibility
+  <Accordion title="Email Footer">
+    **How this works**
 
-    **Should you include your reply in the email?**
+    Footer details are automatically pulled from:\
+    **Settings → Organization**
 
-    ### Option 1: Short Preview (Recommended)
+    This footer is shared across all review-related emails.
+  </Accordion>
+  <Accordion title="Unsubscribe Text & Description">
+    ### Why this matters
 
-    **Show first 2-3 lines of your reply**
+    - Required by law in most regions
+    - Builds trust with customers
+    - Reduces spam complaints
+    - Protects sender reputation
 
-    **Pros:**
+    ### Best practices
 
-    - Gives context without spoiling everything
-    - Entices customer to click and read more
-    - Confirms this is real (not spam)
-    - Still drives traffic to your site
-
-    **Best for:** Most stores - balances engagement with traffic
-
-    ---
-
-    ### Option 2: No Preview
-
-    **Just notify, don't show reply**
-
-    **Pros:**
-
-    - Maximum curiosity (must click to see)
-    - Drives highest click-through rate
-    - Keeps conversation on your site
-
-    **Cons:**
-
-    - Less context in email
-    - Some customers won't bother clicking
-
-    **Best for:** Stores wanting maximum site traffic
-
-    ---
-
-    ### Option 3: Full Reply
-
-    **Show your entire reply in email**
-
-    **Pros:**
-
-    - Customer reads reply without clicking
-    - Convenient for customer
-
-    **Cons:**
-
-    - No reason to visit site
-    - Miss opportunity for re-engagement
-    - Loses conversion potential
-
-    **Best for:** Pure customer service focus (not recommended for most stores)
-
-    <Info>
-      **Sweet spot:** Use short preview (2-3 lines) to give context while still driving click-throughs to your site.
-    </Info>
+    - Make unsubscribe links clear and visible
+    - Respect opt-outs immediately
+    - Keep wording neutral and respectful
   </Accordion>
 </AccordionGroup>
 
