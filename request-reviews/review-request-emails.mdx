@@ -26,7 +26,7 @@ The Review Request Email is your primary tool for collecting customer feedback. 
 
 Yuko Dashboard → **Reviews → Emails → Review Request Email**
 
-![Reviewrequest Pn](/images/reviewrequest.png)
+![Rrnew](/images/rrnew.png)
 
 ### The Automatic Process
 
@@ -37,7 +37,7 @@ Yuko Dashboard → **Reviews → Emails → Review Request Email**
     **This triggers the countdown** to send the review request.
   </Step>
   <Step title="Yuko Waits" icon="clock">
-    Yuko waits the number of days you set (default: 7 days).
+    Yuko waits the number of days you set .
 
     **Why wait?** Customers need time to use the product before reviewing.
   </Step>
@@ -52,7 +52,7 @@ Yuko Dashboard → **Reviews → Emails → Review Request Email**
     **No manual work needed** - happens automatically for every order.
   </Step>
   <Step title="Customer Clicks & Reviews" icon="pen-to-square">
-    Customer clicks button, lands on pre-filled review form, writes review.
+    Customer clicks button, lands on a review form, rates the product and writes review.
 
     **Success rate:** 5-10% of customers complete the review.
   </Step>
@@ -69,8 +69,6 @@ Configure your review request email to match your products and brand:
     **Setting:** Delay (days)
 
     **What it means:** How many days after the order is marked "Completed" should Yuko send the review request?
-
-    **Default:** 7 days
 
     **How to choose the right timing:**
 
@@ -97,12 +95,12 @@ Configure your review request email to match your products and brand:
 
     ✅ **Good subject lines:**
 
-    - "How's your [Product Name]?"
-    - "[First Name], share your thoughts on your order"
-    - "Quick question about your recent purchase"
-    - "We'd love your feedback on [Product]"
+    - How’s your {{order_name}}?
+    - {{customer_first_name}}, share your thoughts on your order
+    - Quick question about your recent order
+    - We’d love your feedback on {{order_name}}
 
-    ❌ **Avoid:**
+    ### ❌ **Avoid:**
 
     - "WRITE A REVIEW NOW" (too pushy)
     - "Please leave us a 5-star review" (biased)
@@ -132,13 +130,17 @@ Configure your review request email to match your products and brand:
     **Example structure:**
 
     ```
-    Hi {{customer_first_name}},
+    Hi {{ customer_name }},
     
-    Thank you for choosing [Store Name]! We hope you're enjoying your [Product].
+    Thank you for your recent purchase (Order ID: {{ order_id }}). We hope you're enjoying your new items!
     
-    Would you take 2 minutes to share your experience? Your feedback helps other customers make confident decisions.
+    We truly value your feedback and would be grateful if you could take a moment to share your thoughts with us.
     
-    [Review Button]
+    Here’s what you purchased:
+    
+    {{ product_reviews_block }}
+    
+    Your reviews help us improve and also guide other customers — your opinion genuinely matters to us.
     ```
 
     **Don't do this:**
@@ -278,7 +280,7 @@ Follow these proven strategies for higher response rates:
 
     - Keep subject under 50 characters
     - Use large, tappable buttons (not small links)
-    - Short paragraphs (2-3 lines max)
+    - Short paragraphs (2-5 lines max)
     - Images load quickly
     - Single column layout
 
@@ -492,7 +494,7 @@ Follow these proven strategies for higher response rates:
     **Time:** 3 minutes **Use:** `{{customer_first_name}}` and `{{product_reviews_block}}`
   </Step>
   <Step title="Match Your Brand" icon="palette">
-    Add your logo and colors to make emails professional.
+    Add your logo and colors to make emails professional using the Advanced Editor.
 
     **Time:** 5 minutes
 
