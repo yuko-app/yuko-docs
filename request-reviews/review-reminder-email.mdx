@@ -3,8 +3,6 @@ description: "Send gentle reminder emails to customers who didn't respond to you
 title: "Review Reminder Email Setup"
 ---
 
-import NeedHelp from '/snippets/need-help.mdx';
-
 ## Get 50% More Reviews with One Gentle Reminder
 
 Most customers who don't respond to the first review request aren't refusing - they're just busy and forgot. A single friendly reminder sent 3-5 days later can increase your review collection rate by 50% (from 5-10% to 7-15%).
@@ -62,6 +60,8 @@ Yuko Dashboard → **Reviews → Emails → Review Reminder Email**
 
 <AccordionGroup>
   <Accordion title="Timing: When to Send Reminder" defaultOpen icon="calendar">
+    import NeedHelp from '/snippets/need-help.mdx';
+
     **Setting:** Delay - Days after review request email
 
     ![Rr2](/images/rr2.png)
@@ -97,14 +97,12 @@ Yuko Dashboard → **Reviews → Emails → Review Reminder Email**
 
     ✅ **Good reminder subjects:**
 
-    - Did you get a chance to review {{order_name}}?
+    - Did you get a chance to review {order_name}?
     - Quick reminder: share your thoughts?
-    - We’re still hoping to hear from you, {{customer_first_name}}
+    - We’re still hoping to hear from you, {customer_first_name}
     - One more thing about your order…
 
       ❌ **Avoid:**
-
-
     - "FINAL REMINDER" (sounds threatening)
     - "You forgot to review" (sounds accusatory)
     - Same subject as first email (they'll think it's duplicate)
@@ -122,7 +120,7 @@ Yuko Dashboard → **Reviews → Emails → Review Reminder Email**
     </Info>
   </Accordion>
   <Accordion title="Preview Text" icon="envelope-open-text">
-    **What it means: **The short text shown next to the subject line in the inbox.
+    \*\*What it means: \*\*The short text shown next to the subject line in the inbox.
 
     **Best practices**
 
@@ -137,7 +135,7 @@ Yuko Dashboard → **Reviews → Emails → Review Reminder Email**
     - _A friendly reminder about your recent order_
   </Accordion>
   <Accordion title="Email Title" icon="subtitles">
-    **What it means: **The headline shown at the top of the reminder email.
+    \*\*What it means: \*\*The headline shown at the top of the reminder email.
 
     **Best practices**
 
@@ -188,7 +186,7 @@ Yuko Dashboard → **Reviews → Emails → Review Reminder Email**
     </Tip>
   </Accordion>
   <Accordion title="Email Footer">
-    **What it controls: **The closing content of the email.
+    \*\*What it controls: \*\*The closing content of the email.
 
     This section automatically pulls details from:\
     **Settings → Organization**
