@@ -11,14 +11,14 @@ import NeedHelp from '/snippets/need-help.mdx';
 This guide helps you install Yuko on your WordPress + WooCommerce store and connect it to start collecting customer reviews.
 
 **What you'll achieve:**
+
 - Install and activate Yuko plugin on your WordPress site
 - Connect your WooCommerce store to Yuko Dashboard
-- Sync your products, orders, and customers automatically
+- Sync your products, orders and customers automatically
 - Ready to send review requests and display reviews
 
 <Info>
-**Total time needed:** 15-20 minutes
-**Technical level:** Beginner-friendly (no coding required)
+  **Total time needed:** 15-20 minutes **Technical level:** Beginner-friendly (no coding required)
 </Info>
 
 ---
@@ -28,25 +28,25 @@ This guide helps you install Yuko on your WordPress + WooCommerce store and conn
 Before starting, make sure you have:
 
 <Check>
-**WordPress Requirements:**
-- WordPress version 5.8 or higher
-- WooCommerce plugin installed and active (version 6.0+)
-- PHP version 7.4 or higher
-- Admin access to your WordPress dashboard
+  **WordPress Requirements:**
+
+  - WordPress version 5.8 or higher
+  - WooCommerce plugin installed and active (version 6.0+)
+  - PHP version 7.4 or higher
+  - Admin access to your WordPress dashboard
 </Check>
 
 <Tip>
-**Check your versions:**
-Go to WordPress Admin → Dashboard (top right corner shows WordPress version)
-Go to WooCommerce → Status → System Status Report (shows WooCommerce and PHP versions)
+  **Check your versions:** Go to WordPress Admin → Dashboard (top right corner shows WordPress version) Go to WooCommerce → Status → System Status Report (shows WooCommerce and PHP versions)
 </Tip>
 
 <Check>
-**What you need ready:**
-- Your business email address
-- Store name and website URL
-- Company information (name, address, phone)
-- Access to your email inbox (for verification)
+  **What you need ready:**
+
+  - Your business email address
+  - Store name and website URL
+  - Company information (name, address, phone)
+  - Access to your email inbox (for verification)
 </Check>
 
 ---
@@ -76,9 +76,8 @@ Follow these 5 steps to complete your Yuko installation:
     **Time:** 2 minutes
 
     <Warning>
-    **Important:** Use a business email, not a personal Gmail/Yahoo. Some features may require a verified business domain.
+      **Important:** Use a business email, not a personal Gmail/Yahoo. Some features may require a verified business domain.
     </Warning>
-
     ---
 
     ### Verify Your Email
@@ -92,14 +91,14 @@ Follow these 5 steps to complete your Yuko installation:
     ![Yuko2 Pn](/images/yuko2.png)
 
     <Tip>
-    **Email not received?**
-    - Check your spam/junk folder
-    - Wait 2-3 minutes (sometimes delayed)
-    - Click "Resend verification email" on the Yuko page
-    - Make sure you entered the correct email address
+      **Email not received?**
+
+      - Check your spam/junk folder
+      - Wait 2-3 minutes (sometimes delayed)
+      - Click "Resend verification email" on the Yuko page
+      - Make sure you entered the correct email address
     </Tip>
   </Step>
-
   <Step title="Add Your Business Information" icon="building">
     Tell Yuko about your business. This information appears in review request emails and helps with compliance.
 
@@ -123,10 +122,9 @@ Follow these 5 steps to complete your Yuko installation:
     **Time:** 3 minutes
 
     <Info>
-    **Privacy note:** Your customers see this information in review emails. Use your public business address, not a personal home address.
+      **Privacy note:** Your customers see this information in review emails. Use your public business address, not a personal home address.
     </Info>
   </Step>
-
   <Step title="Download the Yuko Plugin" icon="download">
     Download the plugin file that connects your WordPress site to Yuko.
 
@@ -144,10 +142,9 @@ Follow these 5 steps to complete your Yuko installation:
     **Time:** 1 minute
 
     <Tip>
-    **File location:** Remember where you saved yuko.zip - you'll need it in the next step. Most browsers save to your Downloads folder.
+      **File location:** Remember where you saved yuko.zip - you'll need it in the next step. Most browsers save to your Downloads folder.
     </Tip>
   </Step>
-
   <Step title="Install Plugin on WordPress" icon="plug">
     Upload and activate the Yuko plugin in your WordPress admin panel.
 
@@ -170,25 +167,27 @@ Follow these 5 steps to complete your Yuko installation:
     **Time:** 3 minutes
 
     <Warning>
-    **Troubleshooting common issues:**
+      **Troubleshooting common issues:**
 
-    **Error: "The uploaded file exceeds the upload_max_filesize"**
-    - Your server's upload limit is too small
-    - Contact your hosting provider to increase PHP upload limit to 10MB
-    - Or use FTP to manually upload (see advanced installation below)
+      **Error: "The uploaded file exceeds the upload_max_filesize"**
 
-    **Error: "Plugin could not be installed"**
-    - The zip file may be corrupted - try downloading again
-    - Make sure you downloaded from Yuko Dashboard, not from elsewhere
-    - Check that you have WordPress admin permissions
+      - Your server's upload limit is too small
+      - Contact your hosting provider to increase PHP upload limit to 10MB
+      - Or use FTP to manually upload (see advanced installation below)
 
-    **Plugin uploaded but not showing:**
-    - Go to Plugins → Installed Plugins
-    - Look for "Yuko" in the list
-    - Click "Activate" if it shows as inactive
+      **Error: "Plugin could not be installed"**
+
+      - The zip file may be corrupted - try downloading again
+      - Make sure you downloaded from Yuko Dashboard, not from elsewhere
+      - Check that you have WordPress admin permissions
+
+      **Plugin uploaded but not showing:**
+
+      - Go to Plugins → Installed Plugins
+      - Look for "Yuko" in the list
+      - Click "Activate" if it shows as inactive
     </Warning>
   </Step>
-
   <Step title="Connect Your Store to Yuko" icon="link">
     Link your WooCommerce store with Yuko so they can communicate.
 
@@ -202,12 +201,13 @@ Follow these 5 steps to complete your Yuko installation:
        - Include `https://` but not `/wp-admin` or other paths
     5. Click **Connect Store**
     6. A popup window opens asking for authorization
-    7. Click **Allow** or **Authorize** to give Yuko permission
-    8. Wait for the connection to complete (shows "Connected" status)
+    7. Click **Authenticate** to give Yuko permission
 
     ![Yuko5 Pn](/images/yuko5.png)
 
-    **Time:** 2 minutes
+    8. Wait for the connection to complete (shows "Connected" status)
+
+       ![Sett](/images/sett.png)
 
     ---
 
@@ -230,33 +230,35 @@ Follow these 5 steps to complete your Yuko installation:
     **Total time for this step:** 7 minutes (connection + sync)
 
     <Info>
-    **Large store?** If you have 1000+ products or 500+ orders, initial sync may take 10-15 minutes. This is normal. You can continue to the next steps while it syncs in the background.
+      **Large store?** If you have 1000+ products or 500+ orders, initial sync may take 10-15 minutes. This is normal. You can continue to the next steps while it syncs in the background.
     </Info>
-
     <Warning>
-    **Connection troubleshooting:**
+      **Connection troubleshooting:**
 
-    **"Connection failed" error:**
-    - Make sure Store URL is correct (check spelling, include https://)
-    - Verify Yuko plugin is activated in WordPress
-    - Check that WooCommerce is active on your site
-    - Try logging out and back into WordPress, then retry
+      **"Connection failed" error:**
 
-    **"Authorization denied":**
-    - Make sure you clicked "Allow" on the permission screen
-    - Try clearing your browser cookies and retry
-    - Make sure you're logged into WordPress as an Administrator
+      - Make sure Store URL is correct (check spelling, include https://)
+      - Verify Yuko plugin is activated in WordPress
+      - Check that WooCommerce is active on your site
+      - Try logging out and back into WordPress, then retry
 
-    **"Timeout" error:**
-    - Your store may have security plugins blocking the connection
-    - Temporarily disable security plugins, connect, then re-enable
-    - Contact your hosting to check if they block external API connections
+      **"Authorization denied":**
+
+      - Make sure you clicked "Allow" on the permission screen
+      - Try clearing your browser cookies and retry
+      - Make sure you're logged into WordPress as an Administrator
+
+      **"Timeout" error:**
+
+      - Your store may have security plugins blocking the connection
+      - Temporarily disable security plugins, connect, then re-enable
+      - Contact your hosting to check if they block external API connections
     </Warning>
   </Step>
 </Steps>
 
 <Check>
-**Installation Complete!** Your WooCommerce store is now connected to Yuko and ready to collect reviews.
+  **Installation Complete!** Your WooCommerce store is now connected to Yuko and ready to collect reviews.
 </Check>
 
 ---
@@ -265,7 +267,7 @@ Follow these 5 steps to complete your Yuko installation:
 
 Now that installation is complete, set up your review collection system:
 
-<Steps titleSize="h3">
+<Steps>
   <Step title="Configure Review Request Emails" icon="envelope">
     Set up automatic emails that ask customers for reviews after their order is delivered.
 
@@ -273,7 +275,6 @@ Now that installation is complete, set up your review collection system:
 
     → [Set Up Review Requests](/request-reviews/review-request-emails)
   </Step>
-
   <Step title="Add Review Display to Product Pages" icon="star">
     Show customer reviews on your product pages where shoppers make buying decisions.
 
@@ -281,7 +282,6 @@ Now that installation is complete, set up your review collection system:
 
     → [Product Page Reviews](/display-reviews/product-reviews-display-widget)
   </Step>
-
   <Step title="Choose Review Approval Settings" icon="shield-check">
     Decide if reviews appear immediately or need your approval first.
 
@@ -289,7 +289,6 @@ Now that installation is complete, set up your review collection system:
 
     → [Review Approval Settings](/managing-reviews/auto-publishing-reviews)
   </Step>
-
   <Step title="Customize Your Branding" icon="palette">
     Add your logo and colors to make review emails match your store's brand.
 
@@ -300,7 +299,7 @@ Now that installation is complete, set up your review collection system:
 </Steps>
 
 <Tip>
-**Follow the quickstart:** For a complete setup guide with all essential steps, see the [Quickstart Guide](/quickstart)
+  **Follow the quickstart:** For a complete setup guide with all essential steps, see the [Quickstart Guide](/quickstart)
 </Tip>
 
 ---
@@ -312,6 +311,7 @@ Now that installation is complete, set up your review collection system:
     If the WordPress upload method doesn't work, use FTP to install manually:
 
     **Requirements:**
+
     - FTP client software (FileZilla, Cyberduck, etc.)
     - FTP credentials from your hosting provider
 
@@ -327,23 +327,23 @@ Now that installation is complete, set up your review collection system:
 
     **Time:** 10 minutes (if you know how to use FTP)
   </Accordion>
-
   <Accordion title="Install on WordPress Multisite" icon="layer-group">
     For WordPress Multisite installations:
 
     **Network Activation:**
+
     1. Install plugin normally
     2. Go to Network Admin → Plugins
     3. Click "Network Activate" under Yuko
 
     **Per-Site Activation:**
+
     1. Install plugin to network
     2. Go to each site's Admin → Plugins
     3. Activate Yuko individually on sites that need it
 
     **Connection:** Each site needs separate connection to Yuko Dashboard (use different Store URLs for each site)
   </Accordion>
-
   <Accordion title="Use Staging Environment First" icon="flask">
     **Recommended for large stores:** Test on staging before production.
 
@@ -357,7 +357,6 @@ Now that installation is complete, set up your review collection system:
 
     **Note:** Each environment (staging, production) needs separate connection in Yuko Dashboard.
   </Accordion>
-
   <Accordion title="Server Requirements & Hosting" icon="server">
     **Minimum server requirements:**
 
@@ -368,6 +367,7 @@ Now that installation is complete, set up your review collection system:
     - Max execution time: 30 seconds minimum
 
     **Tested hosting providers:**
+
     - ✅ SiteGround
     - ✅ WP Engine
     - ✅ Kinsta
@@ -375,8 +375,7 @@ Now that installation is complete, set up your review collection system:
     - ✅ GoDaddy
     - ✅ HostGator
 
-    **Check your server:**
-    Go to WooCommerce → Status → System Status Report
+    **Check your server:** Go to WooCommerce → Status → System Status Report
   </Accordion>
 </AccordionGroup>
 
@@ -392,62 +391,62 @@ Now that installation is complete, set up your review collection system:
        - Clear your browser cache (Ctrl+Shift+Delete)
        - Log out of WordPress and log back in
        - Try a different browser
-
     2. **User permissions:**
        - Make sure you're logged in as Administrator
        - Check User → Your Profile → Capabilities
-
     3. **Plugin conflict:**
        - Deactivate other plugins temporarily
        - Check if Yuko appears
        - Reactivate plugins one by one to find conflict
 
-    **Still not working?** Contact support@yuko.so with:
+    **Still not working?** Contact [support@yuko.so](mailto:support@yuko.so) with:
+
     - WordPress version
     - WooCommerce version
     - PHP version (from WooCommerce → Status)
     - List of active plugins
   </Accordion>
-
   <Accordion title="Connection keeps failing" icon="wifi-slash">
     **Checklist to fix connection issues:**
 
     ✓ **Store URL is correct:**
+
     - Include https:// (not http://)
     - Use your actual domain (not localhost)
     - Don't include /wp-admin or other paths
     - Example: `https://yourstore.com`
 
     ✓ **Plugin is activated:**
+
     - Go to WordPress → Plugins
     - Yuko should show "Active" status
 
     ✓ **WooCommerce is active:**
+
     - Make sure WooCommerce plugin is working
     - Test by visiting your store's shop page
 
     ✓ **No security blocking:**
+
     - Temporarily disable security plugins
     - Try connecting again
     - Re-enable security plugins after successful connection
 
     ✓ **Firewall not blocking:**
+
     - Some hosting providers block external API calls
     - Contact your hosting support
     - Ask them to whitelist Yuko API (app.yukoapp.com)
   </Accordion>
-
   <Accordion title="Products/Orders not syncing" icon="rotate-exclamation">
     **If products aren't appearing in Yuko:**
 
     1. **Check product status in WooCommerce:**
        - Products must be "Published" (not Draft or Private)
        - Products must be visible in catalog
-
     2. **Wait for sync:**
        - Initial sync takes 1-5 minutes for small stores
        - Large stores (1000+ products) may take 15 minutes
-
     3. **Force manual sync:**
        - Go to Yuko Dashboard → Settings → Integrations
        - Click "Sync Now" button
@@ -460,7 +459,6 @@ Now that installation is complete, set up your review collection system:
     - Orders older than 90 days are not imported (performance reasons)
     - Pending, Processing, or Draft orders won't sync
   </Accordion>
-
   <Accordion title="Email verification link not working" icon="envelope-open-text">
     **If clicking verification link shows error:**
 
@@ -468,18 +466,17 @@ Now that installation is complete, set up your review collection system:
        - Links expire after 24 hours
        - Go to Yuko login page
        - Click "Resend verification email"
-
     2. **Link was already used:**
        - Try logging in directly
        - Your account may already be verified
-
     3. **Email client broke the link:**
        - Some email apps break long URLs
        - Copy the entire link manually
        - Paste into browser address bar
 
     **Still can't verify?**
-    - Email support@yuko.so from the email address you used
+
+    - Email [support@yuko.so](mailto:support@yuko.so) from the email address you used
     - We'll verify your account manually (within 24 hours)
   </Accordion>
 </AccordionGroup>
@@ -491,5 +488,5 @@ Now that installation is complete, set up your review collection system:
 <NeedHelp />
 
 <Note>
-**Pro tip:** After installation, immediately set up review request emails so you don't miss any orders. Go to [Review Request Setup](/request-reviews/review-request-emails) next.
+  **Pro tip:** After installation, immediately set up review request emails so you don't miss any orders. Go to [Review Request Setup](/request-reviews/review-request-emails) next.
 </Note>
