@@ -117,69 +117,98 @@ Configure your review request email to match your products and brand:
       **Mobile matters:** 60% of emails are opened on phones. Keep subject lines under 50 characters so they don't get cut off.
     </Info>
   </Accordion>
-  <Accordion title="Message Body: The Ask" icon="message">
-    **Setting:** Message Body
+</AccordionGroup>
 
-    **What it means:** The main email content that explains why you're asking for a review
+<AccordionGroup>
+  <Accordion title="Preview Text" icon="envelope-open-text">
+    ### What this setting does
 
-    **Best practices:**
+    Controls the short text that appears next to the subject line in inboxes.
 
-    **Keep it short:**
+    ### Best practices
 
-    - 3-4 sentences maximum
-    - One clear ask: "Share your feedback"
-    - One call-to-action button
-    - Don't write paragraphs - customers won't read them
+    - Use one short sentence
+    - Set expectations for what the email is about
+    - Avoid repeating the subject line
 
-    **Example structure:**
+    **Examples**
+
+    - _It only takes a minute_
+    - _Your feedback helps other shoppers_
+    - _Tell us how your order went_
+  </Accordion>
+  <Accordion title="Email Title" icon="subtitles">
+    ### What this setting does
+
+    Sets the heading displayed at the top of the review request email.
+
+    ### Best practices
+
+    - Friendly and appreciative tone
+    - Clear and simple wording
+    - No urgency or commands
+
+    **Examples**
+
+    - _How Was Your Order?_
+    - _We’d Love Your Feedback_
+    - _Tell Us What You Think_
+  </Accordion>
+  <Accordion title="Email Message">
+    ### What makes a good review request email
+
+    - Clear and concise (no long explanations)
+    - Explains why the review matters
+    - One clear call to action
+    - Easy to complete on mobile
+
+    ### Example message structure
 
     ```
-    Hi {{ customer_name }},
+    Hi {{customer_first_name}},
     
-    Thank you for your recent purchase (Order ID: {{ order_id }}). We hope you're enjoying your new items!
-    
-    We truly value your feedback and would be grateful if you could take a moment to share your thoughts with us.
+    Thanks for your recent order {{order_name}}.
+    We’d love to hear your thoughts — your feedback helps other customers make confident purchasing decisions.
     
     Here’s what you purchased:
-    
     {{ product_reviews_block }}
     
-    Your reviews help us improve and also guide other customers — your opinion genuinely matters to us.
+    Thanks for taking a moment to share your experience!
+    
     ```
 
-    **Don't do this:**
+    ### What to avoid
 
-    - Beg for reviews
-    - Ask for only positive reviews
-    - Write long explanations
-    - Include multiple links or CTAs
-    - Sound desperate or pushy
-
-    <Warning>
-      **Important:** Never ask for "5-star reviews" or "positive feedback only." Ask for honest feedback. Biased requests violate platform policies and customers can tell.
-    </Warning>
-  </Accordion>
-  <Accordion title="Footer: Legal & Contact" icon="file-lines">
-    **Setting:** Footer
-
-    **What it includes:**
-
-    - Company name and address (required by law in many countries)
-    - Unsubscribe link (required)
-    - Contact information
-    - Social media links (optional)
-
-    **Why it matters:**
-
-    - **Legal compliance:** Anti-spam laws require company address and unsubscribe
-    - **Trust:** Shows you're a legitimate business
-    - **Contact:** Customers can reach you if needed
-
-    **Your footer auto-fills from:** Settings → Organization
+    - Asking for reviews before customers receive the product
+    - Long marketing copy
+    - Pressure or incentives language
+    - Multiple calls to action
 
     <Tip>
-      **Already set up:** If you completed installation, your footer information was filled in from your business details. You don't need to enter it again.
+      
     </Tip>
+  </Accordion>
+  <Accordion title="Email Footer">
+    \*\*What it controls: \*\*The closing content of the email.
+
+    This section automatically pulls details from:\
+    **Settings → Organization**
+
+    (Used in both review request and reminder emails.)
+  </Accordion>
+  <Accordion title="Unsubscribe Text & Description">
+    ### Why this matters
+
+    - Required by law in most countries
+    - Builds trust with customers
+    - Reduces spam complaints
+    - Protects your sender reputation
+
+    ### Best practices
+
+    - Make the unsubscribe link clear and visible
+    - Respect opt-outs immediately
+    - Keep wording neutral and respectful
   </Accordion>
 </AccordionGroup>
 
