@@ -62,9 +62,15 @@ Yuko Dashboard → **Reviews → Emails → Review Reminder Email**
 
 <AccordionGroup>
   <Accordion title="Timing: When to Send Reminder" defaultOpen icon="calendar">
-    **Setting:** Delay (days)
+    **Setting:** Delay - Days after review request email
 
-    **What it means:** How many days after the first review request should the reminder send?
+    ![Rr2](/images/rr2.png)
+
+    \
+    \
+    **What it controls:** Set the number of days YUKO should wait **after the review request email is sent** before sending a review reminder email.
+
+    This reminder helps gently nudge customers who may have missed or forgotten the initial review request.
 
     **Default:** 5 days
 
@@ -91,12 +97,13 @@ Yuko Dashboard → **Reviews → Emails → Review Reminder Email**
 
     ✅ **Good reminder subjects:**
 
-    - "Did you get a chance to review [Product]?"
-    - "Quick reminder: Share your thoughts?"
-    - "We're still hoping to hear from you, [First Name]"
-    - "One more thing about your order..."
+    - Did you get a chance to review {{order_name}}?
+    - Quick reminder: share your thoughts?
+    - We’re still hoping to hear from you, {{customer_first_name}}
+    - One more thing about your order…
 
-    ❌ **Avoid:**
+      ❌ **Avoid:**
+
 
     - "FINAL REMINDER" (sounds threatening)
     - "You forgot to review" (sounds accusatory)
@@ -114,63 +121,100 @@ Yuko Dashboard → **Reviews → Emails → Review Reminder Email**
       **Make it different:** Use a noticeably different subject than your first email so customers don't think it's a duplicate and delete it.
     </Info>
   </Accordion>
-  <Accordion title="Message: Stay Polite" icon="message">
-    **Setting:** Message Body
+  <Accordion title="Preview Text" icon="envelope-open-text">
+    **What it means: **The short text shown next to the subject line in the inbox.
 
-    **What makes a good reminder email:**
+    **Best practices**
 
-    **Keep it shorter than first email:**
+    - Keep it short (1 line)
+    - Reinforce that this is a friendly follow-up
+    - Avoid urgency or guilt
 
-    - 2-3 sentences max
-    - Acknowledge this is a follow-up
-    - No guilt trips or pressure
-    - Super simple ask
+    **Example preview texts**
 
-    **Example structure:**
+    - _Just a quick follow-up — your feedback helps others_
+    - _If you have a minute, we’d love your thoughts_
+    - _A friendly reminder about your recent order_
+  </Accordion>
+  <Accordion title="Email Title" icon="subtitles">
+    **What it means: **The headline shown at the top of the reminder email.
+
+    **Best practices**
+
+    - Friendly and appreciative
+    - No urgency
+    - Reinforce value of feedback
+
+    **Good examples**
+
+    - _We Value Your Feedback_
+    - _Your Opinion Matters_
+    - _Thanks for Your Recent Order_
+  </Accordion>
+  <Accordion title="Email Message">
+    **What makes a good reminder email**
+
+    - Shorter than the first email (2–3 sentences)
+    - Acknowledge it’s a follow-up
+    - No guilt, pressure, or urgency
+    - One clear action (leave a review)
+
+    **Recommended structure**
 
     ```
     Hi {{customer_first_name}},
     
-    Just following up on our email from a few days ago. If you have 2 minutes, we'd love to hear your thoughts on [Product Name].
+    Just following up on our email from a few days ago. 
+    If you have a moment, we’d love to hear your thoughts on your recent order {{order_name}}.
     
     Your feedback helps other customers shop with confidence.
     
-    [Review Button]
+    {{ product_reviews_block }}
     
-    No worries if you're too busy - we understand!
+    No worries if you’re too busy — we understand!
+    
     ```
 
-    **What NOT to write:**
+    **What NOT to write**
 
-    - ❌ "You haven't reviewed yet" (sounds accusatory)
-    - ❌ "This is your last chance" (creates false urgency)
-    - ❌ "Please please please review" (sounds desperate)
-    - ❌ Long explanations (they already got those in first email)
+    - ❌ “You haven’t reviewed yet”
+    - ❌ “This is your last chance”
+    - ❌ Repeating long explanations from the first email
+    - ❌ Desperate or pushy language
 
     <Tip>
-      **Pro tip:** Add "No worries if you're too busy" at the end. This reduces pressure and actually increases response rates because customers feel respected.
+      💡 **Pro tip:**\
+      Ending with “No worries if you’re too busy” reduces pressure and often increases response rates.
     </Tip>
   </Accordion>
-  <Accordion title="Footer & Unsubscribe" icon="door-open">
-    **Important for reminders:**
+  <Accordion title="Email Footer">
+    **What it controls: **The closing content of the email.
 
-    Make it VERY easy to opt out:
+    This section automatically pulls details from:\
+    **Settings → Organization**
 
-    - Clear unsubscribe link
-    - "Don't want reminders? Click here" option
+    (Used in both review request and reminder emails.)
+  </Accordion>
+  <Accordion title="Unsubscribe Text & Description">
+    **What it controls**\
+    The opt-out text shown at the bottom of the reminder email.
+
+    **Why this matters**
+
+    - Required by law in most countries
+    - Shows respect for customers’ time
+    - Reduces spam complaints
+    - Protects your sender reputation
+
+    **Best practices**
+
+    - Make unsubscribe links **clear and visible**
     - Respect opt-outs immediately
-
-    **Why this matters:**
-
-    - Legal requirement in most countries
-    - Shows respect for customer's time
-    - Prevents spam complaints
-    - Maintains good sender reputation
-
-    **Your footer auto-fills from:** Settings → Organization (same as review request email)
+    - Avoid hiding or downplaying unsubscribe options
 
     <Warning>
-      **Spam risk:** Reminder emails have higher spam complaint risk than first emails. Make unsubscribe obvious and easy.
+      **Spam risk note:**\
+      Reminder emails carry a higher spam-complaint risk than the first email. A clear unsubscribe option is essential.
     </Warning>
   </Accordion>
 </AccordionGroup>
