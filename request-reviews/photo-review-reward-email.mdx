@@ -26,6 +26,8 @@ Photos make reviews 3x more trustworthy and increase product page conversions by
 
 Yuko Dashboard → **Reviews → Emails → Photo Review Reward Email**
 
+![Prrnew](/images/prrnew.png)
+
 ### The Automatic Process
 
 <Steps>
@@ -102,56 +104,15 @@ Yuko Dashboard → **Reviews → Emails → Photo Review Reward Email**
 
 <AccordionGroup>
   <Accordion title="Discount Type: Choose Your Reward" defaultOpen icon="gift">
-    **Three reward options:**
+    ### **What this setting does: **
 
-    ### 1. Percentage Discount (Most Popular)
+    Controls the type of reward customers receive after submitting a photo review.
 
-    **Example:** 10% off next order
+    Available options:
 
-    **Pros:**
-
-    - Simple to understand
-    - Works for any order size
-    - Perceived as generous
-    - Easy to communicate
-
-    **Best for:** Most stores
-
-    **Typical amount:** 10-15%
-
-    ---
-
-    ### 2. Fixed Amount Discount
-
-    **Example:** $5 or $10 off next order
-
-    **Pros:**
-
-    - Clear, specific value
-    - Good for lower-priced products
-    - Customers know exact savings
-    - Easy to budget
-
-    **Best for:** Stores with lower average order values (\$30-50)
-
-    **Typical amount:** $5-$10
-
-    ---
-
-    ### 3. Free Shipping
-
-    **Example:** Free shipping on next order
-
-    **Pros:**
-
-    - No discount on products (protects margins)
-    - Highly valued by customers
-    - Simple to fulfill
-    - Works with existing shipping setup
-
-    **Best for:** Stores with \$5-10 shipping costs
-
-    **Note:** Only valuable if you normally charge for shipping
+    - **Percentage** – A percentage discount on the next order
+    - **Fixed Amount** – A flat discount value (for example, ₹200 or \$10 off)
+    - **Free Shipping** – Free shipping on the next order
 
     <Tip>
       **Most effective:** 10% off next order is the sweet spot - generous enough to motivate, small enough to be profitable.
@@ -183,94 +144,112 @@ Yuko Dashboard → **Reviews → Emails → Photo Review Reward Email**
       **Don't go too high:** 25%+ discounts train customers to only buy with coupons. You'll lose money long-term.
     </Warning>
   </Accordion>
-  <Accordion title="Email Content: Show Appreciation" icon="heart">
-    **Setting:** Email Editor (Title, Message, Footer)
+  <Accordion title="Email subject line" icon="heart">
+    ### What this setting does
 
-    **What makes a good thank-you email:**
+    Defines the subject line shown in the customer’s inbox.
 
-    **Tone:**
+    ### Best practices for reward subject lines
 
-    - Genuinely grateful (not fake corporate)
-    - Excited about the photo
-    - Personal and warm
-    - Not overly promotional
+    Subject lines should highlight appreciation and rewards without sounding transactional.
 
-    **Example structure:**
+    #### ✅ Recommended examples
 
-    ```
-    Subject: Thanks for the awesome photo! 🎁
-    
-    Hi {{review_author_name}},
-    
-    We just saw your review with photos - thank you so much for sharing!
-    
-    Your photos help other customers see how [Product] looks in real life. That's incredibly valuable.
-    
-    As a thank-you, here's {{YOUR_REWARD:COUPON:VALUE}} off your next order:
-    
-    Code: {{YOUR_REWARD:COUPON:CODE}}
-    Expires: {{YOUR_REWARD:COUPON:EXPIRY}}
-    
-    [Shop Now Button]
-    
-    Thanks again for being an amazing customer!
-    
-    [Your Name]
-    [Store Name]
-    ```
+    - _Thanks for reviewing {{review_product_name}} — here’s a reward_
+    - _Your photo review for {{review_product_name}}_
+    - _A thank-you for your photo review_
+    - _We appreciate your review on {{review_product_name}}_
 
-    **What to include:**
+    #### ❌ Avoid
 
-    - Specific mention of "photos" (not just "review")
-    - Why photos matter
-    - Clear reward details (code, amount, expiry)
-    - Easy redemption (shop now button)
-    - Genuine gratitude
-
-    <Tip>
-      **Personal touch:** Mention the specific product they reviewed to show you're paying attention: "Thanks for the photos of the [Product Name]!"
-    </Tip>
+    - “Guaranteed reward”
+    - Urgency language (“Act now”, “Final chance”)
+    - Overly promotional wording
   </Accordion>
-  <Accordion title="Timing: When to Send" icon="clock">
-    **Setting:** Timing (instant vs delayed)
+  <Accordion title="Preview Text" icon="clock">
+    ### What this setting does
 
-    **Two options:**
+    Controls the short text displayed next to the subject line in inboxes.
 
-    ### Instant (Recommended)
+    ### Best practices
 
-    **Sends:** Within 1-5 minutes of photo submission
+    - Reinforce appreciation
+    - Keep it calm and neutral
+    - No urgency
 
-    **Pros:**
+    **Examples**
 
-    - Immediate gratification
-    - Customer still thinking about their review
-    - Reinforces positive behavior instantly
-    - Higher reward redemption rate
+    - _Thanks for sharing your experience_
+    - _A small thank-you for your photo review_
+    - _Your feedback helps other shoppers_
+  </Accordion>
+  <Accordion title="Email Title">
+    ### What this setting does
 
-    **Best for:** Most stores
+    Sets the heading displayed at the top of the email.
+
+    ### Best practices
+
+    - Appreciation-focused
+    - No commands or pressure
+
+    **Examples**
+
+    - _Thanks for Your Photo Review_
+    - _We Appreciate Your Feedback_
+    - _Your Review Matters_
+  </Accordion>
+  <Accordion title="Email Message">
+    ### What makes a good reward email
+
+    - Confirms the review was received
+    - Acknowledges the extra effort of adding a photo
+    - Clearly explains that a reward is included
+    - Short and respectful
 
     ---
 
-    ### Delayed
+    ### Example message structure (shortcode-safe)
 
-    **Sends:** Hours or days later
+    ```
+    Hi {{review_author_name}},
+    
+    Thank you for submitting your photo review for {{review_product_name}}!
+    Your feedback helps other customers see the product in real life and shop with confidence.
+    
+    As a thank-you, we’ve added a reward you can use on your next order.
+    
+    {{review_block}}
+    
+    ```
 
-    **Pros:**
+    ---
 
-    - Can batch with other communications
-    - Gives time to moderate review first
+    ### Supported review elements
 
-    **Cons:**
+    You can optionally include:
 
-    - Less impactful
-    - Customer may forget they submitted photos
-    - Lower emotional connection
+    - **{{review_rating}}** – Display the rating
+    - **{{review_content}}** – Show the review text
+    - **{{review_created}}** – Review submission date
+    - **{{review_product_image}}** – Product image
+    - **{{review_product_url}}** – Product page link
+    - **{{review_link}}** – Direct link to the review
 
-    **Best for:** Stores that manually approve all reviews
+    ---
 
-    <Info>
-      **Psychology tip:** Instant rewards create stronger behavioral reinforcement. Customers associate "photo = immediate reward" and are more likely to add photos in future orders.
-    </Info>
+    ### What to avoid
+
+    - Asking for another review
+    - Making rewards feel conditional
+    - Long explanations or legal language
+    - Multiple calls to action
+
+    <Tip>
+      **Pro tip:**\
+      \
+      Reward emails should **thank**, not **ask**. The review has already been submitted.
+    </Tip>
   </Accordion>
 </AccordionGroup>
 
@@ -359,33 +338,6 @@ Yuko Dashboard → **Reviews → Emails → Photo Review Reward Email**
     <Tip>
       **Sweet spot:** 30-day expiration. Long enough to not feel pressured, short enough to drive action.
     </Tip>
-  </Accordion>
-  <Accordion title="Make Codes Easy to Use" icon="keyboard">
-    **Code format tips:**
-
-    ✅ **Good codes:**
-
-    - PHOTO10 (simple, clear)
-    - THANKS10 (explains why)
-    - REVIEW15 (easy to remember)
-
-    ❌ **Bad codes:**
-
-    - XR2K9-P4L7Q-9WMZ (too complex)
-    - photo_review_discount_2024 (too long)
-    - phot0rev1ew (confusing with numbers/letters)
-
-    **Best practices:**
-
-    - 6-10 characters maximum
-    - All caps or all lowercase (not mixed)
-    - No special characters
-    - Easy to type on mobile
-    - Memorable
-
-    <Info>
-      **Auto-apply option:** Even better - provide link that auto-applies the code at checkout. No typing needed!
-    </Info>
   </Accordion>
   <Accordion title="Prevent Abuse" icon="shield">
     **Protect against gaming the system:**
