@@ -3,29 +3,134 @@ description: "Integrate Yuko with WPLoyalty to reward customers for submitting r
 title: "10.4 WPLoyalty Integration"
 ---
 
-### **Navigation**
+**WP Loyalty – Yuko Review Add-On**
 
-Yuko Dashboard → **Settings → Integrations → WPLoyalty**
+Enhance your store’s customer engagement by integrating **WPLoyalty** with the **Yuko Review plugin**. The **WPLoyalty – Yuko Reviews Add‑On** lets you reward customers with loyalty points whenever they leave product reviews—turning reviews into a powerful loyalty‑building tool.
 
-### **Overview**
+<Info>
+  **Important:** This functionality works **only when the WPLoyalty – Yuko Reviews Add‑On is installed and activated**. Without the add‑on, reviews submitted via Yuko will **not** trigger loyalty points.
+</Info>
 
-Reward your customers automatically for leaving reviews with **WPLoyalty**.\
-This integration syncs Yuko review submissions with your loyalty and points system.
+---
 
-### **Setup Steps**
+### What This Add‑On Does:
 
-1. Go to **Settings → Integrations → WPLoyalty**.
-2. Click **Connect WPLoyalty Account**.
-3. Log in with your WPLoyalty credentials.
-4. Map your reward rules to Yuko events:
-   - “Review Submitted” → Give X points
-   - “Photo Review Submitted” → Give additional bonus points
+With the **WPLoyalty – Yuko Reviews Add‑On**, you can:
 
-Save and activate.
+- Automatically award **loyalty points** to customers when they submit product reviews through Yuko.
+- Only reward **approved reviews**, according to your WPLoyalty campaign settings.
+- Encourage more feedback and increase **repeat purchases**.
 
-### **Benefits**
+<Note>
+  **Note:** Some features require the **PRO version** of WPLoyalty.\
+  [Get WPLoyalty PRO](https://wployalty.net)
+</Note>
 
-- Reward customers instantly after submitting a review.
-- Encourage photo reviews with bonus points.
+---
 
-Sync point balances automatically across both platforms.
+### Installation & Activation
+
+Follow these simple steps: 
+
+<Steps>
+  <Step title=" Download the Add‑On">
+    Get the **WPLoyalty – Yuko Reviews Add‑On** here: https://wployalty.net/add‑ons/yuko‑product‑reviews/
+  </Step>
+  <Step title=" Install and Activate">
+    - Ensure the **WPLoyalty plugin** is already installed and active.
+    - Upload, install, and activate the **WPLoyalty – Yuko Reviews Add‑On**.
+  </Step>
+  <Step title="Enable/Disable the Add‑On">
+    - Go to **WordPress Dashboard → WPLoyalty → Add‑ons**
+    - Find **WPLoyalty – Yuko Reviews Add‑On**
+
+      ![Wl](/images/wl.png)
+    - Click **Activate** to enable or **Deactivate** to disable.
+  </Step>
+</Steps>
+
+---
+
+### Configuring the Add‑On
+
+**1. Set Up the Webhook**
+
+- After activation, a **Webhook URL** appears on the add‑on page.
+- Copy this URL.
+
+  ![WP Loyalty Yuko Review ‹ Azure Flamingo 736846 Hostingersite Com — Word Press 01 16 2026 11 47 PM](/images/WPLoyalty-Yuko-Review-‹-azure-flamingo-736846-hostingersite-com-—-WordPress-01-16-2026_11_47_PM.png)
+
+**2. Add the Webhook in Yuko**
+
+- Log in to your **Yuko Dashboard**.
+- Navigate to **Settings → Integrations → Add Webhook**.
+
+![Wp](/images/wp.png)
+
+- Paste the **Webhook URL** copied from the add‑on.
+- Under **Webhook Events**, choose which events should trigger the webhook.
+- You can select one or multiple of the following:
+
+    **Review Submitted** – triggers when a customer submits a review.
+
+  **Review Published**   – triggers when a review is approved/published.
+
+  **Review Deleted**   – triggers when a review is removed.
+
+  <Tip>
+    For loyalty points, it’s usually best to select **Review Published**, so customers only earn points for approved reviews.
+  </Tip>
+
+**3. Add the Secret Key**
+
+- Yuko generates a **Signature Key** after the webhook is created.
+- Copy this key.
+
+  ![YUKO 01 16 2026 11 50 PM](/images/YUKO-01-16-2026_11_50_PM.png)
+- Return to the **WPLoyalty add‑on page**.
+- Paste the key into the **Secret Key** field.
+
+---
+
+### How the Add‑On Works
+
+Once the **WPLoyalty – Yuko Reviews Add-On** is active and the webhook is configured:
+
+- Customers can earn **points/rewards** when the chosen webhook event(s) occur.
+- For example, if you selected **Review Published**, points are awarded **only when reviews are approved**.
+- If you select **Review Submitted**, points can be awarded immediately after submission, even before approval.
+
+<Check>
+  **Reminder:** Rewards happen **only via the add-on** and are triggered by the events you selected in Yuko’s advanced webhook settings.
+</Check>
+
+---
+
+### Quick Setup Checklist
+
+<Check>
+   Install WPLoyalty
+</Check>
+
+<Check>
+  Install & Activate the WPLoyalty – Yuko Reviews Add‑On
+</Check>
+
+<Check>
+  Copy Webhook URL from the add‑on page
+</Check>
+
+<Check>
+  Add Webhook URL in Yuko → Choose events
+</Check>
+
+<Check>
+  Copy Signature Key from Yuko
+</Check>
+
+<Check>
+  Paste Signature Key into the add‑on settings
+</Check>
+
+
+---
