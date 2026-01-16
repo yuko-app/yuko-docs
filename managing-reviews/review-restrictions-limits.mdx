@@ -82,31 +82,96 @@ Review Restrictions & Limits help you control **who can submit reviews**, **what
   <Accordion title="Product Blacklist">
     The Product Blacklist lets you exclude specific products from review workflows.\
     \
-    **How It Works:**
+    **Where to Find the Product Blacklist:**
 
-    When a product is blacklisted:
+    There are **two ways** to access and manage the Product Blacklist.
 
-    - Automated review request emails are not sent
-    - Manual review requests are disabled
-    - The product is excluded from review workflows
+    **Option 1: From Review Restrictions & Limits**
 
-    Products are excluded using their **product ID**.
+    **Navigation:**\
+    \
+    **YUKO Dashboard → Settings → Reviews → General → Review Restrictions & Limits**
 
-    **Common Use Cases**
+    Under **Product Blacklist**, click **Manage Product Blacklist**.
 
-    - Excluding free samples or test products
-    - Preventing reviews on internal or draft SKUs
-    - Removing discontinued products from review collection
+    This button redirects you to the dedicated **Product Blacklist** page, where you can manage excluded products.
 
-    **Best Practices**
+    > 📝 **Note:** This option exists for quick access while configuring review restrictions.
 
-    - Keep the blacklist updated as products change
-    - Use for internal and non-customer-facing items
+    **Option 2: Direct Access**
+
+    \
+    **Navigation:**
+
+    \
+    **YUKO Dashboard → Reviews → Product Blacklist**
+
+    This page provides full control over excluded products and supports bulk management options.
+
+    ### How Product Blacklist Works
+
+    - Blacklisted products **will not receive review request emails**
+    - Manual review requests are also skipped for these products
+    - Existing reviews are **not removed**
+    - Removing a product from the blacklist immediately restores review requests
+
+    > 📝 **Note:** Product Blacklist affects review **collection**, not review display.
+
+    ### Add Products to the Blacklist
+
+    You can exclude products using **either** of the following methods.
+
+    <Columns cols={2}>
+      <Card title="Add Products Manually" icon="sparkles">
+        \
+        Click **Add Manually** to exclude products by entering their product IDs.
+
+        #### How it works:
+
+        - Enter **numeric product IDs** in the input field
+        - Separate multiple IDs with commas
+        - Only valid numeric product IDs are accepted
+
+        **Example: 123, 456,789 **
+
+        #### Important notes:
+
+        - Invalid or non-numeric IDs are **ignored silently**
+        - No error message is shown for invalid entries
+        - Make sure all product IDs entered exist in your store
+
+        <Tip>
+          **Tip:** Always double-check product IDs before saving to avoid accidental exclusions.
+        </Tip>
+      </Card>
+      <Card title="Upload Products via CSV" icon="sparkles">
+        \
+        For bulk exclusions, click **Upload CSV**.
+
+        #### How it works:
+
+        - Upload a CSV file containing product IDs you want to exclude
+        - Each row should contain **one numeric product ID**
+        - No column headers are required
+
+        You can also click **Download sample CSV** to see the correct format before uploading.
+
+        #### CSV requirements:
+
+        - Numeric product IDs only
+        - One product ID per row
+        - Invalid product IDs will be skipped without an error
+
+        <Tip>
+          **Best Practice:** Use CSV upload when excluding a large number of products at once.
+        </Tip>
+      </Card>
+    </Columns>
   </Accordion>
   <Accordion title="Email Blacklist">
     The Email Blacklist allows you to block specific email addresses or domains from receiving review-related emails or submitting reviews.
 
-    **Navigation: **
+    \*\*Navigation: \*\*
 
     **YUKO Dashboard → Settings → Account → Email Blacklist**
 
