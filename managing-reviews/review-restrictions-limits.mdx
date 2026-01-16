@@ -92,6 +92,8 @@ Review Restrictions & Limits help you control **who can submit reviews**, **what
     \
     **YUKO Dashboard → Settings → Reviews → General → Review Restrictions & Limits**
 
+    ![Op1](/images/op1.png)
+
     Under **Product Blacklist**, click **Manage Product Blacklist**.
 
     This button redirects you to the dedicated **Product Blacklist** page, where you can manage excluded products.
@@ -103,8 +105,9 @@ Review Restrictions & Limits help you control **who can submit reviews**, **what
     \
     **Navigation:**
 
-    \
     **YUKO Dashboard → Reviews → Product Blacklist**
+
+    ![Sf](/images/sf.png)
 
     This page provides full control over excluded products and supports bulk management options.
 
@@ -132,7 +135,7 @@ Review Restrictions & Limits help you control **who can submit reviews**, **what
         - Separate multiple IDs with commas
         - Only valid numeric product IDs are accepted
 
-        **Example: 123, 456,789 **
+        \*\*Example: 123, 456,789 \*\*
 
         #### Important notes:
 
@@ -169,36 +172,105 @@ Review Restrictions & Limits help you control **who can submit reviews**, **what
     </Columns>
   </Accordion>
   <Accordion title="Email Blacklist">
-    The Email Blacklist allows you to block specific email addresses or domains from receiving review-related emails or submitting reviews.
+    ## Email Blacklist
 
-    \*\*Navigation: \*\*
+    The **Email Blacklist** allows you to exclude specific customers from receiving **all Yuko emails**, including:
 
+    - Review request emails
+    - Review reminder emails
+    - Any future review-related communications
+
+    This is useful for blocking internal team members, test accounts, support inboxes, or system-generated email addresses.
+
+    ---
+
+    ### Accessing the Email Blacklist
+
+    **Navigation:**
+
+    \
     **YUKO Dashboard → Settings → Account → Email Blacklist**
 
-    ![Mn](/images/mn-1.png)
+    ![Mn](/images/mn-2.png)
 
-    \
-    \
-    **How It Works**
+    From this page, you can manage all email addresses that should be excluded from Yuko email communications.
 
-    When an email or domain is blacklisted:
+    ### How Email Blacklist Works
 
-    - Review request emails are not sent
-    - Review reminder and photo reminder emails are not sent
-    - The customer cannot submit reviews via widgets or direct links
-    - The restriction applies across all review workflows
+    - Blacklisted email addresses **will not receive any Yuko emails**
+    - Applies to both automated and manual review requests
+    - Works across all stores and products
+    - Removing an email immediately re-enables email delivery
 
-    **Common Use Cases**
+    > 📝 **Note:** Email Blacklist affects **email delivery only**. It does not remove existing reviews.
 
-    - Blocking internal or QA email addresses
-    - Preventing spam or abusive reviewers
-    - Excluding disposable or temporary email domains
+    ### Add Email Addresses to the Blacklist:
 
-    **Best Practices**
+    You can add email addresses using **either** of the following methods.
 
-    - Use domain-level blocking for disposable email providers
-    - Review the blacklist regularly
-    - Combine with review-request-only submissions for strongest protection
+    <Columns cols={2}>
+      <Card title="Add Emails Manually" icon="sparkles">
+        \
+        Click **Add Manually** to exclude email addresses one by one or in bulk.
+
+        #### How it works:
+
+        - Enter email addresses in a **comma-separated format**
+        - Wildcards (`*`) are supported to match patterns
+        - Entries are case-insensitive
+
+        #### Supported formats:
+
+        **Block a single email address**
+
+        ```
+        sample@example.com
+        ```
+
+        **Block all emails from a specific domain**
+
+        ```
+        *@anydomain.com
+        ```
+
+        **Block emails starting with a specific prefix across all domains**
+
+        ```
+        no-reply@*
+        ```
+
+        #### Important notes:
+
+        - Invalid email formats may be ignored without an error message
+        - Make sure entries are formatted correctly before saving
+
+        <Tip>
+          **Best Practice:** Use wildcards carefully, as they can block a large number of email addresses.
+        </Tip>
+      </Card>
+      <Card title="Upload Emails via CSV" icon="sparkles">
+        \
+        For bulk exclusions, click **Upload CSV**.
+
+        #### How it works:
+
+        - Upload a CSV file containing email addresses or wildcard patterns
+        - Each row should contain **one email entry**
+        - Wildcards (`*`) are supported in CSV uploads
+
+        You can click **Download sample CSV** to see the correct format before uploading.
+
+        #### CSV requirements:
+
+        - One email or pattern per row
+        - Maximum file size: **15 KB**
+        - Invalid entries are skipped automatically
+
+        <Tip>
+          **Tip:** CSV upload is ideal when blocking large mailing lists, internal domains, or system-generated emails.
+        </Tip>
+      </Card>
+    </Columns>
   </Accordion>
 </AccordionGroup>
 
