@@ -228,36 +228,6 @@ Yuko Dashboard → **Reviews → Emails → Photo Review Reminder Email**
       **Keep reward smaller:** If Photo Reward gives 10% off, Photo Reminder should give 5% off or less. Otherwise customers learn to skip photos initially.
     </Tip>
   </Accordion>
-  <Accordion title="What if customer already got Photo Reward Email?" icon="gift">
-    **This shouldn't happen - here's why:**
-
-    **How Yuko prevents duplicates:**
-
-    - Photo Reward Email triggers when review submitted WITH photos
-    - Photo Reminder Email triggers when review submitted WITHOUT photos
-    - Same review can't be both "with photos" and "without photos"
-    - Therefore, no customer gets both emails for same review
-
-    **Edge case scenarios:**
-
-    **Scenario 1: Customer adds photos later (before reminder)**
-
-    - Customer submits text review
-    - Photo Reminder scheduled for 5 days later
-    - Customer adds photos on day 3 (before reminder)
-    - **Yuko detects photos added, cancels scheduled reminder**
-    - Customer receives Photo Reward Email instead (if enabled)
-
-    **Scenario 2: Multiple products in order**
-
-    - Customer reviews Product A with photos (gets Photo Reward)
-    - Customer reviews Product B without photos (gets Photo Reminder)
-    - **This is correct:** Different products, different emails
-
-    <Info>
-      **Smart system:** Yuko automatically prevents duplicate or conflicting emails through intelligent tracking.
-    </Info>
-  </Accordion>
   <Accordion title="What if customer doesn't have photos?" icon="camera-slash">
     **Don't worry - this is normal and okay**
 
