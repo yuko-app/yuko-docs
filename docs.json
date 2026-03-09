@@ -156,7 +156,7 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Rest API ",
             "pages": [
               "introduction",
               "authentication",
@@ -169,6 +169,17 @@
                 ]
               },
               "rate-limits"
+            ]
+          },
+          {
+            "group": "API References",
+            "pages": [
+              {
+                "group": "Activities",
+                "pages": [
+                  "a"
+                ]
+              }
             ]
           }
         ]
