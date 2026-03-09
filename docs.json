@@ -197,7 +197,8 @@
               {
                 "group": "Earning Rules",
                 "pages": [
-                  "earning-rule-object"
+                  "earning-rule-object",
+                  "list-earning-rule"
                 ]
               }
             ]
