@@ -224,6 +224,12 @@
                   "list-points-transactions",
                   "retrieve-a-points-transaction"
                 ]
+              },
+              {
+                "group": "Referrals",
+                "pages": [
+                  "referral-object"
+                ]
               }
             ]
           }
