@@ -215,6 +215,12 @@
                 "pages": [
                   "points-purchase-object"
                 ]
+              },
+              {
+                "group": "Points Transactions",
+                "pages": [
+                  "points-transaction-object"
+                ]
               }
             ]
           }
