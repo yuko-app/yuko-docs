@@ -187,6 +187,13 @@
                   "untitled-page",
                   "retrieve-a-customer"
                 ]
+              },
+              {
+                "group": "Customer Identities",
+                "pages": [
+                  "customer-identity-object",
+                  "create-or-update-a-customer-identity"
+                ]
               }
             ]
           }
