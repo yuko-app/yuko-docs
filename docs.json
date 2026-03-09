@@ -177,8 +177,13 @@
               {
                 "group": "Activities",
                 "pages": [
-                  "a",
-                  "untitled-page"
+                  "a"
+                ]
+              },
+              {
+                "group": "Customers",
+                "pages": [
+                  "customer-object"
                 ]
               }
             ]
