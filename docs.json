@@ -205,7 +205,8 @@
                 "group": "Points Products",
                 "pages": [
                   "untitled-page",
-                  "list-points-products"
+                  "list-points-products",
+                  "retrieve-a-points-product"
                 ]
               }
             ]
