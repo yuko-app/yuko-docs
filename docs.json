@@ -158,7 +158,8 @@
           {
             "group": "API documentation",
             "pages": [
-              "introduction"
+              "introduction",
+              "authentication"
             ]
           }
         ]
