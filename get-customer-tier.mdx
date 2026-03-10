@@ -4,7 +4,7 @@ title: "Get customer tier"
 
 Retrieves the current VIP tier for a customer, including their next tier and progress toward it.
 
-**GET /external/customers/\{customerId\}/tier**
+**GET /public/tiers/customer**
 
 #### **Authorizations**
 
@@ -18,19 +18,19 @@ Retrieves the current VIP tier for a customer, including their next tier and pro
 
 Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
 
-#### **Path Parameters**
+#### **Query Parameters**
 
-**customerId**
+**customer_id**
 
-**string\<uuid\>**
+**string**
 
 **required**
 
-The UUID of the customer to retrieve tier information for.
+The platform customer ID (e.g. Shopify customer ID)
 
 Example:
 
-`"63a2c89a-9936-4bc0-9d5f-93db46110b76"`
+`"9049402769586"`
 
 #### **Response**
 
@@ -210,15 +210,15 @@ Example:
 
 ```bash cURL
 curl --request GET \
-  --url "https://api.yukoapp.com/v1/external/customers/63a2c89a-9936-4bc0-9d5f-93db46110b76/tier" \
+  --url "https://api.yukoapp.com/v1/public/tiers/customer?customer_id=9049402769586" \
   --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
 ```javascript JavaScript
-const customerId = "63a2c89a-9936-4bc0-9d5f-93db46110b76";
+const params = new URLSearchParams({ customer_id: "9049402769586" });
 
 const response = await fetch(
-  `https://api.yukoapp.com/v1/external/customers/${customerId}/tier`,
+  `https://api.yukoapp.com/v1/public/tiers/customer?${params}`,
   {
     method: "GET",
     headers: {
@@ -231,10 +231,10 @@ const data = await response.json();
 ```
 
 ```php PHP
-$customerId = "63a2c89a-9936-4bc0-9d5f-93db46110b76";
+$query = http_build_query(["customer_id" => "9049402769586"]);
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://api.yukoapp.com/v1/external/customers/{$customerId}/tier");
+curl_setopt($ch, CURLOPT_URL, "https://api.yukoapp.com/v1/public/tiers/customer?{$query}");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
