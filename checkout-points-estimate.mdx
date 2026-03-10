@@ -1,10 +1,10 @@
 ---
-title: "Checkout points estimate"
+title: "Points estimate"
 ---
 
-Estimates how many loyalty points a customer will earn for a given checkout. Designed for third-party checkout integrations (e.g. GoKwik) to show a real-time points preview before the order is placed. Customer is optional — guest checkouts are fully supported.
+Estimates how many loyalty points a customer will earn for a given set of cart items. Customer is optional — guest checkouts are fully supported.
 
-**POST /public/checkout/points-estimate**
+**POST /public/points/estimate**
 
 #### **Authorizations**
 
@@ -52,8 +52,6 @@ Example:
 
 **string**
 
-**required**
-
 ISO 4217 currency code for the order.
 
 Required length: `3`
@@ -61,18 +59,6 @@ Required length: `3`
 Example:
 
 `"INR"`
-
-**subtotal**
-
-**number**
-
-**required**
-
-The order subtotal (excluding shipping and tax) used as the base for points calculation.
-
-Example:
-
-`2399.00`
 
 **items**
 
@@ -140,7 +126,7 @@ Example:
 
 **required**
 
-The line total (`price × quantity`) used for item-level points calculation.
+The line total (`price × quantity`) used for points calculation.
 
 Example:
 
@@ -170,7 +156,7 @@ Example:
 
 **string**
 
-A human-readable message to display to the customer at checkout.
+A human-readable message to display to the customer.
 
 Example:
 
@@ -180,7 +166,7 @@ Example:
 
 ```bash cURL
 curl --request POST \
-  --url "https://api.yukoapp.com/v1/public/checkout/points-estimate" \
+  --url "https://api.yukoapp.com/v1/public/points/estimate" \
   --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
   --header "Content-Type: application/json" \
   --data '{
@@ -189,7 +175,6 @@ curl --request POST \
       "email": "rahul.sharma@example.com"
     },
     "currency": "INR",
-    "subtotal": 2399.00,
     "items": [
       {
         "product_id": "prod_1001",
@@ -211,7 +196,7 @@ curl --request POST \
 
 ```javascript JavaScript
 const response = await fetch(
-  "https://api.yukoapp.com/v1/public/checkout/points-estimate",
+  "https://api.yukoapp.com/v1/public/points/estimate",
   {
     method: "POST",
     headers: {
@@ -224,7 +209,6 @@ const response = await fetch(
         email: "rahul.sharma@example.com",
       },
       currency: "INR",
-      subtotal: 2399.00,
       items: [
         {
           product_id: "prod_1001",
@@ -250,7 +234,7 @@ const data = await response.json();
 
 ```php PHP
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://api.yukoapp.com/v1/public/checkout/points-estimate");
+curl_setopt($ch, CURLOPT_URL, "https://api.yukoapp.com/v1/public/points/estimate");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
@@ -259,7 +243,6 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
         "email" => "rahul.sharma@example.com",
     ],
     "currency" => "INR",
-    "subtotal" => 2399.00,
     "items" => [
         [
             "product_id" => "prod_1001",
@@ -316,7 +299,6 @@ $data = json_decode($response, true);
     "code": "validation_error",
     "message": "The given data was invalid",
     "details": {
-      "currency": ["The currency field is required."],
       "items": ["The items field is required."]
     }
   }
