@@ -1,24 +1,148 @@
 ---
-description: "Manually review, approve, edit, or reject customer reviews before they go live."
-title: "6.2 Review Moderation"
+title: "Review Moderation"
+description: "Control review quality with profanity filters, spam detection, and manual approval workflows"
 ---
 
-### Overview: 
+import NeedHelp from '/snippets/need-help.mdx';
 
-Yuko includes built-in tools for moderation and quality control.
+## Keep Your Review Section Clean and Professional
 
-**Available Controls:**
+Review moderation tools help you maintain quality standards while preventing spam, fake reviews, and inappropriate content. Set up automated filters and manual approval workflows that match your brand's needs.
 
-- **Profanity Filter:**
-  - Replace banned words with \*\*\*
-  - Or hide reviews containing offensive content
-- **Spam Filter:**
-  - Automatically detects suspicious submissions
-  - Keeps your store clean from bots or spam
+**What you'll achieve:**
 
-**Navigation:**
+- Block spam and fake reviews automatically
+- Filter profanity and inappropriate language
+- Set up approval workflows for quality control
+- Maintain professional review section
+- Protect brand reputation
 
-\
-\*\*Yuko Dashboard → Settings → Reviews →General \*\*
+<Info>
+  **Impact:** Stores with active moderation see 60% less spam and maintain 25% higher trust scores than unmoderated stores
+</Info>
 
-![Profespam Pn](/images/profespam.png)
+---
+
+## Navigation:
+
+Yuko Dashboard → **Settings → Reviews → General → Review Publishing & Moderation**
+
+![p&m.png](/images/p&m.png)
+
+## Profanity Filter
+
+Block or censor offensive language automatically using the following settings in Yuko:
+
+<Tabs>
+  <Tab title="Replace with Asterisks">
+    **Automatically censor profanity**
+
+    - Offensive words or phrases in a review are automatically replaced with `***`.
+    - The review remains visible on your product pages, widgets, and contributes to the average rating.
+    - Ensures that genuine feedback is not lost while keeping content appropriate for all audiences.
+    - Best practice: Use this for minor profanity to maintain flow of reviews without hiding customer sentiment.
+
+    **Best for:** Casual brands, high review volume
+
+    <Tip>
+      **Recommended:** Use replacement for mild profanity. For severe language, use "hold for review" instead. This feature is available in the paid plans
+    </Tip>
+  </Tab>
+  <Tab title="Hide review containing banned words">
+    **Block reviews with profanity**
+
+    - Reviews with blocked words are automatically marked as unpublished.
+    - These reviews will not appear on your store or in review widgets.
+    - Ideal for severe language or inappropriate content that could harm your store’s reputation.
+    - You can manually review hidden content in the dashboard to recover if needed.
+
+      **Best for:** Stores prioritizing a fully clean review section over visibility of flagged reviews.
+
+      **Time investment:** Medium – requires occasional review of hidden content.
+  </Tab>
+  <Tab title="Use standard blocklist (Default)">
+    **Applies Yuko’s pre-configured list of common offensive words automatically.**
+
+    - Saves time and ensures consistency in moderating inappropriate content.
+    - You can combine this with custom words or phrases to tailor moderation to your store’s requirements.
+
+    **Optional:** Upload a CSV file containing custom blocklist words. The file is securely stored and applied to all incoming reviews. You can remove or update the file anytime.
+
+    <img
+      src="/images/mmnl.png"
+      alt="Mmnl"
+      title="Mmnl"
+      style={{ width:"77%" }}
+    />
+
+    <img
+      src="/images/vvbv.png"
+      alt="Vvbv"
+      title="Vvbv"
+      style={{ width:"78%" }}
+    />
+
+    \
+    **Best for:** Stores starting with profanity filtering or without custom blocklist needs.
+
+    **Time investment:** Very low – ready-to-use out of the box.
+
+    <Check>
+      **Best practice:** Regularly review your blocked words list to ensure it aligns with your brand tone and keeps your reviews trustworthy and family-friendly.
+    </Check>
+  </Tab>
+</Tabs>
+
+---
+
+## Spam Filter
+
+Enable Yuko’s Spam Filter to automatically block suspicious or spammy reviews from appearing on your store. This keeps your review section clean and your ratings trustworthy.
+
+### How It Works
+
+![Spam](/images/spam.png)
+
+- Once enabled, Yuko scans incoming reviews for common spam indicators.
+- Reviews flagged as spam are automatically hidden and moved to the **Spam** section in your dashboard.
+
+### Key Points
+
+- **Automatic Protection:** Reduces fake, duplicate, or malicious reviews.
+- **Minimal Manual Work:** Just enable the filter—Yuko handles the rest.
+- **Review Spam Folder Occasionally:** Check periodically for any legitimate reviews mistakenly flagged.
+
+### Best For
+
+- Stores receiving frequent reviews
+- Stores wanting to maintain accurate ratings and customer trust
+
+## Next Steps
+
+<Steps>
+  <Step title="Set Up Email Blacklist" icon="ban">
+    Block known spam domains.
+
+    **Time:** 10 minutes → [Email blacklist setup](/managing-reviews/email-blacklist)
+  </Step>
+  <Step title="Choose Moderation Workflow" icon="diagram-project">
+    Decide: Manual, filtered auto-publish, or full auto.
+
+    **Time:** 15 minutes → [Auto-publishing configuration](/managing-reviews/auto-publishing-reviews)
+  </Step>
+  <Step title="Monitor and Adjust" icon="chart-line">
+    Check spam rate weekly, adjust filters as needed.
+
+    **Time:** 10 min/week **Action:** Review spam folder, check false positives
+  </Step>
+</Steps>
+
+---
+
+## Need Help?
+
+<NeedHelp />
+
+<Note>
+  **Pro tip:** Start with "hold for manual review" for profanity and spam. After 30 days, you'll understand your false positive rate and can switch to more aggressive auto-hide if filters are working well.
+</Note>

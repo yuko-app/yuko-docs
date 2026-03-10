@@ -1,0 +1,81 @@
+---
+title: "Customer Identity object"
+---
+
+Customer identities represent individuals or entities in an external system and how they map to customers in a Yulko loyalty program. They contain basic details like email and name, along with the external system’s unique identifier for the individual. In practice, a single customer in Yuko may have zero, one, or many different customer identities.
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/customer-identity-object#schema-id)
+
+**id**
+
+**integer**
+
+Unique identifier for the customer identity in Yuko.
+
+Example:
+
+`863291377`
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/customer-identity-object#schema-first-name-one-of-0)
+
+**first_name**
+
+**string | null**
+
+The first name of the customer in the external system.
+
+Example:
+
+`"Jane"`
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/customer-identity-object#schema-last-name-one-of-0)
+
+**last_name**
+
+**string | null**
+
+The last name of the customer in the external system.
+
+Example:
+
+`"Doe"`
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/customer-identity-object#schema-email)
+
+**email**
+
+**string\<email\>**
+
+The email of the customer in the external system.
+
+Example:
+
+`"jane@doe.com"`
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/customer-identity-object#schema-distinct-id)
+
+**distinct_id**
+
+**string**
+
+The unique identifier for the customer in the external system.
+
+Example:
+
+`"cust_19238475"`
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/customer-identity-object#schema-properties)
+
+**properties**
+
+**object**
+
+A restricted hash of additional attributes for the customer identity. Keys are allowlisted on a per-integration basis.
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/customer-identity-object#schema-customer-id)
+
+**customer_id**
+
+**integer**
+
+The ID of the customer in Yuko that this customer identity is linked to.

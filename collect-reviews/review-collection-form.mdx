@@ -1,32 +1,324 @@
 ---
-title: "3.1 Review Collection Form"
-description: "Learn how to collect customer reviews using Yuko’s built-in review form."
+description: "Add review collection forms to your product pages so customers can leave feedback directly on your site"
+title: "Review Collection Form Setup"
 ---
 
-### **Navigation**
+## Let Customers Review Directly on Your Store
 
-Yuko Dashboard → **Reviews → Widgets → Review Collection Form**
+The review collection form is where customers write reviews on your website. While most reviews come from email requests (5-10% response rate), on-site forms capture 1-2% of visitors who want to leave feedback without being asked. Every review counts.
+
+**What you'll achieve:**
+
+- Add "Write a Review" buttons to product pages
+- Collect reviews from customers browsing your store
+- Customize form appearance to match your brand
+- Make reviewing easy and mobile-friendly
+- Capture organic reviews from happy customers
+
+<Info>
+  **Impact:** Organic reviews from on-site forms are often more detailed and authentic than email-prompted reviews
+</Info>
+
+---
+
+## How the Review Form Works
+
+Navigation: Yuko Dashboard → **Reviews → Widgets → Review Collection Form**
 
 ![Rcf Pn](/images/rcf.png)
 
-### **Overview**
+### Customer Journey
 
-The Review Collection Form is the central tool for gathering reviews.\
-You can send it through an email link or embed it directly on your website.
+The Review Collection Form allows customers to leave feedback directly on your store. Here’s how it works step by step:
 
-Each section of the form - from rating and review text to photo upload can be customized to match your tone, visuals, and data collection needs.\
-\
-**Form Customization Options**
+<Steps>
+  <Step title="Customer Clicks Write Review" icon="cursor">
+    Customer is on a product page and clicks "Write a Review" button.
 
-| **Section**              | **What You Can Customize**                                                                                         |
-| :----------------------- | :----------------------------------------------------------------------------------------------------------------- |
-| **Dialog**               | Set background color, button styles, input fields, and typography.                                                 |
-| **Rating Section**       | Edit rating question, label min/max values (e.g., “Not great” → “Excellent”), and add a short description.         |
-| **Photos**               | Enable image uploads, change button text (e.g., “Add a photo”), and include short prompts (“Show your new look!”). |
-| **Review Content**       | Rename the “Review Title” and “Review Text” fields, and set placeholder text.                                      |
-| **Reviewer Info**        | Collect name and email (optional). Add a note or disclaimer if needed.                                             |
-| **Thank You Message**    | Customize the message after submission (e.g., “Thanks for reviewing! You just made our day 💛”).                   |
-| **Next Products Prompt** | Invite customers to review other items from their order.                                                           |
-| **Advanced CSS**         | Fine-tune every visual detail using your own CSS styles.                                                           |
+    **Where they see it:**
 
-![Rcf22 Pn](/images/rcf22.png)
+    - Below product description
+    - In reviews section
+    - After purchase confirmation
+    - On "My Orders" page
+  </Step>
+  <Step title="Review Form Opens" icon="square-poll-vertical">
+    Form modal or page opens with customized fields.
+
+    **What they see:**
+
+    - Star rating selector (1-5 stars)
+    - Review title field (optional)
+    - Review text area
+    - Photo upload option
+    - Name and email fields
+  </Step>
+  <Step title="Customer Completes Form" icon="pen">
+    Customer fills in rating, writes review, optionally adds photos.
+
+    **Typical completion time:** 2-3 minutes for text review, 4-5 minutes with photos
+  </Step>
+  <Step title="Customer Submits" icon="paper-plane">
+    Review is submitted and enters your moderation queue or publishes immediately.
+
+    **What happens:**
+
+    - Thank you message displays
+    - Review awaits approval (if manual moderation)
+    - Or appears on site instantly (if auto-publish enabled)
+  </Step>
+  <Step title="Prompt for Additional Reviews" icon="list-check">
+    If customer ordered multiple products, they're prompted to review others.
+
+    **Smart prompts:** Only shows products they actually purchased
+  </Step>
+</Steps>
+
+---
+
+## Form Customization Options
+
+Make the form match your brand and optimize for conversions:
+
+<AccordionGroup>
+  <Accordion title="1. Dialog Appearance (Form Container):" defaultOpen="false" icon="palette">
+    - Background color, border radius, shadows
+    - Button styles and colors
+    - Input field design
+    - Typography (font family, sizes)
+    - Spacing and padding
+
+    **Brand Consistency:**
+
+    - Use your brand colors
+    - Match site button styles
+    - Consistent fonts
+    - Add your logo in the header
+
+    **Best Practices:**
+
+    - Keep the form clean and minimal
+    - Ensure high contrast for readability
+    - Mobile-friendly sizing
+    - Clear call-to-action buttons
+    - Pro tip: Match your form to your checkout design
+
+    <Tip>
+      **Pro tip:** Match your form to your checkout design - customers already trust that visual style.
+    </Tip>
+  </Accordion>
+  <Accordion title="Star Rating Experience" icon="star">
+    **Customize the star rating experience:**
+
+    - **Rating Question:** Default: “How would you rate this product?”
+      - Examples: “What did you think?”, “Rate your experience”, “Overall satisfaction?”
+    - **Rating Labels:**
+      - 1 star (min): “Poor”, “Not great”, “Disappointed”
+      - 5 stars (max): “Excellent”, “Amazing”, “Love it!”
+      - Mid-range: “It’s okay”, “Good”, “Great”
+    - **Additional Options:**
+      - Short description under the question
+      - Required vs optional (always make required)
+      - Half-star ratings not recommended
+
+    **Best Practices:**
+
+    - Keep the question simple and clear
+    - Use positive language for max rating
+    - Avoid negative language for min rating
+
+    <Warning>
+      **Never ask leading questions:** Don't say "How much do you LOVE this product?" - it creates bias toward positive reviews.
+    </Warning>
+  </Accordion>
+  <Accordion title="Visual Reviews (Photo Uploads)" icon="camera">
+    import NeedHelp from '/snippets/need-help.mdx';
+
+    - **Button Customization:**
+      - Text: “Add photos”, “Upload images”, “Show us!”
+      - Icon and color, placement above or below text
+    - **Upload Prompts:**
+      - “Show your new look!”
+      - “Share how it turned out!”
+      - “Let others see it in real life”
+      - “Upload unboxing photos”
+    - **Technical Settings:**
+      - Max photos per review: 5 recommended
+      - Video support (optional), max length 30 sec
+      - File size limits, accepted formats: JPG, PNG, HEIC, MP4
+
+    **Best Practices:**
+
+    - Make uploads optional
+    - Show example submissions
+    - Enable one-tap upload on mobile
+    - Clear guidance for file size/format
+    - Compress large files automatically
+
+    **Incentive Messaging:**
+
+    - Example: “Get 10% off for photo reviews!”
+    - Display above upload button
+
+    ---
+  </Accordion>
+  <Accordion title="Text Input Sections" icon="file-lines">
+    - **Review Title Field:**
+      - Label examples: “Review Title”, “Headline”, “Summary”
+      - Placeholder: “Summarize your experience…”
+      - Optional, character limit: 50–100
+    - **Review Text Area:**
+      - Label: “Your Review”, “Tell us more”
+      - Placeholder: “What did you like? How did it fit? Would you recommend it?”
+      - Optional but encouraged
+      - Min 20 characters, max 500–1000
+    - **Guidance Text Examples:**
+      - “Share details about quality, fit, and value”
+      - “Help other shoppers make confident decisions”
+      - “What should others know about this product?”
+
+    **Best Practices:**
+
+    - Keep labels short and clear
+    - Use helpful placeholder text
+    - Suggest topics to cover
+    - Show live character count
+
+    <Info>
+      **Finding the balance:** Optional review text gets more submissions but shorter reviews. Required text (minimum 20 characters) gets 30% fewer submissions but much better quality.
+    </Info>
+  </Accordion>
+  <Accordion title="Customer Details" icon="user">
+    - **Name Field:**
+      - Label: “Your Name”, “Display Name”
+      - Required for credibility
+      - Option to display publicly
+    - **Email Field:**
+      - Label: “Email”, “Email Address”
+      - Required for verification
+      - Never displayed publicly, used for verified purchase badge
+
+    **Additional Optional Fields:**
+
+    - Location (city/country)
+    - Age range
+    - Product usage
+    - Purchase occasion
+
+    **Privacy Note:**
+
+    - Add disclaimer: “Your email will never be shared”
+    - Link to privacy policy, GDPR compliance if needed
+
+    **Best Practices:**
+
+    - Only ask for name and email minimum
+    - Explain why email is needed
+    - Make additional fields optional
+    - Highlight verified purchase badge
+  </Accordion>
+  <Accordion title="Thank You Message" icon="party-horn">
+    **Celebrate the submission:**
+
+    **Customization options:**
+
+    - Message text
+    - Emoji and styling
+    - Incentive announcement
+    - Next steps
+
+    **Effective thank you messages:**
+
+    - "Thanks for reviewing! You just made our day 💛"
+    - "Amazing! Your review helps other shoppers. Check your email for a thank-you discount!"
+    - "Review submitted! We'll send you a reward code within 24 hours."
+    - "Thank you! Your feedback makes us better."
+
+    **What to include:**
+
+    - Genuine thanks
+    - What happens next (approval process)
+    - Reward details if applicable
+    - Invitation to review other products
+
+    **Best practices:**
+
+    - Be warm and personal
+    - Mention any rewards
+    - Set expectations (approval time)
+    - Encourage sharing on social
+    - Link to their order history
+
+    <Tip>
+      **Pro tip:** Include a "Share on social" option in the thank you message - customers who just reviewed are in a positive mindset and may share their purchase.
+    </Tip>
+  </Accordion>
+  <Accordion title="Advanced Customization" icon="code">
+    **For developers and power users:**
+
+    **Custom CSS:**
+
+    - Override any default styles
+    - Match exact brand guidelines
+    - Custom animations
+    - Responsive breakpoints
+
+    **Custom JavaScript:**
+
+    - Form validation logic
+    - Analytics tracking
+    - A/B testing variants
+    - Dynamic field showing/hiding
+
+    **API integration:**
+
+    - Send reviews to other platforms
+    - Sync with CRM
+    - Trigger automations
+    - Custom notifications
+
+    **Best practices:**
+
+    - Test changes on staging first
+    - Ensure mobile compatibility
+    - Don't break accessibility
+    - Monitor form completion rates
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next Steps
+
+<Steps>
+  <Step title="Customize Form Appearance" icon="palette">
+    Match the review form to your brand colors and style.
+
+    **Time:** 15 minutes **Location:** Reviews → Widgets → Review Collection Form → Design
+  </Step>
+  <Step title="Add Form to Product Pages" icon="browser">
+    Embed the "Write a Review" button on all product pages.
+
+    **Time:** 10 minutes (varies by platform) **Implementation:** Add widget code to product template
+  </Step>
+  <Step title="Test on Mobile" icon="mobile">
+    Verify the form works perfectly on actual mobile devices.
+
+    **Time:** 10 minutes **Test:** Photo upload, form submission, thank you page
+  </Step>
+  <Step title="Set Up Review Request Emails" icon="envelope">
+    Combine on-site forms with automated email requests for maximum reviews.
+
+    **Time:** 10 minutes → [Review Request Email Setup](/request-reviews/review-request-emails)
+  </Step>
+</Steps>
+
+---
+
+## Need Help?
+
+<NeedHelp />
+
+<Note>
+  **Pro tip:** The on-site form is important, but email review requests drive 80% of reviews. Set up both, but prioritize getting review request emails working first.
+</Note>

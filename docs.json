@@ -9,6 +9,20 @@
   },
   "favicon": "/logos/favicon.svg",
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Yuko Dashboard",
+          "icon": "book-open-cover",
+          "href": "https://app.yukoapp.com"
+        },
+        {
+          "anchor": "Blog",
+          "icon": "newspaper",
+          "href": "https://yuko.so/blog/"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Guides",
@@ -49,7 +63,6 @@
             "group": "4. Display Reviews",
             "pages": [
               "display-reviews",
-              "display-reviews/introduction-to-widgets",
               "display-reviews/product-reviews-display-widget",
               "display-reviews/sidebar-widget",
               "display-reviews/star-rating-widget",
@@ -143,28 +156,111 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Rest API ",
             "pages": [
-              "collect-reviews/openapi"
+              "introduction",
+              "authentication",
+              "errod",
+              {
+                "group": "Pagination",
+                "pages": [
+                  "cursor-pagination",
+                  "classic-pagination"
+                ]
+              },
+              "rate-limits"
+            ]
+          },
+          {
+            "group": "API References",
+            "pages": [
+              {
+                "group": "Activities",
+                "pages": [
+                  "a"
+                ]
+              },
+              {
+                "group": "Customers",
+                "pages": [
+                  "customer-object",
+                  "retrieve-a-customer"
+                ]
+              },
+              {
+                "group": "Customer Identities",
+                "pages": [
+                  "customer-identity-object",
+                  "create-or-update-a-customer-identity"
+                ]
+              },
+              {
+                "group": "Earning Rules",
+                "pages": [
+                  "earning-rule-object",
+                  "list-earning-rule"
+                ]
+              },
+              {
+                "group": "Points Products",
+                "pages": [
+                  "list-points-products",
+                  "retrieve-a-points-product",
+                  "purchase-a-points-product"
+                ]
+              },
+              {
+                "group": "Points Purchases",
+                "pages": [
+                  "points-purchase-object"
+                ]
+              },
+              {
+                "group": "Points Transactions",
+                "pages": [
+                  "points-transaction-object",
+                  "create-a-points-transaction",
+                  "list-points-transactions",
+                  "retrieve-a-points-transaction"
+                ]
+              },
+              {
+                "group": "Referrals",
+                "pages": [
+                  "referral-object"
+                ]
+              },
+              {
+                "group": "Rewards",
+                "pages": [
+                  "reward-objects"
+                ]
+              },
+              {
+                "group": "Reward Fulfillments",
+                "pages": [
+                  "reward-fulfillment-object",
+                  "list-reward-fulfillments"
+                ]
+              },
+              {
+                "group": "VIP Tiers",
+                "pages": [
+                  "vip-tier-object",
+                  "list-vip-tiers"
+                ]
+              },
+              {
+                "group": "VIP Tier Changes",
+                "pages": [
+                  "vip-tier-change-object"
+                ]
+              }
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Yuko Dashboard",
-          "href": "https://app.yukoapp.com",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://yuko.so/blog/",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logos/YukoDocs.svg",

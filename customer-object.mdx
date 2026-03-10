@@ -1,0 +1,157 @@
+---
+title: "Customer Object"
+---
+
+Customers represent individuals in the loyalty program. They have a points balance, can earn points by performing activities, and can redeem points for rewards.
+
+[**​**](https://dev.smile.io/api/resources/customers/customer-object#schema-id)
+
+**id**
+
+**integer**
+
+Unique identifier for the customer in Yuko.
+
+Example:
+
+`304169228`
+
+[**​**](https://dev.smile.io/api/resources/customers/customer-object#schema-first-name-one-of-0)
+
+**first_name**
+
+**string | null**
+
+The customer's first name.
+
+Example:
+
+`"Jane"`
+
+[**​**](https://dev.smile.io/api/resources/customers/customer-object#schema-last-name-one-of-0)
+
+**last_name**
+
+**string | null**
+
+The customer's last name.
+
+Example:
+
+`"Doe"`
+
+[**​**](https://dev.smile.io/api/resources/customers/customer-object#schema-email)
+
+**email**
+
+**string**
+
+The customer's email address.
+
+Example:
+
+`"jane@doe.com"`
+
+[**​**](https://dev.smile.io/api/resources/customers/customer-object#schema-state)
+
+**state**
+
+**enum\<string\>**
+
+The customer's state in the loyalty program.
+
+Available options:
+
+`candidate`, 
+
+`member`, 
+
+`disabled` 
+
+Example:
+
+`"member"`
+
+[**​**](https://dev.smile.io/api/resources/customers/customer-object#schema-date-of-birth-one-of-0)
+
+**date_of_birth**
+
+**string\<date\> | null**
+
+The customer's birthday. A year value of `1004` means only the customer's birth day and month was entered.
+
+Example:
+
+`"1004-05-27"`
+
+[**​**](https://dev.smile.io/api/resources/customers/customer-object#schema-points-balance)
+
+**points_balance**
+
+**integer**
+
+The customer's current points balance.
+
+Example:
+
+`300`
+
+[**​**](https://dev.smile.io/api/resources/customers/customer-object#schema-referral-url)
+
+**referral_url**
+
+**string**
+
+The customer's unique referral URL. Used to share with friends as part of the referral program.
+
+Example:
+
+`"http://i.refs.cc/9qr5Pw"`
+
+[**​**](https://dev.smile.io/api/resources/customers/customer-object#schema-vip-tier-id-one-of-0)
+
+**vip_tier_id**
+
+**integer | null**
+
+**deprecated**
+
+The ID of the customer's current VIP tier. This field is now deprecated, use the nested `vip_status.vip_tier_id` instead.
+
+Example:
+
+`426715794`
+
+[**​**](https://dev.smile.io/api/resources/customers/customer-object#schema-vip-status)
+
+**vip_status**
+
+**object**
+
+An object containing details about the customer's status within the VIP program.
+
+Show child attributes
+
+[**​**](https://dev.smile.io/api/resources/customers/customer-object#schema-created-at)
+
+**created_at**
+
+**string\<date-time\>**
+
+The date and time when the customer was created.
+
+Example:
+
+`"2024-04-04T15:10:42.030Z"`
+
+[**​**](https://dev.smile.io/api/resources/customers/customer-object#schema-updated-at)
+
+**updated_at**
+
+**string\<date-time\>**
+
+The date and time when the customer was last updated.
+
+Example:
+
+`"2025-04-04T15:10:42.030Z"`

@@ -1,40 +1,177 @@
 ---
-title: "5.1 Importing from WooCommerce Reviews"
-description: "Learn how to import your existing WooCommerce product reviews into Yuko."
+title: "Importing from WooCommerce Reviews"
+description: "Import your existing WooCommerce product reviews into Yuko with one-click automatic import"
 ---
 
-### **Navigation**
+import NeedHelp from '/snippets/need-help.mdx';
 
-Yuko Dashboard → **Reviews → Import → WooCommerce**
+## Learn how to Migrate WooCommerce Reviews in Minutes
 
-### **Overview**
+Already have product reviews in WooCommerce? Import them to Yuko instantly with our automatic one-click import. All your reviews, ratings, and verified purchase badges transfer seamlessly — no CSV files or manual work required.
 
-If your store has existing WooCommerce product reviews, you can import them directly into Yuko with one click.\
-All your WooCommerce reviews will sync automatically — including author name, rating, date, and comment.
+**What you'll achieve:**
 
-## **Steps to Import**
+- Import all WooCommerce reviews automatically
+- Preserve star ratings and review dates
+- Maintain verified purchase status
+- Keep reviewer information intact
+- Switch to Yuko without losing social proof
 
-1. Go to your **Yuko Dashboard → Reviews → Import**.
-2. Click **Import from WooCommerce**.
-3. Yuko will automatically fetch your store’s reviews through the connected integration.
-4. Wait for the import to complete (you’ll see a progress indicator).
+<Info>
+  **Impact:** WooCommerce import takes 2-30 minutes depending on review count. All reviews automatically mapped to correct products.
+</Info>
 
-Once complete, your reviews will appear under **Reviews → Manage Reviews**.
+---
 
-### **What Gets Imported**
+## Why Import WooCommerce Reviews
 
-| **Data**           | **Description**                           |
-| :----------------- | :---------------------------------------- |
-| **Reviewer Name**  | The name of the reviewer.                 |
-| **Email Address**  | Associated customer email (if available). |
-| **Product**        | The product linked to the review.         |
-| **Rating**         | Star rating (1–5).                        |
-| **Review Content** | Full review text.                         |
-| **Date**           | Original submission date.                 |
-| **Status**         | Published / Pending / Spam.               |
+<CardGroup cols={2}>
+  <Card title="One-Click Import" icon="wand-magic-sparkles">
+    **No manual work required**
 
-## **Notes**
+    - One-click automatic import ( Simply Sync in the Settings -\> Integrations -\> WooCommerce -\> Configure -\> Sync  ) 
+    - No CSV files to format
+    - No product ID mapping needed
+    - Yuko auto-matches reviews to products
+    - Fully automated process
 
-- Duplicate reviews are automatically skipped.
-- WooCommerce's “verified owner” status is preserved.
-- Media (photo/video) imports are supported if stored in WooCommerce meta fields.
+    **Result:** Import completes in minutes without any manual effort
+  </Card>
+  <Card title="Complete Data Transfer" icon="database">
+    **Everything transfers**
+
+    - All review text and titles
+    - Star ratings (1-5)
+    - Reviewer names and emails
+    - Review dates (preserved)
+    - Verified purchase badges
+    - Approval status
+
+    **Result:** Perfect 1:1 migration from WooCommerce to Yuko
+  </Card>
+  <Card title="Verified Purchase Status" icon="badge-check">
+    **Maintain trust badges**
+
+    - WooCommerce "Verified Owner" preserved
+    - Converts to Yuko "Verified Purchase"
+    - Shows on reviews automatically
+    - Maintains credibility
+
+    **Result:** No loss of review authenticity during migration
+  </Card>
+  <Card title="Safe Migration" icon="shield-check">
+    **Your data stays safe**
+
+    - Original WooCommerce reviews unchanged
+    - Duplicate prevention (won't import twice)
+    - Can re-import if needed
+    - Rollback friendly
+
+    **Result:** Risk-free migration with backup intact
+  </Card>
+</CardGroup>
+
+---
+
+## Step-by-Step Import Instructions
+
+Yuko Dashboard → **Settings → Integration → WooCommerce**
+
+<AccordionGroup>
+  <Accordion title="Step 1 : Open WooCommerce Integration" defaultOpen="false" icon="plug">
+    - Go to **Settings → Integrations → WooCommerce**
+    - This page manages your store connection and sync settings
+  </Accordion>
+  <Accordion title="Step 2: Connect Your WooCommerce Store" icon="location-arrow">
+    - If your store is **not connected**, click **Connect WooCommerce Store**
+    - Enter your store URL
+    - Authorize access
+    - Once connected, the integration will show as **Active**\
+      \
+      \
+      \
+      **Fix:** Ensure correct store URL format (https://yourstore.com)
+
+      ![conn.png](/images/conn.png)
+
+    <Tip>
+      **Pro tip:** Test WooCommerce connection by importing 1-2 reviews first (you'll do this in Step 4). If connection works for test import, it will work for full import.
+    </Tip>
+  </Accordion>
+  <Accordion title="Step 3:  “Data Synchronisation”" icon="sliders">
+    - Locate the **Data Synchronisation** section
+    - This area controls how customers, products, and reviews are imported into Yuko
+  </Accordion>
+  <Accordion title="Step 4: Click “Fetch Data”" icon="flask">
+    - Click **Fetch Data** to pull customer, product, and review information from WooCommerce
+    - Yuko will display how many items were found (e.g., customers, products)
+
+      \
+      \
+      Why this matters:
+    - Allows Yuko to fetch WooCommerce review records.
+  </Accordion>
+  <Accordion title="Step 5: Enable Review Import" icon="play">
+    - Go to **Settings → Integrations → WooCommerce**
+    - Scroll to **Data Synchronisation / Store Data**
+    - Under **Store Data**, find the checkbox \*\*Include Reviews \*\*
+    - Enable **Include Reviews** (check the box)
+
+      ![sy.png](/images/sy.png)
+    - Save settings
+  </Accordion>
+  <Accordion title="Step 6: Review Import Summary" icon="clipboard-check">
+    - After enabling the checkbox, the sync will continue
+    - Status indicators (Customers, Products, Reviews) will show **In progress**
+
+      ![com.png](/images/com.png)
+    - They will automatically switch to **Completed** once the sync finishes
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## After Import: Next Steps
+
+<Steps>
+  <Step title="Verify Imported Reviews" icon="circle-check">
+    Check that reviews imported correctly.
+
+    **Verification checklist:**
+
+    1. Total count
+    2. Random sampling: Check 10-20 random product pages
+    3. Verified badges: Ensure verified purchases show badge
+    4. Dates: Confirm original dates preserved (not all "today")
+    5. Product assignment: Reviews on correct products
+
+    **Time:** 15-30 minutes
+  </Step>
+  <Step title="Set Up Review Display Widgets" icon="browser">
+    Install Yuko widgets to show imported reviews on your store.
+
+    **Required for reviews to appear:**
+
+    1. Go to **Yuko Dashboard → Reviews → Widgets**
+    2. Install Product Review Widget
+    3. Install Star Rating Widget
+    4. Place widgets on product pages
+    5. Verify reviews displaying
+
+    **Imported reviews won't show until widgets installed**
+
+    → [Widget installation guide](/display-reviews/introduction-to-widgets)
+
+    **Time:** 20-30 minutes
+  </Step>
+</Steps>
+
+---
+
+## Need Help?
+
+<NeedHelp />
+
+<Note>
+  **Pro tip:** Before importing, verify all your WooCommerce products are already in Yuko. This ensures perfect product matching. Then run a test import with 20 reviews to verify everything works before importing your full review database.
+</Note>

@@ -1,0 +1,150 @@
+---
+title: "Create or update a customer identity"
+---
+
+Creates a new customer identity or updates an existing one.
+
+**POST**
+
+/
+
+**customer_identities**
+
+/
+
+**create_or_update**
+
+**Try it**
+
+This endpoint requires the **customer_identity:write** scope.
+
+This endpoint is only available to [**apps**](https://dev.smile.io/guides/apps/build) making calls using an OAuth token. Attempting to use this endpoint with an API key will fail.
+
+**Creating:** If no customer identity exists with the provided `distinct_id`, a new customer identity is created.
+
+- If the provided email matches an existing customer record, the customer identity is linked to that customer.
+- If the provided email does not match an existing customer record, a new customer is created and a customer identity is linked to the new customer.
+
+**Updating:** If a customer identity exists with the provided `distinct_id`, it is updated with any new information provided in the request.
+
+- No changes to the linked customer record will occur.
+
+#### **Authorizations**
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/create-or-update-identity#authorization-authorization)
+
+**Authorization**
+
+**string**
+
+**header**
+
+**required**
+
+Bearer authentication header of the form `Bearer <token>`, where `<token>` is your auth token.
+
+#### **Body**
+
+**application/json**
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/create-or-update-identity#body-customer-identity)
+
+**customer_identity**
+
+**object**
+
+**required**
+
+Show child attributes
+
+#### **Response**
+
+**200**
+
+**application/json**
+
+Customer identity successfully updated.
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/create-or-update-identity#response-customer-identity)
+
+**customer_identity**
+
+**object**
+
+Hide child attributes
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/create-or-update-identity#response-customer-identity-id)
+
+**customer_identity.id**
+
+**integer**
+
+Unique identifier for the customer identity in Yuko.
+
+Example:
+
+`863291377`
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/create-or-update-identity#response-customer-identity-first-name-one-of-0)
+
+**customer_identity.first_name**
+
+**string | null**
+
+The first name of the customer in the external system.
+
+Example:
+
+`"Jane"`
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/create-or-update-identity#response-customer-identity-last-name-one-of-0)
+
+**customer_identity.last_name**
+
+**string | null**
+
+The last name of the customer in the external system.
+
+Example:
+
+`"Doe"`
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/create-or-update-identity#response-customer-identity-email)
+
+**customer_identity.email**
+
+**string\<email\>**
+
+The email of the customer in the external system.
+
+Example:
+
+`"jane@doe.com"`
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/create-or-update-identity#response-customer-identity-distinct-id)
+
+**customer_identity.distinct_id**
+
+**string**
+
+The unique identifier for the customer in the external system.
+
+Example:
+
+`"cust_19238475"`
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/create-or-update-identity#response-customer-identity-properties)
+
+**customer_identity.properties**
+
+**object**
+
+A restricted hash of additional attributes for the customer identity. Keys are allowlisted on a per-integration basis.
+
+[**​**](https://dev.smile.io/api/resources/customer-identities/create-or-update-identity#response-customer-identity-customer-id)
+
+**customer_identity.customer_id**
+
+**integer**
+
+The ID of the customer in Yuko that this customer identity is linked to.Rule

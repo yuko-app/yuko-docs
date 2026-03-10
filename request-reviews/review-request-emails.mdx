@@ -3,8 +3,6 @@ description: "Set up automatic review request emails that get sent after custome
 title: "Review Request Email Setup"
 ---
 
-import NeedHelp from '/snippets/need-help.mdx';
-
 ## Ask Every Customer for a Review Automatically
 
 The Review Request Email is your primary tool for collecting customer feedback. Instead of hoping customers review on their own (only 1% do), this email automatically asks them after delivery, increasing review collection by 10x.
@@ -66,11 +64,13 @@ Configure your review request email to match your products and brand:
 
 <AccordionGroup>
   <Accordion title="Timing: When to Send" defaultOpen icon="calendar">
-    **Setting:** Delay (days)
+    **Setting:** Delay - Days after order fulfillment
 
-    **What it means:** How many days after the order is marked "Completed" should Yuko send the review request?
+    ![Set Re](/images/setre.png)
 
-    **Default:** 7 days
+    **What it controls :** Set the number of days YUKO should wait **after an order is fulfilled** before sending the review request email.
+
+    This delay allows customers time to receive and use their products, helping them leave more meaningful and accurate reviews.
 
     **How to choose the right timing:**
 
@@ -97,12 +97,12 @@ Configure your review request email to match your products and brand:
 
     ✅ **Good subject lines:**
 
-    - "How's your [Product Name]?"
-    - "[First Name], share your thoughts on your order"
-    - "Quick question about your recent purchase"
-    - "We'd love your feedback on [Product]"
+    - How’s your order_name?
+    - customer_first_name, share your thoughts on your order
+    - Quick question about your recent order
+    - We’d love your feedback on order_name
 
-    ❌ **Avoid:**
+    ### ❌ **Avoid:**
 
     - "WRITE A REVIEW NOW" (too pushy)
     - "Please leave us a 5-star review" (biased)
@@ -115,65 +115,98 @@ Configure your review request email to match your products and brand:
       **Mobile matters:** 60% of emails are opened on phones. Keep subject lines under 50 characters so they don't get cut off.
     </Info>
   </Accordion>
-  <Accordion title="Message Body: The Ask" icon="message">
-    **Setting:** Message Body
+</AccordionGroup>
 
-    **What it means:** The main email content that explains why you're asking for a review
+<AccordionGroup>
+  <Accordion title="Preview Text" icon="envelope-open-text">
+    ### What this setting does
 
-    **Best practices:**
+    Controls the short text that appears next to the subject line in inboxes.
 
-    **Keep it short:**
+    ### Best practices
 
-    - 3-4 sentences maximum
-    - One clear ask: "Share your feedback"
-    - One call-to-action button
-    - Don't write paragraphs - customers won't read them
+    - Use one short sentence
+    - Set expectations for what the email is about
+    - Avoid repeating the subject line
 
-    **Example structure:**
+    **Examples**
+
+    - _It only takes a minute_
+    - _Your feedback helps other shoppers_
+    - _Tell us how your order went_
+  </Accordion>
+  <Accordion title="Email Title" icon="subtitles">
+    ### What this setting does
+
+    Sets the heading displayed at the top of the review request email.
+
+    ### Best practices
+
+    - Friendly and appreciative tone
+    - Clear and simple wording
+    - No urgency or commands
+
+    **Examples**
+
+    - _How Was Your Order?_
+    - _We’d Love Your Feedback_
+    - _Tell Us What You Think_
+  </Accordion>
+  <Accordion title="Email Message" icon="message">
+    ### What makes a good review request email
+
+    - Clear and concise (no long explanations)
+    - Explains why the review matters
+    - One clear call to action
+    - Easy to complete on mobile
+
+    ### Example message structure
 
     ```
     Hi {{customer_first_name}},
     
-    Thank you for choosing [Store Name]! We hope you're enjoying your [Product].
+    Thanks for your recent order {{order_name}}.
+    We’d love to hear your thoughts — your feedback helps other customers make confident purchasing decisions.
     
-    Would you take 2 minutes to share your experience? Your feedback helps other customers make confident decisions.
+    Here’s what you purchased:
+    {{ product_reviews_block }}
     
-    [Review Button]
+    Thanks for taking a moment to share your experience!
+    
     ```
 
-    **Don't do this:**
+    ### What to avoid
 
-    - Beg for reviews
-    - Ask for only positive reviews
-    - Write long explanations
-    - Include multiple links or CTAs
-    - Sound desperate or pushy
-
-    <Warning>
-      **Important:** Never ask for "5-star reviews" or "positive feedback only." Ask for honest feedback. Biased requests violate platform policies and customers can tell.
-    </Warning>
-  </Accordion>
-  <Accordion title="Footer: Legal & Contact" icon="file-lines">
-    **Setting:** Footer
-
-    **What it includes:**
-
-    - Company name and address (required by law in many countries)
-    - Unsubscribe link (required)
-    - Contact information
-    - Social media links (optional)
-
-    **Why it matters:**
-
-    - **Legal compliance:** Anti-spam laws require company address and unsubscribe
-    - **Trust:** Shows you're a legitimate business
-    - **Contact:** Customers can reach you if needed
-
-    **Your footer auto-fills from:** Settings → Organization
+    - Asking for reviews before customers receive the product
+    - Long marketing copy
+    - Pressure or incentives language
+    - Multiple calls to action
 
     <Tip>
-      **Already set up:** If you completed installation, your footer information was filled in from your business details. You don't need to enter it again.
+      
     </Tip>
+  </Accordion>
+  <Accordion title="Email Footer" icon="notes">
+    \*\*What it controls: \*\*The closing content of the email.
+
+    This section automatically pulls details from:\
+    **Settings → Organization**
+
+    (Used in both review request and reminder emails.)
+  </Accordion>
+  <Accordion title="Unsubscribe Text & Description" icon="text">
+    ### Why this matters
+
+    - Required by law in most countries
+    - Builds trust with customers
+    - Reduces spam complaints
+    - Protects your sender reputation
+
+    ### Best practices
+
+    - Make the unsubscribe link clear and visible
+    - Respect opt-outs immediately
+    - Keep wording neutral and respectful
   </Accordion>
 </AccordionGroup>
 
@@ -265,59 +298,6 @@ Make your emails personal by inserting customer and order information:
     </Warning>
   </Tab>
 </Tabs>
-
----
-
-## Email Design Best Practices
-
-Follow these proven strategies for higher response rates:
-
-<CardGroup cols={2}>
-  <Card title="Mobile-First Design" icon="mobile">
-    **60% of emails open on phones**
-
-    - Keep subject under 50 characters
-    - Use large, tappable buttons (not small links)
-    - Short paragraphs (2-3 lines max)
-    - Images load quickly
-    - Single column layout
-
-    **Test:** Send to yourself, open on phone
-  </Card>
-  <Card title="Clear Call-to-Action" icon="hand-pointer">
-    **One button, one purpose**
-
-    - Use action words: "Share Your Feedback", "Write Review"
-    - Make button stand out (color contrast)
-    - Don't hide button below fold
-    - Only one primary button (not 5 links)
-
-    **Best button text:** "Write My Review" or "Share My Experience"
-  </Card>
-  <Card title="Build Trust" icon="shield-check">
-    **Show you're legitimate**
-
-    - Include your logo
-    - Use your brand colors
-    - Professional tone
-    - Company address in footer
-    - Real "from" name (not noreply@)
-
-    **From name:** Use "Sarah from [Store]" not "[noreply@store.com](mailto:noreply@store.com)"
-  </Card>
-  <Card title="Set Expectations" icon="clock">
-    **Tell them it's quick**
-
-    - "Takes 2 minutes"
-    - "Just a few questions"
-    - "Quick feedback"
-    - Don't make it sound like work
-
-    **Reality check:** Actual time is 2-3 minutes. Be honest.
-  </Card>
-</CardGroup>
-
----
 
 ## Common Questions
 
@@ -423,10 +403,13 @@ Follow these proven strategies for higher response rates:
 
     **Steps to test:**
 
-    1. In Review Request Email settings, scroll to bottom
-    2. Click "Send Test Email"
+    1. In Review Request Email settings, On the top right. 
+    2. Click **"Send Test"**
     3. Enter your email address
     4. Click Send
+
+    ![Send](/images/send.png)
+
     5. Check your inbox (and spam folder)
     6. Open on phone AND computer
     7. Click all links to make sure they work
@@ -492,7 +475,7 @@ Follow these proven strategies for higher response rates:
     **Time:** 3 minutes **Use:** `{{customer_first_name}}` and `{{product_reviews_block}}`
   </Step>
   <Step title="Match Your Brand" icon="palette">
-    Add your logo and colors to make emails professional.
+    Add your logo and colors to make emails professional using the Advanced Editor.
 
     **Time:** 5 minutes
 

@@ -1,19 +1,286 @@
 ---
 title: "6.3 Review Restrictions & Limits"
-description: "Control who can leave reviews and what they can submit."
+description: "Control who can leave reviews, prevent abuse, and maintain review quality"
 ---
 
+Review Restrictions & Limits help you control **who can submit reviews**, **what information is collected**, and **which users or products are excluded**. These settings are designed to prevent spam, protect customer privacy, and maintain review quality.
 
-| **Setting**                          | **Description**                                                   |
-| :----------------------------------- | :---------------------------------------------------------------- |
-| **Who can write a review**           | Choose between “Anyone” or “Verified Buyers only.”                |
-| **Personal Information Restriction** | Automatically hides emails or phone numbers in reviews.           |
-| **Maximum Upload Size**              | Limit photo uploads to 1 MB, 2 MB, or 3 MB.                       |
-| **Review Quantity Limit**            | Set the number of reviews a single customer can submit per order. |
-
-**Navigation:**
-
+**Navigation:**\
 \
-\*\*Yuko Dashboard → Settings → Reviews → General \*\*
+**YUKO Dashboard → Settings → Reviews → General → Review Restrictions & Limits**
 
-![Reviewlim Pn](/images/reviewlim.png)
+![Yyyyl](/images/yyyyl.png)
+
+### Settings:
+
+<AccordionGroup>
+  <Accordion title="Who Can Write a Review" icon="person">
+    This setting controls **who is allowed to submit reviews** on your store.\
+    \
+    **How It Works:**
+
+    You can choose between:
+
+    - **Anyone** – Allows all visitors to submit reviews
+    - **Only buyers who have received a review request email and API users** – Restricts reviews to customers you explicitly invite
+
+    When restricted, only customers who receive a review request email or submit reviews via the API can leave a review.
+
+    ### Common Use Cases
+
+    - Preventing fake or unverified reviews
+    - Ensuring all reviews come from real customers
+    - Maintaining higher review trust and credibility
+
+    ### Best Practices
+
+    - Use **review request–only submissions** for maximum authenticity
+    - Combine with Email Blacklist for strong spam prevention
+  </Accordion>
+  <Accordion title="Personal Information Restriction" icon="info">
+    This setting helps protect customer privacy by restricting sensitive information in reviews.\
+    \
+    \*\*How It Works: \*\*
+
+    When enabled:
+
+    - Email addresses and phone numbers are automatically restricted in review content
+    - Sensitive data is hidden from public display
+    - Reviews remain readable without exposing private information
+
+    ### Common Use Cases
+
+    - Privacy and compliance requirements
+    - Preventing accidental data sharing
+    - Improving customer trust
+
+    ### Best Practices
+
+    - Always enable for public-facing reviews
+    - Recommended for GDPR and privacy compliance
+  </Accordion>
+  <Accordion title="Maximum Upload Image Size" icon="image">
+    This setting controls the maximum file size allowed for review image uploads.
+
+    **How It Works**
+
+    - Sets a size limit for uploaded review images
+    - Prevents large files from slowing down page performance
+    - Helps manage storage usage
+
+    **Common Use Cases**
+
+    - Maintaining fast page load times
+    - Preventing oversized image uploads
+    - Optimizing mobile performance
+
+    **Best Practices**
+
+    - Keep limits reasonable for quality and performance balance
+    - Monitor upload failures after changing limits
+  </Accordion>
+  <Accordion title="Product Blacklist" icon="list">
+    The Product Blacklist lets you exclude specific products from review workflows.\
+    \
+    **Where to Find the Product Blacklist:**
+
+    There are **two ways** to access and manage the Product Blacklist.
+
+    **Option 1: From Review Restrictions & Limits**
+
+    **Navigation:**\
+    \
+    **YUKO Dashboard → Settings → Reviews → General → Review Restrictions & Limits**
+
+    ![Op1](/images/op1.png)
+
+    Under **Product Blacklist**, click **Manage Product Blacklist**.
+
+    This button redirects you to the dedicated **Product Blacklist** page, where you can manage excluded products.
+
+    > 📝 **Note:** This option exists for quick access while configuring review restrictions.
+
+    **Option 2: Direct Access**
+
+    \
+    **Navigation:**
+
+    **YUKO Dashboard → Reviews → Product Blacklist**
+
+    ![Sf](/images/sf.png)
+
+    This page provides full control over excluded products and supports bulk management options.
+
+    ### How Product Blacklist Works
+
+    - Blacklisted products **will not receive review request emails**
+    - Manual review requests are also skipped for these products
+    - Existing reviews are **not removed**
+    - Removing a product from the blacklist immediately restores review requests
+
+    > 📝 **Note:** Product Blacklist affects review **collection**, not review display.
+
+    ### Add Products to the Blacklist
+
+    You can exclude products using **either** of the following methods.
+
+    <Columns cols={2}>
+      <Card title="Add Products Manually" icon="sparkles">
+        \
+        Click **Add Manually** to exclude products by entering their product IDs.
+
+        #### How it works:
+
+        - Enter **numeric product IDs** in the input field
+        - Separate multiple IDs with commas
+        - Only valid numeric product IDs are accepted
+
+        \*\*Example: 123, 456,789 \*\*
+
+        #### Important notes:
+
+        - Invalid or non-numeric IDs are **ignored silently**
+        - No error message is shown for invalid entries
+        - Make sure all product IDs entered exist in your store
+
+        <Tip>
+          **Tip:** Always double-check product IDs before saving to avoid accidental exclusions.
+        </Tip>
+      </Card>
+      <Card title="Upload Products via CSV" icon="sparkles">
+        \
+        For bulk exclusions, click **Upload CSV**.
+
+        #### How it works:
+
+        - Upload a CSV file containing product IDs you want to exclude
+        - Each row should contain **one numeric product ID**
+        - No column headers are required
+
+        You can also click **Download sample CSV** to see the correct format before uploading.
+
+        #### CSV requirements:
+
+        - Numeric product IDs only
+        - One product ID per row
+        - Invalid product IDs will be skipped without an error
+
+        <Tip>
+          **Best Practice:** Use CSV upload when excluding a large number of products at once.
+        </Tip>
+      </Card>
+    </Columns>
+  </Accordion>
+  <Accordion title="Email Blacklist" icon="list">
+    ## Email Blacklist
+
+    The **Email Blacklist** allows you to exclude specific customers from receiving **all Yuko emails**, including:
+
+    - Review request emails
+    - Review reminder emails
+    - Any future review-related communications
+
+    This is useful for blocking internal team members, test accounts, support inboxes, or system-generated email addresses.
+
+    ---
+
+    ### Accessing the Email Blacklist
+
+    **Navigation:**
+
+    \
+    **YUKO Dashboard → Settings → Account → Email Blacklist**
+
+    ![Mn](/images/mn-2.png)
+
+    From this page, you can manage all email addresses that should be excluded from Yuko email communications.
+
+    ### How Email Blacklist Works
+
+    - Blacklisted email addresses **will not receive any Yuko emails**
+    - Applies to both automated and manual review requests
+    - Works across all stores and products
+    - Removing an email immediately re-enables email delivery
+
+    > 📝 **Note:** Email Blacklist affects **email delivery only**. It does not remove existing reviews.
+
+    ### Add Email Addresses to the Blacklist:
+
+    You can add email addresses using **either** of the following methods.
+
+    <Columns cols={2}>
+      <Card title="Add Emails Manually" icon="sparkles">
+        \
+        Click **Add Manually** to exclude email addresses one by one or in bulk.
+
+        #### How it works:
+
+        - Enter email addresses in a **comma-separated format**
+        - Wildcards (`*`) are supported to match patterns
+        - Entries are case-insensitive
+
+        #### Supported formats:
+
+        **Block a single email address**
+
+        ```
+        sample@example.com
+        ```
+
+        **Block all emails from a specific domain**
+
+        ```
+        *@anydomain.com
+        ```
+
+        **Block emails starting with a specific prefix across all domains**
+
+        ```
+        no-reply@*
+        ```
+
+        #### Important notes:
+
+        - Invalid email formats may be ignored without an error message
+        - Make sure entries are formatted correctly before saving
+
+        <Tip>
+          **Best Practice:** Use wildcards carefully, as they can block a large number of email addresses.
+        </Tip>
+      </Card>
+      <Card title="Upload Emails via CSV" icon="sparkles">
+        \
+        For bulk exclusions, click **Upload CSV**.
+
+        #### How it works:
+
+        - Upload a CSV file containing email addresses or wildcard patterns
+        - Each row should contain **one email entry**
+        - Wildcards (`*`) are supported in CSV uploads
+
+        You can click **Download sample CSV** to see the correct format before uploading.
+
+        #### CSV requirements:
+
+        - One email or pattern per row
+        - Maximum file size: **15 KB**
+        - Invalid entries are skipped automatically
+
+        <Tip>
+          **Tip:** CSV upload is ideal when blocking large mailing lists, internal domains, or system-generated emails.
+        </Tip>
+      </Card>
+    </Columns>
+  </Accordion>
+</AccordionGroup>
+
+## How These Settings Work Together
+
+For the highest review quality and lowest spam risk:
+
+1. Restrict reviews to invited customers
+2. Hide the **Write a Review** button
+3. Enable personal information restriction
+4. Maintain an updated email blacklist
+
+> ⭐ **Best Practice:** This configuration mirrors how most high-volume  merchants collect reviews.
