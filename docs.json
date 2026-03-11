@@ -177,15 +177,16 @@
                 "pages": [
                   "customer-object",
                   "list-customers",
-                  "retrieve-a-customer"
-                ]
-              },
-              {
-                "group": "Points Transactions",
-                "pages": [
-                  "points-transaction-object",
+                  "retrieve-a-customer",
+                  "get-customer-balance",
+                  "list-memberships",
+                  "get-customer-tier",
+                  "list-customer-rewards",
+                  "get-redeemable-rewards",
+                  "list-customer-activities",
                   "list-points-transactions",
-                  "create-a-points-transaction"
+                  "create-a-points-transaction",
+                  "list-customer-referrals"
                 ]
               },
               {
@@ -193,25 +194,14 @@
                 "pages": [
                   "reward-objects",
                   "list-rewards",
-                  "customer-reward-object",
-                  "list-customer-rewards",
-                  "get-redeemable-rewards",
                   "redeem-reward"
-                ]
-              },
-              {
-                "group": "Activities",
-                "pages": [
-                  "activity-object",
-                  "list-customer-activities"
                 ]
               },
               {
                 "group": "VIP Tiers",
                 "pages": [
                   "vip-tier-object",
-                  "list-vip-tiers",
-                  "get-customer-tier"
+                  "list-vip-tiers"
                 ]
               },
               {
@@ -224,19 +214,11 @@
               {
                 "group": "Referrals",
                 "pages": [
-                  "get-referral-program",
-                  "list-customer-referrals"
+                  "get-referral-program"
                 ]
               },
               {
-                "group": "Memberships",
-                "pages": [
-                  "membership-object",
-                  "list-memberships"
-                ]
-              },
-              {
-                "group": "Checkout",
+                "group": "Points",
                 "pages": [
                   "checkout-points-estimate"
                 ]
