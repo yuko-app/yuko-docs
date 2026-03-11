@@ -6,7 +6,7 @@ Add or remove points from a customer's balance. Pass a positive `points` value t
 
 Debit transactions that would result in a negative points balance will be rejected.
 
-**POST /public/transactions**
+**POST /public/customers/\{id\}/transactions**
 
 #### **Authorizations**
 
@@ -20,11 +20,15 @@ Debit transactions that would result in a negative points balance will be reject
 
 Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
 
-#### **Body**
+#### **Required Scope**
 
-**application/json**
+**`transactions:write`**
 
-**customer_id**
+This endpoint requires the `transactions` scope with **Read/Write Access**. Configure token scopes in Settings → Integrations → REST API.
+
+#### **Path Parameters**
+
+**id**
 
 **string**
 
@@ -35,6 +39,10 @@ The platform customer ID (e.g. Shopify customer ID)
 Example:
 
 `"9049402769586"`
+
+#### **Body**
+
+**application/json**
 
 **points**
 
@@ -122,19 +130,20 @@ Example:
 
 ```bash cURL
 curl --request POST \
-  --url "https://api.yukoapp.com/v1/public/transactions" \
+  --url "https://api.yukoapp.com/v1/public/customers/9049402769586/transactions" \
   --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
   --header "Content-Type: application/json" \
   --data '{
-    "customer_id": "9049402769586",
     "points": 100,
     "description": "Bonus points for completing a survey"
   }'
 ```
 
 ```javascript JavaScript
+const customerId = "9049402769586";
+
 const response = await fetch(
-  "https://api.yukoapp.com/v1/public/transactions",
+  `https://api.yukoapp.com/v1/public/customers/${customerId}/transactions`,
   {
     method: "POST",
     headers: {
@@ -142,7 +151,6 @@ const response = await fetch(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      customer_id: "9049402769586",
       points: 100,
       description: "Bonus points for completing a survey",
     }),
@@ -153,14 +161,14 @@ const data = await response.json();
 ```
 
 ```php PHP
+$customerId = "9049402769586";
 $payload = json_encode([
-    "customer_id" => "9049402769586",
     "points" => 100,
     "description" => "Bonus points for completing a survey",
 ]);
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://api.yukoapp.com/v1/public/transactions");
+curl_setopt($ch, CURLOPT_URL, "https://api.yukoapp.com/v1/public/customers/{$customerId}/transactions");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
