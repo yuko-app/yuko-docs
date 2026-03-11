@@ -175,7 +175,6 @@
               {
                 "group": "Customers",
                 "pages": [
-                  "customer-object",
                   "list-customers",
                   "retrieve-a-customer",
                   "get-customer-balance",
@@ -192,7 +191,6 @@
               {
                 "group": "Rewards",
                 "pages": [
-                  "reward-objects",
                   "list-rewards",
                   "redeem-reward"
                 ]
@@ -200,14 +198,12 @@
               {
                 "group": "VIP Tiers",
                 "pages": [
-                  "vip-tier-object",
                   "list-vip-tiers"
                 ]
               },
               {
                 "group": "Earning Rules",
                 "pages": [
-                  "way-to-earn-object",
                   "list-ways-to-earn"
                 ]
               },
