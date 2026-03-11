@@ -159,13 +159,7 @@
               "introduction",
               "authentication",
               "errod",
-              {
-                "group": "Pagination",
-                "pages": [
-                  "cursor-pagination",
-                  "classic-pagination"
-                ]
-              },
+              "classic-pagination",
               "rate-limits"
             ]
           },
