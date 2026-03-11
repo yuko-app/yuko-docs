@@ -244,6 +244,12 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Integrations",
+        "pages": [
+          "third-party-checkout-integrations"
+        ]
       }
     ]
   },
