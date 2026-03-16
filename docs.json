@@ -169,54 +169,54 @@
               {
                 "group": "Customers",
                 "pages": [
-                  "list-customers",
-                  "retrieve-a-customer",
-                  "get-customer-balance",
-                  "list-memberships",
-                  "get-customer-tier",
-                  "list-customer-rewards",
-                  "get-redeemable-rewards",
-                  "redeem-reward",
-                  "list-customer-activities",
-                  "list-points-transactions",
-                  "create-a-points-transaction",
-                  "list-customer-referrals"
+                  "developer/api/list-customers",
+                  "developer/api/retrieve-a-customer",
+                  "developer/api/get-customer-balance",
+                  "developer/api/list-memberships",
+                  "developer/api/get-customer-tier",
+                  "developer/api/list-customer-rewards",
+                  "developer/api/get-redeemable-rewards",
+                  "developer/api/redeem-reward",
+                  "developer/api/list-customer-activities",
+                  "developer/api/list-points-transactions",
+                  "developer/api/create-a-points-transaction",
+                  "developer/api/list-customer-referrals"
                 ]
               },
               {
                 "group": "Rewards",
                 "pages": [
-                  "list-rewards"
+                  "developer/api/list-rewards"
                 ]
               },
               {
                 "group": "VIP Tiers",
                 "pages": [
-                  "list-vip-tiers"
+                  "developer/api/list-vip-tiers"
                 ]
               },
               {
                 "group": "Earning Rules",
                 "pages": [
-                  "list-ways-to-earn"
+                  "developer/api/list-ways-to-earn"
                 ]
               },
               {
                 "group": "Referrals",
                 "pages": [
-                  "get-referral-program"
+                  "developer/api/get-referral-program"
                 ]
               },
               {
                 "group": "Points",
                 "pages": [
-                  "checkout-points-estimate"
+                  "developer/api/checkout-points-estimate"
                 ]
               },
               {
                 "group": "Apps & Integrations",
                 "pages": [
-                  "third-party-checkout-integrations"
+                  "developer/api/third-party-checkout-integrations"
                 ]
               }
             ]
