@@ -216,7 +216,7 @@
               {
                 "group": "Apps & Integrations",
                 "pages": [
-                  "developer/api/third-party-checkout-integrations"
+                  "third-party-checkout-integrations"
                 ]
               }
             ]
