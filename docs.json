@@ -157,10 +157,10 @@
             "group": "Rest API",
             "pages": [
               "developer/api/introduction",
-              "authentication",
-              "errod",
-              "classic-pagination",
-              "rate-limits"
+              "developer/api/authentication",
+              "developer/api/errors",
+              "developer/api/classic-pagination",
+              "developer/api/rate-limits"
             ]
           },
           {
