@@ -1,0 +1,110 @@
+---
+title: Store Credit
+description: Let customers convert points into a flexible store credit balance they can spend across orders.
+---
+
+<Note>
+**Where to find this:** Yuko Dashboard → Loyalty → Ways to Redeem → Store Credit
+</Note>
+
+## Introduction
+
+Convert points into store credit — a wallet balance the customer can apply to any future order. The most flexible reward type and the closest to *“cash on file”* in the program.
+
+## What problem this solves
+
+Discount codes feel transactional. Store credit feels like money on account, which behaves more like cash and increases perceived value of the program.
+
+## When to use
+
+- You want a flexible reward customers can apply to anything.
+- You want to encourage repeat shopping by giving customers a balance.
+- You're brand-conscious and want loyalty to feel premium rather than discount-driven.
+
+## Overview
+
+- Converts points into store credit at a defined ratio (e.g., `100 pts = $1 credit`).
+- Customer can use the credit on any qualifying order.
+- Optional credit expiry.
+- Uses Shopify's native store credit if enabled, otherwise issues an internal balance redeemable via discount code.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>Decide whether to use Shopify's native store credit (if available on your plan) or Yuko's internal balance.</Check>
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the reward">
+    Go to **Loyalty → Ways to Redeem → Store Credit**.
+  </Step>
+  <Step title="Configure basic details">
+    Set reward name and description.
+  </Step>
+  <Step title="Set points and credit ratio">
+    Enter the points cost and the credit amount (e.g., `100 pts = $1`).
+  </Step>
+  <Step title="Set expiry (optional)">
+    Configure how long the issued credit stays valid.
+  </Step>
+  <Step title="Save & activate">
+    Toggle **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+1. Customer redeems points for store credit.
+2. The credit is added to the customer's wallet.
+3. On the next qualifying order, the credit is applied at checkout.
+4. Yuko logs both the redemption and the application as separate transactions.
+
+### Decision guidance
+
+- **Use a clean ratio** — `100 pts = $1` is most readable.
+- **Pick Shopify-native store credit** if available; it integrates more cleanly with refunds and Shopify reporting.
+- **Don't run alongside Amount Discount with the same effective rate** — it confuses customers.
+
+### Limitations
+
+- Shopify-native store credit availability depends on your plan.
+- Credits can't be refunded as cash; they remain a store balance.
+
+## Examples
+
+- *Premium beauty brand:* `200 pts = $2 store credit`, 12-month expiry, the only redemption type offered.
+- *Subscription brand:* `500 pts = $5 store credit`, applied automatically on next renewal.
+
+## Best practices
+
+<Tip>**Choose store credit over discount codes** if you want loyalty to feel premium.</Tip>
+<Tip>**Communicate the balance prominently** — in the Cart Redeem widget and Customer Account hub.</Tip>
+<Warning>Don't change the conversion ratio after launch. Customers anchor to it.</Warning>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can store credit be combined with other discounts?">
+    Yes — store credit applies as a payment method, so it stacks with discount codes by default.
+  </Accordion>
+  <Accordion title="What happens to credit if a customer is refunded?">
+    Refund handling depends on whether you're using Shopify-native credit or Yuko's internal balance. See the customer profile activity feed.
+  </Accordion>
+  <Accordion title="Does store credit appear on the customer's order receipt?">
+    Yes — as a payment method line item.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedRewards from '/snippets/related-rewards.mdx';
+
+<RelatedRewards />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
