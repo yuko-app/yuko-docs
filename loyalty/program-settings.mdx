@@ -4,7 +4,7 @@ description: Configure your program-wide loyalty rules — points label, convers
 ---
 
 <Note>
-**Where to find this:** Yuko Dashboard → Loyalty → Settings
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Settings
 </Note>
 
 ## Introduction
@@ -41,7 +41,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <Steps>
   <Step title="Open Loyalty Settings">
-    Go to **Yuko Dashboard → Loyalty → Settings**.
+    Login to your Shopify admin and go to **Apps → Yuko Loyalty → Loyalty → Settings**.
   </Step>
   <Step title="Set points label and conversion">
     - **Points label**: what customers see in widgets and emails (e.g., *Stars*, *Coins*).
@@ -49,17 +49,17 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
   </Step>
   <Step title="Configure customer eligibility">
     Choose who can earn:
-    <Tabs>
-      <Tab title="All customers">
+    <AccordionGroup>
+      <Accordion title="All customers">
         Anyone with a customer record can earn. Best for most stores.
-      </Tab>
-      <Tab title="Registered only">
+      </Accordion>
+      <Accordion title="Registered only">
         Guest checkouts don't earn unless they create an account.
-      </Tab>
-      <Tab title="Tagged customers">
+      </Accordion>
+      <Accordion title="Tagged customers">
         Only customers with a specific Shopify tag earn. Useful for invite-only programs.
-      </Tab>
-    </Tabs>
+      </Accordion>
+    </AccordionGroup>
   </Step>
   <Step title="Set exclusions">
     Add products, collections or customer tags that should not earn or redeem points.
