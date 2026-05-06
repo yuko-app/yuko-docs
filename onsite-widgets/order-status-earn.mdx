@@ -1,0 +1,121 @@
+---
+title: Order Status Earn Widget
+description: Confirm earned points on the Shopify thank-you / order status page right after a customer completes their order.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Order Status Earn
+</Note>
+
+## Introduction
+
+Display an earned-points confirmation on the Shopify thank-you (order status) page. Customers see *“You earned 200 Stars on this order!”* the second their checkout completes.
+
+## What problem this solves
+
+Momentum is at its peak immediately after a customer pays. Confirming the earned reward in that moment cements the program in their mind and seeds the next purchase.
+
+## Where it appears
+
+- The Shopify Thank-you / Order Status page.
+
+## When to use
+
+- Always — this widget works on every Shopify plan.
+- It's a baseline confirmation that the loyalty program is real and working.
+
+## Overview
+
+- Renders on the Order Status page.
+- Confirms the points awarded for this order.
+- Customisable message.
+- Works on all Shopify plans.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+### 1. Configure in Yuko
+
+<Steps>
+  <Step title="Open the widget settings">
+    Go to **Apps → Yuko Loyalty → Loyalty → Widgets → Order Status Earn**.
+  </Step>
+  <Step title="Configure the message">
+    Default: *“You earned `[points_value]` `[points_label]` on this order!”*.
+  </Step>
+  <Step title="Activate">
+    Toggle the widget **Active**.
+  </Step>
+</Steps>
+
+### 2. Add to Shopify
+
+import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
+
+<SetupThemeBlock />
+
+When choosing the template, pick the **Thank you / Order status** page (also called the Post-purchase page in some Shopify accounts).
+
+### 3. Verify
+
+Place a real test order. After completing checkout, confirm the widget renders on the thank-you page with the correct points.
+
+## Available placeholders
+
+import WidgetPlaceholders from '/snippets/widget-placeholders.mdx';
+
+<WidgetPlaceholders />
+
+## How it works
+
+1. Customer completes checkout.
+2. Shopify renders the order status page.
+3. The widget reads the just-completed order and displays the earned points.
+
+### Decision guidance
+
+- **Always run this widget.** It's free credibility for the program.
+- **Pair with a points-earned email** — the customer sees the confirmation onsite *and* by email.
+
+### Limitations
+
+- The widget shows the points awarded based on order value at completion. If a delay is configured, the widget says *"will earn"* and the credit lands later.
+- Refunds reverse points but don't update this widget retroactively (the page is a static record of the completed order).
+
+## Examples
+
+- *“You earned 200 Stars on this order!”* with a star icon.
+
+## Best practices
+
+<Tip>**Match the message tone to the rest of your post-purchase comms.** This page is the brand handshake.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why does the widget show 0 points?">
+    Either the order doesn't qualify for any active campaigns or a delay is configured — in which case the message should reflect *“will earn”*.
+  </Accordion>
+  <Accordion title="Can I show a redeem prompt here?">
+    The order status page is intentionally a confirmation surface. Use the [Customer Account Page](/onsite-widgets/customer-account-page) for redemption.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import WidgetCrossLinks from '/snippets/onsite-widgets-cross-links.mdx';
+
+<WidgetCrossLinks />
+
+import RelatedWidgets from '/snippets/related-widgets.mdx';
+
+<RelatedWidgets />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

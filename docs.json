@@ -96,6 +96,24 @@
             ]
           },
           {
+            "group": "Onsite Widgets",
+            "pages": [
+              "onsite-widgets/overview",
+              "onsite-widgets/branding-and-locale",
+              "onsite-widgets/product-page-earn",
+              "onsite-widgets/cart-earn",
+              "onsite-widgets/cart-redeem",
+              "onsite-widgets/checkout-earn",
+              "onsite-widgets/checkout-redeem",
+              "onsite-widgets/order-status-earn",
+              "onsite-widgets/order-list-balance",
+              "onsite-widgets/customer-profile-balance",
+              "onsite-widgets/customer-account-page",
+              "onsite-widgets/rewards-landing-page",
+              "onsite-widgets/floating-launcher"
+            ]
+          },
+          {
             "group": "Help & Support",
             "pages": [
               "support"
