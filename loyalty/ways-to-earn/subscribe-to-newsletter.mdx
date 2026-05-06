@@ -1,0 +1,93 @@
+---
+title: Subscribe to Newsletter
+description: Reward customers for opting in to your email newsletter.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Subscribe to Newsletter
+</Note>
+
+## Introduction
+
+Award points when a customer subscribes to your email newsletter. A direct way to convert anonymous browsers into a marketable list.
+
+## What problem this solves
+
+Free shipping and 10%-off popups have lost their punch. A points-based opt-in incentive feels like ongoing value rather than a one-shot discount.
+
+## When to use
+
+- You're growing an email list.
+- You want to convert email captures into loyalty members from day one.
+- You're running Klaviyo, Omnisend, Shopify Email or similar.
+
+## Overview
+
+- One-time reward when a customer opts in.
+- Triggered by Shopify customer email-marketing-consent or via integration with your ESP.
+- Optional expiry on awarded points.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the campaign">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Subscribe to Newsletter**.
+  </Step>
+  <Step title="Set details and points">
+    Enter campaign name and points value (e.g., `30`).
+  </Step>
+  <Step title="Save & activate">
+    Toggle **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+- Yuko detects email-marketing-consent on the Shopify customer record.
+- Points are credited once per customer.
+- If the customer unsubscribes, the points stay; they don't reverse.
+
+### Decision guidance
+
+- **Calibrate the bonus** so it doesn't outweigh other one-time campaigns.
+- **Surface the bonus on your popup or signup form** — customers need to know it exists.
+
+### Limitations
+
+- Customers who were already opted in before installing Yuko don't earn historically.
+- Re-subscribing after unsubscribing doesn't re-earn.
+
+## Examples
+
+- 30 points for newsletter subscription, paired with a popup that says *“Join our list. Get 30 points.”*
+
+## Best practices
+
+<Tip>**Mention the points reward in your popup copy.** Conversion lifts noticeably.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What happens if a customer unsubscribes?">
+    Points stay; they don't reverse.
+  </Accordion>
+  <Accordion title="Can I integrate with Klaviyo?">
+    Yes — see the [Klaviyo integration](/getting-started/welcome) (coming soon in this docs section).
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

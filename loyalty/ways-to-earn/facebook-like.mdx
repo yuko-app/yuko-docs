@@ -1,0 +1,103 @@
+---
+title: Facebook Like
+description: Reward customers with points for liking your Facebook page.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Facebook Like
+</Note>
+
+## Introduction
+
+Award customers a one-time bonus when they like your Facebook page through the loyalty widget.
+
+## What problem this solves
+
+Growing a Facebook page audience organically is hard. A small points reward gets your existing customers to take a 2-second action that compounds your social proof.
+
+## When to use
+
+- You have an active Facebook page.
+- Your audience is on Facebook in non-trivial numbers.
+- You want a low-friction earning action with a one-time cap.
+
+## Overview
+
+- One-time reward per customer.
+- Configured with your Facebook page URL.
+- Verification is intent-based (the customer clicks through to like).
+- Optional points expiry.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>You have an active Facebook business page.</Check>
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the campaign">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Facebook Like**.
+  </Step>
+  <Step title="Set details and points">
+    Enter campaign name, description and points value (e.g., `10`).
+  </Step>
+  <Step title="Add your Facebook page URL">
+    Paste the full URL to your Facebook page.
+  </Step>
+  <Step title="Configure expiry (optional)">
+    Set expiry if desired.
+  </Step>
+  <Step title="Save & activate">
+    Toggle **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+- The action appears in the loyalty widget on the storefront.
+- The customer clicks through to your Facebook page in a new tab.
+- They click Like on Facebook.
+- Yuko credits the points (intent-based verification — see Limitations).
+
+### Decision guidance
+
+- **Keep the bonus modest** (5–15 points). It's a low-friction one-time action.
+- **Don't run all social campaigns at once** — pick the 2–3 networks where your audience actually engages.
+
+### Limitations
+
+- Facebook restricts programmatic verification of likes; verification is intent-based.
+- One-time per customer; subsequent likes don't earn.
+
+## Examples
+
+- A beauty brand awards 10 points for a Facebook Like, expiring in 30 days.
+
+## Best practices
+
+<Tip>**Audit the audience match before running.** If your customers aren't on Facebook, this campaign yields little.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How is the like verified?">
+    Verification is intent-based: the customer is sent to your page and the points are credited. Yuko cannot programmatically check Facebook's like state.
+  </Accordion>
+  <Accordion title="Can a customer earn this twice?">
+    No — one-time per customer.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

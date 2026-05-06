@@ -4,7 +4,7 @@ description: Reward customers with points every time they complete a paid order 
 ---
 
 <Note>
-**Where to find this:** Yuko Dashboard → Loyalty → Ways to Earn → Place an Order
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Place an Order
 </Note>
 
 ## Introduction
@@ -40,7 +40,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <Steps>
   <Step title="Open the campaign">
-    Go to **Yuko Dashboard → Loyalty → Ways to Earn → Place an Order**.
+    Login to your Shopify admin, then go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Place an Order**.
   </Step>
   <Step title="Configure basic details">
     - **Campaign name** — internal label (e.g., *“Order earn — 1 pt per $1”*).
@@ -48,14 +48,14 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
   </Step>
   <Step title="Choose how points are earned">
     Pick a **Points Earning Method**:
-    <Tabs>
-      <Tab title="Fixed points per order">
+    <AccordionGroup>
+      <Accordion title="Fixed points per order">
         Award the same amount on every order. Best for stores with consistent basket sizes or to keep the math simple.
-      </Tab>
-      <Tab title="Points per spend">
+      </Accordion>
+      <Accordion title="Points per spend">
         Award points proportional to order value (e.g., 1 pt per $1). Best when you want bigger orders to earn proportionally more.
-      </Tab>
-    </Tabs>
+      </Accordion>
+    </AccordionGroup>
   </Step>
   <Step title="Set the points value">
     Enter the points amount or ratio.

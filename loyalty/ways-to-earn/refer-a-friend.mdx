@@ -1,0 +1,100 @@
+---
+title: Refer a Friend
+description: Award points when a customer refers a friend who completes a qualifying action.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Refer a Friend
+</Note>
+
+## Introduction
+
+The *Refer a Friend* earning rule lets you award points to the **referrer** when a friend completes a qualifying action through their referral link. It's the loyalty-side counterpart to the dedicated **Referral** module, where the referral program (link generation, fraud prevention, friend rewards) is configured end-to-end.
+
+<Info>
+Full referral program setup, dual-sided rewards, and fraud controls are documented in the **Referrals** section. This page focuses only on the points-earning side.
+</Info>
+
+## What problem this solves
+
+Referred customers convert at a higher rate than paid traffic. Awarding points to referrers — not just to the friends — turns existing customers into a reliable acquisition channel.
+
+## When to use
+
+- You have at least a few hundred active customers willing to share.
+- You want a points-based reward for referrers (alternative to discount-only programs).
+- You want referral and loyalty to feel like one program, not two.
+
+## Overview
+
+- Award points to the referrer when a friend completes a qualifying action.
+- Qualifying action defined in the Referrals module (typically *first order placed*).
+- Stacks with referrer rewards configured in the Referrals module.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>The Referral program is enabled and a referrer reward is configured — see the **Referrals** section.</Check>
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the campaign">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Refer a Friend**.
+  </Step>
+  <Step title="Set details and points">
+    Enter campaign name and points value (e.g., `500`).
+  </Step>
+  <Step title="Configure expiry (optional)">
+    Set an expiry to push redemption.
+  </Step>
+  <Step title="Save & activate">
+    Toggle **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+1. A customer shares their referral link from the Referrals widget.
+2. A friend clicks through and completes the qualifying action.
+3. Yuko awards the configured points to the referrer.
+4. The activity entry links to the referral record.
+
+### Decision guidance
+
+- **Pair with a discount-based friend reward** — friends typically want a price break, referrers typically want points.
+- **Calibrate the points** so the referrer reward feels worth sharing for (often 250–1000 points).
+
+### Limitations
+
+- Customers self-referring (same email, same address) are blocked by the Referrals module's fraud rules.
+- Points are awarded after the friend's qualifying action, not on click.
+
+## Examples
+
+- 500 points to the referrer when the friend places their first order.
+
+## Best practices
+
+<Tip>**Make referring frictionless** — a single share link in the Customer Account hub plus the Referrals widget at checkout.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How is this different from the Referral Program?">
+    The Referral Program defines the friend reward, the link, and the fraud rules. This earning rule defines the referrer's points reward. Both work together.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

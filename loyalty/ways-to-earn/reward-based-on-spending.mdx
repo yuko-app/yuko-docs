@@ -1,0 +1,100 @@
+---
+title: Reward Based on Spending
+description: Award customers a one-off bonus when they cross a lifetime or period spend threshold.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Reward Based on Spending
+</Note>
+
+## Introduction
+
+Award a milestone bonus when a customer crosses a configured spending threshold. Useful for celebrating progression without standing up full VIP tiers.
+
+## What problem this solves
+
+Flat per-order earning rewards every order equally. Spending milestones reward *cumulative* value — the customer who's spent $1,000 with you gets recognised differently than the customer at $50.
+
+## When to use
+
+- You're not ready to launch full VIP tiers but want milestone-style recognition.
+- You want to gamify progression toward higher spend.
+- You want to surprise-and-delight high spenders without committing to ongoing perks.
+
+## Overview
+
+- Single-threshold milestone (e.g., spend $500 lifetime → get 500 points).
+- Optional period scoping: lifetime, rolling year, or calendar year.
+- One-time per threshold per customer.
+- Stackable with VIP tiers.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the campaign">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Reward Based on Spending**.
+  </Step>
+  <Step title="Set details">
+    Name the campaign and enter the spend threshold (e.g., `$500`).
+  </Step>
+  <Step title="Set the points bonus">
+    Enter the points awarded when the threshold is crossed (e.g., `500`).
+  </Step>
+  <Step title="Pick the calculation period">
+    Lifetime, rolling year or calendar year.
+  </Step>
+  <Step title="Save & activate">
+    Toggle **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+- Yuko tracks the customer's cumulative spend in the chosen period.
+- When spend crosses the threshold (after order paid), the bonus is awarded once.
+- The threshold is sticky per customer per period.
+
+### Decision guidance
+
+- **Use lifetime** for permanent recognition.
+- **Use rolling year** if you want milestones to feel renewable.
+- **Run multiple campaigns** for layered milestones (e.g., $500, $1000, $2500).
+
+### Limitations
+
+- Refunds reduce cumulative spend; once awarded, the bonus is not clawed back unless the customer falls below the threshold within the same period.
+- VIP tier multipliers do not stack on milestone bonuses by default.
+
+## Examples
+
+- *"Spend $500 lifetime, get 500 points"* (worth $5 at 100 pts = $1).
+- *"Spend $1000 in a calendar year, get 1500 points"* renews each year.
+
+## Best practices
+
+<Tip>**Run 2–3 thresholds layered** to create a progression sense.</Tip>
+<Tip>**Send a milestone email** when the bonus fires.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How does this differ from VIP tiers?">
+    Milestones are one-off bonuses. VIP tiers grant ongoing benefits (multipliers, perks). Use this for simple recognition; use VIP for sustained perks.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
