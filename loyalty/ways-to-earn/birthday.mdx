@@ -1,0 +1,99 @@
+---
+title: Birthday
+description: Award customers a yearly points bonus on their birthday.
+---
+
+<Note>
+**Where to find this:** Yuko Dashboard → Loyalty → Ways to Earn → Birthday
+</Note>
+
+## Introduction
+
+Give customers a points bonus on their birthday. It's a low-cost, high-emotion gesture that consistently drives high engagement and unprompted purchases.
+
+## What problem this solves
+
+Birthday emails are everywhere. A points bonus stands out because it's an actual gift the customer can spend, not a generic *Happy Birthday!* email.
+
+## When to use
+
+- You collect (or are willing to collect) birthdays from customers.
+- You want a recurring engagement moment that doesn't feel promotional.
+- You want to reward your most loyal customers with something their inbox doesn't already do.
+
+## Overview
+
+- Yearly bonus on the customer's birthday.
+- Requires the customer's birthdate — collected via account profile, popup, or imported.
+- Optional points expiry to encourage prompt use.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>You have a way to collect birthdates (Yuko's account block, your signup form, or an existing CRM).</Check>
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the campaign">
+    Go to **Loyalty → Ways to Earn → Birthday**.
+  </Step>
+  <Step title="Set details and points">
+    Enter a campaign name, description and points value (e.g., `200`).
+  </Step>
+  <Step title="Set expiry (optional)">
+    A 30-day expiry is a healthy default — it tells customers the gift is for now.
+  </Step>
+  <Step title="Save & activate">
+    Toggle **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+- Yuko runs a daily check at the start of each customer's local day.
+- If today matches the customer's stored birthdate (year ignored), the points are credited.
+- The customer can be notified via the **Points earned** email if enabled.
+
+### Decision guidance
+
+- **Pick a generous bonus** — birthdays only happen once a year. 200–500 points is a common range.
+- **Add an expiry** so the gift creates urgency to come back.
+
+### Limitations
+
+- Customers without a stored birthdate don't earn (silent skip).
+- Year-of-birth is ignored; only month + day are matched.
+
+## Examples
+
+- A homeware brand awards 300 points on birthday with 30-day expiry. Customers redeem on a self-treat purchase.
+
+## Best practices
+
+<Tip>**Collect birthdates at signup**. Adding a single optional field captures most of the data you need.</Tip>
+<Tip>**Pair with a birthday email**. The points bonus + a celebratory email outperforms either alone.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How do customers add their birthday?">
+    Through the Yuko account block on your storefront, or through your signup form if you collect it there. You can also import birthdates via CSV.
+  </Accordion>
+  <Accordion title="What if a customer changes their birthday after earning?">
+    Yuko prevents earning more than once per calendar year for the same customer. Edits don't re-trigger the bonus in the same year.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

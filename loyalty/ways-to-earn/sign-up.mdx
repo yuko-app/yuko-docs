@@ -1,0 +1,101 @@
+---
+title: Sign Up
+description: Reward customers with points the first time they create an account on your Shopify store.
+---
+
+<Note>
+**Where to find this:** Yuko Dashboard → Loyalty → Ways to Earn → Sign Up
+</Note>
+
+## Introduction
+
+Give new customers a small points bonus the moment they create an account. It transforms a low-commitment action (typing an email) into the start of a loyalty relationship.
+
+## What problem this solves
+
+Guest checkout is convenient, but it leaves you no way to remarket and no loyalty hook. The Sign Up campaign incentivises account creation by giving customers something they can spend on their first or next order.
+
+## When to use
+
+- You want to grow your registered customer base.
+- You're trying to push guest checkouts toward account creation.
+- You want a friendly first-touch with the loyalty program.
+
+## Overview
+
+- One-time reward per customer.
+- Optional points expiry to nudge first redemption.
+- Works with Shopify's standard customer creation event.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the campaign">
+    Go to **Loyalty → Ways to Earn → Sign Up**.
+  </Step>
+  <Step title="Set basic details">
+    Enter a campaign name and short description.
+  </Step>
+  <Step title="Set the points value">
+    Enter the points to award (e.g., `100`).
+  </Step>
+  <Step title="Configure expiry (optional)">
+    Set an expiry to push first-time redemption (e.g., 30 days).
+  </Step>
+  <Step title="Save & activate">
+    Toggle **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+- Yuko listens for Shopify's `customers/create` webhook.
+- The bonus is credited once per customer; subsequent re-creates do not award additional points.
+- If the customer was created via a referral, the referral campaign also fires — the two stack.
+
+### Decision guidance
+
+- **Pair with an expiry** to drive the first redemption while interest is high.
+- **Calibrate the bonus** so it covers a meaningful fraction of an entry-level reward (e.g., 50% of the cheapest reward).
+
+### Limitations
+
+- Customers created via the Yuko admin or imported via CSV do not trigger this campaign.
+- One-time per customer.
+
+## Examples
+
+- A skincare brand awards 200 points on signup, expiring in 30 days, where 500 points = $5 off.
+- A B2C wellness store awards 100 points on signup with no expiry to keep the program friction-low.
+
+## Best practices
+
+<Tip>**Mention the bonus on your signup form**. Customers don't take an action they don't know exists.</Tip>
+<Tip>**Tie it to email opt-in** by combining with a *Subscribe to Newsletter* campaign for double the impact.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What if a customer signs up, deletes their account and re-signs up?">
+    Yuko keys the bonus to the original Shopify customer ID. Re-signups do not re-earn.
+  </Accordion>
+  <Accordion title="Can guest checkouts earn this bonus?">
+    Only if Shopify creates a customer record for them. Configure guest checkouts to auto-create accounts in Shopify customer settings.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

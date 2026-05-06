@@ -1,0 +1,63 @@
+---
+title: Ways to Earn
+description: Configure how customers earn points across your store — from order placements to social shares and birthdays.
+---
+
+<Note>
+**Where to find this:** Yuko Dashboard → Loyalty → Ways to Earn
+</Note>
+
+Ways to Earn (also called **campaigns**) are the rules that award points. Each campaign type maps to a specific customer action.
+
+## All campaign types
+
+<CardGroup cols={2}>
+  <Card title="Place an Order" icon="bag-shopping" href="/loyalty/ways-to-earn/place-an-order">
+    Reward every paid order — the cornerstone of any loyalty program.
+  </Card>
+  <Card title="Sign Up" icon="user-plus" href="/loyalty/ways-to-earn/sign-up">
+    One-time reward when a customer creates an account.
+  </Card>
+  <Card title="Birthday" icon="cake-candles" href="/loyalty/ways-to-earn/birthday">
+    Yearly bonus on the customer's birthday.
+  </Card>
+  <Card title="Anniversary" icon="calendar-heart" href="/loyalty/ways-to-earn/anniversary">
+    Yearly bonus on the customer's signup anniversary.
+  </Card>
+  <Card title="Daily Visit" icon="calendar-day" href="/loyalty/ways-to-earn/daily-visit">
+    Reward repeat visits to your store.
+  </Card>
+</CardGroup>
+
+## How campaigns work
+
+Each campaign:
+
+1. Listens for a specific customer event (order paid, account created, link clicked, etc.).
+2. Validates eligibility against your program settings.
+3. Calculates points, applying any active VIP multiplier.
+4. Credits the customer's balance — immediately or after a delay.
+5. Writes an entry to the customer's activity feed.
+
+Multiple campaigns can be active at the same time. A single customer event can only trigger one campaign of a given type at a time — if you have two *Place an Order* campaigns, the most specific match wins.
+
+## Decision guidance
+
+- Start with **Place an Order** + **Sign Up**. Those two cover acquisition and the first repeat purchase.
+- Add **Birthday** and **Anniversary** for engagement; they're emotional, low-frequency, and high-perceived-value.
+- Add **Daily Visit** only if you have content beyond products (blog, lookbook, pre-order pages) that benefits from return visits.
+
+## Best practices
+
+<Tip>**Don't over-stuff the program.** Three or four well-tuned campaigns beat ten that customers never discover.</Tip>
+<Tip>**Use VIP multipliers** instead of duplicate campaigns to reward your top customers more.</Tip>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
