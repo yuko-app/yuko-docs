@@ -1,0 +1,112 @@
+---
+title: Branding & Locale
+description: Apply consistent branding (colors, fonts, icons) and language settings across every Yuko widget.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Branding
+</Note>
+
+## Introduction
+
+Branding and locale settings apply across every Yuko widget at once. Set your colors, fonts and language defaults here so individual widget pages stay focused on content, not styling.
+
+## What problem this solves
+
+Without shared branding, you'd have to re-style every widget. Centralised branding keeps the loyalty experience visually consistent with your store and saves time as you launch new widgets.
+
+## Where it applies
+
+- All theme widgets (product, cart, account, landing, launcher).
+- The Floating Launcher panel.
+- The Customer Account hub.
+- Email notifications inherit colors and logo from these settings.
+
+## When to use
+
+- During initial setup, before activating widgets.
+- After any rebrand (new colors, new logo).
+- When adding language support for a new market.
+
+## Overview
+
+- **Brand colors** — primary, secondary and accent.
+- **Typography** — inherits your theme's font by default; can override.
+- **Logo / icons** — used in widget headers and email templates.
+- **Locale** — select the active language; or auto-detect from Shopify Markets.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+<Steps>
+  <Step title="Open Branding">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Widgets → Branding**.
+  </Step>
+  <Step title="Set brand colors">
+    Pick your primary, secondary and accent colors. Defaults inherit from your store theme where possible.
+  </Step>
+  <Step title="Upload logo">
+    Add a logo for use in email headers and the loyalty hub. PNG or SVG, transparent background recommended.
+  </Step>
+  <Step title="Pick the locale">
+    Choose a default language. If your store uses Shopify Markets, enable **Auto-detect from Shopify Markets** to localise per-market.
+  </Step>
+  <Step title="Save">
+    Click **Save**. Changes apply to every widget within minutes.
+  </Step>
+</Steps>
+
+## How it works
+
+- Branding settings are stored centrally and read by every widget at render time.
+- Color updates take effect immediately; cached storefront views may take a few minutes to refresh.
+- Locale is a fall-through: per-customer locale wins over store default; store default wins over English.
+
+### Decision guidance
+
+- **Match your theme primary color** — this is the most common rebrand mistake to fix later.
+- **Use auto-detect locale** if you sell in multiple markets via Shopify Markets.
+
+### Limitations
+
+- Custom CSS-level overrides are not exposed in the dashboard. Contact support if you need brand-deep customisation.
+- Email branding inherits colors and logo only; full email design is in the Email Notifications section.
+
+## Examples
+
+- A premium beauty brand sets primary to its signature green and uploads a wordmark; emails and widgets match the storefront immediately.
+- A multi-market brand enables Shopify Markets locale auto-detect; widgets show in French for French shoppers automatically.
+
+## Best practices
+
+<Tip>**Set branding before launching widgets.** Customers anchor on the first version they see.</Tip>
+<Tip>**Use a transparent-PNG logo** sized 240px wide for crisp email headers.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why don't my color changes show up immediately?">
+    Storefront caching can hold widget styles for a few minutes. Hard-refresh the page or wait 5–10 minutes.
+  </Accordion>
+  <Accordion title="Can I override branding per widget?">
+    No — branding is global by design. Per-widget styling is reserved for icon and message customisation.
+  </Accordion>
+  <Accordion title="Does locale affect customer emails?">
+    Yes — emails are sent in the customer's resolved locale.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import WidgetCrossLinks from '/snippets/onsite-widgets-cross-links.mdx';
+
+<WidgetCrossLinks />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

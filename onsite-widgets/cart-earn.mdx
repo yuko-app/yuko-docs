@@ -1,0 +1,130 @@
+---
+title: Cart Earn Widget
+description: Show customers the total points they'll earn for the items in their cart — visible at the moment they decide to check out.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Cart Earn
+</Note>
+
+## Introduction
+
+Display the cumulative points a customer will earn for the items currently in their cart — right next to the cart total.
+
+## What problem this solves
+
+The cart is the highest-intent screen on your storefront. A customer staring at a $200 cart is far more likely to complete checkout if they see *“200 points earned on this order”* attached to it.
+
+## Where it appears
+
+- Cart page or cart drawer (theme-dependent).
+
+## When to use
+
+- You want to lift cart-to-checkout conversion.
+- You want to remind customers of the loyalty value before they leave the cart.
+
+## Overview
+
+- Calculates total earnable points based on cart contents.
+- Updates dynamically as the cart changes.
+- Customisable message and icon.
+- Optional custom placement.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+### 1. Configure in Yuko
+
+<Steps>
+  <Step title="Open the widget settings">
+    Go to **Apps → Yuko Loyalty → Loyalty → Widgets → Cart Earn**.
+  </Step>
+  <Step title="Edit the cart earn message">
+    Default: *“You'll earn `[points_value]` `[points_label]` on this purchase!”*
+  </Step>
+  <Step title="Customise icon">
+    Pick the icon shown alongside the message.
+  </Step>
+  <Step title="Set custom placement (optional)">
+    Use the placement option to control where in the cart the widget renders.
+  </Step>
+  <Step title="Activate">
+    Toggle the widget **Active**.
+  </Step>
+</Steps>
+
+### 2. Add the widget to your theme
+
+import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
+
+<SetupThemeBlock />
+
+Pick the **Cart** template (and the cart drawer if your theme uses one). Place the widget near the checkout button or cart total.
+
+### 3. Verify
+
+Add products to your live cart and confirm the widget renders with the correct total.
+
+## Available placeholders
+
+import WidgetPlaceholders from '/snippets/widget-placeholders.mdx';
+
+<WidgetPlaceholders />
+
+## How it works
+
+1. Customer adds products to cart.
+2. The widget reads the cart contents and applies active earning rules.
+3. The total earnable points are rendered.
+4. The widget refreshes whenever the cart changes (add, remove, quantity).
+
+### Decision guidance
+
+- **Place near the checkout button** for conversion.
+- **Place near the total** for visibility.
+- **Use both cart page and drawer** if your theme supports both.
+
+### Limitations
+
+- Cart drawer support depends on your theme. Some themes need additional setup.
+- The widget displays the calculation at the moment of render — expired session data may show briefly.
+
+## Examples
+
+- *"You'll earn 80 Stars on this purchase!"* with a star icon next to the checkout button.
+
+## Best practices
+
+<Tip>**Always pair Cart Earn with Cart Redeem.** Earning visibility is half the story; redemption visibility is the other half.</Tip>
+<Tip>**Keep the message tight.** Cart real estate is limited.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why doesn't my cart drawer show the widget?">
+    Theme-dependent. Some themes require enabling app blocks in the drawer or using the [Floating Launcher](/onsite-widgets/floating-launcher) instead.
+  </Accordion>
+  <Accordion title="What does the value show for guest customers?">
+    The base earning rate without any VIP multiplier.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import WidgetCrossLinks from '/snippets/onsite-widgets-cross-links.mdx';
+
+<WidgetCrossLinks />
+
+import RelatedWidgets from '/snippets/related-widgets.mdx';
+
+<RelatedWidgets />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

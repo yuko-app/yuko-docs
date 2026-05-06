@@ -1,0 +1,63 @@
+---
+title: Onsite Widgets
+description: Show points, rewards and VIP status across product pages, cart, checkout, customer accounts and a dedicated loyalty hub.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets
+</Note>
+
+## What are onsite widgets
+
+Onsite widgets are the customer-facing surfaces for your loyalty program. They show points balances, earnable rewards, VIP status and redemption options across the customer journey — without requiring a single line of theme code.
+
+Widgets render via three Shopify mechanisms:
+
+- **Theme App Embed** — for storefront widgets (product, cart, account, landing, launcher).
+- **Checkout UI Extension** — for points and redemption inside Shopify Checkout.
+- **Customer Account Extension** — for the loyalty hub inside the new Shopify customer accounts.
+
+## Where each widget appears
+
+| Widget | Surface | Extension type |
+|---|---|---|
+| Product Page Earn | Product detail page | Theme app block |
+| Cart Earn | Cart page / drawer | Theme app block |
+| Cart Redeem | Cart page / drawer | Theme app block |
+| Checkout Earn | Shopify Checkout | Checkout UI extension |
+| Checkout Redeem | Shopify Checkout | Checkout UI extension |
+| Order Status Earn | Thank-you / order status page | Theme app block |
+| Order List Balance | Order history page | Theme app block |
+| Customer Profile Balance | Customer profile page | Theme app block |
+| Customer Account Page | New Shopify customer accounts | Customer Account extension |
+| Rewards Landing Page | A page on your storefront (your URL) | Theme app block |
+| Floating Launcher | All pages (persistent) | Theme app embed (auto) |
+
+## All widgets
+
+import WidgetCrossLinks from '/snippets/onsite-widgets-cross-links.mdx';
+
+<WidgetCrossLinks />
+
+## Decision guidance
+
+- **Start with three:** Cart Earn, Cart Redeem and the Floating Launcher. They cover discovery, redemption and persistent access.
+- **Add Checkout widgets** if you're on Shopify Plus or Checkout Extensibility — visibility at checkout lifts redemption rate.
+- **Add the Customer Account Page** so the loyalty hub lives where customers manage their account.
+- **Use the Rewards Landing Page** as a destination for marketing emails and ads about your loyalty program.
+
+## Best practices
+
+<Tip>**Less is more.** A storefront stuffed with five loyalty widgets dilutes attention. Pick the surfaces that matter.</Tip>
+<Tip>**Keep widget copy short.** Don't over-explain mechanics in the widget — link to the rewards landing page if customers want detail.</Tip>
+<Tip>**Always test on mobile.** Most loyalty interactions happen on phones; verify rendering and tap targets.</Tip>
+
+## Related
+
+import RelatedWidgets from '/snippets/related-widgets.mdx';
+
+<RelatedWidgets />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
