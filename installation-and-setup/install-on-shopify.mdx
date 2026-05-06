@@ -1,0 +1,114 @@
+---
+title: Install Yuko on Shopify
+description: Install the Yuko app on your Shopify store, approve permissions and pick a plan.
+---
+
+<Note>
+**Where to find this:** Shopify App Store → search “Yuko” → Install
+</Note>
+
+## Introduction
+
+Yuko is a public Shopify app. Install it once on the store, approve the permissions, and pick a plan — then you're ready to configure loyalty.
+
+## What problem this solves
+
+Most loyalty apps require theme code edits, custom scripts, or a developer to wire things up. Yuko installs through Shopify's standard app flow, so you can go from install to a working program without touching theme code.
+
+## When to use
+
+- You're setting up Yuko for the first time on a Shopify store.
+- You're moving Yuko from a development store to production.
+- You're reinstalling after an uninstall.
+
+## Overview
+
+- One-click install from the Shopify App Store.
+- Standard Shopify OAuth permissions.
+- Recurring app charge billed via Shopify.
+- Trial period applies on most plans.
+
+## Before you start
+
+<Check>You are the Shopify store owner or have **Apps and channels** permission.</Check>
+<Check>Your store is on a paid Shopify plan, or it's a development store.</Check>
+<Check>You've reviewed [Plans & Billing](/getting-started/plans-billing).</Check>
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the Yuko listing">
+    Search for **Yuko** on the [Shopify App Store](https://apps.shopify.com) and click **Install**.
+  </Step>
+  <Step title="Approve permissions">
+    Shopify shows the permission scopes Yuko needs (orders, customers, products, discounts, themes). Review and click **Install app**.
+  </Step>
+  <Step title="Choose your plan">
+    Yuko opens its onboarding screen. Pick a plan and click **Approve charge** in Shopify's billing prompt.
+  </Step>
+  <Step title="Complete onboarding">
+    Set your points label, currency and starter campaigns. You can change all of this later in **Loyalty → Settings**.
+  </Step>
+</Steps>
+
+## How it works
+
+When you install Yuko, Shopify hands Yuko an OAuth access token. Yuko uses that token to:
+
+- Read orders, customers and products to power earning rules.
+- Create discounts and coupons for redemption.
+- Subscribe to webhooks (orders, customers, refunds, app uninstall).
+- Register the theme app extension and checkout extensions.
+
+### Decision guidance
+
+- **Install on production first**, then optionally on a development store for testing. The dev store install is free.
+- **Don't uninstall to “reset”** — use **Loyalty → Settings → Reset activities** instead. Uninstalling triggers data retention timers.
+
+### Limitations
+
+- Custom storefronts (Hydrogen, headless) need extra integration work — see the [Webhooks](/loyalty/overview) and API Reference documentation.
+- Yuko is not currently available in the Shopify-managed China commerce experience.
+
+## Examples
+
+- A new DTC brand installs Yuko on the Friday before a Black Friday push and finishes onboarding in 20 minutes.
+- An existing store reinstalls Yuko on a sandbox dev store to test workflow changes before promoting them to production.
+
+## Best practices
+
+<Tip>**Install on a dev store first** if you're already live with another loyalty app. It lets you compare experiences side-by-side without breaking your live program.</Tip>
+<Tip>**Approve all webhook scopes**. Skipping any of them silently breaks specific features (e.g., refund reversals).</Tip>
+<Tip>**Bookmark the dashboard**. The Yuko dashboard is at [app.yukoapp.com](https://app.yukoapp.com) and is also accessible from the Shopify admin sidebar.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How long does install take?">
+    Under five minutes for the install itself. The full onboarding wizard takes 15–20 minutes.
+  </Accordion>
+  <Accordion title="Can I install on multiple stores?">
+    Yes. Each store gets its own Yuko organisation and billing. Multi-store accounts can share members and reporting — see [Organization & multi-store](/loyalty/overview).
+  </Accordion>
+  <Accordion title="What happens if I deny a permission?">
+    Shopify aborts the install. You'll need to restart the install flow and approve all scopes.
+  </Accordion>
+  <Accordion title="How do I uninstall?">
+    Open **Shopify admin → Apps**, find Yuko, and click **Uninstall**. This cancels the recurring charge and revokes Yuko's access token.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Enable the Theme App Embed" icon="plug" href="/installation-and-setup/theme-app-embed">
+    Required for any storefront widget.
+  </Card>
+  <Card title="Quickstart" icon="rocket" href="/getting-started/quickstart">
+    Configure your first earn rule and reward.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

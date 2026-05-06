@@ -1,0 +1,87 @@
+---
+title: Activate the Customer Account Extension
+description: Add the Yuko Loyalty hub inside Shopify's new customer accounts.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Settings → Customer accounts → Customize
+</Note>
+
+## Introduction
+
+The **Customer Account Extension** adds a Yuko Loyalty hub inside Shopify's new customer accounts surface. Customers see their balance, rewards, VIP status and activity log without leaving Shopify.
+
+## What problem this solves
+
+Many loyalty programs send customers to a separate page to manage rewards. With this extension, the loyalty hub lives natively where customers already manage their orders and profile, dramatically improving discovery.
+
+## Where it appears
+
+- The new Shopify Customer Account experience.
+- Both order pages (point balance) and the profile page (full loyalty hub).
+
+## When to use
+
+- You've enabled **New Customer Accounts** in Shopify.
+- You want a loyalty hub without building a separate landing page.
+
+## Overview
+
+- Shopify-native extension surface.
+- Adds the Yuko Loyalty hub block to customer accounts.
+- Works on any paid Shopify plan with new accounts enabled.
+
+## Before you start
+
+<Check>Yuko is installed on your Shopify store.</Check>
+<Check>**New Customer Accounts** are enabled in **Settings → Customer accounts**.</Check>
+
+## Setup guide
+
+import CustomerAccountSetup from '/snippets/setup-customer-account-extension.mdx';
+
+<CustomerAccountSetup />
+
+## How it works
+
+When a logged-in customer visits their account, Shopify mounts the Yuko Loyalty extension. It fetches the customer's points, rewards, tier and activity feed and renders them in a single hub.
+
+### Decision guidance
+
+- **Enable both blocks** (orders + profile) so customers see their balance everywhere they expect to.
+- **Use the Rewards Landing Page** as a fallback for stores still on legacy customer accounts.
+
+### Limitations
+
+- Requires Shopify's New Customer Accounts. Legacy accounts are not supported.
+- Visual customisation is constrained by Shopify's extension surface.
+
+## Examples
+
+- A growth-stage brand replaces a separate `/account/rewards` page with the embedded loyalty hub, simplifying their customer experience.
+
+## Best practices
+
+<Tip>**Add it on day one**. Customers expect to find loyalty inside their account; making them hunt for it costs redemption rate.</Tip>
+<Tip>**Pair with a points-balance reminder email** so customers click into the new hub.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I use this with the legacy customer accounts?">
+    No. Use the Rewards Landing Page widget instead.
+  </Accordion>
+  <Accordion title="Why don't I see the block in the editor?">
+    Confirm Yuko is installed and that New Customer Accounts are enabled.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+import RelatedWidgets from '/snippets/related-widgets.mdx';
+
+<RelatedWidgets />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

@@ -1,0 +1,97 @@
+---
+title: Activate the Checkout UI Extension
+description: Add Yuko's Checkout extension to surface points and redemption options inside Shopify Checkout.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Settings → Checkout → Customize
+</Note>
+
+## Introduction
+
+Yuko's Checkout UI Extension surfaces points earning and redemption options inside Shopify Checkout. It's the same widget surface customers see in cart, but rendered natively in Checkout where Shopify forbids custom scripts.
+
+## What problem this solves
+
+Shopify Checkout is locked down: no scripts, no theme code. Without the Checkout UI Extension, customers would lose visibility of points and rewards at the most critical moment of the funnel.
+
+## Where it appears
+
+- The Checkout pages in Shopify (information, shipping, payment).
+- Used by both the **Checkout Earn Widget** and the **Checkout Redeem Widget**.
+
+## When to use
+
+- You're on Shopify Plus or a plan with Checkout Extensibility.
+- You want loyalty visible at checkout, not just in cart.
+
+## Overview
+
+- Shopify-native extension surface.
+- Configured in Shopify's Checkout Editor.
+- Plan-gated by Shopify (typically Plus).
+- Independent of the Theme App Embed.
+
+## Before you start
+
+<Check>Yuko is installed on your Shopify store.</Check>
+<Check>You are on a Shopify plan that supports Checkout Extensibility.</Check>
+<Check>You've migrated to **Checkout Extensibility** in Shopify (legacy checkout.liquid is not supported).</Check>
+
+## Setup guide
+
+import CheckoutSetup from '/snippets/setup-checkout-extension.mdx';
+
+<CheckoutSetup />
+
+## How it works
+
+When a customer reaches Checkout, Shopify mounts the Yuko extension into the configured slot. The extension:
+
+- Fetches the active customer's points balance and applicable rewards.
+- Displays points the customer will earn for this order.
+- Lets the customer apply an existing reward as a discount code.
+
+### Decision guidance
+
+- **Place the Earn widget near the order summary** for visibility.
+- **Place the Redeem widget near the discount-code field** so customers reach for points instead of an external coupon.
+
+### Limitations
+
+- Requires Checkout Extensibility — not available on legacy `checkout.liquid` deployments.
+- Cannot be customised beyond the configuration options Yuko exposes (Shopify constrains the surface).
+
+## Examples
+
+- A Plus brand puts Checkout Earn above the payment section, lifting checkout completion rate.
+- A subscription brand puts Checkout Redeem alongside the discount code field, doubling reward redemption rate at checkout.
+
+## Best practices
+
+<Tip>**Test in a Shopify checkout preview before going live**. Shopify caches checkout layouts aggressively.</Tip>
+<Tip>**Don't duplicate widgets across cart and checkout** unless you have a reason — it can cause customer confusion.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="I don't see the Yuko extension in the Checkout Editor">
+    Confirm Yuko is installed and your store has migrated to Checkout Extensibility. If it's still missing, reinstall Yuko or contact support.
+  </Accordion>
+  <Accordion title="Does this work with the Order Status / Thank-you page?">
+    The Order Status page widget is a separate extension and works on more plans. See [Order Status / Thank-you Earn Widget](/loyalty/overview).
+  </Accordion>
+  <Accordion title="Why don't I see anything for guest checkouts?">
+    Loyalty requires a customer record. Guest checkouts can be configured to auto-create accounts in **Loyalty Settings**.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+import RelatedWidgets from '/snippets/related-widgets.mdx';
+
+<RelatedWidgets />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
