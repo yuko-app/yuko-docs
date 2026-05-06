@@ -12,9 +12,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Yuko Dashboard",
-          "icon": "book-open-cover",
-          "href": "https://app.yukoapp.com"
+          "anchor": "Install Yuko",
+          "icon": "shop",
+          "href": "https://apps.shopify.com/yuko"
+        },
+        {
+          "anchor": "Support",
+          "icon": "life-ring",
+          "href": "https://yuko.so/support/"
         },
         {
           "anchor": "Blog",
@@ -58,9 +63,22 @@
                   "loyalty/ways-to-earn/overview",
                   "loyalty/ways-to-earn/place-an-order",
                   "loyalty/ways-to-earn/sign-up",
+                  "loyalty/ways-to-earn/write-a-review",
+                  "loyalty/ways-to-earn/subscribe-to-newsletter",
                   "loyalty/ways-to-earn/birthday",
                   "loyalty/ways-to-earn/anniversary",
-                  "loyalty/ways-to-earn/daily-visit"
+                  "loyalty/ways-to-earn/daily-visit",
+                  "loyalty/ways-to-earn/refer-a-friend",
+                  "loyalty/ways-to-earn/reward-based-on-spending",
+                  "loyalty/ways-to-earn/achievement",
+                  "loyalty/ways-to-earn/facebook-like",
+                  "loyalty/ways-to-earn/facebook-share",
+                  "loyalty/ways-to-earn/instagram-follow",
+                  "loyalty/ways-to-earn/instagram-share",
+                  "loyalty/ways-to-earn/twitter-follow",
+                  "loyalty/ways-to-earn/twitter-share",
+                  "loyalty/ways-to-earn/whatsapp-share",
+                  "loyalty/ways-to-earn/email-share"
                 ]
               },
               {
@@ -182,12 +200,16 @@
       {
         "label": "Book a Free Setup Call",
         "href": "https://cal.com/rameshelamathi/yuko-demo"
+      },
+      {
+        "label": "Support",
+        "href": "https://yuko.so/support/"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.yukoapp.com/"
+      "label": "Install Yuko",
+      "href": "https://apps.shopify.com/yuko"
     }
   },
   "contextual": {

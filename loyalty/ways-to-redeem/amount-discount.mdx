@@ -4,7 +4,7 @@ description: Let customers redeem points for a fixed-amount discount applied at 
 ---
 
 <Note>
-**Where to find this:** Yuko Dashboard → Loyalty → Ways to Redeem → Amount Discount
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Redeem → Amount Discount
 </Note>
 
 ## Introduction
@@ -41,21 +41,21 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <Steps>
   <Step title="Open the reward">
-    Go to **Loyalty → Ways to Redeem → Amount Discount**.
+    Login to your Shopify admin, then go to **Apps → Yuko Loyalty → Loyalty → Ways to Redeem → Amount Discount**.
   </Step>
   <Step title="Configure basic details">
     - **Reward name** — customer-facing label (e.g., *“$5 off”*).
     - **Description** — short copy shown next to the reward.
   </Step>
   <Step title="Choose reward type">
-    <Tabs>
-      <Tab title="Fixed amount of points">
+    <AccordionGroup>
+      <Accordion title="Fixed amount of points">
         One tier. Customer pays N points for the same dollar discount every time.
-      </Tab>
-      <Tab title="Incremented points">
+      </Accordion>
+      <Accordion title="Incremented points">
         Multiple tiers in one reward (e.g., 500/1000/2000 pts → $5/$10/$25 off). Customers pick.
-      </Tab>
-    </Tabs>
+      </Accordion>
+    </AccordionGroup>
   </Step>
   <Step title="Set points required and discount amount">
     For each tier, enter the points cost and the discount value.
