@@ -1,6 +1,6 @@
 ---
 title: Klaviyo
-description: Sync customers, points, tier and loyalty events into Klaviyo — use Yuko data inside your existing email and SMS flows.
+description: Sync customers, points, VIP tier, referral and membership data into Klaviyo as profile properties and trigger events. Use them inside Klaviyo segments, dynamic email content and flows.
 ---
 
 <Note>
@@ -9,66 +9,801 @@ description: Sync customers, points, tier and loyalty events into Klaviyo — us
 
 ## Introduction
 
-The Klaviyo connector pushes Yuko customer data and events into Klaviyo so you can segment, flow, and personalise on loyalty data inside Klaviyo itself.
+Yuko's Klaviyo connector pushes two kinds of data into Klaviyo:
+
+1. **Profile properties** — written to every known customer's Klaviyo profile (e.g., `yuko_points_balance`, `yuko_vip_tier`). Use these to **segment** and **personalise** content.
+2. **Trigger events** — Klaviyo “metrics” that Yuko fires when something happens in the loyalty program (e.g., *Earn Points*, *VIP Tier Upgrade*). Use these to **start flows**.
+
+This page documents every property and every event that Yuko sends.
+
+<Tip>
+**Why this matters for email design:** In Klaviyo's email editor, you reference Yuko data using the exact property names below — e.g., `{{ person.yuko_points_balance }}` to show the live balance, or `{{ event.yuko_points_earned }}` inside a flow triggered by *Earn Points*. Get the property name wrong and the placeholder renders empty.
+</Tip>
 
 ## When to use
 
-- Klaviyo is your primary email tool.
-- You want loyalty events to drive Klaviyo flows (e.g., points-earned email from Klaviyo, not Yuko).
-- You want VIP-tier segments inside Klaviyo for ads and email.
+- Klaviyo is your primary email / SMS tool.
+- You want VIP-tier or balance-based **segments** in Klaviyo.
+- You want loyalty-event **flows** (e.g., a custom “Tier upgrade” series) sent through Klaviyo instead of Yuko.
+- You want Yuko data inside existing Klaviyo flows (welcome, win-back, browse abandonment).
 
-## What syncs
+## Overview
 
-- **Customer profiles** — points balance, tier, lifetime spend.
-- **Events** — points credited, points redeemed, tier changed, referral completed, membership activated.
-- **Custom properties** — the loyalty fields appear on the Klaviyo profile.
+- **Profile sync** is automatic and continuous. Every loyalty event refreshes the customer's profile properties.
+- **Events** are opt-in per-event. You pick which events get forwarded when you set up the integration.
+- **One-way:** Yuko → Klaviyo. Yuko does not pull data from Klaviyo.
+- **Authentication:** Klaviyo Private API key. Optional OAuth where available.
 
-## Prerequisites
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
 
 <Check>You have a Klaviyo account.</Check>
-<Check>You have Klaviyo's Public API and Private API keys.</Check>
+<Check>You have a Klaviyo **Private API key** with the necessary scopes (Profiles + Events at minimum).</Check>
 
-## Setup
+## Connect Yuko to Klaviyo
 
 <Steps>
-  <Step title="Open Klaviyo integration">
-    Go to **Apps → Yuko Loyalty → Integrations → Klaviyo**.
+  <Step title="Open the Klaviyo integration">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Integrations → Klaviyo**.
   </Step>
-  <Step title="Connect with API keys">
-    Paste your Klaviyo Public and Private API keys. Klaviyo's API key generation is documented in their dashboard.
+  <Step title="Paste your Klaviyo Private API key">
+    Generate a Private API key from your Klaviyo account (Klaviyo dashboard → Settings → API keys), then paste it into Yuko.
   </Step>
-  <Step title="Pick which events to sync">
-    Toggle the events you want forwarded to Klaviyo.
+  <Step title="Pick which events to forward">
+    Tick the events you want sent to Klaviyo as metrics. You can change this any time later.
   </Step>
   <Step title="Save and verify">
-    Klaviyo profiles for known customers should populate within a few minutes.
+    Click **Connect**. Yuko's profile sync begins immediately — within a few minutes, your loyalty customers should appear (or update) on Klaviyo profiles with the `yuko_*` properties listed below.
   </Step>
 </Steps>
 
-## Common use cases
+---
 
-- VIP-only segments in Klaviyo — *Tier == Diamond* → send the diamond newsletter.
-- Klaviyo flow triggered by *Yuko points-credited* event — a custom thank-you email.
-- Win-back flow targeting customers with high points balance who haven't ordered in 90 days.
+## Profile properties
+
+Every loyalty customer Yuko knows about has the following properties on their Klaviyo profile. Profiles are keyed by **email** and **external_id** (the Shopify customer ID). Properties refresh automatically every time Yuko fires an event for the customer.
+
+Use these in Klaviyo segments and inside any email template (`{{ person.<property> }}`).
+
+### Identifier properties
+
+These are written at Klaviyo's top-level profile object (not under `properties`).
+
+| Klaviyo profile field | Source | Notes |
+|---|---|---|
+| `email` | Customer email | Primary identifier |
+| `first_name` | Customer first name |  |
+| `last_name` | Customer last name |  |
+| `external_id` | Shopify customer ID | Use to match Klaviyo profiles to Shopify customers |
+| `phone_number` | Customer phone | E.164 format if available |
+
+### Loyalty profile properties
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_joined_at` | ISO 8601 string | When the customer first appeared in Yuko (account creation). |
+| `yuko_total_spent` | Number | Lifetime spend recorded on the Shopify customer. |
+| `yuko_points_balance` | Integer | **Current points balance.** Use this for the live balance in any email. |
+| `yuko_points_as_cash_balance` | Number | The points balance expressed in store currency, given your conversion ratio. |
+| `yuko_lifetime_points_earned` | Integer | All points the customer has ever earned (excludes redemptions and adjustments). |
+| `yuko_points_expire_at` | ISO 8601 string | The date the customer's *next* batch of points will expire. Empty if no points are scheduled to expire. |
+| `yuko_points_to_next_reward` | String | How many more points the customer needs to qualify for their next claimable reward. |
+
+### VIP tier profile properties
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_vip_tier` | String | Current tier name (e.g., *Silver*, *Gold*, *Diamond*). |
+| `yuko_vip_tier_entry_date` | ISO 8601 string | When the customer entered their current tier. |
+| `yuko_vip_retention_expires_at` | ISO 8601 string | When the customer's retention window ends. They must re-qualify before this date or risk downgrade. |
+| `yuko_vip_qualifying_value` | Number | The customer's current progress toward the next tier (in spend, points or orders depending on your calculation method). |
+| `yuko_vip_next_tier` | String | Name of the next tier the customer is progressing toward. Empty for top-tier customers. |
+| `yuko_vip_next_tier_amount_needed` | Number | How much more is needed to reach the next tier. |
+| `yuko_vip_progress_percentage` | Number | Progress toward the next tier as a percentage (0–100). |
+| `yuko_vip_at_risk` | Boolean | `true` if the customer is within 30 days of retention expiry. Useful for “you're about to lose VIP” emails. |
+| `yuko_vip_is_entry_tier` | Boolean | `true` if the customer is still on the base/entry tier. |
+
+### Referral profile properties
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_referral_url` | String | The customer's personal referral link. Use directly in emails — *“Share your link: \{\{ person.yuko_referral_url \}\}”*. |
+| `yuko_referral_code` | String | The short referral code, embedded in the URL. |
+| `yuko_total_referrals` | Integer | Total referrals the customer has initiated. |
+| `yuko_successful_referrals` | Integer | Referrals that converted (friend completed the qualifying action). |
+
+### Membership profile properties
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_membership_tier` | String | Current membership plan name (e.g., *Yuko VIP*). Empty for non-members. |
+| `yuko_membership_status` | String | Contract status — typical values: *active*, *paused*, *cancelled*, *failed*. |
+| `yuko_membership_renewal_date` | ISO 8601 string | Next renewal date. Use for renewal-reminder emails. |
+
+### Personal milestones
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_date_of_birth` | ISO 8601 string | The customer's birthday. Empty if not collected. |
+| `yuko_loyalty_anniversary_date` | ISO 8601 string | Anniversary date — the date the customer entered their current tier, or their account creation date as a fallback. |
+
+---
+
+## Common event properties
+
+**Every** event Yuko sends to Klaviyo carries the following properties — in addition to the event-specific properties documented per event.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_customer_email` | String | Customer email (also matches Klaviyo profile). |
+| `yuko_customer_first_name` | String | First name. |
+| `yuko_customer_last_name` | String | Last name. |
+| `yuko_shopify_customer_id` | String | The Shopify customer ID this event relates to. |
+| `yuko_program_module` | Array | Active Yuko modules for the store (e.g., `["loyalty", "referral", "tiers", "membership"]`). |
+| `yuko_program_currency` | String | Customer's currency code. |
+| `yuko_timestamp` | ISO 8601 string | When the event was triggered in Yuko. |
+| `yuko_org_uuid` | String | Yuko organisation UUID. Useful in multi-store Klaviyo accounts. |
+
+In Klaviyo flow filters and template content, reference these as `\{\{ event.yuko_customer_email \}\}`, `\{\{ event.yuko_timestamp \}\}`, etc.
+
+---
+
+## Trigger events
+
+Each event below shows up in Klaviyo as a **metric** (the name in **bold**). Use it as the trigger of a flow, or as a metric filter elsewhere.
+
+Properties listed are **in addition to the common event properties** above and are also accessible inside Klaviyo flows as `\{\{ event.<property> \}\}`.
+
+### Loyalty events
+
+#### Joined Loyalty Program
+
+- **Klaviyo metric:** *Joined Loyalty Program*
+- **Event slug:** `loyalty_program_joined`
+- **When it fires:** A customer enters the Yuko loyalty program for the first time.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_signup_source` | String | Where the customer joined from (e.g., onboarding, account block). |
+| `yuko_signup_points_awarded` | Integer | Bonus points awarded for joining (if a Sign Up campaign is active). |
+| `yuko_new_balance` | Integer | Customer's points balance immediately after joining. |
+| `yuko_entry_tier_name` | String | Tier the customer entered at. |
+| `yuko_entry_tier_is_entry` | Boolean | `true` if joined at the base tier. |
+| `yuko_first_reward_name` | String | Name of the cheapest reward configured. |
+| `yuko_first_reward_points_required` | Integer | Points cost of the cheapest reward. |
+| `yuko_first_reward_points_needed` | Integer | How many more points to reach it from the new balance. |
+| `yuko_referral_code` | String | Their personal referral code (if referrals are enabled). |
+| `yuko_referral_url` | String | Their personal referral link. |
+| `yuko_all_tiers` | String | Serialised list of all configured tiers (for display). |
+| `yuko_earning_rule` | String | The earning rule that delivered the signup bonus, if any. |
+
+#### Earn Points
+
+- **Klaviyo metric:** *Earn Points*
+- **Event slug:** `loyalty_earn_reward`
+- **When it fires:** Yuko credits points to a customer from any active Way to Earn campaign.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_points_earned` | Integer | Points awarded by this event. |
+| `yuko_new_balance` | Integer | Balance immediately after the credit. |
+| `yuko_trigger_name` | String | The Way to Earn that fired (e.g., `place_an_order`, `birthday`). |
+| `yuko_trigger_order_id` | String | Shopify order ID, if the trigger was a purchase. |
+| `yuko_trigger_order_total` | Number | Order total, if applicable. |
+| `yuko_earning_rule` | String | The earning rule name. |
+| `yuko_vip_tier_multiplier` | Number | Multiplier applied at the moment of award. |
+| `yuko_base_points` | Integer | Base points before any multiplier. |
+| `yuko_bonus_points` | Integer | Bonus points contributed by VIP multiplier or campaign uplift. |
+| `yuko_total_redeemable_cash` | Number | Customer's points balance expressed as cash value. |
+| `yuko_available_rewards_count` | Integer | Number of rewards the customer can claim right now. |
+| `yuko_points_to_next_reward` | Integer | Points needed to unlock the next reward. |
+| `yuko_points_as_cash` | Number | Same as `yuko_total_redeemable_cash`, kept for backward compatibility. |
+
+#### Redeem Points
+
+- **Klaviyo metric:** *Redeem Points*
+- **Event slug:** `loyalty_redeem_points`
+- **When it fires:** A customer redeems points for a reward (Way to Redeem).
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_points_spent` | Integer | Points consumed by this redemption. |
+| `yuko_new_balance` | Integer | Balance after the redemption. |
+| `yuko_reward_type` | String | Reward type — `amount_discount`, `percentage_discount`, `free_product`, `free_shipping`, `store_credit`. |
+| `yuko_reward_value` | Number | Value of the reward (e.g., `5` for $5 off, `10` for 10%). |
+| `yuko_reward_code` | String | The Shopify discount code issued. |
+| `yuko_reward_expires_at` | ISO 8601 string | When the discount code expires. |
+| `yuko_reward_minimum_purchase` | Number | Minimum cart amount to use the reward. |
+| `yuko_reward_description` | String | Human-readable description. |
+
+#### Points Adjusted
+
+- **Klaviyo metric:** *Points Adjusted*
+- **Event slug:** `loyalty_points_adjusted`
+- **When it fires:** A staff member manually credits or debits a customer's points.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_adjustment_amount` | Integer | Absolute points adjusted. |
+| `yuko_adjustment_direction` | String | `credit` or `debit`. |
+| `yuko_new_balance` | Integer | Balance after the adjustment. |
+| `yuko_adjustment_reason` | String | Reason note entered by the staff member. |
+| `yuko_adjusted_by` | String | Name of the staff member who made the change. |
+
+#### Points Expired
+
+- **Klaviyo metric:** *Points Expired*
+- **Event slug:** `loyalty_points_expired`
+- **When it fires:** A batch of points expires.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_points_expired` | Integer | Points that just expired. |
+| `yuko_new_balance` | Integer | Remaining balance. |
+| `yuko_available_rewards_count` | Integer | Rewards still claimable with the remaining balance. |
+
+#### Points Expiring Reminder
+
+- **Klaviyo metric:** *Points Expiring Reminder*
+- **Event slug:** `points_expiring`
+- **When it fires:** Customer has points scheduled to expire — typically 30 and 7 days before expiry.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_points_at_risk` | Integer | Points about to expire. |
+| `yuko_total_balance` | Integer | Total points balance. |
+| `yuko_expires_at` | ISO 8601 string | When the at-risk points expire. |
+| `yuko_days_until_expiry` | Integer | Days remaining. |
+| `yuko_urgency` | String | Urgency tier (e.g., `low`, `medium`, `high`). |
+| `yuko_prevention_action` | String | Suggested action (e.g., redeem now). |
+| `yuko_points_as_cash_at_risk` | Number | Cash value of the at-risk points. |
+| `yuko_available_reward_1_name` | String | Top reward the customer could claim. |
+| `yuko_available_reward_2_name` | String | Second reward (only present if available). |
+
+#### Reward Expiry Reminder
+
+- **Klaviyo metric:** *Reward Expiry Reminder*
+- **Event slug:** `reward_expiring`
+- **When it fires:** A customer's redeemed reward (discount code) is about to expire — typically 7 and 1 days before.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_reward_type` | String | The reward type. |
+| `yuko_reward_value` | Number | Reward value. |
+| `yuko_reward_code` | String | The Shopify discount code at risk. |
+| `yuko_reward_expires_at` | ISO 8601 string | Expiry timestamp. |
+| `yuko_reward_description` | String | Human-readable description. |
+| `yuko_days_until_expiry` | Integer | Days remaining. |
+| `yuko_urgency` | String | Urgency tier. |
+
+#### Customer Birthday
+
+- **Klaviyo metric:** *Customer Birthday*
+- **Event slug:** `loyalty_birthday`
+- **When it fires:** It's the customer's birthday and Yuko has credited the birthday bonus.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_birthday_points_awarded` | Integer | Total points awarded. |
+| `yuko_new_balance` | Integer | Balance after the credit. |
+| `yuko_birthday_base_points` | Integer | Base birthday points. |
+| `yuko_birthday_tier_bonus` | Integer | Extra points contributed by VIP tier multiplier. |
+| `yuko_birthday_tier_multiplier` | Number | Multiplier applied. |
+| `yuko_current_vip_tier` | String | Customer's tier at the moment of award. |
+
+#### Birthday Reminder
+
+- **Klaviyo metric:** *Birthday Reminder*
+- **Event slug:** `loyalty_birthday_reminder`
+- **When it fires:** A configurable number of days before the customer's birthday — useful for pre-birthday teasers.
+
+Properties identical to **Customer Birthday** above (including `yuko_birthday_points_awarded`, `yuko_birthday_base_points`, etc.) — Klaviyo can use them to pre-announce the bonus.
+
+#### Customer Anniversary
+
+- **Klaviyo metric:** *Customer Anniversary*
+- **Event slug:** `loyalty_anniversary`
+- **When it fires:** It's the anniversary of the customer's signup.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_years_as_member` | Integer | Years since signup (1, 2, 3, …). |
+| `yuko_anniversary_points_awarded` | Integer | Points credited. |
+| `yuko_new_balance` | Integer | Balance after credit. |
+| `yuko_lifetime_points_earned` | Integer | All-time points earned. |
+| `yuko_lifetime_orders` | Integer | All-time order count. |
+| `yuko_lifetime_spend` | Number | All-time spend. |
+| `yuko_current_vip_tier` | String | Tier at the moment of award. |
+
+#### Anniversary Reminder
+
+- **Klaviyo metric:** *Anniversary Reminder*
+- **Event slug:** `loyalty_anniversary_reminder`
+- **When it fires:** A configurable number of days before the customer's anniversary.
+
+Same properties as **Customer Anniversary** — Klaviyo can pre-announce.
+
+---
+
+### VIP Tier events
+
+#### VIP Tier Entry
+
+- **Klaviyo metric:** *VIP Tier Entry*
+- **Event slug:** `vip_tier_entry`
+- **When it fires:** A customer is assigned a tier for the first time (typically the base tier on signup).
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_tier_name` | String | The tier the customer entered. |
+| `yuko_tier_id` | String | UUID of the tier. |
+| `yuko_tier_icon_url` | String | Tier icon URL — use as `<img src="\{\{ event.yuko_tier_icon_url \}\}">` in emails. |
+| `yuko_tier_is_entry` | Boolean | `true` (always, for entry events). |
+| `yuko_benefits_unlocked` | String | Comma-separated list of benefits. |
+| `yuko_all_tiers` | String | Serialised list of all configured tiers (for “tier ladder” displays). |
+| `yuko_next_tier_name` | String | Name of the tier above. |
+| `yuko_next_tier_threshold` | Number | Threshold required to reach the next tier. |
+| `yuko_next_tier_amount_needed` | Number | How much more is needed. |
+| `yuko_next_tier_progress_percentage` | Number | Progress toward next tier as a percentage. |
+| `yuko_earning_rate` | Number | Current earning multiplier. |
+
+#### VIP Tier Upgrade
+
+- **Klaviyo metric:** *VIP Tier Upgrade*
+- **Event slug:** `vip_tier_upgrade`
+- **When it fires:** A customer crosses a threshold and moves up a tier.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_previous_tier_name` | String | Tier they came from. |
+| `yuko_previous_tier_id` | String | UUID of the previous tier. |
+| `yuko_new_tier_name` | String | Tier they entered. |
+| `yuko_new_tier_id` | String | UUID of the new tier. |
+| `yuko_new_tier_icon_url` | String | New tier's icon URL. |
+| `yuko_qualifying_value` | Number | The customer's qualifying value at the moment of upgrade. |
+| `yuko_threshold_crossed` | Number | The threshold they crossed. |
+| `yuko_qualifying_event_type` | String | What triggered the qualification (e.g., `place_an_order`). |
+| `yuko_qualifying_event_order_id` | String | Shopify order ID, if applicable. |
+| `yuko_qualifying_event_order_total` | Number | Order total, if applicable. |
+| `yuko_benefits_unlocked` | String | New benefits unlocked. |
+| `yuko_new_earning_rate` | Number | New tier's points multiplier. |
+| `yuko_previous_earning_rate` | Number | Previous tier's multiplier. |
+| `yuko_next_tier_name` | String | Name of the next tier above. |
+| `yuko_next_tier_threshold` | Number | Threshold for the next tier. |
+| `yuko_next_tier_amount_needed` | Number | How much more is needed. |
+| `yuko_next_tier_progress_percentage` | Number | Progress toward the next tier. |
+| `yuko_tier_stats_percentile` | Number | What percentile of customers the upgrade puts them in. |
+| `yuko_tier_stats_total_in_tier` | Integer | Number of customers currently in the new tier. |
+| `yuko_all_tiers` | String | All-tiers list. |
+
+In addition, the upgrade event includes any **per-benefit reward codes** issued at upgrade — fields named `yuko_reward_1_*`, `yuko_reward_2_*`, etc. (depends on benefits configured for the new tier). Inspect the actual payload in Klaviyo's metric inspector for your specific store.
+
+#### VIP Tier Downgrade
+
+- **Klaviyo metric:** *VIP Tier Downgrade*
+- **Event slug:** `vip_tier_downgrade`
+- **When it fires:** A customer drops a tier (after a period reset or retention expiry).
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_previous_tier_name` | String | Tier they came from. |
+| `yuko_new_tier_name` | String | Tier they're now on. |
+| `yuko_new_tier_icon_url` | String | New tier icon URL. |
+| `yuko_qualifying_value` | Number | Their current qualifying value. |
+| `yuko_previous_threshold` | Number | The threshold of the tier they dropped from. |
+| `yuko_new_threshold` | Number | The threshold of the new (lower) tier. |
+| `yuko_shortfall` | Number | How short they fell from the previous tier's threshold. |
+| `yuko_benefits_lost` | String | Benefits no longer available. |
+| `yuko_benefits_retained` | String | Benefits still available. |
+| `yuko_regain_tier_name` | String | Tier they could regain (typically the previous tier). |
+| `yuko_regain_amount_needed` | Number | How much more activity is needed to regain. |
+
+#### VIP Tier Retained
+
+- **Klaviyo metric:** *VIP Tier Retained*
+- **Event slug:** `vip_tier_retained`
+- **When it fires:** A customer re-qualifies for their current tier within the retention window.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_current_tier_name` | String | The retained tier. |
+| `yuko_current_tier_icon_url` | String | Tier icon URL. |
+| `yuko_qualifying_value` | Number | Their qualifying value. |
+| `yuko_threshold_required` | Number | Threshold to re-qualify. |
+| `yuko_surplus` | Number | How much over the threshold. |
+| `yuko_new_retention_expires_at` | ISO 8601 string | New retention window end. |
+| `yuko_days_before_expiry` | Integer | Days they were ahead of the deadline. |
+| `yuko_next_tier_name` | String | Tier above. |
+| `yuko_next_tier_amount_needed` | Number | Amount needed to reach next tier. |
+| `yuko_next_tier_progress_percentage` | Number | Progress toward next tier. |
+
+#### VIP Tier Retention Warning
+
+- **Klaviyo metric:** *VIP Tier Retention Warning*
+- **Event slug:** `vip_tier_retention_warning`
+- **When it fires:** A customer is approaching the end of their retention window without re-qualifying.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_current_tier_name` | String | At-risk tier. |
+| `yuko_current_tier_icon_url` | String | Tier icon URL. |
+| `yuko_urgency` | String | Urgency tier (`low`, `medium`, `high`). |
+| `yuko_days_remaining` | Integer | Days until retention expires. |
+| `yuko_retention_expires_at` | ISO 8601 string | Exact expiry date. |
+| `yuko_qualifying_value` | Number | Current qualifying value. |
+| `yuko_threshold_required` | Number | Threshold to re-qualify. |
+| `yuko_amount_needed` | Number | Gap to threshold. |
+| `yuko_progress_percentage` | Number | Progress percentage. |
+| `yuko_at_risk` | Boolean | `true` if at risk of downgrade. |
+| `yuko_would_downgrade_to` | String | Tier they'd drop to. |
+| `yuko_benefits_at_risk` | String | Benefits they'd lose. |
+
+#### VIP Milestone Nudge
+
+- **Klaviyo metric:** *VIP Milestone Nudge*
+- **Event slug:** `vip_milestone_nudge`
+- **When it fires:** A customer crosses a configured progress milestone toward the next tier (e.g., 50% / 75% / 90% of the way there).
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_current_tier_name` | String | Current tier. |
+| `yuko_next_tier_name` | String | Tier they're approaching. |
+| `yuko_next_tier_icon_url` | String | Next tier icon URL. |
+| `yuko_qualifying_value` | Number | Current qualifying value. |
+| `yuko_next_threshold` | Number | Threshold for the next tier. |
+| `yuko_amount_needed` | Number | How much more is needed. |
+| `yuko_progress_percentage` | Number | Progress toward next tier. |
+| `yuko_milestone_crossed` | String | The specific milestone (e.g., `90_percent`). |
+| `yuko_rewards_awaiting` | String | Rewards that unlock at the next tier. |
+| `yuko_benefits_awaiting` | String | Benefits that unlock. |
+
+#### VIP Period Start
+
+- **Klaviyo metric:** *VIP Period Start*
+- **Event slug:** `vip_period_start`
+- **When it fires:** A new calculation period begins (relevant for *Rolling year* and *Calendar year* programs).
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_current_tier_name` | String | The tier the customer is on at period start. |
+| `yuko_current_tier_icon_url` | String | Tier icon URL. |
+| `yuko_period_start` | ISO 8601 string | Start of the new period. |
+| `yuko_period_end` | ISO 8601 string | End of the new period. |
+| `yuko_period_type` | String | `rolling_year`, `calendar_year`, or similar. |
+| `yuko_fresh_qualifying_value` | Number | Reset qualifying value at period start. |
+| `yuko_threshold_to_maintain` | Number | Threshold to keep the current tier through the period. |
+| `yuko_has_carryover` | Boolean | `true` if surplus from the previous period carries over. |
+| `yuko_carryover_expires_at` | ISO 8601 string | When the carryover surplus expires. |
+| `yuko_previous_period_value` | Number | Final value of the prior period. |
+| `yuko_tiers_roadmap` | String | Tiers and thresholds for the new period. |
+
+---
+
+### Referral events
+
+#### Referrer welcome
+
+- **Klaviyo metric:** *Referrer welcome*
+- **Event slug:** `referral_advocate_registered`
+- **When it fires:** A customer becomes an advocate (referrer) — typically auto-enrolled the first time they're eligible.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_referral_code` | String | The advocate's referral code. |
+| `yuko_referral_url` | String | The advocate's full referral URL. |
+| `yuko_friend_reward_type` | String | Reward type the friend will get. |
+| `yuko_friend_reward_value` | Number | Friend reward value. |
+| `yuko_friend_reward_name` | String | Friend reward display name. |
+| `yuko_friend_reward_description` | String | Friend reward description. |
+| `yuko_advocate_reward_type` | String | Reward type the advocate gets. |
+| `yuko_advocate_reward_value` | Number | Advocate reward value. |
+| `yuko_advocate_reward_name` | String | Advocate reward display name. |
+| `yuko_advocate_reward_description` | String | Advocate reward description. |
+| `yuko_share_channels` | Array | Sharing channels enabled in your program (Twitter, Facebook, Email, WhatsApp). |
+| `yuko_registration_source` | String | Where they registered from (auto-enroll, manual). |
+
+#### Friend reward unlocked
+
+- **Klaviyo metric:** *Friend reward unlocked*
+- **Event slug:** `referral_friend_reward_claimed`
+- **When it fires:** A friend's reward has been issued (their first qualifying order completed).
+
+<Note>
+This event fires on the **friend's** profile, not the advocate's.
+</Note>
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_friend_email` | String | Friend's email (matches the Klaviyo profile this fires on). |
+| `yuko_friend_first_name` | String | Friend's first name. |
+| `yuko_referral_code_used` | String | The advocate's code the friend used. |
+| `yuko_friend_reward_type` | String | Reward type. |
+| `yuko_friend_reward_value` | Number | Reward value. |
+| `yuko_friend_reward_code` | String | The Shopify discount code issued to the friend. |
+| `yuko_friend_reward_expires_at` | ISO 8601 string | Expiry. |
+| `yuko_friend_reward_description` | String | Description. |
+| `yuko_referred_by` | String | The advocate's name. |
+
+#### Referral Completed
+
+- **Klaviyo metric:** *Referral Completed*
+- **Event slug:** `referral_completed`
+- **When it fires:** A referral fully completes — friend places a qualifying order *and* the advocate's reward is issued.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_friend_email` | String | Friend's email. |
+| `yuko_friend_first_name` | String | Friend's first name. |
+| `yuko_friend_order_id` | String | Shopify order ID. |
+| `yuko_friend_order_total` | Number | Order total. |
+| `yuko_friend_discount_used` | String | The discount code the friend used. |
+| `yuko_friend_discount_amount` | Number | Discount amount applied. |
+| `yuko_advocate_reward_type` | String | Advocate reward type. |
+| `yuko_advocate_reward_value` | Number | Advocate reward value. |
+| `yuko_advocate_reward_code` | String | Advocate's discount code (if reward is a discount). |
+| `yuko_advocate_reward_expires_at` | ISO 8601 string | Expiry. |
+| `yuko_advocate_reward_status` | String | Status. |
+| `yuko_stat_total_referrals` | Integer | Advocate's total referrals to date. |
+| `yuko_stat_successful_referrals` | Integer | Advocate's successful referrals. |
+| `yuko_stat_total_earned` | Integer | Total points / value earned by the advocate via referrals. |
+| `yuko_stat_pending_rewards` | Integer | Referrals still pending. |
+
+#### Referrer Rewarded
+
+- **Klaviyo metric:** *Referrer Rewarded*
+- **Event slug:** `referral_advocate_rewarded`
+- **When it fires:** Yuko issues the advocate's reward after a successful referral.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_reward_type` | String | Reward type (e.g., `points`, `amount_discount`, `store_credit`). |
+| `yuko_reward_value` | Number | Reward value. |
+| `yuko_reward_code` | String | Discount code (if applicable). |
+| `yuko_reward_expires_at` | ISO 8601 string | Expiry. |
+| `yuko_triggered_by_friend` | String | Friend's name / email that triggered this reward. |
+| `yuko_stat_total_referrals` | Integer | Advocate's total referrals. |
+| `yuko_stat_successful_referrals` | Integer | Successful referrals. |
+| `yuko_stat_total_earned` | Integer | Total earnings via referrals. |
+| `yuko_points_awarded` | Integer | If the reward type is points, how many were credited. |
+| `yuko_new_points_balance` | Integer | Updated points balance (if reward was points). |
+| `yuko_reward_description` | String | Human-readable description. |
+
+---
+
+### Membership events
+
+#### Membership Subscribed
+
+- **Klaviyo metric:** *Membership Subscribed*
+- **Event slug:** `membership_subscribed`
+- **When it fires:** A customer purchases a membership plan and the contract becomes active.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_membership_tier_name` | String | Plan name. |
+| `yuko_membership_tier_id` | String | Plan UUID. |
+| `yuko_membership_price` | Number | Plan price. |
+| `yuko_membership_billing_interval` | String | `monthly` or `annually`. |
+| `yuko_membership_icon_url` | String | Plan icon URL. |
+| `yuko_benefit_1` | String | First benefit title. |
+| `yuko_benefit_2` | String | Second benefit title. |
+| `yuko_benefit_3` | String | Third benefit title. |
+| `yuko_benefit_4` | String | Fourth benefit title. |
+| `yuko_signup_reward_type` | String | Welcome reward type, if configured. |
+| `yuko_signup_reward_value` | Number | Welcome reward value. |
+| `yuko_signup_reward_code` | String | Welcome reward code. |
+| `yuko_signup_reward_expires_at` | ISO 8601 string | Welcome reward expiry. |
+| `yuko_signup_points_awarded` | Integer | Bonus points credited at signup. |
+| `yuko_next_billing_date` | ISO 8601 string | When the next renewal will charge. |
+| `yuko_signup_source` | String | Where the signup came from. |
+
+#### Membership Upgraded
+
+- **Klaviyo metric:** *Membership Upgraded*
+- **Event slug:** `membership_upgraded`
+- **When it fires:** Customer moves from one plan to a higher-priced plan.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_previous_membership_tier` | String | Old plan name. |
+| `yuko_previous_membership_price` | Number | Old plan price. |
+| `yuko_new_membership_tier` | String | New plan name. |
+| `yuko_new_membership_price` | Number | New plan price. |
+| `yuko_new_membership_billing_interval` | String | New billing interval. |
+| `yuko_new_benefits` | String | Newly unlocked benefits. |
+| `yuko_upgrade_reward_type` | String | Upgrade reward type, if configured. |
+| `yuko_upgrade_reward_value` | Number | Upgrade reward value. |
+| `yuko_upgrade_reward_code` | String | Upgrade reward code. |
+| `yuko_upgrade_reward_expires_at` | ISO 8601 string | Upgrade reward expiry. |
+
+#### Membership Downgraded
+
+- **Klaviyo metric:** *Membership Downgraded*
+- **Event slug:** `membership_downgraded`
+- **When it fires:** Customer moves to a lower-priced plan.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_previous_membership_tier` | String | Old plan. |
+| `yuko_previous_membership_price` | Number | Old plan price. |
+| `yuko_new_membership_tier` | String | New plan. |
+| `yuko_new_membership_price` | Number | New plan price. |
+| `yuko_new_membership_billing_interval` | String | New billing interval. |
+| `yuko_benefits_lost` | String | Benefits no longer available. |
+| `yuko_benefits_retained` | String | Benefits still active. |
+| `yuko_upgrade_tier_name` | String | The plan they could re-upgrade to. |
+| `yuko_upgrade_price_difference` | Number | Price difference to re-upgrade. |
+
+#### Membership Cancelled
+
+- **Klaviyo metric:** *Membership Cancelled*
+- **Event slug:** `membership_cancelled`
+- **When it fires:** Customer cancels their plan.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_membership_tier_name` | String | Plan name. |
+| `yuko_membership_price` | Number | Plan price. |
+| `yuko_membership_billing_interval` | String | Billing interval. |
+| `yuko_months_as_member` | Integer | How long they were a member. |
+| `yuko_benefits_ending_at` | ISO 8601 string | When their benefits stop. |
+| `yuko_benefits_losing` | String | Benefits they lose. |
+| `yuko_total_savings_from_membership` | Number | Total they saved while a member. |
+| `yuko_cancellation_reason` | String | Reason captured at cancellation. |
+| `yuko_points_balance_retained` | Integer | Points balance kept after cancellation. |
+| `yuko_vip_tier_retained` | String | VIP tier retained, if any. |
+
+#### Membership Reactivated
+
+- **Klaviyo metric:** *Membership Reactivated*
+- **Event slug:** `membership_reactivated`
+- **When it fires:** A previously-cancelled customer signs up again.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_membership_tier_name` | String | Plan name. |
+| `yuko_membership_price` | Number | Plan price. |
+| `yuko_membership_billing_interval` | String | Billing interval. |
+| `yuko_days_since_cancellation` | Integer | Days since they cancelled. |
+| `yuko_benefits_restored` | String | Benefits restored. |
+| `yuko_welcome_back_reward_type` | String | Reactivation bonus type. |
+| `yuko_welcome_back_reward_value` | Number | Reactivation bonus value. |
+| `yuko_welcome_back_reward_code` | String | Reactivation bonus code. |
+| `yuko_points_balance` | Integer | Current points balance. |
+
+---
+
+### Reviews events
+
+<Note>
+The Reviews documentation is reorganised in v1.1. The two events below are already enabled and forward to Klaviyo today.
+</Note>
+
+#### Review Submitted
+
+- **Klaviyo metric:** *Review Submitted*
+- **Event slug:** `review_submitted`
+- **When it fires:** A customer submits a product review.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_review_uuid` | String | Review UUID. |
+| `yuko_email` | String | Review author email. |
+| `yuko_rating` | Integer | 1–5 rating. |
+| `yuko_status` | String | Status (e.g., `pending`, `approved`). |
+| `yuko_review_title` | String | Review title. |
+| `yuko_review_content` | String | Review body. |
+| `yuko_platform_product_id` | String | Shopify product ID. |
+| `yuko_platform_variation_id` | String | Shopify variant ID. |
+| `yuko_product_name` | String | Product name. |
+| `yuko_created_at` | ISO 8601 string | Submission timestamp. |
+| `yuko_has_media` | Boolean | `true` if review has media. |
+| `yuko_has_photos` | Boolean | `true` if photos. |
+| `yuko_has_videos` | Boolean | `true` if videos. |
+| `yuko_is_verified` | Boolean | `true` if verified buyer. |
+
+#### Question Submitted
+
+- **Klaviyo metric:** *Question Submitted*
+- **Event slug:** `question_submitted`
+- **When it fires:** A customer submits a product Q&A question.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_question_uuid` | String | Question UUID. |
+| `yuko_question_content` | String | Question text. |
+| `yuko_question_status` | String | Status. |
+| `yuko_question_author_email` | String | Author email. |
+| `yuko_created_at` | ISO 8601 string | Submission timestamp. |
+| `yuko_platform_product_id` | String | Shopify product ID. |
+| `yuko_product_name` | String | Product name. |
+
+---
+
+## Using profile + event data in Klaviyo
+
+### Segments
+
+Build segments using profile properties. Examples:
+
+- *Diamond VIPs* — `person.yuko_vip_tier == "Diamond"`
+- *VIPs at risk* — `person.yuko_vip_at_risk == true`
+- *Customers with 500+ unredeemed points* — `person.yuko_points_balance >= 500`
+- *Active members* — `person.yuko_membership_status == "active"`
+- *Has not redeemed in 30 days* — combine with Klaviyo's *Last metric date* using *Redeem Points*.
+
+### Dynamic email content
+
+Reference profile properties in any Klaviyo email:
+
+```
+Hi \{\{ person.first_name|default:"there" \}\},
+
+Your current balance is \{\{ person.yuko_points_balance|default:0 \}\} points
+(\{\{ person.yuko_points_as_cash_balance|default:0 \}\} in store credit).
+
+You're \{\{ person.yuko_vip_next_tier_amount_needed \}\} away from \{\{ person.yuko_vip_next_tier \}\}.
+```
+
+Reference event properties inside flow-triggered emails:
+
+```
+Welcome to \{\{ event.yuko_new_tier_name \}\}!
+
+You unlocked: \{\{ event.yuko_benefits_unlocked \}\}
+Your new earning rate is \{\{ event.yuko_new_earning_rate \}\}x points.
+```
+
+### Flows
+
+A common pattern: trigger a flow on a Yuko event, send an email built around event properties, exit. Most useful triggers:
+
+- **VIP Tier Upgrade** → Send a celebratory tier email with `yuko_benefits_unlocked` and `yuko_new_earning_rate`.
+- **Points Expiring Reminder** → Send a redemption nudge with `yuko_points_at_risk`, `yuko_expires_at`, and `yuko_available_reward_1_name`.
+- **Referral Completed** → Thank the advocate, surface `yuko_stat_successful_referrals` for a count.
+- **Membership Cancelled** → Win-back flow using `yuko_total_savings_from_membership` to remind them of value.
 
 ## Best practices
 
-<Tip>**Don't double-send.** If Klaviyo sends the points-earned email, disable Yuko's points-earned template. Otherwise the customer gets two.</Tip>
-<Tip>**Use Yuko's Shopify customer tagging** as a backup for Klaviyo segmentation. The tags are written to Shopify customers regardless of Klaviyo.</Tip>
-
-## Limitations
-
-- Klaviyo's rate limits apply — high-volume stores may see delayed event sync.
-- Custom properties take a few seconds to appear on a profile.
+<Tip>**Disable Yuko's email template if Klaviyo is sending the same one.** Otherwise the customer gets two emails.</Tip>
+<Tip>**Test every flow with a real customer record** before activating. Empty event properties typically mean a configuration issue (e.g., reward not yet generated).</Tip>
+<Tip>**Use `external_id`** to deduplicate Klaviyo profiles when customers change their email.</Tip>
+<Tip>**Include fallbacks in template tags.** `\{\{ person.yuko_points_balance|default:0 \}\}` keeps emails clean when properties haven't synced yet.</Tip>
+<Tip>**Don't reference event properties inside campaigns** (they're only meaningful inside flows triggered by that event). Use profile properties for campaigns.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Does Klaviyo replace Yuko's emails?">
-    Only the loyalty-event emails. Yuko still owns the program logic; Klaviyo just sends emails based on events.
+  <Accordion title="When are profile properties refreshed?">
+    Every time Yuko sends an event for that customer, the profile properties are recomputed and pushed. In practice that means whenever they earn, redeem, change tier, etc. Most properties can be considered live within a few minutes.
   </Accordion>
-  <Accordion title="What events appear in Klaviyo?">
-    Whatever you toggle on. Common ones: points credited, points redeemed, tier changed.
+  <Accordion title="What's the difference between a profile property and an event property?">
+    Profile properties live on the customer record permanently and reflect the **current** state — use them in segments and templates that aren't tied to a specific event.
+
+    Event properties live on the event itself and reflect the **state at the moment the event fired** — use them inside flows triggered by that event.
+
+    Example: `yuko_points_balance` (profile) is the customer's current balance. `yuko_points_earned` (event) is the amount earned in this specific transaction.
+  </Accordion>
+  <Accordion title="Why is a property empty?">
+    Most often: the customer hasn't reached that part of the program yet (e.g., `yuko_vip_next_tier_amount_needed` is empty for top-tier customers). Or the event was for a non-loyalty action that doesn't carry that property. Always include `default:` in your template tags.
+  </Accordion>
+  <Accordion title="Can I disable specific events?">
+    Yes — open the Klaviyo integration in Yuko and toggle individual events off. Profile sync continues regardless.
+  </Accordion>
+  <Accordion title="How do I find a customer in Klaviyo using their Shopify ID?">
+    Use Klaviyo's profile lookup by `external_id`. Yuko writes `external_id` = Shopify customer ID on every profile.
+  </Accordion>
+  <Accordion title="Do refunds reverse events in Klaviyo?">
+    No — Klaviyo events are immutable. If a points credit is reversed, Yuko fires a new *Points Adjusted* event with `yuko_adjustment_direction = debit`.
+  </Accordion>
+  <Accordion title="Why doesn't Order Placed appear as a Yuko event?">
+    Klaviyo already receives Shopify's native *Placed Order* event from Shopify's own integration. Yuko intentionally avoids duplicating it — use Shopify's event in flows, and join Yuko data via profile properties.
+  </Accordion>
+  <Accordion title="Can I send loyalty data to multiple Klaviyo accounts?">
+    Not in v1 — one Klaviyo account per Yuko organisation. If you operate multi-store, contact support.
   </Accordion>
 </AccordionGroup>
 
