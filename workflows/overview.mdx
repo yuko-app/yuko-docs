@@ -1,0 +1,49 @@
+---
+title: Workflows
+description: Visual automation — trigger emails, points and coupons in response to customer events without writing code.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Workflows
+</Note>
+
+## What are Workflows
+
+Workflows are visual automations you build by dragging nodes onto a canvas. Each workflow listens for a specific event, optionally branches on conditions, waits on timers, and runs actions — send an email, credit points, issue a coupon, or hand off to a partner tool.
+
+Think of it as Shopify Flow + Klaviyo Flows + Zapier, scoped to your loyalty program.
+
+## Who it's for
+
+- Brands that have outgrown the built-in **Way to Earn** + **Email Notifications** combination and need conditional logic.
+- Marketers who want to sequence touchpoints without involving a developer.
+- Stores that want loyalty automations that can hand off to existing tools (Klaviyo, Engati, KwikEngage).
+
+## How it fits together
+
+```
+Trigger node       ──→   Condition (binary)   ──→   Action node
+  (event fires)        (branch on a rule)              (do something)
+                              │
+                              ▼
+                       Wait node → Action → Exit
+```
+
+Every workflow starts with one **Trigger** and ends with one or more **Exit** nodes. Everything between is up to you.
+
+## Get started
+
+1. Read **[Build your first workflow](/workflows/build-your-first)** — a 10-minute tutorial.
+2. Skim **[Triggers & Conditions](/workflows/triggers-and-conditions)** to know what's available.
+3. Pick the actions you need from **[Action Nodes](/workflows/action-nodes)**.
+4. Watch results in **[Analytics](/workflows/analytics)**.
+
+## Recommended reading
+
+import RelatedWorkflows from '/snippets/related-workflows.mdx';
+
+<RelatedWorkflows />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

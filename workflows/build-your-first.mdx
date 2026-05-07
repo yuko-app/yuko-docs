@@ -1,0 +1,91 @@
+---
+title: Build Your First Workflow
+description: A 10-minute walkthrough that takes you from a blank canvas to a live workflow.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Workflows → Create workflow
+</Note>
+
+## What we'll build
+
+A simple win-back workflow:
+
+1. **Trigger** — customer hasn't placed an order in 60 days.
+2. **Condition** — they have a points balance > 0.
+3. **Wait** — 1 day.
+4. **Action** — send a *“We miss you”* email.
+5. **Exit**.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>You've got at least one Way to Earn campaign active so customers have points balances.</Check>
+
+## Walkthrough
+
+<Steps>
+  <Step title="Create a new workflow">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Workflows** and click **Create workflow**. Give it a name like *“60-day win-back”*.
+  </Step>
+  <Step title="Add the trigger">
+    Click the placeholder **Trigger** node. Pick **Customer inactive for X days** and set X to 60.
+  </Step>
+  <Step title="Add a condition">
+    Click the **+** below the trigger and pick **Condition (binary)**. Set the rule to **Customer has points balance > 0**. The node now has two branches — *Yes* and *No*.
+  </Step>
+  <Step title="Add a wait">
+    On the *Yes* branch, click **+** and pick **Wait**. Set duration to 1 day.
+  </Step>
+  <Step title="Add an action">
+    After the wait, click **+** and pick **Send Email**. Choose a template (or create a new one in Email Notifications first).
+  </Step>
+  <Step title="Add an exit">
+    Click **+** at the end and pick **Exit**. Both the *Yes* and *No* branches need an exit — add one to the *No* branch too.
+  </Step>
+  <Step title="Activate">
+    Click **Activate** at the top right. Yuko starts evaluating the trigger from this point forward.
+  </Step>
+</Steps>
+
+## Verify
+
+<Steps>
+  <Step title="Find a test customer">
+    Pick a customer with a points balance and last-order date > 60 days ago.
+  </Step>
+  <Step title="Check Analytics">
+    Open the workflow's **[Analytics](/workflows/analytics)** tab. After the trigger fires (typically within an hour), the customer should appear as an entry.
+  </Step>
+  <Step title="Confirm the email lands">
+    A day later, check the test customer's inbox. The email should arrive.
+  </Step>
+</Steps>
+
+## What to do next
+
+<CardGroup cols={2}>
+  <Card title="Add more conditions" icon="code-branch" href="/workflows/triggers-and-conditions">
+    Layer more rules to make the workflow more targeted.
+  </Card>
+  <Card title="Stack multiple actions" icon="play" href="/workflows/action-nodes">
+    Send an email, then credit a goodwill bonus, then exit.
+  </Card>
+  <Card title="Use partner nodes" icon="plug" href="/workflows/partner-nodes">
+    Hand off to Engati or KwikEngage if you use those.
+  </Card>
+  <Card title="Read the analytics" icon="chart-line" href="/workflows/analytics">
+    Find drop-off points and tune the flow.
+  </Card>
+</CardGroup>
+
+import RelatedWorkflows from '/snippets/related-workflows.mdx';
+
+<RelatedWorkflows />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

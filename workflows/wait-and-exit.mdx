@@ -1,0 +1,80 @@
+---
+title: Wait & Exit Nodes
+description: Pause workflow execution and end a workflow cleanly.
+---
+
+<Note>
+**Where to find this:** Inside the workflow editor, click **+** between any two nodes.
+</Note>
+
+## Wait Node
+
+The Wait node pauses workflow execution for a configured duration before continuing to the next node.
+
+### When to use
+
+- Between sequential touchpoints (e.g., Email 1 → Wait 3 days → Email 2).
+- After issuing a coupon to give the customer time to redeem.
+- Before a follow-up condition check (e.g., wait 7 days, then check if the customer has placed an order).
+
+### Configuration
+
+- **Duration** — minutes, hours, days or weeks.
+- **Delay until** (optional) — a specific date or time of day.
+
+### Example
+
+*Trigger → Send first email → Wait 3 days → Condition: Has the customer ordered? → If no, send follow-up.*
+
+<Tip>**Use day-of-the-week timing** for promotional emails. Sending Wait until *Friday 9am* reaches more inboxes than a random midnight send.</Tip>
+
+### Limitations
+
+- Wait durations are honored within roughly ±5 minutes of the configured time.
+- Workflows paused for more than 90 days are automatically expired (configurable).
+
+---
+
+## Exit Node
+
+The Exit node ends a workflow cleanly. Every branch of the workflow must terminate in an Exit node.
+
+### When to use
+
+- At the end of every branch of every workflow.
+- To explicitly end a workflow when a condition fails (no further action needed).
+
+### Configuration
+
+- **Exit reason** (optional) — a label that appears in analytics (e.g., *“Reached final email”* or *“Condition failed”*).
+
+### Why explicit exits matter
+
+Exits make the workflow's outcomes auditable. *“The customer left the workflow because the wait timed out”* is much more informative than *“The workflow ended”*.
+
+## Best practices
+
+<Tip>**Don't skip Exit nodes.** Workflows without exits leave the customer in limbo — they can't re-enter and you can't analyse the drop-off.</Tip>
+<Tip>**Use Wait + Condition** for time-sensitive logic (*“did they order in the last week?”*).</Tip>
+<Tip>**Label your exits.** *“Exited because had active membership”* is gold for analytics.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What happens if a workflow has multiple exits?">
+    The workflow ends as soon as any branch hits an Exit node.
+  </Accordion>
+  <Accordion title="Can a customer re-enter a workflow after exiting?">
+    By default no. Configurable per workflow.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedWorkflows from '/snippets/related-workflows.mdx';
+
+<RelatedWorkflows />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

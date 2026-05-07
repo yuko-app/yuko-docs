@@ -151,6 +151,18 @@
             ]
           },
           {
+            "group": "Workflows",
+            "pages": [
+              "workflows/overview",
+              "workflows/build-your-first",
+              "workflows/triggers-and-conditions",
+              "workflows/action-nodes",
+              "workflows/wait-and-exit",
+              "workflows/partner-nodes",
+              "workflows/analytics"
+            ]
+          },
+          {
             "group": "Help & Support",
             "pages": [
               "support"
