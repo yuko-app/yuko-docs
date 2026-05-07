@@ -1,0 +1,83 @@
+---
+title: Klaviyo
+description: Sync customers, points, tier and loyalty events into Klaviyo — use Yuko data inside your existing email and SMS flows.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → Klaviyo
+</Note>
+
+## Introduction
+
+The Klaviyo connector pushes Yuko customer data and events into Klaviyo so you can segment, flow, and personalise on loyalty data inside Klaviyo itself.
+
+## When to use
+
+- Klaviyo is your primary email tool.
+- You want loyalty events to drive Klaviyo flows (e.g., points-earned email from Klaviyo, not Yuko).
+- You want VIP-tier segments inside Klaviyo for ads and email.
+
+## What syncs
+
+- **Customer profiles** — points balance, tier, lifetime spend.
+- **Events** — points credited, points redeemed, tier changed, referral completed, membership activated.
+- **Custom properties** — the loyalty fields appear on the Klaviyo profile.
+
+## Prerequisites
+
+<Check>You have a Klaviyo account.</Check>
+<Check>You have Klaviyo's Public API and Private API keys.</Check>
+
+## Setup
+
+<Steps>
+  <Step title="Open Klaviyo integration">
+    Go to **Apps → Yuko Loyalty → Integrations → Klaviyo**.
+  </Step>
+  <Step title="Connect with API keys">
+    Paste your Klaviyo Public and Private API keys. Klaviyo's API key generation is documented in their dashboard.
+  </Step>
+  <Step title="Pick which events to sync">
+    Toggle the events you want forwarded to Klaviyo.
+  </Step>
+  <Step title="Save and verify">
+    Klaviyo profiles for known customers should populate within a few minutes.
+  </Step>
+</Steps>
+
+## Common use cases
+
+- VIP-only segments in Klaviyo — *Tier == Diamond* → send the diamond newsletter.
+- Klaviyo flow triggered by *Yuko points-credited* event — a custom thank-you email.
+- Win-back flow targeting customers with high points balance who haven't ordered in 90 days.
+
+## Best practices
+
+<Tip>**Don't double-send.** If Klaviyo sends the points-earned email, disable Yuko's points-earned template. Otherwise the customer gets two.</Tip>
+<Tip>**Use Yuko's Shopify customer tagging** as a backup for Klaviyo segmentation. The tags are written to Shopify customers regardless of Klaviyo.</Tip>
+
+## Limitations
+
+- Klaviyo's rate limits apply — high-volume stores may see delayed event sync.
+- Custom properties take a few seconds to appear on a profile.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Does Klaviyo replace Yuko's emails?">
+    Only the loyalty-event emails. Yuko still owns the program logic; Klaviyo just sends emails based on events.
+  </Accordion>
+  <Accordion title="What events appear in Klaviyo?">
+    Whatever you toggle on. Common ones: points credited, points redeemed, tier changed.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedIntegrations from '/snippets/related-integrations.mdx';
+
+<RelatedIntegrations />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

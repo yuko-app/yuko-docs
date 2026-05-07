@@ -1,0 +1,62 @@
+---
+title: General
+description: Store name, currency, timezone and core preferences.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Account → General
+</Note>
+
+## Introduction
+
+General settings are the few store-wide preferences that affect every Yuko module. Set them once during onboarding; they rarely need to change.
+
+## What's configured here
+
+- **Store name** — used in widget headers, email templates and the Customer Account hub.
+- **Currency** — inherited from Shopify; overridable for display purposes.
+- **Timezone** — used for daily checks (e.g., birthday emails) and analytics.
+- **Default locale** — falls through if a customer has no preferred locale.
+
+## Setup
+
+<Steps>
+  <Step title="Open General">
+    Go to **Apps → Yuko Loyalty → Account → General**.
+  </Step>
+  <Step title="Confirm store name and currency">
+    Both inherit from Shopify. Override only if you have a clear reason.
+  </Step>
+  <Step title="Set the timezone">
+    Use your store's primary timezone — it determines when daily-trigger campaigns (Birthday, Anniversary, Daily Visit) fire.
+  </Step>
+  <Step title="Set the default locale">
+    Pick the language that maps to most of your customers.
+  </Step>
+  <Step title="Save">
+    Changes apply within a few minutes.
+  </Step>
+</Steps>
+
+## Best practices
+
+<Tip>**Use your store's primary timezone**, not a developer's local timezone. Birthday emails go out at the wrong time otherwise.</Tip>
+<Tip>**Match locale to actual usage.** If 70% of your customers are French-speaking, default to French; English fallback can stay for the remaining 30%.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why is currency derived from Shopify?">
+    Loyalty math (points-to-currency conversion, store credit, etc.) is tied to your store's currency. Overriding it would break the math.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedAccount from '/snippets/related-account.mdx';
+
+<RelatedAccount />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

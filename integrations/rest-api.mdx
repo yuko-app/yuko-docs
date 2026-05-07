@@ -1,0 +1,90 @@
+---
+title: REST API
+description: Read and write Yuko data programmatically — customers, points, rewards, tiers, referrals, memberships.
+---
+
+<Note>
+**Where to find this:** API key generation — Shopify admin → Apps → Yuko Loyalty → Integrations → REST API.  
+**Reference:** [API Reference](/developer/api/introduction).
+</Note>
+
+## What you can do
+
+The Yuko REST API exposes the same data the dashboard shows:
+
+- List, retrieve and update customer points balances.
+- Issue manual points credits / debits.
+- List rewards, VIP tiers, earning rules and referrals.
+- Read activity feeds and points transactions.
+
+Full endpoint reference is in the **API Reference** tab — this page covers setup and best practices.
+
+## When to use
+
+- Custom storefronts (Hydrogen, headless).
+- Server-side automations that need to read or write Yuko data.
+- Migrating customers from another loyalty program.
+- Building admin tools that show Yuko data alongside your other systems.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup
+
+<Steps>
+  <Step title="Open REST API settings">
+    Go to **Apps → Yuko Loyalty → Integrations → REST API**.
+  </Step>
+  <Step title="Generate an API key">
+    Click **Generate key**, name it (e.g., *“Migration script”*), and copy the key.
+  </Step>
+  <Step title="Store the key securely">
+    Treat it like a password — use environment variables, not source files.
+  </Step>
+  <Step title="Authenticate requests">
+    Send the key as a Bearer token in the `Authorization` header. Details: [API → Authentication](/developer/api/authentication).
+  </Step>
+</Steps>
+
+## Authentication
+
+All requests use Bearer token authentication. Full details: **[Authentication](/developer/api/authentication)**.
+
+## Pagination, errors, rate limits
+
+- **Pagination:** [Classic Pagination](/developer/api/classic-pagination)
+- **Errors:** [Errors](/developer/api/errors)
+- **Rate limits:** [Rate Limits](/developer/api/rate-limits)
+
+## Best practices
+
+<Tip>**Rotate API keys quarterly** and immediately when a developer leaves.</Tip>
+<Tip>**Use webhooks instead of polling** for real-time data — the REST API is for reads and on-demand writes.</Tip>
+<Tip>**Tag every key with a name** so you can revoke a single integration without breaking others.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Do I need a separate API key per integration?">
+    Strongly recommended. It limits blast radius if one is leaked.
+  </Accordion>
+  <Accordion title="What's the rate limit?">
+    See [Rate Limits](/developer/api/rate-limits) in the API Reference.
+  </Accordion>
+  <Accordion title="Can I revoke a key?">
+    Yes — from **Integrations → REST API**, click the key and select **Revoke**. Revocation is immediate.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedIntegrations from '/snippets/related-integrations.mdx';
+
+<RelatedIntegrations />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

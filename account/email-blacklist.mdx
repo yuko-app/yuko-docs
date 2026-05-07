@@ -1,0 +1,81 @@
+---
+title: Email Blacklist
+description: Block disposable email domains and known fraud sources from earning loyalty rewards.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Account → Email Blacklist
+</Note>
+
+## Introduction
+
+The Email Blacklist is a list of email domains (or specific addresses) that should be excluded from earning rewards. The most common use is blocking disposable / temporary email services that fraudsters use to abuse referral programs.
+
+## What problem this solves
+
+Referral fraud almost always uses temporary email services — a fraudster signs up for a hundred accounts via Mailinator and rinses the friend reward. Blocking those domains kills 90% of fraud at the source.
+
+## When to use
+
+- Before launching the referral program.
+- When you spot fraudulent referral activity.
+- When onboarding to a new market with known fraud patterns.
+
+## Overview
+
+- Domain-level or address-level blacklist.
+- Applied at customer signup and at referral attribution.
+- Common defaults pre-loaded.
+- Editable at any time.
+
+## Setup
+
+<Steps>
+  <Step title="Open Email Blacklist">
+    Go to **Apps → Yuko Loyalty → Account → Email Blacklist**.
+  </Step>
+  <Step title="Review the default list">
+    Yuko ships with a curated list of well-known disposable-email domains.
+  </Step>
+  <Step title="Add domains or addresses">
+    Enter one entry per line:
+    - Domain: `mailinator.com`
+    - Address: `bad-actor@example.com`
+  </Step>
+  <Step title="Save">
+    The list applies immediately to new signups and referrals.
+  </Step>
+</Steps>
+
+## How it works
+
+- At customer creation: if the email matches a blacklist entry, the customer is created but won't earn loyalty rewards.
+- At referral attribution: if the friend's email matches a blacklist entry, the referral is rejected.
+- The blacklist applies prospectively — customers already created keep their existing data.
+
+## Best practices
+
+<Tip>**Keep the default list and add to it** as you spot specific abuse domains.</Tip>
+<Tip>**Don't blacklist legitimate ESPs** like Gmail or Outlook — you'll exclude real customers.</Tip>
+<Tip>**Pair with [Referrals → Program Setup → Fraud prevention](/referrals/program-setup#configure-fraud-prevention)** for layered fraud controls.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I exclude a single email address?">
+    Yes — add the full address (e.g., `bad-actor@gmail.com`) instead of the domain.
+  </Accordion>
+  <Accordion title="How do I find new disposable domains?">
+    Search community-maintained lists (e.g., `disposable-email-domains` on GitHub). Your support team will also surface common offenders.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedAccount from '/snippets/related-account.mdx';
+
+<RelatedAccount />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

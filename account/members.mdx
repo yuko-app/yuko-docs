@@ -1,18 +1,92 @@
 ---
-description: "Add and manage team members who can access and work on your Yuko account."
-title: "11.5 Members"
+title: Members
+description: Manage team members and their access to the Yuko dashboard.
 ---
 
-### **Navigation**
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Account → Members
+</Note>
 
-**Yuko Dashboard → Settings → Account → Members**
+## Introduction
 
-![YUKO 01 17 2026 12 35 AM](/images/YUKO-01-17-2026_12_35_AM.png)
+Members are teammates who have access to the Yuko dashboard. Each member has a role that determines what they can see and do.
 
-### **Overview**
+## What's configured here
 
-Invite and manage your team members who collaborate on reviews, workflows, and email templates. Each member has a defined role that controls their level of access within your Yuko workspace.
+- The list of members.
+- Each member's role (Admin, Editor, Viewer — or as configured by your plan).
+- Pending invites.
 
-### **Members List**
+## When to use
 
-You can view all active members along with their **Name** and **Email Address**
+- Onboarding teammates to Yuko.
+- Restricting access to sensitive actions (e.g., manual point adjustments).
+- Removing access when someone leaves.
+
+## Roles
+
+- **Admin** — full access, including billing, member management and program reset.
+- **Editor** — can edit campaigns, rewards, widgets, emails and workflows. Cannot manage members or billing.
+- **Viewer** — read-only across the dashboard. Useful for stakeholders.
+
+<Note>
+Role names and capabilities depend on your Yuko plan. Check the in-dashboard role descriptions for the canonical list.
+</Note>
+
+## Setup
+
+<Steps>
+  <Step title="Open Members">
+    Go to **Apps → Yuko Loyalty → Account → Members**.
+  </Step>
+  <Step title="Invite a member">
+    Click **Invite member**. Enter the email and pick a role.
+  </Step>
+  <Step title="Send the invite">
+    The invitee receives an email with a sign-up link.
+  </Step>
+  <Step title="Verify access">
+    Once they accept, they appear in the list with their role.
+  </Step>
+</Steps>
+
+## Removing a member
+
+<Steps>
+  <Step title="Open the member">
+    Click their row in the list.
+  </Step>
+  <Step title="Click Remove">
+    Confirm the removal.
+  </Step>
+  <Step title="Audit">
+    The member's recent activity remains in audit logs but they can no longer access the dashboard.
+  </Step>
+</Steps>
+
+## Best practices
+
+<Tip>**Use Editor by default** — reserve Admin for genuine admins.</Tip>
+<Tip>**Audit members quarterly.** Stale access is a real risk.</Tip>
+<Tip>**Pair Members with role-restricted actions** — e.g., Editors can adjust campaigns but only Admins can run **Reset activities**.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How does this relate to Shopify staff accounts?">
+    Yuko members are independent of Shopify staff. A Shopify staff account doesn't automatically grant Yuko access.
+  </Accordion>
+  <Accordion title="Can I see what a member did?">
+    Activity feeds in **Customers** record the member name on every manual action (credit, debit, redeem revoke, etc.).
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedAccount from '/snippets/related-account.mdx';
+
+<RelatedAccount />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

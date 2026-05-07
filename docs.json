@@ -163,6 +163,33 @@
             ]
           },
           {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview",
+              "integrations/rest-api",
+              "integrations/webhooks",
+              "integrations/shopify-flow",
+              "integrations/klaviyo",
+              "integrations/omnisend",
+              "integrations/engati",
+              "integrations/kwik-engage",
+              "integrations/retainful",
+              "integrations/facebook-instagram",
+              "integrations/google-business",
+              "integrations/custom-apps"
+            ]
+          },
+          {
+            "group": "Account & Settings",
+            "pages": [
+              "account/overview",
+              "account/general",
+              "account/platforms",
+              "account/email-blacklist",
+              "account/members"
+            ]
+          },
+          {
             "group": "Help & Support",
             "pages": [
               "support"

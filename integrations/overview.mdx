@@ -1,0 +1,59 @@
+---
+title: Integrations
+description: Connect Yuko to your email, messaging, social and analytics tools — plus the always-available REST API and Webhooks.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations
+</Note>
+
+## What integrations do
+
+Integrations let Yuko exchange data with the rest of your stack. Customers move into your email tool, loyalty events trigger SMS, social actions are verified through partner APIs, and your developers can build custom flows on top.
+
+There are two always-on building blocks plus a catalogue of partner connectors.
+
+## Always-on integrations
+
+<CardGroup cols={2}>
+  <Card title="REST API" icon="code" href="/integrations/rest-api">
+    Read and write Yuko data — customers, points, rewards, tiers — from your code.
+  </Card>
+  <Card title="Webhooks" icon="bolt" href="/integrations/webhooks">
+    Subscribe to Yuko events and receive real-time HTTP callbacks.
+  </Card>
+</CardGroup>
+
+## Partner connectors
+
+import RelatedIntegrations from '/snippets/related-integrations.mdx';
+
+<RelatedIntegrations />
+
+## How connectors work
+
+- Each connector authenticates with the partner (OAuth or API key).
+- Once connected, Yuko exchanges the relevant data — customers, points, tier changes, etc.
+- The integration appears in the Yuko dashboard with status, last-sync time and any error history.
+
+## Choosing your stack
+
+- **Email:** Klaviyo or Omnisend if you want loyalty data inside your existing flows.
+- **Messaging:** Engati for conversational AI, KwikEngage for SMS / WhatsApp.
+- **Social verification:** Facebook & Instagram if you run Like / Follow campaigns.
+- **Native to Shopify:** Shopify Flow if you want loyalty events to drive Shopify automations.
+- **Custom needs:** REST API + Webhooks + Custom Apps for anything not covered above.
+
+## Best practices
+
+<Tip>**Connect only what you'll use.** Each active integration is a moving part to maintain.</Tip>
+<Tip>**Use Webhooks for real-time** — polling the REST API is slower and rate-limited.</Tip>
+<Tip>**Test in a development store** before wiring partners on production.</Tip>
+
+## Recommended reading
+
+<RelatedIntegrations />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

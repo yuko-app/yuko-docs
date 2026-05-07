@@ -1,0 +1,66 @@
+---
+title: Engati
+description: Conversational AI — trigger Engati bot flows from Yuko loyalty events.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → Engati
+</Note>
+
+## Introduction
+
+The Engati connector lets Yuko events trigger Engati conversational flows — useful for stores that already use Engati for customer support and want loyalty milestones to start conversations.
+
+## When to use
+
+- You already use Engati for chat / messaging.
+- You want loyalty events (tier change, big milestone) to start a bot conversation.
+- You want to combine Engati's chat with Yuko's loyalty data.
+
+## Prerequisites
+
+<Check>You have an Engati account.</Check>
+<Check>You have Engati API credentials.</Check>
+
+## Setup
+
+<Steps>
+  <Step title="Open Engati integration">
+    Go to **Apps → Yuko Loyalty → Integrations → Engati**.
+  </Step>
+  <Step title="Connect with credentials">
+    Paste your Engati API key.
+  </Step>
+  <Step title="Pick the flows to invoke">
+    Configure which Engati flow runs on which Yuko event.
+  </Step>
+  <Step title="Save">
+    Engati invocations start firing on the next matching event.
+  </Step>
+</Steps>
+
+## Use the Engati Workflow node
+
+Once connected, the **Engati node** becomes available in [Yuko Workflows](/workflows/partner-nodes) — useful for triggering Engati from a custom workflow rather than only on stock events.
+
+## Best practices
+
+<Tip>**Don't replicate messaging across tools.** If Engati is sending the message, disable Yuko's email for the same event.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why doesn't the Engati Workflow node show up?">
+    Connect the integration first. The node only appears when Engati is active.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedIntegrations from '/snippets/related-integrations.mdx';
+
+<RelatedIntegrations />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
