@@ -139,6 +139,18 @@
             ]
           },
           {
+            "group": "Email Notifications",
+            "pages": [
+              "emails/overview",
+              "emails/template-editor",
+              "emails/shortcodes",
+              "emails/sender-and-branding",
+              "emails/loyalty-emails",
+              "emails/referral-emails",
+              "emails/membership-emails"
+            ]
+          },
+          {
             "group": "Help & Support",
             "pages": [
               "support"

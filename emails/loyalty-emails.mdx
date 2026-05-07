@@ -1,0 +1,140 @@
+---
+title: Loyalty Emails
+description: Templates for points earned, redeemed, tier changes, expiry reminders and personal milestones.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Notifications
+</Note>
+
+This page documents the seven loyalty templates Yuko can send. Each has a default subject and body — customise them in the [Template Editor](/emails/template-editor).
+
+## Points Earned
+
+**Trigger:** A customer earns points from any active Way to Earn campaign.
+
+**Default subject:** *“You've earned [points_value] [points_label]!”*
+
+**Default body summary:** Greeting → points earned + campaign name → new balance → CTA to the Rewards Landing Page.
+
+**Useful shortcodes:** `[first_name]`, `[points_value]`, `[points_label]`, `[campaign_name]`, `[point_balance]`.
+
+<Tip>**Lead with the points value.** *“You've earned 50 Stars”* outperforms *“Thanks for your order”*.</Tip>
+
+---
+
+## Reward Redeemed
+
+**Trigger:** A customer claims a reward (Way to Redeem).
+
+**Default subject:** *“Your [reward_name] is ready!”*
+
+**Default body summary:** Greeting → reward name + discount code → expiry → CTA to use it.
+
+**Useful shortcodes:** `[first_name]`, `[reward_name]`, `[discount_code]`, `[discount_expiry_date]`.
+
+<Tip>**Make the discount code copyable in one tap.** Customers redeem on mobile.</Tip>
+
+---
+
+## Tier Changed
+
+**Trigger:** A customer moves into a new VIP tier (up or down).
+
+**Default subject (up):** *“Welcome to [tier_name]!”*
+
+**Default subject (down):** *“Your tier has been updated”*
+
+**Default body summary:** Greeting → tier change announcement → list of new benefits → CTA to the Rewards Landing Page.
+
+**Useful shortcodes:** `[first_name]`, `[tier_name]`, `[next_tier]`, `[multiplier_value]`.
+
+<Tip>**Celebrate up-moves loudly, downgrades gently.** A downgrade email reads better as *“Your tier has been updated based on the last 12 months”* than *“You've lost VIP status”*.</Tip>
+
+---
+
+## Reward Expiring
+
+**Trigger:** A redeemed reward (discount code) is about to expire — typically 7 and 1 days before.
+
+**Default subject:** *“Your reward expires on [discount_expiry_date]”*
+
+**Default body summary:** Greeting → reward at risk → expiry date → CTA to redeem.
+
+**Useful shortcodes:** `[first_name]`, `[reward_name]`, `[discount_code]`, `[discount_expiry_date]`.
+
+<Tip>**Send 7 and 1 days before** for the best mix of awareness and urgency.</Tip>
+
+---
+
+## Points Expiring
+
+**Trigger:** Customer points are about to expire — typically 30 and 7 days before.
+
+**Default subject:** *“[points_value] [points_label] expiring soon”*
+
+**Default body summary:** Greeting → points at risk → expiry date → CTA to redeem.
+
+**Useful shortcodes:** `[first_name]`, `[points_value]`, `[points_label]`, `[discount_expiry_date]`.
+
+<Tip>**Only enable if your program uses points expiry.** Otherwise the email is misleading.</Tip>
+
+---
+
+## Birthday Reminder
+
+**Trigger:** It's the customer's birthday — sent the morning of.
+
+**Default subject:** *“Happy birthday, [first_name]! Here's a gift”*
+
+**Default body summary:** Greeting → birthday wish → points awarded → CTA to the storefront.
+
+**Useful shortcodes:** `[first_name]`, `[points_value]`, `[points_label]`.
+
+<Tip>**Pair with the [Birthday](/loyalty/ways-to-earn/birthday) campaign** — the email is the celebratory wrapper.</Tip>
+
+---
+
+## Anniversary Reminder
+
+**Trigger:** It's the anniversary of the customer's signup.
+
+**Default subject:** *“Thanks for [years] years with us!”*
+
+**Default body summary:** Greeting → milestone acknowledgement → anniversary points → CTA.
+
+**Useful shortcodes:** `[first_name]`, `[points_value]`, `[points_label]`.
+
+<Tip>**Pair with the [Anniversary](/loyalty/ways-to-earn/anniversary) campaign.**</Tip>
+
+---
+
+## Best practices across all loyalty emails
+
+<Tip>**Default copy is safe.** Launch with defaults; iterate on copy after seeing open and click data.</Tip>
+<Tip>**Don't enable everything.** Pick 4–5 of these. Sending 7 different loyalty emails is noise.</Tip>
+<Tip>**Test every template** to a real Gmail / Outlook before going live.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I disable just one template?">
+    Yes — every template has its own toggle.
+  </Accordion>
+  <Accordion title="Why isn't my Birthday email firing?">
+    Customers without a stored birthday won't receive it. Birthdays are collected via the Yuko account block, your signup form, or CSV import.
+  </Accordion>
+  <Accordion title="Why are tier-down emails harsh by default?">
+    They're not — the default copy says *“Your tier has been updated based on the last 12 months”* without any negative framing. You can soften further in the editor.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedEmails from '/snippets/related-emails.mdx';
+
+<RelatedEmails />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
