@@ -180,13 +180,12 @@
             ]
           },
           {
-            "group": "Account & Settings",
+            "group": "Account Settings",
             "pages": [
               "account/overview",
               "account/general",
               "account/platforms",
-              "account/email-blacklist",
-              "account/members"
+              "account/email-blacklist"
             ]
           },
           {
