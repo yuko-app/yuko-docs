@@ -1,0 +1,113 @@
+---
+title: Checkout Membership Upsell Widget
+description: Promote membership plans inside Shopify Checkout via the Checkout UI extension.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships → Widgets → Checkout Membership Upsell
+</Note>
+
+## Introduction
+
+Show membership plans inside Shopify Checkout itself, via a Checkout UI extension. Customers can join the program at the moment of purchase.
+
+## What problem this solves
+
+If a customer didn't add the membership in cart, you've still got one more chance at checkout. The Checkout extension catches those last-second conversions.
+
+## Where it appears
+
+- Shopify Checkout (information / shipping / payment pages).
+
+## When to use
+
+- You're on Shopify Plus or a plan with Checkout Extensibility.
+- You already run the Cart Membership Upsell and want a second touchpoint.
+
+## Overview
+
+- Renders inside Shopify Checkout via the Checkout UI extension.
+- Surfaces the most relevant plan based on the order.
+- Plan-gated by Shopify.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+<Check>Your Shopify plan supports Checkout Extensibility.</Check>
+<Check>The Checkout UI extension has been activated — see [Activate the Checkout UI Extension](/installation-and-setup/checkout-ui-extension).</Check>
+<Check>At least one membership plan is published.</Check>
+
+## Setup guide
+
+### 1. Configure in Yuko
+
+<Steps>
+  <Step title="Open the widget settings">
+    Go to **Apps → Yuko Loyalty → Memberships → Widgets → Checkout Membership Upsell**.
+  </Step>
+  <Step title="Customise copy">
+    Set the heading and CTA.
+  </Step>
+  <Step title="Activate">
+    Toggle the widget **Active**.
+  </Step>
+</Steps>
+
+### 2. Add the widget in Shopify Checkout
+
+import SetupCheckout from '/snippets/setup-checkout-extension.mdx';
+
+<SetupCheckout />
+
+Place the widget near the order summary.
+
+### 3. Verify
+
+Proceed to a test checkout and confirm the upsell renders.
+
+## How it works
+
+1. Shopify renders the Yuko Checkout Membership Upsell extension at checkout.
+2. The extension fetches the most valuable plan to surface.
+3. The customer can add the plan to the order with one click.
+
+### Decision guidance
+
+- **Don't double up** — if you have the Cart Upsell, the Checkout Upsell is your last-chance fallback. Don't make it pushy.
+
+### Limitations
+
+- Requires Checkout Extensibility (Shopify Plus / eligible plans).
+- Visual customisation is constrained by Shopify's extension surface.
+
+## Examples
+
+- *“Add Yuko VIP for $9.99/mo and save $5 on this order.”*
+
+## Best practices
+
+<Tip>**Test in a real checkout preview.** Shopify caches checkout aggressively.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="My checkout doesn't show the widget">
+    Confirm Checkout Extensibility is enabled and the extension is added in the Checkout Editor.
+  </Accordion>
+  <Accordion title="What if the customer is already a member?">
+    The widget hides itself.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import MembershipWidgetsCrossLinks from '/snippets/membership-widgets-cross-links.mdx';
+
+<MembershipWidgetsCrossLinks />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

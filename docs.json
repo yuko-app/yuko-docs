@@ -89,6 +89,12 @@
             ]
           },
           {
+            "group": "VIP Tiers",
+            "pages": [
+              "vip-tiers/overview"
+            ]
+          },
+          {
             "group": "Onsite Widgets",
             "pages": [
               "onsite-widgets/overview",
@@ -104,6 +110,32 @@
               "onsite-widgets/customer-account-page",
               "onsite-widgets/rewards-landing-page",
               "onsite-widgets/floating-launcher"
+            ]
+          },
+          {
+            "group": "Referrals",
+            "pages": [
+              "referrals/overview",
+              "referrals/program-setup",
+              "referrals/reward-types",
+              "referrals/widget"
+            ]
+          },
+          {
+            "group": "Memberships",
+            "pages": [
+              "memberships/overview",
+              "memberships/plans",
+              "memberships/contracts",
+              {
+                "group": "Membership Widgets",
+                "pages": [
+                  "memberships/widgets/cart-membership-upsell",
+                  "memberships/widgets/checkout-membership-upsell",
+                  "memberships/widgets/profile-membership"
+                ]
+              },
+              "memberships/validation-extension"
             ]
           },
           {

@@ -1,0 +1,194 @@
+---
+title: Program Setup
+description: Configure the referral rewards, sharing channels, fraud prevention and UTM tracking for your referral program.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Referral → Program Setup
+</Note>
+
+## Introduction
+
+This is the single page where you configure the entire referral program — rewards on both sides, where customers land, what channels they share through, and how Yuko stops fraud.
+
+## What problem this solves
+
+Most referral programs require stitching together a referral app, a discount engine, a tracking tool and an email tool. Yuko's referral program covers all of that in one configuration.
+
+## When to use
+
+- During the initial launch of the referral program.
+- Any time you want to change reward values or add a sharing channel.
+- When you suspect fraud and need to tighten controls.
+
+## Overview
+
+- Enable / disable the program.
+- Configure referrer and friend rewards (see [Reward Types](/referrals/reward-types)).
+- Set the landing URL friends arrive at.
+- Enable sharing channels (Twitter / X, Facebook, Email, WhatsApp).
+- Set fraud prevention rules.
+- Configure auto-enrollment.
+- Set UTM parameters for analytics attribution.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>You've reviewed [Reward Types](/referrals/reward-types) and decided what each side gets.</Check>
+
+## Setup guide
+
+### 1. Enable the program
+
+<Steps>
+  <Step title="Open Program Setup">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Referral → Program Setup**.
+  </Step>
+  <Step title="Toggle Enable Referral Program">
+    Turn the program on. Settings below become editable.
+  </Step>
+</Steps>
+
+### 2. Configure the referrer reward
+
+<Steps>
+  <Step title="Open Referrer Reward">
+    Pick the reward type the referrer gets when their friend converts. See [Reward Types → Referrer reward types](/referrals/reward-types#available-reward-types-for-referrers).
+  </Step>
+  <Step title="Set the value">
+    Enter the points / discount value, and any expiry.
+  </Step>
+  <Step title="Cap per referrer (optional)">
+    Limit how many successful referrals one customer can earn rewards for.
+  </Step>
+</Steps>
+
+### 3. Configure the friend reward
+
+<Steps>
+  <Step title="Open Friend Reward">
+    Pick the reward the friend gets on their first order. Friend rewards are discount-based only.
+  </Step>
+  <Step title="Set value and minimum">
+    Enter the value and any minimum cart amount required.
+  </Step>
+</Steps>
+
+### 4. Set the landing URL
+
+<Steps>
+  <Step title="Set the landing URL">
+    The page friends are sent to after clicking the referral link. Typically `/`, a featured product, or a dedicated landing page (e.g., `/pages/welcome`).
+  </Step>
+</Steps>
+
+### 5. Enable social sharing
+
+<Steps>
+  <Step title="Toggle channels">
+    Pick which channels appear in the referral widget:
+    - Twitter / X
+    - Facebook
+    - Email
+    - WhatsApp
+  </Step>
+  <Step title="Customise share copy">
+    Optional: pre-fill the message that opens in each channel.
+  </Step>
+</Steps>
+
+### 6. Configure fraud prevention
+
+<Steps>
+  <Step title="Block self-referral">
+    Prevent the same customer from being both referrer and friend (matched by email, IP or device).
+  </Step>
+  <Step title="Block disposable email domains">
+    Reject referrals from temporary-email services (configured in **Account & Settings → Email Blacklist**).
+  </Step>
+  <Step title="Cap per IP / device">
+    Limit how many referrals can come from the same IP or device.
+  </Step>
+</Steps>
+
+### 7. Configure auto-enrollment
+
+<Steps>
+  <Step title="Pick enrollment mode">
+    <AccordionGroup>
+      <Accordion title="Auto-enroll all customers">
+        Every customer gets a referral link by default. Recommended.
+      </Accordion>
+      <Accordion title="Manual enrollment">
+        Customers must opt in to participate. Use only if you have legal or brand reasons.
+      </Accordion>
+    </AccordionGroup>
+  </Step>
+</Steps>
+
+### 8. Set UTM parameters
+
+<Steps>
+  <Step title="Configure UTM parameters">
+    Default UTM parameters appended to referral links: `utm_source=yuko_referral`, `utm_medium=referral`, `utm_campaign=customer_referral`. Customise to match your analytics taxonomy.
+  </Step>
+</Steps>
+
+## How it works
+
+1. Customer shares their unique referral link via the widget.
+2. Friend clicks the link and lands on your store.
+3. Yuko tracks the click via cookie + UTM.
+4. Friend places their first order and the friend reward is applied.
+5. After the order is paid, the referrer reward is issued.
+6. Activity is logged on both customer profiles.
+
+### Decision guidance
+
+- **Use generous referrer rewards** if you have high LTV — you make it back on the friend's lifetime value.
+- **Use clear friend rewards** (an actual discount) — vague *“points”* rewards perform poorly for new customers.
+- **Always enable fraud prevention** before turning the program on.
+
+### Limitations
+
+- Referrals are tracked via cookies — privacy-blocking browsers may break attribution.
+- Only the friend's first order qualifies; subsequent orders don't generate referrer rewards.
+- One-active-referral per friend — a customer can't be referred twice.
+
+## Examples
+
+- 500 points to the referrer + $10 off for the friend, capped at 5 successful referrals per customer.
+- 15% off for the friend + $20 store credit for the referrer.
+
+## Best practices
+
+<Tip>**Test the full flow end-to-end** before promoting the program: share, click, place an order, verify both sides earn.</Tip>
+<Tip>**Promote the program in your transactional emails** — order confirmation and shipping emails are the highest-engagement moments.</Tip>
+<Tip>**Enable fraud prevention from day one.** It's much easier than untangling fraudulent rewards after the fact.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What happens if the friend's order is refunded?">
+    Both rewards are reversed automatically.
+  </Accordion>
+  <Accordion title="Can the referrer reward themselves?">
+    With fraud prevention enabled, no. Self-referrals are blocked by email / IP / device match.
+  </Accordion>
+  <Accordion title="Where do customers see their referrals?">
+    In the Customer Account hub, on the Rewards Landing Page, and in the Floating Launcher panel — see [Storefront Widget](/referrals/widget).
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedReferrals from '/snippets/related-referrals.mdx';
+
+<RelatedReferrals />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

@@ -1,0 +1,108 @@
+---
+title: Profile Membership Widget
+description: Show the customer's membership status, benefits and renewal date inside their profile.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships → Widgets → Profile Membership
+</Note>
+
+## Introduction
+
+Show the customer's active membership status — plan name, benefits, renewal date — on their storefront profile.
+
+## What problem this solves
+
+Members want to see what they're paying for and when the next renewal is. Surfacing it on the profile reduces *“when does my membership renew?”* support tickets.
+
+## Where it appears
+
+- The customer's profile page on the storefront.
+- Also embedded in the Customer Account hub when membership is active.
+
+## When to use
+
+- You've launched at least one membership plan.
+- You want active members to see their plan status.
+
+## Overview
+
+- Renders on the customer profile via theme app block.
+- Shows plan name, benefits, renewal date.
+- Hides itself for non-members.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+<Check>At least one membership plan is published.</Check>
+
+## Setup guide
+
+### 1. Configure in Yuko
+
+<Steps>
+  <Step title="Open the widget settings">
+    Go to **Apps → Yuko Loyalty → Memberships → Widgets → Profile Membership**.
+  </Step>
+  <Step title="Customise copy">
+    Set the heading and labels.
+  </Step>
+  <Step title="Activate">
+    Toggle the widget **Active**.
+  </Step>
+</Steps>
+
+### 2. Add the widget to your theme
+
+import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
+
+<SetupThemeBlock />
+
+Pick the **Customer profile** template.
+
+### 3. Verify
+
+Log in as a member and confirm the widget renders with the active plan and renewal date.
+
+## How it works
+
+- Reads the customer's active contract.
+- Renders plan name, benefits and renewal date.
+- Hides for customers without an active contract.
+
+### Decision guidance
+
+- **Always include the renewal date.** It's the highest-leverage detail for support deflection.
+
+### Limitations
+
+- Member-only — hidden for non-members.
+
+## Examples
+
+- *“Yuko VIP — renews on May 12, $9.99/mo”* with a list of benefits below.
+
+## Best practices
+
+<Tip>**Pair with the Customer Account hub** so members have one consistent place to manage their plan.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Where does cancel happen?">
+    Customers contact support, or you handle cancellations from **Memberships → Contracts**. Customer-side self-cancel is not exposed in v1.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import MembershipWidgetsCrossLinks from '/snippets/membership-widgets-cross-links.mdx';
+
+<MembershipWidgetsCrossLinks />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
