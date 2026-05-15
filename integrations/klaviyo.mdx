@@ -350,6 +350,16 @@ Same properties as **Customer Anniversary** — Klaviyo can pre-announce.
 | `yuko_next_tier_progress_percentage` | Number | Progress toward next tier as a percentage. |
 | `yuko_earning_rate` | Number | Current earning multiplier. |
 
+**Per-benefit reward fields:** If the tier has reward-type benefits (e.g., a *free product* or *store credit* perk that issues a Shopify discount code), Yuko enriches the payload with one numbered block of fields per benefit. `N` starts at 1 and counts up — for example, a tier with two reward benefits emits both `yuko_reward_1_*` and `yuko_reward_2_*`.
+
+| Property pattern | Type | Description |
+|---|---|---|
+| `yuko_reward_N_type` | String | Reward type (e.g., `amount_discount`, `free_product`, `store_credit`). |
+| `yuko_reward_N_value` | Number | Reward value (e.g., the dollar amount or percentage). |
+| `yuko_reward_N_description` | String | Human-readable description of the benefit. |
+| `yuko_reward_N_code` | String | The Shopify discount code issued to this customer for the benefit. |
+| `yuko_reward_N_expires_at` | ISO 8601 string | When the issued discount code expires. |
+
 #### VIP Tier Upgrade
 
 - **Klaviyo metric:** *VIP Tier Upgrade*
@@ -379,7 +389,15 @@ Same properties as **Customer Anniversary** — Klaviyo can pre-announce.
 | `yuko_tier_stats_total_in_tier` | Integer | Number of customers currently in the new tier. |
 | `yuko_all_tiers` | String | All-tiers list. |
 
-In addition, the upgrade event includes any **per-benefit reward codes** issued at upgrade — fields named `yuko_reward_1_*`, `yuko_reward_2_*`, etc. (depends on benefits configured for the new tier). Inspect the actual payload in Klaviyo's metric inspector for your specific store.
+**Per-benefit reward fields:** If the new tier has reward-type benefits (e.g., a *free product* or *store credit* perk that issues a Shopify discount code), Yuko enriches the payload with one numbered block of fields per benefit. `N` starts at 1 and counts up — for example, a tier with two reward benefits emits both `yuko_reward_1_*` and `yuko_reward_2_*`.
+
+| Property pattern | Type | Description |
+|---|---|---|
+| `yuko_reward_N_type` | String | Reward type (e.g., `amount_discount`, `free_product`, `store_credit`). |
+| `yuko_reward_N_value` | Number | Reward value (e.g., the dollar amount or percentage). |
+| `yuko_reward_N_description` | String | Human-readable description of the benefit. |
+| `yuko_reward_N_code` | String | The Shopify discount code issued to this customer for the benefit. |
+| `yuko_reward_N_expires_at` | ISO 8601 string | When the issued discount code expires. |
 
 #### VIP Tier Downgrade
 
@@ -526,6 +544,16 @@ This event fires on the **friend's** profile, not the advocate's.
 | `yuko_friend_reward_expires_at` | ISO 8601 string | Expiry. |
 | `yuko_friend_reward_description` | String | Description. |
 | `yuko_referred_by` | String | The advocate's name. |
+
+<Warning>
+**Experimental fields.** The three properties below are present in the payload today but their values are **hardcoded placeholder constants** in the current backend code. They will be replaced by real values in a future release — **do not rely on them in production flows.**
+</Warning>
+
+| Property | Type | Current placeholder value | Intended meaning (when finalised) |
+|---|---|---|---|
+| `yuko_total_claims` | Integer | `6` | Total times any friend has claimed via this advocate's code. |
+| `yuko_total_conversions` | Integer | `4` | Total of those that converted to a paid order. |
+| `yuko_claim_source` | String | `"referral_landing_page"` | Source surface where the friend clicked through. |
 
 #### Referral Completed
 
@@ -761,7 +789,7 @@ Your new earning rate is \{\{ event.yuko_new_earning_rate \}\}x points.
 
 A common pattern: trigger a flow on a Yuko event, send an email built around event properties, exit. Most useful triggers:
 
-- **VIP Tier Upgrade** → Send a celebratory tier email with `yuko_benefits_unlocked` and `yuko_new_earning_rate`.
+- **VIP Tier Upgrade** → Send a celebratory tier email with `yuko_benefits_unlocked`, `yuko_new_earning_rate`, and the per-benefit `yuko_reward_N_code` values.
 - **Points Expiring Reminder** → Send a redemption nudge with `yuko_points_at_risk`, `yuko_expires_at`, and `yuko_available_reward_1_name`.
 - **Referral Completed** → Thank the advocate, surface `yuko_stat_successful_referrals` for a count.
 - **Membership Cancelled** → Win-back flow using `yuko_total_savings_from_membership` to remind them of value.
