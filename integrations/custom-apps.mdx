@@ -1,0 +1,70 @@
+---
+title: Custom Apps
+description: Connect a custom OAuth or API-key based integration that's not in the standard catalogue.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → Custom Apps
+</Note>
+
+## Introduction
+
+If the tool you want to integrate isn't in Yuko's standard connector catalogue, you can build a custom integration using:
+
+- **Custom OAuth Connector** — for tools with OAuth 2.0 endpoints.
+- **Custom REST API Connector** — for tools with API-key authentication.
+- **Webhooks + REST API** — for fully custom flows.
+
+## When to use
+
+- The tool you want isn't in the catalogue.
+- You're building an internal tool that consumes Yuko data.
+- You're integrating Yuko with a partner that supports OAuth 2.0 or REST APIs.
+
+## Prerequisites
+
+<Check>You have OAuth credentials or API keys from the target tool.</Check>
+<Check>You have a developer who can configure the connector mapping.</Check>
+
+## Setup
+
+<Steps>
+  <Step title="Open Custom Apps">
+    Go to **Apps → Yuko Loyalty → Integrations → Custom Apps**.
+  </Step>
+  <Step title="Pick the connector type">
+    Choose **OAuth** or **API key** based on what your target tool supports.
+  </Step>
+  <Step title="Configure endpoints and credentials">
+    Enter the OAuth callback URLs / API key + base URL.
+  </Step>
+  <Step title="Map events to endpoints">
+    Pick which Yuko events should hit which endpoint on the target tool.
+  </Step>
+  <Step title="Save and test">
+    Yuko sends a test request to verify the connection.
+  </Step>
+</Steps>
+
+## Best practices
+
+<Tip>**Use Webhooks + your own integration code** for the most flexible custom flows. Custom Apps is for low-code mappings; webhooks are for full control.</Tip>
+<Tip>**Start in a development store.** Custom integrations are easy to misconfigure on production.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What's the difference vs Webhooks?">
+    Custom Apps lets you push Yuko data to an arbitrary external endpoint without writing receiver code. Webhooks lets you receive Yuko events on your own server. Use either or both.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedIntegrations from '/snippets/related-integrations.mdx';
+
+<RelatedIntegrations />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

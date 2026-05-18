@@ -1,0 +1,131 @@
+---
+title: Contracts
+description: Manage active customer memberships — view subscribers, status, history and handle cancellations.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships → Contracts
+</Note>
+
+## Introduction
+
+A Contract is the link between a customer and a membership plan. Each active contract represents one customer's subscription to one plan, with its own start date, renewal schedule and status.
+
+## What problem this solves
+
+You need a single view of who's subscribed to what — and the ability to act on individual contracts (cancel, pause, switch plan).
+
+## When to use
+
+- Resolving customer support tickets about their membership.
+- Auditing active members per plan.
+- Handling cancellations and pauses.
+
+## Overview
+
+- List view of all contracts.
+- Detail view per contract — customer, plan, start date, next renewal, status.
+- Cancel or pause individual contracts.
+- Activity log per contract.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>At least one membership plan is published.</Check>
+
+## Setup guide
+
+### Find a contract
+
+<Steps>
+  <Step title="Open Contracts">
+    Go to **Apps → Yuko Loyalty → Memberships → Contracts**.
+  </Step>
+  <Step title="Search">
+    Search by customer email or plan name. Filter by status (active, paused, cancelled).
+  </Step>
+  <Step title="Open the contract">
+    Click a row to open the contract detail.
+  </Step>
+</Steps>
+
+### View activity
+
+The contract detail shows:
+
+- Customer details and Shopify customer link.
+- Plan name and pricing.
+- Start date and next renewal date.
+- Status history.
+- All renewal events and status changes.
+
+### Cancel or pause
+
+<Steps>
+  <Step title="Open the contract">
+    Find and open the contract.
+  </Step>
+  <Step title="Click Cancel or Pause">
+    - **Cancel** — stops future renewals. Existing perks remain until the period ends.
+    - **Pause** — temporary stop. Resume manually.
+  </Step>
+  <Step title="Confirm and add a note">
+    Add a reason note for the audit log.
+  </Step>
+</Steps>
+
+## How it works
+
+- A contract is created when a customer pays for a plan.
+- Yuko tracks renewal events from Shopify.
+- Cancellation stops future renewals; member benefits remain until the period ends.
+- Refunds are handled in Shopify; the contract status updates accordingly.
+
+### Decision guidance
+
+- Use **Pause** for short-term breaks (e.g., the customer is travelling).
+- Use **Cancel** for permanent leaves.
+- Always add a note — future support agents will thank you.
+
+### Limitations
+
+- Renewal handling depends on Shopify's recurring billing capabilities.
+- Cancellation does not automatically refund — issue refunds in Shopify if needed.
+- One contract per customer per plan — a customer can't have two active contracts on the same plan.
+
+## Examples
+
+- A customer pauses their VIP membership for two months while travelling, then resumes.
+- A support agent cancels a contract and refunds the latest charge in Shopify.
+
+## Best practices
+
+<Tip>**Always add a reason note** when cancelling or pausing. The audit log is your source of truth.</Tip>
+<Tip>**Surface contract status in your support tooling** by tagging Shopify customers via Yuko's tagging integration.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What happens to benefits after cancellation?">
+    Benefits remain active until the end of the current paid period, then end automatically.
+  </Accordion>
+  <Accordion title="Can a customer reactivate after cancelling?">
+    Yes — they purchase the plan again, which creates a new contract.
+  </Accordion>
+  <Accordion title="Where do I issue refunds?">
+    Refund the underlying Shopify order. Yuko reflects the change automatically.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedMemberships from '/snippets/related-memberships.mdx';
+
+<RelatedMemberships />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

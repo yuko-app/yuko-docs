@@ -1,0 +1,77 @@
+---
+title: Verify Your Setup
+description: A short checklist to confirm Yuko is installed correctly and rendering on your live storefront.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Home → Health checks
+</Note>
+
+## Introduction
+
+Use this checklist after installing Yuko or after any major change — a new theme, a checkout migration, a refresh of customer accounts. Each check takes seconds and catches the most common silent breakages.
+
+## What problem this solves
+
+Most “widget not showing” tickets are caused by one of: theme app embed not enabled, widget set to inactive, or a customer that's logged out. This checklist surfaces all three in under a minute.
+
+## When to use
+
+- Right after installation.
+- After publishing a new theme.
+- After migrating to Checkout Extensibility or New Customer Accounts.
+- Before launching a major loyalty campaign.
+
+## Verification checklist
+
+<Steps>
+  <Step title="Confirm the program is Active">
+    In Shopify admin, open **Apps → Yuko Loyalty → Loyalty → Settings** and verify the **Loyalty program** toggle is on.
+  </Step>
+  <Step title="Confirm the Theme App Embed is enabled">
+    Open the Theme Editor on your **published** theme → **App embeds** → the Yuko embed should be on. See [Theme App Embed](/installation-and-setup/theme-app-embed).
+  </Step>
+  <Step title="Confirm at least one earning campaign is Active">
+    **Apps → Yuko Loyalty → Loyalty → Ways to Earn**. At minimum, **Place an Order** should be active.
+  </Step>
+  <Step title="Confirm at least one reward is Active">
+    **Apps → Yuko Loyalty → Loyalty → Ways to Redeem**. Have at least one reward your customers can actually claim.
+  </Step>
+  <Step title="Test on the live storefront as a logged-in customer">
+    Open the live store, log in as a real (non-staff) customer, and add a product to cart. The Cart Earn widget should render.
+  </Step>
+  <Step title="Place a test order">
+    Complete a low-value real order. After Shopify marks it as paid, verify points appear on the customer in **Apps → Yuko Loyalty → Loyalty → Customers**.
+  </Step>
+</Steps>
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Widget not appearing on live storefront">
+    1. Confirm the Theme App Embed is enabled on the **published** theme (not just a preview).
+    2. Confirm the widget is **Active** in Yuko.
+    3. Confirm the widget's app block has been added in the Theme Editor for that template.
+    4. Reload the page with a hard refresh.
+  </Accordion>
+  <Accordion title="Points not credited after a test order">
+    1. Was the order paid? Pending or unpaid orders do not credit points.
+    2. Was a points delay configured? Wait the configured number of days.
+    3. Was the customer or product in an exclusion list?
+    4. Open **Customers → [the test customer] → Activity** to see the audit log.
+  </Accordion>
+  <Accordion title="Checkout extension not visible">
+    1. Confirm your Shopify plan supports Checkout Extensibility.
+    2. Confirm the extension was added in the Checkout Editor.
+    3. Some browsers cache checkout heavily — test in incognito.
+  </Accordion>
+  <Accordion title="Customer account hub missing">
+    1. Confirm New Customer Accounts is enabled in Shopify.
+    2. Confirm the Yuko block was added in the Customer Accounts editor.
+    3. Logout/login on the storefront to refresh the session.
+  </Accordion>
+</AccordionGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

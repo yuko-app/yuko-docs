@@ -1,0 +1,98 @@
+---
+title: Customer Profile Point Balance Widget
+description: Show the customer's points balance on their profile page inside the storefront.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Customer Profile Balance
+</Note>
+
+## Introduction
+
+Display the customer's points balance on their profile page (typically `/account/profile`).
+
+## What problem this solves
+
+Customers who navigate to their profile to update details should also see their loyalty status — it ties account management and loyalty into one mental space.
+
+## Where it appears
+
+- The customer profile page on the storefront.
+
+## When to use
+
+- You want a balance display on the profile page without a full hub.
+- You can't or don't want to use the Customer Account extension.
+
+## Overview
+
+- Single-line balance display.
+- Customisable message.
+- Works on the storefront's profile template.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+### 1. Configure in Yuko
+
+<Steps>
+  <Step title="Open the widget settings">
+    Go to **Apps → Yuko Loyalty → Loyalty → Widgets → Customer Profile Balance**.
+  </Step>
+  <Step title="Configure the message">
+    Default: *“Your balance: `[point_balance]` `[points_label]`”*.
+  </Step>
+  <Step title="Activate">
+    Toggle **Active**.
+  </Step>
+</Steps>
+
+### 2. Add to Shopify
+
+import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
+
+<SetupThemeBlock />
+
+Pick the **Customer profile** template.
+
+### 3. Verify
+
+Log in and visit the profile page. The balance should render.
+
+## Available placeholders
+
+import WidgetPlaceholders from '/snippets/widget-placeholders.mdx';
+
+<WidgetPlaceholders />
+
+## How it works
+
+- Reads the logged-in customer's balance.
+- Renders inline.
+
+### Decision guidance
+
+- **Use this if you have a custom storefront profile page.** If you're on new customer accounts, prefer the [Customer Account Page widget](/onsite-widgets/customer-account-page).
+
+### Limitations
+
+- Logged-in only.
+
+## Best practices
+
+<Tip>**Keep the message short.** This is a passive reminder, not a hub.</Tip>
+
+## Related
+
+import WidgetCrossLinks from '/snippets/onsite-widgets-cross-links.mdx';
+
+<WidgetCrossLinks />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

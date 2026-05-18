@@ -1,0 +1,122 @@
+---
+title: Floating Rewards Launcher
+description: A persistent loyalty launcher button visible on every page, opening a side panel with balance, rewards and VIP status.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Floating Launcher
+</Note>
+
+## Introduction
+
+The Floating Launcher is a persistent button (typically in the bottom-right) on every page of your storefront. Clicking it opens a side panel with the customer's balance, rewards and VIP status.
+
+## What problem this solves
+
+Customers shouldn't have to navigate to a specific page to interact with their loyalty status. A persistent launcher means it's always one tap away — the most discoverable surface in the program.
+
+## Where it appears
+
+- Every storefront page (auto-rendered via the Theme App Embed).
+- Position is configurable (bottom-right by default).
+
+## When to use
+
+- You want maximum loyalty discoverability.
+- You don't want to manage individual widget placements per template.
+- You're optimising for mobile, where a floating button beats inline widgets.
+
+## Overview
+
+- Auto-renders via the Theme App Embed — no per-template setup.
+- Configurable button shape, color, position.
+- Opens a panel with balance, rewards, VIP, activity.
+- Optional notification dot when the customer has unspent rewards.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the widget settings">
+    Go to **Apps → Yuko Loyalty → Loyalty → Widgets → Floating Launcher**.
+  </Step>
+  <Step title="Customise the launcher button">
+    - Shape: round / square / pill.
+    - Position: bottom-right (default), bottom-left.
+    - Icon and label.
+  </Step>
+  <Step title="Configure the side panel content">
+    Toggle which sections appear in the panel:
+    - Balance
+    - Earned rewards
+    - Ways to redeem
+    - VIP status
+    - Activity feed
+  </Step>
+  <Step title="Configure the notification dot">
+    Show a small badge when the customer has unspent rewards.
+  </Step>
+  <Step title="Activate">
+    Toggle **Active**. The launcher renders on every page automatically (via the Theme App Embed).
+  </Step>
+</Steps>
+
+## How it works
+
+- The Theme App Embed includes the launcher script on every page.
+- The launcher button mounts in the configured corner.
+- Clicking opens a panel that pulls live data from Yuko.
+
+### Decision guidance
+
+- **Use the launcher as your primary discoverability surface** — it's the easiest way for customers to find their loyalty info.
+- **Match the button color to your brand** — too contrast-heavy and it competes with your CTAs.
+
+### Limitations
+
+- Position is corner-based; mid-page anchoring isn't supported.
+- May overlap with chat widgets (Intercom, Tidio, etc.). Stagger positions to avoid this.
+- The Theme App Embed must be enabled — see [Theme App Embed](/installation-and-setup/theme-app-embed).
+
+## Examples
+
+- A round green launcher in the bottom-right with a star icon, opening a panel with balance + rewards + VIP.
+
+## Best practices
+
+<Tip>**Don't double up.** If you use the Floating Launcher, you usually don't need the Cart Redeem widget on the cart drawer.</Tip>
+<Tip>**Stagger from chat widgets.** If you have Intercom, push the loyalty launcher up or use the opposite corner.</Tip>
+<Tip>**Show the notification dot.** It's the single biggest driver of redemption rate via this surface.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I hide the launcher on specific pages?">
+    Yes — add page exclusions in the launcher configuration.
+  </Accordion>
+  <Accordion title="It overlaps my chat widget">
+    Move the launcher to the opposite corner or adjust its vertical offset.
+  </Accordion>
+  <Accordion title="Does it appear at checkout?">
+    No — Shopify Checkout doesn't allow custom scripts. Use the [Checkout Earn](/onsite-widgets/checkout-earn) and [Checkout Redeem](/onsite-widgets/checkout-redeem) widgets instead.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import WidgetCrossLinks from '/snippets/onsite-widgets-cross-links.mdx';
+
+<WidgetCrossLinks />
+
+import RelatedWidgets from '/snippets/related-widgets.mdx';
+
+<RelatedWidgets />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

@@ -1,0 +1,137 @@
+---
+title: Sender & Branding
+description: Configure the from address, sender name, and how store branding flows into your loyalty emails.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Notifications → Settings
+</Note>
+
+## Introduction
+
+The Sender & Branding settings control who Yuko emails appear to come from and how they look. Get these right once and every template inherits them automatically.
+
+## What problem this solves
+
+Every loyalty email needs a sender, a logo and a footer. Configuring those per-template would create drift. Centralising them keeps every Yuko email consistent.
+
+## When to use
+
+- During initial setup, before launching any templates.
+- After a rebrand (new logo, new sender).
+- When adding a new locale.
+
+## Overview
+
+- **Sender name** — e.g., *“Yuko Beauty Rewards”*.
+- **From address** — the email address customers see in their inbox.
+- **Reply-to address** — where customer replies are routed.
+- **Logo** — inherited from [Branding & Locale](/onsite-widgets/branding-and-locale).
+- **Footer copy** — unsubscribe block + custom store info.
+- **Locale defaults** — translation fallback chain.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+### Configure sender details
+
+<Steps>
+  <Step title="Open Notification settings">
+    Go to **Apps → Yuko Loyalty → Loyalty → Notifications → Settings**.
+  </Step>
+  <Step title="Set the sender name">
+    What customers see in the *From* field of their inbox.
+  </Step>
+  <Step title="Set the from address">
+    e.g., `rewards@yourdomain.com`. Avoid generic `noreply@` — it hurts deliverability.
+  </Step>
+  <Step title="Set the reply-to address">
+    Where replies go (often `support@yourdomain.com`).
+  </Step>
+</Steps>
+
+### Configure branding
+
+Logo, colors and fonts are inherited from **[Branding & Locale](/onsite-widgets/branding-and-locale)**. Update them once there and emails reflect the change.
+
+### Configure footer
+
+<Steps>
+  <Step title="Edit footer copy">
+    Add your physical address (legally required in many jurisdictions) and any store-specific links.
+  </Step>
+  <Step title="Verify unsubscribe link">
+    The unsubscribe link is automatic and required — don't try to remove it.
+  </Step>
+</Steps>
+
+### Add locale variants
+
+<Steps>
+  <Step title="Pick a locale">
+    Add a translation locale (e.g., French, Spanish).
+  </Step>
+  <Step title="Translate sender / footer copy">
+    Override sender name and footer per locale.
+  </Step>
+  <Step title="Set fallback">
+    If a locale has no override, Yuko falls back to the store default.
+  </Step>
+</Steps>
+
+## How it works
+
+- Sender details are applied to every Yuko email.
+- Branding inherits from Branding & Locale.
+- Locale resolution: per-customer locale > store default > English.
+
+### Decision guidance
+
+- **Use a brand-aligned from address** like `rewards@yourdomain.com` or `vip@yourdomain.com`.
+- **Don't use `noreply@`** — it tells customers (and inbox providers) you don't want a relationship.
+- **Set reply-to to a monitored address.** Customers will reply to loyalty emails with questions.
+
+### Deliverability
+
+For consistent inbox placement:
+
+<Check>The from-address domain has SPF, DKIM and DMARC records configured.</Check>
+<Check>The from-address domain is the same as your store domain (or a verified subdomain).</Check>
+<Check>You're not sending from a free-mail domain (gmail.com, yahoo.com).</Check>
+
+If you're not sure, contact [Support](https://yuko.so/support/) before launch — we can help with DNS records.
+
+## Best practices
+
+<Tip>**Send a test from each major template** to a real Gmail and Outlook inbox. Inbox placement varies by provider.</Tip>
+<Tip>**Keep the footer short.** A 4–5 line footer with address + links is enough.</Tip>
+<Tip>**Use locale fallbacks deliberately.** If you don't translate a template, your French customers will see English — sometimes that's worse than not sending.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I use any from address?">
+    Yes, but for deliverability you should use a domain you control with proper DNS records.
+  </Accordion>
+  <Accordion title="Why does my email land in spam?">
+    Most often: missing SPF/DKIM, sending from a free-mail domain, or aggressive subject copy. Check those first.
+  </Accordion>
+  <Accordion title="Can I have a different sender per template?">
+    Not in v1. Sender is global per store.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedEmails from '/snippets/related-emails.mdx';
+
+<RelatedEmails />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

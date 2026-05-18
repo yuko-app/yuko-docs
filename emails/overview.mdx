@@ -1,0 +1,65 @@
+---
+title: Email Notifications
+description: Automated emails sent to customers in response to loyalty events — points earned, rewards redeemed, tier changes, referrals, memberships and more.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Notifications
+</Note>
+
+## What are email notifications
+
+Yuko sends automated emails to customers when meaningful loyalty events happen — they earn points, redeem a reward, move up a tier, or unlock a membership. Each event has a built-in template that you can fully customise.
+
+Emails inherit your store **[Branding & Locale](/onsite-widgets/branding-and-locale)** settings, so colors, logo and language are consistent with your widgets without extra setup.
+
+## All templates
+
+import RelatedEmails from '/snippets/related-emails.mdx';
+
+<RelatedEmails />
+
+## How emails work
+
+1. A customer triggers a loyalty event (e.g., places an order that earns points).
+2. Yuko evaluates whether the corresponding template is enabled.
+3. The template's content is rendered — shortcodes are replaced with real data, branding is applied.
+4. The email is sent to the customer's email address from your configured sender.
+5. The send is logged in the customer's activity feed.
+
+## Enabling or disabling templates
+
+Every template has its own toggle. Disabling a template stops Yuko from sending it — useful if you handle a specific event in your own ESP (e.g., Klaviyo for points-earned emails).
+
+<Tip>**Keep tier-change and reward-redeemed enabled in Yuko.** They're tied to loyalty data Yuko owns; replicating them in an ESP is fragile.</Tip>
+
+## Best practices
+
+<Tip>**Don't enable everything.** Customers ignore high-volume notification streams. Pick the 4–6 emails that matter most.</Tip>
+<Tip>**Match your store voice.** Default copy works, but on-brand copy converts better.</Tip>
+<Tip>**Test every template** with a real recipient address before going live.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I send emails through my own ESP instead of Yuko?">
+    Yes — disable Yuko's template and trigger your own via [Workflows](/workflows/overview) or [Integrations](/integrations/overview) (Klaviyo / Omnisend).
+  </Accordion>
+  <Accordion title="Can I add custom HTML?">
+    The visual editor covers most use cases. For advanced customisation, contact support.
+  </Accordion>
+  <Accordion title="What happens if I don't customise a template?">
+    Yuko sends the default copy with your branding applied. It's safe to launch with defaults.
+  </Accordion>
+  <Accordion title="Are emails localised?">
+    Yes — each template can have a translation per locale. See **[Sender & Branding](/emails/sender-and-branding)**.
+  </Accordion>
+</AccordionGroup>
+
+## Recommended reading
+
+<RelatedEmails />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

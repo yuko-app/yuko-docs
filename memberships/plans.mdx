@@ -1,0 +1,123 @@
+---
+title: Membership Plans
+description: Create paid membership plans with custom benefits, pricing and billing terms.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships → Plans
+</Note>
+
+## Introduction
+
+A membership plan defines what members get and what they pay. Plans are sold as Shopify products under the hood, so all of Shopify's payment, fulfilment and tax handling apply.
+
+## What problem this solves
+
+Without structured plans, you'd be hand-managing perks per customer. The plans framework standardises pricing, benefits and renewal terms.
+
+## When to use
+
+- During initial setup of paid memberships.
+- When launching a new tier of membership (e.g., Bronze + Gold paid plans).
+- When repricing or rebranding an existing plan.
+
+## Overview
+
+- **Name and description** — customer-facing copy.
+- **Pricing and billing interval** — monthly or annual.
+- **Benefits** — the perks members get.
+- **Visibility** — published / hidden.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+### Create a plan
+
+<Steps>
+  <Step title="Open Plans">
+    Go to **Apps → Yuko Loyalty → Memberships → Plans**.
+  </Step>
+  <Step title="Click Create plan">
+    Open the plan editor.
+  </Step>
+  <Step title="Set basic details">
+    - **Name** — customer-facing label (e.g., *“Yuko VIP”*).
+    - **Description** — short copy for the widget.
+    - **Image** — used in the widget and on the Shopify product page.
+  </Step>
+  <Step title="Set pricing and billing interval">
+    - **Price** — e.g., $9.99
+    - **Interval** — monthly or annual.
+  </Step>
+  <Step title="Add benefits">
+    Pick from:
+    - Discount on every order (% or amount)
+    - Free shipping
+    - Exclusive access to gated products
+    - Points multiplier
+    - Free product per period
+  </Step>
+  <Step title="Save and publish">
+    Toggle **Visible** and click **Save**. The plan is now purchasable on the storefront.
+  </Step>
+</Steps>
+
+## How it works
+
+1. The plan is created as a Shopify product.
+2. Customer buys the plan via cart and checkout.
+3. Yuko creates a Membership Contract for the customer.
+4. Benefits become active immediately.
+5. Yuko handles renewal events (subject to Shopify's recurring billing capabilities).
+
+### Decision guidance
+
+- **Pick monthly billing** for trial-style or commitment-light plans.
+- **Pick annual billing** for premium plans where you want to lock in longer commitments.
+- **Keep benefit lists short** — 3–4 line items work best on storefront cards.
+
+### Limitations
+
+- Plan price changes don't affect existing contracts — they renew at the original price unless cancelled.
+- Plans must be published in Shopify to be purchasable.
+- Recurring billing depends on Shopify's billing infrastructure for your plan and region.
+
+## Examples
+
+- *“Yuko VIP”* — $9.99/mo — free shipping + 10% off everything + 2x points.
+- *“Yuko Annual”* — $79/yr — free shipping + 15% off + early access to drops.
+
+## Best practices
+
+<Tip>**Lead with the most valuable benefit.** Customers scan; the first benefit gets the click.</Tip>
+<Tip>**Test the purchase flow as a real customer** before launching publicly.</Tip>
+<Tip>**Pair plans with the Cart Membership Upsell widget** to convert one-time buyers into members.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I have multiple plans?">
+    Yes — create a plan per tier (e.g., Bronze, Gold, Platinum).
+  </Accordion>
+  <Accordion title="What if I change the price after launch?">
+    Existing contracts renew at the original price. New customers see the new price.
+  </Accordion>
+  <Accordion title="Does Yuko handle billing failures?">
+    Billing failures follow Shopify's recurring billing flow. The contract is marked as failed in Yuko if Shopify reports the failure.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedMemberships from '/snippets/related-memberships.mdx';
+
+<RelatedMemberships />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

@@ -1,0 +1,177 @@
+---
+title: Cart Redeem Widget
+description: Show customers their points balance, available rewards and VIP status directly in the cart — letting them apply rewards before checkout.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Cart Redeem
+</Note>
+
+## Introduction
+
+The Cart Redeem widget is the central redemption surface on your storefront. It shows the customer's balance, rewards they've already earned, rewards they can claim, and (optionally) their VIP tier progress — with a one-click apply flow at the cart.
+
+## What problem this solves
+
+Customers regularly forget they have points or rewards. A redemption widget at the cart removes the friction: they see what they have, what they can use right now, and they can apply it without leaving the page.
+
+## Where it appears
+
+- Cart page and cart drawer (theme-dependent).
+
+## When to use
+
+- You want to drive redemption rate.
+- You want a visible loyalty hub at the moment of purchase decision.
+- You want to highlight VIP benefits without a separate page.
+
+## Overview
+
+- Displays the customer's **points balance**.
+- Lists **active rewards** the customer has earned.
+- Lists **redeemable rewards** (Ways to Redeem) the customer can claim.
+- Optional **VIP status** section with tier progress.
+- Separate **logged-in** and **logged-out** copy.
+- Fully customisable messages, button labels and icons.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+<Check>You've configured at least one [Way to Redeem](/loyalty/ways-to-redeem/overview).</Check>
+
+## Setup guide
+
+### 1. Configure in Yuko
+
+<Steps>
+  <Step title="Open the widget settings">
+    Go to **Apps → Yuko Loyalty → Loyalty → Widgets → Cart Redeem**.
+  </Step>
+  <Step title="Configure the logged-in state">
+    - **Point balance message** — default: *“You have: `[point_balance]` `[points_label]`”*
+    - **Reward button text** — e.g., *“Redeem rewards”*
+  </Step>
+  <Step title="Configure the logged-out state">
+    - Toggle **Hide widget for logged-out users** if you prefer.
+    - **Login prompt** — default: *“Log in to redeem your `[points_label]` for rewards.”*
+    - **Log in button text** — e.g., *“Log in”*
+  </Step>
+  <Step title="Configure the redemption view">
+    Customise:
+    - **Heading** — *“Redeem rewards”*
+    - **Existing rewards title** — *“Your rewards”*
+    - **Ways to redeem title** — *“Available rewards”*
+    - **Redeem button text** — *“Redeem”*
+    - **Apply button text** — *“Apply code”*
+    - **Reward expiry message** — *“Reward expires on `[discount_expiry_date]`”*
+  </Step>
+  <Step title="Configure VIP status (optional)">
+    Show the customer's tier and next-tier progress:
+    - **VIP status title** — e.g., *“VIP Status”*
+    - **Next tier message** — *“Next tier: `[next_tier]`”*
+    - **Max tier message** — *“You've reached the top tier!”*
+  </Step>
+  <Step title="Set custom placement">
+    Optional: control where in the cart the widget renders.
+  </Step>
+  <Step title="Activate">
+    Toggle the widget **Active**.
+  </Step>
+</Steps>
+
+### 2. Add the widget to your theme
+
+import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
+
+<SetupThemeBlock />
+
+Pick the **Cart** template (and the cart drawer if applicable). Place the widget near the checkout button.
+
+### 3. Verify
+
+<Steps>
+  <Step title="Test logged-in state">
+    Log in as a customer with points and confirm the balance and rewards render.
+  </Step>
+  <Step title="Test logged-out state">
+    Open the cart in a private window. Confirm the login prompt renders (or the widget is hidden, per your config).
+  </Step>
+  <Step title="Test VIP section">
+    If VIP is enabled, confirm the tier and progress show correctly.
+  </Step>
+  <Step title="Test redemption flow">
+    Apply a reward and verify the discount appears at checkout.
+  </Step>
+</Steps>
+
+## Available placeholders
+
+import WidgetPlaceholders from '/snippets/widget-placeholders.mdx';
+
+<WidgetPlaceholders />
+
+## How it works
+
+1. The widget loads the customer's points balance and reward state from Yuko.
+2. For logged-out customers, it shows the login prompt (or hides itself).
+3. For logged-in customers, it shows balance, earned rewards, and claimable rewards.
+4. Clicking **Redeem** issues a Shopify discount code unique to the customer.
+5. Clicking **Apply code** copies the code (or auto-applies it) to the cart.
+6. The discount is then visible at checkout.
+
+### Decision guidance
+
+- **Always show the VIP section** if you have tiers — it drives upgrade behaviour.
+- **Use the logged-out login prompt** rather than hiding the widget — it's a clean acquisition CTA.
+- **Place near the checkout button** for the best conversion-to-redemption ratio.
+
+### Limitations
+
+- Auto-apply behaviour depends on theme support; on some themes the customer needs to manually paste the code.
+- VIP section requires VIP tiers to be enabled.
+- Cart drawer rendering is theme-dependent.
+
+## Examples
+
+- *Premium beauty brand:* Cart Redeem at the bottom of the cart drawer, with the VIP section visible. Average redemption rate up 38% within 30 days of launch.
+- *DTC apparel:* Cart Redeem near the checkout button, login prompt enabled — doubles as a sign-up nudge.
+
+## Best practices
+
+<Tip>**Pair with Cart Earn.** Customers should see what they're earning *and* what they can spend.</Tip>
+<Tip>**Keep button labels in active voice.** “Redeem” is better than “Claim Reward”.</Tip>
+<Tip>**Don't hide the logged-out state.** It's a sign-up opportunity disguised as a widget.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What happens if a customer has no rewards yet?">
+    The widget shows their balance and the available Ways to Redeem they're closest to qualifying for.
+  </Accordion>
+  <Accordion title="Can the widget auto-apply a reward?">
+    Yes — enable auto-apply in the configuration. Theme support for auto-applied codes varies; verify on your store.
+  </Accordion>
+  <Accordion title="Why is the VIP section empty?">
+    Either VIP is not enabled, or the customer hasn't been assigned a tier yet (assignment can take a few minutes after first qualifying activity).
+  </Accordion>
+  <Accordion title="Can I show different rewards to different customers?">
+    Reward visibility follows your campaign exclusions and customer eligibility from **Loyalty Settings**.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import WidgetCrossLinks from '/snippets/onsite-widgets-cross-links.mdx';
+
+<WidgetCrossLinks />
+
+import RelatedWidgets from '/snippets/related-widgets.mdx';
+
+<RelatedWidgets />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

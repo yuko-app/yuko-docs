@@ -1,0 +1,65 @@
+---
+title: Membership Emails
+description: Templates for membership unlock and membership lost moments.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships → Notifications
+</Note>
+
+Membership has two email moments — the upgrade in (unlock) and the drop out (lost). Both are configured in the [Template Editor](/emails/template-editor).
+
+## Membership Unlocked
+
+**Trigger:** A customer's membership contract becomes active (after the plan is purchased and Shopify confirms payment).
+
+**Default subject:** *“Welcome to [plan_name]”*
+
+**Default body summary:** Greeting → welcome message → list of benefits → next renewal date → CTA to the storefront.
+
+**Useful shortcodes:** `[first_name]`, `[plan_name]`, `[plan_price]`, `[next_renewal_date]`.
+
+<Tip>**Lead with benefits, not pricing.** The customer just paid; remind them why.</Tip>
+
+---
+
+## Membership Lost
+
+**Trigger:** A customer's membership contract becomes inactive (cancellation, billing failure, or pause).
+
+**Default subject:** *“Your [plan_name] has ended”*
+
+**Default body summary:** Greeting → the contract has ended → reason (if applicable) → reactivation CTA.
+
+**Useful shortcodes:** `[first_name]`, `[plan_name]`, `[lost_reason]`.
+
+<Tip>**Always include a reactivation CTA.** Many cancellations are reversible.</Tip>
+<Tip>**Keep the tone neutral.** Customers cancel for many reasons; don't assume.</Tip>
+
+---
+
+## Best practices
+
+<Tip>**Make Membership Unlocked feel premium.** Members paid — the email should match that.</Tip>
+<Tip>**Track the reason in `[lost_reason]`.** Different reasons (cancel vs failed billing vs pause) deserve different copy. Use the editor's locale variant feature to maintain alternative versions if needed.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Does Membership Lost fire on pause?">
+    Yes — the contract is no longer active. The reason will be *paused* and the email can be customised to reflect that.
+  </Accordion>
+  <Accordion title="Will the customer get re-welcomed if they reactivate?">
+    Yes — a new contract starts and Membership Unlocked fires again.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedEmails from '/snippets/related-emails.mdx';
+
+<RelatedEmails />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

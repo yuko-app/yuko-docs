@@ -1,0 +1,96 @@
+---
+title: Anniversary
+description: Award customers a yearly points bonus on the anniversary of their account signup.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Anniversary
+</Note>
+
+## Introduction
+
+Reward customers each year on the anniversary of joining your store. It's a powerful loyalty signal: you're remembering them, and you're paying for the relationship.
+
+## What problem this solves
+
+Most stores never thank customers for sticking around. Anniversary points create a structural moment of appreciation tied to a date the customer doesn't even remember setting.
+
+## When to use
+
+- You have customers who've been around for at least a year.
+- You want a recurring engagement moment that doesn't depend on collecting birthdays.
+- You want to reward long-term loyalty without standing up VIP tiers.
+
+## Overview
+
+- Yearly bonus on the customer's signup anniversary.
+- Based on the Shopify customer's `created_at` date.
+- Optional points expiry.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the campaign">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Anniversary**.
+  </Step>
+  <Step title="Set details and points">
+    Enter a campaign name, description and points value (e.g., `150`).
+  </Step>
+  <Step title="Set expiry (optional)">
+    A 30–60 day expiry creates a redemption window.
+  </Step>
+  <Step title="Save & activate">
+    Toggle **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+- Yuko checks each customer's `created_at` date daily.
+- If today's month + day matches the customer's signup, points are credited.
+- A points-earned email can be sent if enabled.
+
+### Decision guidance
+
+- **Pair with VIP** — a tier-based multiplier on the anniversary bonus is a strong signal of preferred status.
+- **Combine with an email** acknowledging the milestone ("3 years with us!").
+
+### Limitations
+
+- Imported customers without a `created_at` value (rare) won't trigger the campaign.
+- Year is matched on month + day only; leap-day signups are awarded on Feb 28 in non-leap years.
+
+## Examples
+
+- An apparel brand awards 200 anniversary points with a 60-day expiry, paired with a *“Thank you for sticking with us”* email.
+
+## Best practices
+
+<Tip>**Send a thank-you email alongside**. The bonus is the carrot; the email is the moment.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What date is the anniversary based on?">
+    The Shopify customer's account creation date.
+  </Accordion>
+  <Accordion title="Will customers earn for past anniversaries?">
+    No. The campaign only fires going forward, on the next matching date.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

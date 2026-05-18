@@ -1,0 +1,132 @@
+---
+title: Reward Types
+description: Pick the right reward for the referrer and the friend.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Referral → Program Setup → Rewards
+</Note>
+
+## Introduction
+
+The referral program supports different reward types for the referrer (existing customer) and the friend (new customer). The two sides are configured independently — you don't have to give the same kind of reward to both.
+
+## What problem this solves
+
+Referrers and friends have different motivations. Referrers want to feel rewarded for sharing; friends want a clear reason to convert. The right reward for one is rarely the right reward for the other.
+
+## Available reward types for referrers
+
+- **Amount discount** — fixed dollar discount on next order.
+- **Percentage off** — percentage discount on next order.
+- **Free shipping** — removes shipping cost.
+- **Free product** — adds a specific product at no cost.
+- **Points** — credits the referrer's loyalty points balance (most common).
+- **Store credit** — adds a wallet balance.
+
+## Available reward types for friends
+
+- **Amount discount** — fixed dollar discount.
+- **Percentage off** — percentage discount.
+- **Free shipping** — removes shipping cost.
+- **Free product** — adds a specific product at no cost.
+
+Friend rewards are **discount-based only** — they're applied as the new customer checks out for the first time.
+
+## Configuration options
+
+For both referrer and friend rewards, you can set:
+
+- **Reward value** — the dollar / percent / point amount.
+- **Minimum purchase** (friend rewards) — friend must spend at least this to qualify.
+- **Reward expiry** — how long after issuance the reward stays valid.
+- **Maximum redemptions per referrer** — cap how many friends one customer can refer for the reward.
+
+## Decision guidance
+
+### Picking the referrer reward
+
+<AccordionGroup>
+  <Accordion title="Points (most common)">
+    Best for engagement-led programs. Slots into the existing loyalty economy and lets the referrer redeem on whatever they want.
+  </Accordion>
+  <Accordion title="Store credit">
+    Best for premium brands. Feels like *“cash on file”* and avoids the discount-coupon vibe.
+  </Accordion>
+  <Accordion title="Discount (amount or %)">
+    Best when you want quick conversion of the referrer back to a purchase.
+  </Accordion>
+  <Accordion title="Free product">
+    Best for high-tier referrers who already buy regularly.
+  </Accordion>
+</AccordionGroup>
+
+### Picking the friend reward
+
+<AccordionGroup>
+  <Accordion title="Amount discount">
+    Predictable and easy to communicate. *“Get $10 off your first order.”*
+  </Accordion>
+  <Accordion title="Percentage off">
+    Best for high-AOV stores where 10–20% is meaningful in absolute terms.
+  </Accordion>
+  <Accordion title="Free shipping">
+    Best where shipping is a known cart-abandonment driver.
+  </Accordion>
+  <Accordion title="Free product">
+    Best for product launches and discovery items — puts a specific item in the friend's hand.
+  </Accordion>
+</AccordionGroup>
+
+### Combinations that work
+
+| Referrer reward | Friend reward | Why it works |
+| --- | --- | --- |
+| 500 points | $10 off | Engagement-focused; ties referrer back to loyalty program |
+| $20 store credit | 15% off | Discount-led; clean for premium brands |
+| Free product | Free shipping | Non-cash; reads like a gift on both sides |
+
+## How it works
+
+- Both rewards are issued when the friend's first order is paid.
+- If the order is refunded, both rewards are reversed.
+- VIP multipliers apply to point-based referrer rewards.
+- Friend rewards are issued as Shopify discount codes.
+
+### Limitations
+
+- Friend rewards must be discount-based — you cannot award points to a brand-new customer.
+- The friend reward is single-use; subsequent orders don't reuse it.
+- One-active-referral per friend.
+
+## Examples
+
+- *Engagement program:* Referrer earns 500 points, friend gets $10 off.
+- *Premium DTC:* Referrer earns $20 store credit, friend gets 15% off + free shipping.
+- *Launch promo:* Referrer earns a free trial-size product, friend gets free shipping + 10% off.
+
+## Best practices
+
+<Tip>**Don't make either side feel cheap.** A $1 discount looks like a fee.</Tip>
+<Tip>**Match perceived value on both sides.** Wildly asymmetric rewards (e.g., free product for friend, $1 to referrer) hurt referrer motivation.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I award points to the friend?">
+    No — friend rewards are discount-based only. The friend can earn points the normal way after their first order.
+  </Accordion>
+  <Accordion title="Can I run multiple reward configurations?">
+    No — one configuration per program. Use Workflows for more complex referral flows.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedReferrals from '/snippets/related-referrals.mdx';
+
+<RelatedReferrals />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

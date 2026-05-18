@@ -1,0 +1,107 @@
+---
+title: Action Nodes
+description: Send email, credit or debit points, issue a coupon — the things workflows actually do.
+---
+
+<Note>
+**Where to find this:** Inside the workflow editor, click **+** between any two nodes and pick an action node.
+</Note>
+
+## Available action nodes
+
+### Send Email
+
+Sends a custom email through Yuko's email engine, using a template configured in **Email Notifications**.
+
+- Pick the template at node configuration.
+- Shortcodes are populated from the customer record + workflow context.
+- Sends are logged in the customer activity feed.
+
+<Tip>**Create the template before adding the node.** Workflow emails reuse the same templates as automated notifications.</Tip>
+
+---
+
+### Credit Points
+
+Adds points to the customer's balance — typically as a goodwill or milestone bonus.
+
+- Set the points value (fixed) or a formula (e.g., `order_total * 0.1`).
+- Optional reason note (shown in the activity feed).
+- VIP multipliers do **not** apply to workflow-credited points.
+
+<Tip>**Use this for one-off goodwill** (a delivery delay, a launch bonus). For routine earning, use a Way to Earn campaign instead.</Tip>
+
+---
+
+### Debit Points
+
+Removes points from the customer's balance.
+
+- Set the points value (fixed).
+- Optional reason note.
+- Won't reduce the balance below zero.
+
+<Tip>**Always include a reason note.** Customers will see this in their activity feed.</Tip>
+<Warning>Use Debit Points carefully — customers notice deductions much more than credits.</Warning>
+
+---
+
+### Issue Coupon
+
+Issues a Shopify discount code unique to the customer.
+
+- Set the discount type (amount / percentage / free shipping / free product).
+- Set the value and any expiry.
+- Optional minimum cart amount.
+- The code is delivered via the next node (typically a Send Email).
+
+<Tip>**Pair Issue Coupon with Send Email.** Otherwise the customer never sees the code.</Tip>
+
+---
+
+## How action nodes execute
+
+- Action nodes run synchronously in workflow order.
+- Failures (e.g., a Send Email that bounces) are logged and the workflow continues to the next node unless you've set otherwise.
+- All actions appear in the customer's activity feed.
+
+### Decision guidance
+
+- **Send Email + Issue Coupon** is the most common pairing — a personalised email with a unique code.
+- **Credit Points + Send Email** for milestone celebrations (*“You just hit 5 orders — here are 500 bonus points”*).
+- **Debit Points sparingly.** Common use case: clawing back fraud-detected points outside Yuko's auto-refund flow.
+
+### Limitations
+
+- One action per node — stack nodes if you need multiple actions.
+- Send Email uses templates configured in **Email Notifications**; raw HTML isn't supported.
+- Issue Coupon creates a Shopify discount code subject to Shopify's combinability rules.
+
+## Best practices
+
+<Tip>**Test each action node** by sending a test customer through the workflow.</Tip>
+<Tip>**Don't put more than 3 actions in a row** without a wait or condition — it overwhelms the customer.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I send SMS from a workflow?">
+    Not natively in v1. Use a [Partner Node](/workflows/partner-nodes) (KwikEngage) or hand off to your SMS tool via integration.
+  </Accordion>
+  <Accordion title="Can workflows update Shopify customers (e.g., add a tag)?">
+    Not directly. Use the **Loyalty Settings → Shopify customer tagging** feature for tier tags, or hand off to Shopify Flow.
+  </Accordion>
+  <Accordion title="What happens if a customer gets two Issue Coupon nodes in a row?">
+    Two coupons are issued. Email both or revoke one.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedWorkflows from '/snippets/related-workflows.mdx';
+
+<RelatedWorkflows />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

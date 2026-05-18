@@ -1,0 +1,105 @@
+---
+title: Order List Point Balance Widget
+description: Show the customer's current points balance on their Shopify order history page.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Order List Balance
+</Note>
+
+## Introduction
+
+Display the customer's current points balance at the top of their Shopify order history page — a visible reminder of the program every time they check past orders.
+
+## What problem this solves
+
+Returning customers visit their order history more than they visit your loyalty hub. Surfacing the balance here keeps the program top-of-mind without forcing a click.
+
+## Where it appears
+
+- The customer's order history page (`/account` or new customer accounts).
+
+## When to use
+
+- You want a passive reminder of the program in the customer's account flow.
+- You want returning customers to see their balance without seeking it out.
+
+## Overview
+
+- Single-line balance display.
+- Customisable message.
+- Works on legacy and new customer account pages.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+### 1. Configure in Yuko
+
+<Steps>
+  <Step title="Open the widget settings">
+    Go to **Apps → Yuko Loyalty → Loyalty → Widgets → Order List Balance**.
+  </Step>
+  <Step title="Configure the message">
+    Default: *“Your balance: `[point_balance]` `[points_label]`”*.
+  </Step>
+  <Step title="Activate">
+    Toggle the widget **Active**.
+  </Step>
+</Steps>
+
+### 2. Add to Shopify
+
+import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
+
+<SetupThemeBlock />
+
+When choosing the template, pick the **Customer account / order history** page.
+
+### 3. Verify
+
+Log in as a real customer and confirm the balance is shown above the order list.
+
+## Available placeholders
+
+import WidgetPlaceholders from '/snippets/widget-placeholders.mdx';
+
+<WidgetPlaceholders />
+
+## How it works
+
+- Reads the logged-in customer's points balance.
+- Renders the message with the balance substituted.
+- Updates on page reload (not realtime).
+
+### Decision guidance
+
+- **Pair with the Customer Account Page** for a fully integrated account experience.
+- **Use this on legacy customer accounts** if you can't use the Customer Account extension.
+
+### Limitations
+
+- Only renders for logged-in customers.
+- Hides itself if the customer has zero balance and no activity.
+
+## Examples
+
+- *“Your balance: 480 Stars”* shown above the customer's order history.
+
+## Best practices
+
+<Tip>**Keep it minimal.** A balance line is enough; don't try to fit the full hub here.</Tip>
+
+## Related
+
+import WidgetCrossLinks from '/snippets/onsite-widgets-cross-links.mdx';
+
+<WidgetCrossLinks />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

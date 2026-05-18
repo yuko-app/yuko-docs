@@ -1,0 +1,128 @@
+---
+title: Checkout Earn Widget
+description: Show customers the points they'll earn for this order, inside Shopify Checkout.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Checkout Earn
+</Note>
+
+## Introduction
+
+The Checkout Earn widget surfaces the points the customer will earn on this exact order, rendered natively inside Shopify Checkout via the Checkout UI extension.
+
+## What problem this solves
+
+Shopify Checkout is locked down — no theme code, no scripts. Without a Checkout UI extension, your loyalty value disappears at the moment customers reach for their wallet.
+
+## Where it appears
+
+- Shopify Checkout (information, shipping, payment pages).
+
+## When to use
+
+- You're on Shopify Plus or a plan with Checkout Extensibility.
+- You want loyalty visibility through to payment, not just at cart.
+
+## Overview
+
+- Renders inside Shopify Checkout via the Checkout UI extension.
+- Calculates earnable points for the current order.
+- Customisable title and message.
+- Plan-gated by Shopify.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+<Check>Your Shopify plan supports Checkout Extensibility.</Check>
+<Check>The Checkout UI extension has been activated — see [Activate the Checkout UI Extension](/installation-and-setup/checkout-ui-extension).</Check>
+
+## Setup guide
+
+### 1. Configure in Yuko
+
+<Steps>
+  <Step title="Open the widget settings">
+    Go to **Apps → Yuko Loyalty → Loyalty → Widgets → Checkout Earn**.
+  </Step>
+  <Step title="Configure the title">
+    Default: *“Earn `[points_label]`”*.
+  </Step>
+  <Step title="Configure the message">
+    Default: *“You'll earn `[points_value]` `[points_label]` for this purchase!”*.
+  </Step>
+  <Step title="Activate">
+    Toggle the widget **Active**.
+  </Step>
+</Steps>
+
+### 2. Add the widget in Shopify Checkout
+
+import SetupCheckout from '/snippets/setup-checkout-extension.mdx';
+
+<SetupCheckout />
+
+When choosing the placement, put the widget near the order summary or just above the payment section.
+
+### 3. Verify
+
+Proceed to a test checkout and confirm the widget renders with the calculated points.
+
+## Available placeholders
+
+import WidgetPlaceholders from '/snippets/widget-placeholders.mdx';
+
+<WidgetPlaceholders />
+
+## How it works
+
+1. Shopify renders the Yuko Checkout Earn extension at checkout.
+2. The extension calls Yuko's API to fetch the customer's earning rate.
+3. The earnable points for the current cart are calculated and displayed.
+
+### Decision guidance
+
+- **Place near the order summary** for visibility.
+- **Place near payment** for last-second conversion.
+
+### Limitations
+
+- Requires Checkout Extensibility (Shopify Plus / eligible plans).
+- Visual customisation is constrained by Shopify's extension surface.
+- Guest checkouts may show a generic message until a customer record is created.
+
+## Examples
+
+- *"Earn 200 Stars for this purchase!"* placed above the payment section on a Plus checkout.
+
+## Best practices
+
+<Tip>**Test in a real checkout preview.** Shopify caches checkout layouts heavily; staging confirmations are unreliable.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="My checkout doesn't show the widget">
+    Confirm Checkout Extensibility is enabled and the extension is added in the Checkout Editor. See [Activate the Checkout UI Extension](/installation-and-setup/checkout-ui-extension).
+  </Accordion>
+  <Accordion title="What about the Order Status / Thank-you page?">
+    See [Order Status Earn Widget](/onsite-widgets/order-status-earn) — it's a separate widget that works on more plans.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import WidgetCrossLinks from '/snippets/onsite-widgets-cross-links.mdx';
+
+<WidgetCrossLinks />
+
+import RelatedWidgets from '/snippets/related-widgets.mdx';
+
+<RelatedWidgets />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

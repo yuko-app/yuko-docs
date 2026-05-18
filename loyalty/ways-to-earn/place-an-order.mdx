@@ -1,0 +1,135 @@
+---
+title: Place an Order
+description: Reward customers with points every time they complete a paid order on your Shopify store. The cornerstone of any loyalty program.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Place an Order
+</Note>
+
+## Introduction
+
+Reward customers with loyalty points whenever they complete a paid order. This is the highest-impact campaign in any loyalty program: it ties earning directly to revenue and is the foundation for repeat purchases.
+
+## What problem this solves
+
+Customers who buy once often don't return. By visibly rewarding every order, you give shoppers a reason to come back to your store instead of a competitor's. The points balance becomes a switching cost.
+
+## When to use
+
+- You want every paying customer enrolled in earning, not just high-spenders.
+- You're optimising for repeat-purchase rate or customer lifetime value.
+- You want a points economy where redemption rewards feel attainable.
+- You want to apply a VIP multiplier on top of base earning.
+
+## Overview
+
+- Award **fixed points** per order or **value-based points** (e.g., 1 point per $1 spent).
+- Optional **delay** before crediting (e.g., wait 7 days to skip refunds).
+- Optional **expiry** on awarded points.
+- **Exclude** specific products, collections or customers.
+- Stacks with VIP **multipliers** automatically.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the campaign">
+    Login to your Shopify admin, then go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Place an Order**.
+  </Step>
+  <Step title="Configure basic details">
+    - **Campaign name** — internal label (e.g., *“Order earn — 1 pt per $1”*).
+    - **Description** — short note for your team.
+  </Step>
+  <Step title="Choose how points are earned">
+    Pick a **Points Earning Method**:
+    <AccordionGroup>
+      <Accordion title="Fixed points per order">
+        Award the same amount on every order. Best for stores with consistent basket sizes or to keep the math simple.
+      </Accordion>
+      <Accordion title="Points per spend">
+        Award points proportional to order value (e.g., 1 pt per $1). Best when you want bigger orders to earn proportionally more.
+      </Accordion>
+    </AccordionGroup>
+  </Step>
+  <Step title="Set the points value">
+    Enter the points amount or ratio.
+  </Step>
+  <Step title="Configure additional settings (optional)">
+    - **Delay** — hold the credit for N days to absorb refunds.
+    - **Expiry** — have points expire after a fixed window.
+    - **Exclusions** — skip specific products, collections or tagged customers.
+  </Step>
+  <Step title="Save & activate">
+    Toggle the campaign **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+1. A customer completes a Shopify order.
+2. Yuko receives the `orders/paid` (or equivalent) webhook from Shopify.
+3. The order is checked against active exclusions and the customer's eligibility.
+4. Points are calculated using your chosen method, multiplied by any active VIP tier multiplier.
+5. If a delay is set, the credit is queued; otherwise it lands on the customer's balance immediately.
+6. The transaction appears in the customer's activity feed.
+
+### Decision guidance
+
+- **Use fixed points** when basket size doesn't vary much, or for early-stage programs where simplicity wins.
+- **Use points-per-spend** when you sell high-ticket items or want the program to scale with revenue.
+- **Add a 7–14 day delay** if your refund window is meaningful — it avoids clawing back points after the fact.
+- **Set expiry (12–24 months)** only if your goal is to push redemption; otherwise leave points perpetual.
+
+### Limitations
+
+- Points are awarded once per order; partial fulfilments don't create extra credits.
+- Refunded orders trigger a points reversal automatically when processed within Shopify.
+- The VIP tier multiplier is applied at the moment of award — not retroactively if a customer changes tier later.
+
+## Examples
+
+- **Fashion store**: 1 point per $1, 14-day delay → simple, refund-safe.
+- **Subscription brand**: 50 points fixed per order regardless of value → predictable economy.
+- **High-AOV electronics**: 2 points per $1 with 30-day delay → encourages bigger baskets.
+
+## Best practices
+
+<Tip>**Keep the math obvious.** *“1 point = $0.01 off”* is faster to grasp than *“100 points = 5% off your next order”*.</Tip>
+<Tip>**Default the delay on.** A 7-day delay is invisible to most customers but saves you from refund-driven negative balances.</Tip>
+<Tip>**Don't exclude every sale collection.** Wide exclusions train customers to ignore the program. Reserve exclusions for promo-only SKUs.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Are points awarded for unpaid or pending orders?">
+    No. Points are only awarded once Shopify marks the order as paid.
+  </Accordion>
+  <Accordion title="What happens to points when an order is refunded?">
+    Yuko reverses the awarded points automatically. If a partial refund is issued, the corresponding portion of points is removed.
+  </Accordion>
+  <Accordion title="Can I exclude products from earning points?">
+    Yes — set exclusions by product, collection, or customer tag in the campaign's additional settings.
+  </Accordion>
+  <Accordion title="How do VIP multipliers interact with this campaign?">
+    The VIP tier multiplier is applied on top of your base points value at the moment of award.
+  </Accordion>
+  <Accordion title="Why don't guest checkouts earn points?">
+    Loyalty requires a customer record. Configure guest checkouts to auto-create accounts in **Loyalty Settings → Customer eligibility**.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

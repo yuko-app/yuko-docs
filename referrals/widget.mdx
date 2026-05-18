@@ -1,0 +1,139 @@
+---
+title: Storefront Widget
+description: Add the referral share widget to your storefront so customers can find their referral link, share it, and track successful referrals.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Referral → Widget
+</Note>
+
+## Introduction
+
+The Referrals widget is the storefront surface where customers find their personal referral link, share it, and see how many successful referrals they've made.
+
+## What problem this solves
+
+Customers can't refer friends if they can't find their referral link. The widget makes the link visible across the storefront in the places customers are already looking.
+
+## Where it appears
+
+- **Customer Account hub** — when the Customer Account extension is enabled.
+- **Rewards Landing Page** — as a section.
+- **Floating Launcher panel** — when expanded.
+- **Dedicated page** (optional) — if you embed the app block on a Shopify page like `/pages/refer-a-friend`.
+
+## When to use
+
+- Always, once your referral program is configured.
+- Add a dedicated page if you're driving traffic to referrals from email or ads.
+
+## Overview
+
+- Per-customer share link.
+- One-click copy and share buttons matching the channels enabled in [Program Setup](/referrals/program-setup).
+- Shows the customer's referral count and rewards earned to date.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+<Check>The referral program is enabled in **Apps → Yuko Loyalty → Referral → Program Setup**.</Check>
+
+## Setup guide
+
+### 1. Configure in Yuko
+
+<Steps>
+  <Step title="Open the widget settings">
+    Go to **Apps → Yuko Loyalty → Referral → Widget**.
+  </Step>
+  <Step title="Customise content">
+    Edit:
+    - Heading (e.g., *“Refer a friend, both get $10 off”*)
+    - Description
+    - Share button labels per channel
+  </Step>
+  <Step title="Toggle sharing channels">
+    Enable the channels you want surfaced. These mirror what you enabled in Program Setup.
+  </Step>
+  <Step title="Activate">
+    Toggle the widget **Active**.
+  </Step>
+</Steps>
+
+### 2. Where the widget appears
+
+The Referrals widget surfaces automatically inside the **Customer Account hub**, the **Rewards Landing Page** and the **Floating Launcher** panel — no separate placement needed.
+
+For a **dedicated Refer a Friend page**:
+
+import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
+
+<SetupThemeBlock />
+
+When choosing the page template, open a Shopify page (e.g., `/pages/refer-a-friend`) and add the **Yuko Referral Widget** app block.
+
+### 3. Verify
+
+<Steps>
+  <Step title="Log in as a real customer">
+    Use a non-staff account on your live store.
+  </Step>
+  <Step title="Open the Customer Account hub">
+    Confirm the share link is unique to that customer.
+  </Step>
+  <Step title="Test sharing through each enabled channel">
+    Open the share dialog for each channel and confirm the pre-filled content looks right.
+  </Step>
+</Steps>
+
+## How it works
+
+1. Each customer is automatically assigned a unique referral code.
+2. The widget renders the customer's link with their code embedded.
+3. Sharing channels open the device's native share intents with pre-filled content.
+4. Friends who click are tracked via cookie + UTM until they convert.
+
+### Decision guidance
+
+- **Always show the widget in the Customer Account hub.** It's the most-visited surface for logged-in customers.
+- **Use a dedicated Refer a Friend page** as the destination for marketing emails about referrals.
+
+### Limitations
+
+- The widget requires the customer to be logged in.
+- The Floating Launcher must be enabled for the widget to appear in its panel.
+- Cookie-blocking browsers may break referral attribution.
+
+## Examples
+
+- Customer Account hub heading: *“Share Yuko Beauty with friends. Earn 500 points per referral.”*
+- Dedicated landing page: *“Refer a friend. Both get $10 off.”*
+
+## Best practices
+
+<Tip>**Promote the dedicated page from your transactional emails.** Order confirmation and shipping notification are the highest-open-rate emails you send.</Tip>
+<Tip>**Match share copy to the channel.** WhatsApp messages should sound personal; Facebook posts can be brand-led.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What if a customer is logged out?">
+    The widget prompts them to log in or create an account.
+  </Accordion>
+  <Accordion title="Can I customise the colour scheme?">
+    Branding is shared across all Yuko widgets — see [Branding & Locale](/onsite-widgets/branding-and-locale).
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedReferrals from '/snippets/related-referrals.mdx';
+
+<RelatedReferrals />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

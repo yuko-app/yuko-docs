@@ -1,0 +1,132 @@
+---
+title: Program Settings
+description: Configure your program-wide loyalty rules — points label, conversion ratio, customer eligibility, exclusions and Shopify customer tagging.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Settings
+</Note>
+
+## Introduction
+
+This is the single page where you define the rules every campaign and reward inherits: what points are called, how many points equal one unit of currency, which customers are eligible to earn, and how customers are tagged in Shopify.
+
+## What problem this solves
+
+In most loyalty apps, settings are scattered across each campaign and reward. Yuko centralises program-wide rules so you set them once and every Way to Earn / Way to Redeem honours them.
+
+## When to use
+
+- During initial setup.
+- When changing your points label, currency or conversion ratio.
+- When you launch a new market and need to exclude specific countries.
+- When you change customer eligibility (e.g., “only logged-in customers earn”).
+
+## Overview
+
+- **Points label** — the display name customers see.
+- **Points-to-currency ratio** — how many points equal one unit of your store currency.
+- **Customer eligibility** — who can earn (all customers, registered only, tagged customers).
+- **Exclusions** — products, collections or customer tags excluded from earning.
+- **Shopify customer tagging** — push tier and program tags back to Shopify customers.
+- **Reset activities** — wipe customer points data (use carefully).
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+<Steps>
+  <Step title="Open Loyalty Settings">
+    Login to your Shopify admin and go to **Apps → Yuko Loyalty → Loyalty → Settings**.
+  </Step>
+  <Step title="Set points label and conversion">
+    - **Points label**: what customers see in widgets and emails (e.g., *Stars*, *Coins*).
+    - **Conversion ratio**: e.g., `100 points = $1`. This is the implicit value used across redemption math.
+  </Step>
+  <Step title="Configure customer eligibility">
+    Choose who can earn:
+    <AccordionGroup>
+      <Accordion title="All customers">
+        Anyone with a customer record can earn. Best for most stores.
+      </Accordion>
+      <Accordion title="Registered only">
+        Guest checkouts don't earn unless they create an account.
+      </Accordion>
+      <Accordion title="Tagged customers">
+        Only customers with a specific Shopify tag earn. Useful for invite-only programs.
+      </Accordion>
+    </AccordionGroup>
+  </Step>
+  <Step title="Set exclusions">
+    Add products, collections or customer tags that should not earn or redeem points.
+  </Step>
+  <Step title="Configure Shopify customer tagging">
+    Toggle on to write the customer's loyalty status back to their Shopify record (e.g., `yuko-tier-gold`). This unlocks Shopify-native segmentation.
+  </Step>
+  <Step title="Save">
+    Click **Save**. Changes apply immediately to all future earn and redeem events.
+  </Step>
+</Steps>
+
+## How it works
+
+- **Points label** is purely cosmetic; internally Yuko stores points as integers.
+- **Conversion ratio** drives reward math: a 500-point reward at 100 pts = $1 is worth $5.
+- **Eligibility** is checked at the moment Yuko receives an earning event. Ineligible customers' events are dropped silently.
+- **Exclusions** are applied at calculation time — the order is ingested, but excluded line items don't contribute points.
+- **Shopify customer tagging** runs whenever a tier changes or a customer joins/leaves the program.
+
+### Decision guidance
+
+- **Pick a points label that fits your brand** but isn't confusing. *Points*, *Stars*, *Bucks* all work.
+- **Use a clean ratio**. `100 pts = $1` is the easiest mental model. Avoid awkward ratios like 137 pts = $1.
+- **Default to All customers** for eligibility. Restrict only if you have a clear business reason.
+- **Enable Shopify tagging** if you do email or ads segmentation — it pays for itself the first campaign.
+
+### Limitations
+
+- Changing the conversion ratio doesn't retroactively re-cost existing customer rewards.
+- Excluding a product retroactively doesn't claw back already-credited points.
+- **Reset activities** is destructive and cannot be undone.
+
+## Examples
+
+- A boutique uses *Stars*, 100 stars = $1, all customers eligible, with sale-collection exclusions on Black Friday week.
+- A B2B brand uses *Credits*, registered customers only, with a `wholesale` tag exclusion to keep wholesale orders out of the loyalty pool.
+
+## Best practices
+
+<Tip>**Lock in your label and ratio early.** Customers anchor on these in their first interaction with the program.</Tip>
+<Tip>**Tag customers in Shopify**. The downstream marketing flexibility is worth the toggle.</Tip>
+<Warning>**Don't run Reset activities on a live program** unless you've exported customer data first. The action is irreversible.</Warning>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I change the points label after launch?">
+    Yes — but customers will see the new label immediately, including in past activity entries. Pick the right label up front.
+  </Accordion>
+  <Accordion title="What does Reset activities do?">
+    It wipes all customer points balances, transactions and earned rewards. Customers and program configuration remain. Use it only on a fresh setup or when intentionally wiping a test environment.
+  </Accordion>
+  <Accordion title="How are exclusions evaluated?">
+    Exclusions apply at line-item level. If only some products in an order are excluded, the rest still earn.
+  </Accordion>
+  <Accordion title="What tags does Yuko write to Shopify customers?">
+    Tags include `yuko-customer`, `yuko-tier-<tier>`, and any custom tags configured in the **Shopify tagging** settings.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

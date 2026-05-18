@@ -1,0 +1,67 @@
+---
+title: Workflow Analytics
+description: Track entries, completions and step-level drop-off for every workflow.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Workflows → [a workflow] → Analytics
+</Note>
+
+## Introduction
+
+Every workflow has a built-in Analytics tab that shows how customers move through it — how many entered, how many reached each node, where they dropped off.
+
+## What problem this solves
+
+Without analytics, workflows are a black box. With them, you can see exactly which step is killing your win-back flow or which condition is excluding too many customers.
+
+## What's tracked
+
+- **Entries** — customers who hit the trigger.
+- **Completions** — customers who reached an Exit node.
+- **Step-level visits** — how many customers reached each node.
+- **Drop-off** — the difference between consecutive nodes.
+- **Exit reasons** — grouped by exit-node label.
+
+## Reading the analytics
+
+<Steps>
+  <Step title="Open Analytics">
+    Open the workflow and click the **Analytics** tab.
+  </Step>
+  <Step title="Pick a time range">
+    Default is last 30 days. Adjust to compare to a previous period.
+  </Step>
+  <Step title="Find the biggest drop">
+    Scan the funnel — the step where the most customers leave is your highest-leverage fix.
+  </Step>
+  <Step title="Drill into a node">
+    Click any node to see who reached it and when.
+  </Step>
+</Steps>
+
+## Decision guidance
+
+- **A condition with > 50% drop-off** is too narrow — widen it or split the workflow.
+- **A wait with < 50% completion** suggests customers acted (or unsubscribed) before the wait expired — shorten it.
+- **An action with high failure** indicates an integration problem — check the integration's logs.
+
+## Limitations
+
+- Analytics are aggregate — individual customer paths are visible from the customer profile, not here.
+- Historical data isn't backfilled if a workflow is edited — a major edit creates a new analytics window.
+
+## Best practices
+
+<Tip>**Review analytics weekly for the first month** after launching a workflow.</Tip>
+<Tip>**Compare time-on-time** — a workflow that worked in March may stop working in November.</Tip>
+
+## Related
+
+import RelatedWorkflows from '/snippets/related-workflows.mdx';
+
+<RelatedWorkflows />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

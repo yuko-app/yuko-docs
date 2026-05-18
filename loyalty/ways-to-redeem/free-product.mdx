@@ -1,0 +1,111 @@
+---
+title: Free Product
+description: Let customers redeem points for a specific free product added to their cart.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Redeem → Free Product
+</Note>
+
+## Introduction
+
+Allow customers to spend points to add a specific product to their cart at no cost. Powerful for moving inventory, promoting new launches and giving high-tier customers a tangible perk.
+
+## What problem this solves
+
+A free product feels more generous than a discount of equivalent value. It's also a controlled way to put a specific item into customers' hands — a launch sample, a slow-moving SKU, or a brand-essential trial.
+
+## When to use
+
+- You're promoting a specific product or launch.
+- You want a high-perceived-value reward.
+- You want to move slow-moving inventory through the loyalty channel.
+
+## Overview
+
+- Customer redeems and the chosen product is added to their cart at $0.
+- Single product per reward (create multiple rewards for multiple products).
+- Optional minimum cart purchase to claim.
+- Optional combinability and expiry.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>The product you want to give away is published, in stock and has at least one variant.</Check>
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the reward">
+    Login to your Shopify admin, then go to **Apps → Yuko Loyalty → Loyalty → Ways to Redeem → Free Product**.
+  </Step>
+  <Step title="Configure basic details">
+    Set reward name and description.
+  </Step>
+  <Step title="Pick the free product">
+    Use the Shopify resource picker to select the product (and variant if needed).
+  </Step>
+  <Step title="Set points required">
+    Enter the points cost.
+  </Step>
+  <Step title="Configure additional settings">
+    - **Minimum purchase amount** — prevent a $0 cart with only the free product.
+    - **Combinability** with other discounts.
+    - **Expiry** — how long after issue the reward stays valid.
+  </Step>
+  <Step title="Save & activate">
+    Toggle **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+1. Customer redeems the reward.
+2. Yuko issues a Shopify discount code that adds the product to cart at $0.
+3. The customer must add at least one paid item to the cart (if minimum is set) and check out.
+4. On order completion, the free product is recorded in the customer's redemption history.
+
+### Decision guidance
+
+- **Set a minimum purchase** so the free product comes alongside a paying order.
+- **Limit redemption per customer** if the product is high-value or low-stock.
+- **Pair with a launch announcement** to make the redemption feel like a privilege.
+
+### Limitations
+
+- Out-of-stock products cannot be redeemed; the redemption fails at checkout.
+- Variant-specific rewards require the variant to be selected at reward setup time.
+
+## Examples
+
+- *Sample drop:* 800 pts for a free trial-size product, $50 minimum order, 30-day expiry.
+- *Tier-only perk:* 0 pts (auto-issued via VIP) for a free anniversary candle, $75 min order.
+
+## Best practices
+
+<Tip>**Pick products that benefit from being tried**. Trials and discovery items convert into repeat purchases.</Tip>
+<Tip>**Keep stock topped up** — a redeemed-but-unfulfilled free product is a worse experience than no reward.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What happens if the product goes out of stock after redemption?">
+    The customer can still apply the discount but Shopify won't ship out-of-stock items. Refund the order if needed.
+  </Accordion>
+  <Accordion title="Can I offer multiple free products as one reward?">
+    Not in a single reward — create multiple Free Product rewards or use a manual workflow to gift multiple items.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedRewards from '/snippets/related-rewards.mdx';
+
+<RelatedRewards />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

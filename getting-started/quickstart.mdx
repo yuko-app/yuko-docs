@@ -1,0 +1,132 @@
+---
+title: Quickstart (Shopify)
+description: Install Yuko, configure your first earn and redeem rules, and launch a working loyalty program in under an hour.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Home → Get started checklist
+</Note>
+
+This quickstart walks you from a fresh install to a live loyalty program. By the end you'll have:
+
+- Yuko installed and configured for your store currency.
+- One **Way to Earn** (Place an Order) and one **Way to Redeem** (Amount Discount).
+- The Cart Earn and Cart Redeem widgets visible on your storefront.
+- A test customer with points credited from a real order.
+
+<Info>
+If you'd rather have someone walk you through this live, [book a free 30-minute setup call](https://cal.com/rameshelamathi/yuko-demo).
+</Info>
+
+## Before you start
+
+<Check>You have admin access to your Shopify store.</Check>
+<Check>Your store is on a plan that supports public Shopify apps (any paid plan).</Check>
+<Check>Your active theme is Online Store 2.0 — see [Theme compatibility](/getting-started/theme-compatibility).</Check>
+
+## Step 1 — Install Yuko
+
+<Steps>
+  <Step title="Open the Shopify App Store listing">
+    Visit [apps.shopify.com/yuko](https://apps.shopify.com/yuko) and click **Install**.
+  </Step>
+  <Step title="Approve the permissions">
+    Yuko requests scopes for orders, customers, products and discounts. Approve to continue.
+  </Step>
+  <Step title="Pick a plan">
+    Choose a plan and confirm the Shopify subscription charge.
+  </Step>
+</Steps>
+
+Full details: [Install Yuko on Shopify](/installation-and-setup/install-on-shopify).
+
+## Step 2 — Configure your program
+
+1. Login to your Shopify admin and open **Apps → Yuko Loyalty**.
+2. Go to **Loyalty → Settings**.
+3. Set your **Points label** (e.g., *Points*, *Stars*, *Coins*).
+4. Set your **Points-to-currency ratio** (e.g., 100 points = $1).
+5. Toggle **Loyalty program** to **Active** and click **Save**.
+
+More detail: [Program Settings](/loyalty/program-settings).
+
+## Step 3 — Add a Way to Earn
+
+<Steps>
+  <Step title="Open Ways to Earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn**, and click **Place an Order**.
+  </Step>
+  <Step title="Configure the campaign">
+    Choose **Points per spend**, set `1 point per $1`, and add a 7-day delay so refunds clean up automatically.
+  </Step>
+  <Step title="Activate">
+    Toggle the campaign **Active** and click **Save**.
+  </Step>
+</Steps>
+
+Full guide: [Place an Order](/loyalty/ways-to-earn/place-an-order).
+
+## Step 4 — Add a Way to Redeem
+
+<Steps>
+  <Step title="Open Ways to Redeem">
+    Go to **Apps → Yuko Loyalty → Loyalty → Ways to Redeem**, and click **Amount Discount**.
+  </Step>
+  <Step title="Configure the reward">
+    Set `500 points = $5 off` with a $25 minimum order.
+  </Step>
+  <Step title="Activate">
+    Toggle the reward **Active** and click **Save**.
+  </Step>
+</Steps>
+
+Full guide: [Amount Discount](/loyalty/ways-to-redeem/amount-discount).
+
+## Step 5 — Enable widgets in your theme
+
+<Steps>
+  <Step title="Enable the Theme App Embed">
+    Open the Shopify Theme Editor and toggle the **Yuko** app embed on. See [Theme App Embed](/installation-and-setup/theme-app-embed).
+  </Step>
+  <Step title="Add the Cart Earn and Cart Redeem blocks">
+    From the Cart template, add the **Yuko Cart Earn** and **Yuko Cart Redeem** blocks near the checkout button.
+  </Step>
+  <Step title="Save and preview">
+    Click **Save** and open your live cart. Add a product and confirm both widgets render.
+  </Step>
+</Steps>
+
+## Step 6 — Test with a real order
+
+<Steps>
+  <Step title="Place a test order">
+    Use a customer account on your storefront to place a small real order.
+  </Step>
+  <Step title="Wait for the credit">
+    After Shopify marks the order as paid, points are credited automatically (subject to any delay you configured).
+  </Step>
+  <Step title="Verify in Yuko">
+    Open **Apps → Yuko Loyalty → Loyalty → Customers**, click the test customer, and confirm the points balance and activity entry.
+  </Step>
+</Steps>
+
+## What to do next
+
+<CardGroup cols={2}>
+  <Card title="Add more Ways to Earn" icon="hand-holding-dollar" href="/loyalty/ways-to-earn/overview">
+    Reward sign-ups, birthdays, social follows, reviews and more.
+  </Card>
+  <Card title="Set up VIP Tiers" icon="crown" href="/loyalty/overview">
+    Reward your top customers with multipliers and tier-only perks.
+  </Card>
+  <Card title="Launch Referrals" icon="share-nodes" href="/loyalty/overview">
+    Give existing customers a way to refer friends and earn.
+  </Card>
+  <Card title="Customise notifications" icon="envelope" href="/loyalty/overview">
+    Edit the emails customers receive when they earn or redeem.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

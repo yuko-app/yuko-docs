@@ -1,0 +1,90 @@
+---
+title: Shopify Flow
+description: Trigger Shopify Flow workflows from Yuko loyalty events — native automations on top of your existing Shopify automation stack.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → Shopify Flow
+</Note>
+
+## Introduction
+
+The Shopify Flow connector exposes Yuko events as triggers inside Shopify Flow. Anything Shopify Flow can do downstream — update customer tags, create draft orders, notify staff — can run in response to a loyalty event.
+
+## When to use
+
+- You already use Shopify Flow.
+- You want loyalty events to drive Shopify-native automations.
+- You want to extend loyalty without leaving the Shopify admin.
+
+## Prerequisites
+
+<Check>Your Shopify plan includes Shopify Flow (currently free for all paid plans).</Check>
+<Check>Yuko is installed and your loyalty program is enabled.</Check>
+
+## Setup
+
+<Steps>
+  <Step title="Connect the integration">
+    In Yuko, go to **Apps → Yuko Loyalty → Integrations → Shopify Flow** and click **Connect**.
+  </Step>
+  <Step title="Open Shopify Flow">
+    In Shopify admin, go to **Apps → Shopify Flow → Workflows**.
+  </Step>
+  <Step title="Create a new workflow">
+    Click **Create workflow** and pick a Yuko trigger from the trigger picker (e.g., *“Yuko: VIP tier changed”*).
+  </Step>
+  <Step title="Build the rest of the flow">
+    Add Shopify Flow conditions and actions as usual.
+  </Step>
+  <Step title="Activate">
+    Turn the workflow on.
+  </Step>
+</Steps>
+
+## Available triggers in Shopify Flow
+
+- Yuko: Points credited
+- Yuko: Points redeemed
+- Yuko: VIP tier changed
+- Yuko: Reward issued
+- Yuko: Referral completed
+- Yuko: Membership activated / cancelled
+
+## Common use cases
+
+- Add a Shopify customer tag when a customer reaches the Diamond tier.
+- Create a Slack notification when a high-value referral converts.
+- Email a staff member when a customer's points balance crosses a threshold.
+- Trigger a Shopify draft order with a special bundle when a customer redeems a milestone reward.
+
+## Limitations
+
+- Shopify Flow has its own rate limits and execution caps — see Shopify's documentation.
+- The Yuko → Flow connection is one-way (Yuko triggers Flow; Flow doesn't write back to Yuko).
+
+## Best practices
+
+<Tip>**Use Flow for Shopify-native side effects** (tags, draft orders, staff notifications). Use [Yuko Workflows](/workflows/overview) for loyalty-side automations (emails, points adjustments).</Tip>
+<Tip>**Don't duplicate logic in both tools.** Pick one home for each automation.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How is this different from Yuko Workflows?">
+    Yuko Workflows are loyalty-native (best for emails, points, coupons, partner messaging). Shopify Flow is Shopify-native (best for tags, orders, fulfilments, staff alerts). Use both for what each does best.
+  </Accordion>
+  <Accordion title="Why don't I see Yuko triggers in Shopify Flow?">
+    Confirm the Yuko → Shopify Flow integration is connected and active.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedIntegrations from '/snippets/related-integrations.mdx';
+
+<RelatedIntegrations />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

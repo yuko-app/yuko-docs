@@ -1,0 +1,136 @@
+---
+title: Customers
+description: View customer points balances, activity, rewards, recent orders and adjust points manually.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Customers
+</Note>
+
+## Introduction
+
+The Customers page is your operational view of the loyalty program. Every Shopify customer who earns or redeems anything appears here, with a full activity log, current balance, active rewards and recent orders.
+
+## What problem this solves
+
+When a customer asks *“where are my points?”* you need to answer in 30 seconds. The Customers view gives you the full audit trail — and the ability to manually credit or debit points to fix issues without touching the database.
+
+## When to use
+
+- Resolving customer support tickets about missing or incorrect points.
+- Migrating customers in from a previous loyalty program.
+- Debugging an earning rule.
+- Manually rewarding a customer for a one-off action.
+
+## Overview
+
+- Searchable list of every loyalty customer.
+- Customer detail with balance, tier, transactions, activity, recent orders and active rewards.
+- Manual **credit / debit points** action with a required note.
+- Bulk **import customers** via CSV.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+### Find a customer
+
+<Steps>
+  <Step title="Open the Customers list">
+    Login to your Shopify admin and go to **Apps → Yuko Loyalty → Loyalty → Customers**.
+  </Step>
+  <Step title="Search">
+    Search by email, name or Shopify customer ID. Use the filters to narrow by tier, points balance or last activity.
+  </Step>
+  <Step title="Open the profile">
+    Click a row to open the customer detail panel.
+  </Step>
+</Steps>
+
+### Adjust points manually
+
+<Steps>
+  <Step title="Open the customer profile">
+    Find and open the customer.
+  </Step>
+  <Step title="Choose Credit or Debit">
+    Click **Adjust points** and pick **Credit** to add or **Debit** to remove.
+  </Step>
+  <Step title="Enter amount and note">
+    Enter the points value and a short reason. The note is required and shows up in the audit log.
+  </Step>
+  <Step title="Confirm">
+    Click **Apply**. The change is reflected immediately and a notification email may be sent to the customer (configurable).
+  </Step>
+</Steps>
+
+### Import customers
+
+<Steps>
+  <Step title="Open Import">
+    From the customer list, click **Import**.
+  </Step>
+  <Step title="Upload your CSV">
+    Map your CSV columns to Yuko fields: email, points balance, tier (optional).
+  </Step>
+  <Step title="Validate">
+    Yuko shows a preview and reports any rows it can't match to a Shopify customer.
+  </Step>
+  <Step title="Import">
+    Confirm the import. Each row creates a *manual credit* transaction so the audit log stays clean.
+  </Step>
+</Steps>
+
+## How it works
+
+- The customer record is a 1:1 mirror of the Shopify customer.
+- Each adjustment creates a **points transaction** with the agent's name and reason note.
+- The activity feed merges points transactions, redemptions, tier changes and earned rewards into a single chronological view.
+
+### Decision guidance
+
+- **Always include a reason note** when adjusting points. Future you (and your support team) will thank you.
+- **Use Import for migrations**, not for ongoing operations. Use the API for any recurring sync.
+
+### Limitations
+
+- Adjustments don't trigger Way-to-Earn campaigns; they're a direct ledger operation.
+- Import is one-shot; updates re-import as additive credits, not in-place edits.
+
+## Examples
+
+- A support agent compensates a customer with 200 points for a botched delivery, with note *"Goodwill credit — delivery delay 5/12"*.
+- A migrating store imports 12,000 customers from a previous loyalty app, mapping spend to a starting balance.
+
+## Best practices
+
+<Tip>**Treat the activity feed as legally meaningful.** It's the source of truth in disputes.</Tip>
+<Tip>**Limit who can adjust points.** Restrict the *Adjust points* action to admins via team roles.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why is a customer missing from this list?">
+    They appear after their first qualifying event (earn, redeem, manual adjust). Customers without any activity won't show.
+  </Accordion>
+  <Accordion title="Can I export the customer list?">
+    Yes — use the **Export** option from the list. It produces a CSV with current balance and tier.
+  </Accordion>
+  <Accordion title="What happens if I delete a customer in Shopify?">
+    Yuko marks them inactive and stops awarding points, but the historical record is preserved.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

@@ -1,0 +1,75 @@
+---
+title: Omnisend
+description: Sync customers, points, tier and loyalty events into Omnisend.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → Omnisend
+</Note>
+
+## Introduction
+
+The Omnisend connector mirrors what the Klaviyo one does — customer profiles, custom properties and loyalty events flow into Omnisend so you can segment and trigger flows on them.
+
+## When to use
+
+- Omnisend is your primary email/SMS tool.
+- You want loyalty events available inside Omnisend's automation flows.
+- You want VIP segments in Omnisend for targeted campaigns.
+
+## What syncs
+
+- **Customer profiles** — points balance, tier, lifetime spend.
+- **Events** — points credited, points redeemed, tier changed, referral completed, membership activated.
+- **Custom fields** — the loyalty fields appear as Omnisend custom contact fields.
+
+## Prerequisites
+
+<Check>You have an Omnisend account.</Check>
+<Check>You have an Omnisend API key.</Check>
+
+## Setup
+
+<Steps>
+  <Step title="Open Omnisend integration">
+    Go to **Apps → Yuko Loyalty → Integrations → Omnisend**.
+  </Step>
+  <Step title="Connect with the API key">
+    Paste your Omnisend API key.
+  </Step>
+  <Step title="Pick events to sync">
+    Toggle the events to forward.
+  </Step>
+  <Step title="Save">
+    Omnisend contacts are populated within a few minutes.
+  </Step>
+</Steps>
+
+## Common use cases
+
+- VIP-tier segments in Omnisend.
+- Loyalty-driven SMS / WhatsApp messages via Omnisend's multi-channel features.
+- Re-engagement flows triggered by *Tier downgrade* events.
+
+## Best practices
+
+<Tip>**Pick one tool to send loyalty emails.** Either Yuko or Omnisend, not both.</Tip>
+<Tip>**Test with a real customer record** before activating Omnisend flows.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Does Omnisend replace Yuko's emails?">
+    Only if you want it to — disable the corresponding Yuko templates if you do.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedIntegrations from '/snippets/related-integrations.mdx';
+
+<RelatedIntegrations />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

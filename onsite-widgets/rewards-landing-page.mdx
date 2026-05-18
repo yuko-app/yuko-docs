@@ -1,0 +1,135 @@
+---
+title: Rewards Landing Page
+description: A standalone storefront page that explains the loyalty program and lets customers see their balance and rewards in one place.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Rewards Landing Page
+</Note>
+
+## Introduction
+
+The Rewards Landing Page is a full-page widget you embed on a Shopify page (typically `/pages/rewards`) to act as the public-facing home of your loyalty program.
+
+## What problem this solves
+
+Marketing emails, ads and footer links need a destination. Without a landing page, the only place to learn about your program is the cart — which is too late.
+
+## Where it appears
+
+- A Shopify page of your choice (e.g., `/pages/rewards`).
+
+## When to use
+
+- You're driving customers to a loyalty page from email, ads, or footer links.
+- You want a single page that explains how to earn and redeem.
+- You're on legacy customer accounts and need a hub destination.
+
+## Overview
+
+- Hero section with value proposition.
+- Earn rules listing.
+- Redemption rules listing.
+- VIP tier benefits (if enabled).
+- Customer balance and rewards (logged-in only).
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+<Check>You've created a Shopify page (e.g., **Online Store → Pages → Add page**) titled *Rewards*.</Check>
+
+## Setup guide
+
+### 1. Configure in Yuko
+
+<Steps>
+  <Step title="Open the widget settings">
+    Go to **Apps → Yuko Loyalty → Loyalty → Widgets → Rewards Landing Page**.
+  </Step>
+  <Step title="Configure hero copy">
+    Set the headline, subheadline and CTA text shown at the top of the page.
+  </Step>
+  <Step title="Configure section visibility">
+    Toggle each section on or off:
+    - **How to earn**
+    - **How to redeem**
+    - **VIP tiers**
+    - **Customer balance** (logged-in only)
+  </Step>
+  <Step title="Customise per-section copy">
+    Override section titles and intros if you want.
+  </Step>
+  <Step title="Activate">
+    Toggle **Active**.
+  </Step>
+</Steps>
+
+### 2. Add the widget in Shopify
+
+import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
+
+<SetupThemeBlock />
+
+When choosing the template, open your Rewards page and add the **Yuko Rewards Landing Page** app block as the page content.
+
+### 3. Link customers to the page
+
+Add the page URL to:
+
+- Your storefront footer.
+- Marketing emails (welcome series, anniversary, win-back).
+- Ads and social bio links.
+
+## How it works
+
+- Renders inline as a full-page widget on a Shopify page.
+- Pulls program configuration from Yuko (campaigns, rewards, tiers).
+- Logged-in customers see their balance and personal rewards; logged-out customers see the program description and a sign-in CTA.
+
+### Decision guidance
+
+- **Always link to it from your footer** — it's the cheapest way to drive program awareness.
+- **Use it as the destination** of your loyalty acquisition emails.
+- **Skip if you've fully embraced the Customer Account hub** — they overlap.
+
+### Limitations
+
+- Page styling is constrained to Yuko's app-block layout.
+- Doesn't replace the Customer Account hub for logged-in customers — it complements it.
+
+## Examples
+
+- *“Join Stars Rewards”* hero, with How to Earn / How to Redeem / VIP sections, linked from the storefront footer and welcome email.
+
+## Best practices
+
+<Tip>**Link from the footer of every page.** This is your loyalty equivalent of an *About* page.</Tip>
+<Tip>**Pair with a polished hero image** — the hero is the first impression of the program.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I have more than one rewards page?">
+    Yes — the widget can be added to multiple Shopify pages, but the configuration is shared.
+  </Accordion>
+  <Accordion title="Does it support custom HTML or sections?">
+    Not in v1. Stick to the section toggles and copy fields provided.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import WidgetCrossLinks from '/snippets/onsite-widgets-cross-links.mdx';
+
+<WidgetCrossLinks />
+
+import RelatedWidgets from '/snippets/related-widgets.mdx';
+
+<RelatedWidgets />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

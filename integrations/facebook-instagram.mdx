@@ -1,0 +1,54 @@
+---
+title: Facebook & Instagram
+description: Social verification for Like and Follow earning campaigns.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → Facebook & Instagram
+</Note>
+
+## Introduction
+
+The Facebook & Instagram connector authorises Yuko to interact with your Facebook page and Instagram account at the API level. It's used to support the [Facebook Like](/loyalty/ways-to-earn/facebook-like), [Facebook Share](/loyalty/ways-to-earn/facebook-share), and [Instagram Follow](/loyalty/ways-to-earn/instagram-follow) campaigns.
+
+## When to use
+
+- You're running social Way-to-Earn campaigns.
+- You want your Facebook page URL and Instagram handle to be configured once and reused across campaigns.
+
+## Prerequisites
+
+<Check>You administer the Facebook page and Instagram account you want to connect.</Check>
+
+## Setup
+
+<Steps>
+  <Step title="Open the integration">
+    Go to **Apps → Yuko Loyalty → Integrations → Facebook & Instagram**.
+  </Step>
+  <Step title="Click Connect">
+    Authorise Yuko via Meta's OAuth dialog. Pick the page and account you want to connect.
+  </Step>
+  <Step title="Save">
+    Once connected, Yuko uses the connected page / account in social campaigns.
+  </Step>
+</Steps>
+
+## Limitations
+
+- Meta's APIs do not expose programmatic verification of Likes or Follows. Yuko's verification is intent-based — see each campaign's documentation.
+- Re-authorise periodically when Meta tokens expire.
+
+## Best practices
+
+<Tip>**Re-check the connection after Meta password changes** — OAuth tokens can be invalidated.</Tip>
+
+## Related
+
+import RelatedIntegrations from '/snippets/related-integrations.mdx';
+
+<RelatedIntegrations />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

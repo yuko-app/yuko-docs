@@ -1,0 +1,110 @@
+---
+title: Daily Visit
+description: Reward customers for visiting your store on a daily, weekly or monthly cadence.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Daily Visit
+</Note>
+
+## Introduction
+
+Award a small bonus to customers who return to your store on a regular cadence. Effective for stores with content beyond products — lookbooks, blogs, restock pages or pre-order announcements.
+
+## What problem this solves
+
+It's easy to optimise for the *first* purchase and forget about repeat traffic. Daily Visit gently nudges customers to come back and treats engagement as worth rewarding.
+
+## When to use
+
+- You publish content beyond products (blogs, lookbooks, drop calendars).
+- You run regular product drops or restocks.
+- You want to keep customers visiting between purchases.
+
+## Overview
+
+- Reward customers per visit on a configurable cadence.
+- Cadence options: daily, weekly or monthly.
+- Optional URL restriction (only count visits to a specific page).
+- Optional points expiry.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the campaign">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Daily Visit**.
+  </Step>
+  <Step title="Set the points value">
+    Keep it small (e.g., 5–10 points). The cadence does the work, not the size.
+  </Step>
+  <Step title="Pick the earning interval">
+    Choose **Daily**, **Weekly** or **Monthly**.
+  </Step>
+  <Step title="Restrict by URL (optional)">
+    Limit earning to visits to a specific path (e.g., a blog or a drop page).
+  </Step>
+  <Step title="Configure expiry (optional)">
+    Recommended: short expiry (e.g., 30 days) to keep the loyalty economy clean.
+  </Step>
+  <Step title="Save & activate">
+    Toggle **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+- The widget runtime tracks the logged-in customer's visit per session.
+- A visit awards points only if the cadence window has elapsed since the last credit.
+- Activity is recorded in the customer's transaction log.
+
+### Decision guidance
+
+- **Keep the value tiny** — 5 points daily, not 50. This campaign should not dominate the points economy.
+- **Use URL restriction** when you have content destinations worth rewarding (avoids gaming via bot traffic).
+- **Add a short expiry** — daily-visit points should burn quickly so they don't pile up.
+
+### Limitations
+
+- Requires the customer to be logged in. Anonymous visits don't earn.
+- The widget runtime must be loaded — ensure the [Theme App Embed](/installation-and-setup/theme-app-embed) is enabled.
+- Refreshing the page repeatedly does not stack points; only one credit per cadence window.
+
+## Examples
+
+- A streetwear brand awards 5 points per daily visit to its drops calendar page, expiring in 14 days.
+- A media-led store awards 10 points weekly for any logged-in visit to keep customers in the habit of checking back.
+
+## Best practices
+
+<Tip>**Restrict by URL whenever possible.** It encodes intent: visit *that* page, not just any page.</Tip>
+<Tip>**Don't run this in isolation.** It only works when paired with content worth visiting.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can guests earn this?">
+    No — the customer must be logged in.
+  </Accordion>
+  <Accordion title="What if the customer opens multiple tabs?">
+    Only one credit is awarded per cadence window per customer.
+  </Accordion>
+  <Accordion title="Does mobile count?">
+    Yes, any device with the storefront loaded counts — as long as the embed is enabled.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

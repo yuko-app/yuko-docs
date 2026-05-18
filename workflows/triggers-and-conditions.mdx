@@ -1,0 +1,82 @@
+---
+title: Triggers & Conditions
+description: Triggers start a workflow. Conditions branch it.
+---
+
+<Note>
+**Where to find this:** Inside any workflow, the first node (trigger) and any binary nodes you add (conditions).
+</Note>
+
+## Triggers
+
+A workflow has exactly one trigger node, set when the workflow is created. The trigger defines the event that starts the flow.
+
+### Available triggers
+
+| Trigger | Fires when |
+| --- | --- |
+| **Order placed** | A customer completes an order |
+| **Customer created** | A new customer record is created |
+| **Points earned** | Yuko credits points to a customer |
+| **Points redeemed** | A customer redeems a reward |
+| **VIP tier changed** | A customer moves between tiers |
+| **Membership unlocked** | A customer's membership becomes active |
+| **Membership lost** | A customer's membership ends |
+| **Customer inactive for X days** | Customer's last activity exceeds the threshold |
+| **Birthday** | The current date matches the customer's birthday |
+| **Anniversary** | The current date matches the customer's signup anniversary |
+
+### Choosing a trigger
+
+- **Use *Order placed*** when the workflow should run on every order.
+- **Use *Points earned*** when you want to react to specific Way to Earn campaigns.
+- **Use *Customer inactive for X days*** for win-back automations.
+- **Use *VIP tier changed*** for tier-based welcome / lifecycle flows.
+
+## Conditions (Binary nodes)
+
+A Binary node branches the workflow on a rule. Each has a *Yes* path and a *No* path. Stack them to build more complex logic.
+
+### What you can branch on
+
+- Customer attributes (tier, lifetime spend, country, tags)
+- Points balance (greater / less than a threshold)
+- Order attributes (value, item count, contains specific product)
+- Membership status (active / paused / cancelled)
+- Time elapsed since last action
+
+### Example branches
+
+- *Tier == Gold or Diamond* → send VIP-only email; otherwise send regular email.
+- *Cart total > $200* → issue a thank-you coupon; otherwise no action.
+- *Has active membership* → skip; otherwise upsell.
+
+## Best practices
+
+<Tip>**Pick the most specific trigger you can.** A narrower trigger means fewer entries and cleaner analytics.</Tip>
+<Tip>**Don't overload one workflow with conditions.** If you have more than 4–5 binary nodes, split into two workflows.</Tip>
+<Tip>**Always send a test customer through end-to-end** before activating.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can a workflow have multiple triggers?">
+    No — one trigger per workflow. Build a second workflow if you need a second trigger.
+  </Accordion>
+  <Accordion title="Can a customer be in multiple workflows at once?">
+    Yes. Each workflow tracks its own entries independently.
+  </Accordion>
+  <Accordion title="What happens if a trigger event fires while a customer is already in the workflow?">
+    By default, re-entry is blocked. You can override per-workflow.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedWorkflows from '/snippets/related-workflows.mdx';
+
+<RelatedWorkflows />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

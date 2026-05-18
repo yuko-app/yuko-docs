@@ -1,0 +1,79 @@
+---
+title: Referral Emails
+description: Templates for the three referral lifecycle moments — advocate signup, friend reward delivery and advocate reward delivery.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Referral → Notifications
+</Note>
+
+Referrals have three distinct email moments. Each maps to a built-in template you can customise in the [Template Editor](/emails/template-editor).
+
+## Advocate Registered
+
+**Trigger:** A customer becomes a referrer — either by being auto-enrolled when they reach the criteria, or when they manually opt in.
+
+**Default subject:** *“Here's your referral link, [first_name]”*
+
+**Default body summary:** Greeting → program explanation (what the friend gets, what the referrer gets) → the referral link → share buttons.
+
+**Useful shortcodes:** `[first_name]`, `[referral_link]`, `[reward_value]`.
+
+<Tip>**Make this the most-polished email in the program.** It's the one that actually drives shares.</Tip>
+
+---
+
+## Friend Reward Claimed
+
+**Trigger:** A friend's reward has been issued (their first qualifying order completed).
+
+**Default subject:** *“Your [reward_value] discount is ready”*
+
+**Default body summary:** Greeting → reward name + discount code → expiry → CTA to redeem.
+
+**Useful shortcodes:** `[first_name]`, `[reward_value]`, `[discount_code]`, `[discount_expiry_date]`.
+
+<Tip>**Send this to the friend, not the referrer.** The friend is the new customer being onboarded.</Tip>
+
+---
+
+## Advocate Rewarded
+
+**Trigger:** A referrer's reward has been issued (after their friend's order is paid).
+
+**Default subject:** *“Your referral worked! Here's your reward”*
+
+**Default body summary:** Greeting → the friend converted → referrer's reward (points / discount / store credit) → CTA to keep sharing.
+
+**Useful shortcodes:** `[first_name]`, `[friend_name]`, `[reward_value]`, `[referral_count]`.
+
+<Tip>**Always include the referral count** — it gives top referrers a reason to keep going.</Tip>
+
+---
+
+## Best practices
+
+<Tip>**Pair Advocate Registered with the Referrals widget.** The widget is the daily surface; the email is the one-time *“you're in the program”* moment.</Tip>
+<Tip>**Test all three with a real referral flow.** Place a test referral order to verify both Friend Reward and Advocate Rewarded fire correctly.</Tip>
+<Tip>**Don't over-promote.** A flood of *“your friend signed up”* emails feels spammy.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What happens if the friend's order is refunded?">
+    Both rewards are reversed automatically. No additional emails are sent for the reversal.
+  </Accordion>
+  <Accordion title="Can I send a thank-you email after every successful referral?">
+    The Advocate Rewarded email serves that purpose. For richer behaviour (e.g., milestone emails after 5 successful referrals), use [Workflows](/workflows/overview).
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedEmails from '/snippets/related-emails.mdx';
+
+<RelatedEmails />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

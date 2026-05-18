@@ -1,0 +1,119 @@
+---
+title: Cart Membership Upsell Widget
+description: Promote your membership plans on the cart page so customers can join before checking out.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships → Widgets → Cart Membership Upsell
+</Note>
+
+## Introduction
+
+Show membership plans on the cart page. Customers see how much they could save with the plan compared to their current cart.
+
+## What problem this solves
+
+The cart is the highest-intent screen on your storefront. Showing the membership offer there — with the value calculated against the actual cart — turns one-time buyers into members at the most decisive moment.
+
+## Where it appears
+
+- Cart page or cart drawer.
+
+## When to use
+
+- You've launched at least one membership plan.
+- You want to convert one-time buyers into members during checkout.
+
+## Overview
+
+- Renders on the cart page via theme app block.
+- Surfaces the most relevant plan based on cart value.
+- One-click add the plan to cart.
+- Customer becomes a member after checkout completes.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+<Check>At least one membership plan is published.</Check>
+
+## Setup guide
+
+### 1. Configure in Yuko
+
+<Steps>
+  <Step title="Open the widget settings">
+    Go to **Apps → Yuko Loyalty → Memberships → Widgets → Cart Membership Upsell**.
+  </Step>
+  <Step title="Pick which plans to show">
+    By default, the widget shows the most relevant plan. You can pin a specific plan instead.
+  </Step>
+  <Step title="Customise copy">
+    Set the heading, subheading and CTA label.
+  </Step>
+  <Step title="Activate">
+    Toggle the widget **Active**.
+  </Step>
+</Steps>
+
+### 2. Add the widget to your theme
+
+import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
+
+<SetupThemeBlock />
+
+Pick the **Cart** template (and the cart drawer if applicable). Place the widget near the cart total.
+
+### 3. Verify
+
+Add products to your live cart and confirm the widget renders with the correct plan suggestion.
+
+## How it works
+
+1. Reads cart contents and the customer's existing memberships.
+2. If the customer is not a member, surfaces the most valuable plan to upsell.
+3. Clicking the CTA adds the plan to cart.
+4. The customer becomes a member after checkout completes.
+
+### Decision guidance
+
+- **Lead with annual plans** if you want commitment.
+- **Lead with monthly plans** if you want quick conversion.
+- **Pin a specific plan** if you're running a launch promo.
+
+### Limitations
+
+- The customer must add the plan to cart and check out to start the membership.
+- Plan visibility depends on the plan being published in **Memberships → Plans**.
+
+## Examples
+
+- *“Become a Yuko VIP — free shipping + 10% off this order, $9.99/mo”* with an Add to cart button.
+
+## Best practices
+
+<Tip>**Quote the saving on the current cart** in the widget copy — it makes the value concrete.</Tip>
+<Tip>**Test on mobile.** Cart widgets get tight on small screens.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What if the customer is already a member?">
+    The widget hides itself for active members.
+  </Accordion>
+  <Accordion title="Can I A/B test which plan is shown?">
+    Not in v1. The widget uses a single rule per store.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import MembershipWidgetsCrossLinks from '/snippets/membership-widgets-cross-links.mdx';
+
+<MembershipWidgetsCrossLinks />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

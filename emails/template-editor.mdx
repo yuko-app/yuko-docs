@@ -1,0 +1,155 @@
+---
+title: Template Editor
+description: Use Yuko's visual editor to customise the content, layout and design of every email template.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Notifications → [Any template] → Edit
+</Note>
+
+## Introduction
+
+The Template Editor is a visual editor for every email Yuko sends. You can change the subject, edit the body, swap images and reorder blocks — without writing HTML.
+
+## What problem this solves
+
+Default email copy gets the program working. On-brand copy gets customers to actually open and click. The visual editor closes the gap without requiring email-development time.
+
+## When to use
+
+- You're customising default copy to match your brand voice.
+- You want to add a header banner, footer, or CTA button.
+- You want to translate the template for a specific locale.
+
+## Overview
+
+- **Subject and preview text** — controls open rate.
+- **Body blocks** — add, reorder, remove text/image/button blocks.
+- **Shortcodes** — insert merge tags from a picker.
+- **Locale variants** — maintain a translation per language.
+- **Live preview** — see what the email will look like with sample data.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+### Open a template
+
+<Steps>
+  <Step title="Open Notifications">
+    Go to **Apps → Yuko Loyalty → Loyalty → Notifications**.
+  </Step>
+  <Step title="Pick a template">
+    Click any template to open it.
+  </Step>
+  <Step title="Click Edit">
+    Open the visual editor.
+  </Step>
+</Steps>
+
+### Edit the subject
+
+<Steps>
+  <Step title="Edit Subject">
+    Click the subject line at the top.
+  </Step>
+  <Step title="Use shortcodes">
+    Insert shortcodes (e.g., `[first_name]`, `[points_value]`) from the picker.
+  </Step>
+  <Step title="Edit preview text">
+    Optional: set the preview text shown next to the subject in inboxes.
+  </Step>
+</Steps>
+
+### Edit the body
+
+<Steps>
+  <Step title="Use blocks">
+    The body is a stack of blocks: text, image, button, divider, footer.
+  </Step>
+  <Step title="Add a block">
+    Click **+ Add block** between any two existing blocks. Pick the block type.
+  </Step>
+  <Step title="Reorder blocks">
+    Drag the handle on the left of any block to reorder.
+  </Step>
+  <Step title="Edit text">
+    Click any text block to edit inline. Use the toolbar for bold, italic, links, headings.
+  </Step>
+  <Step title="Insert a shortcode">
+    Inside any text or button block, type `[` to open the shortcode picker, or use the toolbar's shortcode button.
+  </Step>
+</Steps>
+
+### Send a test
+
+<Steps>
+  <Step title="Click Send test">
+    From the editor toolbar.
+  </Step>
+  <Step title="Enter a recipient">
+    Use a real address you can check (your own works).
+  </Step>
+  <Step title="Verify rendering">
+    Check the email in inbox — desktop and mobile — before saving.
+  </Step>
+</Steps>
+
+### Save and publish
+
+<Steps>
+  <Step title="Click Save">
+    Saves your changes. The template is now active.
+  </Step>
+</Steps>
+
+## How it works
+
+- The editor stores your template as structured blocks (not raw HTML).
+- At send time, Yuko renders the blocks with branding and shortcodes applied.
+- Locale variants are stored separately and selected based on customer locale.
+
+### Decision guidance
+
+- **Edit subject before body.** It's the highest-leverage change you can make.
+- **Don't go below 80px tall headers** — mobile clients clip aggressively.
+- **Use one CTA button.** Multiple CTAs hurt click-through rate.
+
+### Limitations
+
+- The block library is curated — raw HTML insertion isn't exposed in v1.
+- You can't add custom unsubscribe text — unsubscribe handling is automatic.
+
+## Best practices
+
+<Tip>**Always send a test before saving.** Inboxes render small differences as broken layouts.</Tip>
+<Tip>**Keep the email above 600px tall.** Anything longer is rarely read.</Tip>
+<Tip>**Lead with the value** — the points the customer earned, the tier they reached — not the brand.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I import HTML from another tool?">
+    Not in v1. Templates are built in the visual editor.
+  </Accordion>
+  <Accordion title="Can I A/B test subject lines?">
+    Not in v1. Use Klaviyo or your ESP for A/B testing if needed.
+  </Accordion>
+  <Accordion title="What happens to the original default copy?">
+    Yuko keeps the default and lets you reset to it via **Restore default** in the editor menu.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedEmails from '/snippets/related-emails.mdx';
+
+<RelatedEmails />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

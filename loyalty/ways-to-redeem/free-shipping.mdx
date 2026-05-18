@@ -1,0 +1,105 @@
+---
+title: Free Shipping
+description: Let customers redeem points to remove shipping costs from their order.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Redeem → Free Shipping
+</Note>
+
+## Introduction
+
+Let customers spend points to remove shipping cost from their order. Particularly impactful in regions where shipping is a known cart-abandonment driver.
+
+## What problem this solves
+
+Many customers abandon checkout when they see shipping. A points-funded free-shipping reward turns the loyalty program into a direct unblock for the most common reason carts go cold.
+
+## When to use
+
+- You operate in markets where shipping cost is high relative to AOV.
+- You see a meaningful drop-off between cart and checkout.
+- You want a *“value”* reward that's easy to communicate.
+
+## Overview
+
+- Removes shipping cost at checkout.
+- Applies to all shipping methods unless restricted.
+- Optional minimum purchase amount.
+- Optional combinability with other discounts.
+- Optional expiry.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the reward">
+    Login to your Shopify admin, then go to **Apps → Yuko Loyalty → Loyalty → Ways to Redeem → Free Shipping**.
+  </Step>
+  <Step title="Configure basic details">
+    Set reward name and description.
+  </Step>
+  <Step title="Set points required">
+    Enter the points cost.
+  </Step>
+  <Step title="Configure additional settings">
+    - **Minimum purchase amount**.
+    - **Combinability**.
+    - **Expiry**.
+  </Step>
+  <Step title="Save & activate">
+    Toggle **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+1. Customer redeems the reward.
+2. Yuko issues a Shopify free-shipping discount code.
+3. The code removes shipping cost on the next eligible order.
+
+### Decision guidance
+
+- **Pair with a minimum cart** to avoid shipping a $5 product for free.
+- **Run as a default reward in shipping-cost-heavy regions** — it's the most-redeemed reward in many EU/AU stores.
+
+### Limitations
+
+- Doesn't apply to express upgrades unless explicitly configured at the Shopify shipping level.
+- Customer must select a paid shipping method for the discount to remove the cost.
+
+## Examples
+
+- *EU brand:* 300 pts = free standard shipping, min cart $40, 30-day expiry.
+- *US apparel:* 500 pts = free shipping, no minimum, combinable with sales.
+
+## Best practices
+
+<Tip>**Test on every shipping zone** before launch. Shipping rules vary by region.</Tip>
+<Tip>**Consider this a high-redemption reward** when planning your points economy.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Does this apply to all shipping methods?">
+    By default yes; you can restrict to specific shipping rates in Shopify if needed.
+  </Accordion>
+  <Accordion title="What if shipping is already free for the order?">
+    The reward issues but doesn't reduce the bill further. The points are still consumed unless you set a minimum-cart guard.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedRewards from '/snippets/related-rewards.mdx';
+
+<RelatedRewards />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

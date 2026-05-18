@@ -1,0 +1,76 @@
+---
+title: Partner Nodes
+description: Hand off workflow execution to Engati or KwikEngage for chat / SMS / WhatsApp messaging.
+---
+
+<Note>
+**Where to find this:** Inside the workflow editor — these nodes only appear if the corresponding integration is connected.
+</Note>
+
+## Introduction
+
+Partner Nodes hand off the workflow at a specific point to a third-party messaging platform. Two partners are supported in v1: **Engati** (conversational AI) and **KwikEngage** (multi-channel messaging).
+
+## When to use
+
+- You already use Engati or KwikEngage for customer messaging.
+- You want loyalty events to trigger conversations or SMS in those tools.
+- You want a unified workflow that includes both Yuko and partner-tool actions.
+
+## Available partner nodes
+
+### Engati Node
+
+- **Available when:** the [Engati integration](/integrations/engati) is connected.
+- **Action:** triggers a specified Engati flow / bot interaction with the customer.
+- **Configuration:** pick the Engati flow, optionally pass workflow context.
+
+### KwikEngage Node
+
+- **Available when:** the [KwikEngage integration](/integrations/kwik-engage) is connected.
+- **Action:** triggers a KwikEngage event — SMS, WhatsApp, or another configured channel.
+- **Configuration:** pick the event type, optionally pass workflow context.
+
+## How partner nodes execute
+
+- The node calls the partner's API with the customer's data.
+- The partner tool takes over messaging from there.
+- The workflow continues to the next node after the call returns (without waiting for the customer's response).
+
+### Decision guidance
+
+- **Use Engati** when you want a conversational flow (the customer can reply and continue the conversation).
+- **Use KwikEngage** when you want one-shot messages on alternate channels.
+- **Don't replace native nodes** — use partner nodes for messaging that's outside Yuko's email or coupon native scope.
+
+### Limitations
+
+- Each partner node only appears if the corresponding integration is connected.
+- The workflow doesn't wait for the customer's reply in the partner tool.
+- Failures in the partner tool are logged but don't block the workflow.
+
+## Best practices
+
+<Tip>**Connect the integration before designing the workflow.** Otherwise the node won't appear in the picker.</Tip>
+<Tip>**Stay in one tool per channel.** If KwikEngage handles SMS in your stack, don't also send SMS via another integration — it duplicates messages.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I add a custom partner node?">
+    Not in v1. Use [Webhooks](/integrations/webhooks) and a custom integration if you have a partner not supported here.
+  </Accordion>
+  <Accordion title="Why don't I see the partner node?">
+    The partner integration must be connected first. See [Integrations](/integrations/overview).
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedWorkflows from '/snippets/related-workflows.mdx';
+
+<RelatedWorkflows />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

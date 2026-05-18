@@ -1,0 +1,82 @@
+---
+title: Shortcodes Reference
+description: Every merge tag available in Yuko email templates, grouped by category.
+---
+
+<Note>
+**Where to find this:** Inside the template editor — type `[` or click the shortcode picker.
+</Note>
+
+## How shortcodes work
+
+Shortcodes are placeholders Yuko replaces with real customer or event data when the email is sent. Wrap them in square brackets, e.g., `[first_name]`.
+
+Not every shortcode is available in every template. The picker in the editor only shows shortcodes valid for the template you're editing.
+
+## Customer shortcodes
+
+| Shortcode | Replaced with |
+|---|---|
+| `[first_name]` | Customer's first name |
+| `[last_name]` | Customer's last name |
+| `[email]` | Customer's email |
+| `[customer_id]` | Shopify customer ID |
+| `[point_balance]` | Current points balance |
+| `[points_label]` | Your configured points label (e.g., *Stars*) |
+| `[tier_name]` | Current VIP tier name |
+
+## Event shortcodes (loyalty)
+
+| Shortcode | Replaced with | Used in |
+|---|---|---|
+| `[points_value]` | Points earned or redeemed in the event | points-earned, reward-redeemed |
+| `[campaign_name]` | The campaign that fired | points-earned |
+| `[reward_name]` | Reward redeemed | reward-redeemed |
+| `[discount_code]` | Issued discount code | reward-redeemed |
+| `[discount_expiry_date]` | Reward expiry date | reward-redeemed, reward-expiring |
+| `[next_tier]` | Next tier name | tier-changed |
+| `[multiplier_value]` | Points multiplier | tier-changed |
+
+## Event shortcodes (referral)
+
+| Shortcode | Replaced with | Used in |
+|---|---|---|
+| `[referrer_name]` | First name of the referrer | referral templates |
+| `[friend_name]` | First name of the friend | referral templates |
+| `[referral_link]` | The customer's referral URL | referral-advocate-registered |
+| `[referral_count]` | Number of successful referrals | referral templates |
+| `[reward_value]` | The reward issued | referral-advocate-rewarded |
+
+## Event shortcodes (membership)
+
+| Shortcode | Replaced with | Used in |
+|---|---|---|
+| `[plan_name]` | Membership plan name | membership templates |
+| `[plan_price]` | Plan price and interval | membership-unlocked |
+| `[next_renewal_date]` | Next renewal date | membership-unlocked |
+| `[lost_reason]` | Reason for losing the plan | membership-lost |
+
+## Store shortcodes
+
+| Shortcode | Replaced with |
+|---|---|
+| `[store_name]` | Your store name |
+| `[store_url]` | Your storefront URL |
+| `[support_email]` | Configured support email |
+| `[unsubscribe_url]` | Auto-generated unsubscribe URL (always required by law) |
+
+## Best practices
+
+<Tip>**Always test with a real customer record.** Some shortcodes (e.g., `[next_tier]`) are empty for max-tier customers — the editor's preview uses a sample customer that may not surface this.</Tip>
+<Tip>**Don't put `[unsubscribe_url]` inside a heading.** Anti-spam tools flag prominent unsubscribe links.</Tip>
+<Tip>**Use `[first_name]` with a sensible fallback.** *“Hi [first_name]”* breaks if the field is empty; *“Hi there”* always works.</Tip>
+
+## Related
+
+import RelatedEmails from '/snippets/related-emails.mdx';
+
+<RelatedEmails />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

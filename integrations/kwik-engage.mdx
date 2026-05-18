@@ -1,0 +1,67 @@
+---
+title: KwikEngage
+description: Multi-channel messaging (SMS, WhatsApp, push) triggered by Yuko loyalty events.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → KwikEngage
+</Note>
+
+## Introduction
+
+The KwikEngage connector lets Yuko events trigger KwikEngage messages — SMS, WhatsApp, push notifications, or whatever channels you have configured in KwikEngage.
+
+## When to use
+
+- You already use KwikEngage for customer messaging.
+- You want loyalty events to drive SMS / WhatsApp campaigns.
+- You want to combine KwikEngage's reach with Yuko's loyalty data.
+
+## Prerequisites
+
+<Check>You have a KwikEngage account.</Check>
+<Check>You have KwikEngage API credentials.</Check>
+
+## Setup
+
+<Steps>
+  <Step title="Open KwikEngage integration">
+    Go to **Apps → Yuko Loyalty → Integrations → KwikEngage**.
+  </Step>
+  <Step title="Connect with credentials">
+    Paste your KwikEngage API key.
+  </Step>
+  <Step title="Pick events / channels">
+    Configure which Yuko events fire which KwikEngage message templates.
+  </Step>
+  <Step title="Save">
+    Messages start firing on matching events.
+  </Step>
+</Steps>
+
+## Use the KwikEngage Workflow node
+
+Once connected, the **KwikEngage node** is available in [Yuko Workflows](/workflows/partner-nodes) — use it to send an SMS or WhatsApp inside a custom workflow.
+
+## Best practices
+
+<Tip>**SMS is expensive and intrusive.** Reserve KwikEngage for high-value moments — tier upgrades, reward expiry, big milestones.</Tip>
+<Tip>**Respect customer messaging preferences.** Always honour opt-outs.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Does KwikEngage handle opt-outs?">
+    Yes — KwikEngage's own preference and consent system applies. Yuko forwards events; KwikEngage decides whether to send.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedIntegrations from '/snippets/related-integrations.mdx';
+
+<RelatedIntegrations />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

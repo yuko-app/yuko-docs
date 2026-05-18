@@ -1,0 +1,127 @@
+---
+title: Amount Discount
+description: Let customers redeem points for a fixed-amount discount applied at cart or checkout.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Redeem → Amount Discount
+</Note>
+
+## Introduction
+
+Allow customers to spend points for a fixed-amount discount (e.g., `500 points = $5 off`). This is the simplest, most predictable reward type and the one most customers expect to see first.
+
+## What problem this solves
+
+Percentage discounts can feel abstract (“how much will 10% off be?”). A flat amount discount is concrete — customers know exactly what they're getting before they redeem.
+
+## When to use
+
+- You want the simplest possible reward to get the program off the ground.
+- Your store has predictable basket sizes where a fixed amount maps cleanly to value.
+- You're targeting low-AOV stores where percentage discounts compound badly.
+
+## Overview
+
+- Fixed dollar (or store-currency) discount.
+- Either a single tier (e.g., 500 pts = $5) or **incremented points** (multiple tiers in one reward).
+- Optional minimum purchase amount or quantity.
+- Optional combinability with other discounts.
+- Optional reward expiry.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>You have at least one Way to Earn active so customers actually have points.</Check>
+
+## Setup guide
+
+<Steps>
+  <Step title="Open the reward">
+    Login to your Shopify admin, then go to **Apps → Yuko Loyalty → Loyalty → Ways to Redeem → Amount Discount**.
+  </Step>
+  <Step title="Configure basic details">
+    - **Reward name** — customer-facing label (e.g., *“$5 off”*).
+    - **Description** — short copy shown next to the reward.
+  </Step>
+  <Step title="Choose reward type">
+    <AccordionGroup>
+      <Accordion title="Fixed amount of points">
+        One tier. Customer pays N points for the same dollar discount every time.
+      </Accordion>
+      <Accordion title="Incremented points">
+        Multiple tiers in one reward (e.g., 500/1000/2000 pts → $5/$10/$25 off). Customers pick.
+      </Accordion>
+    </AccordionGroup>
+  </Step>
+  <Step title="Set points required and discount amount">
+    For each tier, enter the points cost and the discount value.
+  </Step>
+  <Step title="Configure additional settings (optional)">
+    - **Minimum / maximum points** to redeem in one transaction.
+    - **Minimum purchase amount or quantity** (e.g., min cart of $25).
+    - **Combinability** — whether this stacks with other Shopify discounts.
+    - **Reward expiry** — how long after issue the discount code stays valid.
+  </Step>
+  <Step title="Save & activate">
+    Toggle **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+1. The customer opens the Cart Redeem widget (or the Customer Account hub).
+2. They select this reward and click **Redeem**.
+3. Yuko deducts the points and issues a Shopify discount code unique to that customer.
+4. The customer applies the code at checkout (or it's auto-applied via the Cart Redeem widget).
+5. On order completion, Yuko logs the redemption.
+
+### Decision guidance
+
+- **Use fixed-amount tiers** when starting out — simpler to communicate.
+- **Switch to incremented points** when customers ask for higher-value rewards.
+- **Set a minimum purchase** to keep the discount from being applied to a $1 product (and a $0 cart).
+- **Avoid combinability with sale promos** unless you intentionally want stacking.
+
+### Limitations
+
+- The discount is issued as a Shopify discount code; some Shopify discount restrictions apply (e.g., one code per order if combinability is off).
+- Cannot exceed cart subtotal — capped at the cart amount automatically.
+
+## Examples
+
+- *Starter program:* `500 pts = $5 off`, min cart $25, 30-day expiry.
+- *Tiered program:* `500 / 1000 / 2000 pts → $5 / $10 / $25`, no min cart, 60-day expiry.
+
+## Best practices
+
+<Tip>**Anchor your value clearly.** “500 pts = $5” is the easiest mental model. Avoid awkward ratios.</Tip>
+<Tip>**Use a 30–60 day expiry** on the issued code to drive prompt redemption.</Tip>
+<Warning>Combining with site-wide percentage promos can cause stacking customers don't expect. Test combinations before launch.</Warning>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can a customer use multiple amount discounts on one order?">
+    Only if combinability is enabled and Shopify allows multiple codes per order. By default, one code per order.
+  </Accordion>
+  <Accordion title="What happens if the discount exceeds the cart total?">
+    The discount is capped at the cart total. The customer is not refunded the difference.
+  </Accordion>
+  <Accordion title="Can I cancel a redemption?">
+    Yes — from the customer's profile in Yuko, you can revoke the issued reward and return the points.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedRewards from '/snippets/related-rewards.mdx';
+
+<RelatedRewards />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

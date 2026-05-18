@@ -1,0 +1,124 @@
+---
+title: Membership Validation at Checkout
+description: A Shopify Checkout extension that validates active membership at checkout and enforces member-only product access.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships → Validation
+</Note>
+
+## Introduction
+
+The Membership Validation extension is a Shopify Checkout UI extension that runs at the moment of checkout. If the cart includes a member-only product, the extension checks that the customer has an active membership contract — and blocks checkout otherwise.
+
+## What problem this solves
+
+Without checkout validation, a customer could grab a member-only product link and check out without being a member. Validation enforces member-only access at the point that matters: the order.
+
+## Where it appears
+
+- Shopify Checkout (transparently — only surfaces if validation fails).
+
+## When to use
+
+- You sell member-only products that should only be purchasable by members.
+- You're enforcing access to gated drops or limited-supply releases.
+
+## Overview
+
+- Shopify Checkout UI extension.
+- Validates the customer's active membership against the cart's gated products.
+- Blocks checkout with a clear message if the customer isn't a member.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+<Check>Your Shopify plan supports Checkout Extensibility.</Check>
+<Check>At least one membership plan exists.</Check>
+<Check>You've identified the products that should be member-only.</Check>
+
+## Setup guide
+
+### 1. Configure in Yuko
+
+<Steps>
+  <Step title="Open the validation settings">
+    Go to **Apps → Yuko Loyalty → Memberships → Validation**.
+  </Step>
+  <Step title="Pick which products are member-only">
+    Use the Shopify resource picker to select products or collections that require an active membership.
+  </Step>
+  <Step title="Configure the block message">
+    The message shown at checkout when validation fails (e.g., *“This product is for Yuko VIP members only. [Join now](/products/yuko-vip)”*).
+  </Step>
+  <Step title="Activate">
+    Toggle the validation **Active**.
+  </Step>
+</Steps>
+
+### 2. Add the extension in Shopify Checkout
+
+import SetupCheckout from '/snippets/setup-checkout-extension.mdx';
+
+<SetupCheckout />
+
+### 3. Verify
+
+<Steps>
+  <Step title="Test as a non-member">
+    Add a member-only product to cart as a non-member account and try to check out. The block message should appear.
+  </Step>
+  <Step title="Test as a member">
+    Repeat as an active member. Checkout should proceed normally.
+  </Step>
+</Steps>
+
+## How it works
+
+- The extension runs validation logic on every checkout where a gated product is present.
+- If the customer has an active contract that includes the product, checkout proceeds.
+- Otherwise, an error message is shown and the customer can't complete checkout.
+
+### Decision guidance
+
+- **Use this only on truly member-only products.** Over-gating frustrates customers.
+- **Pair with the Cart Membership Upsell** so customers can join right there without leaving the flow.
+
+### Limitations
+
+- Requires Checkout Extensibility (Shopify Plus / eligible plans).
+- Doesn't prevent non-members from adding gated products to cart — only blocks at checkout.
+- Validation is per-product / per-collection; granular per-variant gating isn't supported.
+
+## Examples
+
+- A streetwear brand gates limited drops to Yuko VIP members. Non-members see *“This drop is for VIP members only — join Yuko VIP to unlock”* at checkout.
+
+## Best practices
+
+<Tip>**Always link to the membership page** in the block message. The customer is at peak intent; make joining a single click.</Tip>
+<Tip>**Pre-announce gated drops** so non-members know to join in advance.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What if the customer has multiple memberships?">
+    Validation passes if any active contract grants access to the product.
+  </Accordion>
+  <Accordion title="Can I gate at the variant level?">
+    Not in v1. Use product- or collection-level gating.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedMemberships from '/snippets/related-memberships.mdx';
+
+<RelatedMemberships />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

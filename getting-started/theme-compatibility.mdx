@@ -1,0 +1,61 @@
+---
+title: Theme Compatibility & Requirements
+description: Confirm your Shopify theme and plan can render Yuko's widgets and extensions.
+---
+
+Yuko's widgets ship as Shopify **app blocks**, **theme app embeds** and **checkout extensions**. To render them, your store needs to meet a few baseline requirements.
+
+## What you need
+
+<Check>An **Online Store 2.0** theme (any modern free or paid theme on the Shopify Theme Store).</Check>
+<Check>The Yuko **Theme App Embed** enabled for your active theme.</Check>
+<Check>For Checkout widgets: a Shopify plan with **Checkout Extensibility** access — typically Shopify Plus, but some annual plans qualify too.</Check>
+<Check>For the loyalty hub in account pages: **New Customer Accounts** enabled.</Check>
+
+## Theme requirements
+
+### Online Store 2.0
+
+If your theme is an Online Store 2.0 theme it supports app blocks. Practically every theme published on the Shopify Theme Store in the last few years qualifies. Older custom themes may need to be upgraded by your developer.
+
+Quick check:
+
+<Steps>
+  <Step title="Open the Theme Editor">
+    **Online Store → Themes → Customize** on your active theme.
+  </Step>
+  <Step title="Look for Add block">
+    Open any section. If you see an **Add block** option that lets you choose from **Apps**, you're on Online Store 2.0.
+  </Step>
+</Steps>
+
+<Warning>
+If your theme doesn't expose **Add block** for apps, your theme is vintage (Online Store 1.0). You'll either need to upgrade the theme or have a developer manually inject Yuko's snippet. Contact support if you need a workaround.
+</Warning>
+
+### Cart drawer vs cart page
+
+Some themes use a **cart drawer** (slide-out) instead of a full cart page. Yuko's Cart Earn and Cart Redeem widgets support both, but the placement options vary by theme. See each widget's docs for theme-specific placement notes.
+
+## Plan requirements
+
+| Surface | Shopify plan needed |
+| --- | --- |
+| Theme widgets (product, cart, account, landing, launcher) | Any paid plan |
+| Checkout UI Extension (Checkout Earn / Redeem) | Shopify Plus, or a plan with Checkout Extensibility |
+| Customer Account Extension (Loyalty hub in accounts) | Any paid plan with **New Customer Accounts** enabled |
+| Shopify Flow connector | Plans where Shopify Flow is available |
+
+## Browser support
+
+Yuko's storefront widgets support the latest two versions of Chrome, Safari, Firefox and Edge. The dashboard requires a modern desktop browser.
+
+## What if my store doesn't qualify
+
+- **Older theme** → upgrade to an Online Store 2.0 theme, or have a developer add the Yuko snippet manually.
+- **Non-Plus plan but want Checkout extensions** → use the Order Status / Thank-you page widget instead, which works on any plan.
+- **Legacy customer accounts** → either enable New Customer Accounts or use the Yuko Rewards Landing Page as the loyalty hub.
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

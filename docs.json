@@ -12,9 +12,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Yuko Dashboard",
-          "icon": "book-open-cover",
-          "href": "https://app.yukoapp.com"
+          "anchor": "Install Yuko",
+          "icon": "shop",
+          "href": "https://apps.shopify.com/yuko"
+        },
+        {
+          "anchor": "Support",
+          "icon": "life-ring",
+          "href": "https://yuko.so/support/"
         },
         {
           "anchor": "Blog",
@@ -30,120 +35,161 @@
           {
             "group": "Getting Started",
             "pages": [
-              "quickstart"
+              "getting-started/welcome",
+              "getting-started/quickstart",
+              "getting-started/glossary",
+              "getting-started/plans-billing",
+              "getting-started/theme-compatibility"
             ]
           },
           {
-            "group": "1. Installation & Setup",
+            "group": "Installation & Setup",
             "pages": [
-              "installation-and-setup/woocommerce"
+              "installation-and-setup/install-on-shopify",
+              "installation-and-setup/theme-app-embed",
+              "installation-and-setup/checkout-ui-extension",
+              "installation-and-setup/customer-account-extension",
+              "installation-and-setup/verify-setup"
             ]
           },
           {
-            "group": "2. Request Reviews",
+            "group": "Loyalty Program",
             "pages": [
-              "request-reviews/index",
-              "request-reviews/review-request-emails",
-              "request-reviews/review-reminder-email",
-              "request-reviews/photo-review-reminder-email",
-              "request-reviews/photo-review-reward-email",
-              "request-reviews/review-reply-added-email"
+              "loyalty/overview",
+              "loyalty/program-settings",
+              {
+                "group": "Ways to Earn",
+                "pages": [
+                  "loyalty/ways-to-earn/overview",
+                  "loyalty/ways-to-earn/place-an-order",
+                  "loyalty/ways-to-earn/sign-up",
+                  "loyalty/ways-to-earn/write-a-review",
+                  "loyalty/ways-to-earn/subscribe-to-newsletter",
+                  "loyalty/ways-to-earn/birthday",
+                  "loyalty/ways-to-earn/anniversary",
+                  "loyalty/ways-to-earn/daily-visit",
+                  "loyalty/ways-to-earn/facebook-like",
+                  "loyalty/ways-to-earn/facebook-share",
+                  "loyalty/ways-to-earn/instagram-follow",
+                  "loyalty/ways-to-earn/twitter-follow"
+                ]
+              },
+              {
+                "group": "Ways to Redeem",
+                "pages": [
+                  "loyalty/ways-to-redeem/overview",
+                  "loyalty/ways-to-redeem/amount-discount",
+                  "loyalty/ways-to-redeem/percentage-discount",
+                  "loyalty/ways-to-redeem/free-product",
+                  "loyalty/ways-to-redeem/free-shipping",
+                  "loyalty/ways-to-redeem/store-credit"
+                ]
+              },
+              "loyalty/customers"
             ]
           },
           {
-            "group": "3. Collect Reviews",
+            "group": "VIP Tiers",
             "pages": [
-              "collect-reviews",
-              "collect-reviews/review-collection-form",
-              "collect-reviews/collecting-shop-site-review",
-              "collect-reviews/customizing-review-inputs"
+              "vip-tiers/overview"
             ]
           },
           {
-            "group": "4. Display Reviews",
+            "group": "Onsite Widgets",
             "pages": [
-              "display-reviews/introductionToWidgets",
-              "display-reviews/product-reviews-display-widget",
-              "display-reviews/sidebar-widget",
-              "display-reviews/star-rating-widget",
-              "display-reviews/all-reviews-wall-of-fame-widget",
-              "display-reviews/carousel-testimonial-widget",
-              "display-reviews/flowing-review-badge-coming-soon",
-              "display-reviews/review-display-controls"
+              "onsite-widgets/overview",
+              "onsite-widgets/branding-and-locale",
+              "onsite-widgets/product-page-earn",
+              "onsite-widgets/cart-earn",
+              "onsite-widgets/cart-redeem",
+              "onsite-widgets/checkout-earn",
+              "onsite-widgets/checkout-redeem",
+              "onsite-widgets/order-status-earn",
+              "onsite-widgets/order-list-balance",
+              "onsite-widgets/customer-profile-balance",
+              "onsite-widgets/customer-account-page",
+              "onsite-widgets/rewards-landing-page",
+              "onsite-widgets/floating-launcher"
             ]
           },
           {
-            "group": "5. Import Reviews",
+            "group": "Referrals",
             "pages": [
-              "import-reviews",
-              "import-reviews/importing-from-woocommerce-review",
-              "import-reviews/importing-from-judgeme-reviews"
+              "referrals/overview",
+              "referrals/program-setup",
+              "referrals/reward-types",
+              "referrals/widget"
             ]
           },
           {
-            "group": "6. Managing Reviews",
+            "group": "Memberships",
             "pages": [
-              "managing-reviews",
-              "managing-reviews/auto-publishing-reviews",
-              "managing-reviews/review-moderation",
-              "managing-reviews/review-restrictions-limits",
-              "managing-reviews/replying-to-reviews",
-              "managing-reviews/verified-badges-for-reviews"
+              "memberships/overview",
+              "memberships/plans",
+              "memberships/contracts",
+              {
+                "group": "Membership Widgets",
+                "pages": [
+                  "memberships/widgets/cart-membership-upsell",
+                  "memberships/widgets/checkout-membership-upsell",
+                  "memberships/widgets/profile-membership"
+                ]
+              },
+              "memberships/validation-extension"
             ]
           },
           {
-            "group": "7. Questions & Answers",
+            "group": "Email Notifications",
             "pages": [
-              "questions-and-answers",
-              "questions-and-answers/qa-collection-form",
-              "questions-and-answers/qa-display-widget",
-              "questions-and-answers/managing-answering-questions"
+              "emails/overview",
+              "emails/template-editor",
+              "emails/shortcodes",
+              "emails/sender-and-branding",
+              "emails/loyalty-emails",
+              "emails/referral-emails",
+              "emails/membership-emails"
             ]
           },
           {
-            "group": "8. Review Settings",
+            "group": "Workflows",
             "pages": [
-              "review-settings",
-              "review-settings/branding",
-              "review-settings/admin-notifications"
+              "workflows/overview",
+              "workflows/build-your-first",
+              "workflows/triggers-and-conditions",
+              "workflows/action-nodes",
+              "workflows/wait-and-exit",
+              "workflows/partner-nodes",
+              "workflows/analytics"
             ]
           },
           {
-            "group": "9. Workflows",
+            "group": "Integrations",
             "pages": [
-              "workflows",
-              "workflows/getting-started-with-workflows",
-              "workflows/review-request-workflow",
-              "workflows/review-reminder-workflow",
-              "workflows/review-submitted-reward-workflow"
-            ]
-          },
-          {
-            "group": "10. Integrations",
-            "pages": [
-              "integrations",
-              "integrations/woocommerce",
-              "integrations/shopify",
-              "integrations/google-seo",
-              "integrations/wployalty",
+              "integrations/overview",
+              "integrations/rest-api",
               "integrations/webhooks",
-              "integrations/zapier",
-              "integrations/google-shopping",
-              "integrations/facebook"
+              "integrations/shopify-flow",
+              "integrations/klaviyo",
+              "integrations/omnisend",
+              "integrations/engati",
+              "integrations/kwik-engage",
+              "integrations/retainful",
+              "integrations/facebook-instagram",
+              "integrations/google-business",
+              "integrations/custom-apps"
             ]
           },
           {
-            "group": "11. Account",
+            "group": "Account Settings",
             "pages": [
-              "account/account-settings",
-              "account/updating-logo",
-              "account/multi-store-management",
-              "account/security-and-access",
-              "account/members"
+              "account/overview",
+              "account/general",
+              "account/platforms",
+              "account/email-blacklist"
             ]
           },
           {
-            "group": "12. Support",
+            "group": "Help & Support",
             "pages": [
               "support"
             ]
@@ -220,6 +266,19 @@
                 ]
               }
             ]
+          },
+          {
+            "group": "Object Reference",
+            "pages": [
+              "customer-identity-object",
+              "customer-reward-object",
+              "membership-object",
+              "points-transaction-object",
+              "activity-object",
+              "vip-tier-change-object",
+              "create-or-update-a-customer-identity",
+              "retrieve-a-points-transaction"
+            ]
           }
         ]
       }
@@ -234,12 +293,16 @@
       {
         "label": "Book a Free Setup Call",
         "href": "https://cal.com/rameshelamathi/yuko-demo"
+      },
+      {
+        "label": "Support",
+        "href": "https://yuko.so/support/"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.yukoapp.com/"
+      "label": "Install Yuko",
+      "href": "https://apps.shopify.com/yuko"
     }
   },
   "contextual": {
