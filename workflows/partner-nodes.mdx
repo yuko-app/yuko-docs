@@ -1,6 +1,6 @@
 ---
 title: Partner Nodes
-description: Hand off workflow execution to Engati or KwikEngage for chat / SMS / WhatsApp messaging.
+description: Hand off workflow execution to Engati or Kwik Engage for chat / SMS / WhatsApp messaging. For modern WhatsApp messaging across all 7 providers, see the WhatsApp Workflow node.
 ---
 
 <Note>
@@ -9,13 +9,15 @@ description: Hand off workflow execution to Engati or KwikEngage for chat / SMS 
 
 ## Introduction
 
-Partner Nodes hand off the workflow at a specific point to a third-party messaging platform. Two partners are supported in v1: **Engati** (conversational AI) and **KwikEngage** (multi-channel messaging).
+Partner Nodes hand off the workflow at a specific point to a third-party messaging platform. Two legacy partner nodes remain: **Engati** (conversational AI) and **Kwik Engage** (multi-channel messaging).
+
+<Tip>**For WhatsApp, prefer the unified [WhatsApp Workflow node](/workflows/whatsapp-node)** — it supports all 7 supported WhatsApp providers (including Engati and Kwik Engage) from a single node with a shared shortcode catalogue.</Tip>
 
 ## When to use
 
-- You already use Engati or KwikEngage for customer messaging.
-- You want loyalty events to trigger conversations or SMS in those tools.
-- You want a unified workflow that includes both Yuko and partner-tool actions.
+- You already use Engati or Kwik Engage for **non-WhatsApp** customer messaging (e.g., Engati conversational bot flows, Kwik Engage SMS).
+- You want loyalty events to trigger those legacy partner integrations.
+- For WhatsApp messaging through any provider — use the [WhatsApp Workflow node](/workflows/whatsapp-node) instead.
 
 ## Available partner nodes
 
@@ -24,12 +26,18 @@ Partner Nodes hand off the workflow at a specific point to a third-party messagi
 - **Available when:** the [Engati integration](/integrations/engati) is connected.
 - **Action:** triggers a specified Engati flow / bot interaction with the customer.
 - **Configuration:** pick the Engati flow, optionally pass workflow context.
+- **For WhatsApp via Engati:** use the [WhatsApp node](/workflows/whatsapp-node) with **Engati** selected as the provider.
 
-### KwikEngage Node
+### Kwik Engage Node
 
-- **Available when:** the [KwikEngage integration](/integrations/kwik-engage) is connected.
-- **Action:** triggers a KwikEngage event — SMS, WhatsApp, or another configured channel.
+- **Available when:** the [Kwik Engage integration](/integrations/kwik-engage) is connected.
+- **Action:** triggers a Kwik Engage event — SMS, WhatsApp, or another configured channel.
 - **Configuration:** pick the event type, optionally pass workflow context.
+- **For WhatsApp via Kwik Engage:** use the [WhatsApp node](/workflows/whatsapp-node) with **Kwik Engage** selected as the provider.
+
+### WhatsApp Node — the unified successor
+
+For WhatsApp specifically, the [WhatsApp Workflow node](/workflows/whatsapp-node) supersedes these partner nodes. One node, 7 providers (AISensy, Zoko, WATI, DelightChat, Kwik Engage, Engati, QuickReply.ai), shared shortcode catalogue.
 
 ## How partner nodes execute
 
@@ -39,9 +47,9 @@ Partner Nodes hand off the workflow at a specific point to a third-party messagi
 
 ### Decision guidance
 
-- **Use Engati** when you want a conversational flow (the customer can reply and continue the conversation).
-- **Use KwikEngage** when you want one-shot messages on alternate channels.
-- **Don't replace native nodes** — use partner nodes for messaging that's outside Yuko's email or coupon native scope.
+- **Use Engati Node** when you want a conversational bot flow (the customer can reply and continue the conversation through Engati).
+- **Use Kwik Engage Node** when you want one-shot SMS or other-channel messages.
+- **Use the WhatsApp Node** for *any* WhatsApp template send, regardless of provider — it's the unified path.
 
 ### Limitations
 
@@ -52,7 +60,8 @@ Partner Nodes hand off the workflow at a specific point to a third-party messagi
 ## Best practices
 
 <Tip>**Connect the integration before designing the workflow.** Otherwise the node won't appear in the picker.</Tip>
-<Tip>**Stay in one tool per channel.** If KwikEngage handles SMS in your stack, don't also send SMS via another integration — it duplicates messages.</Tip>
+<Tip>**Stay in one tool per channel.** If Kwik Engage handles SMS in your stack, don't also send SMS via another integration — it duplicates messages.</Tip>
+<Tip>**Prefer the WhatsApp node for WhatsApp.** It's simpler, supports more providers, and uses a shared shortcode catalogue.</Tip>
 
 ## FAQs
 
@@ -63,9 +72,21 @@ Partner Nodes hand off the workflow at a specific point to a third-party messagi
   <Accordion title="Why don't I see the partner node?">
     The partner integration must be connected first. See [Integrations](/integrations/overview).
   </Accordion>
+  <Accordion title="Should I use the Engati Node or the WhatsApp Node with Engati provider?">
+    For WhatsApp template sends, use the **WhatsApp Node** — it uses the same Engati credentials but gives you the unified shortcode catalogue and a clearer UI. Use the Engati Node only for non-template conversational flow triggers.
+  </Accordion>
 </AccordionGroup>
 
 ## Related
+
+<CardGroup cols={2}>
+  <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
+    The unified node for WhatsApp across all 7 providers.
+  </Card>
+  <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
+    Provider-agnostic overview of the WhatsApp integration.
+  </Card>
+</CardGroup>
 
 import RelatedWorkflows from '/snippets/related-workflows.mdx';
 

@@ -173,6 +173,7 @@
               "workflows/triggers-and-conditions",
               "workflows/action-nodes",
               "workflows/wait-and-exit",
+              "workflows/whatsapp-node",
               "workflows/partner-nodes",
               "workflows/analytics"
             ]
@@ -186,8 +187,19 @@
               "integrations/shopify-flow",
               "integrations/klaviyo",
               "integrations/omnisend",
-              "integrations/engati",
-              "integrations/kwik-engage",
+              {
+                "group": "WhatsApp",
+                "pages": [
+                  "integrations/whatsapp",
+                  "integrations/aisensy",
+                  "integrations/zoko",
+                  "integrations/wati",
+                  "integrations/delightchat",
+                  "integrations/kwik-engage",
+                  "integrations/engati",
+                  "integrations/quickreply-ai"
+                ]
+              },
               "integrations/retainful",
               "integrations/facebook-instagram",
               "integrations/google-business",
