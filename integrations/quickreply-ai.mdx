@@ -1,0 +1,114 @@
+---
+title: QuickReply.ai
+description: Connect QuickReply.ai as your WhatsApp Business API provider — AI-first automation that supports media headers and dynamic CTA buttons.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → QuickReply.ai
+</Note>
+
+## Introduction
+
+[QuickReply.ai](https://www.quickreply.ai) is an AI-first WhatsApp Business API platform. Once connected, the [WhatsApp Workflow node](/workflows/whatsapp-node) can send QuickReply.ai templates — including media-rich templates and templates with dynamic CTA buttons — on any loyalty event.
+
+For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
+
+<Warning>**QuickReply.ai is the only provider that needs TWO credentials.** Other providers need an API key only; QuickReply.ai needs both an **API key** and a **secret key**.</Warning>
+
+## When to use QuickReply.ai
+
+- You want AI-driven WhatsApp automations layered onto loyalty events.
+- Your templates use rich media headers (image / video / document) and dynamic CTA buttons.
+- You operate primarily in India / SEA and want a regional AI-focused BSP.
+
+## Before you start
+
+<Check>You have an active QuickReply.ai account with WhatsApp Business API.</Check>
+<Check>You have at least one **approved** QuickReply.ai template.</Check>
+<Check>You have your QuickReply.ai **API key** and **secret key** from the dashboard.</Check>
+<Check>You know the **Template ID** of the template you want to send (Dashboard → Template → ⋮ → **Copy Template Id**).</Check>
+
+## Connect QuickReply.ai to Yuko
+
+<Steps>
+  <Step title="Get your API key and secret key">
+    Log in to QuickReply.ai → **Settings → API**. Copy both the API key and the secret key — you need both.
+  </Step>
+  <Step title="Open QuickReply.ai in Yuko">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Integrations → QuickReply.ai**.
+  </Step>
+  <Step title="Paste BOTH credentials and Connect">
+    Paste the API key in the **API Key** field, the secret in the **Secret Key** field, and click **Connect**. The tile flips to **Connected**.
+  </Step>
+  <Step title="Add a QuickReply.ai step to a workflow">
+    Open any workflow, click **+**, pick **WhatsApp**, and select **QuickReply.ai** in the provider dropdown.
+  </Step>
+</Steps>
+
+## Configure the QuickReply.ai step in a workflow
+
+| Field | What it is | Example |
+|---|---|---|
+| **Template ID** | The approved template's ID (Dashboard → Template → ⋮ → Copy Template Id) | `6543abc...` |
+| **Parameter Count** | Number of body variables (1–25) | `2` |
+| **Template Parameters** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{points_balance}}` |
+| **Media URL** *(optional)* | Public URL for media templates (JPEG/PNG image, MP4 video, or document) | `https://cdn.example.com/welcome.jpg` |
+| **Button Parameters** *(optional)* | Values for dynamic URL button placeholders (max 5) | `account?id={{customer_id}}` |
+
+<Tip>The **Media URL** must be publicly reachable. If it's behind auth or expires, the template send will fail.</Tip>
+<Tip>**Button parameters** fill the dynamic part of CTA URLs defined in the QuickReply.ai template — e.g., a template with a button `https://shop.example.com/{dynamic}` will substitute the first button param into `{dynamic}`.</Tip>
+
+## Example use case
+
+**Reward unlocked — deep-link to redemption page**
+
+1. In QuickReply.ai, approve a template with an image header and a dynamic CTA URL button. Note the Template ID.
+2. In Yuko Workflows, build: **Trigger: Reward Earned** → **WhatsApp (QuickReply.ai)**.
+3. Configure: Template ID = (paste), Parameter Count = `2`, Parameters = `{{first_name}}`, `{{coupon_code}}`, Media URL = your reward banner image, Button Param 1 = `redeem?code={{coupon_code}}`.
+4. Activate.
+
+## Limitations
+
+- **Approved templates only.** QuickReply.ai enforces Meta template approval.
+- **Media URL must be public.** No auth-protected URLs.
+- **Max 5 button parameters.** That's a QuickReply.ai-side limit.
+- **No per-message delivery status surfaced in Yuko.** Check the QuickReply.ai dashboard for delivered / read events.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why does QuickReply.ai need two credentials?">
+    QuickReply.ai's API signs requests using both an API key and a secret. Other BSPs accept a single bearer token; QuickReply.ai is the exception.
+  </Accordion>
+  <Accordion title="Where do I find the Template ID?">
+    In the QuickReply.ai dashboard, open the Templates list → click the three-dot menu next to a template → **Copy Template Id**.
+  </Accordion>
+  <Accordion title="My template has a button but no dynamic URL — do I need button params?">
+    No. Button params are only required when the template's button URL contains a `{placeholder}` slot.
+  </Accordion>
+  <Accordion title="The send fails with a media error — what do I check?">
+    1. URL returns HTTP 200 unauthenticated. 2. File type matches the template's header type (image / video / document). 3. File size is within WhatsApp's limits.
+  </Accordion>
+  <Accordion title="How do I rotate credentials?">
+    Generate a new API key and/or secret in QuickReply.ai, then paste both into the Yuko QuickReply.ai integration tile and click **Connect** again.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
+
+<RelatedWhatsAppProviders />
+
+<CardGroup cols={2}>
+  <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
+    How Yuko's WhatsApp integration works across all 7 providers.
+  </Card>
+  <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
+    Setup, shortcodes, and example workflows.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

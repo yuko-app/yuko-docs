@@ -1,66 +1,113 @@
 ---
-title: KwikEngage
-description: Multi-channel messaging (SMS, WhatsApp, push) triggered by Yuko loyalty events.
+title: Kwik Engage
+description: Connect Kwik Engage as your WhatsApp Business API provider — templates with optional dynamic CTA buttons sent from any Yuko workflow.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → KwikEngage
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → Kwik Engage
 </Note>
 
 ## Introduction
 
-The KwikEngage connector lets Yuko events trigger KwikEngage messages — SMS, WhatsApp, push notifications, or whatever channels you have configured in KwikEngage.
+[Kwik Engage](https://www.kwikengage.ai) is a WhatsApp Business API provider with strong India-region coverage. Once connected, the [WhatsApp Workflow node](/workflows/whatsapp-node) can send Kwik Engage templates — with or without dynamic CTA buttons — on any loyalty event.
 
-## When to use
+For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
-- You already use KwikEngage for customer messaging.
-- You want loyalty events to drive SMS / WhatsApp campaigns.
-- You want to combine KwikEngage's reach with Yuko's loyalty data.
+## When to use Kwik Engage
 
-## Prerequisites
+- You operate primarily in India and want a regional WhatsApp Business API provider.
+- Your templates include **CTA buttons** with dynamic URL placeholders.
+- You want to keep template variables and CTA URL variables on separate configuration tracks.
 
-<Check>You have a KwikEngage account.</Check>
-<Check>You have KwikEngage API credentials.</Check>
+## Before you start
 
-## Setup
+<Check>You have an active Kwik Engage account with WhatsApp Business API.</Check>
+<Check>You have at least one **approved** Kwik Engage template.</Check>
+<Check>You have your Kwik Engage API endpoint URL and API key.</Check>
+
+## Connect Kwik Engage to Yuko
 
 <Steps>
-  <Step title="Open KwikEngage integration">
-    Go to **Apps → Yuko Loyalty → Integrations → KwikEngage**.
+  <Step title="Get your Kwik Engage API key">
+    Log in to Kwik Engage → **Settings → API**. Copy the API key and note the API endpoint URL.
   </Step>
-  <Step title="Connect with credentials">
-    Paste your KwikEngage API key.
+  <Step title="Open Kwik Engage in Yuko">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Integrations → Kwik Engage**.
   </Step>
-  <Step title="Pick events / channels">
-    Configure which Yuko events fire which KwikEngage message templates.
+  <Step title="Paste the API key and Connect">
+    Paste the key and click **Connect**. The tile flips to **Connected**.
   </Step>
-  <Step title="Save">
-    Messages start firing on matching events.
+  <Step title="Add a Kwik Engage step to a workflow">
+    Open any workflow, click **+**, pick **WhatsApp**, and select **Kwik Engage** in the provider dropdown.
   </Step>
 </Steps>
 
-## Use the KwikEngage Workflow node
+## Configure the Kwik Engage step in a workflow
 
-Once connected, the **KwikEngage node** is available in [Yuko Workflows](/workflows/partner-nodes) — use it to send an SMS or WhatsApp inside a custom workflow.
+Kwik Engage splits body parameters from CTA button parameters — toggle CTA buttons on only if your approved template has them.
 
-## Best practices
+| Field | What it is | Example |
+|---|---|---|
+| **Endpoint URL** | Kwik Engage API endpoint URL | `https://api.kwikengage.ai/...` |
+| **Template Name** | Template identifier (no spaces) | `points_expiring_soon` |
+| **Language Code** | Template language | `en_US` or `hi_IN` |
+| **Parameter Count** | Number of body variables (1–25) | `2` |
+| **Template Parameters** | One value per body variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{points_balance}}` |
+| **Add CTA Button** *(toggle)* | Enable if the template has dynamic URL buttons | on |
+| **CTA Button Count** | Number of CTA buttons (1–10) | `1` |
+| **CTA Button Parameters** | Dynamic URL variables — one per button | `redeem?code={{coupon_code}}` |
 
-<Tip>**SMS is expensive and intrusive.** Reserve KwikEngage for high-value moments — tier upgrades, reward expiry, big milestones.</Tip>
-<Tip>**Respect customer messaging preferences.** Always honour opt-outs.</Tip>
+<Tip>The **Add CTA Button** toggle controls a separate parameter list from the body parameters. Each CTA button parameter fills a dynamic placeholder in the button's URL, defined in the Kwik Engage template.</Tip>
+
+## Example use case
+
+**Points expiring — redeem now button**
+
+1. In Kwik Engage, approve a template called `points_expiring_soon` with two body variables and one CTA button (URL = `https://shop.example.com/account?ref={dynamic}`). Note the endpoint URL.
+2. In Yuko Workflows, build: **Trigger: Points Expiring Soon** → **WhatsApp (Kwik Engage)**.
+3. Configure: Endpoint, Template Name = `points_expiring_soon`, Language = `en_US`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{points_balance}}`.
+4. Toggle **Add CTA Button**, set CTA Button Count = `1`, Button Param 1 = `redeem-{{customer_id}}`.
+5. Activate.
+
+## Limitations
+
+- **Approved templates only.** Kwik Engage enforces Meta template approval.
+- **Template name must have no spaces.** Use underscores.
+- **Up to 10 CTA buttons.** That's the Kwik Engage-side limit.
+- **No template authoring inside Yuko.** Edit templates in the Kwik Engage dashboard.
+- **No per-message delivery status surfaced in Yuko.** Check the Kwik Engage dashboard for delivered / read events.
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Does KwikEngage handle opt-outs?">
-    Yes — KwikEngage's own preference and consent system applies. Yuko forwards events; KwikEngage decides whether to send.
+  <Accordion title="Do I need to enable CTA buttons?">
+    Only if your approved template has dynamic URL buttons. Leave the toggle off for plain text templates.
+  </Accordion>
+  <Accordion title="What goes into a CTA Button Parameter?">
+    The dynamic part of the button's URL. If your template's button URL is `https://shop.example.com/{ref}`, the button param fills the `{ref}` placeholder.
+  </Accordion>
+  <Accordion title="What language codes does Kwik Engage support?">
+    Standard WhatsApp Business API language codes — `en_US`, `hi_IN`, `en_GB`, etc. Use whatever matches the language of your approved template.
+  </Accordion>
+  <Accordion title="How do I rotate the API key?">
+    Generate a new key in Kwik Engage, then paste it into the Yuko Kwik Engage integration tile and click **Connect** again.
   </Accordion>
 </AccordionGroup>
 
 ## Related
 
-import RelatedIntegrations from '/snippets/related-integrations.mdx';
+import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
-<RelatedIntegrations />
+<RelatedWhatsAppProviders />
+
+<CardGroup cols={2}>
+  <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
+    How Yuko's WhatsApp integration works across all 7 providers.
+  </Card>
+  <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
+    Setup, shortcodes, and example workflows.
+  </Card>
+</CardGroup>
 
 import NeedHelp from '/snippets/need-help.mdx';
 

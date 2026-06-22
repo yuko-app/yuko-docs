@@ -1,6 +1,6 @@
 ---
 title: Engati
-description: Conversational AI — trigger Engati bot flows from Yuko loyalty events.
+description: Connect Engati as your WhatsApp Business API provider — namespace-scoped templates sent from any Yuko workflow.
 ---
 
 <Note>
@@ -9,57 +9,96 @@ description: Conversational AI — trigger Engati bot flows from Yuko loyalty ev
 
 ## Introduction
 
-The Engati connector lets Yuko events trigger Engati conversational flows — useful for stores that already use Engati for customer support and want loyalty milestones to start conversations.
+[Engati](https://www.engati.com) is a global conversational AI platform that doubles as a WhatsApp Business API provider. Once connected, the [WhatsApp Workflow node](/workflows/whatsapp-node) can send Engati templates whenever a loyalty event fires — useful if you already run Engati for customer support and want loyalty milestones flowing through the same channel.
 
-## When to use
+For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
-- You already use Engati for chat / messaging.
-- You want loyalty events (tier change, big milestone) to start a bot conversation.
-- You want to combine Engati's chat with Yuko's loyalty data.
+## When to use Engati
 
-## Prerequisites
+- You already use Engati for chat / conversational AI.
+- You want loyalty events (tier change, reward earned) to send template messages through your existing Engati setup.
+- You want to combine Engati's conversational flows with Yuko's loyalty data.
 
-<Check>You have an Engati account.</Check>
-<Check>You have Engati API credentials.</Check>
+## Before you start
 
-## Setup
+<Check>You have an active Engati account with WhatsApp Business API.</Check>
+<Check>You have at least one **approved** Engati template.</Check>
+<Check>You know your Engati **namespace** (used to scope templates in Engati's API).</Check>
+<Check>You have your Engati API key.</Check>
+
+## Connect Engati to Yuko
 
 <Steps>
-  <Step title="Open Engati integration">
-    Go to **Apps → Yuko Loyalty → Integrations → Engati**.
+  <Step title="Get your Engati credentials">
+    Log in to Engati → **Settings → API**. Copy the API key and note your namespace.
   </Step>
-  <Step title="Connect with credentials">
-    Paste your Engati API key.
+  <Step title="Open Engati in Yuko">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Integrations → Engati**.
   </Step>
-  <Step title="Pick the flows to invoke">
-    Configure which Engati flow runs on which Yuko event.
+  <Step title="Paste the API key and Connect">
+    Paste the key and click **Connect**. The tile flips to **Connected**.
   </Step>
-  <Step title="Save">
-    Engati invocations start firing on the next matching event.
+  <Step title="Add an Engati step to a workflow">
+    Open any workflow, click **+**, pick **WhatsApp**, and select **Engati** in the provider dropdown.
   </Step>
 </Steps>
 
-## Use the Engati Workflow node
+## Configure the Engati step in a workflow
 
-Once connected, the **Engati node** becomes available in [Yuko Workflows](/workflows/partner-nodes) — useful for triggering Engati from a custom workflow rather than only on stock events.
+| Field | What it is | Example |
+|---|---|---|
+| **Namespace** | Your Engati template namespace | `your-namespace` |
+| **Endpoint URL** | Engati's API endpoint URL | `https://api.engati.com/...` |
+| **Template Name** | Template identifier (no spaces) | `loyalty_tier_upgrade` |
+| **Parameter Count** | Number of body variables (1–25) | `2` |
+| **Template Parameters** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{vip_tier_name}}` |
 
-## Best practices
+<Tip>**Template Name must not contain spaces.** Engati's API rejects template names with whitespace — use underscores.</Tip>
 
-<Tip>**Don't replicate messaging across tools.** If Engati is sending the message, disable Yuko's email for the same event.</Tip>
+## Example use case
+
+**Tier upgrade celebration**
+
+1. In Engati, approve a template called `tier_upgrade_celebration` with two variables. Confirm the namespace.
+2. In Yuko Workflows, build: **Trigger: VIP Tier Upgraded** → **WhatsApp (Engati)**.
+3. Set Namespace, Endpoint URL, Template Name = `tier_upgrade_celebration`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{vip_tier_name}}`.
+4. Activate.
+
+## Limitations
+
+- **Approved templates only.** Engati enforces Meta template approval.
+- **Namespace-scoped.** Templates from one namespace can't be sent from another — keep namespace and template name in sync.
+- **No template authoring inside Yuko.** Edit templates in the Engati dashboard.
+- **No per-message delivery status surfaced in Yuko.** Check the Engati dashboard for delivered / read events.
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Why doesn't the Engati Workflow node show up?">
-    Connect the integration first. The node only appears when Engati is active.
+  <Accordion title="What's a namespace?">
+    A WhatsApp Business API concept: namespaces scope template approvals. Engati exposes it explicitly because the same template name can exist in different namespaces.
+  </Accordion>
+  <Accordion title="The send fails — what do I check?">
+    1. Namespace matches the template's namespace in Engati. 2. Template name has no spaces. 3. Template is approved. 4. Parameter count matches the template's variable count. 5. Customer has a phone number in Shopify.
+  </Accordion>
+  <Accordion title="How do I rotate the API key?">
+    Generate a new key in Engati, then paste it into the Yuko Engati integration tile and click **Connect** again.
   </Accordion>
 </AccordionGroup>
 
 ## Related
 
-import RelatedIntegrations from '/snippets/related-integrations.mdx';
+import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
-<RelatedIntegrations />
+<RelatedWhatsAppProviders />
+
+<CardGroup cols={2}>
+  <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
+    How Yuko's WhatsApp integration works across all 7 providers.
+  </Card>
+  <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
+    Setup, shortcodes, and example workflows.
+  </Card>
+</CardGroup>
 
 import NeedHelp from '/snippets/need-help.mdx';
 
