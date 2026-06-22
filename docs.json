@@ -85,6 +85,20 @@
                   "loyalty/ways-to-redeem/store-credit"
                 ]
               },
+              {
+                "group": "Booster Campaigns",
+                "pages": [
+                  "loyalty/booster-campaigns/overview",
+                  "loyalty/booster-campaigns/multiplier",
+                  "loyalty/booster-campaigns/bonus-flat",
+                  "loyalty/booster-campaigns/spending-goal",
+                  "loyalty/booster-campaigns/order-frequency",
+                  "loyalty/booster-campaigns/streak",
+                  "loyalty/booster-campaigns/multi-action-challenge",
+                  "loyalty/booster-campaigns/dormant-reactivation",
+                  "loyalty/booster-campaigns/first-purchase-boost"
+                ]
+              },
               "loyalty/customers"
             ]
           },
