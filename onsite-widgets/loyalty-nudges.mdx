@@ -1,0 +1,211 @@
+---
+title: Loyalty Nudges
+description: A pinned strip on every storefront page that opens a slide-up drawer with the customer's points, rewards, VIP status and active booster campaigns. Yuko's primary on-site promotion surface.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Loyalty Nudges
+</Note>
+
+## Introduction
+
+Loyalty Nudges is a small persistent strip pinned to the top or bottom of every storefront page. When customers tap it, a slide-up drawer opens showing their points balance, VIP tier, earned rewards, ways to earn (including active **booster campaigns**) and ways to redeem — all without leaving the page they're on.
+
+It's Yuko's primary on-site promotion surface. When you launch a [Booster Campaign](/loyalty/booster-campaigns/overview), this is how customers actually see it without you having to email them.
+
+## What problem this solves
+
+A loyalty program that lives only inside the customer account hub is invisible to the customer who's browsing products. Loyalty Nudges fixes that — the program follows the customer across every page through a single non-intrusive strip that opens a full hub when tapped.
+
+The alternative is sending an email every time you launch a campaign. Loyalty Nudges turns the storefront itself into the announcement.
+
+## Where it appears
+
+- A small **pinned strip** on every storefront page — top or bottom of viewport, configurable.
+- A **slide-up drawer** that opens from the bottom when the customer taps the strip.
+- The drawer auto-closes after the customer applies a reward or completes an action.
+
+## When to use
+
+- You've launched (or plan to launch) **Booster Campaigns** and want them visible on every page.
+- You want a persistent loyalty surface rather than only the cart or account.
+- You want a single on-site promotion surface that handles points, rewards, VIP and boosters together.
+- You operate a fast-moving storefront where customers don't browse to a dedicated `/rewards` page.
+
+## Overview
+
+- Pinned **strip + slide-up drawer** pattern — not a modal popup, not a sidebar.
+- Renders on **every storefront page** automatically once enabled — no per-template setup.
+- Different content for **logged-in customers** vs **visitors**.
+- Drawer sections (Header, Your Rewards, Ways to Earn, Ways to Redeem) are individually **reorderable** by drag-and-drop and toggleable on/off.
+- **Booster campaigns** can be auto-surfaced (all active) or **curated** (pick specific campaigns to show).
+- Position (top / bottom) and visibility (desktop / mobile / both) configurable.
+- **Per-locale** content support.
+- Branded via store colours; supports custom CSS overrides.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+### 1. Configure in Yuko
+
+<Steps>
+  <Step title="Open the widget settings">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Widgets → Loyalty Nudges**.
+  </Step>
+  <Step title="Configure the trigger strip">
+    The strip is the always-visible pill that opens the drawer. Two states:
+    - **Visitor (logged-out) text** — e.g., *“Earn points & rewards every time you shop”*.
+    - **Member (logged-in) text** — e.g., *“Hi `{{first_name}}` — you have `{{points_balance}}` `{{points_label}}`”*. Supports placeholders so the strip personalises automatically.
+  </Step>
+  <Step title="Configure the drawer header">
+    The top of the drawer:
+    - **Drawer title** — e.g., *“My Loyalty Program”*.
+    - **Greeting text** — e.g., *“Welcome back, `{{first_name}}`!”*
+    - Toggle which member-state elements show: **points balance**, **points worth in store currency**, **VIP tier progress**.
+  </Step>
+  <Step title="Reorder and toggle drawer sections">
+    The drawer has four sections — **Header**, **Your Rewards**, **Ways to Earn**, **Ways to Redeem**. Drag to reorder them; toggle each on or off depending on what you want surfaced.
+  </Step>
+  <Step title="Configure Ways to Earn (booster campaigns)">
+    Inside the **Ways to Earn** section, toggle **Show booster campaigns** on. Then choose:
+    - **Show all active boosters** — leave the campaign selector empty. Any currently-active campaign automatically appears on the storefront.
+    - **Curate the list** — pick specific campaigns from the multi-select. Only those appear, in your chosen order.
+
+    Use the **Ways to Earn order** setting to control whether booster campaigns appear above or below your standard earning campaigns.
+  </Step>
+  <Step title="Configure customization (placement)">
+    Under the **Customization** tab:
+    - **Position** — **top** or **bottom** of viewport.
+    - **Display visibility** — **both** / **desktop only** / **mobile only**.
+    - **Page exclusions** — URL fragments where the strip shouldn't render (e.g., `/blog`, checkout pages).
+  </Step>
+  <Step title="Configure styling">
+    Under the **Styles** tab:
+    - **Primary**, **secondary**, **text** and **body description** colours.
+    - **Custom CSS** for fine-tuned overrides (advanced).
+  </Step>
+  <Step title="Activate">
+    Toggle the widget **Active** and click **Save**.
+  </Step>
+</Steps>
+
+### 2. Add to your storefront
+
+The Loyalty Nudges widget auto-renders on every page via the **Theme App Embed**. There's no per-template app block to add.
+
+<Check>
+The Yuko Theme App Embed is enabled in your **published** theme. See [Theme App Embed](/installation-and-setup/theme-app-embed) if you haven't enabled it yet.
+</Check>
+
+If the embed is enabled and the widget is active, the strip should appear on your storefront within a few minutes.
+
+### 3. Verify
+
+<Steps>
+  <Step title="Test as a visitor">
+    Open your live store in a private window. The strip should render with the visitor copy and a *Create Account* CTA in the drawer.
+  </Step>
+  <Step title="Test as a logged-in member">
+    Log in as a real customer. The strip should switch to the member copy and the drawer should show their balance, tier and rewards.
+  </Step>
+  <Step title="Test booster visibility">
+    With at least one active booster campaign, open the drawer and confirm the Ways to Earn section surfaces it with the booster's progress UI.
+  </Step>
+  <Step title="Test the drawer flow">
+    Apply a reward from inside the drawer. The drawer should auto-close and the strip should reflect the new state on next open.
+  </Step>
+</Steps>
+
+## Available placeholders
+
+The strip and drawer header support these placeholders in their text fields:
+
+| Placeholder | Replaced with |
+|---|---|
+| `{{first_name}}` | Customer's first name (logged-in only). |
+| `{{customer_name}}` | Customer's full name (logged-in only). |
+| `{{points_balance}}` | Customer's current points balance (logged-in only). |
+| `{{points_label}}` | Your configured points label (e.g., *Stars*, *Coins*). |
+
+For logged-out visitors, the placeholders are stripped — use the dedicated visitor text fields instead.
+
+## How it works
+
+1. The Theme App Embed loads Loyalty Nudges on every page.
+2. For visitors, the strip shows visitor copy with a join CTA.
+3. For logged-in customers, the strip personalises using profile data fetched from Yuko.
+4. On tap, the drawer slides up showing the configured sections.
+5. Booster campaigns are fetched live (filtered by your curation setting) and rendered with type-specific UI — spending-goal progress bars, frequency milestones, streak counters, multi-action checklists.
+6. Customers can apply rewards directly from the drawer; the cart updates without page navigation.
+
+### Decision guidance
+
+- **Top vs bottom position** — bottom is the safer default (out of the way during browsing, easy to thumb on mobile). Top is louder but conflicts with sticky headers in some themes.
+- **Show all active boosters vs curate** — start with *show all*. Curate later if you find yourself running too many simultaneous campaigns to surface coherently.
+- **Boosters first vs campaigns first** — boosters first puts the time-limited urgency at the top; campaigns first keeps long-running earn rules visible above promos. Boosters-first is the more common choice.
+- **Page exclusions** — exclude the blog and any pages where the strip would compete with a CTA (e.g., dedicated landing pages).
+- **Desktop vs mobile** — leave at **both**. Mobile is where Nudges shines because most customers browse from their phone.
+
+### Limitations
+
+- The strip is non-dismissible by the customer (closing the drawer hides the drawer but the strip stays). This is intentional — it's a persistent surface, not a popup.
+- Loyalty Nudges does not render at Shopify Checkout (Shopify doesn't allow custom scripts there). Use the [Checkout Earn](/onsite-widgets/checkout-earn) and [Checkout Redeem](/onsite-widgets/checkout-redeem) widgets for that surface.
+- For inactive customers (off-store), Loyalty Nudges can't reach them — use [email](/emails/overview) and WhatsApp instead.
+
+## Examples
+
+- **Booster takeover during a 2X weekend** — Nudges drawer shows the Multiplier campaign with the dates and remaining time, every time a visitor lands on the site. Drives discovery without an email send.
+- **Spending-goal progress on every page** — the drawer shows the customer's *“$92 of $150 toward your 500-point bonus”* progress bar continuously. Most effective on-site progress visualisation Yuko has.
+- **First-30-days new-member nudge** — personalised strip on every page reminds new members of their first-order 2X boost. The strip text uses `{{first_name}}` so it reads as personal.
+- **VIP-only Diamond drawer** — Curated boosters surface only the Diamond-tier perks for top-tier customers, with the standard list for everyone else.
+- **Holiday hub** — During November, all themed boosters (holiday challenge, free-shipping spending goal, multi-action gift challenge) surface in one curated list to make the storefront read as *the* holiday destination.
+
+## Best practices
+
+<Tip>**Enable Loyalty Nudges before you launch your first booster campaign.** It's the cheapest, highest-leverage on-site promotion surface Yuko gives you.</Tip>
+<Tip>**Use the placeholders in the strip text.** Personalised strips (“Hi Sarah — you have 240 Stars”) outperform generic ones by a wide margin.</Tip>
+<Tip>**Curate booster visibility for VIP-only campaigns.** Don't show your top-tier perks to everyone — it dilutes the perceived exclusivity.</Tip>
+<Tip>**Exclude pages where the strip competes.** Blog post pages and dedicated landing pages are common candidates.</Tip>
+<Tip>**Test on mobile first.** Most customer interactions happen there; the drawer's bottom-sheet behaviour is built for mobile.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can the customer dismiss the strip?">
+    Closing the drawer hides the drawer; the strip remains visible on every page. This is by design — Loyalty Nudges is a persistent surface, not a popup.
+  </Accordion>
+  <Accordion title="How is this different from the Floating Launcher?">
+    The Floating Launcher is a small floating button (typically bottom-right) that opens a side panel. Loyalty Nudges is a full-width pinned strip that opens a bottom-sheet drawer. Nudges has more surface area for messaging (the strip can carry copy and placeholders); Launcher is quieter and more iconic. Most stores pick one or the other, not both.
+  </Accordion>
+  <Accordion title="Why don't I see my booster in the drawer?">
+    Check: (1) the booster campaign is active in **Booster Campaigns**, (2) **Show booster campaigns** is toggled on in this widget's Ways to Earn section, (3) the booster's UUID is in your curated list (or the list is empty so all boosters show), and (4) the customer falls within the campaign's targeting.
+  </Accordion>
+  <Accordion title="Does it slow down my site?">
+    The widget loads asynchronously via the Theme App Embed and fetches data only when the strip is rendered. Lighthouse impact is negligible on most themes.
+  </Accordion>
+  <Accordion title="Can I show different content per language?">
+    Yes — the configuration supports per-locale text fields. Yuko falls through customer locale → store default → English.
+  </Accordion>
+  <Accordion title="Can I render it on specific pages only?">
+    Use the **Page exclusions** field to remove the strip from URL fragments you don't want. The widget renders by default on all other pages.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import WidgetCrossLinks from '/snippets/onsite-widgets-cross-links.mdx';
+
+<WidgetCrossLinks />
+
+import RelatedWidgets from '/snippets/related-widgets.mdx';
+
+<RelatedWidgets />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
