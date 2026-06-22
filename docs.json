@@ -113,6 +113,7 @@
             "pages": [
               "onsite-widgets/overview",
               "onsite-widgets/branding-and-locale",
+              "onsite-widgets/loyalty-nudges",
               "onsite-widgets/product-page-earn",
               "onsite-widgets/cart-earn",
               "onsite-widgets/cart-redeem",
