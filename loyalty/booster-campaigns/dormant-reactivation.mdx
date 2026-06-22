@@ -1,0 +1,111 @@
+---
+title: Dormant Reactivation Booster
+description: Automatically award a chunky bonus the moment an inactive customer returns and orders. The winback campaign that runs itself.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Booster Campaigns → New booster → **Dormant Reactivation**
+</Note>
+
+## Overview
+
+When a customer who's been inactive for a defined period returns and places an order, they get an automatic bonus — e.g., **inactive 60 days, +200 points on return**. The campaign runs continuously and catches every returning customer who matches the inactivity threshold; there's no scheduled window to manage.
+
+## Why you need it?
+
+Most winback campaigns are email-driven — segment, write, send, hope. They work, but they're work, and they don't always reach the customer when they're ready to buy.
+
+Dormant Reactivation handles the reward side automatically. The customer returns and places an order, the bonus lands, the activity feed shows it, and your *“welcome back”* email (if you send one) can quote the exact bonus they earned. The campaign is silent until it isn't.
+
+## When to use it?
+
+This is one of the few boosters you should probably **always** be running. The only real question is the inactivity threshold and the bonus size. Use multiple campaigns layered on different thresholds to catch customers at every stage of drift.
+
+- You operate any store with a non-trivial customer base — anyone you've lost is a candidate.
+- You have high LTV customers worth aggressively recovering.
+- You sell replenishment categories where a missed reorder is a leading indicator of churn.
+- You're a paid-membership store and care about reactivation harder than the rest.
+
+## How to configure it?
+
+<Steps>
+  <Step title="Open Booster Campaigns">
+    Go to **Apps → Yuko Loyalty → Loyalty → Booster Campaigns** and click **New booster**.
+  </Step>
+  <Step title="Pick Dormant Reactivation">
+    Select the **Dormant Reactivation** booster type.
+  </Step>
+  <Step title="Set the inactivity threshold">
+    Between 14 and 365 days. Common values:
+    - **30 days** — early lapsers
+    - **60 days** — noticeable disengagement
+    - **90 days** — classic “deep sleep”
+    - **180 days / 365 days** — aggressive recovery for high-LTV customers
+  </Step>
+  <Step title="Set the qualifying action">
+    Typically *Place an Order* — the bonus lands when the inactive customer's first return order is paid.
+  </Step>
+  <Step title="Set minimum order amount (optional)">
+    Require the return order to be above a floor (e.g., $25) so the campaign isn't gamed with a $1 add-on.
+  </Step>
+  <Step title="Set the bonus">
+    Points awarded on the return order. Common sizing: +200 for early lapsers, +500 for deep sleepers, +1,000 for annual reactivations.
+  </Step>
+  <Step title="Configure targeting (optional)">
+    Target a specific tier or member segment for more aggressive bonuses.
+  </Step>
+  <Step title="Save and activate">
+    Toggle **Active** and click **Save**. The campaign runs continuously — no schedule required.
+  </Step>
+</Steps>
+
+<Tip>
+**Layer multiple Dormant Reactivation campaigns** at different thresholds (30, 90, 365). Yuko applies the most specific match to each returning customer, so the campaigns don't fight each other. Set escalating bonuses for the longer-sleeping customers.
+</Tip>
+
+## Use cases / Examples
+
+**1. Early lapser net (30 days inactive)**
+
++200 points on the return order. Catches customers who skipped a routine purchase before they fully disengage. Cheapest and most preventive; works for most stores.
+
+**2. Quarterly winback (90 days inactive)**
+
++500 points on the return order. The classic *“deep sleep”* threshold — the customer has drifted but probably hasn't actively left. A 500-point bonus is enough to be noticed without overpaying.
+
+**3. Annual reactivation (365 days inactive)**
+
++1,000 points plus a free-shipping reward on return. Hasn't bought in a full year — treat the return order as a priority. Aggressive bonuses here usually win out because the only alternative is losing the customer.
+
+**4. High-LTV recovery (top-tier customers, 90 days inactive)**
+
+For Diamond / top-tier members specifically: 90 days of silence triggers a bigger bonus than the regular 90-day campaign (e.g., +1,500 instead of +500). High-LTV churn is dramatically more expensive than acquisition; over-invest in the recovery.
+
+**5. Member-only reactivation (paid members, 60 days inactive)**
+
+For paid membership customers who've gone quiet for 60 days: chunky bonus + a personal email. Members are *paying* not to use what they're paying for — treat that as an emergency.
+
+**6. Replenishment-category catch (45 days inactive, consumables)**
+
+For stores selling consumables (coffee, supplements, beauty), 45 days is roughly the *“ran out, didn't restock”* window. Set the threshold there to catch the natural reorder moment with a small bonus that tips them back to you instead of an alternative.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="First Purchase Boost" icon="medal" href="/loyalty/booster-campaigns/first-purchase-boost">
+    The other end of the lifecycle — reward customers' first orders.
+  </Card>
+  <Card title="Email Notifications" icon="envelope" href="/emails/overview">
+    Send a custom ‘welcome back’ email that quotes the bonus.
+  </Card>
+  <Card title="Booster Campaigns Overview" icon="rocket" href="/loyalty/booster-campaigns/overview">
+    Compare all 8 booster types.
+  </Card>
+  <Card title="VIP Tiers" icon="crown" href="/vip-tiers/overview">
+    Target tier-specific aggressive reactivation bonuses.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
