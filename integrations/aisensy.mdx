@@ -1,0 +1,110 @@
+---
+title: AISensy
+description: Connect AISensy as your WhatsApp Business API provider — used by the WhatsApp Workflow node to send template messages on loyalty events.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → AISensy
+</Note>
+
+## Introduction
+
+[AISensy](https://www.aisensy.com) is an India-headquartered WhatsApp Business API platform popular with high-volume Shopify stores in India and Southeast Asia. Once connected, the [WhatsApp Workflow node](/workflows/whatsapp-node) can send AISensy campaign messages from any workflow — points earned, reward redeemed, tier upgraded, streak about to break, and so on.
+
+For the provider-agnostic overview of how Yuko's WhatsApp integration works, see [WhatsApp](/integrations/whatsapp).
+
+## When to use AISensy
+
+- You operate primarily in India or SEA and want a local Business Solution Provider.
+- You send high transactional volume and want competitive per-message pricing.
+- You already run AISensy campaigns and want loyalty events to trigger the same approved templates.
+
+## Before you start
+
+<Check>You have an active AISensy account with WhatsApp Business API.</Check>
+<Check>You have at least one **approved** AISensy campaign / template.</Check>
+<Check>You know your AISensy API endpoint URL (typically `https://backend.aisensy.com/campaign/t1/api/v2`).</Check>
+
+## Connect AISensy to Yuko
+
+<Steps>
+  <Step title="Get your AISensy API key">
+    Log in to the AISensy dashboard → **Manage → API Key**. Copy the API key.
+  </Step>
+  <Step title="Open AISensy in Yuko">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Integrations → AISensy**.
+  </Step>
+  <Step title="Paste the API key and Connect">
+    Paste the key and click **Connect**. The tile flips to **Connected**.
+  </Step>
+  <Step title="Add an AISensy step to a workflow">
+    Open any workflow, click **+**, pick **WhatsApp**, and choose **AISensy** in the provider dropdown.
+  </Step>
+</Steps>
+
+## Configure the AISensy step in a workflow
+
+When you add a WhatsApp node and pick AISensy, the node exposes the fields AISensy's API expects:
+
+| Field | What it is | Example |
+|---|---|---|
+| **Endpoint URL** | AISensy's campaign API endpoint | `https://backend.aisensy.com/campaign/t1/api/v2` |
+| **Campaign Name** | The name of the approved AISensy campaign to trigger | `loyalty_tier_upgrade` |
+| **Source** | Optional source identifier passed back to AISensy analytics | `yuko_workflow` |
+| **Template Parameter Count** | How many variables the template expects (1–25) | `3` |
+| **Template Parameters** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{vip_tier_name}}`, `{{points_balance}}` |
+| **Tags** | Optional comma-separated tags for AISensy reporting | `loyalty, tier_change` |
+| **Attributes** | Optional JSON of custom attributes | `{"segment": "vip"}` |
+
+<Tip>The **Campaign Name** must match the campaign name in your AISensy dashboard exactly — it's case-sensitive. A typo here is the most common reason an AISensy step fails silently.</Tip>
+
+## Example use case
+
+**Diamond tier welcome**
+
+1. Create an approved AISensy campaign called `loyalty_diamond_welcome` with three variables: customer name, points balance, exclusive perk.
+2. In Yuko Workflows, build: **Trigger: VIP Tier Entered** → **Filter: tier = Diamond** → **WhatsApp (AISensy)**.
+3. Set Campaign Name = `loyalty_diamond_welcome`, Parameter Count = `3`, Parameters = `{{first_name}}`, `{{points_balance}}`, `Free shipping on every order`.
+4. Activate. The next customer to hit Diamond gets the message within seconds.
+
+## Limitations
+
+- **Approved campaigns only.** AISensy enforces template approval; an un-approved campaign name will fail at send time.
+- **No template authoring inside Yuko.** Create and edit templates in the AISensy dashboard.
+- **No delivery status webhook.** Yuko logs the node action as pending / completed / failed based on the AISensy API response, not on delivered / read events.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="The node logs the action as failed — what do I check?">
+    1. Is the campaign name spelled exactly as in AISensy? 2. Is the campaign approved? 3. Does the customer have a valid phone number in Shopify? 4. Does parameter count match the template's variable count?
+  </Accordion>
+  <Accordion title="Can I have multiple AISensy campaigns active at once?">
+    Yes — use one WhatsApp node per campaign. Each node points to one campaign name.
+  </Accordion>
+  <Accordion title="Where do AISensy delivery stats live?">
+    In the AISensy dashboard. Yuko shows aggregate node-level pending / completed / failed counts only.
+  </Accordion>
+  <Accordion title="How do I rotate the API key?">
+    Generate a new key in AISensy, then paste it into the Yuko AISensy integration tile and click **Connect** again.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
+
+<RelatedWhatsAppProviders />
+
+<CardGroup cols={2}>
+  <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
+    How Yuko's WhatsApp integration works across all 7 providers.
+  </Card>
+  <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
+    Setup, shortcodes, and example workflows.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

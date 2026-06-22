@@ -1,0 +1,123 @@
+---
+title: Zoko
+description: Connect Zoko as your WhatsApp Business API provider — Shopify-native BSP supporting plain, rich (media header) and button templates from any Yuko workflow.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → Zoko
+</Note>
+
+## Introduction
+
+[Zoko](https://www.zoko.io) is a Shopify-native WhatsApp Business API platform — fast onboarding for Shopify merchants and good template tooling. Once connected, the [WhatsApp Workflow node](/workflows/whatsapp-node) can send Zoko templates on any loyalty event.
+
+For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
+
+## When to use Zoko
+
+- You're a Shopify-first merchant and want a BSP built for the same ecosystem.
+- You want to send rich templates (with image/video/document headers) or interactive button templates.
+- You're new to WhatsApp Business API and want the shortest path to a working setup.
+
+## Before you start
+
+<Check>You have an active Zoko account with WhatsApp Business API.</Check>
+<Check>You have at least one **approved** Zoko template.</Check>
+<Check>You have your Zoko API key from the Zoko dashboard.</Check>
+
+## Connect Zoko to Yuko
+
+<Steps>
+  <Step title="Get your Zoko API key">
+    Log in to the Zoko dashboard → **Settings → API**. Copy the API key.
+  </Step>
+  <Step title="Open Zoko in Yuko">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Integrations → Zoko**.
+  </Step>
+  <Step title="Paste the API key and Connect">
+    Paste the key and click **Connect**. The tile flips to **Connected**.
+  </Step>
+  <Step title="Add a Zoko step to a workflow">
+    Open any workflow, click **+**, pick **WhatsApp**, and select **Zoko** in the provider dropdown.
+  </Step>
+</Steps>
+
+## Configure the Zoko step in a workflow
+
+Zoko supports three template flavours. The node lets you pick which one matches the approved template in your Zoko dashboard.
+
+| Field | What it is | Example |
+|---|---|---|
+| **Template ID** | The approved template name from your Zoko dashboard | `shipping_01` |
+| **Message Type** | `Template` (text only), `Rich Template` (media header), or `Button Template` (interactive buttons) | `Template` |
+| **Template Language** | Language code | `en` |
+| **Template Argument Count** | Number of variables the template expects (1–25) | `2` |
+| **Template Arguments** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{coupon_code}}` |
+
+### Three template modes
+
+<AccordionGroup>
+  <Accordion title="Template — text only">
+    Arguments fill body placeholders in order. Use this for standard transactional messages.
+  </Accordion>
+  <Accordion title="Rich Template — with media header">
+    The **first argument** is the **media URL** (image / video / document) used in the template header. Remaining arguments fill the body placeholders. Use this when your approved template has a header media slot.
+  </Accordion>
+  <Accordion title="Button Template — with interactive buttons">
+    Buttons are defined in the template itself (in Zoko). Arguments fill body placeholders only. Yuko doesn't author the button payload — Zoko's template approval handles that.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>The **Template ID** must match the approved template name in Zoko exactly — case-sensitive. Most send failures trace back to a Template ID typo or an unapproved template.</Tip>
+
+## Example use case
+
+**Reward unlocked, redeem now**
+
+1. In Zoko, approve a template called `reward_unlocked` with two variables (customer name, coupon code).
+2. In Yuko Workflows, build: **Trigger: Reward Earned** → **WhatsApp (Zoko)**.
+3. Set Template ID = `reward_unlocked`, Message Type = `Template`, Language = `en`, Argument Count = `2`, Arguments = `{{first_name}}`, `{{coupon_code}}`.
+4. Activate. Each new reward fires a Zoko message immediately.
+
+## Limitations
+
+- **Approved templates only.** Zoko enforces Meta's template approval — un-approved templates fail at send time.
+- **No template authoring inside Yuko.** Use the Zoko dashboard to author and submit templates.
+- **Rich Template requires a publicly reachable media URL.** Yuko passes the URL straight through; if it's behind auth, Zoko can't fetch it.
+- **No per-message delivery status surfaced in Yuko.** Check the Zoko dashboard for delivered / read events.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="The action shows as failed — common causes?">
+    Template ID typo, template not yet approved, mismatched argument count, customer has no phone number, or Rich Template media URL is unreachable.
+  </Accordion>
+  <Accordion title="Can I send media via the standard Template type?">
+    No — pick **Rich Template** and put the media URL as the first argument. The approved template in Zoko must have a header media slot.
+  </Accordion>
+  <Accordion title="Can I have Zoko and another provider connected at the same time?">
+    Yes. Connect any combination of the 7 providers; the WhatsApp node lets you pick the provider per step.
+  </Accordion>
+  <Accordion title="How do I rotate the API key?">
+    Generate a new key in Zoko, then paste it into the Yuko Zoko integration tile and click **Connect** again.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
+
+<RelatedWhatsAppProviders />
+
+<CardGroup cols={2}>
+  <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
+    How Yuko's WhatsApp integration works across all 7 providers.
+  </Card>
+  <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
+    Setup, shortcodes, and example workflows.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
