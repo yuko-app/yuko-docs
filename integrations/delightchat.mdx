@@ -1,0 +1,110 @@
+---
+title: DelightChat
+description: Connect DelightChat as your WhatsApp Business API provider — automation-driven sends with optional CTA buttons from any Yuko workflow.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → DelightChat
+</Note>
+
+## Introduction
+
+[DelightChat](https://www.delightchat.io) is a multi-channel customer support platform (WhatsApp, Instagram, email) with a WhatsApp Marketing module that exposes "Automations". Once connected, the [WhatsApp Workflow node](/workflows/whatsapp-node) can fire any DelightChat automation from a Yuko workflow.
+
+For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
+
+## When to use DelightChat
+
+- You already use DelightChat for support across WhatsApp / Instagram / email.
+- You want Yuko loyalty events to plug into automations you've already built in DelightChat.
+- You want to attach a click-through **CTA button** to the WhatsApp message.
+
+## Before you start
+
+<Check>You have an active DelightChat account with WhatsApp Marketing enabled.</Check>
+<Check>You have at least one **approved** DelightChat WhatsApp automation.</Check>
+<Check>You know the **Automation ID** for the automation you want to trigger (visible in **WhatsApp Marketing → Automations**).</Check>
+<Check>You have your DelightChat API key.</Check>
+
+## Connect DelightChat to Yuko
+
+<Steps>
+  <Step title="Get your DelightChat API key">
+    Log in to DelightChat → **Settings → API** (or **Developer Settings**). Copy the API key.
+  </Step>
+  <Step title="Open DelightChat in Yuko">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Integrations → DelightChat**.
+  </Step>
+  <Step title="Paste the API key and Connect">
+    Paste the key and click **Connect**. The tile flips to **Connected**.
+  </Step>
+  <Step title="Add a DelightChat step to a workflow">
+    Open any workflow, click **+**, pick **WhatsApp**, and select **DelightChat** in the provider dropdown.
+  </Step>
+</Steps>
+
+## Configure the DelightChat step in a workflow
+
+DelightChat triggers a pre-built **automation** rather than a raw template. You pass message-data and an optional CTA button.
+
+| Field | What it is | Example |
+|---|---|---|
+| **Automation ID** | The ID of the WhatsApp automation in DelightChat | `abc123` |
+| **Message Data Count** | Number of template variables the automation expects (1–25) | `2` |
+| **Message Data** | Key-value pairs (keys typically numbered `1`, `2`, `3`…) — values support [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `1` = `{{first_name}}`, `2` = `{{points_balance}}` |
+| **CTA Button URL** | Optional click-through URL on the button (supports shortcodes) | `https://shop.example.com/account` |
+| **CTA Button Text** | Optional button label | `View my points` |
+
+<Tip>The **CTA Button URL** supports shortcodes too — use this to deep-link customers back into a personalised page (e.g., the customer's Yuko account page or a tier-specific landing page).</Tip>
+
+## Example use case
+
+**Points expiring — click to redeem**
+
+1. In DelightChat, build a WhatsApp automation called `points_expiring_soon` with two variables and approve the template. Note the Automation ID.
+2. In Yuko Workflows, build: **Trigger: Points Expiring Soon** → **WhatsApp (DelightChat)**.
+3. Set Automation ID, Message Data Count = `2`, Message Data: `1` = `{{first_name}}`, `2` = `{{points_balance}}`.
+4. Add a CTA: Button URL = `https://yourstore.com/account/rewards`, Button Text = `Redeem now`.
+5. Activate.
+
+## Limitations
+
+- **Automation-based, not raw template.** You're triggering an automation you built in DelightChat, not authoring the template inside Yuko.
+- **CTA buttons are optional and provider-defined.** If the automation's template doesn't include a button slot, the CTA fields will be ignored.
+- **No per-message delivery status surfaced in Yuko.** Check the DelightChat dashboard for delivered / read events.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What's the difference between this and a raw template?">
+    DelightChat wraps the WhatsApp template inside an "automation" — a higher-level construct that can include sender settings, follow-ups, and other DelightChat-side logic. Yuko just triggers the automation; DelightChat handles the rest.
+  </Accordion>
+  <Accordion title="How do I know what keys to put in Message Data?">
+    Check the automation's template body in DelightChat. The variable placeholders correspond to the keys you'll pass here — typically numbered `1`, `2`, `3`.
+  </Accordion>
+  <Accordion title="Can the CTA URL be dynamic per customer?">
+    Yes — the CTA Button URL field supports shortcodes, so you can deep-link with customer-specific values (e.g., `https://yourstore.com/account?email={{customer_email}}`).
+  </Accordion>
+  <Accordion title="How do I rotate the API key?">
+    Generate a new key in DelightChat, then paste it into the Yuko DelightChat integration tile and click **Connect** again.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
+
+<RelatedWhatsAppProviders />
+
+<CardGroup cols={2}>
+  <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
+    How Yuko's WhatsApp integration works across all 7 providers.
+  </Card>
+  <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
+    Setup, shortcodes, and example workflows.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
