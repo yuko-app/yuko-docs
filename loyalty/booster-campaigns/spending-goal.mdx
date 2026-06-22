@@ -94,6 +94,33 @@ Spend $1,000 per quarter → exclusive reward (e.g., free gift on next order, po
 
 New customers who spend $100 in their first 30 days from signup get 500 bonus points. Drives the make-or-break first month — customers who hit two orders in the first 30 days are dramatically more likely to become long-term loyalists.
 
+## How to promote it
+
+Spending goals work best when the customer can see their progress. Promotion is half launch announcement, half ongoing progress nudge.
+
+### Email — launch, progress, last-call
+
+Pair the spending goal with an email cadence through your ESP. **Klaviyo** is the strongest pairing because Yuko pushes `yuko_points_balance` profile properties and *Earn Points* event properties for every qualifying order (see [Klaviyo integration](/integrations/klaviyo)) — you can build a triggered flow that fires after every order showing the customer's progress toward the goal.
+
+- **Launch email:** state the target, the time window, and the bonus. *“Spend $150 in 14 days → 500 bonus points.”*
+- **Progress email (Klaviyo flow, trigger = *Earn Points*):** *“You're $42 away from your 500-point bonus. Keep going: [link]”*. The progress framing dramatically lifts repeat-order rate within the window.
+- **Last-call email:** when the window is closing and the customer hasn't hit the target, with a clear *“N days left to earn”*.
+
+### WhatsApp — final-stretch nudge
+
+If you've connected a WhatsApp provider, reserve WhatsApp for customers who are **70%+ of the way to the goal** with the window closing. *“$28 away from your 500-point bonus — closes Sunday.”* Highly personal, highly converting.
+
+### Storefront — Cart Redeem widget surfaces progress
+
+The Cart Redeem widget shows progress toward active spending goals automatically (e.g., *“$92 of $150 toward your 500-point bonus”*). That progress bar does as much work as the email — don't skip enabling it.
+
+### Reminder cadence
+
+- **Day 0** — launch email
+- **After each qualifying order** — Klaviyo progress flow with current standing
+- **Window closing, target not hit** — last-call email
+- **Final 24h, customer 70%+ to goal** — WhatsApp message
+
 ## Next Steps
 
 <CardGroup cols={2}>
