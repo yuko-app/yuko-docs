@@ -89,6 +89,40 @@ For paid membership customers who've gone quiet for 60 days: chunky bonus + a pe
 
 For stores selling consumables (coffee, supplements, beauty), 45 days is roughly the *“ran out, didn't restock”* window. Set the threshold there to catch the natural reorder moment with a small bonus that tips them back to you instead of an alternative.
 
+## How to promote it
+
+Dormant Reactivation is the unique case among boosters: there's **no campaign launch announcement**. The campaign runs silently and is invisible until a customer returns. Your promotion strategy is **winback emails** — the booster takes care of the reward, your job is to remind inactive customers you still exist.
+
+### Email — your winback engine
+
+Run a winback flow through your ESP. **Klaviyo** is the strongest pairing because Yuko pushes `yuko_total_spent`, `yuko_joined_at`, `yuko_points_balance` and `yuko_vip_tier` profile properties to every Klaviyo profile (see [Klaviyo integration](/integrations/klaviyo)). You can segment customers by inactivity duration and tier, and your reactivation email can quote the customer's exact points balance to remind them what's waiting.
+
+- **30-day winback email:** soft tone, *“haven't seen you in a while”*. Reference their points balance: *“Your 240 points are still here.”*
+- **90-day winback email:** raise the stakes — mention the bonus they'll earn when they return: *“We'll add 500 points to your account on your next order.”*
+- **365-day winback email:** aggressive recovery. Mention the bigger bonus plus free shipping. This is your last clean shot.
+
+The Dormant Reactivation campaign credits the bonus automatically the moment they order, so the email's only job is to get them to click.
+
+### WhatsApp — for 90+ day inactives
+
+If you've connected a WhatsApp provider, WhatsApp is well-suited to deeper winback because it's personal in a way email isn't. *“Hey [first_name] — your 500-point bonus is waiting. Use it before the end of the month.”* For high-LTV customers who've gone quiet, WhatsApp converts dramatically better than email.
+
+Don't use WhatsApp at the 30-day threshold — it'll feel intrusive for someone who's only briefly stepped away. Reserve it for the deeper sleepers.
+
+### Storefront — not your battleground
+
+Inactive customers aren't on the storefront. Focus your promotion budget on outbound channels (email, WhatsApp, retargeting ads) — the storefront widgets are for people already on-site.
+
+### Reminder cadence
+
+Run a 3-email winback flow per inactivity threshold:
+
+- **30 / 60 / 90 days inactive** — initial reminder email
+- **7 days later** — follow-up with featured products
+- **14 days after that** — final, with bigger urgency
+
+For 365-day inactives, a single high-effort email + WhatsApp message typically outperforms a multi-touch flow. They're either ready to come back or they're not.
+
 ## Next Steps
 
 <CardGroup cols={2}>
