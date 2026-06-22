@@ -91,6 +91,12 @@ Always-on: every customer reaching their 5th lifetime order earns a bonus. No ca
 
 Frequency campaigns sell themselves the moment a customer sees their progress ladder. Promotion is mostly about surfacing that ladder.
 
+### Storefront — Loyalty Nudges surfaces the ladder
+
+The **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget surfaces the milestone ladder on every storefront page, with the customer's current order count and next milestone visible at a glance through the pinned strip + drawer. The Customer Account hub also shows it for logged-in customers.
+
+Pair with a homepage banner during the campaign window for non-logged-in visitors who don't have a milestone count yet.
+
 ### Email — launch, milestone hit, next milestone
 
 Pair the campaign with email through your ESP. **Klaviyo** is the strongest pairing because Yuko pushes *Earn Points* events for every qualifying order (see [Klaviyo integration](/integrations/klaviyo)) — build a Klaviyo flow that fires on each order with branching logic for “still climbing”, “milestone reached”, and “campaign complete”.
@@ -105,27 +111,23 @@ If you've connected a WhatsApp provider, reserve WhatsApp for the *“one order 
 
 Example: *“Hey [first_name] — 1 more order before Sunday and you've earned 1,500 points. Shop here: [link]”*
 
-### Storefront — surface the ladder
-
-The Customer Account hub shows the customer's current milestone progress when a frequency campaign is active. Pair with a homepage banner during the campaign window for non-logged-in visitors.
-
 ### Reminder cadence
 
-- **Day 0** — launch email with the ladder
+- **Day 0** — enable Loyalty Nudges + launch email with the ladder
 - **After every qualifying order** — Klaviyo flow with current status
 - **Customer 1 order away from milestone, window closing** — WhatsApp + email
 
 ## Next Steps
 
 <CardGroup cols={2}>
+  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
+    The pinned-strip widget that surfaces the milestone ladder on every page.
+  </Card>
   <Card title="Streak Booster" icon="fire" href="/loyalty/booster-campaigns/streak">
     Reward consistent activity across consecutive periods.
   </Card>
   <Card title="Spending Goal Booster" icon="bullseye" href="/loyalty/booster-campaigns/spending-goal">
     Reward basket size instead of frequency.
-  </Card>
-  <Card title="Booster Campaigns Overview" icon="rocket" href="/loyalty/booster-campaigns/overview">
-    Compare all 8 booster types.
   </Card>
   <Card title="Customers" icon="users" href="/loyalty/customers">
     Watch milestone hits land in real customer activity feeds.

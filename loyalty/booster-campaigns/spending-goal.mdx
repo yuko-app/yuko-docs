@@ -98,6 +98,12 @@ New customers who spend $100 in their first 30 days from signup get 500 bonus po
 
 Spending goals work best when the customer can see their progress. Promotion is half launch announcement, half ongoing progress nudge.
 
+### Storefront — Loyalty Nudges puts progress on every page
+
+The **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget surfaces spending-goal progress on every storefront page — the same progress visualization (*“$92 of $150 toward your 500-point bonus”*) appears in the drawer for any customer with an active goal. Combined with the Cart Redeem widget's progress bar at cart, customers see how close they are almost everywhere they look.
+
+That continuous progress feedback is what makes spending-goal campaigns work. Don't skip enabling these widgets.
+
 ### Email — launch, progress, last-call
 
 Pair the spending goal with an email cadence through your ESP. **Klaviyo** is the strongest pairing because Yuko pushes `yuko_points_balance` profile properties and *Earn Points* event properties for every qualifying order (see [Klaviyo integration](/integrations/klaviyo)) — you can build a triggered flow that fires after every order showing the customer's progress toward the goal.
@@ -110,13 +116,9 @@ Pair the spending goal with an email cadence through your ESP. **Klaviyo** is th
 
 If you've connected a WhatsApp provider, reserve WhatsApp for customers who are **70%+ of the way to the goal** with the window closing. *“$28 away from your 500-point bonus — closes Sunday.”* Highly personal, highly converting.
 
-### Storefront — Cart Redeem widget surfaces progress
-
-The Cart Redeem widget shows progress toward active spending goals automatically (e.g., *“$92 of $150 toward your 500-point bonus”*). That progress bar does as much work as the email — don't skip enabling it.
-
 ### Reminder cadence
 
-- **Day 0** — launch email
+- **Day 0** — enable Loyalty Nudges + launch email
 - **After each qualifying order** — Klaviyo progress flow with current standing
 - **Window closing, target not hit** — last-call email
 - **Final 24h, customer 70%+ to goal** — WhatsApp message
@@ -124,14 +126,14 @@ The Cart Redeem widget shows progress toward active spending goals automatically
 ## Next Steps
 
 <CardGroup cols={2}>
+  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
+    The pinned-strip widget that surfaces spending-goal progress on every page.
+  </Card>
   <Card title="Order Frequency Booster" icon="repeat" href="/loyalty/booster-campaigns/order-frequency">
     Want to drive number of orders, not basket size? Use Order Frequency.
   </Card>
   <Card title="Streak Booster" icon="fire" href="/loyalty/booster-campaigns/streak">
     Reward consistent buying across consecutive periods.
-  </Card>
-  <Card title="Booster Campaigns Overview" icon="rocket" href="/loyalty/booster-campaigns/overview">
-    Compare all 8 booster types.
   </Card>
   <Card title="VIP Tiers" icon="crown" href="/vip-tiers/overview">
     Pair spending goals with tier-targeted promotions.
