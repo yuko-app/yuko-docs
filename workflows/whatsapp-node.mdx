@@ -1,0 +1,201 @@
+---
+title: WhatsApp Workflow Node
+description: Send a WhatsApp template message at any point in a workflow. Supports any of 7 connected WhatsApp Business API providers and 14 personalisation shortcodes.
+---
+
+<Note>
+**Where to find this:** Inside any workflow, click **+** between two nodes and pick **WhatsApp**.
+</Note>
+
+## Introduction
+
+The WhatsApp node sends a single approved WhatsApp template message when the workflow reaches it. The message is personalised with shortcodes that Yuko substitutes at send time — `{{first_name}}`, `{{points_balance}}`, `{{coupon_code}}`, etc.
+
+The node uses whichever WhatsApp provider you have [connected as an integration](/integrations/whatsapp) — there's no separate setup at the node level beyond picking provider, template and shortcode bindings.
+
+## What the node does
+
+1. Selects an approved template from your connected WhatsApp provider.
+2. Substitutes shortcode tokens with the customer's live data.
+3. Sends the message via the provider's Business API to the customer's phone number.
+4. Logs the result as **pending / completed / failed** on the node.
+
+## When to use
+
+- Inside any workflow where you want a high-open-rate channel for a moment that matters.
+- Tier upgrade celebrations, streak-at-risk reminders, points-expiring warnings.
+- Last-call urgency on [Booster Campaign](/loyalty/booster-campaigns/overview) windows.
+- Friend-reward-claimed notifications inside a referral flow.
+
+## Overview
+
+- One template message per node execution.
+- Switch providers per node (useful if you've connected more than one).
+- 14 shortcodes covering customer profile, order context and loyalty state.
+- Real-time **Connected / Disconnected** badge on the node so you can see whether your provider config is still live.
+- Failures don't block the workflow — the next node still fires.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>At least one WhatsApp provider is connected — see the [WhatsApp integration overview](/integrations/whatsapp).</Check>
+<Check>At least one **approved** template exists in your provider's dashboard.</Check>
+
+## How to add and configure the node
+
+<Steps>
+  <Step title="Open a workflow">
+    Go to **Apps → Yuko Loyalty → Workflows** and open an existing workflow or create a new one.
+  </Step>
+  <Step title="Add the WhatsApp node">
+    Click **+** between two nodes (or after the trigger) and pick **WhatsApp** from the action-node picker.
+  </Step>
+  <Step title="Pick the provider">
+    The node's provider dropdown shows every WhatsApp provider you've connected. Pick the one whose template you want to send.
+  </Step>
+  <Step title="Pick the template">
+    Yuko fetches your approved templates from the provider and lists them. Pick one.
+  </Step>
+  <Step title="Map template variables to shortcodes">
+    For every variable in the template (the `\{\{1\}\}`, `\{\{2\}\}` placeholders WhatsApp uses), pick the Yuko shortcode it should resolve to — e.g., map `\{\{1\}\}` to `{{first_name}}` and `\{\{2\}\}` to `{{points_balance}}`.
+  </Step>
+  <Step title="Save and activate">
+    Save the node, then activate the workflow.
+  </Step>
+</Steps>
+
+<Tip>
+**Watch the connection badge.** The node shows a real-time **Connected** or **Disconnected** badge depending on whether your provider credentials are still valid. If it flips to Disconnected after a credential rotation, the workflow will start failing — reconnect the provider integration to fix it.
+</Tip>
+
+## Available shortcodes
+
+Wrap tokens as `{{token_name}}` inside any template variable. Yuko substitutes the value at send time. The catalogue is shared across all 7 providers.
+
+### Profile
+
+| Shortcode | Description |
+|---|---|
+| `{{first_name}}` | Customer's first name. |
+| `{{last_name}}` | Customer's last name. |
+| `{{full_name}}` | Customer's full name. |
+| `{{email}}` | Customer's email address. |
+| `{{phone_number}}` | Customer's phone number. |
+
+### Order
+
+| Shortcode | Description |
+|---|---|
+| `{{order_number}}` | The order's reference number. |
+| `{{order_count}}` | Customer's total number of orders. |
+| `{{product_names}}` | Names of products in the order. |
+| `{{order_total}}` | The order's total amount. |
+| `{{currency}}` | Store currency code. |
+
+### Loyalty
+
+| Shortcode | Description |
+|---|---|
+| `{{points_balance}}` | Customer's current points balance. |
+| `{{total_earned_points}}` | Lifetime points earned. |
+| `{{current_tier_name}}` | Customer's current VIP tier. |
+| `{{coupon_code}}` | Reward / discount code. |
+
+<Note>
+The catalogue is shared across providers today. Some providers may expose additional native variables in their own dashboard — those won't appear in this list because Yuko doesn't pass them through.
+</Note>
+
+## How it works
+
+1. The workflow reaches the WhatsApp node.
+2. Yuko looks up the customer's phone number from their Shopify record. If no phone number is on file, the action is logged as *failed* and the workflow continues.
+3. Yuko resolves every shortcode in the template variables against the live customer / order / loyalty state.
+4. Yuko sends the message via the provider's Business API.
+5. The action is logged as *completed* or *failed*. Counts increment on the node.
+
+### Decision guidance
+
+- **Reserve WhatsApp for moments that warrant it.** Not every loyalty event needs a WhatsApp copy of the email. Pick tier changes, streak risk, last-call campaign reminders, friend-reward unlocks.
+- **Use shortcodes liberally** — personalised templates outperform generic ones by a wide margin.
+- **Pair with a Wait node** if the message would otherwise fire instantly after another channel. Customers receiving an email and a WhatsApp within seconds feels spammy; 60–120 seconds apart reads as deliberate.
+
+### Limitations
+
+- One template per node execution. To send a second message, add a second WhatsApp node downstream (with a Wait node between if needed).
+- Templates must be **approved** in the provider's dashboard before they're available to pick.
+- No delivery / read / reply tracking inside Yuko — the node tracks pending / completed / failed only.
+- Customer must have a phone number on their Shopify customer record.
+- No support for unstructured (non-template) messages; transactional WhatsApp Business API requires templates.
+
+## Examples
+
+**1. Tier upgrade celebration**
+
+Trigger: *VIP tier changed* (to Diamond). → WhatsApp node → template *“Welcome to Diamond, `{{first_name}}` — your new balance is `{{points_balance}}` points.”* Sent via the merchant's chosen provider (e.g., Zoko).
+
+**2. Streak-at-risk reminder**
+
+Trigger: *Customer inactive for N days* during a streak campaign → Wait 1 day → Condition: *streak still active* → WhatsApp node → template *“`{{first_name}}`, your 4-month streak ends in 24 hours. Order here to keep it alive.”*
+
+**3. Last-call booster reminder**
+
+Trigger: *Spending goal customer 70%+ to target* → WhatsApp node → template *“You're $28 from your 500-point bonus, `{{first_name}}`. Bonus expires Sunday.”* Pairs perfectly with the [Spending Goal](/loyalty/booster-campaigns/spending-goal) booster.
+
+**4. Referral reward unlocked**
+
+Trigger: *Friend reward claimed* → WhatsApp node → template *“Thanks, `{{first_name}}`! Your friend just claimed their `{{coupon_code}}` reward.”* Reinforces the referral loop in real time.
+
+## Best practices
+
+<Tip>**Get all templates approved before workflow launch.** Unapproved templates fail at send time and surface as workflow errors.</Tip>
+<Tip>**Build a parallel email path.** WhatsApp may fail (no phone number, provider down, opt-out). Pair the WhatsApp node with an email node so the message lands one way or another.</Tip>
+<Tip>**Don't put two WhatsApp nodes back-to-back.** Always insert a Wait node, or it'll feel like spam.</Tip>
+<Tip>**Test with a real customer record.** Run the workflow against a known customer with a phone number on file and confirm the message arrives before activating broadly.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What if the customer doesn't have a phone number on file?">
+    The action is logged as *failed* and the workflow continues to the next node. To catch these, add a Condition node before the WhatsApp node that checks `customer.has_phone` and routes those without phones to a different channel.
+  </Accordion>
+  <Accordion title="Can I A/B test two WhatsApp messages?">
+    Split the workflow into two branches with a Condition or random-split node, and put a different WhatsApp node in each branch.
+  </Accordion>
+  <Accordion title="Why is the node showing Disconnected?">
+    The provider's API credentials are no longer valid. Open the corresponding integration page (e.g., **Integrations → AISensy**) and reconnect.
+  </Accordion>
+  <Accordion title="Can I customise the message beyond shortcodes?">
+    Not from inside the WhatsApp node — the template body is fixed in your provider's dashboard. Yuko fills the variables; the wording around them is part of the template.
+  </Accordion>
+  <Accordion title="Can the same template be used by multiple providers?">
+    Templates are provider-specific (you create them inside each provider's dashboard). You'd need to create the same template body in each provider you use.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="WhatsApp integration overview" icon="whatsapp" href="/integrations/whatsapp">
+    Provider list, choosing a provider, what WhatsApp does and doesn't do.
+  </Card>
+  <Card title="Workflows: Action Nodes" icon="play" href="/workflows/action-nodes">
+    Send Email, Credit Points, Issue Coupon — the other actions you can chain with WhatsApp.
+  </Card>
+  <Card title="Build your first workflow" icon="rocket" href="/workflows/build-your-first">
+    10-minute tutorial that builds a complete workflow.
+  </Card>
+  <Card title="Booster Campaigns" icon="rocket" href="/loyalty/booster-campaigns/overview">
+    Pair WhatsApp last-call reminders with active booster campaigns.
+  </Card>
+</CardGroup>
+
+import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
+
+<RelatedWhatsAppProviders />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

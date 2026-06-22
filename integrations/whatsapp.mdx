@@ -1,0 +1,161 @@
+---
+title: WhatsApp
+description: Send transactional loyalty messages via WhatsApp Business API through any of 7 supported platforms. Wired into Workflows for points-earned, reward-redeemed, tier-changed and other loyalty events.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → [your WhatsApp provider]
+</Note>
+
+## Introduction
+
+Yuko sends WhatsApp messages from inside [Workflows](/workflows/overview). You pick a WhatsApp Business API provider, connect it once, and use the **[WhatsApp node](/workflows/whatsapp-node)** in any workflow to send template messages — points-earned confirmations, reward redemption alerts, tier-change announcements, win-back messages, anything Workflows can trigger.
+
+Yuko is **provider-agnostic**. Your existing WhatsApp Business API account works as long as it's with one of the 7 supported platforms below.
+
+## What problem this solves
+
+WhatsApp has ~98% open rates. For transactional loyalty moments — a customer just hit a tier, points are about to expire, a referral just converted — email is too slow and SMS is too expensive. WhatsApp is the channel that matches the urgency and personal feel of those messages.
+
+But WhatsApp Business API is a closed ecosystem. You can't send messages directly; you have to go through a Business Solution Provider (BSP). Yuko connects to 7 BSPs so you can use whichever one you already have a contract with.
+
+## When to use
+
+- You already have a WhatsApp Business API account with one of the supported providers.
+- You want to send transactional loyalty messages on WhatsApp (not marketing broadcasts).
+- You want to be able to switch providers later without rebuilding everything in Yuko.
+- You're running [Booster Campaigns](/loyalty/booster-campaigns/overview), [Streak](/loyalty/booster-campaigns/streak) or [Spending Goal](/loyalty/booster-campaigns/spending-goal) campaigns where last-call urgency moves the needle.
+
+## Overview
+
+- Supports **7 WhatsApp Business API platforms** — no lock-in.
+- Authentication via the provider's API key (paste once, refresh if rotated).
+- Used inside **Workflows** via the WhatsApp node.
+- Supports **14 personalisation shortcodes** across Profile / Order / Loyalty groups (e.g., `{{first_name}}`, `{{points_balance}}`, `{{coupon_code}}`).
+- Templates are managed **in the provider's own dashboard** — Yuko doesn't host or approve templates.
+- The workflow node shows live **Connected / Disconnected** status so you can see at a glance whether your provider is wired up.
+
+## Supported providers
+
+import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
+
+<RelatedWhatsAppProviders />
+
+## Choosing a provider
+
+You don't need to pick a single “best” provider — pick the one you already have a contract with or the one that fits your region, scale and budget. A rough orientation:
+
+| Provider | Region focus | Notable for |
+|---|---|---|
+| AISensy | India / SEA | Cost-effective, high-volume Business API |
+| Zoko | Global, Shopify-native | Built for Shopify, fast onboarding |
+| WATI | Global | Strong template editor and team inbox |
+| DelightChat | Global | Multi-channel (WhatsApp + Instagram + email) |
+| Kwik Engage | India-leaning | Multi-channel messaging (SMS / WhatsApp / push) |
+| Engati | Global | Conversational AI platform |
+| QuickReply.ai | India-leaning | AI-first automation |
+
+If you don't yet have a provider, evaluate them on: per-message pricing, template approval turnaround, regions covered, and what other channels they support beyond WhatsApp.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>You have an active WhatsApp Business API account with one of the 7 supported providers.</Check>
+<Check>You have admin access to your provider's dashboard to retrieve API credentials.</Check>
+<Check>You have at least one **approved** WhatsApp template in your provider's dashboard.</Check>
+
+## How to connect
+
+<Steps>
+  <Step title="Generate API credentials">
+    In your WhatsApp provider's dashboard, generate an API key. **QuickReply.ai** also requires a secret key.
+  </Step>
+  <Step title="Open the provider integration in Yuko">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Integrations**, then click your provider's tile (e.g., **AISensy**, **WATI**, **Zoko**).
+  </Step>
+  <Step title="Paste credentials and click Connect">
+    The provider tile will switch to **Connected**.
+  </Step>
+  <Step title="Add a WhatsApp node to a workflow">
+    Open a workflow, click **+** between two nodes, and pick **WhatsApp**. The node's provider dropdown surfaces any connected provider — select the one you just connected. Configure the template and shortcodes.
+  </Step>
+</Steps>
+
+See the per-provider page for exact credential-generation steps.
+
+## Using WhatsApp in workflows
+
+The **[WhatsApp node](/workflows/whatsapp-node)** sends a template message the moment a workflow event fires. The node lets you pick:
+
+- Which **connected provider** to use (you can have multiple providers connected and switch per node).
+- Which **template** to send (templates come from the provider's dashboard).
+- The **shortcodes** to substitute into the template's variables (full catalogue documented on the [WhatsApp Workflow Node](/workflows/whatsapp-node#available-shortcodes) page).
+
+A typical use case: customer hits Diamond tier → workflow trigger fires → WhatsApp node sends a *“Welcome to Diamond, [first_name]”* template via Zoko → customer receives the message in seconds.
+
+## What WhatsApp does NOT do today
+
+Being explicit about the limits saves a support ticket later:
+
+- **No marketing broadcasts.** Yuko doesn't send bulk WhatsApp campaigns. Use your provider's own broadcast tool for that.
+- **No two-way conversation.** Yuko sends; if the customer replies, the conversation lands in the provider's inbox, not back inside Yuko.
+- **No customer-facing earn campaign.** There's no *“share on WhatsApp”* Way-to-Earn campaign today (the original `whatsapp_share` campaign is not enabled).
+- **No webhook delivery status.** Yuko doesn't track per-message delivery / read / replied state. The workflow node shows aggregate pending / failed / completed counts only.
+- **No template authoring inside Yuko.** Templates are created and approved in the provider's dashboard. Yuko picks from your approved templates.
+
+## Best practices
+
+<Tip>**Connect only the providers you'll use.** Each active connection is one more credential to rotate.</Tip>
+<Tip>**Get templates approved before activating the workflow.** WhatsApp Business API rejects unapproved templates at send time, which surfaces as a failed action in the workflow.</Tip>
+<Tip>**Reserve WhatsApp for moments that need it.** Tier upgrades, streak warnings, last-call campaign reminders. Not every email moment needs a WhatsApp copy.</Tip>
+<Tip>**Respect opt-in.** WhatsApp Business API rules require an explicit opt-in for transactional messages; honour the provider's opt-in flow.</Tip>
+<Tip>**Test in a staging workflow first.** Build a workflow that triggers on a Yuko event you can fire from a test customer, and verify the WhatsApp message lands before activating in production.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I send WhatsApp campaigns to a segment?">
+    Not directly from Yuko. Yuko sends WhatsApp inside Workflows — the trigger is a per-customer loyalty event, not a segment send. For bulk broadcasts, use your provider's own campaign tool (which has the proper opt-in and template controls).
+  </Accordion>
+  <Accordion title="What happens if my provider rejects the template?">
+    The WhatsApp node logs the failure and increments the *failed* count on the node. The workflow continues to the next node (if any).
+  </Accordion>
+  <Accordion title="Can I use multiple WhatsApp providers at once?">
+    Yes — connect more than one, and pick the provider per WhatsApp node. Useful if you're migrating providers or testing one against another.
+  </Accordion>
+  <Accordion title="Where do I create the actual template?">
+    In your provider's dashboard. WhatsApp Business API requires Meta to approve every template before it can be sent.
+  </Accordion>
+  <Accordion title="What customer phone number does Yuko use?">
+    The customer's primary phone number from Shopify. If the customer hasn't shared a phone number, the WhatsApp node logs the action as *failed*.
+  </Accordion>
+  <Accordion title="Can I send media (images, PDFs) over WhatsApp?">
+    Depends on the provider and the template type. Yuko relays the template you selected; if the template supports media, the provider's API handles it.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="WhatsApp Workflow Node" icon="comment" href="/workflows/whatsapp-node">
+    The node that actually sends the message — setup, shortcodes, examples.
+  </Card>
+  <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
+    Build a workflow that triggers WhatsApp messages on loyalty events.
+  </Card>
+  <Card title="Booster Campaigns" icon="rocket" href="/loyalty/booster-campaigns/overview">
+    Pair booster campaigns with WhatsApp last-call reminders.
+  </Card>
+  <Card title="Klaviyo" icon="envelope" href="/integrations/klaviyo">
+    Use Klaviyo for email; reserve WhatsApp for the urgency moment.
+  </Card>
+</CardGroup>
+
+<RelatedWhatsAppProviders />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
