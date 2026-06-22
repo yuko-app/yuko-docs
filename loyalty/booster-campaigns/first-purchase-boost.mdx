@@ -81,6 +81,17 @@ Higher first-order multiplier (e.g., 3X) for customers who join via a VIP-only s
 
 The First Purchase Boost runs always-on, so there's no launch announcement. Your promotion strategy is built into the *new customer journey* — every touchpoint between signing up and placing the first order should mention the boost.
 
+### Storefront — surface the boost across the funnel
+
+The First Purchase Boost rewards a specific moment, so the storefront's job is to make sure non-customers see it everywhere they look. The **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget is the highest-leverage surface — it puts the *“2X on your first order”* message in a pinned strip on every page, with copy you can personalise for visitors (*“Earn 2X points on your first order”*) and for signed-up customers who haven't placed an order yet.
+
+Other placements reinforce the message:
+
+- **Signup forms** — state the bonus explicitly. *“Get 2X points on your first order when you sign up.”*
+- **Onsite popup / banner** — for non-signed-up visitors.
+- **Cart Redeem widget** — for signed-up customers without an order yet, the widget surfaces the first-order boost prominently.
+- **Product page** — *“Earn double points on this order”* on the first qualifying product page is one of the highest-leverage placements.
+
 ### Email — the welcome series is the campaign
 
 Pair the boost with your welcome email series through your ESP. **Klaviyo** is the strongest pairing because Yuko pushes the *Joined Loyalty Program* event and the customer's `yuko_signup_points_awarded` profile property (see [Klaviyo integration](/integrations/klaviyo)) — your welcome flow can quote the exact first-order bonus the customer will earn.
@@ -93,20 +104,11 @@ Pair the boost with your welcome email series through your ESP. **Klaviyo** is t
 
 If the customer opted into WhatsApp at signup and you've connected a WhatsApp provider, a brief reminder a few days in is highly effective: *“Your first order earns 2X points. Shop here: [link]”*. Don't burn WhatsApp at signup itself — wait for the natural lull at day 3 or day 5 when the customer is at risk of forgetting.
 
-### Storefront — surface the boost across the funnel
-
-The First Purchase Boost rewards a specific moment, so the storefront's job is to make sure non-customers see it everywhere they look:
-
-- **Signup forms** — state the bonus explicitly. *“Get 2X points on your first order when you sign up.”*
-- **Onsite popup / banner** — for non-signed-up visitors.
-- **Cart Redeem widget** — for signed-up customers without an order yet, the widget surfaces the first-order boost prominently.
-- **Product page** — *“Earn double points on this order”* on the first qualifying product page is one of the highest-leverage placements.
-
 ### Reminder cadence
 
 For new customers in their first 30 days:
 
-- **Day 0 (signup)** — welcome email mentioning the boost
+- **Day 0 (signup)** — welcome email mentioning the boost; Loyalty Nudges already visible on the storefront
 - **Day 3 (no order)** — first reminder
 - **Day 7 (no order)** — second reminder, more concrete (featured products)
 - **Day 14 (no order)** — final reminder with a soft urgency cue
@@ -116,14 +118,14 @@ After 30 days without an order, hand off to your standard cold-customer flow. Th
 ## Next Steps
 
 <CardGroup cols={2}>
+  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
+    Surface the first-order boost on every storefront page.
+  </Card>
   <Card title="Dormant Reactivation" icon="bed" href="/loyalty/booster-campaigns/dormant-reactivation">
     The other end of the lifecycle — catch returning customers automatically.
   </Card>
   <Card title="Sign Up Campaign" icon="user-plus" href="/loyalty/ways-to-earn/sign-up">
     Pair First Purchase Boost with a signup-time bonus for a complete onboarding combo.
-  </Card>
-  <Card title="Booster Campaigns Overview" icon="rocket" href="/loyalty/booster-campaigns/overview">
-    Compare all 8 booster types.
   </Card>
   <Card title="Email Notifications" icon="envelope" href="/emails/overview">
     Quote the first-order bonus in your welcome email for outsized impact.
