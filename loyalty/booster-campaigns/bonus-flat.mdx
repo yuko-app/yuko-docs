@@ -1,0 +1,114 @@
+---
+title: Bonus Flat Booster
+description: Award a fixed number of bonus points on each qualifying action during a window. Cleaner to communicate than a multiplier.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Booster Campaigns → New booster → **Bonus Flat**
+</Note>
+
+## Overview
+
+Add a fixed bonus to each qualifying action during the window — e.g., **+50 points on every order this weekend**. The customer's base earning still applies; the flat amount sits on top.
+
+## Why you need it?
+
+Multipliers are powerful, but they ask the customer to do mental math. *“2X on a $40 order with my 1-point-per-$1 rate is… 80 points”* is a cognitive lift, especially in fast-moving email or SMS copy.
+
+A flat bonus is a single number. *“+50 points on this order”* is concrete, requires no math, and fits the headline of an email subject line. When your communication needs to convert at a glance, flat usually beats multiplier.
+
+## When to use it?
+
+- Your campaign copy needs a headline number (“+100 points this week”).
+- You want the bonus value to be the same regardless of basket size.
+- Your base earning rate is small (e.g., 1 point per $1) where multipliers feel underwhelming.
+- You're running paid members an always-on baseline bonus on top of regular earning.
+- You want a predictable points cost per redeemed action (easier to model the program economy).
+
+## How to configure it?
+
+<Steps>
+  <Step title="Open Booster Campaigns">
+    Go to **Apps → Yuko Loyalty → Loyalty → Booster Campaigns** and click **New booster**.
+  </Step>
+  <Step title="Pick Bonus Flat">
+    Select the **Bonus Flat** booster type.
+  </Step>
+  <Step title="Configure the bonus">
+    - **Earning action** — which Way to Earn the bonus is added to (typically *Place an Order*).
+    - **Bonus points** — the flat amount to credit (1–10,000 points per qualifying action).
+  </Step>
+  <Step title="Set the schedule">
+    One-time window, recurring (e.g., every Tuesday), or always-on (typically with cohort targeting).
+  </Step>
+  <Step title="Configure targeting (optional)">
+    Limit who qualifies by VIP tier, customer tag, lifetime spend, or membership.
+  </Step>
+  <Step title="Set product scope (optional)">
+    Restrict the bonus to specific products or collections.
+  </Step>
+  <Step title="Save and activate">
+    Toggle **Active** and click **Save**.
+  </Step>
+</Steps>
+
+## Use cases / Examples
+
+### One-time uses
+
+**1. Black Friday flat boost**
+
+During BFCM, set **+200 points per order**. Customers know exactly what they're getting; no “you earn 2X your base rate” ambiguity. Pairs especially well with email subject lines: *“+200 points on every order this week.”*
+
+**2. Email blast pairing**
+
+Send an email blast announcing *“+100 points on your next order this week.”* The flat number translates directly from email subject to checkout receipt, which makes the email feel honest and increases open-to-buy.
+
+**3. Launch-week bonus**
+
++75 points per order during the first week of a product launch. Layer with collection scope to focus the bonus on the new launch range.
+
+**4. Birthday week bonus**
+
+Combine targeting (customer tag: `birthday_week`) with a flat +50 bonus on any order during the customer's birthday week. Each customer feels personally rewarded.
+
+### Recurring uses
+
+**5. First-Tuesday loyalty bonus**
+
++25 points on every order on the first Tuesday of every month. Predictable enough that your best customers learn it and plan around it. Pairs well with a monthly newsletter cadence.
+
+**6. Newsletter Wednesday**
+
++50 points on Wednesdays when you send your newsletter. The bonus is the email's reason to exist — open rate, click-through, and same-day order rate all go up together.
+
+### Always-on uses
+
+**7. Member-only baseline**
+
++10 points on every order for paid members. Stacks transparently on top of base earning and signals that membership is paying off every time they buy.
+
+**8. Second-order bonus**
+
+Always-on +50 points on a customer's second order. The 1stₒ2nd repeat is the most fragile transition in the customer lifecycle; a flat bonus right then is one of the highest-leverage interventions in the program.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Multiplier Booster" icon="xmark" href="/loyalty/booster-campaigns/multiplier">
+    Need urgency without a headline number? Use a multiplier instead.
+  </Card>
+  <Card title="First Purchase Boost" icon="medal" href="/loyalty/booster-campaigns/first-purchase-boost">
+    Reward a customer's first order specifically.
+  </Card>
+  <Card title="Booster Campaigns Overview" icon="rocket" href="/loyalty/booster-campaigns/overview">
+    Compare all 8 booster types side by side.
+  </Card>
+  <Card title="Email Notifications" icon="envelope" href="/emails/overview">
+    Pair your flat bonus with a custom email template.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
