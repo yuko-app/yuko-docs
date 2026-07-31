@@ -57,6 +57,7 @@
             "pages": [
               "loyalty/overview",
               "loyalty/program-settings",
+              "loyalty/backfill-points",
               {
                 "group": "Ways to Earn",
                 "pages": [
@@ -99,6 +100,7 @@
                   "loyalty/booster-campaigns/first-purchase-boost"
                 ]
               },
+              "loyalty/one-time-campaigns",
               "loyalty/customers"
             ]
           },
