@@ -4,12 +4,14 @@ description: View customer points balances, activity, rewards, recent orders and
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Customers
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Customers
 </Note>
 
 ## Introduction
 
 The Customers page is your operational view of the loyalty program. Every Shopify customer who earns or redeems anything appears here, with a full activity log, current balance, active rewards and recent orders.
+
+<Tip>**Customers is a top-level nav item** — you'll find it in the Yuko sidebar alongside Loyalty, VIP, Referral, and Membership. It's documented under "Loyalty Program" here because customers are the operational counterpart to the loyalty rules, but you don't need to be inside Loyalty to reach it.</Tip>
 
 ## What problem this solves
 
@@ -41,7 +43,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <Steps>
   <Step title="Open the Customers list">
-    Login to your Shopify admin and go to **Apps → Yuko Loyalty → Loyalty → Customers**.
+    Login to your Shopify admin and go to **Apps → Yuko Loyalty → Customers**.
   </Step>
   <Step title="Search">
     Search by email, name or Shopify customer ID. Use the filters to narrow by tier, points balance or last activity.
@@ -85,6 +87,8 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
   </Step>
 </Steps>
 
+<Tip>**Migrating from another loyalty platform?** For a cleaner path than CSV import, consider [Backfill Points](/loyalty/backfill-points) — it computes points from actual Shopify order history using your Place-an-order rule, so day-one balances reflect what customers *would have* earned had Yuko been running the whole time.</Tip>
+
 ## How it works
 
 - The customer record is a 1:1 mirror of the Shopify customer.
@@ -95,6 +99,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 - **Always include a reason note** when adjusting points. Future you (and your support team) will thank you.
 - **Use Import for migrations**, not for ongoing operations. Use the API for any recurring sync.
+- **Prefer Backfill Points over CSV import** when you want spend-proportional starting balances.
 
 ### Limitations
 
@@ -123,9 +128,21 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
   <Accordion title="What happens if I delete a customer in Shopify?">
     Yuko marks them inactive and stops awarding points, but the historical record is preserved.
   </Accordion>
+  <Accordion title="What's the difference between Import and Backfill Points?">
+    Import takes a CSV of email + balance you supply. [Backfill Points](/loyalty/backfill-points) computes balances from Shopify order history using your active Place-an-order rule — no CSV needed. Backfill is usually cleaner for migrations.
+  </Accordion>
 </AccordionGroup>
 
 ## Related
+
+<CardGroup cols={2}>
+  <Card title="Backfill Points" icon="clock-rotate-left" href="/loyalty/backfill-points">
+    Retroactive points from past Shopify orders — the modern migration path.
+  </Card>
+  <Card title="One-time Campaigns" icon="gift" href="/loyalty/one-time-campaigns">
+    Award points to a segment in one shot — great for onboarding gestures.
+  </Card>
+</CardGroup>
 
 import RelatedLoyalty from '/snippets/related-loyalty.mdx';
 
