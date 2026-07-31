@@ -1,0 +1,117 @@
+---
+title: AskEva
+description: Connect AskEva as your WhatsApp Business API provider — templates with optional dynamic-URL CTA buttons, from any Yuko workflow.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Account Settings → Integrations → AskEva
+</Note>
+
+## Introduction
+
+[AskEva](https://askeva.ai) is a WhatsApp Business API platform popular with SEA / Middle East merchants. Once connected, the [WhatsApp Workflow node](/workflows/whatsapp-node) can send AskEva templates — with or without CTA URL buttons — on any loyalty event.
+
+For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
+
+## When to use AskEva
+
+- You already use AskEva for WhatsApp on the SEA / MENA side of your business.
+- You need CTA buttons with **dynamic URL suffixes** — the button URL varies per recipient (e.g., `.../account/{customer_id}`).
+- You want multiple CTA buttons per template.
+
+## Before you start
+
+<Check>You have an active AskEva account with WhatsApp Business API.</Check>
+<Check>You have at least one **approved** AskEva template.</Check>
+<Check>You have your AskEva API key.</Check>
+
+## Connect AskEva to Yuko
+
+<Steps>
+  <Step title="Get your AskEva API key">
+    Log in to AskEva → **Settings → API**. Copy the API key.
+  </Step>
+  <Step title="Open AskEva in Yuko">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Account Settings → Integrations**, pick the **WhatsApp** category, and click **AskEva**.
+  </Step>
+  <Step title="Paste the API key and Connect">
+    Paste the key and click **Connect**. The tile flips to **Connected**.
+  </Step>
+  <Step title="Add an AskEva step to a workflow">
+    Open any workflow, click **+**, pick **WhatsApp**, and select **AskEva** in the provider dropdown.
+  </Step>
+</Steps>
+
+## Configure the AskEva step in a workflow
+
+| Field | What it is | Example |
+|---|---|---|
+| **Template Name** | Approved template name from AskEva (no spaces) | `loyalty_tier_welcome` |
+| **Language Code** | Template language | `en`, `hi`, `ar` |
+| **Add CTA Button** *(toggle)* | Enable if the template has dynamic-URL CTA buttons | on |
+| **CTA Button Count** | Number of CTA buttons on the template | `1` |
+| **CTA Button URL Suffixes** | Dynamic suffix appended to each button's base URL — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `redeem?code={{coupon_code}}` |
+| **Parameter Count** | Number of body variables (1–25) | `2` |
+| **Template Parameters** | Body variable values — supports shortcodes | `{{first_name}}`, `{{vip_tier_name}}` |
+
+<Tip>**CTA Button URL Suffixes** are just the *dynamic tail* of each button's URL, not the whole URL. The base URL comes from the template itself (defined in the AskEva dashboard). The suffix is what changes per recipient.</Tip>
+
+### CTA button suffixes vs whole URLs
+
+Different from BiteSpeed / Kwik Engage, which take the full URL as input. AskEva templates already carry the button base URL; Yuko only passes the variable tail.
+
+Example: template defines button URL as `https://shop.example.com/`. If you pass suffix `account?id={{customer_id}}`, the customer receives `https://shop.example.com/account?id=12345`.
+
+## Example use case
+
+**VIP tier welcome with a redeem button**
+
+1. In AskEva, approve a template `loyalty_tier_welcome` with two body variables and one CTA button (base URL: `https://shop.example.com/`). Note the language code.
+2. In Yuko Workflows, build: **Trigger: VIP Tier Entered** → **Filter: tier = Diamond** → **WhatsApp (AskEva)**.
+3. Configure: Template Name = `loyalty_tier_welcome`, Language = `en`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{vip_tier_name}}`.
+4. Toggle **Add CTA Button**, Button Count = `1`, Suffix 1 = `account?id={{customer_id}}`.
+5. Activate.
+
+## Limitations
+
+- **Approved templates only.** AskEva enforces Meta template approval.
+- **Template name must have no spaces.** Use underscores.
+- **CTA button base URLs live in the template.** Yuko only supplies the dynamic tail.
+- **No template authoring inside Yuko.** Edit templates in the AskEva dashboard.
+- **No per-message delivery status surfaced in Yuko.** Check the AskEva dashboard for delivered / read events.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Do I need to enable CTA buttons?">
+    Only if your approved template has dynamic-URL buttons. Plain text templates leave the toggle off.
+  </Accordion>
+  <Accordion title="What if the template's button URL doesn't have a dynamic slot?">
+    Then you don't need to fill a suffix — the template sends as-is. Enable the toggle only when there's a per-recipient variable.
+  </Accordion>
+  <Accordion title="The send failed — what do I check?">
+    1. Template name exact match, no spaces. 2. Template approved. 3. Language code matches template. 4. Parameter count matches template body. 5. If CTA is enabled, button count matches template. 6. Customer has a phone number in Shopify.
+  </Accordion>
+  <Accordion title="How do I rotate the API key?">
+    Generate a new key in AskEva, then paste it into the Yuko AskEva integration tile and click **Connect** again.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
+
+<RelatedWhatsAppProviders />
+
+<CardGroup cols={2}>
+  <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
+    How Yuko's WhatsApp integration works across all 11 providers.
+  </Card>
+  <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
+    Setup, shortcodes, and example workflows.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

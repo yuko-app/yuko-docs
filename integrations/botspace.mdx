@@ -1,0 +1,107 @@
+---
+title: BotSpace
+description: Connect BotSpace as your WhatsApp Business API provider — template messages via a channel-and-template ID pair, from any Yuko workflow.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Account Settings → Integrations → BotSpace
+</Note>
+
+## Introduction
+
+[BotSpace](https://www.bot.space) is a WhatsApp Business API platform focused on conversation automation for e-commerce. Once connected, the [WhatsApp Workflow node](/workflows/whatsapp-node) can send BotSpace templates whenever a loyalty event fires.
+
+For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
+
+## When to use BotSpace
+
+- You already use BotSpace for WhatsApp support / chat automation.
+- You want a lightweight setup: template ID + parameters, no extra bells.
+- You need to route sends across multiple channels (multiple WhatsApp numbers) from the same account.
+
+## Before you start
+
+<Check>You have an active BotSpace account with WhatsApp Business API.</Check>
+<Check>You have at least one **approved** BotSpace template.</Check>
+<Check>You have your BotSpace API key.</Check>
+<Check>You know your **Channel ID** from the BotSpace dashboard.</Check>
+
+## Connect BotSpace to Yuko
+
+<Steps>
+  <Step title="Get your BotSpace API key">
+    Log in to BotSpace → **Settings → API**. Copy the API key and note the Channel ID.
+  </Step>
+  <Step title="Open BotSpace in Yuko">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Account Settings → Integrations**, pick the **WhatsApp** category, and click **BotSpace**.
+  </Step>
+  <Step title="Paste the API key and Connect">
+    Paste the key and click **Connect**. The tile flips to **Connected**.
+  </Step>
+  <Step title="Add a BotSpace step to a workflow">
+    Open any workflow, click **+**, pick **WhatsApp**, and select **BotSpace** in the provider dropdown.
+  </Step>
+</Steps>
+
+## Configure the BotSpace step in a workflow
+
+| Field | What it is | Example |
+|---|---|---|
+| **Channel ID** | BotSpace channel ID for the WhatsApp number to send from | `your-channel-id` |
+| **Template ID** | Approved template identifier from your BotSpace dashboard | `loyalty_points_earned` |
+| **Template Parameter Count** | Number of body variables (1–25) | `2` |
+| **Template Parameters** | One value per body variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{points_balance}}` |
+
+Template parameters are **positional** — they fill the template's `{{1}}`, `{{2}}`, ... placeholders in order.
+
+## Example use case
+
+**Points earned confirmation**
+
+1. In BotSpace, approve a template called `loyalty_points_earned` with two body variables. Note the Channel ID and Template ID.
+2. In Yuko Workflows, build: **Trigger: Points Awarded** → **WhatsApp (BotSpace)**.
+3. Configure: Channel ID, Template ID = `loyalty_points_earned`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{points_earned}}`.
+4. Activate.
+
+## Limitations
+
+- **Approved templates only.** BotSpace enforces Meta template approval.
+- **No template authoring inside Yuko.** Edit templates in the BotSpace dashboard.
+- **Positional parameters** — order matters, names don't.
+- **No per-message delivery status surfaced in Yuko.** Check the BotSpace dashboard for delivered / read events.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What's the Channel ID?">
+    BotSpace supports multiple WhatsApp Business numbers per account. Channel ID identifies which one Yuko should send from. Find it in the BotSpace dashboard alongside your connected WhatsApp channels.
+  </Accordion>
+  <Accordion title="Can I have multiple BotSpace channels active?">
+    Yes — connect BotSpace once, then use a different Channel ID per WhatsApp workflow node. Each node sends from whichever channel you configure.
+  </Accordion>
+  <Accordion title="The send failed — what do I check?">
+    1. Template ID exact match. 2. Template approved. 3. Channel ID matches your active WhatsApp channel. 4. Parameter count matches the template's variable count. 5. Customer has a phone number in Shopify.
+  </Accordion>
+  <Accordion title="How do I rotate the API key?">
+    Generate a new key in BotSpace, then paste it into the Yuko BotSpace integration tile and click **Connect** again.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
+
+<RelatedWhatsAppProviders />
+
+<CardGroup cols={2}>
+  <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
+    How Yuko's WhatsApp integration works across all 11 providers.
+  </Card>
+  <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
+    Setup, shortcodes, and example workflows.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

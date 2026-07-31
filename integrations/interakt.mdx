@@ -1,0 +1,108 @@
+---
+title: Interakt
+description: Connect Interakt as your WhatsApp Business API provider — template messages with optional callback metadata, from any Yuko workflow.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Account Settings → Integrations → Interakt
+</Note>
+
+## Introduction
+
+[Interakt](https://www.interakt.shop) is an India-headquartered WhatsApp Business API platform, popular with mid-market Shopify stores. Once connected, the [WhatsApp Workflow node](/workflows/whatsapp-node) can send Interakt templates whenever a loyalty event fires.
+
+For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
+
+## When to use Interakt
+
+- You already run Interakt for WhatsApp support and marketing on the same account.
+- You want to attach callback metadata so incoming webhooks tell your other tools which loyalty event triggered the message.
+- You need broad language support (Interakt uses Facebook language codes).
+
+## Before you start
+
+<Check>You have an active Interakt account with WhatsApp Business API.</Check>
+<Check>You have at least one **approved** Interakt template.</Check>
+<Check>You have your Interakt API key from **Settings → Developer Settings** in the Interakt dashboard.</Check>
+
+## Connect Interakt to Yuko
+
+<Steps>
+  <Step title="Get your Interakt API key">
+    Log in to Interakt → **Settings → Developer Settings**. Copy the API key.
+  </Step>
+  <Step title="Open Interakt in Yuko">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Account Settings → Integrations**, pick the **WhatsApp** category, and click **Interakt**.
+  </Step>
+  <Step title="Paste the API key and Connect">
+    Paste the key and click **Connect**. The tile flips to **Connected**.
+  </Step>
+  <Step title="Add an Interakt step to a workflow">
+    Open any workflow, click **+**, pick **WhatsApp**, and select **Interakt** in the provider dropdown.
+  </Step>
+</Steps>
+
+## Configure the Interakt step in a workflow
+
+| Field | What it is | Example |
+|---|---|---|
+| **Template Name** | The template code name from your Interakt dashboard | `order_confirmation_v1` |
+| **Language Code** | Facebook language code | `en`, `hi`, `ar` |
+| **Template Parameter Count** | Number of body variables (1–25) | `2` |
+| **Template Parameters** | One value per body variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{points_balance}}` |
+| **Callback Data** *(optional)* | Metadata returned on Interakt's delivery webhooks (max 512 chars) | `yuko_tier_upgrade` |
+
+<Tip>**Callback Data** is Interakt-specific: use it if you're subscribing to Interakt's delivery webhooks in another tool and want to tag each message with which Yuko workflow sent it.</Tip>
+
+## Example use case
+
+**Loyalty tier upgrade celebration**
+
+1. In Interakt, approve a template called `loyalty_tier_upgrade_v1` with two variables (customer name, tier name).
+2. In Yuko Workflows, build: **Trigger: VIP Tier Upgraded** → **WhatsApp (Interakt)**.
+3. Set Template Name = `loyalty_tier_upgrade_v1`, Language = `en`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{vip_tier_name}}`.
+4. (Optional) Callback Data = `yuko_tier_upgrade` — lets your Interakt inbox filter these apart from other messages.
+5. Activate.
+
+## Limitations
+
+- **Approved templates only.** Interakt enforces Meta template approval.
+- **No template authoring inside Yuko.** Edit templates in the Interakt dashboard.
+- **Callback Data capped at 512 characters.**
+- **No per-message delivery status surfaced in Yuko.** Check the Interakt dashboard for delivered / read events.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Where do I find my Interakt API key?">
+    Interakt dashboard → **Settings → Developer Settings**. If you don't see it, ask your Interakt account owner to enable API access on your plan.
+  </Accordion>
+  <Accordion title="What is the Callback Data used for?">
+    Interakt returns whatever you put here on their delivery webhooks. If you subscribe to Interakt webhooks in another tool (analytics, CRM), it's a good place to stash a tag like `yuko_reward_earned` so you can route those events downstream.
+  </Accordion>
+  <Accordion title="The send failed — what do I check?">
+    1. Template name exact match. 2. Template approved. 3. Parameter count matches template variables. 4. Language code matches the approved template's language. 5. Customer has a phone number in Shopify.
+  </Accordion>
+  <Accordion title="How do I rotate the API key?">
+    Generate a new key in Interakt, then paste it into the Yuko Interakt integration tile and click **Connect** again.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
+
+<RelatedWhatsAppProviders />
+
+<CardGroup cols={2}>
+  <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
+    How Yuko's WhatsApp integration works across all 11 providers.
+  </Card>
+  <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
+    Setup, shortcodes, and example workflows.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
