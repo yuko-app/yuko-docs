@@ -1,0 +1,118 @@
+---
+title: Checkout Boost
+description: One-click auto-provisioning of a read-only REST API key and signed key for the Checkout Boost app to render Yuko loyalty widgets inside Shopify checkout.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Account Settings → Integrations → Checkout Boost
+</Note>
+
+## Introduction
+
+The **Checkout Boost** integration is a one-toggle setup that auto-provisions a **read-only REST API key** and a **signed key** so a companion Shopify checkout extension can render Yuko loyalty widgets (points balance, redemption, rewards) inside the Shopify checkout flow.
+
+This is different from the general [REST API](/integrations/rest-api) integration — that one is for arbitrary API access. This one is a curated, single-purpose credential pair scoped to what the Checkout Boost extension needs.
+
+## What it does
+
+- Enabling it generates a **REST API key** (read-only, checkout-scoped) and a **signed key** (used to verify request authenticity).
+- Both keys are shown to you **once**, in a modal, with copy + download options.
+- The Checkout Boost extension uses these keys to fetch the current customer's Yuko loyalty state during checkout (points balance, tier, available rewards) and render widgets accordingly.
+- Disabling revokes both keys immediately.
+
+<Warning>The API and signed keys are shown **only once** at the moment of generation. Copy them or click **Download Keys** before closing the modal — you can't retrieve them afterward without regenerating (which disconnects the current extension).</Warning>
+
+## When to use it
+
+- You want to surface Yuko loyalty inside Shopify's **checkout** UI, not just the storefront.
+- You're installing the Checkout Boost extension (or an equivalent that follows the same contract).
+- You want to keep the credential surface small — no arbitrary REST API access, just what checkout needs.
+
+## Before you start
+
+<Check>You have the Checkout Boost extension installed (or ready to install) on your Shopify store.</Check>
+<Check>You know where in your Checkout Boost extension setup to paste the REST API key and signed key.</Check>
+
+## Enable Checkout Boost
+
+<Steps>
+  <Step title="Open Checkout Boost in Yuko">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Account Settings → Integrations**, and click **Checkout Boost**.
+  </Step>
+  <Step title="Toggle Enable">
+    Flip the **Checkout Boost Integration** toggle to on. Yuko generates the two keys.
+  </Step>
+  <Step title="Copy or download the keys">
+    A modal appears with the **REST API Key** and **Signed Key**. Click the copy icons or **Download Keys** to save them somewhere secure — you can't retrieve them later.
+  </Step>
+  <Step title="Paste the keys in the Checkout Boost extension">
+    Open the Checkout Boost extension's setup page in Shopify admin and paste both keys into their respective fields.
+  </Step>
+  <Step title="Verify in checkout">
+    Open your storefront's checkout as a signed-in customer. The Checkout Boost widget should now display the customer's Yuko points balance and available rewards.
+  </Step>
+</Steps>
+
+## Disable Checkout Boost
+
+Toggle the switch off and confirm the disconnect. Both keys are revoked immediately — the Checkout Boost extension will stop being able to read customer loyalty state.
+
+<Warning>Disabling **doesn't** uninstall or reconfigure the Checkout Boost extension itself. You'll need to remove or update the keys in the extension separately.</Warning>
+
+## Rotating the keys
+
+To rotate:
+1. Disable Checkout Boost (revokes the old keys).
+2. Re-enable (generates a fresh pair).
+3. Copy the new keys into the extension.
+
+There's no separate rotate button today — the disable / re-enable flow is the rotation.
+
+## Limitations
+
+- **Read-only scope.** The generated REST API key can read Yuko loyalty state but can't write. It's specifically scoped for checkout widgets.
+- **Keys shown once.** No retrieval; regenerate to get a new pair.
+- **One key pair per store.** Regenerating invalidates the previous pair.
+- **Extension setup is separate.** Yuko provisions credentials — you still need to install and configure Checkout Boost separately.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How is this different from the REST API integration?">
+    The REST API integration lets you create arbitrary API keys with various scopes for any purpose (custom apps, headless commerce, etc.). Checkout Boost provisions a **single, pre-scoped, read-only** key pair specifically for the checkout widget — one toggle, no configuration.
+  </Accordion>
+  <Accordion title="What if I lost the keys?">
+    You'll need to disable and re-enable to generate a new pair, then update the Checkout Boost extension with the new values.
+  </Accordion>
+  <Accordion title="Does the customer's Yuko data appear in checkout automatically after enabling?">
+    Only after you also paste the keys into the Checkout Boost extension. Enabling Yuko's toggle generates the credentials; the extension is what actually renders the widgets during checkout.
+  </Accordion>
+  <Accordion title="Can I use this for a custom checkout extension I built?">
+    If your custom extension follows the same key + signed-key contract as Checkout Boost, yes. Otherwise, use the general [REST API](/integrations/rest-api) integration and roll your own credentials.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="REST API" icon="code" href="/integrations/rest-api">
+    General-purpose REST API access for custom apps.
+  </Card>
+  <Card title="Checkout UI Extension" icon="cart-shopping" href="/installation-and-setup/checkout-ui-extension">
+    Yuko's own Shopify checkout UI extension — an alternative to Checkout Boost.
+  </Card>
+  <Card title="Third-party checkout integrations" icon="plug" href="/third-party-checkout-integrations">
+    API contracts and payloads for checkout-side loyalty rendering.
+  </Card>
+  <Card title="Integrations overview" icon="puzzle-piece" href="/integrations/overview">
+    Browse all integrations for your Yuko account.
+  </Card>
+</CardGroup>
+
+import RelatedIntegrations from '/snippets/related-integrations.mdx';
+
+<RelatedIntegrations />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />
