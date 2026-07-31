@@ -199,9 +199,15 @@
                   "integrations/delightchat",
                   "integrations/kwik-engage",
                   "integrations/engati",
-                  "integrations/quickreply-ai"
+                  "integrations/quickreply-ai",
+                  "integrations/interakt",
+                  "integrations/bitespeed",
+                  "integrations/botspace",
+                  "integrations/askeva"
                 ]
               },
+              "integrations/judgeme",
+              "integrations/checkout-boost",
               "integrations/retainful",
               "integrations/facebook-instagram",
               "integrations/google-business",
