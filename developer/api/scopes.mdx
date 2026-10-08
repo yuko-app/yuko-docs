@@ -1,0 +1,72 @@
+---
+title: "Scopes"
+---
+
+Every REST API key carries a list of scopes that controls which endpoints it can call. The merchant sets them when creating the key in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**:
+
+- **Full Access Key**: read and write access for every scope.
+- **Read-Only Key**: read access for every scope.
+- **Custom Key**: **No Access**, **Read Access** or **Read/Write Access** per scope.
+
+## Scope format
+
+Scopes are stored on the key as `read:<scope>` or `write:<scope>`, for example `read:rewards` or `write:transactions`.
+
+- `read:<scope>` allows the scope's read endpoints.
+- `write:<scope>` allows the scope's write endpoints **and** its read endpoints. Write implies read.
+
+## Available scopes
+
+| Scope | Label in Yuko | Access levels | What it allows |
+|---|---|---|---|
+| `customers` | Customers | read, write | View customer profiles and points balances |
+| `orders` | Orders | write | Post sales and cancellations from external channels |
+| `rewards` | Rewards | read, write | View the reward catalogue and redeem points for rewards |
+| `transactions` | Transactions | read, write | View points transaction history and manually adjust points |
+| `activities` | Activities | read | View the customer loyalty activity log |
+| `tiers` | Tiers | read | View VIP tier configuration and customer tier status |
+| `earning_rules` | Earning Rules | read | View points earning rules |
+| `referrals` | Referrals | read | View the referral program configuration and customer referrals |
+| `points` | Points | read | Estimate the points a cart will earn (checkout integrations) |
+| `booster_campaigns` | Booster Campaigns | read, write | View booster campaigns |
+
+## Endpoints by scope
+
+| Endpoint | Required scope |
+|---|---|
+| [`GET /customers`](/developer/api/list-customers) | `read:customers` |
+| [`GET /customers/{id}`](/developer/api/retrieve-a-customer) | `read:customers` |
+| [`GET /customers/balance`](/developer/api/get-customer-balance) | `read:customers` |
+| [`GET /customers/memberships`](/developer/api/list-memberships) | `read:customers` |
+| [`GET /customers/tiers`](/developer/api/get-customer-tier) | `read:tiers` |
+| [`GET /customers/activities`](/developer/api/list-customer-activities) | `read:activities` |
+| [`GET /customers/referrals`](/developer/api/list-customer-referrals) | `read:referrals` |
+| [`GET /customers/rewards`](/developer/api/list-customer-rewards) | `read:rewards` |
+| [`GET /customers/rewards/redeemable`](/developer/api/get-redeemable-rewards) | `read:rewards` |
+| [`POST /customers/rewards/redeem`](/developer/api/redeem-reward) | `write:rewards` |
+| [`GET /customers/transactions`](/developer/api/list-points-transactions) | `read:transactions` |
+| [`POST /customers/transactions`](/developer/api/create-a-points-transaction) | `write:transactions` |
+| [`GET /rewards`](/developer/api/list-rewards) | `read:rewards` |
+| [`GET /rewards/{id}`](/developer/api/retrieve-a-reward) | `read:rewards` |
+| [`GET /tiers`](/developer/api/list-vip-tiers) | `read:tiers` |
+| [`GET /earning-rules`](/developer/api/list-ways-to-earn) | `read:earning_rules` |
+| [`GET /referrals/program`](/developer/api/get-referral-program) | `read:referrals` |
+| [`POST /points/estimate`](/developer/api/checkout-points-estimate) | `read:points` |
+| [`GET /booster-campaigns`](/developer/api/list-booster-campaigns) | `read:booster_campaigns` |
+
+All paths are relative to `https://api.yukoapp.com/api/v1/public`.
+
+## Missing scope errors
+
+If the key doesn't have the scope an endpoint needs, the API returns `403 Forbidden`:
+
+```json 403
+{
+  "error": {
+    "code": "insufficient_scope",
+    "message": "Your API token does not have the required 'rewards' scope for this action"
+  }
+}
+```
+
+To fix it, create a new key with the scope you need (or ask the merchant to), then revoke the old key. A key's scopes can't be changed after it's created.

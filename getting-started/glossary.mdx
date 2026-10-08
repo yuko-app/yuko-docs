@@ -1,124 +1,188 @@
 ---
 title: Glossary
-description: Plain-language definitions of every Yuko term used in this documentation.
+description: Plain-language definitions of the Yuko terms used in this documentation.
 ---
 
-Keep this page open in a tab. Every other page in the docs links here when introducing a new term.
+Keep this page open in a tab. Terms are grouped by the area of Yuko they belong to, and the names match the labels in the app.
 
 ## Loyalty
 
 **Loyalty program**
-: The umbrella set of rules that governs how customers earn and spend points in your store.
+: The set of rules for how customers earn and spend points in your store. Managed under **Loyalty**, with the tabs **Programs**, **Widgets**, **Emails** and **Settings**.
 
 **Points**
-: The internal currency customers accumulate. Yuko stores points as integers — your points label and conversion ratio are configured in **Loyalty → Settings**.
+: The currency customers collect. The display name is set by **Point Label** in **Loyalty → Settings**, with singular and plural forms (for example, *point* and *points*).
 
-**Points label**
-: The display name for your points (e.g., *Points*, *Stars*, *Coins*). Used everywhere customers see the program.
+**Points to Cash Conversion Rate**
+: What 100 points are worth in your store currency. New stores start at 100 points = $1. Yuko uses it to show customers what their balance is worth.
 
-**Earning rule** (also: **Way to Earn**, **Campaign**)
-: A trigger that awards points — for example, *Place an Order*, *Sign Up*, *Birthday*. Each campaign has its own configuration page.
+**Way to Earn** (also: **campaign**, **earning rule**)
+: An action that awards points, such as *Place an order*, *Sign Up*, *Birthday* or *Write a review*.
 
-**Reward** (also: **Way to Redeem**)
-: Something a customer can spend points on — for example, an amount discount, a free product, or store credit.
+**Way to Redeem** (also: **reward**)
+: Something customers can spend points on, such as an amount discount, a free product or store credit.
 
 **Customer reward**
-: An issued reward attached to a specific customer (e.g., *“$5 off code generated for Jane”*). It can be redeemed once at checkout.
+: A reward issued to a specific customer, such as a discount code generated for them.
 
-**Activity / Points transaction**
-: The audit log entry created every time points are credited or debited from a customer's balance.
+**Store credit**
+: A balance customers can spend in your store. It can be a reward, a VIP or membership benefit, or a referral reward.
 
-**Delay**
-: An optional waiting period before points from an order are actually credited. Used to skip refunds.
+**Activity**
+: An entry in a customer's history, created whenever points are earned, redeemed, adjusted or expire.
+
+**Earning Status**
+: The order status at which points are credited: Paid, Fulfilled or Delivered.
 
 **Expiry**
-: Optional setting that makes points or rewards expire after a fixed window.
+: An optional setting on a Way to Earn or reward that makes points or rewards expire after a set period.
+
+**Booster campaign**
+: A time-limited or always-on campaign that adds extra rewards on top of your Ways to Earn, such as a Multiplier, Spending Goal, **Order Booster**, Streak or Multi-Action Challenge.
+
+**Order Booster**
+: A booster campaign that rewards customers for reaching a number of orders.
+
+**One-time campaign**
+: A single drop of points to a group of customers, sent immediately or scheduled.
+
+**Backfill points**
+: A one-off award of points to customers for paid orders they placed before Yuko was installed. Found under **Loyalty → Settings**.
+
+## Customers
+
+**Customers**
+: The top-level sidebar item where you see every customer's balance, tier and activity, and adjust their points.
+
+**Member**
+: A customer who has joined your loyalty program.
+
+**Guest**
+: A customer Yuko knows about who hasn't joined the loyalty program.
+
+**Excluded**
+: A customer removed from the loyalty program with **Exclude from Program**.
+
+**Adjust balance**
+: Manually adding (**Credit**) or removing (**Debit**) points for a customer, with an **Update reason**.
 
 ## VIP
 
 **VIP tier**
-: A level (e.g., *Silver*, *Gold*, *Diamond*) customers move into based on points earned, dollars spent, or order count.
+: A level, such as *Bronze*, *Silver* or *Gold*, that customers enter based on points earned, amount spent or order count. Managed under **VIP** in the sidebar.
 
-**Base tier**
-: The default tier every customer enters at. Cannot be deleted.
+**Default tier**
+: The entry-level tier. It can't be deleted and its threshold can't be changed.
 
-**Points multiplier**
-: A multiplier applied to all earning campaigns when a customer is in a given tier (e.g., 2x in Diamond).
+**Default point multiplier**
+: The multiplier applied to points earned by customers in a tier, for example 2x.
 
-**Calculation method**
-: How a customer's progression is measured — *Total spend*, *Total points earned*, or *Order count*.
+**Campaign reward**
+: A per-tier override for one Way to Earn: a different multiplier, fixed bonus points, or both.
 
-**Calculation period**
-: The window over which progression is measured — *Lifetime*, *Rolling year*, or *Calendar year*.
+**Entry benefits**
+: Benefits customers receive when they enter a tier, such as discounts, free shipping, free products, bonus points or store credit.
+
+**Tier Identifier**
+: A read-only identifier for a tier. Yuko adds it as a Shopify customer tag and uses it for a Shopify customer segment.
+
+**Qualification period**
+: The window used to measure tier progress: *Lifetime*, *Rolling year* or *Calendar year*.
+
+**Retention window**
+: The time a customer keeps a tier after entering it, even if their activity drops.
 
 ## Referrals
 
-**Referrer**
+**Referrer** (also: **advocate**)
 : The existing customer who shares a referral link.
 
-**Friend** (also: **Referee**)
-: A new customer who arrives through a referral link and completes a qualifying action.
+**Friend**
+: The new customer who arrives through a referral link.
 
-**Dual-sided reward**
-: A referral structure where both the referrer and the friend get a reward.
+**Referrer Reward** and **Friend Reward**
+: The rewards given to each side of a successful referral.
 
 ## Memberships
 
 **Membership plan**
-: A purchasable plan that grants ongoing perks (e.g., free shipping, member discount). Sold as a Shopify product.
+: A paid plan that gives customers recurring benefits. Managed under **Membership → Plans**.
 
-**Membership contract**
-: An active subscription tying a customer to a membership plan, including its renewal schedule.
+**Members**
+: Customers with a membership, listed under **Membership → Members** with statuses such as Active, Paused and Cancelled.
+
+**Benefit**
+: Something a VIP tier or membership plan gives customers, such as a discount, free shipping or store credit.
 
 ## Widgets and extensions
 
 **Widget**
-: Any Yuko-powered UI element that appears on your storefront, checkout, or customer account.
+: Any Yuko element shown on your storefront, in checkout or in customer accounts.
 
-**Theme App Embed**
-: Shopify's mechanism for letting an app inject a script and asset bundle into your theme. Required to render any Yuko storefront widget.
+**Floating Rewards**
+: The floating rewards button and panel on your storefront, where customers see their points, rewards, tier and ways to earn.
+
+**Loyalty Nudges**
+: A strip pinned to the top or bottom of your storefront pages that opens a loyalty drawer with the customer's points, tier and rewards.
+
+**Rewards Landing Page**
+: A page on your storefront explaining your program, built from Yuko theme blocks.
+
+**Yuko App embed**
+: The theme app embed that loads Yuko on your storefront. It must be on for storefront widgets to work.
 
 **App block**
-: A drag-and-drop block exposed by Yuko's theme extension and added in the Shopify Theme Editor.
+: A Yuko block you add to a theme section in the Shopify Theme Editor.
 
-**Checkout UI Extension**
-: Shopify's extension surface for adding UI inside Checkout. Yuko ships earn and redeem extensions for Checkout.
+**Checkout UI extension**
+: Yuko blocks inside Shopify Checkout for showing and redeeming points.
 
-**Customer Account Extension**
-: Shopify's extension surface for the new customer accounts. Powers the Yuko Loyalty hub inside customer accounts.
+**Customer account extension**
+: Yuko blocks and pages inside Shopify's customer accounts.
+
+**Shopify POS tile**
+: The Yuko tile on the Shopify POS smart grid, where staff redeem points and apply loyalty discounts in store.
+
+## Emails
+
+**Emails**
+: The built-in emails Yuko sends for loyalty, referral and membership events, such as *Points earned* or *Tier unlocked*. Each module has its own **Emails** tab.
+
+**Shortcode**
+: A placeholder such as `{{ points_balance }}` that's replaced with real data when the email is sent.
+
+**Email Blacklist**
+: A list of addresses or domains that don't receive Yuko emails. Found under **Account → Email Settings**.
 
 ## Workflows
 
 **Workflow**
-: A visual automation built from nodes (trigger → conditions → actions) that runs in response to events.
+: An automation built from nodes that runs when an event happens.
 
-**Trigger node**
-: The first node of a workflow. Defines the event that starts it (e.g., *Order placed*).
+**Trigger**
+: The event that starts a workflow, such as *Earn Points* or *VIP Tier Upgrade*.
 
 **Action node**
-: A node that does something — send email, credit points, debit points, issue a coupon, etc.
+: A node that does something, such as **Send Email**, **Coupon**, **Points Credit** or **Points Debit**.
 
-**Condition / Binary node**
-: A node that branches a workflow based on whether a condition is met.
+**If / Else**
+: A node that splits a workflow based on a condition.
 
-**Wait node**
-: A node that pauses the workflow for a defined duration.
-
-## Notifications
-
-**Email template**
-: A pre-built email Yuko sends in response to a loyalty event (points earned, reward redeemed, tier upgraded, etc.).
-
-**Shortcode** (also: **merge tag**)
-: A placeholder like `[points_value]` that gets replaced with real data when the email is sent.
+**Time Delay**
+: A node that pauses a workflow for a set time.
 
 ## Integrations
 
-**Connector**
-: A specific integration with a third-party app (e.g., Klaviyo, Omnisend, Engati).
-
-**Webhook**
-: An outbound HTTP call Yuko makes to a URL of your choice when an event happens.
+**Integration**
+: A connection to another app, such as Klaviyo, Omnisend, Shopify Flow or a WhatsApp provider. Managed under **Integrations** in the sidebar.
 
 **API key**
 : A secret token used to authenticate calls to Yuko's REST API.
+
+## Account
+
+**Account Settings**
+: Store-wide settings under **Account**: General, Platforms, Email Settings and Translations.
+
+**Translations**
+: Your translations of Yuko's customer-facing labels and content for each store language. Found under **Account → Translations**.

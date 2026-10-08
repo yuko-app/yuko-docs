@@ -1,137 +1,115 @@
 ---
 title: Multi-Action Challenge Booster
-description: Reward customers for completing a diverse set of actions (order + review + refer + follow). Drives breadth of engagement, not just transactions.
+description: Reward customers for completing a set of different actions, such as ordering, reviewing and following you on social. Drives breadth of engagement, not just transactions.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Booster Campaigns → New booster → **Multi-Action Challenge**
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Booster Campaigns → Create campaign → **Multi-Action Challenge**
 </Note>
 
 ## Overview
 
-The customer earns a bonus when they complete a set of diverse actions within a window — e.g., **Order + Submit a review + Refer a friend = 500 bonus points**. Mix any 2–10 actions across purchase, content, referral, and social.
+The customer earns a reward when they complete a set of actions, for example **Place an order + Write a review + Instagram Follow = 500 bonus points**. Pick 2 to 10 actions from your enabled Ways to Earn, and choose whether customers must complete all of them or any one.
 
 ## Why you need it?
 
-A customer who only buys is fragile. A customer who buys, reviews, refers, and follows on social is **sticky** — they've put multiple touchpoints into your brand, and switching has a real cost.
+A customer who only buys is fragile. A customer who buys, reviews and follows you on social is **sticky**: they've invested in several touchpoints with your brand, and switching has a real cost.
 
-Most loyalty programs reward each of those actions independently with small per-action points. The multi-action challenge bundles them into a single goal with a chunky bonus, making the breadth of engagement worth chasing.
+Most programs reward each of those actions separately with small per-action points. A challenge bundles them into one goal with a bigger reward, so the breadth of engagement is worth chasing.
 
 ## When to use it?
 
 - Onboarding new customers across the channels you care about.
-- Driving UGC during a launch (orders + reviews + social shares).
-- Building a brand-ambassador program where the customer's total activity matters.
-- Running a seasonal multi-touch campaign (holiday challenge with five themed actions).
-- Engaging your most active customers in a layered campaign that simple multipliers can't match.
+- Driving reviews and social engagement during a launch.
+- Running a seasonal challenge with several themed actions.
+- Engaging your most active customers with something richer than a multiplier.
 
 ## How to configure it?
 
 <Steps>
   <Step title="Open Booster Campaigns">
-    Go to **Apps → Yuko Loyalty → Loyalty → Booster Campaigns** and click **New booster**.
+    Go to **Apps → Yuko Loyalty → Loyalty → Programs**. In the **Booster Campaigns** section, click **Create campaign** and select **Multi-Action Challenge**.
   </Step>
-  <Step title="Pick Multi-Action Challenge">
-    Select the **Multi-Action Challenge** booster type.
+  <Step title="Fill in Campaign Details">
+    Enter a **Campaign Name** (internal) and an optional **Description**.
   </Step>
-  <Step title="Pick the actions (2–10)">
-    Choose from any Way to Earn: *Place an Order*, *Write a Review*, *Refer a Friend*, *Subscribe to Newsletter*, *Facebook Like*, *Instagram Follow*, etc.
+  <Step title="Add the actions">
+    Under **Actions Required**, click **Add action** and pick an earning action. Only enabled Ways to Earn are listed, and each action can be used once. Add between 2 and 10 actions. For **Place an order**, you can check **Set a minimum order amount** and enter a **Min order amount**; the order must meet it to count toward this action.
   </Step>
-  <Step title="Set completion logic">
-    - **All** — customer must complete every action in the list.
-    - **Any N** — customer must complete any N actions from the list (e.g., “any 3 of 5”).
+  <Step title="Choose the completion logic">
+    - **Match all** — the customer must complete every action.
+    - **Match any** — completing any one action unlocks the reward.
   </Step>
-  <Step title="Set the bonus">
-    The points awarded when the challenge is completed. Multi-action bonuses are typically chunky (500–2,000 points) because the customer is doing several things.
+  <Step title="Set a time window (optional)">
+    **Time Window** (days): customers must complete the actions within this many days. Leave blank for no time limit.
   </Step>
-  <Step title="Set the time window">
-    The period the customer has to complete the challenge (e.g., 14 days, 30 days, a full quarter).
+  <Step title="Add the reward">
+    Click **Add Reward** and choose **Amount discount**, **% off discount**, **Free shipping**, **Free product**, **Bonus points** or **Store credit** (Shopify only).
   </Step>
-  <Step title="Set schedule, targeting, product scope">
-    One-time, recurring, or always-on. Multi-action onboarding challenges are usually always-on with cohort targeting.
+  <Step title="Set targeting and limits (optional)">
+    Add **Targeting Rules** and **Max participants**. Each customer can complete a challenge once, so there is no **Max completions per customer** field. **Products** and **Collections** rules aren't available for this type.
   </Step>
-  <Step title="Save and activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Set the schedule">
+    **One-time**, **Recurring** (by weeks or months) or **Evergreen (always on)**.
+  </Step>
+  <Step title="Review display, stacking, publishing and icon">
+    Widget labels: **Call-to-action above progress bar**, **Reward banner — locked** and **Reward banner — unlocked**. The defaults change with the completion logic (for example *"Complete all [total_count] steps to earn:"* or *"Complete any 1 step to earn:"*). Tokens include `[done_count]`, `[total_count]` and `[remaining_count]`, plus `[title]`, `[reward]` and `[points_label]`.
+  </Step>
+  <Step title="Save">
+    **Status** is enabled by default. Click **Save**.
   </Step>
 </Steps>
 
+## How it works
+
+1. Each time a targeted customer completes one of the challenge actions while the campaign is active, it's ticked off on their progress.
+2. With **Match all**, the reward is issued once every action is done. With **Match any**, it's issued after the first action.
+3. With a **Time Window**, the clock starts at the customer's first completed action. If they don't finish within the window, their progress expires (shown as **Expired** in **Participants**) and they start again from zero.
+
 ## Use cases / Examples
 
-### One-time uses
+**1. Welcome challenge.** Evergreen: **Sign Up** + **Place an order** + **Write a review**, **Match all**, 30-day **Time Window** → 500 bonus points.
 
-**1. Welcome challenge**
+**2. Social starter.** **Instagram Follow** + **Facebook Like** + **Subscribe to Newsletter**, **Match all** → free shipping on the next order.
 
-For new customers in their first 14 days: Order + Write a review + Refer a friend = 500 points. A single campaign drives three of the four most important new-customer behaviours.
+**3. Launch buzz.** One-time, launch month: **Place an order** (with a minimum order amount) + **Write a review**, **Match all** → $10 off.
 
-**2. Full-funnel engagement**
-
-Order + Subscribe to newsletter + Follow on social = bonus. Captures multi-channel customers in one campaign — the ones who are most likely to become long-term advocates.
-
-**3. Brand ambassador challenge**
-
-Refer + Share on social + Submit a photo review = elevated bonus (e.g., 1,500 points). Targets your top customers and gives them a structured way to evangelise. Combine with influencer outreach for outsized lift.
-
-**4. Holiday challenge**
-
-November: complete any 3 of 5 holiday-themed actions (gift purchase, refer a friend, share on social, write a review, subscribe to gift-guide newsletter) → 1,000 points. Builds multi-touch seasonal engagement.
-
-### Recurring uses
-
-**5. Monthly engagement bingo**
-
-Each month, customers pick any 3 of 5 actions to complete and earn 250 points. Self-paced, low-friction, and resets monthly so it stays fresh. Best customers stack month after month.
-
-### Always-on uses
-
-**6. Onboarding combo (first 30 days)**
-
-New customers who complete Order + Write a review during their first 30 days get a bonus. Always-on for the new-customer cohort. Reduces churn at the most fragile point in the lifecycle.
+**4. Any-step nudge.** **Match any** across several social actions → 50 bonus points. A low-effort entry point for less engaged customers.
 
 ## How to promote it
 
-Multi-action challenges have a lot of moving parts. Your promotion strategy should be **progress-led** — the customer needs to see how close they are to the bonus at every step.
+- **Storefront:** with **Show in loyalty widget** checked, the **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget, Floating Launcher and customer account page show the challenge as a checklist with the reward banner.
+- **Email:** list the steps and the reward clearly in a launch email, then follow up with customers who have completed some but not all steps.
+- **WhatsApp:** if you've connected a WhatsApp provider, nudge customers who are one step away before the window closes.
 
-### Storefront — Loyalty Nudges surfaces the checklist
+## FAQs
 
-The **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget surfaces the multi-action challenge progress on every storefront page — a clear *“2 of 3 done”* checklist with which actions are still outstanding, visible in the drawer from any page. The Customer Account hub also shows it for logged-in customers.
-
-Pair with a homepage banner during the launch window for non-logged-in visitors.
-
-### Email — launch and per-action progress
-
-Pair the challenge with email through your ESP. **Klaviyo** is the strongest pairing because Yuko pushes events for each individual action (Order placed, Review submitted, Referral completed) and live profile properties (see [Klaviyo integration](/integrations/klaviyo)) — build a Klaviyo flow that fires after each completed action with updated progress.
-
-- **Launch email:** list the actions clearly. *“Complete any 3 of: order, review, refer, follow on Instagram, subscribe to newsletter. Earn 500 points.”*
-- **Action-complete email (Klaviyo flow):** fires after each completed action. *“1 of 3 done. Keep going.”* Use the corresponding event's properties to call out which action they just completed.
-- **Last-step email:** when the customer is one action away from completing the bonus, with a clear *“finish the challenge”* CTA.
-
-### WhatsApp — final-step nudge
-
-If you've connected a WhatsApp provider, reserve WhatsApp for the *“one action to go”* moment, especially if the remaining action is reviewing or referring. WhatsApp shines for the action that needs the customer to *do something specific right now*.
-
-Example: *“You've done 2 of 3. Refer a friend by Friday to earn the 500-point bonus: [referral_link]”*
-
-### Reminder cadence
-
-- **Day 0** — enable Loyalty Nudges + launch email with the action list
-- **After each completed action** — Klaviyo flow with status update
-- **One action away, window closing** — WhatsApp + email
-- **Window closes, customer didn't finish** — *(optional)* a "so close" follow-up email to soften the miss and seed the next challenge
+<AccordionGroup>
+  <Accordion title="Can I require any 2 of 5 actions?">
+    No. The options are **Match all** (every action) or **Match any** (any one action).
+  </Accordion>
+  <Accordion title="Why can't I add a certain action?">
+    The action's Way to Earn must be enabled, and each action can only be added once per challenge.
+  </Accordion>
+  <Accordion title="What happens when the time window runs out?">
+    The customer's progress is marked **Expired** and resets. Their next qualifying action starts a new attempt.
+  </Accordion>
+</AccordionGroup>
 
 ## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
-    The pinned-strip widget that surfaces the challenge checklist on every page.
+  <Card title="Booster Campaigns overview" icon="rocket" href="/loyalty/booster-campaigns/overview">
+    Schedule, targeting, stacking and display settings shared by all boosters.
+  </Card>
+  <Card title="Ways to Earn" icon="coins" href="/loyalty/ways-to-earn/overview">
+    The actions you can include in a challenge.
   </Card>
   <Card title="Streak Booster" icon="fire" href="/loyalty/booster-campaigns/streak">
-    Reward repeated activity across periods instead of diverse actions in one window.
+    Reward repeating one action over time.
   </Card>
-  <Card title="Referrals" icon="share-nodes" href="/referrals/overview">
-    Multi-action challenges combine well with the dedicated referral program.
-  </Card>
-  <Card title="Ways to Earn" icon="hand-holding-dollar" href="/loyalty/ways-to-earn/overview">
-    See every individual action available to include in a challenge.
+  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
+    Show the challenge checklist on every storefront page.
   </Card>
 </CardGroup>
 

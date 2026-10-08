@@ -49,10 +49,10 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 | **Template Name** | Approved template name from AskEva (no spaces) | `loyalty_tier_welcome` |
 | **Language Code** | Template language | `en`, `hi`, `ar` |
 | **Add CTA Button** *(toggle)* | Enable if the template has dynamic-URL CTA buttons | on |
-| **CTA Button Count** | Number of CTA buttons on the template | `1` |
+| **CTA Button Count** | Number of CTA buttons on the template (1–2) | `1` |
 | **CTA Button URL Suffixes** | Dynamic suffix appended to each button's base URL — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `redeem?code={{coupon_code}}` |
-| **Parameter Count** | Number of body variables (1–25) | `2` |
-| **Template Parameters** | Body variable values — supports shortcodes | `{{first_name}}`, `{{vip_tier_name}}` |
+| **Parameter Count** | Number of body variables (1–10) | `2` |
+| **Template Parameters** | Body variable values — supports shortcodes | `{{first_name}}`, `{{current_tier_name}}` |
 
 <Tip>**CTA Button URL Suffixes** are just the *dynamic tail* of each button's URL, not the whole URL. The base URL comes from the template itself (defined in the AskEva dashboard). The suffix is what changes per recipient.</Tip>
 
@@ -60,16 +60,16 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
 Different from BiteSpeed / Kwik Engage, which take the full URL as input. AskEva templates already carry the button base URL; Yuko only passes the variable tail.
 
-Example: template defines button URL as `https://shop.example.com/`. If you pass suffix `account?id={{customer_id}}`, the customer receives `https://shop.example.com/account?id=12345`.
+Example: template defines button URL as `https://shop.example.com/`. If you pass suffix `account?email={{email}}`, the customer receives `https://shop.example.com/account?email=jane@example.com`.
 
 ## Example use case
 
 **VIP tier welcome with a redeem button**
 
 1. In AskEva, approve a template `loyalty_tier_welcome` with two body variables and one CTA button (base URL: `https://shop.example.com/`). Note the language code.
-2. In Yuko Workflows, build: **Trigger: VIP Tier Entered** → **Filter: tier = Diamond** → **WhatsApp (AskEva)**.
-3. Configure: Template Name = `loyalty_tier_welcome`, Language = `en`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{vip_tier_name}}`.
-4. Toggle **Add CTA Button**, Button Count = `1`, Suffix 1 = `account?id={{customer_id}}`.
+2. In Yuko Workflows, build: **Trigger: VIP Tier Entry** → **Filter: tier = Diamond** → **WhatsApp (AskEva)**.
+3. Configure: Template Name = `loyalty_tier_welcome`, Language = `en`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{current_tier_name}}`.
+4. Toggle **Add CTA Button**, Button Count = `1`, Suffix 1 = `account?email={{email}}`.
 5. Activate.
 
 ## Limitations
@@ -105,7 +105,7 @@ import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
 <CardGroup cols={2}>
   <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
-    How Yuko's WhatsApp integration works across all 11 providers.
+    How Yuko's WhatsApp integration works across all 13 providers.
   </Card>
   <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
     Setup, shortcodes, and example workflows.

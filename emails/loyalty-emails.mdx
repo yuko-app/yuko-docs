@@ -1,131 +1,207 @@
 ---
 title: Loyalty Emails
-description: Templates for points earned, redeemed, tier changes, expiry reminders and personal milestones.
+description: The 11 built-in loyalty emails, covering points earned and redeemed, tier unlocked, expiry reminders, and birthday and anniversary emails, with their default subjects and timing.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Notifications
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Emails
 </Note>
 
-This page documents the seven loyalty templates Yuko can send. Each has a default subject and body — customise them in the [Template Editor](/emails/template-editor).
+Yuko has 11 built-in loyalty emails. They all start **inactive**. Switch on the ones you want in **Loyalty → Emails**, and edit the content in the [Template Editor](/emails/template-editor).
 
-## Points Earned
+| Email | Sent when | Default subject | Timing |
+|---|---|---|---|
+| [Points earned](#points-earned) | A customer earns points | You've Got `{{ points_value }}` `{{ points_label }}` | **Days after earned reward** |
+| [Points redeemed](#points-redeemed) | A customer redeems points for a reward | You unlocked a reward! | **Days after redeemed reward** |
+| [Tier unlocked](#tier-unlocked) | A customer enters their first VIP tier | You've unlocked a new tier! | **Days after tier changed** |
+| [Point Expiry Reminder](#point-expiry-reminder) | Points are about to expire | Your `{{ points_label }}` going to expire! | 3 days before expiry |
+| [Points expired](#points-expired) | Points have expired | Your `{{ points_label }}` have expired | **Days after points expired** |
+| [Reward expiry reminder](#reward-expiry-reminder) | A redeemed reward is about to expire | Your reward is expiring in `{{days_until_expiry}}` days! | 3 days before expiry |
+| [Reward expired](#reward-expired) | A redeemed reward has expired | Your reward has expired | **Days after reward expired** |
+| [Birthday Reminder](#birthday-reminder) | A customer's birthday is coming up | Celebrate Your Birthday With Us! | 7 days before the birthday |
+| [Birthday award](#birthday-award) | Birthday points are awarded | Happy Birthday, `{{ first_name }}`! | **Days after birthday award** |
+| [Anniversary Reminder](#anniversary-reminder) | A customer's anniversary is coming up | Celebrate Your Anniversary With Us! | 7 days before the anniversary |
+| [Anniversary award](#anniversary-award) | Anniversary points are awarded | Happy Anniversary, `{{ first_name }}`! | **Days after anniversary award** |
 
-**Trigger:** A customer earns points from any active Way to Earn campaign.
+Settings in **bold** are delay fields in the email editor. Set them to **0** to send immediately (the default). The four reminders use a fixed number of days before the date and have no timing field in the editor.
 
-**Default subject:** *“You've earned [points_value] [points_label]!”*
+## Points earned
 
-**Default body summary:** Greeting → points earned + campaign name → new balance → CTA to the Rewards Landing Page.
+**Sent when:** a customer earns points from any [way to earn](/loyalty/ways-to-earn/overview), including points credited by a workflow.
 
-**Useful shortcodes:** `[first_name]`, `[points_value]`, `[points_label]`, `[campaign_name]`, `[point_balance]`.
+**Default subject:** *You've Got `{{ points_value }}` `{{ points_label }}`*
 
-<Tip>**Lead with the points value.** *“You've earned 50 Stars”* outperforms *“Thanks for your order”*.</Tip>
+**Default message:** Greeting → *"Congratulations! You've earned `{{ points_value }}` `{{ points_label }}` from `{{earn_program_name}}`"* → thank-you line.
 
----
+**Delay:** **Days after earned reward**.
 
-## Reward Redeemed
+**Useful shortcodes:** `{{ first_name }}`, `{{ points_value }}`, `{{ points_label }}`, `{{ earn_program_name }}`, `{{ points_balance }}`, `{{ points_to_next_reward }}`, `{{ redemption_link }}`.
 
-**Trigger:** A customer claims a reward (Way to Redeem).
-
-**Default subject:** *“Your [reward_name] is ready!”*
-
-**Default body summary:** Greeting → reward name + discount code → expiry → CTA to use it.
-
-**Useful shortcodes:** `[first_name]`, `[reward_name]`, `[discount_code]`, `[discount_expiry_date]`.
-
-<Tip>**Make the discount code copyable in one tap.** Customers redeem on mobile.</Tip>
-
----
-
-## Tier Changed
-
-**Trigger:** A customer moves into a new VIP tier (up or down).
-
-**Default subject (up):** *“Welcome to [tier_name]!”*
-
-**Default subject (down):** *“Your tier has been updated”*
-
-**Default body summary:** Greeting → tier change announcement → list of new benefits → CTA to the Rewards Landing Page.
-
-**Useful shortcodes:** `[first_name]`, `[tier_name]`, `[next_tier]`, `[multiplier_value]`.
-
-<Tip>**Celebrate up-moves loudly, downgrades gently.** A downgrade email reads better as *“Your tier has been updated based on the last 12 months”* than *“You've lost VIP status”*.</Tip>
+<Tip>**Lead with the number.** "You've Got 50 Points" gets more opens than "Thanks for your order".</Tip>
 
 ---
 
-## Reward Expiring
+## Points redeemed
 
-**Trigger:** A redeemed reward (discount code) is about to expire — typically 7 and 1 days before.
+**Sent when:** a customer redeems points for a [reward](/loyalty/ways-to-redeem/overview).
 
-**Default subject:** *“Your reward expires on [discount_expiry_date]”*
+**Default subject:** *You unlocked a reward!*
 
-**Default body summary:** Greeting → reward at risk → expiry date → CTA to redeem.
+**Default message:** Greeting → *"You redeemed the following reward `{{ reward_code }}`"* → thank-you line.
 
-**Useful shortcodes:** `[first_name]`, `[reward_name]`, `[discount_code]`, `[discount_expiry_date]`.
+**Delay:** **Days after redeemed reward**.
 
-<Tip>**Send 7 and 1 days before** for the best mix of awareness and urgency.</Tip>
+**Useful shortcodes:** `{{ reward_name }}`, `{{ reward_code }}`, `{{ reward_value }}`, `{{ reward_expire_at }}`, `{{ points_spent }}`, `{{ points_balance }}`.
+
+<Tip>**Put the code front and centre.** Most customers open this email on their phone at checkout.</Tip>
 
 ---
 
-## Points Expiring
+## Tier unlocked
 
-**Trigger:** Customer points are about to expire — typically 30 and 7 days before.
+**Sent when:** a customer qualifies for a [VIP tier](/vip-tiers/overview) for the first time, moving from no tier into a tier.
 
-**Default subject:** *“[points_value] [points_label] expiring soon”*
+**Default subject:** *You've unlocked a new tier!*
 
-**Default body summary:** Greeting → points at risk → expiry date → CTA to redeem.
+**Default message:** Greeting → *"You've unlocked the following tier `{{ current_tier_name }}`"* → thank-you line.
 
-**Useful shortcodes:** `[first_name]`, `[points_value]`, `[points_label]`, `[discount_expiry_date]`.
+**Delay:** **Days after tier changed**.
 
-<Tip>**Only enable if your program uses points expiry.** Otherwise the email is misleading.</Tip>
+**Useful shortcodes:** `{{ current_tier_name }}`, `{{ next_tier_name }}`, `{{ points_balance }}`, `{{ total_earned_points }}`.
+
+<Note>This email doesn't send when a customer moves **up** from one tier to a higher one, or **down**. For those moments, build a [workflow](/workflows/triggers-and-conditions) on the **VIP Tier Upgrade** or **VIP Tier Downgrade** trigger.</Note>
+
+---
+
+## Point Expiry Reminder
+
+**Sent when:** some of a customer's points are about to expire. It's listed as **Point Expiry Reminder** in the Emails list.
+
+**Default subject:** *Your `{{ points_label }}` going to expire!*
+
+**Default message:** Greeting → *"Your `{{ points_label }}` balance of `{{ expiring_points }}` will expire in `{{ days_until_expiry }}` days."*
+
+**Timing:** 3 days before the points expire.
+
+**Useful shortcodes:** `{{ expiring_points }}`, `{{ points_expiry_at }}`, `{{ days_until_expiry }}`, `{{ expiring_points_as_cash }}`, `{{ redemption_link }}`.
+
+<Tip>**Only turn this on if your points expire.** Points expiry is set per earn rule. See [Ways to Earn](/loyalty/ways-to-earn/overview).</Tip>
+
+---
+
+## Points expired
+
+**Sent when:** a customer's points have expired.
+
+**Default subject:** *Your `{{ points_label }}` have expired*
+
+**Default message:** *"`{{ expired_points }}` `{{ points_label }}` from your account have expired. Your current balance is `{{ points_balance }}` `{{ points_label }}`. Keep shopping to earn more!"*
+
+**Delay:** **Days after points expired**.
+
+**Useful shortcodes:** `{{ expired_points }}`, `{{ expired_points_as_cash }}`, `{{ points_balance }}`, `{{ points_to_next_reward }}`.
+
+---
+
+## Reward expiry reminder
+
+**Sent when:** a reward the customer redeemed (their discount code) is about to expire.
+
+**Default subject:** *Your reward is expiring in `{{days_until_expiry}}` days!*
+
+**Default message:** Greeting → *"Your reward `{{ reward_code }}` is expiring in `{{days_until_expiry}}` days."*
+
+**Timing:** 3 days before the reward expires.
+
+**Useful shortcodes:** `{{ reward_name }}`, `{{ reward_code }}`, `{{ reward_value }}`, `{{ reward_expire_at }}`, `{{ days_until_expiry }}`.
+
+---
+
+## Reward expired
+
+**Sent when:** a reward the customer redeemed has expired without being used.
+
+**Default subject:** *Your reward has expired*
+
+**Default message:** *"Your reward `{{ reward_name }}` (`{{ reward_code }}`) has expired. You still have `{{ points_balance }}` points to redeem for a new reward!"*
+
+**Delay:** **Days after reward expired**.
+
+**Useful shortcodes:** `{{ reward_name }}`, `{{ reward_code }}`, `{{ points_balance }}`, `{{ redemption_link }}`.
 
 ---
 
 ## Birthday Reminder
 
-**Trigger:** It's the customer's birthday — sent the morning of.
+**Sent when:** a customer's birthday is coming up and your [Birthday](/loyalty/ways-to-earn/birthday) earn rule is active.
 
-**Default subject:** *“Happy birthday, [first_name]! Here's a gift”*
+**Default subject:** *Celebrate Your Birthday With Us!*
 
-**Default body summary:** Greeting → birthday wish → points awarded → CTA to the storefront.
+**Default message:** Greeting → *"As a token of our appreciation, we're offering you `{{ points_value }}` `{{ points_label }}` on `{{birthday_date}}`"*.
 
-**Useful shortcodes:** `[first_name]`, `[points_value]`, `[points_label]`.
+**Timing:** 7 days before the birthday.
 
-<Tip>**Pair with the [Birthday](/loyalty/ways-to-earn/birthday) campaign** — the email is the celebratory wrapper.</Tip>
+**Useful shortcodes:** `{{ points_value }}`, `{{ points_label }}`, `{{ birthday_date }}`, `{{ points_balance }}`.
+
+---
+
+## Birthday award
+
+**Sent when:** Yuko awards a customer's birthday points.
+
+**Default subject:** *Happy Birthday, `{{ first_name }}`!*
+
+**Default message:** *"Happy Birthday! To celebrate, we've added `{{ points_value }}` `{{ points_label }}` to your account."*
+
+**Delay:** **Days after birthday award**.
+
+**Useful shortcodes:** `{{ points_value }}`, `{{ points_balance }}`, `{{ points_balance_as_cash }}`, `{{ redemption_link }}`.
 
 ---
 
 ## Anniversary Reminder
 
-**Trigger:** It's the anniversary of the customer's signup.
+**Sent when:** a customer's anniversary is coming up and your [Anniversary](/loyalty/ways-to-earn/anniversary) earn rule is active.
 
-**Default subject:** *“Thanks for [years] years with us!”*
+**Default subject:** *Celebrate Your Anniversary With Us!*
 
-**Default body summary:** Greeting → milestone acknowledgement → anniversary points → CTA.
+**Default message:** Greeting → *"As a token of our appreciation, we're offering you `{{ points_value }}` `{{ points_label }}` on `{{anniversary_date}}`"*.
 
-**Useful shortcodes:** `[first_name]`, `[points_value]`, `[points_label]`.
+**Timing:** 7 days before the anniversary.
 
-<Tip>**Pair with the [Anniversary](/loyalty/ways-to-earn/anniversary) campaign.**</Tip>
+**Useful shortcodes:** `{{ points_value }}`, `{{ anniversary_date }}`, `{{ customer_years }}`, `{{ customer_year_label }}`.
 
 ---
 
-## Best practices across all loyalty emails
+## Anniversary award
 
-<Tip>**Default copy is safe.** Launch with defaults; iterate on copy after seeing open and click data.</Tip>
-<Tip>**Don't enable everything.** Pick 4–5 of these. Sending 7 different loyalty emails is noise.</Tip>
-<Tip>**Test every template** to a real Gmail / Outlook before going live.</Tip>
+**Sent when:** Yuko awards a customer's anniversary points.
+
+**Default subject:** *Happy Anniversary, `{{ first_name }}`!*
+
+**Default message:** *"Happy `{{ customer_years }}` `{{ customer_year_label }}` with us! To celebrate, we've added `{{ points_value }}` `{{ points_label }}` to your account."*
+
+**Delay:** **Days after anniversary award**.
+
+**Useful shortcodes:** `{{ customer_years }}`, `{{ customer_year_label }}`, `{{ points_value }}`, `{{ points_balance }}`.
+
+## Best practices
+
+<Tip>**Start with Points earned, Points redeemed and Tier unlocked.** These three cover the moments customers care about most.</Tip>
+<Tip>**Pair reminders with a redemption link.** Add `{{ redemption_link }}` as the CTA URL in expiry reminders so customers can spend their points straight away.</Tip>
+<Tip>**Need different timing or extra steps?** Build a [workflow](/workflows/overview) on the same trigger (for example **Points Expiring Reminder** with a **Days Before** filter) and leave the built-in email off.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Can I disable just one template?">
-    Yes — every template has its own toggle.
+  <Accordion title="Can I change when the expiry and birthday reminders are sent?">
+    Not from the email editor. The built-in reminders go out 3 days before points or reward expiry, and 7 days before birthdays and anniversaries. For other timing, use a workflow with the matching trigger and a **Days Before** trigger filter.
   </Accordion>
-  <Accordion title="Why isn't my Birthday email firing?">
-    Customers without a stored birthday won't receive it. Birthdays are collected via the Yuko account block, your signup form, or CSV import.
+  <Accordion title="Why didn't a customer get the Tier unlocked email after an upgrade?">
+    Tier unlocked only sends when a customer enters their first tier. Use a workflow on **VIP Tier Upgrade** for upgrades.
   </Accordion>
-  <Accordion title="Why are tier-down emails harsh by default?">
-    They're not — the default copy says *“Your tier has been updated based on the last 12 months”* without any negative framing. You can soften further in the editor.
+  <Accordion title="Do the birthday emails need the customer's birthday?">
+    Yes. Yuko can only send them to customers with a birthday on file, and only while the Birthday earn rule is active.
   </Accordion>
 </AccordionGroup>
 

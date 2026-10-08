@@ -1,0 +1,114 @@
+---
+title: Post-Purchase Widget
+description: Invite customers to get and share their referral link on the thank-you and order status pages, right after they buy.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Referral → Widgets → Post-Purchase Widget
+</Note>
+
+## Introduction
+
+The **Post-Purchase Widget** asks customers to refer a friend straight after checkout. It's the **Yuko Referral Signup** extension block, shown on the thank-you page and on the order status page in customer accounts.
+
+## What problem this solves
+
+Customers are most enthusiastic right after buying. Showing the referral offer at that moment, with a one-click way to get a link, turns that enthusiasm into referrals.
+
+## Where it appears
+
+- The **Thank you** page (`purchase.thank-you.block.render`).
+- The **Order status** page in Shopify customer accounts (`customer-account.order-status.block.render`).
+
+## Overview
+
+- Four text fields: title, description and two button labels.
+- No Styles tab. The block uses Shopify's checkout and customer account styling.
+- A customer who isn't a referrer yet sees **Get my referral link**. Clicking it enrolls them and shows their link with a copy button. Existing referrers see their link straight away.
+
+## Before you start
+
+<Check>The referral program is enabled and a friend reward is set in **Referral → Program**. The widget stays hidden without a friend reward.</Check>
+<Check>For the order status page, your store uses Shopify customer accounts (**Settings → Customer accounts**).</Check>
+
+## Setup guide
+
+### 1. Configure the widget in Yuko
+
+<Steps>
+  <Step title="Open the widget">
+    Go to **Referral → Widgets** and open **Post-Purchase Widget**.
+  </Step>
+  <Step title="Edit the content">
+    | Field | Default |
+    |---|---|
+    | **Title** | `Refer a friend & get rewarded!` |
+    | **Description** | `Give your friends 10% off and get 100 points for each successful referral.` |
+    | **Copy Button Text** (shown once the link is displayed, max 30 characters) | `Copy Link` |
+    | **Get Link Button Text** (shown before the link is loaded, max 30 characters) | `Get my referral link` |
+
+    In **Title** and **Description**, use `{{friend_reward}}` and `{{referrer_reward}}` to insert the reward titles, so the text stays in sync with your rewards.
+  </Step>
+  <Step title="Save and enable">
+    Click **Save**, then switch the toggle next to the widget title on. The badge changes to **Active**.
+  </Step>
+</Steps>
+
+### 2. Add the block to the thank-you page
+
+<Steps>
+  <Step title="Open the checkout editor">
+    In your Shopify admin, go to **Settings → Checkout** and click **Customize**.
+  </Step>
+  <Step title="Open the Thank you page">
+    Use the page selector at the top to switch to **Thank you**.
+  </Step>
+  <Step title="Add the block">
+    Click **Add app block**, choose **Yuko Referral Signup**, position it and click **Save**.
+  </Step>
+</Steps>
+
+### 3. Add the block to the order status page
+
+import SetupCustomerAccount from '/snippets/setup-customer-account-extension.mdx';
+
+<SetupCustomerAccount />
+
+On the **Order status** page, add the **Yuko Referral Signup** block.
+
+### 4. Verify
+
+Place a test order and check that the widget appears on the thank-you page. Click **Get my referral link**, then copy the link and open it in a private window to check that the Friend Welcome Popup appears.
+
+## How it works
+
+1. The block checks that the referral module is on, a friend reward exists and the widget is enabled.
+2. If the customer already has a referral code, the block shows their link.
+3. Otherwise the block shows **Get my referral link**. Clicking it enrolls the customer as a referrer and shows the new link.
+4. The customer copies the link and shares it.
+
+### Limitations
+
+- The block's look follows Shopify's checkout and customer account styling.
+- The order status target needs Shopify customer accounts and a logged-in customer.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Do I need Shopify Plus?">
+    Thank-you and order status page blocks don't require Shopify Plus. Checkout-step blocks, such as the loyalty checkout widgets, do.
+  </Accordion>
+  <Accordion title="Why don't I see the widget after an order?">
+    Check that a friend reward is set, the widget's toggle is on, and the **Yuko Referral Signup** block is added to the page you're looking at.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedReferrals from '/snippets/related-referrals.mdx';
+
+<RelatedReferrals />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

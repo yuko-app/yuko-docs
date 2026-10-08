@@ -1,21 +1,21 @@
 ---
-title: Build Your First Workflow
-description: A 10-minute walkthrough that takes you from a blank canvas to a live workflow.
+title: Build your first workflow
+description: A step-by-step tutorial that rewards customers who move up a VIP tier with bonus points and a congratulations email, then takes the workflow Live.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Workflows → Create workflow
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Workflows → **Create Workflow**
 </Note>
 
-## What we'll build
+## Introduction
 
-A simple win-back workflow:
+In this tutorial you'll build a **VIP upgrade bonus** workflow:
 
-1. **Trigger** — customer hasn't placed an order in 60 days.
-2. **Condition** — they have a points balance > 0.
-3. **Wait** — 1 day.
-4. **Action** — send a *“We miss you”* email.
-5. **Exit**.
+```
+VIP Tier Upgrade  ──→  Points Credit (200 points)  ──→  Send Email  ──→  Exit
+```
+
+When a customer moves up to a higher [VIP tier](/vip-tiers/overview), they get 200 bonus points and an email congratulating them on the new tier. The built-in [Tier unlocked](/emails/loyalty-emails#tier-unlocked) email only covers a customer's first tier, so this workflow fills the gap for upgrades.
 
 ## Before you start
 
@@ -23,64 +23,80 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <BeforeYouStart />
 
-<Check>You've got at least one Way to Earn campaign active so customers have points balances.</Check>
+<Check>VIP tiers are set up with at least two tiers. See [VIP Tiers](/vip-tiers/overview).</Check>
+<Check>Your sender details are set in **Account → Email Settings**. See [Email Settings & Custom Domains](/emails/sender-and-branding).</Check>
 
-## Walkthrough
+## Setup guide
 
 <Steps>
-  <Step title="Create a new workflow">
-    In Shopify admin, go to **Apps → Yuko Loyalty → Workflows** and click **Create workflow**. Give it a name like *“60-day win-back”*.
+  <Step title="Create the workflow">
+    Go to **Workflows** and click **Create Workflow** → **Create from Scratch**. The new workflow opens on the canvas as a **Draft**.
   </Step>
-  <Step title="Add the trigger">
-    Click the placeholder **Trigger** node. Pick **Customer inactive for X days** and set X to 60.
+  <Step title="Name it">
+    Click the title at the top and rename it, for example *VIP upgrade bonus*.
   </Step>
-  <Step title="Add a condition">
-    Click the **+** below the trigger and pick **Condition (binary)**. Set the rule to **Customer has points balance > 0**. The node now has two branches — *Yes* and *No*.
+  <Step title="Choose the trigger">
+    Click the **Trigger** node. In the trigger list (grouped by **Loyalty**, **VIP Tiers**, **Referral**, **Membership** and **Orders**), search for and select **VIP Tier Upgrade**.
   </Step>
-  <Step title="Add a wait">
-    On the *Yes* branch, click **+** and pick **Wait**. Set duration to 1 day.
+  <Step title="Set re-entry">
+    In the trigger panel under **Re-entry criteria**, choose **Allow re-entry**, so a customer who upgrades again later (Silver → Gold → Platinum) gets the bonus each time.
   </Step>
-  <Step title="Add an action">
-    After the wait, click **+** and pick **Send Email**. Choose a template (or create a new one in Email Notifications first).
+  <Step title="Optional: limit it to one tier">
+    Click **Add trigger filters**, choose the **Current Tier Name** field and set it to, for example, *Gold*. Only upgrades into Gold will enter the workflow. Skip this step to reward every upgrade.
   </Step>
-  <Step title="Add an exit">
-    Click **+** at the end and pick **Exit**. Both the *Yes* and *No* branches need an exit — add one to the *No* branch too.
+  <Step title="Add a Points Credit node">
+    Click the **+** on the line below the trigger. In **Add Node**, pick **Points Credit**. Set **Method** to **Fixed amount of points**, **Points to earn** to *200* and **Credited reason** to *VIP upgrade bonus*. Save the node.
   </Step>
-  <Step title="Activate">
-    Click **Activate** at the top right. Yuko starts evaluating the trigger from this point forward.
+  <Step title="Add a Send Email node">
+    Click the **+** below Points Credit and pick **Send Email**. In the node panel, click **Edit** to open the [Template Editor](/emails/template-editor). Write a subject such as *Welcome to `{{ current_tier_name }}`, `{{ first_name }}`!* and a message that mentions the bonus and the new balance with `{{ points_balance }}`. Click **Save**, then go back to the workflow.
+  </Step>
+  <Step title="Check the Exit">
+    Every path already ends in an **Exit** node (*"The automation will stop here."*). There's nothing to configure.
+  </Step>
+  <Step title="Send yourself a test">
+    In the Template Editor, click **Send Test Email** to see the email in your inbox with sample data.
+  </Step>
+  <Step title="Go Live">
+    Changes save automatically (you'll see **Saved** at the top). Click **Turn on workflow**. The status changes from **Draft** to **Live**. Running workflows Live is available on select plans.
   </Step>
 </Steps>
 
-## Verify
+## How it works
 
-<Steps>
-  <Step title="Find a test customer">
-    Pick a customer with a points balance and last-order date > 60 days ago.
-  </Step>
-  <Step title="Check Analytics">
-    Open the workflow's **[Analytics](/workflows/analytics)** tab. After the trigger fires (typically within an hour), the customer should appear as an entry.
-  </Step>
-  <Step title="Confirm the email lands">
-    A day later, check the test customer's inbox. The email should arrive.
-  </Step>
-</Steps>
+1. A customer's tier is re-evaluated and they move to a higher tier. Yuko fires **VIP Tier Upgrade**.
+2. If the customer passes your trigger filters and re-entry rule, they become a **subscriber** of the workflow.
+3. **Points Credit** adds 200 points with the reason *VIP upgrade bonus*. You'll see it in the customer's activity on the [Customers](/loyalty/customers) page.
+4. **Send Email** sends your email. Shortcodes like `{{ current_tier_name }}` are filled in for this customer.
+5. The subscriber reaches **Exit** and is marked **Completed** in [Analytics](/workflows/analytics).
 
-## What to do next
+## Variations
 
-<CardGroup cols={2}>
-  <Card title="Add more conditions" icon="code-branch" href="/workflows/triggers-and-conditions">
-    Layer more rules to make the workflow more targeted.
-  </Card>
-  <Card title="Stack multiple actions" icon="play" href="/workflows/action-nodes">
-    Send an email, then credit a goodwill bonus, then exit.
-  </Card>
-  <Card title="Use partner nodes" icon="plug" href="/workflows/partner-nodes">
-    Hand off to Engati or KwikEngage if you use those.
-  </Card>
-  <Card title="Read the analytics" icon="chart-line" href="/workflows/analytics">
-    Find drop-off points and tune the flow.
-  </Card>
-</CardGroup>
+- **Wait before emailing:** add a [Time Delay](/workflows/wait-and-exit) of 1 Day(s) before Send Email, with **Set a delay until a specific time of day** at 10:00.
+- **WhatsApp instead of email:** swap Send Email for the [WhatsApp node](/workflows/whatsapp-node).
+- **Different bonus per tier:** add an **If / Else** node after the trigger with **Current Tier Name** equals *Platinum*. Give the **Yes** path a bigger Points Credit.
+- **Downgrade win-back:** build a second workflow on **VIP Tier Downgrade** with a [Coupon](/workflows/action-nodes#coupon) and a Send Email.
+
+## Best practices
+
+<Tip>**Use a clear Credited reason.** It appears in the customer's points history, so support can see where the points came from.</Tip>
+<Tip>**Mind the order.** Put Points Credit before Send Email so `{{ points_balance }}` already includes the bonus.</Tip>
+<Tip>**Watch the first few subscribers.** Open **Analytics** after going Live and check that subscribers reach **Completed**.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I change the trigger after choosing it?">
+    Pick the trigger carefully. Once a trigger is set, the trigger panel shows its filters and re-entry settings rather than the trigger list. To use a different trigger, create a new workflow.
+  </Accordion>
+  <Accordion title="Why can't I click Turn on workflow?">
+    Running workflows Live is available on select plans. You can still build and save workflows as Draft.
+  </Accordion>
+  <Accordion title="Will the bonus points trigger my Points earned email?">
+    Yes. Points credited by a workflow count as earned points, so the built-in **Points earned** email (if active) also sends. Turn it off, or rely on it instead of a separate Send Email node.
+  </Accordion>
+</AccordionGroup>
+
+## Related
 
 import RelatedWorkflows from '/snippets/related-workflows.mdx';
 

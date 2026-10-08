@@ -12,10 +12,11 @@ description: Read and write Yuko data programmatically — customers, points, re
 
 The Yuko REST API exposes the same data the dashboard shows:
 
-- List, retrieve and update customer points balances.
-- Issue manual points credits / debits.
-- List rewards, VIP tiers, earning rules and referrals.
-- Read activity feeds and points transactions.
+- List and retrieve customers and their points balances, tiers, memberships and rewards.
+- Redeem rewards and add or deduct points.
+- List rewards, VIP tiers, earning rules, booster campaigns and the referral program.
+- Read activity feeds, points transactions and referrals.
+- Estimate the points a cart will earn at checkout.
 
 Full endpoint reference is in the **API Reference** tab — this page covers setup and best practices.
 
@@ -36,22 +37,34 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <Steps>
   <Step title="Open REST API settings">
-    Go to **Apps → Yuko Loyalty → Integrations → REST API**.
+    Go to **Apps → Yuko Loyalty → Integrations → REST API** and click **Create new key**.
   </Step>
-  <Step title="Generate an API key">
-    Click **Generate key**, name it (e.g., *“Migration script”*), and copy the key.
+  <Step title="Name the key">
+    Enter a **Private API Key Name** (for example, *Marketing Integration*) so you can tell your keys apart.
   </Step>
-  <Step title="Store the key securely">
-    Treat it like a password — use environment variables, not source files.
+  <Step title="Choose the access level">
+    Under **Select Access Level**, pick one:
+    - **Full Access Key**: read and write access for every API scope.
+    - **Read-Only Key**: read-only access for every API scope.
+    - **Custom Key**: click **Next**, then on the **Customize API Scopes** screen set each scope to **No Access**, **Read Access** or **Read/Write Access**.
+  </Step>
+  <Step title="Create and copy the key">
+    Click **Create** (or **Create API Key** for a custom key). The **Your Private Key** popup shows the key, which starts with `py_`. This is the only time the key is visible, so copy it to a password manager or secrets store.
   </Step>
   <Step title="Authenticate requests">
-    Send the key as a Bearer token in the `Authorization` header. Details: [API → Authentication](/developer/api/authentication).
+    Send the key as a Bearer token in the `Authorization` header. Details: [Authentication](/developer/api/authentication).
   </Step>
 </Steps>
 
-## Authentication
+## Managing keys
 
-All requests use Bearer token authentication. Full details: **[Authentication](/developer/api/authentication)**.
+The **API keys** list shows each key's name, masked token, status, scopes, when it was last used, and when it expires or was revoked. You can search by token name.
+
+To revoke a key, use the **Actions** column and confirm in the **Revoke API key** dialog. Any integration using the key loses access immediately, and this can't be undone.
+
+## Authentication and scopes
+
+All requests use Bearer token authentication. Each key only works for the scopes it was given; a request outside them returns `403 insufficient_scope`. See **[Authentication](/developer/api/authentication)** and **[Scopes](/developer/api/scopes)**.
 
 ## Pagination, errors, rate limits
 
@@ -61,7 +74,8 @@ All requests use Bearer token authentication. Full details: **[Authentication](/
 
 ## Best practices
 
-<Tip>**Rotate API keys quarterly** and immediately when a developer leaves.</Tip>
+<Tip>**Give each key only the scopes it needs.** Use a **Custom Key** instead of full access where you can.</Tip>
+<Tip>**Rotate API keys regularly** and immediately when a developer leaves: create a new key, switch your integration to it, then revoke the old one.</Tip>
 <Tip>**Use webhooks instead of polling** for real-time data — the REST API is for reads and on-demand writes.</Tip>
 <Tip>**Tag every key with a name** so you can revoke a single integration without breaking others.</Tip>
 
@@ -71,11 +85,14 @@ All requests use Bearer token authentication. Full details: **[Authentication](/
   <Accordion title="Do I need a separate API key per integration?">
     Strongly recommended. It limits blast radius if one is leaked.
   </Accordion>
+  <Accordion title="I lost my key. Can I see it again?">
+    No. The full key is shown only once, when you create it. Create a new key and revoke the old one.
+  </Accordion>
   <Accordion title="What's the rate limit?">
     See [Rate Limits](/developer/api/rate-limits) in the API Reference.
   </Accordion>
   <Accordion title="Can I revoke a key?">
-    Yes — from **Integrations → REST API**, click the key and select **Revoke**. Revocation is immediate.
+    Yes. In **Integrations → REST API**, use the **Actions** column on the key and confirm **Revoke**. Revocation is immediate and can't be undone.
   </Accordion>
 </AccordionGroup>
 

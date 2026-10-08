@@ -1,134 +1,114 @@
 ---
 title: First Purchase Boost
-description: Elevated earning on a customer's very first order. Makes the loyalty program tangible from minute one.
+description: Give customers an extra reward on their very first order. Makes the loyalty program tangible from minute one.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Booster Campaigns → New booster → **First Purchase Boost**
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Booster Campaigns → Create campaign → **First Purchase Boost**
 </Note>
 
 ## Overview
 
-A customer's first order earns more points than every subsequent order — either through a multiplier (2X, 3X) or a flat bonus (+500 points). The campaign runs always-on and applies automatically to every new customer.
+A First Purchase Boost issues an extra reward when a customer places their first order, on top of the normal **Place an order** points. The reward can be bonus points, a discount for the next order, free shipping, a free product or store credit.
+
+There are no type-specific settings: you choose the reward, and optionally who qualifies.
 
 ## Why you need it?
 
-The first 30 days determine whether a customer comes back. The first order is the most fragile moment in the relationship — the customer is still deciding whether the brand is worth a second visit.
+The first order is the most fragile moment in the relationship; the customer is still deciding whether your brand is worth a second visit.
 
-A standard loyalty program rewards the first order with the same handful of points it rewards every order. From the customer's perspective, that's a vague promise of value later. A First Purchase Boost makes the loyalty program *immediately* tangible: “they already gave me 500 points and I haven't even unboxed yet.” That tangibility is what drives the second order.
+A standard program rewards the first order like any other. A First Purchase Boost makes the program *immediately* tangible: *"they already gave me 500 points and I haven't even unboxed yet."* That tangibility is what drives the second order.
 
 ## When to use it?
 
-This is another booster you should probably **always be running** if you have a loyalty program. The only real decision is the configuration style (multiplier, flat, or both).
+This is another booster worth running all the time.
 
-- You're optimising cohort retention — first-order → second-order conversion is your North Star.
-- You're launching the loyalty program and want every new customer to see the value immediately.
-- You're running paid membership and want to make membership signups feel “worth it” on day one.
-- You sell high-AOV products where customers need a reason to commit to a brand instead of a one-off store.
+- First-to-second order conversion is your key retention metric.
+- You're launching your loyalty program and want new customers to see the value right away.
+- You run paid memberships and want joining to feel worth it on day one.
+
+## Before you start
+
+<Check>The **Place an order** Way to Earn is enabled. If it's off, this type is greyed out in the **Create Booster Campaign** picker.</Check>
 
 ## How to configure it?
 
 <Steps>
   <Step title="Open Booster Campaigns">
-    Go to **Apps → Yuko Loyalty → Loyalty → Booster Campaigns** and click **New booster**.
+    Go to **Apps → Yuko Loyalty → Loyalty → Programs**. In the **Booster Campaigns** section, click **Create campaign** and select **First Purchase Boost**.
   </Step>
-  <Step title="Pick First Purchase Boost">
-    Select the **First Purchase Boost** booster type.
+  <Step title="Fill in Campaign Details">
+    Enter a **Campaign Name** (internal) and an optional **Description**.
   </Step>
-  <Step title="Choose the reward style">
-    - **Multiplier only** — e.g., 2X or 3X on the first order's earning.
-    - **Flat bonus only** — e.g., +500 fixed points regardless of order size.
-    - **Both** — multiplier *and* flat bonus stacked.
+  <Step title="Add the reward">
+    Click **Add Reward** and choose **Amount discount**, **% off discount**, **Free shipping**, **Free product**, **Bonus points** or **Store credit** (Shopify only). You can add more than one reward.
   </Step>
   <Step title="Set targeting (optional)">
-    Limit the boost to specific signup sources or tier paths — e.g., apply only to customers who signed up via the paid-membership flow, giving members a richer first-order reward.
+    Add **Targeting Rules**, for example **Customer Tags** or **Membership**, or **Products** / **Collections** rules to require the first order to contain certain items. Set **Max participants** if you want to cap the campaign. Each customer can only complete it once, so there is no **Max completions per customer** field.
   </Step>
-  <Step title="Set product scope (optional)">
-    Restrict the boost to specific products. Useful when you want the customer's first order to skew toward a specific category (e.g., subscription starter kit).
+  <Step title="Set the schedule">
+    **Evergreen (always on)** is the usual choice. Use **One-time** for a launch period (for example, a bigger first-order reward during your program launch month).
   </Step>
-  <Step title="Save and activate">
-    Toggle **Active** and click **Save**. The boost applies automatically to every new customer's first order from this point forward.
+  <Step title="Review display, stacking, publishing and icon">
+    The **Body text** widget label defaults to *"Place your first order to unlock [reward]."* Tokens: `[title]`, `[reward]`, `[points_label]`.
+  </Step>
+  <Step title="Save">
+    **Status** is enabled by default. Click **Save**. The boost applies to first orders placed from now on.
   </Step>
 </Steps>
 
+## How it works
+
+1. A targeted customer places an order while the campaign is active.
+2. Yuko checks it is the customer's first order (their only order that hasn't been refunded).
+3. If so, the reward is issued and the customer is marked **Completed** in the **Participants** tab.
+4. The boost fires only once per customer.
+
 ## Use cases / Examples
 
-**1. Classic 2X first order**
+**1. Flat onboarding bonus.** +500 **Bonus points** on the first order. The customer knows the exact reward before checking out.
 
-2X points on the customer's first order. The most direct, easiest-to-communicate version of the booster. Best for stores where the headline rate already feels generous — the multiplier makes it dramatic.
+**2. Second-order hook.** An **Amount discount** ($10 off) issued on the first order, to use on the second. It gives the customer a concrete reason to come back.
 
-**2. Flat onboarding bonus**
+**3. Member welcome.** A **Membership** rule with **Free shipping** as the reward, so paid members feel the benefit straight away.
 
-+500 fixed points on the first order, regardless of order size. Easier for the customer to value than a multiplier — they know the exact reward before they've even checked out. Pairs especially well with email copy and the post-purchase thank-you page (“we've given you 500 points — spend them on your next order”).
-
-**3. Generous 3X for paid-membership signups**
-
-3X first-order points for customers who join a paid membership at signup. Reinforces the membership decision immediately and signals that members are treated differently from minute one.
-
-**4. Subscription-aware first order**
-
-First-order boost applies only when the order contains a subscription product. Aligns the incentive with the retention behaviour you actually want — subscriptions, not one-off purchases.
-
-**5. Tier-gated first order**
-
-Higher first-order multiplier (e.g., 3X) for customers who join via a VIP-only signup form, with a more modest 2X for regular signups. Creates two distinct onboarding lanes and rewards the customer for self-selecting into the premium path.
-
-**6. Combined multiplier + flat**
-
-2X *and* +100 flat on the first order. Maximises perceived generosity for high-AOV first purchases — a $200 first order earns 2X base points + 100 bonus, which adds up to a story worth telling in the welcome email.
+**4. Category starter.** A **Collections** rule so only first orders containing your starter-kit collection qualify.
 
 ## How to promote it
 
-The First Purchase Boost runs always-on, so there's no launch announcement. Your promotion strategy is built into the *new customer journey* — every touchpoint between signing up and placing the first order should mention the boost.
+The boost rewards a specific moment, so non-customers need to see it.
 
-### Storefront — surface the boost across the funnel
+- **Storefront:** with **Show in loyalty widget** checked, the **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget, Floating Launcher and customer account page show the offer to signed-in customers.
+- **Email:** mention the first-order reward in your welcome series. Yuko syncs loyalty data to **[Klaviyo](/integrations/klaviyo)** so you can target customers who signed up but haven't ordered.
 
-The First Purchase Boost rewards a specific moment, so the storefront's job is to make sure non-customers see it everywhere they look. The **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget is the highest-leverage surface — it puts the *“2X on your first order”* message in a pinned strip on every page, with copy you can personalise for visitors (*“Earn 2X points on your first order”*) and for signed-up customers who haven't placed an order yet.
+## FAQs
 
-Other placements reinforce the message:
-
-- **Signup forms** — state the bonus explicitly. *“Get 2X points on your first order when you sign up.”*
-- **Onsite popup / banner** — for non-signed-up visitors.
-- **Cart Redeem widget** — for signed-up customers without an order yet, the widget surfaces the first-order boost prominently.
-- **Product page** — *“Earn double points on this order”* on the first qualifying product page is one of the highest-leverage placements.
-
-### Email — the welcome series is the campaign
-
-Pair the boost with your welcome email series through your ESP. **Klaviyo** is the strongest pairing because Yuko pushes the *Joined Loyalty Program* event and the customer's `yuko_signup_points_awarded` profile property (see [Klaviyo integration](/integrations/klaviyo)) — your welcome flow can quote the exact first-order bonus the customer will earn.
-
-- **Welcome email #1 (signup):** lead with the first-order boost. *“Your first order earns 2X points — that's roughly [N] points on a typical order.”*
-- **Welcome email #2 (3 days, no purchase):** soft nudge. *“Don't forget — your first order earns double points.”*
-- **Welcome email #3 (7 days, no purchase):** featured products with the boost reinforced.
-
-### WhatsApp — opt-in nudge for first order
-
-If the customer opted into WhatsApp at signup and you've connected a WhatsApp provider, a brief reminder a few days in is highly effective: *“Your first order earns 2X points. Shop here: [link]”*. Don't burn WhatsApp at signup itself — wait for the natural lull at day 3 or day 5 when the customer is at risk of forgetting.
-
-### Reminder cadence
-
-For new customers in their first 30 days:
-
-- **Day 0 (signup)** — welcome email mentioning the boost; Loyalty Nudges already visible on the storefront
-- **Day 3 (no order)** — first reminder
-- **Day 7 (no order)** — second reminder, more concrete (featured products)
-- **Day 14 (no order)** — final reminder with a soft urgency cue
-
-After 30 days without an order, hand off to your standard cold-customer flow. The boost stays available, but the customer is no longer a hot lead.
+<AccordionGroup>
+  <Accordion title="Can the boost multiply the first order's points?">
+    No. Multiplier rewards are only available for Multiplier and Product & Collection Multiplier campaigns. Use **Bonus points** for a fixed extra amount.
+  </Accordion>
+  <Accordion title="What counts as a first order?">
+    The customer's first order in your store that hasn't been refunded. Customers who already ordered before the campaign started don't qualify.
+  </Accordion>
+  <Accordion title="Can I target customers by signup source?">
+    There's no signup-source rule. Use **Customer Tags** if your signup flow tags customers.
+  </Accordion>
+</AccordionGroup>
 
 ## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
-    Surface the first-order boost on every storefront page.
+  <Card title="Booster Campaigns overview" icon="rocket" href="/loyalty/booster-campaigns/overview">
+    Schedule, targeting, stacking and display settings shared by all boosters.
+  </Card>
+  <Card title="Sign Up" icon="user-plus" href="/loyalty/ways-to-earn/sign-up">
+    Reward customers for creating an account.
   </Card>
   <Card title="Dormant Reactivation" icon="bed" href="/loyalty/booster-campaigns/dormant-reactivation">
-    The other end of the lifecycle — catch returning customers automatically.
+    Reward customers who come back after a long break.
   </Card>
-  <Card title="Sign Up Campaign" icon="user-plus" href="/loyalty/ways-to-earn/sign-up">
-    Pair First Purchase Boost with a signup-time bonus for a complete onboarding combo.
-  </Card>
-  <Card title="Email Notifications" icon="envelope" href="/emails/overview">
-    Quote the first-order bonus in your welcome email for outsized impact.
+  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
+    Show the first-order offer on every storefront page.
   </Card>
 </CardGroup>
 

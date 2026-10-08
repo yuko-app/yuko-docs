@@ -1,6 +1,6 @@
 ---
 title: Onsite Widgets
-description: Show points, rewards and VIP status across product pages, cart, checkout, customer accounts and a dedicated loyalty hub.
+description: Show points, rewards and VIP status across your storefront, cart, checkout and customer accounts, plus a floating rewards panel and a dedicated loyalty page.
 ---
 
 <Note>
@@ -9,29 +9,55 @@ description: Show points, rewards and VIP status across product pages, cart, che
 
 ## What are onsite widgets
 
-Onsite widgets are the customer-facing surfaces for your loyalty program. They show points balances, earnable rewards, VIP status and redemption options across the customer journey — without requiring a single line of theme code.
+Onsite widgets are the customer-facing parts of your loyalty program. They show points balances, what customers can earn, rewards to redeem and VIP status at each step of the shopping journey, with no theme code to write.
 
-Widgets render via three Shopify mechanisms:
+Each widget has a toggle to switch it on and a **Customize** button to edit its text, colours and settings. **Customize Branding** at the top of the page sets colours for all widgets at once. See [Branding & Locale](/onsite-widgets/branding-and-locale).
 
-- **Theme App Embed** — for storefront widgets (product, cart, account, landing, launcher).
-- **Checkout UI Extension** — for points and redemption inside Shopify Checkout.
-- **Customer Account Extension** — for the loyalty hub inside the new Shopify customer accounts.
+Widgets render through three kinds of Shopify extension:
 
-## Where each widget appears
+- **Theme app extension**: the **Yuko App** app embed (Floating Rewards, Loyalty Nudges and automatic cart placement) and the Yuko theme blocks you add in the theme editor (product, cart and landing page blocks).
+- **Checkout UI extension**: blocks inside Shopify Checkout.
+- **Customer account UI extension**: blocks on the Order status, Orders and Profile pages, plus a full loyalty page, in Shopify's new customer accounts.
 
-| Widget | Surface | Extension type |
+## The Widgets list
+
+Widgets are grouped as they appear in the admin.
+
+### Landing & Promotional
+
+| Widget | Where it appears | How it renders |
 |---|---|---|
-| Product Page Earn | Product detail page | Theme app block |
-| Cart Earn | Cart page / drawer | Theme app block |
-| Cart Redeem | Cart page / drawer | Theme app block |
-| Checkout Earn | Shopify Checkout | Checkout UI extension |
-| Checkout Redeem | Shopify Checkout | Checkout UI extension |
-| Order Status Earn | Thank-you / order status page | Theme app block |
-| Order List Balance | Order history page | Theme app block |
-| Customer Profile Balance | Customer profile page | Theme app block |
-| Customer Account Page | New Shopify customer accounts | Customer Account extension |
-| Rewards Landing Page | A page on your storefront (your URL) | Theme app block |
-| Floating Launcher | All pages (persistent) | Theme app embed (auto) |
+| [Floating Rewards](/onsite-widgets/floating-launcher) (Recommended) | A floating button and panel on every page | Yuko App embed |
+| [Rewards Landing Page](/onsite-widgets/rewards-landing-page) (Recommended) | A loyalty page at `/pages/loyalty-info-page` | Seven Yuko theme blocks |
+| [Loyalty Nudges](/onsite-widgets/loyalty-nudges) | A strip pinned to the top or bottom of every page | Yuko App embed |
+
+### Shopping Cart
+
+| Widget | Where it appears | How it renders |
+|---|---|---|
+| [Product page](/onsite-widgets/product-page-earn) | Product detail page | Theme block **Yuko:Product Earn Message** |
+| [Cart earn message](/onsite-widgets/cart-earn) | Cart page or drawer | Automatic placement through the Yuko App embed, or theme block **Yuko: Cart Earn Message** |
+| [Cart redeem message](/onsite-widgets/cart-redeem) | Cart page or drawer | Automatic placement through the Yuko App embed, or theme block **Yuko: Cart Redeem Message** |
+
+### Checkout Process
+
+| Widget | Where it appears | How it renders |
+|---|---|---|
+| [Checkout: Earn points](/onsite-widgets/checkout-earn) | Shopify Checkout | Checkout UI extension block **Yuko Potential points earn** |
+| [Checkout: Redeem points](/onsite-widgets/checkout-redeem) | Shopify Checkout | Checkout UI extension block **Yuko Redeem rewards** |
+
+<Info>
+Checkout widgets are **available only on the Shopify Plus plan**, because Shopify allows checkout UI extension blocks only on Plus stores. They're also available on select Yuko plans.
+</Info>
+
+### Post-Purchase
+
+| Widget | Where it appears | How it renders |
+|---|---|---|
+| [Order Status: Earn Points Message](/onsite-widgets/order-status-earn) | Order status page in customer accounts | Customer account UI extension block **Yuko Order status earned points** |
+| [Order List: Point Balance](/onsite-widgets/order-list-balance) | Orders page in customer accounts | Customer account UI extension block **Yuko Order index points display** |
+| [Customer Profile: Point Balance](/onsite-widgets/customer-profile-balance) | Profile page in customer accounts | Customer account UI extension block **Yuko Profile loyalty program** |
+| [Loyalty Rewards: Customer Account Page](/onsite-widgets/customer-account-page) | A full loyalty page in customer accounts | Customer account UI extension page **Yuko Loyalty account page** (available on select plans) |
 
 ## All widgets
 
@@ -39,18 +65,32 @@ import WidgetCrossLinks from '/snippets/onsite-widgets-cross-links.mdx';
 
 <WidgetCrossLinks />
 
+## Placeholders
+
+Most widget text fields accept placeholders that Yuko replaces with live values:
+
+import Placeholders from '/snippets/widget-placeholders.mdx';
+
+<Placeholders />
+
+## Languages and logged-out customers
+
+- **Languages:** every widget editor has an **Editing language** picker when your store publishes more than one language. Each language keeps its own copy of the widget text. See [Branding & Locale](/onsite-widgets/branding-and-locale).
+- **Custom login trigger:** when a logged-out customer signs in from Floating Rewards, Loyalty Nudges or Cart redeem, Yuko sends them to the Shopify account login by default. If your store uses its own login, set a **Custom login trigger** (a CSS element to click, or a login link) in [Loyalty → Settings](/loyalty/program-settings).
+
 ## Decision guidance
 
-- **Start with three:** Cart Earn, Cart Redeem and the Floating Launcher. They cover discovery, redemption and persistent access.
-- **Add Checkout widgets** if you're on Shopify Plus or Checkout Extensibility — visibility at checkout lifts redemption rate.
-- **Add the Customer Account Page** so the loyalty hub lives where customers manage their account.
-- **Use the Rewards Landing Page** as a destination for marketing emails and ads about your loyalty program.
+- **Start with the recommended pair:** Floating Rewards keeps the program one tap away on every page, and the Rewards Landing Page gives your emails, ads and footer a destination.
+- **Add cart widgets** so customers see what they'll earn and can redeem before checkout.
+- **Add checkout widgets** if you're on Shopify Plus.
+- **Add the customer account widgets** so balances and rewards show up where customers check their orders.
+- **Add Loyalty Nudges** when you run booster campaigns and want them visible on every page.
 
 ## Best practices
 
-<Tip>**Less is more.** A storefront stuffed with five loyalty widgets dilutes attention. Pick the surfaces that matter.</Tip>
-<Tip>**Keep widget copy short.** Don't over-explain mechanics in the widget — link to the rewards landing page if customers want detail.</Tip>
-<Tip>**Always test on mobile.** Most loyalty interactions happen on phones; verify rendering and tap targets.</Tip>
+<Tip>**Less is more.** Pick the surfaces that matter for your store rather than switching everything on.</Tip>
+<Tip>**Keep widget copy short.** Link to the Rewards Landing Page for the full explanation.</Tip>
+<Tip>**Always test on mobile.** Most loyalty interactions happen on phones.</Tip>
 
 ## Related
 

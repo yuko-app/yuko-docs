@@ -1,142 +1,124 @@
 ---
 title: Spending Goal Booster
-description: Reward customers for hitting a spend target inside a time window. Drives AOV — not just frequency.
+description: Reward customers as their cumulative spend crosses one or more milestones. Drives basket size, not just frequency.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Booster Campaigns → New booster → **Spending Goal**
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Booster Campaigns → Create campaign → **Spending Goal**
 </Note>
 
 ## Overview
 
-Customer earns a bonus when they cross a spending threshold inside a defined time window — e.g., **spend $150 in 14 days, get 500 bonus points**. Their spend can come from one large order or several smaller ones; the booster tracks cumulative spend.
+A Spending Goal tracks how much a customer spends while the campaign runs and rewards them each time their total crosses a milestone. For example: **spend $150 → 500 bonus points, spend $300 → $20 off**. The spend can come from one large order or several smaller ones.
+
+You can set up to 20 milestones, and each milestone can have one or more rewards of any type.
 
 ## Why you need it?
 
-Multipliers and bonus boosters reward whatever the customer spends. Spending goals make the customer aim higher.
+Multipliers and flat bonuses reward whatever the customer spends. Spending goals make the customer aim higher.
 
-When a customer knows there's a 500-point bonus for crossing $150, they add the extra item to hit the target. The campaign converts "I was going to spend $90 anyway" into "$150 because I want the bonus." AOV lifts without you discounting.
+When a customer knows there's a reward for crossing $150, they add the extra item to reach it. *"I was going to spend $90"* becomes *"$150 because I want the reward"*. Basket size grows without a discount.
 
 ## When to use it?
 
 - You want to lift average order value over a defined period.
 - You're running a launch and want bigger baskets, not just more customers.
-- You want a recurring monthly or quarterly stretch goal for your best customers.
-- You're driving customers to commit during a critical onboarding window (first 30 days).
-- You're clearing inventory in a specific collection and want concentrated spend there.
+- You want a recurring stretch goal for your best customers.
+- You want a ladder of rewards that keeps customers climbing.
+
+## Before you start
+
+<Check>The **Place an order** Way to Earn is enabled. If it's off, this type is greyed out in the **Create Booster Campaign** picker.</Check>
 
 ## How to configure it?
 
 <Steps>
   <Step title="Open Booster Campaigns">
-    Go to **Apps → Yuko Loyalty → Loyalty → Booster Campaigns** and click **New booster**.
+    Go to **Apps → Yuko Loyalty → Loyalty → Programs**. In the **Booster Campaigns** section, click **Create campaign** and select **Spending Goal**.
   </Step>
-  <Step title="Pick Spending Goal">
-    Select the **Spending Goal** booster type.
+  <Step title="Fill in Campaign Details">
+    Enter a **Campaign Name** (internal) and an optional **Description**.
   </Step>
-  <Step title="Configure the goal">
-    - **Spending target** — the dollar threshold to cross (e.g., $150).
-    - **Time window** — how many days the customer has to reach it (e.g., 14 days).
-    - **Bonus reward** — the points awarded on completion (typically a chunky amount like 500–2,000 points).
-    - **Minimum order amount (optional)** — require each individual order to be above a floor to count toward the target.
+  <Step title="Add milestones">
+    Under **Milestones**, set the **Spending Amount** for **Milestone 1**: the amount the customer must spend to unlock it. Click **Add milestone** for more (up to 20). Each milestone must be higher than the one before.
+  </Step>
+  <Step title="Add rewards to each milestone">
+    In each milestone, click **Add reward** and choose **Amount discount**, **% off discount**, **Free shipping**, **Free product**, **Bonus points** or **Store credit** (Shopify only). Every milestone needs at least one reward.
+  </Step>
+  <Step title="Set a minimum order amount (optional)">
+    Under **Spending Booster Goal**, check **Set a minimum order amount** and enter the **Minimum Order Amount**. Only orders above this amount count toward each milestone.
+  </Step>
+  <Step title="Set targeting and limits (optional)">
+    Add **Targeting Rules**, including **Products** or **Collections** rules. Set **Max participants** and **Max completions per customer** if needed.
   </Step>
   <Step title="Set the schedule">
-    One-time, recurring (e.g., every month), or always-on (typically gated by targeting like “first 30 days”).
+    The schedule defines the window in which spend counts: **One-time** (start and end date), **Recurring** (by weeks or months, with progress tracked per cycle) or **Evergreen (always on)**.
   </Step>
-  <Step title="Configure targeting (optional)">
-    Limit who qualifies: VIP tier, customer tag, lifetime spend, membership.
+  <Step title="Review display, stacking, publishing and icon">
+    Two widget labels apply: **Call-to-action above progress bar** (default *"Spend [remaining] more to unlock [next_reward]"*) and **Status text under progress bar** (default *"[current] / [target]"*). Other tokens: `[title]`, `[reward]`, `[points_label]`, `[milestones_done]`, `[milestones_total]`.
   </Step>
-  <Step title="Set product scope (optional)">
-    Restrict the qualifying spend to specific products or collections.
-  </Step>
-  <Step title="Save and activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Save">
+    **Status** is enabled by default. Click **Save**.
   </Step>
 </Steps>
 
-<Tip>
-**Visualise it in widgets.** The Cart Redeem widget and the Customer Account hub surface active spending goals with a progress bar (e.g., *“$92 of $150 toward your 500-point bonus”*). That progress bar does as much work as the campaign itself.
-</Tip>
+## How it works
+
+1. Each order a targeted customer places while the campaign is active adds its order total to their running spend (orders below the minimum order amount are skipped).
+2. When the running spend reaches a milestone, that milestone's rewards are issued. One large order can unlock several milestones at once.
+3. Once every milestone is reached, the customer has completed the campaign. If **Max completions per customer** allows it, their next order starts a fresh run.
+4. On a recurring schedule, progress is tracked separately for each cycle.
+
+Track customers' progress in the campaign's **Participants** tab and issued rewards in the **Activity** tab.
 
 ## Use cases / Examples
 
-### One-time uses
+**1. Launch-week ladder.** One-time, launch week: $100 → 200 bonus points, $200 → free shipping, $300 → $25 off.
 
-**1. Launch-week AOV push**
+**2. Quarterly stretch goal.** Recurring, **Months**, **Every quarter**: spend $300 in the active month → 1,000 bonus points.
 
-Spend $150 in 14 days during launch week to earn 500 points. Customers who would've bought a $90 starter pack reach for the $150 bundle instead. AOV lifts measurably during launch.
+**3. Collection-focused spend.** Add a **Collections** rule so only customers buying from a specific range qualify, with milestones at $150 and $250.
 
-**2. Quarterly stretch goal**
+**4. Holiday gifting goal.** One-time, Dec 1–15: spend $250 → 1,000 points. Gift baskets are bigger anyway; the reward tilts the customer's full gift list toward you.
 
-Spend $300 in the first 30 days of each quarter. Targets your best buyers and gives them a natural reason to bring forward purchases that would have spread across the quarter. Resets quarterly so it never goes stale.
-
-**3. Inventory clearance with scope**
-
-Spend $200 on a specific overstock collection within 7 days. Combines AOV with inventory direction — the customer's spend is concentrated where you need it.
-
-**4. Holiday gifting goal**
-
-Spend $250 between Dec 1–15 to earn 1,000 points. Gift-shopping baskets are bigger anyway; the bonus tilts the customer toward you over a competitor for their full gift list.
-
-### Recurring uses
-
-**5. Monthly VIP stretch**
-
-Spend $250 each calendar month to earn a bonus. Your repeat buyers self-qualify and the program creates a monthly engagement loop without any merchant work. After three months it becomes habit.
-
-**6. Quarterly elite target**
-
-Spend $1,000 per quarter → exclusive reward (e.g., free gift on next order, points + tier accelerator). Reserved for the top decile of buyers. The reward signals that you see them.
-
-### Always-on uses
-
-**7. First-30-days stretch**
-
-New customers who spend $100 in their first 30 days from signup get 500 bonus points. Drives the make-or-break first month — customers who hit two orders in the first 30 days are dramatically more likely to become long-term loyalists.
+**5. VIP-only stretch.** Evergreen with a **Customer Tags** or **Min lifetime spend** rule, and a free product at the top milestone.
 
 ## How to promote it
 
-Spending goals work best when the customer can see their progress. Promotion is half launch announcement, half ongoing progress nudge.
+Spending goals work best when the customer can see their progress.
 
-### Storefront — Loyalty Nudges puts progress on every page
+- **Storefront:** with **Show in loyalty widget** checked, the **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget, Floating Launcher and customer account page show a progress bar using your widget labels.
+- **Email:** announce the milestones and the window through your ESP. With **[Klaviyo](/integrations/klaviyo)**, you can trigger a follow-up after each order to remind customers how close they are.
+- **WhatsApp:** if you've connected a WhatsApp provider, save it for customers who are close to a milestone as the window closes.
 
-The **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget surfaces spending-goal progress on every storefront page — the same progress visualization (*“$92 of $150 toward your 500-point bonus”*) appears in the drawer for any customer with an active goal. Combined with the Cart Redeem widget's progress bar at cart, customers see how close they are almost everywhere they look.
+## FAQs
 
-That continuous progress feedback is what makes spending-goal campaigns work. Don't skip enabling these widgets.
-
-### Email — launch, progress, last-call
-
-Pair the spending goal with an email cadence through your ESP. **Klaviyo** is the strongest pairing because Yuko pushes `yuko_points_balance` profile properties and *Earn Points* event properties for every qualifying order (see [Klaviyo integration](/integrations/klaviyo)) — you can build a triggered flow that fires after every order showing the customer's progress toward the goal.
-
-- **Launch email:** state the target, the time window, and the bonus. *“Spend $150 in 14 days → 500 bonus points.”*
-- **Progress email (Klaviyo flow, trigger = *Earn Points*):** *“You're $42 away from your 500-point bonus. Keep going: [link]”*. The progress framing dramatically lifts repeat-order rate within the window.
-- **Last-call email:** when the window is closing and the customer hasn't hit the target, with a clear *“N days left to earn”*.
-
-### WhatsApp — final-stretch nudge
-
-If you've connected a WhatsApp provider, reserve WhatsApp for customers who are **70%+ of the way to the goal** with the window closing. *“$28 away from your 500-point bonus — closes Sunday.”* Highly personal, highly converting.
-
-### Reminder cadence
-
-- **Day 0** — enable Loyalty Nudges + launch email
-- **After each qualifying order** — Klaviyo progress flow with current standing
-- **Window closing, target not hit** — last-call email
-- **Final 24h, customer 70%+ to goal** — WhatsApp message
+<AccordionGroup>
+  <Accordion title="Where did the time-window setting go?">
+    The window is the campaign's **Schedule**. Use a one-time schedule for a fixed window, or a recurring schedule for a repeating one.
+  </Accordion>
+  <Accordion title="Does one order count twice?">
+    No. Each order is counted once per cycle.
+  </Accordion>
+  <Accordion title="Can a milestone have more than one reward?">
+    Yes. Click **Add reward** again inside the milestone.
+  </Accordion>
+</AccordionGroup>
 
 ## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
-    The pinned-strip widget that surfaces spending-goal progress on every page.
+  <Card title="Booster Campaigns overview" icon="rocket" href="/loyalty/booster-campaigns/overview">
+    Schedule, targeting, stacking and display settings shared by all boosters.
   </Card>
-  <Card title="Order Frequency Booster" icon="repeat" href="/loyalty/booster-campaigns/order-frequency">
-    Want to drive number of orders, not basket size? Use Order Frequency.
+  <Card title="Order Booster" icon="repeat" href="/loyalty/booster-campaigns/order-frequency">
+    Want to drive the number of orders instead of basket size?
   </Card>
   <Card title="Streak Booster" icon="fire" href="/loyalty/booster-campaigns/streak">
     Reward consistent buying across consecutive periods.
   </Card>
-  <Card title="VIP Tiers" icon="crown" href="/vip-tiers/overview">
-    Pair spending goals with tier-targeted promotions.
+  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
+    Show spending progress on every storefront page.
   </Card>
 </CardGroup>
 

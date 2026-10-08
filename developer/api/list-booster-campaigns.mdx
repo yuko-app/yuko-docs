@@ -1,0 +1,336 @@
+---
+title: "List booster campaigns"
+---
+
+Retrieves a paginated list of your organisation's **active** booster campaigns. Results are sorted by `created_at` in descending order. Draft, completed, cancelled and disabled campaigns are not returned.
+
+**GET /public/booster-campaigns**
+
+#### **Authorizations**
+
+**Authorization**
+
+**string**
+
+**header**
+
+**required**
+
+Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
+
+#### **Required Scope**
+
+**`read:booster_campaigns`**
+
+This endpoint requires the `booster_campaigns` scope with **Read Access** (or **Read/Write Access**). See [Scopes](/developer/api/scopes).
+
+#### **Query Parameters**
+
+**per_page**
+
+**integer**
+
+**default: 20**
+
+The number of results per page. Values above 100 are capped at 100.
+
+**page**
+
+**integer**
+
+**default: 1**
+
+The page number to retrieve.
+
+#### **Response**
+
+**200 - application/json**
+
+**data**
+
+**object[]**
+
+Hide child attributes
+
+**data.uuid**
+
+**string\<uuid\>**
+
+Unique UUID identifier for the booster campaign.
+
+Example:
+
+`"5b1f2c9e-7d3a-4e8b-9c11-2f6a8d4e0b73"`
+
+**data.name**
+
+**string**
+
+The campaign name.
+
+Example:
+
+`"Double points weekend"`
+
+**data.description**
+
+**string | null**
+
+The campaign description.
+
+**data.type**
+
+**enum\<string\>**
+
+The booster campaign type.
+
+Available options:
+
+`multiplier`,
+
+`bonus_flat`,
+
+`spending_goal`,
+
+`order_frequency`,
+
+`streak`,
+
+`multi_action`,
+
+`dormant_reactivation`,
+
+`first_purchase_boost`,
+
+`product_collection_multiplier`
+
+Example:
+
+`"multiplier"`
+
+**data.status**
+
+**string**
+
+The campaign status. Always `active` for this endpoint.
+
+Example:
+
+`"active"`
+
+**data.stackable**
+
+**boolean**
+
+Whether the campaign can stack with other booster campaigns.
+
+Example:
+
+`false`
+
+**data.schedule**
+
+**object | null**
+
+When the campaign runs, for example `type` (`evergreen`, `one_time` or `recurring`), recurrence settings, `days_of_week`, and `active_hours_start` / `active_hours_end`.
+
+**data.targeting**
+
+**object | null**
+
+Targeting settings, such as the `products` and `collections` the campaign applies to.
+
+**data.product_scope**
+
+**object | null**
+
+The product scope the campaign applies to.
+
+**data.display**
+
+**object**
+
+Storefront display settings, such as `show_in_widget` and `labels`. Always includes an `icon` object (or `null`) with `source`, `slug`, `id` and `url`, the same shape as a reward's icon.
+
+**data.config**
+
+**object | null**
+
+Type-specific settings. Structure varies by `type`, for example `milestones` for spending goals and order frequency, or `actions` and `completion_logic` for multi-action challenges.
+
+**data.starts_at**
+
+**string\<date-time\> | null**
+
+When the campaign starts.
+
+Example:
+
+`"2026-10-10T00:00:00+00:00"`
+
+**data.ends_at**
+
+**string\<date-time\> | null**
+
+When the campaign ends, or `null` if it has no end date.
+
+Example:
+
+`"2026-10-12T23:59:59+00:00"`
+
+**data.created_at**
+
+**string\<date-time\>**
+
+Example:
+
+`"2026-10-01T09:00:00+00:00"`
+
+**meta**
+
+**object**
+
+Hide child attributes
+
+**meta.pagination**
+
+**object**
+
+Hide child attributes
+
+**meta.pagination.current_page**
+
+**integer**
+
+Example:
+
+`1`
+
+**meta.pagination.per_page**
+
+**integer**
+
+Example:
+
+`20`
+
+**meta.pagination.total**
+
+**integer**
+
+Example:
+
+`1`
+
+**meta.pagination.last_page**
+
+**integer**
+
+Example:
+
+`1`
+
+**meta.pagination.has_more**
+
+**boolean**
+
+Example:
+
+`false`
+
+<RequestExample>
+
+```bash cURL
+curl --request GET \
+  --url "https://api.yukoapp.com/api/v1/public/booster-campaigns?per_page=20" \
+  --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+```javascript JavaScript
+const params = new URLSearchParams({ per_page: "20" });
+
+const response = await fetch(
+  `https://api.yukoapp.com/api/v1/public/booster-campaigns?${params}`,
+  {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    },
+  }
+);
+
+const data = await response.json();
+```
+
+```php PHP
+$query = http_build_query(["per_page" => 20]);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, "https://api.yukoapp.com/api/v1/public/booster-campaigns?{$query}");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+]);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+$data = json_decode($response, true);
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "data": [
+    {
+      "uuid": "5b1f2c9e-7d3a-4e8b-9c11-2f6a8d4e0b73",
+      "name": "Spend $100 this month",
+      "description": "Earn bonus points when you spend $100 in 30 days.",
+      "type": "spending_goal",
+      "status": "active",
+      "stackable": false,
+      "schedule": {
+        "type": "evergreen"
+      },
+      "targeting": null,
+      "product_scope": null,
+      "display": {
+        "show_in_widget": true,
+        "icon": null
+      },
+      "config": {
+        "time_window_days": 30,
+        "milestones": [
+          { "id": "m1", "spending_amount": 100, "label": "Spend $100" }
+        ]
+      },
+      "starts_at": "2026-10-01T00:00:00+00:00",
+      "ends_at": null,
+      "created_at": "2026-10-01T09:00:00+00:00"
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "current_page": 1,
+      "per_page": 20,
+      "total": 1,
+      "last_page": 1,
+      "has_more": false
+    }
+  }
+}
+```
+
+```json 403
+{
+  "error": {
+    "code": "insufficient_scope",
+    "message": "Your API token does not have the required 'booster_campaigns' scope for this action"
+  }
+}
+```
+
+</ResponseExample>

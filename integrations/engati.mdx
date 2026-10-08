@@ -50,8 +50,8 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 | **Namespace** | Your Engati template namespace | `your-namespace` |
 | **Endpoint URL** | Engati's API endpoint URL | `https://api.engati.com/...` |
 | **Template Name** | Template identifier (no spaces) | `loyalty_tier_upgrade` |
-| **Parameter Count** | Number of body variables (1–25) | `2` |
-| **Template Parameters** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{vip_tier_name}}` |
+| **Parameter Count** | Number of body variables (1–10) | `2` |
+| **Template Parameters** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{current_tier_name}}` |
 
 <Tip>**Template Name must not contain spaces.** Engati's API rejects template names with whitespace — use underscores.</Tip>
 
@@ -60,8 +60,8 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 **Tier upgrade celebration**
 
 1. In Engati, approve a template called `tier_upgrade_celebration` with two variables. Confirm the namespace.
-2. In Yuko Workflows, build: **Trigger: VIP Tier Upgraded** → **WhatsApp (Engati)**.
-3. Set Namespace, Endpoint URL, Template Name = `tier_upgrade_celebration`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{vip_tier_name}}`.
+2. In Yuko Workflows, build: **Trigger: VIP Tier Upgrade** → **WhatsApp (Engati)**.
+3. Set Namespace, Endpoint URL, Template Name = `tier_upgrade_celebration`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{current_tier_name}}`.
 4. Activate.
 
 ## Limitations
@@ -93,7 +93,7 @@ import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
 <CardGroup cols={2}>
   <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
-    How Yuko's WhatsApp integration works across all 7 providers.
+    How Yuko's WhatsApp integration works across all 13 providers.
   </Card>
   <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
     Setup, shortcodes, and example workflows.

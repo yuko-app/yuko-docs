@@ -19,9 +19,21 @@ The Omnisend connector mirrors what the Klaviyo one does — customer profiles, 
 
 ## What syncs
 
-- **Customer profiles** — points balance, tier, lifetime spend.
-- **Events** — points credited, points redeemed, tier changed, referral completed, membership activated.
-- **Custom fields** — the loyalty fields appear as Omnisend custom contact fields.
+- **Contact properties** — each event updates the contact with Yuko's `yuko_*` loyalty properties (points balance, VIP tier, referral link and so on) as Omnisend custom properties.
+- **Events** — the Yuko events you select on the integration page are sent to Omnisend, so you can trigger automations on them.
+
+## Points expiring soon properties
+
+Alongside the balance, tier and referral properties, Yuko sends four properties that help you build "use your points before they expire" campaigns:
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_points_expiring_in_30_days` | Integer | Points that expire within the next 30 days (includes the 7-day amount). `0` if none. |
+| `yuko_points_expiring_in_7_days` | Integer | Points that expire within the next 7 days. `0` if none. |
+| `yuko_points_expiring_in_30_days_as_cash_balance` | Number | The 30-day expiring points expressed in store currency. |
+| `yuko_points_expiring_in_7_days_as_cash_balance` | Number | The 7-day expiring points expressed in store currency. |
+
+The property names are the same as in the [Klaviyo](/integrations/klaviyo#loyalty-profile-properties) integration, which lists the full property set.
 
 ## Prerequisites
 
@@ -35,13 +47,13 @@ The Omnisend connector mirrors what the Klaviyo one does — customer profiles, 
     Go to **Apps → Yuko Loyalty → Integrations → Omnisend**.
   </Step>
   <Step title="Connect with the API key">
-    Paste your Omnisend API key.
+    Paste your Omnisend API key into **API Key** and click **Connect Integration**.
   </Step>
   <Step title="Pick events to sync">
-    Toggle the events to forward.
+    Select the events to send to Omnisend and click **Save Events**.
   </Step>
-  <Step title="Save">
-    Omnisend contacts are populated within a few minutes.
+  <Step title="Test (optional)">
+    Click **Send Test Events** to send sample events and check them in Omnisend.
   </Step>
 </Steps>
 

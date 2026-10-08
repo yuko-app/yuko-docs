@@ -1,0 +1,129 @@
+---
+title: Dashboard
+description: The Yuko home screen, with your setup checklist, theme setup guide, order usage and loyalty revenue at a glance.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Dashboard
+</Note>
+
+## Introduction
+
+The Dashboard is the first page you see when you open Yuko. It shows what's left to set up and gives you a quick read on how your loyalty and referral programs are performing. For detailed reporting, date ranges and exports, use [Analytics](/analytics/reports).
+
+## What's on the Dashboard
+
+From top to bottom:
+
+| Section | What it shows |
+| --- | --- |
+| **Order usage** | Orders used this month against your monthly allowance, shown as `used / limit Orders / month` with a progress bar and an **Upgrade** link. Shown on larger screens. |
+| **Free setup banner** | An offer to have the Yuko team set up your program and widgets, with a **Book a free setup call** button. |
+| **Setup Guide** | The **Enable Yuko Theme App Extension** step. |
+| **Loyalty and referral totals** | Two cards of headline numbers for loyalty and referrals. |
+| **Loyalty-driven Revenue** | Revenue from orders that used a loyalty redemption, referral or VIP perk, with a breakdown. |
+| **Set up your programs** | A checklist showing which programs are on. |
+| **Need any help?** | **Chat with support** and **Read Docs**. |
+
+## Setup Guide
+
+The Setup Guide has one step: **Enable Yuko Theme App Extension**. Yuko's storefront widgets only load when the Yuko App embed is on in your theme.
+
+<Steps>
+  <Step title="Click Activate">
+    Yuko opens the Shopify Theme Editor in a new tab.
+  </Step>
+  <Step title="Turn on the embed and save">
+    Switch on **Yuko App** under **App embeds** and click **Save** in the Theme Editor.
+  </Step>
+  <Step title="Click Refresh status">
+    Back in Yuko, click **Refresh status**. The step is marked complete once Yuko detects the embed.
+  </Step>
+</Steps>
+
+See [Enable the Yuko App Embed](/installation-and-setup/theme-app-embed) for details.
+
+## Set up your programs
+
+This checklist lists each Yuko program with an **On** or **Off** badge and a **Set up** button:
+
+| Program | Set up opens |
+| --- | --- |
+| **Loyalty program** | [Loyalty](/loyalty/overview) |
+| **VIP tiers** | [VIP](/vip-tiers/overview) |
+| **Referrals** | [Referral](/referrals/overview) |
+| **Paid memberships** | [Membership](/memberships/overview) |
+
+Click **Refresh** after you turn on a program to update the badges.
+
+## Headline metrics
+
+### Loyalty card
+
+| Metric | Meaning |
+| --- | --- |
+| **Customers** | Customers in your Yuko database |
+| **Points Redeemed** | Total points customers have redeemed |
+| **Points Earned** | Total points customers have earned |
+| **Points Expired** | Total points that have expired |
+
+### Referral card
+
+| Metric | Meaning |
+| --- | --- |
+| **Referral Revenue** | Revenue from referral orders |
+| **Referral Orders** | Number of orders that came from referrals |
+| **Referral Members** | Customers taking part in your referral program |
+| **Rewards Issued** | Referral rewards issued |
+
+### Loyalty-driven Revenue
+
+The headline figure is revenue from orders placed with a loyalty redemption, referral or VIP perk from Yuko. Below it, each line shows the revenue and number of orders:
+
+- **Loyalty-driven Orders**: orders placed with a loyalty redemption, referral or VIP perk.
+- **Referral Orders**: orders from referrals.
+- **Loyalty Incentivized Revenue**: orders directly attributed to a loyalty or tier benefit at checkout.
+
+Hover over a label to see its definition.
+
+## How it works
+
+- Dashboard figures are store totals and don't have a date filter. For date ranges, comparisons and trends, use [Analytics](/analytics/reports).
+- The figures are cached and refresh periodically, so recent orders can take a short while to show up.
+- You can dismiss the free setup banner, the Setup Guide and the **Set up your programs** checklist with the **X** button. Yuko remembers this in your browser, so they may show again on a different browser or device.
+- Revenue is shown in your store currency.
+
+## Best practices
+
+<Tip>**Finish the Setup Guide first.** Without the app embed, none of Yuko's storefront widgets appear.</Tip>
+<Tip>**Use the checklist as a launch list.** Turn on loyalty first, then VIP tiers and referrals once customers are earning points.</Tip>
+<Tip>**Watch Loyalty-driven Revenue over time.** If it stays flat, review your rewards and widgets so customers can see and use their points.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why does the Setup Guide still say the embed is off?">
+    Make sure you saved the theme after turning on **Yuko App**, and that you changed your published theme. Then click **Refresh status**.
+  </Accordion>
+  <Accordion title="I dismissed the checklist. How do I get it back?">
+    Dismissed cards are remembered in your browser. Opening Yuko in another browser shows them again. Program status is also shown on each module's page.
+  </Accordion>
+  <Accordion title="Why don't the Dashboard numbers match Analytics?">
+    The Dashboard shows store totals. Analytics shows the date range you pick, and some metrics use different definitions. Check a metric's definition in [Analytics](/analytics/reports#metric-definitions).
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Analytics" icon="chart-line" href="/analytics/reports">
+    Date ranges, trends, reports and CSV exports.
+  </Card>
+  <Card title="Quickstart" icon="rocket" href="/getting-started/quickstart">
+    Go from install to your first earned points.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

@@ -1,31 +1,32 @@
 ---
 title: Anniversary
-description: Award customers a yearly points bonus on the anniversary of their account signup.
+description: Award customers a yearly points bonus on the anniversary of their account creation.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Anniversary
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn → Add another way → **Anniversary**
 </Note>
 
 ## Introduction
 
-Reward customers each year on the anniversary of joining your store. It's a powerful loyalty signal: you're remembering them, and you're paying for the relationship.
+Reward customers each year on the anniversary of joining your store. It's a simple way to thank customers for sticking around.
 
 ## What problem this solves
 
-Most stores never thank customers for sticking around. Anniversary points create a structural moment of appreciation tied to a date the customer doesn't even remember setting.
+Most stores never thank customers for staying loyal. Anniversary points create a yearly moment of appreciation tied to a date you already have.
 
 ## When to use
 
-- You have customers who've been around for at least a year.
-- You want a recurring engagement moment that doesn't depend on collecting birthdays.
-- You want to reward long-term loyalty without standing up VIP tiers.
+- You have customers who've been with you for at least a year.
+- You want a yearly engagement moment that doesn't depend on collecting birthdays.
+- You want to reward long-term customers without setting up VIP tiers.
 
 ## Overview
 
-- Yearly bonus on the customer's signup anniversary.
-- Based on the Shopify customer's `created_at` date.
-- Optional points expiry.
+- Yearly bonus on the anniversary of the customer's account creation.
+- Based on the date the customer account was created in Shopify.
+- Optional points expiry and VIP tier multipliers.
+- Available on select plans.
 
 ## Before you start
 
@@ -36,52 +37,67 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 ## Setup guide
 
 <Steps>
-  <Step title="Open the campaign">
-    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Anniversary**.
+  <Step title="Add the way to earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to earn**, click **Add another way** and pick **Anniversary**.
   </Step>
-  <Step title="Set details and points">
-    Enter a campaign name, description and points value (e.g., `150`).
+  <Step title="Fill in Basic Details">
+    - **Campaign Name** — shown to customers on the storefront. You can use `[earn_value]` and `[points_label]`, for example `Earn [earn_value] [points_label]`.
+    - **Description** — short copy shown with the way to earn.
   </Step>
-  <Step title="Set expiry (optional)">
-    A 30–60 day expiry creates a redemption window.
+  <Step title="Set the points">
+    Enter **Points to earn on anniversary** (a whole number, at least 1).
   </Step>
-  <Step title="Save & activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Review the side panel">
+    - **Status** — on by default.
+    - **Icon** — **Default**, or **Custom** to upload your own (JPG, PNG, GIF or WEBP, under 1 MB).
+    - **Tiers** — turn on to apply VIP tier multipliers to this way to earn.
+  </Step>
+  <Step title="Save">
+    Click **Save**.
   </Step>
 </Steps>
 
 ## How it works
 
-- Yuko checks each customer's `created_at` date daily.
-- If today's month + day matches the customer's signup, points are credited.
-- A points-earned email can be sent if enabled.
+- Yuko runs a daily check for customers whose account creation date (month and day) is today.
+- Customers earn from their first anniversary onward; nothing is awarded in the year the account was created.
+- Each customer earns once per year.
+- Accounts created on 29 February are rewarded on 1 March in non-leap years.
+- You can also send the [Anniversary Reminder](/emails/loyalty-emails) email and use the Anniversary Reminder trigger in [Shopify Flow](/integrations/shopify-flow).
+
+With **Tiers** on and [VIP tiers](/vip-tiers/overview) enabled, customers in a tier earn the tier's multiplier for this way to earn, plus any bonus points the tier sets for it. The extra points appear as a separate tier bonus entry.
 
 ### Decision guidance
 
-- **Pair with VIP** — a tier-based multiplier on the anniversary bonus is a strong signal of preferred status.
+- **Turn on Tiers** so VIP customers get a bigger anniversary bonus.
 - **Combine with an email** acknowledging the milestone ("3 years with us!").
 
 ### Limitations
 
-- Imported customers without a `created_at` value (rare) won't trigger the campaign.
-- Year is matched on month + day only; leap-day signups are awarded on Feb 28 in non-leap years.
+- Based on the Shopify account creation date, not the first order date.
+- No points for anniversaries that passed before you enabled it.
+- Excluded customers don't earn.
+- You can have one Anniversary way to earn.
 
 ## Examples
 
-- An apparel brand awards 200 anniversary points with a 60-day expiry, paired with a *“Thank you for sticking with us”* email.
+- An apparel brand awards 200 anniversary points with a 60-day expiry, alongside a thank-you email.
 
 ## Best practices
 
-<Tip>**Send a thank-you email alongside**. The bonus is the carrot; the email is the moment.</Tip>
+<Tip>**Send a thank-you email alongside.** The points are the gift; the email makes the moment.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
   <Accordion title="What date is the anniversary based on?">
-    The Shopify customer's account creation date.
+    The date the customer's account was created in Shopify.
   </Accordion>
   <Accordion title="Will customers earn for past anniversaries?">
-    No. The campaign only fires going forward, on the next matching date.
+    No. Customers earn on their next anniversary after you enable it.
   </Accordion>
 </AccordionGroup>
 

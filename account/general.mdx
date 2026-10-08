@@ -1,6 +1,6 @@
 ---
 title: General
-description: Store name, currency, timezone and core preferences.
+description: Set your timezone, date and time format, default coupon prefix and the logo used in Yuko emails.
 ---
 
 <Note>
@@ -9,14 +9,19 @@ description: Store name, currency, timezone and core preferences.
 
 ## Introduction
 
-General settings are the few store-wide preferences that affect every Yuko module. Set them once during onboarding; they rarely need to change.
+The General tab holds a few store-wide preferences used across Yuko. Set them once during setup; they rarely need to change.
 
 ## What's configured here
 
-- **Store name** — used in widget headers, email templates and the Customer Account hub.
-- **Currency** — inherited from Shopify; overridable for display purposes.
-- **Timezone** — used for daily checks (e.g., birthday emails) and analytics.
-- **Default locale** — falls through if a customer has no preferred locale.
+| Setting | What it does |
+| --- | --- |
+| **Timezone** | Your preferred timezone for the app. Yuko uses it for date-based schedules, such as birthday and reminder timing. |
+| **Date Format** | How dates are shown: MM/DD/YYYY, DD/MM/YYYY, YYYY-MM-DD, January 1, 2023, MM/DD/YY or DD/MM/YY. The default is month-day-year. |
+| **Time Format** | 12-hour format (1:30 PM), 24-hour format (13:30), 12-hour with seconds (1:30:00 PM) or 24-hour with seconds (13:30:00). The default is 12-hour. |
+| **Coupon Prefix** | The prefix used for generated coupon codes. The default is `YK_`. |
+| **Logo** | The logo displayed in emails and other communications. |
+
+Your store name, currency and languages come from Shopify and aren't edited here. To translate customer-facing text, use [Translations](/account/translations).
 
 ## Setup
 
@@ -24,30 +29,40 @@ General settings are the few store-wide preferences that affect every Yuko modul
   <Step title="Open General">
     Go to **Apps → Yuko Loyalty → Account → General**.
   </Step>
-  <Step title="Confirm store name and currency">
-    Both inherit from Shopify. Override only if you have a clear reason.
-  </Step>
   <Step title="Set the timezone">
-    Use your store's primary timezone — it determines when daily-trigger campaigns (Birthday, Anniversary, Daily Visit) fire.
+    Search for and pick your store's primary timezone.
   </Step>
-  <Step title="Set the default locale">
-    Pick the language that maps to most of your customers.
+  <Step title="Choose date and time formats">
+    Pick the formats your team and customers expect.
+  </Step>
+  <Step title="Set the coupon prefix">
+    Enter 2–6 characters using letters, numbers and underscores only, for example `YK_` or `VIP`.
+  </Step>
+  <Step title="Upload your logo">
+    Click **Customise** next to **Logo**, upload an image and check the preview. Images must be under 1 MB; around 200 × 50 pixels works best.
   </Step>
   <Step title="Save">
-    Changes apply within a few minutes.
+    Click **Save** in the save bar.
   </Step>
 </Steps>
 
 ## Best practices
 
-<Tip>**Use your store's primary timezone**, not a developer's local timezone. Birthday emails go out at the wrong time otherwise.</Tip>
-<Tip>**Match locale to actual usage.** If 70% of your customers are French-speaking, default to French; English fallback can stay for the remaining 30%.</Tip>
+<Tip>**Use your store's primary timezone**, not the timezone of whoever set up the app, so date-based emails go out at sensible times.</Tip>
+<Tip>**Keep the coupon prefix short and recognisable.** It makes Yuko codes easy to spot in Shopify's discount reports.</Tip>
+<Tip>**Use a wide, transparent logo.** It reads better in email headers than a square icon.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Why is currency derived from Shopify?">
-    Loyalty math (points-to-currency conversion, store credit, etc.) is tied to your store's currency. Overriding it would break the math.
+  <Accordion title="Why can't I change the store currency here?">
+    Yuko uses your Shopify store currency for points value, discounts and store credit, so it always follows Shopify.
+  </Accordion>
+  <Accordion title="Does the coupon prefix change existing codes?">
+    No. Codes that were already issued keep their current prefix. The new prefix applies to codes generated after you save.
+  </Accordion>
+  <Accordion title="Why is my coupon prefix rejected?">
+    It must be 2–6 characters long and contain only letters, numbers and underscores.
   </Accordion>
 </AccordionGroup>
 

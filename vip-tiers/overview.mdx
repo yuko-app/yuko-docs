@@ -1,34 +1,46 @@
 ---
 title: VIP Tiers
-description: Reward your most valuable customers with tier-based perks, points multipliers and progression milestones.
+description: Reward your most valuable customers with tier levels, point multipliers, per-campaign bonuses and entry benefits.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → VIP Tiers
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → VIP
 </Note>
 
 ## Introduction
 
-VIP Tiers create levels in your loyalty program — Silver, Gold, Diamond and so on. Customers move up tiers based on their activity, and each tier unlocks better benefits like points multipliers, exclusive rewards and storefront recognition.
+VIP Tiers add levels to your loyalty program, such as Bronze, Silver and Gold. Customers move into a tier when their points earned, amount spent or order count reaches the tier's threshold. Each tier can earn points faster and unlock benefits such as discounts, free shipping, free products, bonus points or store credit.
+
+VIP is its own item in the Yuko sidebar, next to Loyalty and Referral.
 
 ## What problem this solves
 
-A flat loyalty program rewards every customer equally. Your top 20% of customers typically drive the majority of revenue and deserve preferential treatment. VIP Tiers make that distinction explicit and give the rest of your customers a clear path to climb toward.
+A flat loyalty program rewards every customer the same way. Your best customers usually drive most of your revenue. Tiers recognise them and give everyone else a clear goal to work toward.
 
 ## When to use
 
-- Your top customers contribute disproportionately to revenue.
-- You want a progression-based loyalty experience customers can climb.
-- You want to lift customer lifetime value by giving customers a reason to consolidate spend with you.
-- You want a clear *“you've made it”* moment for high-value customers.
+- A small group of customers contributes a large share of revenue.
+- You want a progression customers can climb, with a clear "you've made it" moment.
+- You want top customers to earn faster on specific actions, such as orders or reviews.
+- You want to give recurring perks, such as monthly store credit, to high-value customers.
 
 ## Overview
 
-- **Tiers** — start with the default Silver. Add as many additional tiers as you need (typically 3–4 in total).
-- **Calculation method** — what triggers tier movement: total spend, total points earned, or order count.
-- **Calculation period** — the time window: lifetime, rolling year, or calendar year.
-- **Benefits per tier** — points multipliers, exclusive rewards, and a Shopify customer tag.
-- **Auto-assignment** — customers move into tiers automatically as they cross thresholds.
+The VIP page has four sections:
+
+- **VIP Tiers Status**: turns the VIP program on or off.
+- **Tiers**: your tier list. Click **Add New Tier** to create a tier, or **Edit** to open one.
+- **Tiers Calculation**: what qualifies a customer for a tier and over which period.
+- **Advanced Program Settings**: the program start month and what happens when a period resets. Below it, **Reset VIP Tiers** recalculates every customer's tier.
+
+Each tier has:
+
+- A name, description and icon.
+- A **Tier entry** threshold.
+- A **Default point multiplier**, plus optional **Campaign rewards** that override it for specific Ways to Earn.
+- **Entry benefits** that customers receive when they enter the tier.
+
+New stores start with three tiers: **Bronze** (the default tier, 0 points, 1x), **Silver** (1,000 points, 2x) and **Gold** (5,000 points, 3x). The default qualification is **Total points earned** over a **Rolling year**. You can rename and change all of these.
 
 ## Before you start
 
@@ -36,176 +48,247 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <BeforeYouStart />
 
-<Check>At least one Way to Earn campaign is active so customers actually have measurable activity.</Check>
-<Check>You've decided on a calculation method that matches your business goal.</Check>
+<Check>At least one [Way to Earn](/loyalty/ways-to-earn/overview) is active, so customers build up measurable activity.</Check>
+<Check>You've decided whether tiers should reward spend, points or order frequency.</Check>
+
+<Info>VIP Tiers are available on select plans. If your plan doesn't include them, the status toggle is disabled and shows an upgrade badge.</Info>
 
 ## Setup guide
 
-### 1. Enable VIP Tiers
+### 1. Turn on VIP Tiers
 
 <Steps>
-  <Step title="Open VIP Tiers">
-    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → VIP Tiers**.
+  <Step title="Open VIP">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → VIP**.
   </Step>
-  <Step title="Toggle VIP Tiers Status">
-    Turn on the **VIP Tiers** toggle.
+  <Step title="Enable the program">
+    Under **VIP Tiers Status**, switch the toggle on. The badge next to the page title changes to **Enabled**.
   </Step>
 </Steps>
 
-### 2. Add and configure tiers
+<Warning>Turning VIP Tiers off asks for confirmation and disables all tier-related features.</Warning>
 
-<Steps>
-  <Step title="Open the Tiers section">
-    Scroll to **Tiers**. The default **Silver** tier is already there — it can't be deleted.
-  </Step>
-  <Step title="Add additional tiers">
-    Click **Add tier** and create higher levels. A common starting setup:
-    - **Silver** — default tier (threshold = 0)
-    - **Gold** — e.g., $400
-    - **Diamond** — e.g., $1000
-  </Step>
-  <Step title="Configure each tier">
-    Click a tier to expand its configuration:
-    - **Tier name** — customer-facing label.
-    - **Visible on storefront** — toggle on if you want the tier surfaced in widgets.
-    - **Tag identifier** — the Shopify customer tag Yuko writes when a customer enters this tier (e.g., `yuko-tier-gold`). Used for segmentation in your email/ads tools.
-    - **Description** — short copy shown in widgets.
-    - **Threshold** — the spend / points / orders required to enter this tier.
-    - **Points multiplier** — e.g., 1x / 1.5x / 2x.
-    - **Benefits** — see next step.
-  </Step>
-  <Step title="Add tier benefits">
-    Open the **Benefits** section on each tier and add:
-    - Percent discount
-    - Amount discount
-    - Free shipping
-    - Free product
-    - Store credit
+### 2. Choose how customers qualify
 
-    Benefits are surfaced in the Cart Redeem widget's VIP section and the Customer Account hub.
-  </Step>
-</Steps>
+Under **Tiers Calculation**, set **Qualification for tier is based on**:
 
-### 3. Choose calculation method
+| Option | Customers move up by… | Good for |
+| --- | --- | --- |
+| **Total points earned** | Earning points from any Way to Earn | Rewarding engagement |
+| **Total amount spent** | Spending more in your store | Growing revenue |
+| **Order count** | Placing more orders | Growing purchase frequency |
 
-Pick how progression is measured. This applies across all tiers.
-
-<AccordionGroup>
-  <Accordion title="Total amount spent">
-    Customers move up by spending more. Best when your goal is **revenue** growth.
-  </Accordion>
-  <Accordion title="Total points earned">
-    Customers move up by earning more points across all activities. Best when your goal is **engagement** growth.
-  </Accordion>
-  <Accordion title="Order count">
-    Customers move up by placing more orders. Best when your goal is **purchase frequency**.
-  </Accordion>
-</AccordionGroup>
-
-### 4. Choose calculation period
+Then set the **Qualification period type**:
 
 <AccordionGroup>
   <Accordion title="Lifetime">
-    Tier progress never resets. Best for long-term loyalty programs and high-LTV customers.
+    Customer progress accumulates forever from the program start date. Once achieved, tiers are permanent unless manually adjusted.
   </Accordion>
   <Accordion title="Rolling year">
-    Tier progress is the last 12 months. Best for keeping customers active — they have to keep buying to keep their tier.
+    Customer progress is tracked over a 12-month window. During the first program year, the window runs from your program start date to today. After the first anniversary, it becomes the trailing 12 months from today.
   </Accordion>
   <Accordion title="Calendar year">
-    Tier progress resets every January 1. Best for seasonal programs and cohort-based reporting.
+    Customer qualification progress restarts each calendar year on January 1. In the first program year, progress counts from your program start date.
+
+    When Calendar year is selected, you can also tick **Include the last year**. This keeps earned tiers active through December 31 of the following calendar year, so a tier earned in 2026 is kept until the end of 2027.
   </Accordion>
 </AccordionGroup>
 
-### 5. Configure advanced settings
+<Note>Changing the qualification metric, the period type, **Include the last year**, the program start month or the reset option asks you to confirm. After you save, Yuko recalculates tiers for all customers, and some customers may move to a different tier.</Note>
+
+### 3. Set the start month and reset behaviour
 
 <Steps>
-  <Step title="Open Advanced Program Settings">
-    Scroll to **Advanced program settings**.
+  <Step title="Set the Program Start Month">
+    Under **Advanced Program Settings**, pick a month and year. The program starts on the 1st day of that month. Activity before this date doesn't count toward tiers.
   </Step>
-  <Step title="Set the program start month">
-    Useful for calendar-year and rolling-year programs.
+  <Step title="Choose a Tier Reset Option">
+    - **Reset After Period End**: automatically moves customers back to lower tiers when program periods reset, based on what they qualify for in the new period.
+    - **No Tier After Reset**: removes customers from all tiers when periods reset, so they have to re-qualify.
   </Step>
-  <Step title="Choose tier reset behavior">
-    - **Reset after period end** — customers drop to the highest tier they qualify for in the new period.
-    - **Remove all tiers after reset** — customers reset to the base tier and must re-qualify.
+  <Step title="Save">
+    Click **Save** in the save bar at the top of the page.
   </Step>
 </Steps>
 
-### 6. Reset VIP Tiers (optional, irreversible)
-
-<Warning>
-This wipes all customer tier assignments and progress. Use only when intentionally rebooting the program. There is no undo.
-</Warning>
+### 4. Create or edit a tier
 
 <Steps>
-  <Step title="Click Reset VIP Tiers">
-    From **VIP Tiers**, click **Reset VIP Tiers**.
+  <Step title="Open the tier">
+    Under **Tiers**, click **Add New Tier**, or click **Edit** on an existing tier.
   </Step>
-  <Step title="Confirm">
-    Type the confirmation phrase and click **Reset**.
+  <Step title="Name and describe it">
+    - **Tier name**: shown to customers on your storefront.
+    - **Description**: optional text about the tier.
+  </Step>
+  <Step title="Set the Tier entry threshold">
+    Enter the points, amount or number of orders needed to enter this tier. The label matches your qualification metric. The default tier's threshold can't be changed.
+  </Step>
+  <Step title="Set the Default point multiplier">
+    The multiplier applied to points earned by customers in this tier, for example `1.5` for 1.5x. Use **Campaign rewards** (next step) to override it for a specific Way to Earn.
+  </Step>
+  <Step title="Add campaign rewards (optional)">
+    Under **Campaign rewards**, click **Add campaign reward** and fill in:
+    - **Name**: shown on your storefront.
+    - **Campaign**: the Way to Earn this reward applies to.
+    - **Point multiplier**: multiplies the points this campaign awards. Between 1.1x and 10x.
+    - **Bonus points**: adds a fixed number of points on top (a whole number, at least 1).
+
+    Turn on at least one of the two options. Each Way to Earn can have only one campaign reward per tier. Campaigns without an entry keep the tier's default multiplier.
+  </Step>
+  <Step title="Add entry benefits (optional)">
+    Under **Entry benefits**, click **Add Benefits** and pick a benefit type. See [Tier benefits](#tier-benefits) below.
+  </Step>
+  <Step title="Customize the tier icon (optional)">
+    Under **Customize tier icon**, keep **Default** or choose **Custom** and upload your own image (JPG, PNG, GIF or WEBP, under 1 MB).
+  </Step>
+  <Step title="Save">
+    Click **Save**. The **Summary** card on the right lists the threshold, multiplier, benefits and campaign rewards.
   </Step>
 </Steps>
+
+After you save a tier, a read-only **Tier Identifier** appears under the name, for example `YUKO:TIER:…`. Copy it to reference the tier in integrations. Yuko adds this identifier as a Shopify customer tag to customers in the tier and creates a matching Shopify customer segment, so you can target tier members in Shopify and in your marketing tools.
+
+### 5. Turn on tiers for your Ways to Earn
+
+Tier multipliers and campaign rewards only apply to a Way to Earn when its **Tiers** toggle is on. Open the Way to Earn under **Loyalty → Programs** and check **Tiers**. The panel then lists the **Tier Multipliers** for each tier. The default campaigns created at install have Tiers turned on.
+
+If a campaign reward points at a Way to Earn that was deleted, turned off or has Tiers turned off, the tier shows a warning and the reward isn't applied until you fix it.
+
+## Tier benefits
+
+Entry benefits are given to a customer when they enter the tier. The types are:
+
+| Benefit | What the customer gets |
+| --- | --- |
+| **Amount discount** | A fixed amount off |
+| **% off discount** | A percentage off (up to 50%) |
+| **Free shipping** | Free shipping, with optional country restrictions and a maximum shipping price |
+| **Free product** | A selected product for free |
+| **Bonus points** | A one-off number of points (**Number of points**), with optional expiry |
+| **Store credit** | Store credit: one time, recurring or as cashback (see below) |
+| **Custom benefit** | A text-only perk shown to customers, such as "Early access to new products". Yuko doesn't apply it automatically. |
+
+### Discount benefit options
+
+Amount discount, % off discount, Free shipping and Free product benefits share these settings:
+
+- **Method**: **Automatic** applies the discount at checkout without a code. **One-time code** (labelled **One-time discount code** on discount benefits) issues the customer a code and lets you set a **Coupon Prefix**.
+- **Applies to**: All products, Specific collections or Specific products (amount and percentage discounts). Amount discounts can also be set to **Only apply discount once per order**.
+- **Purchase type**: One-time purchase, Subscription or Both. Subscription options only take effect if your store sells subscriptions.
+- **Minimum purchase requirements**: none, a minimum purchase amount or a minimum quantity of items.
+- **Combine with other discounts**: product, order and shipping discounts.
+- **Expiry Settings**: an optional expiry after a number of days, weeks, months or years.
+
+### Store credit benefits
+
+Each tier can have one store credit benefit. Pick a **Store Credit Type**:
+
+- **One time**: a single store credit amount when the customer enters the tier.
+- **Recurring**: credit issued on a schedule. Set the **Recurring Period** (weeks, months or years), the start day or date, the **Recurring Interval** (for example, every 2 months) and the **Maximum Times** it repeats.
+- **% cashback after every purchase**: the customer earns a percentage of each purchase back as store credit (**Cashback %**).
+
+You can add an expiry, and with **Enable Holdings** you can hold each credit for a set period (**Holding Value** and **Holding Period**) before the customer can use it.
 
 ## How it works
 
-- Every customer always belongs to a tier.
-- When a customer's activity crosses a threshold, Yuko upgrades them and writes the new Shopify tag.
-- The points multiplier applies at the moment points are awarded, not retroactively.
-- Tier changes can trigger a notification email (configured in **Email Notifications**).
+- **Evaluation.** Yuko evaluates a customer's tier when their points change (for points-based tiers) or when an order completes (for spend- and order-based tiers). It also re-checks tiers on a schedule, so period resets are applied.
+- **Placement.** The customer is placed in the highest tier whose threshold they meet within the current qualification window.
+- **Upgrades** apply straight away. Entry benefits for the new tier are issued, and the Shopify customer tag is updated.
+- **Retention.** Once a customer enters a tier, they keep it until their retention window ends, even if their activity drops. The window ends:
+  - **Lifetime**: never.
+  - **Calendar year**: December 31 of the year they entered the tier, or December 31 of the following year with **Include the last year**.
+  - **Rolling year**: 12 months after they entered the tier.
 
-### Decision guidance
+  When the window ends, the **Tier Reset Option** decides whether they move down to the tier they qualify for or lose their tier.
+- **Admin changes skip retention.** Changing the qualification settings or using **Reset All Tiers** re-evaluates everyone under the new rules, regardless of retention. These recalculations don't send customer-facing workflow events.
+- **Points.** The tier multiplier and campaign bonus points are added as a separate tier bonus entry in the customer's activity, alongside the base points. Multipliers apply when points are awarded, not retroactively.
+- **Bulk updates.** While Yuko updates customer tags or metafields in bulk, a banner at the top of the VIP page shows the update is in progress, or that it failed.
 
-| Goal | Method | Period |
-| --- | --- | --- |
-| Grow revenue | Total spend | Lifetime |
-| Grow engagement | Total points | Rolling year |
-| Grow frequency | Order count | Calendar year |
-| Keep customers active | Any | Rolling year |
-| Reward long-term loyalty | Any | Lifetime |
+### On your storefront
+
+- The tier name, description, icon and benefits appear in [Floating Rewards](/onsite-widgets/floating-launcher), the [Rewards Landing Page](/onsite-widgets/rewards-landing-page) VIP block and the [Customer Account Page](/onsite-widgets/customer-account-page).
+- **Free product** tier benefits are shown as product cards in Floating Rewards, [Cart Redeem](/onsite-widgets/cart-redeem) and [Loyalty Nudges](/onsite-widgets/loyalty-nudges).
+
+### Notifications and automations
+
+- The **Tier unlocked** email is sent when a customer reaches a new tier. Edit it under **Loyalty → Emails**. See [Loyalty emails](/emails/loyalty-emails).
+- [Workflows](/workflows/triggers-and-conditions) have VIP triggers: VIP Tier Entry, Upgrade, Downgrade, Retained, Retention Warning, Milestone Nudge and Period Start. **VIP Tier Retention Warning** fires before a customer's retention window ends, so you can nudge them to keep their tier.
+- [Shopify Flow](/integrations/shopify-flow) has VIP Tier Entry, Upgrade and Downgrade triggers.
+
+### Assign a tier manually
+
+You can override a customer's tier from **Customers**:
+
+<Steps>
+  <Step title="Open the customer">
+    Go to **Customers** and click the customer.
+  </Step>
+  <Step title="Assign the tier">
+    In the **VIP tier** card, click **Assign tier**. Pick a **Tier**, optionally set **Expires at (optional)** and add a **Note (optional)** with the reason.
+  </Step>
+  <Step title="Click Assign">
+    The card now shows a **Manual** badge and when the override expires.
+  </Step>
+</Steps>
+
+The expiry date sets both the override expiry and the retention expiry. Leave it empty for no expiry. Click **Clear override** to return the customer to automatic evaluation. See [Customers](/loyalty/customers).
+
+### Reset all tiers
+
+Under **Reset VIP Tiers**, click **Reset All Tiers** and confirm with **Reset Tiers**. Yuko recalculates every customer's tier from their current points or spend history and places them in the tier they qualify for now. This can't be undone.
 
 ### Limitations
 
-- The default Silver tier cannot be deleted.
-- Reset is irreversible.
-- Tier changes don't retroactively re-cost rewards customers have already earned.
-- Multipliers apply only to **Way to Earn** events — they don't multiply manually credited points.
+- The default tier can't be deleted, and its threshold can't be changed. You can rename it.
+- A Way to Earn can have only one campaign reward per tier.
+- Each tier can have only one store credit benefit.
+- Tier multipliers apply only to Ways to Earn with **Tiers** turned on. They don't apply to points you add manually.
+- Multiplier booster campaigns can be set to **Ignore if customer earned VIP tier multiplier**. See [Booster campaigns](/loyalty/booster-campaigns/overview).
 
 ## Examples
 
-- **Revenue-focused (Lifetime, Total spend):**
-  - Silver — $0
-  - Gold — $400 (1.5x multiplier, 5% off member discount)
-  - Diamond — $1000 (2x multiplier, free shipping, exclusive products)
-- **Engagement program (Rolling year, Total points):**
-  - Silver — 0 points
-  - Bronze — 500 points (1.25x)
-  - Gold — 2000 points (1.5x, 10% off)
-  - Platinum — 5000 points (2x, free shipping, priority support)
+- **Revenue-focused (Total amount spent, Lifetime):**
+  - Bronze: $0, 1x
+  - Silver: $400, 1.5x, 5% off discount (one-time code)
+  - Gold: $1,000, 2x, free shipping (automatic) and $10 store credit every month
+- **Engagement-focused (Total points earned, Rolling year):**
+  - Bronze: 0 points, 1x
+  - Silver: 1,000 points, 1.5x, plus a campaign reward of 3x on **Write a review**
+  - Gold: 5,000 points, 2x, 5% cashback as store credit after every purchase
+- **Frequency-focused (Order count, Calendar year with Include the last year):**
+  - Bronze: 0 orders
+  - Silver: 3 orders, 200 bonus points on entry
+  - Gold: 8 orders, a free product and a +100 bonus points campaign reward on **Place an order**
 
 ## Best practices
 
-<Tip>**Keep it to 3–4 tiers max.** More tiers dilute the meaning of each one.</Tip>
-<Tip>**Make higher tiers meaningfully more rewarding.** A 1.1x multiplier won't change behaviour; 2x will.</Tip>
-<Tip>**Show benefits clearly on the storefront** — use the Cart Redeem widget's VIP section, the Customer Account hub or the Rewards Landing Page.</Tip>
-<Tip>**Use Shopify customer tagging** to segment in your email tool. VIP-only emails are some of the highest-converting you'll send.</Tip>
+<Tip>**Keep it to 3–4 tiers.** More tiers make each one feel less special.</Tip>
+<Tip>**Make higher tiers clearly better.** A 1.1x multiplier rarely changes behaviour; 2x usually does.</Tip>
+<Tip>**Use campaign rewards to steer behaviour.** A bigger multiplier on reviews or social follows for top tiers rewards the actions you want most.</Tip>
+<Tip>**Use the Tier Identifier segment** to send VIP-only campaigns from Shopify or your email tool.</Tip>
+<Tip>**Set up a retention reminder.** A workflow on **VIP Tier Retention Warning** gives customers a reason to buy before they lose their tier.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Can I delete the base tier?">
-    No — Silver (or whatever you've named the default) is permanent. You can rename it but not delete.
+  <Accordion title="Can I delete the default tier?">
+    No. The default tier can't be deleted and its threshold is fixed. You can rename it and change its multiplier, benefits and icon.
   </Accordion>
-  <Accordion title="Will every customer be assigned to a tier?">
-    Yes. Every customer always belongs to a tier; the base tier is the default.
+  <Accordion title="Will every customer have a tier?">
+    Usually, because the default tier has no threshold. A customer can show **No tier** in Customers, for example after a period reset with **No Tier After Reset**, until they're evaluated again.
   </Accordion>
   <Accordion title="Can I change thresholds after launch?">
-    Yes, but it can move customers between tiers. Communicate any major changes via email so VIPs aren't surprised.
+    Yes. Yuko recalculates tiers, so some customers may move. Tell your customers about major changes so VIPs aren't surprised.
   </Accordion>
-  <Accordion title="Do points multipliers stack with my Way to Earn rate?">
-    Yes — the multiplier is applied to the calculated points at the moment of award.
+  <Accordion title="How do the default multiplier and campaign rewards work together?">
+    A campaign reward replaces the tier's default multiplier for that Way to Earn and can also add fixed bonus points. Ways to Earn without a campaign reward use the default multiplier.
   </Accordion>
-  <Accordion title="What happens to a customer's tier if they're refunded?">
-    Refunds reduce cumulative spend / points / orders. If the new total drops below the tier threshold, the customer is moved down on the next evaluation.
+  <Accordion title="What happens to a customer's tier if their activity drops?">
+    Nothing until their retention window ends. Downgrades are skipped while the window is active. After it ends, the customer moves to the tier they qualify for, or loses their tier if you chose **No Tier After Reset**.
+  </Accordion>
+  <Accordion title="Is the Tier Identifier a Shopify customer tag?">
+    Yes. Yuko adds the identifier as a tag to customers in the tier, removes it when they leave, and keeps a Shopify customer segment for the tier up to date.
   </Accordion>
 </AccordionGroup>
 

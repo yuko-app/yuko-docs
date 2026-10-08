@@ -1,0 +1,221 @@
+---
+title: Analytics
+description: Track loyalty, points, VIP tiers, referrals and retention over any date range, drill into metric reports and export them as CSV.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Analytics
+</Note>
+
+## Introduction
+
+Analytics shows how your loyalty program performs over time. Pick a date range, compare periods, open a report for any metric to see the rows behind it, and export them as CSV.
+
+Analytics is labelled **Beta** in the app. The quick totals on the home screen are covered in [Dashboard](/analytics/dashboard).
+
+<Info>Analytics and some of its tabs are available on select plans. When a metric isn't included in your plan, its card is blurred and its report shows **Report locked**.</Info>
+
+## Overview
+
+Analytics has six tabs:
+
+| Tab | What it covers |
+| --- | --- |
+| **Overview** | Loyalty Health Score and headline revenue, order and member metrics |
+| **Loyalty** | Incentivized revenue, discounts used, member growth and activities |
+| **Points** | Points issued and redeemed, redemptions, outstanding balance and upcoming expiry |
+| **Tiers** | Customers per VIP tier, upgrades, AOV and referrals by tier |
+| **Referrals** | Referral funnel, claimed and completed referrals, top advocates |
+| **Retention** | Repurchase rate, member lifetime value and purchase frequency |
+
+## How to use Analytics
+
+### Pick a date range
+
+Use the date picker at the top right. The presets are **Today**, **Yesterday**, **Last 7 days**, **Last 30 days**, **Last 90 days** and **Last 365 Days**, or choose **Custom** and enter **Since** and **Until** dates. The default is the last 30 days.
+
+Metric cards show the change versus the previous period of the same length (**vs last period**).
+
+### Compare periods (Retention tab)
+
+On the **Retention** tab, and on Retention reports, a comparison picker appears next to the date range:
+
+- **No comparison**
+- **Previous period**: the same number of days immediately before your range.
+- **Previous year**: the same dates one year earlier.
+- **Custom**: your own **Since** and **Until** dates.
+
+### Read a metric
+
+Hover over a metric's title to see its description and formula. The [metric definitions](#metric-definitions) below list them all.
+
+### Open a report
+
+<Steps>
+  <Step title="Click View report">
+    Most cards have a **View report** button. It opens a full page for that metric.
+  </Step>
+  <Step title="Adjust the filters">
+    Change the date range, and on stores with VIP tiers, filter by tier. **Points Expiring** and **Rewards Expiring** use a forward-looking window instead: **Next 14 days**, **Next 30 days**, **Next 60 days** or **Next 90 days**.
+  </Step>
+  <Step title="Review the data">
+    The report shows the metric total with its change, a **Trend** chart and a table of the underlying records. Use **Search records** to find a customer or order.
+  </Step>
+  <Step title="Click Export CSV">
+    Yuko downloads the rows in the table, including your search and tier filter. Reports with a customer column also include **Email**, **Phone** and **Shopify customer ID**.
+  </Step>
+</Steps>
+
+## Tabs in detail
+
+### Overview
+
+- **Loyalty Health Score**: an overall 0–100 grade for your program, averaging four rates: **Earning**, **Redemption**, **Reward Usage** and **Repurchase**. A score of 70 or more is **Healthy**, 40–69 is **Watch** and below 40 is **At risk**. Each rate also has its own tile with a score out of 100 and a target.
+- Cards: Loyalty driven revenue, Member Orders, Member AOV, Loyalty Incentivized Revenue, Referral Revenue, Membership Revenue, New Members, Repeat Purchase Rate and Returning Orders %.
+
+### Loyalty
+
+Incentivized Revenue (with Attribution Rate), Discounts Used, Member Growth and Activities Completed.
+
+### Points
+
+- Points Issued, Points Redeemed (with Points Redeemed %), Redemption Count and Discounts Issued vs Used.
+- **Current program snapshot**: Outstanding Balance and Points Owed. These are live balances as of today and aren't affected by the date filter.
+- **Forward-looking expiry**: Points Expiring and Rewards Expiring. Pick a horizon on each card; it's independent of the date filter.
+
+### Tiers
+
+Customers in the tiers, Tier Upgrade Rate, AOV by Tier and Referrals by Tier.
+
+### Referrals
+
+The **Referral funnel**, Referrals Claimed, Referrals Completed, Referrals per Member and Top Advocates.
+
+### Retention
+
+Repurchase Rate, Avg Member LTV and Purchase Frequency.
+
+## Metric definitions
+
+<AccordionGroup>
+  <Accordion title="Overview metrics">
+
+| Metric | Definition |
+| --- | --- |
+| **Loyalty driven revenue** | Total revenue from any loyalty member in the period. |
+| **Member Orders** | Number of orders placed by any loyalty member in the period. |
+| **Member AOV** | Average spend per member order: Member Revenue ÷ Member Orders. |
+| **Loyalty Incentivized Revenue** | Revenue from orders where a loyalty or tier coupon was redeemed. |
+| **Referral Revenue** | Revenue from orders where a referral coupon or store credit was redeemed. |
+| **Membership Revenue** | Revenue from orders by customers with an active membership at order time, or orders that used a membership benefit. |
+| **New Members** | Customers who joined your loyalty program in the period. |
+| **Repeat Purchase Rate** | Customers with 1+ orders in the period ÷ all customers in the period × 100. |
+| **Returning Orders %** | Orders by customers with at least one prior order ÷ total orders in the period × 100. |
+
+  </Accordion>
+  <Accordion title="Loyalty Health Score">
+
+| Metric | Definition |
+| --- | --- |
+| **Loyalty Health Score** | (Redemption + Reward Usage + Earning + Repurchase) ÷ 4. |
+| **Earning** | Share of orders that earned points. |
+| **Redemption** | Share of points issued that members used as discounts. |
+| **Reward Usage** | Share of issued discount codes used at checkout. |
+| **Repurchase** | Share of customers who placed 2+ orders in the period. |
+
+  </Accordion>
+  <Accordion title="Loyalty metrics">
+
+| Metric | Definition |
+| --- | --- |
+| **Incentivized Revenue** | Revenue from orders where a loyalty discount code was applied or points were earned. |
+| **Attribution Rate** | Share of member revenue from orders with a redeemed loyalty reward. |
+| **Discounts Used** | Total amount given away as loyalty discounts in the period. |
+| **Member Growth** | New joiners in the period compared with members who redeemed points. |
+| **Activities Completed** | Breakdown of how members earned points, by activity type. |
+
+  </Accordion>
+  <Accordion title="Points metrics">
+
+| Metric | Definition |
+| --- | --- |
+| **Points Issued** | Total points credited to customers in the period. |
+| **Points Redeemed** | Total points turned into discounts in the period. |
+| **Points Redeemed %** | Points used on orders ÷ total points earned × 100. |
+| **Redemption Count** | Number of separate times members redeemed points. |
+| **Discounts Issued vs Used** | Codes applied to orders ÷ codes generated × 100. |
+| **Outstanding Balance** | Points currently in all member accounts: all points issued minus points redeemed or expired. |
+| **Points Owed** | Money value of all unspent points: outstanding balance × point value. |
+| **Points Expiring** | Unused points that expire within the selected window. |
+| **Rewards Expiring** | Issued rewards or discount codes that expire within the selected window. |
+
+  </Accordion>
+  <Accordion title="Tiers metrics">
+
+| Metric | Definition |
+| --- | --- |
+| **Customers in the tiers** | Members currently in each tier at the end of the period. |
+| **Tier Upgrade Rate** | Members who moved up a tier ÷ total members. |
+| **AOV by Tier** | Revenue from a tier's members ÷ their orders. |
+| **Referrals by Tier** | Completed referrals by a tier's members ÷ members in that tier. |
+
+  </Accordion>
+  <Accordion title="Referrals metrics">
+
+| Metric | Definition |
+| --- | --- |
+| **Referrals Claimed** | Friends who landed on your store and accepted the referral discount. |
+| **Referrals Completed** | Referrals that ended in a purchase, as a share of claimed referrals. |
+| **Referrals per Member** | Completed referral orders per advocate. |
+| **Top Advocates** | Members ranked by completed referrals in the period. |
+
+  </Accordion>
+  <Accordion title="Retention metrics">
+
+| Metric | Definition |
+| --- | --- |
+| **Repurchase Rate** | Members who ordered in the period and had an order before it ÷ members who ordered in the period × 100. |
+| **Avg Member LTV** | Member spend over the full relationship, projected from revenue per month as a member. |
+| **Purchase Frequency** | Average orders per loyalty member per year: orders from members in the last 12 months ÷ total members. |
+
+  </Accordion>
+</AccordionGroup>
+
+## Best practices
+
+<Tip>**Check the Health Score monthly.** A drop in one sub-rate, such as Reward Usage, points to a specific fix, such as making rewards easier to find.</Tip>
+<Tip>**Plan around expiry.** Use **Points Expiring** to time a reminder email or workflow before customers lose their balance.</Tip>
+<Tip>**Filter reports by tier** to see whether VIP customers really order more and spend more.</Tip>
+<Tip>**Export before campaigns.** A CSV of top advocates or expiring points makes a ready-made audience list.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why is a card blurred?">
+    That metric isn't included in your current plan. Hover over it to see why it's locked.
+  </Accordion>
+  <Accordion title="Why don't Outstanding Balance and Points Owed change with the date range?">
+    They're live snapshots as of today. The date filter only affects period-based metrics.
+  </Accordion>
+  <Accordion title="Can I compare periods on every tab?">
+    The comparison picker appears on the Retention tab and Retention reports. Other cards show the change versus the previous period of the same length.
+  </Accordion>
+  <Accordion title="What's in the CSV export?">
+    The same columns as the report table, filtered by your date range, tier filter and search. Customer-level reports add Email, Phone and Shopify customer ID.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Dashboard" icon="house" href="/analytics/dashboard">
+    Setup checklist and headline totals.
+  </Card>
+  <Card title="Customers" icon="users" href="/loyalty/customers">
+    View individual balances, tiers and activity.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

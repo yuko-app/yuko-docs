@@ -1,98 +1,121 @@
 ---
 title: Action Nodes
-description: Send email, credit or debit points, issue a coupon — the things workflows actually do.
+description: The workflow steps that do something for the customer, Send Email, Coupon, Points Credit and Points Debit, with every setting explained.
 ---
 
 <Note>
-**Where to find this:** Inside the workflow editor, click **+** between any two nodes and pick an action node.
+**Where to find this:** Inside any workflow, click the **+** on a connecting line → **Add Node** → **Actions**
 </Note>
 
-## Available action nodes
+## Introduction
 
-### Send Email
+Action nodes are the steps that actually do something when a customer reaches them. The **Add Node** dialog lists these actions:
 
-Sends a custom email through Yuko's email engine, using a template configured in **Email Notifications**.
+| Node | What it does |
+|---|---|
+| [Send Email](#send-email) | *"An email will be sent to the contact when they reach this step."* |
+| [Coupon](#coupon) | *"Generate a unique coupon code for the contact at this step."* |
+| [Points Credit](#points-credit) | *"Credit loyalty points to the contact when they reach this step."* |
+| [Points Debit](#points-debit) | *"Deduct loyalty points from the contact when they reach this step."* |
+| [WhatsApp](/workflows/whatsapp-node) | Send a WhatsApp template through a connected provider |
+| [Engati](/workflows/partner-nodes) / [kwikEngage](/workflows/partner-nodes) | Send a template message through Engati or Kwik Engage |
 
-- Pick the template at node configuration.
-- Shortcodes are populated from the customer record + workflow context.
-- Sends are logged in the customer activity feed.
+Timing and logic nodes (**Time Delay**, **If / Else**) are covered in [Time Delay & Exit](/workflows/wait-and-exit) and [Triggers & Conditions](/workflows/triggers-and-conditions).
 
-<Tip>**Create the template before adding the node.** Workflow emails reuse the same templates as automated notifications.</Tip>
+Click any node on the canvas to open its settings panel. Save the panel to apply your changes.
 
----
+## Send Email
 
-### Credit Points
+Sends an email to the customer.
 
-Adds points to the customer's balance — typically as a goodwill or milestone bonus.
+<Steps>
+  <Step title="Add the node">
+    Pick **Send Email** in **Add Node**. A new email node starts with the subject *New Email*.
+  </Step>
+  <Step title="Open the editor">
+    Click the node. The panel shows a preview of the email (switch between **Desktop view** and **Mobile view**). Click **Edit** to open the [Template Editor](/emails/template-editor).
+  </Step>
+  <Step title="Write the email">
+    Set the subject, preview text, title, message, CTA and footer. Use [shortcodes](/emails/shortcodes). The **Available Template Variables** card lists the shortcodes for this workflow's trigger, plus the Redemption group. Click **Save**.
+  </Step>
+</Steps>
 
-- Set the points value (fixed) or a formula (e.g., `order_total * 0.1`).
-- Optional reason note (shown in the activity feed).
-- VIP multipliers do **not** apply to workflow-credited points.
+- The node card shows **Emails sent** so far.
+- Emails use your sender settings from [Email Settings](/emails/sender-and-branding).
+- The [Advanced Editor](/emails/template-editor#advanced-editor) is available on select plans.
 
-<Tip>**Use this for one-off goodwill** (a delivery delay, a launch bonus). For routine earning, use a Way to Earn campaign instead.</Tip>
+## Coupon
 
----
+Creates a unique Shopify discount code for the customer at this step. Show it in a later Send Email node with the **Coupon** block in the Advanced Editor.
 
-### Debit Points
+| Setting | Options |
+|---|---|
+| **Coupon identifier** | A random identifier for this node, with a copy button (*"Unique identifier for this coupon node."*). Email coupon blocks use it to find this coupon. |
+| **Discount Type** | **Percentage (%)** (default, 10), **Amount** or **Free Shipping** |
+| **Value** | The percentage or amount (not shown for Free Shipping) |
+| **Set validity** | Toggle on and enter **Valid upto (in days)** to make the code expire |
+| **Minimum purchase requirements** | **No minimum requirements**, **Minimum purchase amount** or **Minimum quantity of items** |
+| **Product Restrictions** | **Applies to**: **All products**, **Specific collections** or **Specific products**. For Amount discounts, **Only apply discount once per order**. |
+| **Shipping Restrictions** (Free Shipping) | **All countries** or **Selected countries**, and **Exclude shipping rates over a certain amount** with a **Maximum shipping rate** |
+| **Combinations** | Whether the code combines with **Product discounts**, **Order discounts** and **Shipping discounts** |
 
-Removes points from the customer's balance.
+<Tip>**Pair Coupon with Send Email.** Put the Coupon node first, then add the **Coupon** block in the email and pick this node's identifier, so the customer sees their code.</Tip>
 
-- Set the points value (fixed).
-- Optional reason note.
-- Won't reduce the balance below zero.
+## Points Credit
 
-<Tip>**Always include a reason note.** Customers will see this in their activity feed.</Tip>
-<Warning>Use Debit Points carefully — customers notice deductions much more than credits.</Warning>
+Adds points to the customer's balance. Available on Shopify stores.
 
----
+| Setting | What it does |
+|---|---|
+| **Method** | **Fixed amount of points**: the same number of points for everyone. **Incremental points**: points based on the order amount. |
+| **Points to earn** | Fixed: the number of points to credit. Incremental: the points earned *for every* **Amount spent**. |
+| **Amount spent** | Incremental only. For example, 1 point for every 10 spent gives 25 points on an order with a subtotal of 250. |
+| **Credited reason** | *"Store why these points were credited for support and audit logs."* Shown in the customer's points history. |
+| **Enable points expiry for this credit** | Expire these points after **Expire after** N **Days**, **Weeks**, **Months** or **Years**. |
+| **Enable on-hold period before crediting points** | Hold the points as pending for **Hold points for** N **Days**, **Weeks**, **Months** or **Years** before they become available. |
 
-### Issue Coupon
+<Note>**Incremental points** use the order subtotal, so they need an order-based trigger such as **Order Paid** or **Order Delivered**. On a trigger with no order, the step fails with *"Order not found"* and the customer's run stops there.</Note>
 
-Issues a Shopify discount code unique to the customer.
+Points credited by a workflow count as earned points. Without an on-hold period, they fire the **Earn Points** event right away, which also sends the built-in **Points earned** email if it's active.
 
-- Set the discount type (amount / percentage / free shipping / free product).
-- Set the value and any expiry.
-- Optional minimum cart amount.
-- The code is delivered via the next node (typically a Send Email).
+## Points Debit
 
-<Tip>**Pair Issue Coupon with Send Email.** Otherwise the customer never sees the code.</Tip>
+Removes points from the customer's balance. Available on Shopify stores.
 
----
+| Setting | What it does |
+|---|---|
+| **Points to debit** | The number of points to remove |
+| **Debited reason** | *"Store why this debit happened for support and audit logs."* |
 
-## How action nodes execute
+If the customer doesn't have enough points, the step fails with *"Insufficient point balance"* and nothing is deducted. The customer doesn't continue to the next steps, and their subscriber status becomes **Failed**. You can see the reason in [Analytics](/workflows/analytics).
 
-- Action nodes run synchronously in workflow order.
-- Failures (e.g., a Send Email that bounces) are logged and the workflow continues to the next node unless you've set otherwise.
-- All actions appear in the customer's activity feed.
+<Tip>To avoid failed runs, put an **If / Else** with **Points Balance** *is at least* your debit amount before the Points Debit node (available on loyalty, VIP and booster triggers).</Tip>
 
-### Decision guidance
+## Examples
 
-- **Send Email + Issue Coupon** is the most common pairing — a personalised email with a unique code.
-- **Credit Points + Send Email** for milestone celebrations (*“You just hit 5 orders — here are 500 bonus points”*).
-- **Debit Points sparingly.** Common use case: clawing back fraud-detected points outside Yuko's auto-refund flow.
+**1. Welcome bonus.** Trigger **Joined Loyalty Program** → Points Credit (Fixed, 100, reason *Welcome bonus*) → Send Email.
 
-### Limitations
+**2. Downgrade win-back.** Trigger **VIP Tier Downgrade** → Coupon (Percentage, 15, valid 14 days) → Send Email with the Coupon block.
 
-- One action per node — stack nodes if you need multiple actions.
-- Send Email uses templates configured in **Email Notifications**; raw HTML isn't supported.
-- Issue Coupon creates a Shopify discount code subject to Shopify's combinability rules.
+**3. Extra points on delivered orders.** Trigger **Order Delivered** → Points Credit (Incremental, 1 point for every 20 spent, hold for 14 days).
 
 ## Best practices
 
-<Tip>**Test each action node** by sending a test customer through the workflow.</Tip>
-<Tip>**Don't put more than 3 actions in a row** without a wait or condition — it overwhelms the customer.</Tip>
+<Tip>**Always fill in the reason.** Support teams rely on **Credited reason** and **Debited reason** to explain balance changes.</Tip>
+<Tip>**Use the on-hold period for order-based credits.** It gives returns time to happen before the points can be spent.</Tip>
+<Tip>**Give coupons a validity.** An expiry date creates urgency and keeps old codes from piling up.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Can I send SMS from a workflow?">
-    Not natively in v1. Use a [Partner Node](/workflows/partner-nodes) (KwikEngage) or hand off to your SMS tool via integration.
+  <Accordion title="Can a Coupon node give a free product?">
+    No. The Coupon node supports Percentage, Amount and Free Shipping discounts. Free-product rewards are available as a [way to redeem](/loyalty/ways-to-redeem/free-product).
   </Accordion>
-  <Accordion title="Can workflows update Shopify customers (e.g., add a tag)?">
-    Not directly. Use the **Loyalty Settings → Shopify customer tagging** feature for tier tags, or hand off to Shopify Flow.
+  <Accordion title="Does Points Credit apply VIP tier multipliers?">
+    The node credits exactly the points you set (or the incremental calculation).
   </Accordion>
-  <Accordion title="What happens if a customer gets two Issue Coupon nodes in a row?">
-    Two coupons are issued. Email both or revoke one.
+  <Accordion title="Will a credit in my workflow re-trigger the same workflow?">
+    A credit fires **Earn Points**. If your workflow's trigger is also Earn Points, use **No re-entry** or a **Has Not in This Flow** profile filter so customers don't loop through it again.
   </Accordion>
 </AccordionGroup>
 

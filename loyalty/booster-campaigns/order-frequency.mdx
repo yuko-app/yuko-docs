@@ -1,136 +1,120 @@
 ---
-title: Order Frequency Booster
-description: Reward customers for placing a target number of orders inside a window. Drives repeat-purchase frequency.
+title: Order Booster
+description: Reward customers as they reach order-count milestones while the campaign runs. Drives repeat-purchase frequency.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Booster Campaigns → New booster → **Order Frequency**
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Booster Campaigns → Create campaign → **Order Booster**
 </Note>
 
 ## Overview
 
-Reward customers for placing a target number of orders within a window — e.g., **3 orders in 30 days = 500 bonus points**. The campaign supports multiple milestones in a single campaign (3 orders → small bonus, 5 orders → bigger bonus), so customers can keep climbing.
+An Order Booster counts the orders a customer places while the campaign runs and rewards them at each milestone, for example **3 orders → 500 bonus points, 5 orders → free shipping**. Set up to 20 milestones (each up to 100 orders), and give each milestone one or more rewards of any type.
+
+<Info>Order Booster was previously called *Order Frequency*.</Info>
 
 ## Why you need it?
 
-Average order value plus frequency equals lifetime value. Multipliers and spending goals push AOV; frequency closes the loop.
+Lifetime value is basket size times frequency. Multipliers and spending goals push basket size; an Order Booster closes the loop on frequency.
 
-Frequency campaigns also create a habit. A customer who places three orders in 30 days has built a buying rhythm with your brand — one they're far more likely to keep after the campaign ends.
+It also builds habit. A customer who places three orders in a month has a buying rhythm with your brand, and is far more likely to keep it after the campaign ends.
 
 ## When to use it?
 
 - You want to drive purchase frequency over a defined window.
-- You sell repeat-purchase categories (consumables, fashion drops, subscription-adjacent goods).
-- You want to give stores without subscriptions a virtual subscription nudge.
-- You're running a holiday campaign and want to capture multi-order gift-shopping baskets.
-- You want to celebrate frequency milestones (e.g., the customer's 5th order ever).
+- You sell repeat-purchase categories (consumables, fashion drops, replenishment).
+- You want a "virtual subscription" nudge without a subscription product.
+- You're running a holiday campaign and want to capture multi-order gift shopping.
+
+## Before you start
+
+<Check>The **Place an order** Way to Earn is enabled. If it's off, this type is greyed out in the **Create Booster Campaign** picker.</Check>
 
 ## How to configure it?
 
 <Steps>
   <Step title="Open Booster Campaigns">
-    Go to **Apps → Yuko Loyalty → Loyalty → Booster Campaigns** and click **New booster**.
+    Go to **Apps → Yuko Loyalty → Loyalty → Programs**. In the **Booster Campaigns** section, click **Create campaign** and select **Order Booster**.
   </Step>
-  <Step title="Pick Order Frequency">
-    Select the **Order Frequency** booster type.
+  <Step title="Fill in Campaign Details">
+    Enter a **Campaign Name** (internal) and an optional **Description**.
   </Step>
-  <Step title="Configure milestones">
-    Add one or more milestones. Each milestone has:
-    - **Order count** — e.g., 3, 5, 7 orders.
-    - **Reward** — the points awarded when the customer hits this milestone.
-
-    Multiple milestones in a single campaign let customers keep climbing without you having to chain campaigns.
+  <Step title="Add milestones">
+    Under **Milestones**, enter the **Number of Orders** for **Milestone 1** (the target number of orders to unlock it, 1–100). Click **Add milestone** for more, up to 20. Each milestone must be higher than the one before.
   </Step>
-  <Step title="Set the time window">
-    The window during which the orders must be placed (e.g., 30 days, 60 days, a full quarter).
+  <Step title="Add rewards to each milestone">
+    In each milestone, click **Add reward** and choose **Amount discount**, **% off discount**, **Free shipping**, **Free product**, **Bonus points** or **Store credit** (Shopify only). Every milestone needs at least one reward.
   </Step>
-  <Step title="Set minimum order amount (optional)">
-    Require each qualifying order to be above a floor (e.g., $25) so the campaign isn't gamed with tiny orders.
+  <Step title="Set a minimum order amount (optional)">
+    Under **Order Booster Goal**, check **Set a minimum order amount** and enter the **Minimum Order Amount**. Only orders above this amount count toward each milestone, so the campaign can't be gamed with tiny orders.
   </Step>
-  <Step title="Set schedule, targeting, product scope">
-    Same options as other boosters — one-time / recurring / always-on, with optional tier / tag / spend filters and product scope.
+  <Step title="Set targeting and limits (optional)">
+    Add **Targeting Rules**, including **Products** or **Collections** rules. Set **Max participants** and **Max completions per customer** if needed.
   </Step>
-  <Step title="Save and activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Set the schedule">
+    The schedule is the window in which orders count: **One-time**, **Recurring** (by weeks or months, with progress tracked per cycle) or **Evergreen (always on)**.
+  </Step>
+  <Step title="Review display, stacking, publishing and icon">
+    Two widget labels apply: **Call-to-action above progress bar** (default *"Place [remaining_orders] more order(s) to unlock [next_reward]"*) and **Status text under progress bar** (default *"Order [current_orders] of [total_orders]"*). Other tokens: `[title]`, `[reward]`, `[points_label]`, `[milestones_done]`, `[milestones_total]`.
+  </Step>
+  <Step title="Save">
+    **Status** is enabled by default. Click **Save**.
   </Step>
 </Steps>
 
+## How it works
+
+1. Each qualifying order a targeted customer places while the campaign is active adds 1 to their order count.
+2. When the count reaches a milestone, that milestone's rewards are issued.
+3. When every milestone is reached, the customer has completed the campaign. If **Max completions per customer** allows it, their next order starts a fresh run.
+4. On a recurring schedule, progress is tracked separately for each cycle.
+
 ## Use cases / Examples
 
-### One-time uses
+**1. Loyalty sprint.** One-time, 30 days: 3 orders → 500 bonus points. Run it mid-quarter when frequency dips.
 
-**1. Loyalty sprint**
+**2. Virtual subscription.** One-time, 60 days: 2 orders → free shipping, 4 orders → 1,000 bonus points. Creates a replenishment cadence without a recurring charge.
 
-3 orders in 30 days = 500 bonus points. Use it mid-quarter when frequency dips. Customers who would've placed one order this month place two; some place three to lock in the bonus.
+**3. Holiday cadence push.** One-time, Nov 1 – Dec 31: 3 orders → a free product. Captures gift shopping across several occasions.
 
-**2. Virtual subscription**
-
-For stores without a real subscription product: 4 orders in 60 days = 1,000 points. Creates the consumable-product cadence without committing customers to a recurring charge. The boost effectively prices the convenience of subscriptions into points instead of a discount.
-
-**3. Holiday cadence push**
-
-3 orders Nov 1 – Dec 31 = chunky bonus. Captures the multi-occasion gift-shopping cadence — secret Santa, family gifts, last-minute extras — inside one campaign.
-
-### Recurring uses
-
-**4. Quarterly streak rewards**
-
-5 orders per quarter, recurring. The customer who buys five quarters in a row builds a relationship that's hard to break. Self-qualifying — your top buyers opt in by behaviour.
-
-**5. Monthly buyer milestone**
-
-2 orders per calendar month, recurring. Lower bar than the quarterly version, broader appeal. Good fit for low-AOV stores where customers can hit the target without strain.
-
-### Always-on uses
-
-**6. 5-order club**
-
-Always-on: every customer reaching their 5th lifetime order earns a bonus. No campaign window — it's a permanent milestone. Pairs beautifully with email ("You're a 5-order club member!") and signals to long-tail customers that you notice consistency.
+**4. Quarterly ladder.** Recurring, **Months**, **Every quarter**: 2 orders → 200 points, 4 orders → $15 off, in each active month.
 
 ## How to promote it
 
-Frequency campaigns sell themselves the moment a customer sees their progress ladder. Promotion is mostly about surfacing that ladder.
+Frequency campaigns sell themselves once the customer sees their progress.
 
-### Storefront — Loyalty Nudges surfaces the ladder
+- **Storefront:** with **Show in loyalty widget** checked, the **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget, Floating Launcher and customer account page show the customer's order count and next reward.
+- **Email:** state the ladder explicitly in the launch email (*"3 orders = 500 points. 5 orders = free shipping."*). With **[Klaviyo](/integrations/klaviyo)**, follow up after each order.
+- **WhatsApp:** if you've connected a WhatsApp provider, nudge customers who are one order away as the window closes.
 
-The **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget surfaces the milestone ladder on every storefront page, with the customer's current order count and next milestone visible at a glance through the pinned strip + drawer. The Customer Account hub also shows it for logged-in customers.
+## FAQs
 
-Pair with a homepage banner during the campaign window for non-logged-in visitors who don't have a milestone count yet.
-
-### Email — launch, milestone hit, next milestone
-
-Pair the campaign with email through your ESP. **Klaviyo** is the strongest pairing because Yuko pushes *Earn Points* events for every qualifying order (see [Klaviyo integration](/integrations/klaviyo)) — build a Klaviyo flow that fires on each order with branching logic for “still climbing”, “milestone reached”, and “campaign complete”.
-
-- **Launch email:** state the milestone ladder explicitly. *“3 orders = 500 points. 5 orders = 1,500 points. 7 orders = a free product.”*
-- **Milestone-hit email (Klaviyo flow):** *“You hit 3 orders! 500 points credited. Two more orders unlocks 1,500.”*. Reference the event's `yuko_points_earned` and the customer's profile properties.
-- **Last-stretch email:** when the customer is one order away from the next milestone and the window is closing.
-
-### WhatsApp — milestone-edge urgency
-
-If you've connected a WhatsApp provider, reserve WhatsApp for the *“one order away from the bonus”* moment. Highly personal, highly converting. Use the customer's first name and quote the exact gap.
-
-Example: *“Hey [first_name] — 1 more order before Sunday and you've earned 1,500 points. Shop here: [link]”*
-
-### Reminder cadence
-
-- **Day 0** — enable Loyalty Nudges + launch email with the ladder
-- **After every qualifying order** — Klaviyo flow with current status
-- **Customer 1 order away from milestone, window closing** — WhatsApp + email
+<AccordionGroup>
+  <Accordion title="Do orders placed before the campaign count?">
+    No. Only orders placed while the campaign is active count.
+  </Accordion>
+  <Accordion title="Where do I set the time window?">
+    Use the **Schedule**. A one-time schedule sets a fixed window; a recurring schedule repeats it.
+  </Accordion>
+  <Accordion title="Can one milestone have several rewards?">
+    Yes. Click **Add reward** again inside the milestone.
+  </Accordion>
+</AccordionGroup>
 
 ## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
-    The pinned-strip widget that surfaces the milestone ladder on every page.
-  </Card>
-  <Card title="Streak Booster" icon="fire" href="/loyalty/booster-campaigns/streak">
-    Reward consistent activity across consecutive periods.
+  <Card title="Booster Campaigns overview" icon="rocket" href="/loyalty/booster-campaigns/overview">
+    Schedule, targeting, stacking and display settings shared by all boosters.
   </Card>
   <Card title="Spending Goal Booster" icon="bullseye" href="/loyalty/booster-campaigns/spending-goal">
-    Reward basket size instead of frequency.
+    Reward spend milestones instead of order counts.
   </Card>
-  <Card title="Customers" icon="users" href="/loyalty/customers">
-    Watch milestone hits land in real customer activity feeds.
+  <Card title="Streak Booster" icon="fire" href="/loyalty/booster-campaigns/streak">
+    Reward consistency across consecutive periods.
+  </Card>
+  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
+    Show order progress on every storefront page.
   </Card>
 </CardGroup>
 

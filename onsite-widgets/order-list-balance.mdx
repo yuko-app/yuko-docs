@@ -1,34 +1,34 @@
 ---
-title: Order List Point Balance Widget
-description: Show the customer's current points balance on their Shopify order history page.
+title: Order List Balance Widget
+description: Show the customer's points balance on the Orders page in Shopify customer accounts.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Order List Balance
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Order List: Point Balance
 </Note>
 
 ## Introduction
 
-Display the customer's current points balance at the top of their Shopify order history page — a visible reminder of the program every time they check past orders.
+The **Order List: Point Balance** widget shows the customer's points balance at the top of the Orders page in their customer account. It's the **Yuko Order index points display** customer account UI extension block, not a theme app block.
 
 ## What problem this solves
 
-Returning customers visit their order history more than they visit your loyalty hub. Surfacing the balance here keeps the program top-of-mind without forcing a click.
+Customers check their orders often. Showing their balance there reminds them they have points to spend on the next order.
 
 ## Where it appears
 
-- The customer's order history page (`/account` or new customer accounts).
+- The Orders page in Shopify customer accounts (`customer-account.order-index.block.render`), at the top of the page by default.
 
 ## When to use
 
-- You want a passive reminder of the program in the customer's account flow.
-- You want returning customers to see their balance without seeking it out.
+- You use Shopify's customer accounts.
+- You want a lightweight balance reminder without a full loyalty page.
 
 ## Overview
 
-- Single-line balance display.
-- Customisable message.
-- Works on legacy and new customer account pages.
+- Two text fields: a title and a description.
+- No Styles tab; the block uses Shopify customer accounts styling.
+- Shows only for customers with a points balance.
 
 ## Before you start
 
@@ -36,63 +36,72 @@ import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
 
 <BeforeYouStart />
 
+<Check>Your store uses Shopify customer accounts (**Settings → Customer accounts**).</Check>
+
 ## Setup guide
 
-### 1. Configure in Yuko
+### 1. Configure the widget in Yuko
 
 <Steps>
   <Step title="Open the widget settings">
-    Go to **Apps → Yuko Loyalty → Loyalty → Widgets → Order List Balance**.
+    Go to **Loyalty → Widgets**, find **Order List: Point Balance** under **Post-Purchase**, and click **Customize**.
   </Step>
-  <Step title="Configure the message">
-    Default: *“Your balance: `[point_balance]` `[points_label]`”*.
+  <Step title="Edit the text">
+    - **Title**: default `You have [point_balance] [points_label]`
+    - **Description**: default `Redeem your [points_label] for rewards & discounts on your next order`
   </Step>
-  <Step title="Activate">
-    Toggle the widget **Active**.
+  <Step title="Save and enable">
+    Click **Save**. Back on **Loyalty → Widgets**, switch the widget's toggle on.
   </Step>
 </Steps>
 
-### 2. Add to Shopify
+### 2. Add the block in the customer accounts editor
 
-import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
+import SetupCustomerAccount from '/snippets/setup-customer-account-extension.mdx';
 
-<SetupThemeBlock />
+<SetupCustomerAccount />
 
-When choosing the template, pick the **Customer account / order history** page.
+On the **Orders** page, add the **Yuko Order index points display** block. See [Customer Account Extension](/installation-and-setup/customer-account-extension) for more detail.
 
 ### 3. Verify
 
-Log in as a real customer and confirm the balance is shown above the order list.
+Log in as a customer with points and open the Orders page in their account.
 
 ## Available placeholders
+
+| Placeholder | Replaced with |
+|---|---|
+| `[point_balance]` | Customer's points balance (Title only). |
+| `[points_label]` | Your loyalty points label. |
+| `[points_cash_value]` | Cash value of the customer's points. |
+
+## How it works
+
+1. A logged-in customer opens the Orders page.
+2. The block fetches their balance from Yuko.
+3. If they have a balance, the block shows your title and description. Customers with no points don't see it.
+
+### Limitations
+
+- Works only with Shopify customer accounts; it isn't a theme block.
+- The block's look follows Shopify's customer accounts styling.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why doesn't a customer see the block?">
+    The block is hidden when the customer's balance is zero. Also check that the widget toggle is on and the block is added to the **Orders** page.
+  </Accordion>
+  <Accordion title="I want a full loyalty page in the account">
+    Use the [Loyalty Rewards: Customer Account Page](/onsite-widgets/customer-account-page) widget.
+  </Accordion>
+</AccordionGroup>
+
+## Full placeholder reference
 
 import WidgetPlaceholders from '/snippets/widget-placeholders.mdx';
 
 <WidgetPlaceholders />
-
-## How it works
-
-- Reads the logged-in customer's points balance.
-- Renders the message with the balance substituted.
-- Updates on page reload (not realtime).
-
-### Decision guidance
-
-- **Pair with the Customer Account Page** for a fully integrated account experience.
-- **Use this on legacy customer accounts** if you can't use the Customer Account extension.
-
-### Limitations
-
-- Only renders for logged-in customers.
-- Hides itself if the customer has zero balance and no activity.
-
-## Examples
-
-- *“Your balance: 480 Stars”* shown above the customer's order history.
-
-## Best practices
-
-<Tip>**Keep it minimal.** A balance line is enough; don't try to fit the full hub here.</Tip>
 
 ## Related
 

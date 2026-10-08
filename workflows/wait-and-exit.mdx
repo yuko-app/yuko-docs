@@ -1,71 +1,81 @@
 ---
-title: Wait & Exit Nodes
-description: Pause workflow execution and end a workflow cleanly.
+title: Time Delay & Exit
+description: Pause a workflow for minutes, hours or days, optionally until a time of day or chosen weekdays, and understand how every path ends at an Exit node.
 ---
 
 <Note>
-**Where to find this:** Inside the workflow editor, click **+** between any two nodes.
+**Where to find this:** Inside any workflow, click the **+** on a connecting line → **Add Node** → **Timing** → **Time Delay**
 </Note>
 
-## Wait Node
+## Time Delay
 
-The Wait node pauses workflow execution for a configured duration before continuing to the next node.
+A **Time Delay** node holds each customer for a set time before they move on to the next step. In the picker it's described as: *"The workflow will wait for this duration before moving to the next step."*
 
-### When to use
+### Settings
 
-- Between sequential touchpoints (e.g., Email 1 → Wait 3 days → Email 2).
-- After issuing a coupon to give the customer time to redeem.
-- Before a follow-up condition check (e.g., wait 7 days, then check if the customer has placed an order).
+| Setting | What it does |
+|---|---|
+| **Duration** | How long to wait. Must be at least 1. |
+| **Unit** | **Minute(s)**, **Hour(s)** or **Day(s)** |
+| **Set a delay until a specific time of day** | After the duration, wait until a set **Time** in a chosen **Time Zone**. Only available with **Day(s)**. |
+| **Set a delay until chosen day(s) of the week** | After the duration, wait until one of the weekdays you select. Pick at least one day. Only available with **Day(s)**. |
 
-### Configuration
+### Setup
 
-- **Duration** — minutes, hours, days or weeks.
-- **Delay until** (optional) — a specific date or time of day.
-
-### Example
-
-*Trigger → Send first email → Wait 3 days → Condition: Has the customer ordered? → If no, send follow-up.*
-
-<Tip>**Use day-of-the-week timing** for promotional emails. Sending Wait until *Friday 9am* reaches more inboxes than a random midnight send.</Tip>
-
-### Limitations
-
-- Wait durations are honored within roughly ±5 minutes of the configured time.
-- Workflows paused for more than 90 days are automatically expired (configurable).
-
----
-
-## Exit Node
-
-The Exit node ends a workflow cleanly. Every branch of the workflow must terminate in an Exit node.
+<Steps>
+  <Step title="Add the node">
+    Click the **+** where you want the pause, then choose **Time Delay**.
+  </Step>
+  <Step title="Set the duration">
+    Enter a **Duration** and pick the **Unit**, for example *3* **Day(s)**.
+  </Step>
+  <Step title="Optional: pick a send window">
+    With **Day(s)** selected, turn on **Set a delay until a specific time of day** and choose the **Time** and **Time Zone**. You can also turn on **Set a delay until chosen day(s) of the week** and select the days.
+  </Step>
+  <Step title="Save">
+    Save the panel. The node on the canvas shows the delay.
+  </Step>
+</Steps>
 
 ### When to use
 
-- At the end of every branch of every workflow.
-- To explicitly end a workflow when a condition fails (no further action needed).
+- **Space out messages:** Send Email → Time Delay 3 Day(s) → WhatsApp.
+- **Give a coupon time to work:** Coupon → Send Email → Time Delay 5 Day(s) → reminder email.
+- **Send at a friendly hour:** Time Delay 1 Day(s) until 10:00 in your store's time zone.
 
-### Configuration
+## Exit
 
-- **Exit reason** (optional) — a label that appears in analytics (e.g., *“Reached final email”* or *“Condition failed”*).
+Every path in a workflow ends at an **Exit** node: *"The automation will stop here."* Yuko adds Exit nodes for you, including one at the end of each **If / Else** branch. There's nothing to configure.
 
-### Why explicit exits matter
+When a customer reaches Exit, their subscriber status in [Analytics](/workflows/analytics) becomes **Completed**.
 
-Exits make the workflow's outcomes auditable. *“The customer left the workflow because the wait timed out”* is much more informative than *“The workflow ended”*.
+## How it works
+
+1. A customer reaches the Time Delay node and their status stays **In Progress**.
+2. Yuko waits for the duration, then, if set, until the next matching time of day or weekday.
+3. The customer moves to the next node.
+4. At the end of the path they reach Exit and are marked **Completed**.
 
 ## Best practices
 
-<Tip>**Don't skip Exit nodes.** Workflows without exits leave the customer in limbo — they can't re-enter and you can't analyse the drop-off.</Tip>
-<Tip>**Use Wait + Condition** for time-sensitive logic (*“did they order in the last week?”*).</Tip>
-<Tip>**Label your exits.** *“Exited because had active membership”* is gold for analytics.</Tip>
+<Tip>**Avoid back-to-back messages.** Put a Time Delay between two sends on different channels, so customers don't get an email and a WhatsApp in the same minute.</Tip>
+<Tip>**Use a time of day for multi-day delays.** "1 Day(s) until 10:00" lands in inboxes in the morning instead of whenever the trigger happened.</Tip>
+<Tip>**Remember re-entry.** If re-entry is allowed, a customer can be in the workflow more than once at the same time, each waiting separately.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="What happens if a workflow has multiple exits?">
-    The workflow ends as soon as any branch hits an Exit node.
+  <Accordion title="Can I wait in weeks or until a specific date?">
+    No. Use **Day(s)** (for example 14 days for two weeks). There's no option to wait until a calendar date.
   </Accordion>
-  <Accordion title="Can a customer re-enter a workflow after exiting?">
-    By default no. Configurable per workflow.
+  <Accordion title="Why can't I turn on the time-of-day option?">
+    **Set a delay until a specific time of day** and the weekday option only work when the unit is **Day(s)**.
+  </Accordion>
+  <Accordion title="Can I add an exit reason?">
+    No. Exit has no settings. It simply ends the path.
+  </Accordion>
+  <Accordion title="Can I check a condition after the wait?">
+    Yes. Add an **If / Else** node after the Time Delay. See [Triggers & Conditions](/workflows/triggers-and-conditions).
   </Accordion>
 </AccordionGroup>
 

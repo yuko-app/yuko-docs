@@ -1,0 +1,119 @@
+---
+title: Twitter Share
+description: Reward customers with points for sharing a link to your store on Twitter (X).
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn → Add another way → **Twitter Share**
+</Note>
+
+## Introduction
+
+Award customers a one-time points bonus when they share a link to your store or a product on Twitter (X) from your loyalty widgets. You can pre-fill the post with your own message.
+
+## What problem this solves
+
+Word of mouth is a high-converting acquisition channel and hard to create on demand. A points reward plus a ready-made message makes sharing quick.
+
+## When to use
+
+- Your audience is active on X.
+- You have a page worth sharing, such as a launch or a bestseller.
+- You want to suggest the wording customers post.
+
+## Overview
+
+- One-time reward per customer.
+- Configured with a **Share URL** and an optional **Share Message**.
+- Points are credited when the customer clicks **Share**.
+- Optional points expiry and VIP tier multipliers.
+- Available on select plans.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+<Steps>
+  <Step title="Add the way to earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to earn**, click **Add another way** and pick **Twitter Share**.
+  </Step>
+  <Step title="Fill in Basic Details">
+    - **Campaign Name** — shown to customers on the storefront. You can use `[earn_value]` and `[points_label]`, for example `Earn [earn_value] [points_label]`.
+    - **Description** — short copy shown with the way to earn.
+  </Step>
+  <Step title="Set the points">
+    Enter **Points to earn** (a whole number, at least 1).
+  </Step>
+  <Step title="Add the Share URL and message">
+    - **Share URL** — the complete URL customers will share, for example `https://yourwebsite.com/product`. Required.
+    - **Share Message** — optional text included with the post, for example *Check out this amazing product!*
+  </Step>
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Review the side panel">
+    - **Status** — on by default.
+    - **Icon** — **Default**, or **Custom** to upload your own (JPG, PNG, GIF or WEBP, under 1 MB).
+    - **Tiers** — turn on to apply VIP tier multipliers to this way to earn.
+  </Step>
+  <Step title="Save">
+    Click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+1. The way to earn appears in the **Ways to earn** list of your loyalty widgets (for example the [floating launcher](/onsite-widgets/floating-launcher), [rewards landing page](/onsite-widgets/rewards-landing-page) and [customer account page](/onsite-widgets/customer-account-page)) with a **Share** button.
+2. A logged-in customer clicks **Share**. A new X post opens with your Share URL and Share Message filled in.
+3. Yuko credits the points as soon as the customer clicks. Social networks don't let apps confirm the action, so earning is based on the click.
+4. The way to earn then shows as completed for that customer.
+
+With **Tiers** on and [VIP tiers](/vip-tiers/overview) enabled, customers in a tier earn the tier's multiplier for this way to earn, plus any bonus points the tier sets for it. The extra points appear as a separate tier bonus entry.
+
+### Decision guidance
+
+- **Write a message customers would actually post.** Short and specific beats salesy.
+- **Keep the reward modest.** It's a quick one-time action.
+
+### Limitations
+
+- Earning is based on the click; X doesn't let apps confirm that the post was published.
+- One reward per customer.
+- Customers must be logged in to earn.
+- You can have one Twitter Share way to earn.
+
+## Examples
+
+- 15 points for sharing a launch page, with the message *Just found my new favourite sneakers*.
+
+## Best practices
+
+<Tip>**Keep the Share Message short.** Leave room for the link and for customers to add their own words.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can customers edit the message before posting?">
+    Yes. The message is only pre-filled; customers can change it before posting.
+  </Accordion>
+  <Accordion title="Can customers earn multiple times?">
+    No. Twitter Share is a one-time reward per customer.
+  </Accordion>
+  <Accordion title="How is the share verified?">
+    It isn't. Yuko credits points when the customer clicks **Share**.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

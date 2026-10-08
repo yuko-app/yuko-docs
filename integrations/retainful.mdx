@@ -27,12 +27,28 @@ The Retainful connector flows Yuko's customer and loyalty data into Retainful so
     Go to **Apps → Yuko Loyalty → Integrations → Retainful**.
   </Step>
   <Step title="Connect with API key">
-    Paste your Retainful API key.
+    Paste your Retainful API key into **API Key** and click **Connect Integration**.
   </Step>
-  <Step title="Save">
-    Customer attributes flow into Retainful from there.
+  <Step title="Pick events to sync">
+    Select the events to send to Retainful and click **Save Events**. Each event also updates the contact's `yuko_*` loyalty properties as Retainful custom properties.
+  </Step>
+  <Step title="Test (optional)">
+    Click **Send Test Events** to send sample events and check them in Retainful.
   </Step>
 </Steps>
+
+## Points expiring soon properties
+
+Alongside the balance, tier and referral properties, Yuko sends four properties that help you build "use your points before they expire" campaigns:
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_points_expiring_in_30_days` | Integer | Points that expire within the next 30 days (includes the 7-day amount). `0` if none. |
+| `yuko_points_expiring_in_7_days` | Integer | Points that expire within the next 7 days. `0` if none. |
+| `yuko_points_expiring_in_30_days_as_cash_balance` | Number | The 30-day expiring points expressed in store currency. |
+| `yuko_points_expiring_in_7_days_as_cash_balance` | Number | The 7-day expiring points expressed in store currency. |
+
+The property names are the same as in the [Klaviyo](/integrations/klaviyo#loyalty-profile-properties) integration, which lists the full property set.
 
 ## Best practices
 

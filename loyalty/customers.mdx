@@ -1,6 +1,6 @@
 ---
 title: Customers
-description: View customer points balances, activity, rewards, recent orders and adjust points manually.
+description: Find customers, see their points, tier and activity, adjust balances, redeem rewards for them, assign tiers, exclude them from the program and import points.
 ---
 
 <Note>
@@ -9,27 +9,36 @@ description: View customer points balances, activity, rewards, recent orders and
 
 ## Introduction
 
-The Customers page is your operational view of the loyalty program. Every Shopify customer who earns or redeems anything appears here, with a full activity log, current balance, active rewards and recent orders.
+The **Customers** page is your day-to-day view of the loyalty program. It lists your store's customers with their loyalty status, points and tier, and opens a detail page for each one with their activity, rewards, orders and the actions you need for support.
 
-<Tip>**Customers is a top-level nav item** — you'll find it in the Yuko sidebar alongside Loyalty, VIP, Referral, and Membership. It's documented under "Loyalty Program" here because customers are the operational counterpart to the loyalty rules, but you don't need to be inside Loyalty to reach it.</Tip>
+<Tip>**Customers is a top-level item** in the Yuko sidebar, next to Loyalty, VIP, Referral and Membership. You don't need to be inside Loyalty to reach it.</Tip>
+
+You can also see a customer's loyalty details and adjust their points without leaving Shopify, from the [Yuko Loyalty block](#in-shopify-admin) on the Shopify customer page.
 
 ## What problem this solves
 
-When a customer asks *“where are my points?”* you need to answer in 30 seconds. The Customers view gives you the full audit trail — and the ability to manually credit or debit points to fix issues without touching the database.
+When a customer asks *"where are my points?"* you need to answer quickly. The Customers page gives you the full history, and lets you fix balances, issue a reward or change a tier without touching anything else.
 
 ## When to use
 
-- Resolving customer support tickets about missing or incorrect points.
-- Migrating customers in from a previous loyalty program.
-- Debugging an earning rule.
-- Manually rewarding a customer for a one-off action.
+- Answering support questions about missing or incorrect points.
+- Giving a goodwill credit or removing points awarded in error.
+- Redeeming a reward on a customer's behalf.
+- Placing a customer in a VIP tier manually.
+- Removing a customer (for example a staff or test account) from the program.
+- Moving point balances in from a previous loyalty app.
 
 ## Overview
 
-- Searchable list of every loyalty customer.
-- Customer detail with balance, tier, transactions, activity, recent orders and active rewards.
-- Manual **credit / debit points** action with a required note.
-- Bulk **import customers** via CSV.
+- Searchable, sortable list with **Status**, **VIP Tier**, **Birthday**, **Membership**, point totals and **Referral Count**.
+- Filters for status, points balance, total earned, total redeemed, VIP tier, membership and referral count.
+- Customer detail page with **Activities**, **Active Rewards**, **Recent Orders**, a loyalty summary, VIP tier and referrals.
+- **Adjust balance** to credit or debit points, with optional expiry on credits.
+- **Redeem points** for a reward on the customer's behalf.
+- **Assign tier** to override a customer's VIP tier.
+- **Exclude from program**, optionally resetting the customer's points, discounts and tags.
+- **Import customer points** from a CSV.
+- A **Yuko Loyalty** block and an **Adjust balance** action on the Shopify admin customer page.
 
 ## Before you start
 
@@ -37,99 +46,189 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <BeforeYouStart />
 
-## Setup guide
+## The customer list
 
-### Find a customer
+The list shows these columns: **Name** (with email), **Phone**, **Status**, **VIP Tier**, **Birthday**, **Membership**, **Point Balance**, **Point Earned**, **Point Redeemed** and **Referral Count**. VIP Tier, Membership and Referral Count appear only when those programs are enabled.
+
+**Status** is one of:
+
+| Status | Meaning |
+|---|---|
+| **Member** | A customer who has taken part in the program, for example by earning points, getting a reward or making a referral |
+| **Guest** | A customer synced from your store who hasn't taken part in the program yet |
+| **Excluded** | Left out of the loyalty program, manually or by an excluded customer tag |
+
+### Search, filter and sort
 
 <Steps>
-  <Step title="Open the Customers list">
-    Login to your Shopify admin and go to **Apps → Yuko Loyalty → Customers**.
+  <Step title="Open the list">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Customers**.
   </Step>
   <Step title="Search">
-    Search by email, name or Shopify customer ID. Use the filters to narrow by tier, points balance or last activity.
+    Type in the search box to search across customers, for example by name or email.
   </Step>
-  <Step title="Open the profile">
-    Click a row to open the customer detail panel.
+  <Step title="Filter">
+    Add any of these filters:
+    - **Status** — All, Member, Guest or Excluded.
+    - **Points Balance**, **Total Earned**, **Total Redeemed** — pick an operator (**Greater than or equal (≥)**, **Less than or equal (≤)** or **Equal (=)**) and enter a value.
+    - **VIP Tier** and **Membership** — pick one or more.
+    - **Referral Count** — operator and value.
+  </Step>
+  <Step title="Sort">
+    Sort by **Date Joined**, **Points Balance**, **Total Earned**, **Total Redeemed**, **Email** or **Referral Count**. The list is sorted by highest points balance first by default.
+  </Step>
+  <Step title="Open a customer">
+    Click a row to open the customer's detail page.
   </Step>
 </Steps>
 
-### Adjust points manually
+## The customer detail page
+
+The detail page shows the customer's name and status badge, and three main sections:
+
+- **Activities** — every points credit, debit, redemption and tier change, newest first.
+- **Active Rewards** — reward codes the customer has and hasn't used yet.
+- **Recent Orders** — the customer's latest orders.
+
+The side panel shows:
+
+- **Overview** — the **Loyalty point balance**, with the **Adjust balance** and **Redeem points** buttons.
+- **Loyalty summary** — **Points earned**, **Points spent**, **Points expired** and **Total orders**.
+- **VIP tier** — the current tier (marked **Manual** if assigned by hand), **Tier multiplier**, **Next tier**, **Progress to next tier** and **Highest tier reached**, with **Assign tier** and **Clear override**.
+- **Membership** — the customer's paid membership, if the Membership program is enabled.
+- **Referrals** — referrals made, completed, who referred them, and their referral link.
+
+From the page header you can also open **View on Shopify** and **Exclude from program**.
+
+### Adjust balance
 
 <Steps>
-  <Step title="Open the customer profile">
-    Find and open the customer.
+  <Step title="Open Adjust balance">
+    On the customer's detail page, click **Adjust balance**.
   </Step>
-  <Step title="Choose Credit or Debit">
-    Click **Adjust points** and pick **Credit** to add or **Debit** to remove.
+  <Step title="Choose the Type">
+    Pick **Credit (Add points)** or **Debit (Remove points)**.
   </Step>
-  <Step title="Enter amount and note">
-    Enter the points value and a short reason. The note is required and shows up in the audit log.
+  <Step title="Enter Points and an Update reason">
+    Enter the number of **Points** (a whole number, at least 1) and an optional **Update reason** for your team's records.
+  </Step>
+  <Step title="Set Points Expiry (credits only, optional)">
+    For a credit, set **Is expire enabled** to **Yes**, then choose **Expire after** and an **Expire period** (Day, Week, Month or Year). Points expiry is available on select plans.
   </Step>
   <Step title="Confirm">
-    Click **Apply**. The change is reflected immediately and a notification email may be sent to the customer (configurable).
+    Click **Adjust points**. The balance updates straight away and the adjustment appears in **Activities**.
   </Step>
 </Steps>
 
-### Import customers
+A debit can't remove more points than the customer has. Excluded customers can't have their balance adjusted.
+
+### Redeem points
+
+Click **Redeem points**, choose a reward, enter the **Points to redeem**, and confirm. Yuko redeems the reward for the customer just as if they'd done it on the storefront, and the new code appears under **Active Rewards**.
+
+### Assign tier
+
+Click **Assign tier**, then:
+
+- **Tier** — the VIP tier to place the customer in.
+- **Expires at (optional)** — leave empty for no expiry. This sets both the manual override expiry and the tier retention expiry.
+- **Note (optional)** — the reason for the manual override.
+
+The tier shows a **Manual** badge and, if set, **Override expires**. Click **Clear override** to return the customer to their earned tier. See [VIP Tiers](/vip-tiers/overview).
+
+### Exclude from program
+
+Click **Exclude from program** in the page header. In the confirmation:
+
+- Leave **Reset all points, discounts, and tiers** unticked to exclude the customer without resetting their points, discounts or tags.
+- Tick it to also reset their points and activities, remove their active discounts and clear their loyalty tags.
+
+Click **Exclude**. The customer's status becomes **Excluded** and they stop earning. To bring them back, click **Add to program**.
+
+## Import customer points
+
+Use import to bring in balances from another loyalty app or a spreadsheet.
 
 <Steps>
-  <Step title="Open Import">
-    From the customer list, click **Import**.
+  <Step title="Open the import">
+    On the Customers page, click **Import customer points**.
+  </Step>
+  <Step title="Check the customer sync">
+    Yuko checks that your customers have finished syncing from your store. If not, click **Go to Integrations** and wait for the sync to complete.
   </Step>
   <Step title="Upload your CSV">
-    Map your CSV columns to Yuko fields: email, points balance, tier (optional).
+    Drag in or browse to a CSV file of **500 KB or less**. The file needs these headers: `platform_customer_id`, `customer_email`, `phone`, `points`.
   </Step>
-  <Step title="Validate">
-    Yuko shows a preview and reports any rows it can't match to a Shopify customer.
+  <Step title="Check the statistics">
+    Yuko validates the file and shows **Import Statistics**: **Total Rows**, **Invalid Rows** and **Skipped Rows**.
   </Step>
-  <Step title="Import">
-    Confirm the import. Each row creates a *manual credit* transaction so the audit log stays clean.
+  <Step title="Confirm">
+    Click **Continue to Import**, tick **I confirm and want to proceed with the import**, and click **Confirm & Import**. Customers who already exist are given the points. Customers who don't exist yet are added.
   </Step>
 </Steps>
 
-<Tip>**Migrating from another loyalty platform?** For a cleaner path than CSV import, consider [Backfill Points](/loyalty/backfill-points) — it computes points from actual Shopify order history using your Place-an-order rule, so day-one balances reflect what customers *would have* earned had Yuko been running the whole time.</Tip>
+<Tip>**Migrating from another loyalty app?** If you'd rather base starting balances on real Shopify order history, use [Backfill Points](/loyalty/backfill-points). It calculates points from past orders using your Place an order rule.</Tip>
+
+## In Shopify admin
+
+Yuko adds two extensions to the **customer page in your Shopify admin** (Shopify admin → Customers → a customer):
+
+- **Yuko Loyalty block** — shows **Points balance**, **Points earned**, **Points redeemed**, **VIP tier** (when VIP tiers are enabled), **Referrals** and **Referral link**. When collapsed, it summarises the balance and tier. It has two buttons: **Adjust points balance** and **View in Yuko**, which opens the customer in the Yuko app.
+- **Adjust balance action** — opens from the block's **Adjust points balance** button or from the customer page's **More actions** menu. Choose **Credit (Add points)** or **Debit (Remove points)**, enter **Points** and an optional **Update reason**, and click **Adjust points**.
+
+Use these when your team works from Shopify's customer page, for example while handling an order or support request.
+
+<Note>If you don't see the **Yuko Loyalty** block, check that it's added and visible in the app blocks on the Shopify customer page.</Note>
 
 ## How it works
 
-- The customer record is a 1:1 mirror of the Shopify customer.
-- Each adjustment creates a **points transaction** with the agent's name and reason note.
-- The activity feed merges points transactions, redemptions, tier changes and earned rewards into a single chronological view.
+- Customers sync from your Shopify store into Yuko. Every synced customer is listed, starting as a **Guest** until they take part in the program.
+- Every adjustment, redemption and import is written to the customer's points ledger and appears in **Activities**.
+- Adjustments are direct changes to the balance. They don't trigger Ways to Earn.
+- Excluded customers stay on the list with the **Excluded** status but don't earn.
 
 ### Decision guidance
 
-- **Always include a reason note** when adjusting points. Future you (and your support team) will thank you.
-- **Use Import for migrations**, not for ongoing operations. Use the API for any recurring sync.
-- **Prefer Backfill Points over CSV import** when you want spend-proportional starting balances.
+- **Always add an Update reason** when adjusting points. It helps your team understand the history later.
+- **Use import for one-off migrations.** For ongoing syncs from another system, use the [REST API](/integrations/rest-api).
+- **Use Backfill Points instead of import** when you want balances to reflect actual order history.
+- **Exclude rather than debit** staff or test accounts, so they stop earning altogether.
 
 ### Limitations
 
-- Adjustments don't trigger Way-to-Earn campaigns; they're a direct ledger operation.
-- Import is one-shot; updates re-import as additive credits, not in-place edits.
+- There's no customer export from this page.
+- Import files must be CSV, 500 KB or less, with the exact headers listed above.
+- Import adds points; it doesn't overwrite existing balances.
+- A debit can't take a balance below zero.
 
 ## Examples
 
-- A support agent compensates a customer with 200 points for a botched delivery, with note *"Goodwill credit — delivery delay 5/12"*.
-- A migrating store imports 12,000 customers from a previous loyalty app, mapping spend to a starting balance.
+- A support agent credits 200 points to a customer whose delivery was late, with the reason *Goodwill credit, delivery delay*.
+- A store migrating from another app imports a CSV of 12,000 customers and their old balances.
+- A merchant excludes staff accounts and ticks **Reset all points, discounts, and tiers** to clear what they'd earned.
 
 ## Best practices
 
-<Tip>**Treat the activity feed as legally meaningful.** It's the source of truth in disputes.</Tip>
-<Tip>**Limit who can adjust points.** Restrict the *Adjust points* action to admins via team roles.</Tip>
+<Tip>**Treat Activities as the source of truth.** It's the full record of what happened to a customer's points.</Tip>
+<Tip>**Prefer manual tier assignment with an expiry** for temporary upgrades, such as a VIP trial, so customers return to their earned tier automatically.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Why is a customer missing from this list?">
-    They appear after their first qualifying event (earn, redeem, manual adjust). Customers without any activity won't show.
+  <Accordion title="Why does a customer show as Guest?">
+    They're in your store's customer list but haven't taken part in the loyalty program yet. They become a **Member** once they earn points, get a reward, make a referral or join a membership.
   </Accordion>
   <Accordion title="Can I export the customer list?">
-    Yes — use the **Export** option from the list. It produces a CSV with current balance and tier.
+    Not from the Customers page. Use the [REST API](/integrations/rest-api) or an integration such as [Klaviyo](/integrations/klaviyo) to get loyalty data out of Yuko.
   </Accordion>
-  <Accordion title="What happens if I delete a customer in Shopify?">
-    Yuko marks them inactive and stops awarding points, but the historical record is preserved.
+  <Accordion title="Can I adjust points from Shopify's customer page?">
+    Yes. Use the **Adjust points balance** button on the **Yuko Loyalty** block, or the Adjust balance action in **More actions**.
+  </Accordion>
+  <Accordion title="What happens to customers in my CSV who aren't in Yuko yet?">
+    They're added as new customers and given the points.
   </Accordion>
   <Accordion title="What's the difference between Import and Backfill Points?">
-    Import takes a CSV of email + balance you supply. [Backfill Points](/loyalty/backfill-points) computes balances from Shopify order history using your active Place-an-order rule — no CSV needed. Backfill is usually cleaner for migrations.
+    Import takes balances you supply in a CSV. [Backfill Points](/loyalty/backfill-points) calculates points from past Shopify orders using your Place an order rule, with no CSV needed.
   </Accordion>
 </AccordionGroup>
 
@@ -137,10 +236,10 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <CardGroup cols={2}>
   <Card title="Backfill Points" icon="clock-rotate-left" href="/loyalty/backfill-points">
-    Retroactive points from past Shopify orders — the modern migration path.
+    Award points for orders placed before loyalty was enabled.
   </Card>
   <Card title="One-time Campaigns" icon="gift" href="/loyalty/one-time-campaigns">
-    Award points to a segment in one shot — great for onboarding gestures.
+    Award points to a group of customers in one go.
   </Card>
 </CardGroup>
 

@@ -1,73 +1,178 @@
 ---
 title: Triggers & Conditions
-description: Triggers start a workflow. Conditions branch it.
+description: Every event that can start a Yuko workflow, the trigger and profile filters that narrow who enters, re-entry rules, and If / Else branching.
 ---
 
 <Note>
-**Where to find this:** Inside any workflow, the first node (trigger) and any binary nodes you add (conditions).
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Workflows → (any workflow) → click the **Trigger** node
 </Note>
+
+## Introduction
+
+Every workflow starts with one **trigger**, the event that puts a customer into the workflow. On the trigger node you can also:
+
+- add **trigger filters** (conditions on the event's data) and **profile filters** (conditions on the customer),
+- choose a **re-entry** rule.
+
+Inside the workflow, an **If / Else** node splits customers into a **Yes** and a **No** path using the same kinds of conditions.
 
 ## Triggers
 
-A workflow has exactly one trigger node, set when the workflow is created. The trigger defines the event that starts the flow.
+The trigger list is grouped into **Loyalty**, **VIP Tiers**, **Referral**, **Membership** and **Orders**, and you can search it. A trigger only appears when its module is turned on. For example, booster triggers need Booster Campaigns, and membership triggers need Memberships.
 
-### Available triggers
+### Loyalty
 
 | Trigger | Fires when |
-| --- | --- |
-| **Order placed** | A customer completes an order |
-| **Customer created** | A new customer record is created |
-| **Points earned** | Yuko credits points to a customer |
-| **Points redeemed** | A customer redeems a reward |
-| **VIP tier changed** | A customer moves between tiers |
-| **Membership unlocked** | A customer's membership becomes active |
-| **Membership lost** | A customer's membership ends |
-| **Customer inactive for X days** | Customer's last activity exceeds the threshold |
-| **Birthday** | The current date matches the customer's birthday |
-| **Anniversary** | The current date matches the customer's signup anniversary |
+|---|---|
+| **Earn Points** | A customer earns points (including points credited by a workflow) |
+| **Redeem Points** | A customer redeems points for a reward |
+| **Points Adjusted** | Points are adjusted manually, for example from the Customers page |
+| **Points Expiring Reminder** | A customer's points are about to expire |
+| **Points Expired** | A customer's points expire |
+| **Reward Expiry Reminder** | A redeemed reward is about to expire |
+| **Reward Expired** | A redeemed reward has expired |
+| **Joined Loyalty Program** | A customer joins the loyalty program |
+| **Birthday Reminder** | A customer's birthday is coming up |
+| **Customer Birthday** | On the customer's birthday |
+| **Anniversary Reminder** | A customer's anniversary is coming up |
+| **Customer Anniversary** | On the customer's anniversary |
+| **One-time Campaign Points Awarded** | A customer receives points from a [One-time Campaign](/loyalty/one-time-campaigns) that has **Trigger workflow events** turned on |
+| **Benefit Unlocked** | A tier, booster or membership benefit is executed for a customer (including each recurring execution) |
+| **Booster Campaign Entered** | A customer takes their first qualifying action in a [booster campaign](/loyalty/booster-campaigns/overview) |
+| **Booster Campaign Progression** | A customer's progress toward a booster goal advances (streak step, milestone, spending goal) |
+| **Booster Campaign Rewarded** | A customer completes a booster campaign and its rewards are issued (fires once, even with several rewards) |
 
-### Choosing a trigger
+### VIP Tiers
 
-- **Use *Order placed*** when the workflow should run on every order.
-- **Use *Points earned*** when you want to react to specific Way to Earn campaigns.
-- **Use *Customer inactive for X days*** for win-back automations.
-- **Use *VIP tier changed*** for tier-based welcome / lifecycle flows.
+| Trigger | Fires when |
+|---|---|
+| **VIP Tier Entry** | A customer qualifies for a VIP tier for the first time |
+| **VIP Tier Upgrade** | A customer qualifies for a higher tier |
+| **VIP Tier Downgrade** | A customer's tier is downgraded after retention expires |
+| **VIP Tier Retained** | A customer re-qualifies before their retention window expires |
+| **VIP Tier Retention Warning** | A customer's retention window expires in about 30 days |
+| **VIP Milestone Nudge** | A customer passes a progress milestone (25%, 50%, 75%, 90%) toward the next tier |
+| **VIP Period Start** | A new qualifying period begins (the calendar year rolls over or the rolling window shifts) |
 
-## Conditions (Binary nodes)
+### Referral
 
-A Binary node branches the workflow on a rule. Each has a *Yes* path and a *No* path. Stack them to build more complex logic.
+| Trigger | Fires when |
+|---|---|
+| **Referrer welcome** | A customer joins the referral program as a referrer |
+| **Friend reward unlocked** | A referred friend claims their friend reward |
+| **Referrer Rewarded** | A referrer is rewarded for a successful referral |
+| **Referral Completed** | A referral is completed |
 
-### What you can branch on
+### Membership
 
-- Customer attributes (tier, lifetime spend, country, tags)
-- Points balance (greater / less than a threshold)
-- Order attributes (value, item count, contains specific product)
-- Membership status (active / paused / cancelled)
-- Time elapsed since last action
+| Trigger | Fires when |
+|---|---|
+| **Membership Subscribed** | A customer subscribes to a membership for the first time |
+| **Membership Upgraded** | A subscription changes to a higher-priced plan |
+| **Membership Downgraded** | A subscription changes to a lower-priced plan |
+| **Membership Paused** | A subscription is paused |
+| **Membership Reactivated** | A paused or cancelled membership is activated again |
+| **Membership Cancelled** | A subscription is cancelled |
 
-### Example branches
+### Orders
 
-- *Tier == Gold or Diamond* → send VIP-only email; otherwise send regular email.
-- *Cart total > $200* → issue a thank-you coupon; otherwise no action.
-- *Has active membership* → skip; otherwise upsell.
+| Trigger | Fires when |
+|---|---|
+| **Order Paid** | A Shopify order is paid |
+| **Order Delivered** | A Shopify order is marked delivered |
+
+## Trigger filters
+
+After you pick a trigger, click **Add trigger filters** to only let in events that match. Conditions are grouped, and you choose whether groups and conditions combine with **AND** or **OR**. Each condition has a **Field**, an **Operator** (such as *equals*, *contains*, *is greater than*) and a **Value**.
+
+The fields depend on the trigger:
+
+| Fields | Triggers |
+|---|---|
+| **Email**, **First name**, **Last name**, **Phone number** | Almost every trigger |
+| **City**, **Country Code** | Order, loyalty, VIP, booster and membership triggers |
+| **Points Balance**, **Total Earned Points** | Loyalty, VIP and booster triggers |
+| **Point Source** | Earn Points, Redeem Points, Points Expired, Points Adjusted, One-time Campaign Points Awarded |
+| **Days Before** | Points Expiring Reminder, Reward Expiry Reminder, Birthday Reminder, Anniversary Reminder, VIP Tier Retention Warning |
+| **Campaign Identifier**, **Campaign Name** | One-time Campaign Points Awarded |
+| **Current Tier Name** | VIP triggers |
+| **Previous Tier Name** | VIP Tier Upgrade, VIP Tier Downgrade |
+| **Tier Progress %** | VIP Tier Entry, Upgrade, Downgrade, Retained, Retention Warning, Milestone Nudge, Period Start |
+| **Milestone %** | VIP Milestone Nudge |
+| **Booster Campaign Name**, **Booster Campaign Type**, **Booster Completed Actions**, **Booster Campaign Progress %** | Booster triggers |
+| **Benefit Module**, **Benefit Type** | Benefit Unlocked |
+| **Membership Name**, **Subscription Status** | Membership triggers |
+| **Referral Link** | Referral triggers and several loyalty triggers |
+| **Category**, **Collection**, **Product Name**, **Product ID**, **Variant ID**, **Order Status**, **Order Financial Status**, **Order Fulfillment Status**, **Currency**, **Language**, **Province Code**, **Order Count** | Order Paid, Order Delivered |
+
+### One-time campaign conditions
+
+To run a workflow for one specific [One-time Campaign](/loyalty/one-time-campaigns):
+
+1. In the campaign, turn on **Trigger workflow events** and copy its read-only **Identifier**.
+2. In the workflow, use the **One-time Campaign Points Awarded** trigger.
+3. Add a trigger filter **Campaign Identifier** *equals* the identifier you copied. Or use **Campaign Name** to match on the name.
+
+The identifier never changes, so it's safer than the name if you might rename the campaign.
+
+## Profile filters
+
+Click **Add profile filters** to filter on the customer rather than the event. Choose a **Condition type**:
+
+| Condition type | What it checks |
+|---|---|
+| **User Action** | Whether the person has performed an action, with a count and a **Time frame** |
+| **Properties About Someone** | A property of the customer, such as email or name |
+| **IN or NOT in the EU** | **Is** / **Is Not** in a **Region** (**European Union** or **United States**) |
+| **Receive Marketing** | Whether the customer accepts marketing (**Yes** / **No**) |
+| **Has Not in This Flow** | The customer hasn't been in this workflow **At Any Time**, or **In The Last** N Hours, Days, Months or Years |
+
+## Re-entry criteria
+
+Under **Re-entry criteria** on the trigger node, set whether a customer can go through the workflow more than once:
+
+| Option | Behaviour |
+|---|---|
+| **No re-entry** | *"Profiles will only enter once, even if trigger conditions are met again."* |
+| **Allow re-entry** | *"Profiles will re-enter whenever trigger conditions are met."* |
+| **Allow re-entry after a time period** | Re-enter only after a **Time period** you set in hours, days or weeks has passed |
+
+## If / Else
+
+Add **If / Else** from the **Logic** group in **Add Node**. It *"splits profiles into two paths based on whether they meet the condition"*. Customers who match take the **Yes** path. Everyone else takes the **No** path.
+
+The If / Else panel has two sections:
+
+- **Source-Based Filters**: conditions on the trigger's data, with the same fields as the trigger filters above.
+- **Profile Filters**: the same condition types as the trigger's profile filters.
+
+Each path continues to its own actions and ends in its own **Exit**.
+
+## Examples
+
+**1. Thank-you for a specific campaign.** Trigger **One-time Campaign Points Awarded** → filter **Campaign Identifier** equals your Diwali campaign → Send Email *"Your festive bonus is here"*.
+
+**2. Tiered birthday message.** Trigger **Customer Birthday** → If / Else **Points Balance** *is greater than* 1000 → Yes: WhatsApp message, No: Send Email.
+
+**3. Retention nudge.** Trigger **VIP Tier Retention Warning** → Send Email reminding the customer how to keep their tier.
 
 ## Best practices
 
-<Tip>**Pick the most specific trigger you can.** A narrower trigger means fewer entries and cleaner analytics.</Tip>
-<Tip>**Don't overload one workflow with conditions.** If you have more than 4–5 binary nodes, split into two workflows.</Tip>
-<Tip>**Always send a test customer through end-to-end** before activating.</Tip>
+<Tip>**Filter at the trigger when you can.** Customers who don't match never enter, which keeps Analytics clean. Use If / Else when both groups need something.</Tip>
+<Tip>**Use Has Not in This Flow** to stop customers from getting the same message too often, even with re-entry allowed.</Tip>
+<Tip>**Turn off the matching built-in email.** If you build a workflow on Earn Points or Birthday Reminder, turn off the built-in email for that event to avoid duplicates.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Can a workflow have multiple triggers?">
-    No — one trigger per workflow. Build a second workflow if you need a second trigger.
+  <Accordion title="Why don't I see the membership or booster triggers?">
+    Triggers only appear when their module is active. Turn on Memberships or Booster Campaigns first.
   </Accordion>
-  <Accordion title="Can a customer be in multiple workflows at once?">
-    Yes. Each workflow tracks its own entries independently.
+  <Accordion title="Is there a trigger for 'customer inactive for X days'?">
+    No. For win-back flows, use **VIP Tier Retention Warning**, **VIP Tier Downgrade** or **Points Expiring Reminder**.
   </Accordion>
-  <Accordion title="What happens if a trigger event fires while a customer is already in the workflow?">
-    By default, re-entry is blocked. You can override per-workflow.
+  <Accordion title="Is there an Order Placed or Order Fulfilled trigger?">
+    No. Use **Order Paid** or **Order Delivered**.
   </Accordion>
 </AccordionGroup>
 

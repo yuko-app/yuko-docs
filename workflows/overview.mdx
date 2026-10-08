@@ -1,44 +1,93 @@
 ---
 title: Workflows
-description: Visual automation — trigger emails, points and coupons in response to customer events without writing code.
+description: Build visual automations that react to loyalty, VIP, referral, membership and order events by sending emails and WhatsApp messages, issuing coupons and adjusting points.
 ---
 
 <Note>
 **Where to find this:** Shopify admin → Apps → Yuko Loyalty → Workflows
 </Note>
 
-## What are Workflows
+## Introduction
 
-Workflows are visual automations you build by dragging nodes onto a canvas. Each workflow listens for a specific event, optionally branches on conditions, waits on timers, and runs actions — send an email, credit points, issue a coupon, or hand off to a partner tool.
+Workflows are automations you build on a visual canvas. Each workflow starts with one **trigger** (an event such as *Earn Points*, *VIP Tier Upgrade* or *Order Delivered*), then runs the steps you add: wait, branch with **If / Else**, send an email or WhatsApp message, create a coupon, or credit or debit points.
 
-Think of it as Shopify Flow + Klaviyo Flows + Zapier, scoped to your loyalty program.
+Use workflows when the [built-in emails](/emails/overview) aren't enough, for example to send a WhatsApp message when a customer reaches a new tier, wait three days before a follow-up, or treat VIP customers differently from everyone else.
 
-## Who it's for
-
-- Brands that have outgrown the built-in **Way to Earn** + **Email Notifications** combination and need conditional logic.
-- Marketers who want to sequence touchpoints without involving a developer.
-- Stores that want loyalty automations that can hand off to existing tools (Klaviyo, Engati, KwikEngage).
-
-## How it fits together
+## How a workflow fits together
 
 ```
-Trigger node       ──→   Condition (binary)   ──→   Action node
-  (event fires)        (branch on a rule)              (do something)
-                              │
-                              ▼
-                       Wait node → Action → Exit
+Trigger  ──→  Time Delay  ──→  If / Else ──Yes──→  Send Email  ──→  Exit
+                                   │
+                                   └──No───→  WhatsApp  ──→  Exit
 ```
 
-Every workflow starts with one **Trigger** and ends with one or more **Exit** nodes. Everything between is up to you.
+- **Trigger:** the event that starts the workflow, plus optional trigger and profile filters and re-entry rules. See [Triggers & Conditions](/workflows/triggers-and-conditions).
+- **Actions:** **Send Email**, **Coupon**, **Points Credit**, **Points Debit**, **WhatsApp**, **Engati** and **kwikEngage**. See [Action Nodes](/workflows/action-nodes), the [WhatsApp node](/workflows/whatsapp-node) and [Partner Nodes](/workflows/partner-nodes).
+- **Timing:** **Time Delay**. See [Time Delay & Exit](/workflows/wait-and-exit).
+- **Logic:** **If / Else** splits customers into a **Yes** and a **No** path.
+- **Exit:** every path ends in an Exit node that Yuko adds for you.
+
+Each customer who enters a workflow is a **subscriber**. You can follow every subscriber's path in [Analytics](/workflows/analytics).
+
+## The Workflows list
+
+- **Create Workflow** → **Create from Scratch** opens a new, blank workflow.
+- Tabs: **All workflows**, **Live** and **Draft**.
+- Columns: **Title**, **Trigger Type**, **Subscribers** and **Status** (**Live** or **Draft**).
+- Select several workflows to set them Live, set them to Draft, or delete them in bulk.
+
+New workflows start as **Draft**. Changes on the canvas save automatically. When you're ready, click **Turn on workflow** to make it **Live**. Running workflows Live is available on select plans.
+
+<Info>The workflow editor needs a desktop-sized screen. On a phone, Yuko shows *"Workflow editor requires desktop view"*.</Info>
+
+## Workflows and built-in emails
+
+The emails under **Loyalty → Emails**, **Referral → Emails** and **Membership → Emails** run on the same engine, but you manage them from those tabs, not from the Workflows list. If you build a workflow on the same trigger as a built-in email, turn the built-in email off so customers don't get two messages.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
 
 ## Get started
 
-1. Read **[Build your first workflow](/workflows/build-your-first)** — a 10-minute tutorial.
-2. Skim **[Triggers & Conditions](/workflows/triggers-and-conditions)** to know what's available.
-3. Pick the actions you need from **[Action Nodes](/workflows/action-nodes)**.
-4. Watch results in **[Analytics](/workflows/analytics)**.
+<Steps>
+  <Step title="Follow the tutorial">
+    [Build your first workflow](/workflows/build-your-first) walks through a complete example.
+  </Step>
+  <Step title="Pick a trigger">
+    See the full list in [Triggers & Conditions](/workflows/triggers-and-conditions).
+  </Step>
+  <Step title="Add actions">
+    Choose from [Action Nodes](/workflows/action-nodes) and the [WhatsApp node](/workflows/whatsapp-node).
+  </Step>
+  <Step title="Go Live and monitor">
+    Turn the workflow on, then watch subscribers and emails in [Analytics](/workflows/analytics).
+  </Step>
+</Steps>
 
-## Recommended reading
+## Best practices
+
+<Tip>**Start small.** A trigger, one action and an exit is a complete workflow. Add branches once the basics work.</Tip>
+<Tip>**Set re-entry deliberately.** Decide whether a customer should go through the workflow once, every time, or at most once per period.</Tip>
+<Tip>**Check Analytics after launch.** Failed steps show the reason, so you can fix setup issues early.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Are there ready-made workflow templates?">
+    Not today. New workflows start from scratch with **Create from Scratch**.
+  </Accordion>
+  <Accordion title="What happens to customers already in a workflow if I set it to Draft?">
+    A Draft workflow stops accepting new subscribers. Customers who are already in it, for example waiting on a Time Delay, carry on through their remaining steps. Check [Analytics](/workflows/analytics) for subscribers still marked **In Progress**.
+  </Accordion>
+  <Accordion title="Can a workflow call my own server?">
+    Not from the workflow builder. For outbound data, see [Integrations](/integrations/overview).
+  </Accordion>
+</AccordionGroup>
+
+## Related
 
 import RelatedWorkflows from '/snippets/related-workflows.mdx';
 

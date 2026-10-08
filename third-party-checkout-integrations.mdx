@@ -36,7 +36,7 @@ Your checkout identifies the customer
         ▼                                             ▼
   API Call #1                                  API Call #2
   GET /customers/rewards/redeemable            POST /points/estimate
-  Requires Shopify Customer ID                 Public — no customer ID needed
+  Requires Shopify Customer ID                 No customer ID needed       
   Only for logged-in customers                 Works for guests too
         │                                             │
         ▼                                             ▼
@@ -91,10 +91,10 @@ The merchant must have Yuko installed on their Shopify store. Once installed:
     Click **Apps → Yuko Loyalty**.
   </Step>
   <Step title="Go to API settings">
-    Navigate to **Account Settings → Integrations → REST API**.
+    Navigate to **Integrations → REST API** and click **Create new key**.
   </Step>
   <Step title="Create an API token">
-    Create a new token and enable the `rewards:read` scope.
+    Choose **Custom Key** and give the key **Read/Write Access** on **Rewards** (`write:rewards`, needed to redeem) and **Read Access** on **Points** (`read:points`, needed for the estimate).
   </Step>
   <Step title="Share the API key">
     Copy the API key and share it securely with your team. It looks like this:
@@ -127,7 +127,7 @@ Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 This header is required on **every single request** — no exceptions.
 
 <Tip>
-  Full authentication details are in the [Authentication reference](/authentication).
+  Full authentication details are in the [Authentication reference](/developer/api/authentication).
 </Tip>
 
 ### Base URL
@@ -144,9 +144,9 @@ https://api.yukoapp.com/api/v1/public
 - Always set `Content-Type: application/json` on POST requests
 - All responses are JSON
 - Successful responses wrap data inside a `"data"` key
-- Error responses include a `"message"` key
+- Error responses include an `"error"` object with `code` and `message`
 
-See the [API Introduction](/introduction) for a full overview of request and response formats.
+See the [API Introduction](/developer/api/introduction) for a full overview of request and response formats.
 
 ---
 
@@ -164,7 +164,7 @@ This is the primary endpoint for your checkout loyalty panel.
   `/customers/rewards/redeemable` is a single endpoint that covers both the points balance **and** the full rewards list. You do not need a separate "get balance" call.
 </Note>
 
-Full API reference → [`GET /customers/rewards/redeemable`](/get-redeemable-rewards)
+Full API reference → [`GET /customers/rewards/redeemable`](/developer/api/get-redeemable-rewards)
 
 ### Request
 
@@ -182,7 +182,7 @@ GET https://api.yukoapp.com/api/v1/public/customers/rewards/redeemable
 
 ### Required token scope
 
-Your API token must have `rewards:read` enabled. The merchant configures this in **Shopify Admin → Apps → Yuko Loyalty → Account Settings → Integrations → REST API**.
+Your API token must have `read:rewards` (or `write:rewards`). The merchant configures this in **Shopify Admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
 
 ### Example request
 
@@ -325,7 +325,11 @@ This endpoint tells the customer how many loyalty points they will **earn** when
 
 This is a **public endpoint** — no Shopify Customer ID is required. It works for both logged-in customers and guests.
 
-Full API reference → [`POST /points/estimate`](/checkout-points-estimate)
+Full API reference → [`POST /points/estimate`](/developer/api/checkout-points-estimate)
+
+### Required token scope
+
+Your API token must have `read:points`. See [Scopes](/developer/api/scopes).
 
 ### Request
 
@@ -471,7 +475,11 @@ When the customer clicks "Redeem" on an available reward, call this endpoint. Yu
   This endpoint is triggered by a **customer action** — not automatically at checkout load. Only call it when the customer explicitly clicks "Redeem" on a reward option.
 </Note>
 
-Full API reference → [`POST /customers/rewards/redeem`](/redeem-reward)
+Full API reference → [`POST /customers/rewards/redeem`](/developer/api/redeem-reward)
+
+### Required token scope
+
+Your API token must have `write:rewards`. Read-only keys can't redeem. See [Scopes](/developer/api/scopes).
 
 ### Request
 
@@ -696,7 +704,7 @@ On a `201` response:
   The loyalty panel is an **enhancement** to checkout — it must never block or break the purchase. If any Yuko API call fails, hide the loyalty panel silently and let checkout continue.
 </Warning>
 
-Full list of error codes → [Errors reference](/errod)
+Full list of error codes → [Errors reference](/developer/api/errors)
 
 ### HTTP status codes
 
@@ -705,7 +713,7 @@ Full list of error codes → [Errors reference](/errod)
 | `200` | Success                                        | Use the response data                                                 |
 | `400` | Bad request — missing or malformed parameters  | Check your request structure                                          |
 | `401` | Unauthorized — API key missing or incorrect    | Check the `Authorization` header and key value                        |
-| `403` | Forbidden — token missing the right scope      | Ask the merchant to regenerate a token with `rewards:read` scope      |
+| `403` | Forbidden — token missing the right scope (`insufficient_scope`) | Ask the merchant to create a key with `write:rewards` and `read:points` |
 | `404` | Customer not found                             | The `customer_id` doesn't exist in Yuko — hide the panel silently     |
 | `422` | Validation error — logically incorrect request | Check the `message` field in the response                             |
 | `429` | Rate limit exceeded                            | Wait 1 second and retry once — see [Rate Limits](#rate-limits)        |
@@ -714,11 +722,14 @@ Full list of error codes → [Errors reference](/errod)
 
 ### Error response format
 
-All error responses from Yuko return a `message` field:
+All error responses from Yuko return an `error` object with a `code` and a `message`:
 
 ```json
 {
-  "message": "Customer not found"
+  "error": {
+    "code": "not_found",
+    "message": "Customer not found"
+  }
 }
 ```
 
@@ -736,7 +747,7 @@ Any other error → Hide the loyalty panel. Never block checkout.
 
 ## Rate Limits
 
-See full details → [Rate Limits reference](/rate-limits)
+See full details → [Rate Limits reference](/developer/api/rate-limits)
 
 | Limit                               | Value                        |
 | ----------------------------------- | ---------------------------- |
@@ -782,7 +793,7 @@ Choose whichever approach fits your architecture.
 
     <Steps>
       <Step title="Merchant generates a token">
-        The merchant goes to **Shopify Admin → Apps → Yuko Loyalty → Account Settings → Integrations → REST API** and creates a token with `rewards:read` scope.
+        The merchant goes to **Shopify Admin → Apps → Yuko Loyalty → Integrations → REST API** and creates a **Custom Key** with `write:rewards` and `read:points`.
       </Step>
       <Step title="Merchant shares the token">
         The merchant copies the token and pastes it into your checkout platform's merchant settings.
@@ -989,22 +1000,22 @@ Verify: Returns HTTP 200 with no `customer` field in the request body.
 ## API Reference Links
 
 <CardGroup cols={2}>
-  <Card icon="gift" href="/get-redeemable-rewards" title="Get Redeemable Rewards">
+  <Card icon="gift" href="/developer/api/get-redeemable-rewards" title="Get Redeemable Rewards">
     Points balance, available rewards, and unused coupons for a customer.
   </Card>
-  <Card icon="coins" href="/redeem-reward" title="Redeem a Reward">
+  <Card icon="coins" href="/developer/api/redeem-reward" title="Redeem a Reward">
     Burn a customer's points and generate a discount code.
   </Card>
-  <Card icon="calculator" href="/checkout-points-estimate" title="Points Estimate">
+  <Card icon="calculator" href="/developer/api/checkout-points-estimate" title="Points Estimate">
     How many points a customer earns on a given cart.
   </Card>
-  <Card icon="key" href="/authentication" title="Authentication">
+  <Card icon="key" href="/developer/api/authentication" title="Authentication">
     How Bearer Token authentication works in the Yuko API.
   </Card>
-  <Card icon="circle-exclamation" href="/errod" title="Errors">
+  <Card icon="circle-exclamation" href="/developer/api/errors" title="Errors">
     Full list of HTTP error codes and what they mean.
   </Card>
-  <Card icon="gauge" href="/rate-limits" title="Rate Limits">
+  <Card icon="gauge" href="/developer/api/rate-limits" title="Rate Limits">
     Request limits and how to handle 429 errors.
   </Card>
 </CardGroup>

@@ -1,31 +1,33 @@
 ---
 title: Twitter Follow
-description: Reward customers with points for following your X (Twitter) account.
+description: Reward customers with points for following your Twitter (X) account.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Twitter Follow
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn → Add another way → **Twitter Follow**
 </Note>
 
 ## Introduction
 
-Award points when customers follow your X (formerly Twitter) account from the loyalty widget.
+Award customers a one-time points bonus when they follow your Twitter (X) account from your loyalty widgets.
 
 ## What problem this solves
 
-For brands with a Twitter/X presence, organic follower growth is slow. A points-incentivised follow turns existing customers into followers in seconds.
+Growing a Twitter (X) audience organically is slow. A small points reward gets existing customers to take a two-second action that builds your following and social proof.
 
 ## When to use
 
-- You have an active X account.
-- Your audience uses X.
-- You want a one-time low-friction earning action.
+- You have an active Twitter (X) account.
+- Your audience is active on X.
+- You want a low-effort, one-time way to earn.
 
 ## Overview
 
 - One-time reward per customer.
-- Configured with your X username.
-- Optional points expiry.
+- Configured with your **Twitter Username**.
+- Points are credited when the customer clicks **Follow**.
+- Optional points expiry and VIP tier multipliers.
+- Available on select plans.
 
 ## Before you start
 
@@ -33,46 +35,77 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <BeforeYouStart />
 
+<Check>You have an active Twitter (X) account.</Check>
+
 ## Setup guide
 
 <Steps>
-  <Step title="Open the campaign">
-    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Twitter Follow**.
+  <Step title="Add the way to earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to earn**, click **Add another way** and pick **Twitter Follow**.
   </Step>
-  <Step title="Set details and points">
-    Enter campaign name, description and points value (e.g., `10`).
+  <Step title="Fill in Basic Details">
+    - **Campaign Name** — shown to customers on the storefront. You can use `[earn_value]` and `[points_label]`, for example `Earn [earn_value] [points_label]`.
+    - **Description** — short copy shown with the way to earn.
   </Step>
-  <Step title="Add your X username">
-    Enter your handle (without the @).
+  <Step title="Set the points">
+    Enter **Points to earn on Twitter (X) follow** (a whole number, at least 1).
   </Step>
-  <Step title="Configure expiry (optional)">
-    Set expiry if desired.
+  <Step title="Add your Twitter (X) username">
+    Enter your **Twitter Username** without the @ symbol. Customers are sent to `https://x.com/yourusername`.
   </Step>
-  <Step title="Save & activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Review the side panel">
+    - **Status** — on by default.
+    - **Icon** — **Default**, or **Custom** to upload your own (JPG, PNG, GIF or WEBP, under 1 MB).
+    - **Tiers** — turn on to apply VIP tier multipliers to this way to earn.
+  </Step>
+  <Step title="Save">
+    Click **Save**.
   </Step>
 </Steps>
 
 ## How it works
 
-- The action appears in the loyalty widget.
-- Customer is sent to your X profile.
-- Points are credited on intent.
+1. The way to earn appears in the **Ways to earn** list of your loyalty widgets (for example the [floating launcher](/onsite-widgets/floating-launcher), [rewards landing page](/onsite-widgets/rewards-landing-page) and [customer account page](/onsite-widgets/customer-account-page)) with a **Follow** button.
+2. A logged-in customer clicks **Follow**. Your Twitter (X) profile opens in a new tab.
+3. Yuko credits the points as soon as the customer clicks. Social networks don't let apps confirm the action, so earning is based on the click.
+4. The way to earn then shows as completed for that customer.
+
+With **Tiers** on and [VIP tiers](/vip-tiers/overview) enabled, customers in a tier earn the tier's multiplier for this way to earn, plus any bonus points the tier sets for it. The extra points appear as a separate tier bonus entry.
+
+### Decision guidance
+
+- **Keep the reward modest** (5–20 points). It's a quick one-time action.
+- **Only run networks where your customers are active.** Pick two or three rather than every network.
 
 ### Limitations
 
-- Verification is intent-based.
-- One-time per customer.
+- Earning is based on the click; Yuko can't check whether the customer actually followed.
+- One reward per customer. Following again doesn't earn more.
+- Customers must be logged in to earn.
+- You can have one Twitter Follow way to earn.
 
 ## Examples
 
-- 10 points for an X follow, no expiry.
+- A gaming accessories store awards 10 points for following its X account.
+
+## Best practices
+
+<Tip>**Check the username before saving.** A typo sends customers to the wrong profile.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Is this a one-time reward?">
-    Yes.
+  <Accordion title="How is the follow verified?">
+    It isn't. Twitter (X) doesn't let apps confirm follows, so Yuko credits points when the customer clicks **Follow**.
+  </Accordion>
+  <Accordion title="Can a customer earn this twice?">
+    No. It's a one-time reward per customer.
+  </Accordion>
+  <Accordion title="Do I enter the full profile URL?">
+    No. Enter only the username, without the @ symbol. Yuko builds the link `https://x.com/yourusername`.
   </Accordion>
 </AccordionGroup>
 

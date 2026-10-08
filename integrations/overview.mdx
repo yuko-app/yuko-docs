@@ -1,6 +1,6 @@
 ---
 title: Integrations
-description: Connect Yuko to your email, WhatsApp, review, checkout and automation tools — 20+ predefined integrations plus the always-available REST API, Webhooks, and Custom Apps.
+description: Connect Yuko to your email, WhatsApp, reviews, Shopify POS and automation tools, plus the REST API and Webhooks for custom builds.
 ---
 
 <Note>
@@ -9,64 +9,63 @@ description: Connect Yuko to your email, WhatsApp, review, checkout and automati
 
 ## What integrations do
 
-Integrations let Yuko exchange data with the rest of your stack. Customers land in your email tool, loyalty events fire WhatsApp templates, review submissions become loyalty points, and your developers can build custom flows on top of the REST API + webhooks.
+Integrations let Yuko exchange data with the rest of your stack. Loyalty data lands in your email tool, loyalty events send WhatsApp templates and start Shopify Flow workflows, reviews from your reviews app earn points, store staff redeem points at the till, and your developers can build on the REST API and webhooks.
 
-## The integrations page
+## The Integrations page
 
-The Integrations page uses a **category sidebar** on the left and a card grid on the right. Cards are grouped into three sections:
+The Integrations page has a **category sidebar** on the left and a card grid on the right. Each card shows how the app connects (**OAuth** or **API Key**) and a **Connected** badge once it's set up. Cards are grouped into:
 
-1. **Connected** — integrations you've already wired up. Click a card to open its detail page.
-2. **Available** — integrations you can connect. Click a card to start the connection flow.
-3. **Recommended** — curated third-party apps Yuko recommends (Shopify themes, checkout accelerators, etc.). These open the partner's page in a new tab.
+1. **Connected**: integrations you've already set up. Click a card to open its settings.
+2. **Available**: integrations you can connect. Click a card to start connecting.
+3. **Recommended**: third-party apps Yuko recommends. These open the partner's page in a new tab.
 
 ### Categories
 
 | Category | What lives here |
 |---|---|
-| **All** | Everything, connected + available + recommended |
+| **All** | Every integration, including Judge.me |
 | **Email & SMS** | Klaviyo, Omnisend, Retainful |
-| **WhatsApp** | 11 WhatsApp Business API providers |
-| **Social Media** | Instagram, Google Business |
-| **Shopify Flow** | Shopify Flow automation trigger, Checkout Boost |
+| **WhatsApp** | 13 WhatsApp Business API providers |
+| **Shopify Flow** | Shopify Flow and Checkout Boost |
+| **Shopify POS** | Shopify POS (Shopify stores only) |
 | **Developer** | REST API, Webhooks |
-| **Recommended** | Third-party apps (Shopify themes, etc.) — Shopify merchants only |
-| **Others** | Anything not otherwise categorized |
+| **Recommended** | Recommended third-party apps (Shopify stores only) |
 
-## Always-on integrations
+A category only appears when it has at least one integration. Some integrations are available on select plans; cards you can't use yet show an upgrade badge.
 
-These three ship out of the box — no partner account required.
+## Developer tools
 
 <CardGroup cols={2}>
   <Card title="REST API" icon="code" href="/integrations/rest-api">
-    Read and write Yuko data — customers, points, rewards, tiers — from your code.
+    Create scoped API keys to read and write Yuko data from your code.
   </Card>
   <Card title="Webhooks" icon="bolt" href="/integrations/webhooks">
-    Subscribe to Yuko events and receive real-time HTTP callbacks.
+    Subscribe to Yuko events and receive HTTP callbacks.
   </Card>
   <Card title="Custom Apps" icon="puzzle-piece" href="/integrations/custom-apps">
-    Register your own OAuth / API-key based app for private integrations.
+    OAuth apps that connect to a merchant's Yuko data with approved scopes.
   </Card>
 </CardGroup>
 
 ## Predefined connectors
 
-### Email marketing
+### Email & SMS
 
 <CardGroup cols={2}>
   <Card title="Klaviyo" icon="envelope" href="/integrations/klaviyo">
-    Sync 25+ loyalty profile properties + 29 events for personalisation and flows.
+    Sync loyalty profile properties and events for segments, personalisation and flows.
   </Card>
   <Card title="Omnisend" icon="envelope" href="/integrations/omnisend">
-    Sync loyalty data into Omnisend for email + SMS automations.
+    Sync loyalty data and events into Omnisend for email and SMS automations.
   </Card>
   <Card title="Retainful" icon="envelope-open-text" href="/integrations/retainful">
-    E-commerce email + cart recovery with loyalty events layered in.
+    Email and cart recovery with loyalty data and events layered in.
   </Card>
 </CardGroup>
 
 ### WhatsApp
 
-11 WhatsApp Business API providers. Connect any one (or several) and send templates from Yuko workflows.
+13 WhatsApp Business API providers. Connect one or several and send templates from Yuko workflows.
 
 import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
@@ -74,46 +73,61 @@ import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
 [Learn how the WhatsApp integration works](/integrations/whatsapp) · [Learn about the WhatsApp Workflow node](/workflows/whatsapp-node)
 
-### Reviews (loyalty side)
-
-<CardGroup cols={2}>
-  <Card title="Judge.me" icon="star" href="/integrations/judgeme">
-    Award Yuko loyalty points when customers submit reviews on Judge.me.
-  </Card>
-</CardGroup>
-
-### Shopify-native automation
+### Shopify Flow
 
 <CardGroup cols={2}>
   <Card title="Shopify Flow" icon="shop" href="/integrations/shopify-flow">
-    Trigger Shopify Flow workflows from Yuko loyalty and referral events.
-  </Card>
-  <Card title="Checkout Boost" icon="cart-shopping" href="/integrations/checkout-boost">
-    Auto-provisions a read-only REST API key + signed key for Yuko-in-checkout widgets.
+    Send loyalty, VIP and referral events to Shopify Flow as triggers.
   </Card>
 </CardGroup>
 
+### Shopify POS
+
+<CardGroup cols={2}>
+  <Card title="Shopify POS" icon="cash-register" href="/integrations/shopify-pos">
+    Let staff redeem points and apply loyalty discounts at the till.
+  </Card>
+</CardGroup>
+
+### Checkout
+
+<CardGroup cols={2}>
+  <Card title="Checkout Boost" icon="cart-shopping" href="/integrations/checkout-boost">
+    Creates a read-only REST API key and signed key for the Checkout Boost app. Listed under the Shopify Flow category.
+  </Card>
+</CardGroup>
+
+### Reviews (points for reviews)
+
+<CardGroup cols={2}>
+  <Card title="Judge.me" icon="star" href="/integrations/judgeme">
+    Award loyalty points when customers write Judge.me reviews. Shown under **All**.
+  </Card>
+</CardGroup>
+
+Using another reviews app? If it can trigger Shopify Flow, award points with the **Yuko Add Points for Review** action. See [Shopify Flow](/integrations/shopify-flow#the-add-points-for-review-action).
+
 ## How connectors work
 
-- Each connector authenticates with the partner (OAuth or API key).
-- Once connected, Yuko exchanges the relevant data — customers, points, tier changes, events.
-- The integration appears in the **Connected** section on the Integrations page with connection status, last-sync info and any error history.
-- Some integrations expose per-event toggles (e.g., choose which loyalty events sync to Klaviyo, or which Judge.me webhooks to subscribe to).
+- Each connector authenticates with the partner by **OAuth** or **API Key**. A few, such as Shopify Flow, Shopify POS and Checkout Boost, just need a toggle.
+- Once connected, the integration moves to the **Connected** section and its page shows the connection status.
+- Many integrations let you choose what to send, for example which events go to Klaviyo, Omnisend, Retainful or Shopify Flow, or which Judge.me webhooks to register.
+- To disconnect, open the integration and use **Disconnect** (or switch off its toggle).
 
 ## Choosing your stack
 
-- **Email:** Klaviyo (deepest loyalty sync), Omnisend, or Retainful.
-- **WhatsApp:** 11 providers to pick from — use whichever BSP you already have a contract with. See the [WhatsApp overview](/integrations/whatsapp) for a per-provider comparison.
-- **Reviews platform:** Judge.me to award points for reviews.
-- **Checkout widgets:** Checkout Boost for a one-toggle provision of a scoped REST key.
-- **Custom flows:** REST API + Webhooks + Custom Apps for anything the connectors don't cover.
+- **Email:** Klaviyo, Omnisend or Retainful.
+- **WhatsApp:** pick whichever of the 13 providers you already use. See the [WhatsApp overview](/integrations/whatsapp) for a comparison.
+- **In-store:** Shopify POS for redeeming points at the till.
+- **Reviews:** Judge.me, or any app that can run the Shopify Flow **Add Points for Review** action.
+- **Custom builds:** REST API and Webhooks for anything the connectors don't cover.
 
 ## Best practices
 
 <Tip>**Connect only what you'll use.** Each active integration is a moving part to maintain and a credential to rotate.</Tip>
-<Tip>**Use Webhooks for real-time** — polling the REST API is slower and rate-limited.</Tip>
-<Tip>**Test in a development store** before wiring production partners.</Tip>
-<Tip>**Use the category sidebar** to find integrations quickly — with 20+ options the flat list gets long.</Tip>
+<Tip>**Use webhooks for real-time data.** Polling the REST API is slower and rate-limited.</Tip>
+<Tip>**Test in a development store** before connecting production partners.</Tip>
+<Tip>**Use the category sidebar** to find integrations quickly.</Tip>
 
 ## Recommended reading
 

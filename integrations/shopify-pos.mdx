@@ -1,0 +1,170 @@
+---
+title: Shopify POS
+description: Let store staff redeem loyalty points and apply loyalty discounts at the till with the Yuko tile for Shopify POS.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → Shopify POS
+</Note>
+
+## Introduction
+
+The **Shopify POS** integration brings your loyalty program into your physical store. Once it's on, a **Yuko tile** appears on the Shopify POS smart grid. When staff add a customer to the cart, the tile shows that customer's loyalty status. Tapping it opens a loyalty screen where staff can redeem points for a discount, or apply a loyalty discount the customer already has.
+
+Redemptions at the till use two POS-only reward types: [POS Amount Discount](/loyalty/ways-to-redeem/pos-amount-discount) and [POS Percentage Discount](/loyalty/ways-to-redeem/pos-percentage-discount).
+
+## When to use it
+
+- You sell in person with Shopify POS as well as online.
+- You want in-store customers to spend their points without going through the online store.
+- You want staff to see a customer's points balance and available discounts at checkout.
+
+## Before you start
+
+<Check>Your store runs on Shopify and uses Shopify POS.</Check>
+<Check>Your loyalty program is enabled in Yuko.</Check>
+<Check>Staff who use the tile sign in to POS with an account that has access to the Yuko app.</Check>
+
+<Info>Shopify POS is available on select plans.</Info>
+
+## Set up Shopify POS
+
+<Steps>
+  <Step title="Turn on the integration">
+    Go to **Apps → Yuko Loyalty → Integrations → Shopify POS** and switch on the **Shopify POS Integration** toggle. The status badge changes from **Disabled** to **Enabled**.
+  </Step>
+  <Step title="Create POS rewards">
+    Go to **Loyalty → Programs → Ways to redeem → Add another way** and add a **POS Amount Discount** or **POS Percentage Discount** reward. Only these two reward types can be redeemed at the till.
+  </Step>
+  <Step title="Customise the POS text (optional)">
+    Back on the Shopify POS integration page, edit the tile and screen text in the editor below the toggle, then click **Save** in the save bar. See [Customise the POS text](#customise-the-pos-text).
+  </Step>
+  <Step title="Add the Yuko tile to the POS home screen">
+    In the Shopify POS app, edit the smart grid on the home screen and add the **Yuko** tile.
+  </Step>
+</Steps>
+
+## How it works at the till
+
+### The smart grid tile
+
+The tile title defaults to **Loyalty Program**. Its subtitle changes with the customer on the cart:
+
+| Customer on the cart | Default subtitle |
+|---|---|
+| No customer added | Add customer |
+| Customer has never earned points | Introduce loyalty program |
+| Customer has one unused loyalty discount | `[reward_count] reward available` |
+| Customer has several unused loyalty discounts | `[reward_count] rewards available` |
+| No unused discounts, but enough points for a POS reward | Reward available |
+| Not enough points for any POS reward | `Not enough [points_label] to redeem` |
+
+When the customer has unused loyalty discounts, the tile also shows a count badge.
+
+### The loyalty screen
+
+Tapping the tile opens the loyalty screen. It shows the customer's points balance and a **Redeem points** button, plus two tabs:
+
+- **How it works**: up to six steps that explain the program, so staff can introduce it to customers.
+- **Loyalty discounts**: discount codes the customer already holds from POS rewards. Staff tap **Apply** to add one to the cart.
+
+### Redeeming points for a new discount
+
+1. Staff tap **Redeem points**. The **Redeem new discount** page lists **Available rewards**: every active POS reward.
+2. Staff tap **Redeem** on a reward the customer can afford. For rewards where the customer chooses how many points to spend, staff pick the amount within the reward's range and step.
+3. A confirmation popup appears. After staff confirm with **Apply reward**, Yuko deducts the points, creates a discount code and applies it to the cart.
+
+If the cart total is below a reward's minimum order value, the reward shows how much more the customer needs to add.
+
+### Applying an existing loyalty discount
+
+In the **Loyalty discounts** tab, staff tap **Apply** next to a code, then confirm with **Apply to cart**. The code is marked **Applied** once it's in the cart.
+
+<Warning>Both confirmation popups warn that a loyalty discount may not apply if another discount is already in the cart. Shopify applies only the best discount unless both discounts allow combinations.</Warning>
+
+### Status banners
+
+A banner under the customer tells staff what to do next:
+
+- **No customer on the cart**: "Add customer to earn loyalty points."
+- **Customer has never earned points**: "Customer has never earned loyalty points. Ask them about the loyalty program."
+- **Cart has no products**: "Add a product to the cart to apply discount."
+
+Banned customers can't redeem points or see loyalty discounts at the till.
+
+## Customise the POS text
+
+While the integration is enabled, the Shopify POS page shows a text editor with a live preview. It has four tabs:
+
+| Tab | What you can edit |
+|---|---|
+| **POS home** | **Smart grid tile**: the tile title (up to 30 characters). **Tile status text**: pick a **Customer status** and edit its subtitle (up to 40 characters each). |
+| **Home** | **Header** (page title, Redeem points button), **Status banners** (pick a **Cart status** to edit its banner), **Tabs** (both tab names), **Discounts** (Apply button, Applied label), **Empty state** (no discounts text), **Reward redeem popup** and **Discount code popup** (title, message, confirm and cancel buttons) |
+| **How it works** | The tab's title and 1 to 6 steps, each with a title and description. Drag steps to reorder them. |
+| **Redeem page** | **Redeem page** (page title, Available rewards title, Redeem button), **Empty state** (no rewards text), **Minimum cart value** text, and **Increment reward range** text (pick which **Reward limits** apply to edit each variant) |
+
+Any field you leave blank falls back to its default text.
+
+### Placeholders
+
+| Placeholder | Replaced with | Where you can use it |
+|---|---|---|
+| `[points_label]` | Your points name (for example, "points") | Any field |
+| `[reward_count]` | The number of unused loyalty discounts | Tile subtitles for one or several rewards |
+| `[minimum_amount]` | The reward's minimum order value | Minimum cart value text |
+| `[remaining_amount]` | How much more the customer needs to add | Minimum cart value text |
+| `[min_points]`, `[max_points]`, `[step_points]` | The reward's minimum, maximum and step | Increment reward range text |
+
+## Disable Shopify POS
+
+Switch off the **Shopify POS Integration** toggle and confirm **Disable** in the **Disable Shopify POS** dialog. Loyalty features stop working in POS straight away; the tile shows "Program unavailable". Your POS rewards and the text you saved are kept.
+
+## Limitations
+
+- **Shopify only.** The integration and its rewards are not available on other platforms.
+- **POS rewards only.** Online rewards (amount discount, free shipping, store credit and so on) can't be redeemed at the till, and POS rewards can't be redeemed online.
+- **A customer must be on the cart.** Staff can browse the reward list without a customer, but can't redeem or apply anything.
+- **Discount combinations follow Shopify's rules.** If the cart already has a discount, the loyalty discount may not apply.
+- **Staff permissions.** Staff signed in without access to the Yuko app see "Missing app permissions / please sign in with an account that has app access".
+- **Online connection needed.** When POS is offline, the tile shows "Offline - reconnect to redeem".
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why doesn't the tile show any rewards?">
+    Check that you've created at least one active **POS Amount Discount** or **POS Percentage Discount** reward and that the integration is enabled. If no POS rewards exist, the Redeem page shows the "No discount available" text.
+  </Accordion>
+  <Accordion title="What does the reward count on the tile mean?">
+    It counts discount codes the customer has already redeemed from POS rewards and not used yet. It doesn't count rewards they could redeem with their points.
+  </Accordion>
+  <Accordion title="Can staff choose how many points to spend?">
+    Yes, for POS rewards set up so the customer chooses the amount. Staff pick a points amount within the reward's minimum, maximum and step.
+  </Accordion>
+  <Accordion title="Do in-store customers earn points too?">
+    The default **How it works** text tells staff that customers with a name, email or phone number earn points on their order. Earning follows your [Place an order](/loyalty/ways-to-earn/place-an-order) earn rule, so add the customer to the cart before checkout.
+  </Accordion>
+  <Accordion title="Do I lose my custom text if I disable the integration?">
+    No. Your saved text is kept and used again when you re-enable it.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="POS Amount Discount" icon="cash-register" href="/loyalty/ways-to-redeem/pos-amount-discount">
+    A fixed amount off an in-store order.
+  </Card>
+  <Card title="POS Percentage Discount" icon="percent" href="/loyalty/ways-to-redeem/pos-percentage-discount">
+    A percentage off an in-store order.
+  </Card>
+  <Card title="Ways to redeem" icon="gift" href="/loyalty/ways-to-redeem/overview">
+    All reward types in Yuko.
+  </Card>
+  <Card title="Integrations overview" icon="puzzle-piece" href="/integrations/overview">
+    Browse every integration.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

@@ -1,60 +1,104 @@
 ---
 title: Workflow Analytics
-description: Track entries, completions and step-level drop-off for every workflow.
+description: Follow every customer through a workflow on the Subscribers tab, see why a step failed, and track email delivery, opens and clicks on the Emails tab.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Workflows → [a workflow] → Analytics
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Workflows → (any workflow) → **Analytics**
 </Note>
 
 ## Introduction
 
-Every workflow has a built-in Analytics tab that shows how customers move through it — how many entered, how many reached each node, where they dropped off.
+Each workflow has its own **Analytics** page (*"Track subscribers and email performance for this workflow."*). It has two tabs:
 
-## What problem this solves
+- **Subscribers**: every customer who entered the workflow, their status, and a step-by-step timeline.
+- **Emails**: every email the workflow's Send Email nodes sent, with delivery, open and click status.
 
-Without analytics, workflows are a black box. With them, you can see exactly which step is killing your win-back flow or which condition is excluding too many customers.
+Open it with the **Analytics** button at the top of the workflow editor.
 
-## What's tracked
+## Subscribers tab
 
-- **Entries** — customers who hit the trigger.
-- **Completions** — customers who reached an Exit node.
-- **Step-level visits** — how many customers reached each node.
-- **Drop-off** — the difference between consecutive nodes.
-- **Exit reasons** — grouped by exit-node label.
+A **subscriber** is one customer's run through the workflow. If re-entry is allowed, the same customer can appear more than once.
 
-## Reading the analytics
+**Metric cards:** **Completed**, **In Progress** and **Failed**. Click a card to filter the table to that status.
+
+**Table columns:**
+
+| Column | Shows |
+|---|---|
+| **Subscriber ID** | The ID of this run |
+| **Email** | The customer's email |
+| **Trigger Type** | The trigger that started the run |
+| **Date Entered** | When the customer entered the workflow |
+| **Status** | **Completed**, **In Progress** or **Failed** |
+| **Timeline** | **View** opens the step-by-step timeline. **Hide** closes it. |
+
+Search the table with **Search by email**, or filter it by **Status**.
+
+### Timeline and failure reasons
+
+Click **View** on a row to see each step the customer went through, with its **Step Name**, status and **Completed At** time. Use the refresh button in the timeline header to reload it.
+
+When a step **failed**, an **"i"** icon appears next to its status. Hover over it to see the reason, for example:
+
+- *"Customer phone number not found"* (WhatsApp, Engati or kwikEngage node)
+- *"Insufficient point balance"* (Points Debit)
+- *"Order not found"* (Points Credit set to Incremental on a trigger with no order)
+- A provider API error from a WhatsApp node
+
+Some failures (WhatsApp and partner nodes) let the customer continue to the next step. Others, such as Points Credit and Points Debit failures, stop the run and mark the subscriber **Failed**.
+
+## Emails tab
+
+**Metric cards:** **Delivered**, **Opened**, **Clicked** and **Bounced**. Click a card to filter.
+
+**Table columns:**
+
+| Column | Shows |
+|---|---|
+| **Subscriber ID** | The run the email belongs to |
+| **Customer** | The recipient |
+| **Node Name** | Which Send Email node sent it |
+| **Sent At** | Send time, or *Not sent* |
+| **Status** | Delivery status |
+| **Skipped** | **Yes** if the email wasn't sent. Hover the info icon for the reason. |
+| **Opened** / **Clicked** | Whether the customer opened the email or clicked a link |
+
+Search with **Search emails** or filter by **Status** (**Delivered**, **Clicked**, **Opened**, **Bounced**, **Skipped**).
+
+## How to use it
 
 <Steps>
-  <Step title="Open Analytics">
-    Open the workflow and click the **Analytics** tab.
+  <Step title="Check the first runs">
+    After you turn a workflow on, open **Analytics** and check that subscribers move from **In Progress** to **Completed**.
   </Step>
-  <Step title="Pick a time range">
-    Default is last 30 days. Adjust to compare to a previous period.
+  <Step title="Investigate failures">
+    Filter by **Failed**, click **View** on a row, and hover the **"i"** icon on the failed step.
   </Step>
-  <Step title="Find the biggest drop">
-    Scan the funnel — the step where the most customers leave is your highest-leverage fix.
-  </Step>
-  <Step title="Drill into a node">
-    Click any node to see who reached it and when.
+  <Step title="Fix and watch">
+    Fix the cause (connect a provider, add a balance check, change the trigger), then watch new subscribers.
   </Step>
 </Steps>
 
-## Decision guidance
-
-- **A condition with > 50% drop-off** is too narrow — widen it or split the workflow.
-- **A wait with < 50% completion** suggests customers acted (or unsubscribed) before the wait expired — shorten it.
-- **An action with high failure** indicates an integration problem — check the integration's logs.
-
-## Limitations
-
-- Analytics are aggregate — individual customer paths are visible from the customer profile, not here.
-- Historical data isn't backfilled if a workflow is edited — a major edit creates a new analytics window.
-
 ## Best practices
 
-<Tip>**Review analytics weekly for the first month** after launching a workflow.</Tip>
-<Tip>**Compare time-on-time** — a workflow that worked in March may stop working in November.</Tip>
+<Tip>**Check Failed weekly.** Most failures point to a setup issue, such as a disconnected WhatsApp provider or customers without phone numbers.</Tip>
+<Tip>**Compare Opened and Clicked across nodes.** **Node Name** tells you which email in a multi-step workflow performs best.</Tip>
+<Tip>**Look at Skipped reasons.** They explain emails that were triggered but never sent.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why is a subscriber still In Progress?">
+    They're usually waiting on a **Time Delay** node. Open their timeline to see the last completed step.
+  </Accordion>
+  <Accordion title="Where are the analytics for built-in emails?">
+    Open the email from **Loyalty**, **Referral** or **Membership → Emails**. The editor shows **Stats** and a **View Details** link. See [Emails](/emails/overview#email-analytics).
+  </Accordion>
+  <Accordion title="Is there a funnel or drop-off chart?">
+    No. Use the subscriber statuses and timelines to see where customers stopped.
+  </Accordion>
+</AccordionGroup>
 
 ## Related
 

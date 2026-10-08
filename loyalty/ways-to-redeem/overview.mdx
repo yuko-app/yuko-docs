@@ -1,13 +1,27 @@
 ---
 title: Ways to Redeem
-description: Configure the rewards customers can claim with their points — from amount discounts to free products and store credit.
+description: Configure the rewards customers can claim with their points, online and at Shopify POS.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Redeem
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to redeem
 </Note>
 
-Ways to Redeem (also called **rewards**) are the items customers can spend their points on. Each reward type has its own configuration, conditions and customer-facing behaviour.
+Ways to Redeem (also called **rewards**) are what customers can spend their points on. Each reward type has its own settings, conditions and customer-facing behaviour.
+
+## Reward channels
+
+When you click **Add another way**, the **Ways to Redeem** picker groups reward types by the channel where customers redeem them.
+
+| Section | Reward types | Where customers redeem |
+|---|---|---|
+| **Online Store** | Amount Discount, Percentage Discount, Free Product, Free Shipping, Store Credit | Your storefront: the cart, the loyalty widgets and the customer account |
+| **Shopify POS** | POS Amount Discount, POS Percentage Discount | In-store, through the Yuko tile in Shopify POS |
+
+- The **Shopify POS** section appears only after you connect the [Shopify POS integration](/integrations/shopify-pos). POS rewards show a **POS** badge in the rewards list.
+- Channels are kept apart: online rewards can't be redeemed at POS, and POS rewards can't be redeemed online.
+- **Store Credit** is only offered on Shopify stores.
+- Free Product and Store Credit are available on select plans.
 
 ## All reward types
 
@@ -15,26 +29,54 @@ import RelatedRewards from '/snippets/related-rewards.mdx';
 
 <RelatedRewards />
 
+## Settings at a glance
+
+| Setting | Amount | Percentage | Free Product | Free Shipping | Store Credit | POS Amount | POS Percentage |
+|---|---|---|---|---|---|---|---|
+| Fixed or incremented points | Yes | — | — | — | — | Yes | — |
+| Coupon Prefix | Yes | Yes | Yes | Yes | — | — | — |
+| Purchase type | Yes | Yes | — | Yes | — | — | — |
+| Specific products or collections | Yes | Yes | — | — | — | — | — |
+| Maximum Discount Amount | — | Yes | — | — | — | — | — |
+| Shipping Restrictions | — | — | — | Yes | — | — | — |
+| Minimum purchase amount | Yes | Yes | Yes | Yes | — | Yes | Yes |
+| Minimum quantity of items | Yes | Yes | Yes | Yes | — | — | — |
+| Combine with other discounts | Yes | Yes | Yes | Yes | — | Yes | Yes |
+| Expiry | Yes | Yes | Yes | Yes | Yes | — | — |
+
 ## How rewards work
 
-1. A customer reaches the points threshold for an active reward.
-2. The reward shows up for them in the Cart Redeem widget, the Customer Account hub, or the Rewards Landing Page.
-3. The customer claims the reward — Yuko deducts points and issues a Shopify discount code or product addition.
-4. The customer applies the reward at cart or checkout.
-5. Yuko logs the redemption in the activity feed.
+1. A customer has enough points for an active reward.
+2. The reward appears in your loyalty widgets (for example the Cart Redeem widget, the customer account page or the rewards landing page), or in the Yuko tile at Shopify POS for POS rewards.
+3. The customer redeems it. Yuko deducts the points and creates a single-use Shopify discount code for that customer. Store Credit is the exception: it adds Shopify store credit to the customer's account instead.
+4. The customer applies the code at checkout, or the cashier applies it at POS.
+5. Yuko logs the redemption in the customer's activity.
+
+## Common settings
+
+Every reward has:
+
+- **Reward Name** — the customer-facing name. Supports the shortcodes `[points_required]`, `[reward_value]` and `[points_label]`, which are resolved on the storefront (Free Product and Free Shipping support `[points_required]` and `[points_label]`).
+- **Description** — short copy shown with the reward. POS rewards have no description.
+- **Status** — enable or disable the reward from the side panel.
+- **Icon** — **Default** or **Custom** (upload your own image, under 1MB).
+- **Rewards Summary** — a live summary of what you've configured.
+
+You can drag rewards in the list to change the order customers see them in.
 
 ## Decision guidance
 
-- **Start with one reward** — pick the simplest one (Amount Discount) and prove the loop works before adding variety.
-- **Use Store Credit** if you want flexibility without the perceived discount-coupon vibe.
-- **Use Free Product** to move specific inventory or surprise high-tier customers.
-- **Use Free Shipping** in stores where shipping is a major cart-abandonment driver.
+- **Start with one reward.** Amount Discount is the simplest way to prove the earn-and-redeem loop works.
+- **Use Store Credit** for a flexible balance that doesn't feel like a coupon.
+- **Use Free Product** to move specific inventory or give customers a tangible perk.
+- **Use Free Shipping** where shipping costs drive cart abandonment.
+- **Add POS rewards** if you sell in person, so in-store customers can spend the same points.
 
 ## Best practices
 
-<Tip>**Make the cheapest reward attainable in 2–3 orders.** If it takes 10 orders to get anything, customers disengage.</Tip>
+<Tip>**Make the cheapest reward reachable in 2–3 orders.** If it takes 10 orders to get anything, customers lose interest.</Tip>
 <Tip>**Keep the reward menu short.** 3–4 well-priced rewards beat 12 mediocre ones.</Tip>
-<Tip>**Test redemption end-to-end** as a real customer before launching — broken redemptions damage trust faster than missing rewards.</Tip>
+<Tip>**Test redemption end-to-end** as a real customer before launch, online and at POS.</Tip>
 
 ## Related
 

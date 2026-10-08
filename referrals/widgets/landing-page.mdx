@@ -1,0 +1,125 @@
+---
+title: Referral Landing Page
+description: A dedicated referral page where visitors sign up for a referral link and logged-in customers copy and share theirs.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Referral → Widgets → Referral Landing Page
+</Note>
+
+## Introduction
+
+The **Referral Landing Page** is a dedicated page for your referral program. Visitors can sign up for a referral link, and logged-in customers can copy and share theirs. On the storefront, it's rendered by the **Yuko: Referral Signup** theme app block.
+
+## What problem this solves
+
+Customers can't refer friends if they can't find their link. A dedicated page gives you one URL to promote in emails, ads and your navigation, and it works for both guests and logged-in customers.
+
+## Where it appears
+
+- A Shopify page Yuko creates for you: **Referral Program**, at `/pages/referral-info-page`.
+- Any other page template where you add the **Yuko: Referral Signup** block.
+
+## Overview
+
+- **Guest View** and **Logged In View**, each with its own text.
+- A configurable sign-up form for guests.
+- Optional social share buttons.
+- No Styles tab in Yuko. Colours, fonts, banner image and Custom CSS are set on the theme block.
+
+## Before you start
+
+<Check>The referral program is enabled and a friend reward is set in **Referral → Program**.</Check>
+<Check>The **Yuko App** embed is turned on in your theme. See [Theme App Embed](/installation-and-setup/theme-app-embed).</Check>
+
+## Setup guide
+
+### 1. Create the page
+
+<Steps>
+  <Step title="Open the widget">
+    Go to **Referral → Widgets** and open **Referral Landing Page**.
+  </Step>
+  <Step title="Create the landing page">
+    If your store has no referral landing page yet, Yuko opens a **Create referral landing page** dialog. Click **Create** to add a Shopify page titled **Referral Program** at `/pages/referral-info-page`.
+  </Step>
+</Steps>
+
+Once the page exists, a **Check landing page** button appears next to the widget title. Use it to confirm the page is still in Shopify, for example if someone may have deleted it.
+
+### 2. Edit the content
+
+<Steps>
+  <Step title="Guest View">
+    | Field | Default |
+    |---|---|
+    | **Page Title** | `Refer a friend. You & your friend both get rewarded` |
+    | **Page Subtitle** | `Get your personalized referral link. Once a friend uses your link and makes a successful purchase, you'll get a reward for your next order with us.` |
+    | **Form** | **Email** (always included). Add **First Name**, **Last Name**, **Phone** or **Marketing Consent** with **Add form field**. |
+    | **Button Text** (submit button, max 30 characters) | `Submit` |
+
+    For each form field you can edit the **Label** and **Placeholder**, mark it as a **Required field**, show or hide it, and drag fields into a new order.
+  </Step>
+  <Step title="Logged In View">
+    | Field | Default |
+    |---|---|
+    | **Page Title** | `Earn for every friend you refer` |
+    | **Page Subtitle** | `Copy and share your personalized referral link with your friends` |
+    | **Copy Button Text** (max 30 characters) | `Copy` |
+    | **Get Link Button Text** (shown before the link is loaded, max 30 characters) | `Get my referral link` |
+  </Step>
+  <Step title="Social Sharing">
+    Turn on **Enable Social Share** to show share buttons, and set **Or share via text** (default `Or share via:`). Only the channels enabled in **Referral → Program → Social Sharing Settings** appear on the storefront. The preview always shows every channel.
+  </Step>
+  <Step title="Save and enable">
+    Click **Save**, then switch the toggle next to the widget title on.
+  </Step>
+</Steps>
+
+Titles and subtitles accept `{{friend_reward}}` and `{{referrer_reward}}`, which are replaced with your reward titles.
+
+### 3. Add or style the block in your theme
+
+The page Yuko creates is ready to use. To add the widget to another page, or to style it, click **Add block** in the widget editor, or follow these steps:
+
+import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
+
+<SetupThemeBlock />
+
+Choose the **Yuko: Referral Signup** block. Its theme-editor settings cover the banner image and position, text alignment, colours, heading and text size, border width, corner radius and Custom CSS. See [Referral widgets](/referrals/widget#yuko-referral-signup-theme-app-block).
+
+### 4. Verify
+
+Open `/pages/referral-info-page` in a private window and sign up with a test email. Then log in as a customer and check that the Logged In View shows a referral link.
+
+## How it works
+
+1. A guest fills in the form and submits it. Yuko enrolls them as a referrer and shows their link.
+2. A logged-in customer clicks **Get my referral link** (or sees their existing link) and copies it.
+3. If social sharing is on, customers can share through your enabled channels.
+
+## Best practices
+
+<Tip>**Link to the page from your navigation and emails.** A dedicated URL is easy to promote.</Tip>
+<Tip>**Keep the form short.** Email alone is enough to create a referral link.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="I deleted the landing page. How do I get it back?">
+    Open the widget in Yuko. If the page no longer exists, the **Create referral landing page** dialog appears again.
+  </Accordion>
+  <Accordion title="Why are there no colour settings in Yuko?">
+    This widget is styled in the Shopify theme editor, through the **Yuko: Referral Signup** block settings.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedReferrals from '/snippets/related-referrals.mdx';
+
+<RelatedReferrals />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

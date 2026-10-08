@@ -1,138 +1,116 @@
 ---
 title: Streak Booster
-description: Reward customers for consistent activity across consecutive periods. Borrows the streak psychology that makes Duolingo and Snapchat sticky.
+description: Reward customers for repeating an action across consecutive weeks, months or quarters. Borrows the streak psychology that makes habit apps sticky.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Booster Campaigns → New booster → **Streak**
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Booster Campaigns → Create campaign → **Streak**
 </Note>
 
 ## Overview
 
-Reward customers for repeating a qualifying action across consecutive periods — days, weeks, months, or quarters. **Order at least once a month for 3 consecutive months → 1,000 bonus points.** The streak resets if the customer skips a period.
+A Streak rewards customers for repeating a qualifying action in consecutive periods (weeks, months or quarters). For example: **order at least once a month for 3 consecutive months → 1,000 bonus points**. If the customer misses a period, the streak resets.
 
 ## Why you need it?
 
 Most loyalty programs reward transactions. Streaks reward **consistency**.
 
-Consistency compounds into habit. A customer who's three months into a streak protects it — they'll place an order earlier than they normally would just to keep the streak alive. Snapchat, Duolingo, and every gym in the world know this. So now does your store.
+Consistency compounds into habit. A customer who is two months into a three-month streak protects it, and will place an order sooner than they normally would to keep it alive.
 
 ## When to use it?
 
-- You sell repeat-purchase categories where monthly cadence is natural (consumables, replenishment, fashion drops).
-- You want a campaign that rewards customers for *not pausing*, not just for buying more.
+- You sell repeat-purchase categories where a weekly or monthly cadence is natural.
+- You want to reward customers for *not pausing*, not just for buying more.
 - You're trying to build a buying rhythm rather than a one-off spike.
-- You operate a content/community store where engagement matters as much as orders.
+- You want to keep reviews flowing steadily (with **Write a review** as the qualifying action).
 
 ## How to configure it?
 
 <Steps>
   <Step title="Open Booster Campaigns">
-    Go to **Apps → Yuko Loyalty → Loyalty → Booster Campaigns** and click **New booster**.
+    Go to **Apps → Yuko Loyalty → Loyalty → Programs**. In the **Booster Campaigns** section, click **Create campaign** and select **Streak**.
   </Step>
-  <Step title="Pick Streak">
-    Select the **Streak** booster type.
+  <Step title="Fill in Campaign Details">
+    Enter a **Campaign Name** (internal) and an optional **Description**.
+  </Step>
+  <Step title="Choose the qualifying action">
+    Under **Qualifying action**, pick **Place an order** or **Write a review** (only enabled Ways to Earn are listed). For **Place an order**, you can also check **Set a minimum order amount**; only orders above this amount count toward the streak. The qualifying action can't be changed after the campaign is saved.
   </Step>
   <Step title="Configure the streak">
-    - **Period** — day, week, month, or quarter.
-    - **Consecutive periods** — how many in a row to qualify (2–24).
-    - **Qualifying action** — typically *Place an Order*, but daily-visit and review actions are supported too.
-    - **Minimum actions per period** — e.g., 1 order per month, or 5 visits per week.
+    - **Period** — **Week**, **Month** or **Quarter**: the unit of time for each streak interval.
+    - **Consecutive Periods** — how many periods in a row the customer must keep up (2–24).
+    - **Min Actions Per Period** — the minimum number of times the qualifying action must happen in each period (at least 1).
   </Step>
-  <Step title="Set the reward">
-    Points awarded when the streak completes. Many programs escalate by streak length (e.g., 100 points for a 3-streak, 500 for 6, 1,500 for 12).
+  <Step title="Add the reward">
+    Click **Add Reward** and choose **Amount discount**, **% off discount**, **Free shipping**, **Free product**, **Bonus points** or **Store credit** (Shopify only). The reward is issued when the streak is complete.
   </Step>
-  <Step title="Set schedule, targeting, product scope">
-    One-time, recurring, or always-on. Streak campaigns are most often run always-on once configured.
+  <Step title="Set targeting and limits (optional)">
+    Add **Targeting Rules**. With **Place an order** as the qualifying action, **Products** and **Collections** rules are also available. Set **Max participants** and **Max completions per customer** if needed.
   </Step>
-  <Step title="Save and activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Set the schedule">
+    **One-time**, **Recurring** (by weeks or months) or **Evergreen (always on)**. Streaks usually run evergreen, because the streak itself defines the time frame.
+  </Step>
+  <Step title="Review display, stacking, publishing and icon">
+    Streak has four widget labels: **Call-to-action above progress bar**, **Status text under progress bar**, **Reward banner — locked** and **Reward banner — unlocked**. Tokens include `[current]`, `[target]`, `[remaining]`, `[period]` and `[period_plural]`, plus `[title]`, `[reward]` and `[points_label]`.
+  </Step>
+  <Step title="Save">
+    **Status** is enabled by default. Click **Save**.
   </Step>
 </Steps>
 
-<Tip>
-**Surface the streak in widgets.** The Customer Account hub and Floating Launcher can show the customer's current streak (“2 of 3 months — keep going!”). The progress feedback is half of what makes the campaign work.
-</Tip>
+## How it works
+
+1. The first qualifying action starts the customer's current period.
+2. A period counts toward the streak when the customer reaches **Min Actions Per Period** in it.
+3. If a whole period passes without the action, the streak resets to zero.
+4. When the customer has kept the streak for **Consecutive Periods** in a row, the reward is issued and the participant is marked **Completed**.
+
+You can follow each customer's streak in the campaign's **Participants** tab, which shows the periods completed and the actions in the current period.
 
 ## Use cases / Examples
 
-### One-time uses
+**1. Monthly buyer streak.** Period **Month**, 3 consecutive periods, 1 action per period, **Place an order** → 500 bonus points. Subscription-like behaviour without a recurring charge.
 
-**1. 3-month launch streak**
+**2. Weekly replenishment streak.** Period **Week**, 4 consecutive periods, **Place an order** with a minimum order amount → free shipping on the next order.
 
-Following a brand relaunch or rebrand: order at least once a month for 3 consecutive months → 1,000 points + tier accelerator. Anchors the rebrand moment in a 3-month habit the customer builds with you.
+**3. Quarterly loyalist.** Period **Quarter**, 4 consecutive periods → a free product. A year of steady buying earns a meaningful reward.
 
-### Recurring uses
-
-**2. Monthly buyer streak**
-
-Order in 3 consecutive months → 500 points; in 6 consecutive months → 1,500. Subscription-like behaviour without committing customers to a recurring charge. Best for consumables.
-
-**3. Weekly engagement streak**
-
-Visit the storefront in 4 consecutive weeks → a bonus reward. Works for content-driven stores where the customer reads / browses / engages even on weeks they don't buy. Pairs with daily-visit campaigns.
-
-**4. Quarterly buyer streak**
-
-Order in 3 consecutive quarters → exclusive reward. Slower cadence built for considered-purchase brands (furniture, electronics, fashion houses) where a monthly streak is unrealistic.
-
-### Always-on uses
-
-**5. Continuous subscriber streak**
-
-Order every month — with no upper bound on the streak. Each completed month adds escalating points. Best for replenishment categories (coffee, supplements, beauty). The longer the customer's streak, the bigger the protect-it instinct.
-
-**6. Daily check-in streak**
-
-Daily visit for 7 consecutive days → small bonus. Pairs with daily content drops (a drops calendar, a daily lookbook). Borrows directly from streak-driven apps; works when there's a reason to check in daily beyond shopping.
+**4. Steady reviewer.** Period **Month**, 3 consecutive periods, **Write a review** → 300 bonus points.
 
 ## How to promote it
 
-Streak campaigns work because *losing a streak feels bad*. Your promotion strategy should lean into that — the most effective messages are the **don't break your streak** reminders, not the launch announcement.
+- **Storefront:** with **Show in loyalty widget** checked, the **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget, Floating Launcher and customer account page show the customer's current streak and the reward banner.
+- **Email:** at the start of each period, remind customers on a streak that they need to act again to keep it. With **[Klaviyo](/integrations/klaviyo)**, you can segment by loyalty activity.
+- **WhatsApp:** if you've connected a WhatsApp provider, use it for *"your streak ends this week"* nudges.
 
-### Storefront — Loyalty Nudges puts the streak everywhere
+## FAQs
 
-The **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget puts the customer's current streak count on every storefront page through the pinned strip + drawer. The streak number is right there at the top of the drawer, every time they land on the site — same mechanic that keeps Duolingo users opening the app.
-
-The Customer Account hub and Floating Launcher also show the streak. Combined with Nudges, customers can't miss the streak count once it starts.
-
-### Email — streak-risk reminders are the win
-
-Pair the streak with email through your ESP. **Klaviyo** is the strongest pairing because Yuko pushes profile properties for live data and *Earn Points* events for every qualifying action (see [Klaviyo integration](/integrations/klaviyo)) — build a Klaviyo flow that fires reminders when a customer's streak is at risk.
-
-- **Launch email:** explain the streak and the reward. Keep it short — the campaign is built on simple psychology.
-- **Streak-at-risk email (most important):** Klaviyo flow fires N days before period close *if* the customer hasn't completed the qualifying action yet. *“You're 2 months into your streak. Don't break it — order by Sunday.”*
-- **Streak-extended email:** after every qualifying action, fire a confirmation showing the new streak length. Compounds the protect-it instinct.
-
-### WhatsApp — streak-risk urgency
-
-Streaks are the **single best fit for WhatsApp**. Personal, urgent, time-sensitive. If you've connected a WhatsApp provider, reserve WhatsApp for the final-day streak-risk reminder — the response rate is dramatically higher than email for this exact use case.
-
-Example: *“Hey [first_name] — you've got 24 hours to keep your 4-month streak alive. Shop here: [link]”*
-
-### Reminder cadence
-
-Per period (monthly example):
-
-- **Period start** — streak-extended email (if they just renewed) or launch email (first time). Enable Loyalty Nudges so the streak count is visible from day one.
-- **7 days before period close, streak at risk** — reminder email
-- **3 days before period close, still at risk** — second reminder
-- **24 hours before period close, still at risk** — WhatsApp message
+<AccordionGroup>
+  <Accordion title="Can I run a daily streak?">
+    No. The **Period** options are **Week**, **Month** and **Quarter**.
+  </Accordion>
+  <Accordion title="Which actions can drive a streak?">
+    **Place an order** and **Write a review**. The action's Way to Earn must be enabled.
+  </Accordion>
+  <Accordion title="Can I have different rewards for a 3- and a 6-period streak?">
+    Create two Streak campaigns with different **Consecutive Periods**, each with its own reward.
+  </Accordion>
+</AccordionGroup>
 
 ## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
-    The pinned-strip widget that surfaces the streak on every storefront page.
+  <Card title="Booster Campaigns overview" icon="rocket" href="/loyalty/booster-campaigns/overview">
+    Schedule, targeting, stacking and display settings shared by all boosters.
   </Card>
-  <Card title="Order Frequency Booster" icon="repeat" href="/loyalty/booster-campaigns/order-frequency">
-    Want absolute-count milestones instead of consecutive-period streaks? Use Order Frequency.
+  <Card title="Order Booster" icon="repeat" href="/loyalty/booster-campaigns/order-frequency">
+    Reward the number of orders instead of consecutive periods.
   </Card>
   <Card title="Multi-Action Challenge" icon="list-check" href="/loyalty/booster-campaigns/multi-action-challenge">
-    Reward diverse actions, not just repeated ones.
+    Reward a mix of different actions.
   </Card>
-  <Card title="Booster Campaigns Overview" icon="rocket" href="/loyalty/booster-campaigns/overview">
-    Compare all 8 booster types.
+  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
+    Show the streak on every storefront page.
   </Card>
 </CardGroup>
 

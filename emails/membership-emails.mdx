@@ -1,56 +1,96 @@
 ---
 title: Membership Emails
-description: Templates for membership unlock and membership lost moments.
+description: The four built-in membership emails, Membership created, upgraded, downgraded and cancelled, with their default subjects and delays.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships → Notifications
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Membership → Emails
 </Note>
 
-Membership has two email moments — the upgrade in (unlock) and the drop out (lost). Both are configured in the [Template Editor](/emails/template-editor).
+Paid [memberships](/memberships/overview) have four built-in emails, one for each change to a member's subscription. They start **inactive**. Switch them on in **Membership → Emails** and edit them in the [Template Editor](/emails/template-editor).
 
-## Membership Unlocked
+| Email | Sent when | Default subject | Delay setting |
+|---|---|---|---|
+| [Membership created](#membership-created) | A customer subscribes to a membership for the first time | Welcome to `{{ membership_name }}`, `{{ first_name }}`! | **Days after membership created** |
+| [Membership upgraded](#membership-upgraded) | A member moves to a higher-priced plan | You've upgraded to `{{ membership_name }}`, `{{ first_name }}`! | **Days after membership upgraded** |
+| [Membership downgraded](#membership-downgraded) | A member moves to a lower-priced plan | Your membership plan has changed, `{{ first_name }}` | **Days after membership downgraded** |
+| [Membership cancelled](#membership-cancelled) | A member's subscription is cancelled | Your `{{ membership_name }}` membership has been cancelled, `{{ first_name }}` | **Days after membership cancelled** |
 
-**Trigger:** A customer's membership contract becomes active (after the plan is purchased and Shopify confirms payment).
+Leave the delay at **0** to send immediately.
 
-**Default subject:** *“Welcome to [plan_name]”*
+## Membership created
 
-**Default body summary:** Greeting → welcome message → list of benefits → next renewal date → CTA to the storefront.
+**Sent when:** a new subscription contract is created, meaning the customer has just bought a membership plan.
 
-**Useful shortcodes:** `[first_name]`, `[plan_name]`, `[plan_price]`, `[next_renewal_date]`.
+**Default subject:** *Welcome to `{{ membership_name }}`, `{{ first_name }}`!*
 
-<Tip>**Lead with benefits, not pricing.** The customer just paid; remind them why.</Tip>
+**Default title:** *Your membership is now active*
+
+**Default message:** Welcome → the `{{ membership_name }}` membership is active → overview of the perks → visit your account to explore them.
+
+**Useful shortcodes:** `{{ membership_name }}`, `{{ membership_benefits }}`, `{{ benefit_1_name }}`, `{{ membership_price }}`, `{{ billing_interval }}`, `{{ next_billing_date }}`.
+
+<Tip>**Lead with the benefits, not the price.** The member has just paid, so remind them what they get.</Tip>
+
+---
+
+## Membership upgraded
+
+**Sent when:** a member's subscription is updated to a higher-priced plan.
+
+**Default subject:** *You've upgraded to `{{ membership_name }}`, `{{ first_name }}`!*
+
+**Default title:** *Your membership upgrade is active*
+
+**Default message:** The membership is now `{{ membership_name }}` → the new benefits are live today.
+
+**Useful shortcodes:** `{{ membership_name }}`, `{{ previous_price }}`, `{{ membership_price }}`, `{{ membership_benefits }}`.
 
 ---
 
-## Membership Lost
+## Membership downgraded
 
-**Trigger:** A customer's membership contract becomes inactive (cancellation, billing failure, or pause).
+**Sent when:** a member's subscription is updated to a lower-priced plan.
 
-**Default subject:** *“Your [plan_name] has ended”*
+**Default subject:** *Your membership plan has changed, `{{ first_name }}`*
 
-**Default body summary:** Greeting → the contract has ended → reason (if applicable) → reactivation CTA.
+**Default title:** *Your membership plan has been updated*
 
-**Useful shortcodes:** `[first_name]`, `[plan_name]`, `[lost_reason]`.
+**Default message:** The membership has changed to `{{ membership_name }}` → the member keeps that plan's benefits → they can change plan from their account.
 
-<Tip>**Always include a reactivation CTA.** Many cancellations are reversible.</Tip>
-<Tip>**Keep the tone neutral.** Customers cancel for many reasons; don't assume.</Tip>
+**Useful shortcodes:** `{{ membership_name }}`, `{{ previous_price }}`, `{{ benefits_lost }}`, `{{ benefits_retained }}`.
+
+<Tip>**Keep the tone neutral.** Spell out what they keep (`{{ benefits_retained }}`) before what they lose.</Tip>
 
 ---
+
+## Membership cancelled
+
+**Sent when:** a member's subscription contract is cancelled.
+
+**Default subject:** *Your `{{ membership_name }}` membership has been cancelled, `{{ first_name }}`*
+
+**Default title:** *Your membership has been cancelled*
+
+**Default message:** Confirms the cancellation → benefits are no longer active → thanks them, and they're welcome back anytime.
+
+**Useful shortcodes:** `{{ membership_name }}`, `{{ cancellation_reason }}`, `{{ member_since }}`, `{{ subscription_status }}`.
+
+<Tip>**Leave the door open.** Add a CTA URL to your membership page so customers can rejoin in one click.</Tip>
 
 ## Best practices
 
-<Tip>**Make Membership Unlocked feel premium.** Members paid — the email should match that.</Tip>
-<Tip>**Track the reason in `[lost_reason]`.** Different reasons (cancel vs failed billing vs pause) deserve different copy. Use the editor's locale variant feature to maintain alternative versions if needed.</Tip>
+<Tip>**Use the benefit slots for a clean list.** `{{ benefit_1_name }}` to `{{ benefit_10_name }}` (and the matching `_description` shortcodes) let you lay out benefits exactly how you want. Empty slots print nothing.</Tip>
+<Tip>**Turn on Membership created first.** It's the email every new member gets.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Does Membership Lost fire on pause?">
-    Yes — the contract is no longer active. The reason will be *paused* and the email can be customised to reflect that.
+  <Accordion title="Is there an email when a membership is paused or reactivated?">
+    There's no built-in email for those. Build a [workflow](/workflows/overview) on the **Membership Paused** or **Membership Reactivated** trigger.
   </Accordion>
-  <Accordion title="Will the customer get re-welcomed if they reactivate?">
-    Yes — a new contract starts and Membership Unlocked fires again.
+  <Accordion title="Where do benefit names come from?">
+    From the benefits on the membership [plan](/memberships/plans). Each benefit fills one numbered slot.
   </Accordion>
 </AccordionGroup>
 

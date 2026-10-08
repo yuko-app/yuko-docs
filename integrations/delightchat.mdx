@@ -50,7 +50,7 @@ DelightChat triggers a pre-built **automation** rather than a raw template. You 
 | Field | What it is | Example |
 |---|---|---|
 | **Automation ID** | The ID of the WhatsApp automation in DelightChat | `abc123` |
-| **Message Data Count** | Number of template variables the automation expects (1–25) | `2` |
+| **Message Data Count** | Number of template variables the automation expects (1–10) | `2` |
 | **Message Data** | Key-value pairs (keys typically numbered `1`, `2`, `3`…) — values support [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `1` = `{{first_name}}`, `2` = `{{points_balance}}` |
 | **CTA Button URL** | Optional click-through URL on the button (supports shortcodes) | `https://shop.example.com/account` |
 | **CTA Button Text** | Optional button label | `View my points` |
@@ -62,7 +62,7 @@ DelightChat triggers a pre-built **automation** rather than a raw template. You 
 **Points expiring — click to redeem**
 
 1. In DelightChat, build a WhatsApp automation called `points_expiring_soon` with two variables and approve the template. Note the Automation ID.
-2. In Yuko Workflows, build: **Trigger: Points Expiring Soon** → **WhatsApp (DelightChat)**.
+2. In Yuko Workflows, build: **Trigger: Points Expiring Reminder** → **WhatsApp (DelightChat)**.
 3. Set Automation ID, Message Data Count = `2`, Message Data: `1` = `{{first_name}}`, `2` = `{{points_balance}}`.
 4. Add a CTA: Button URL = `https://yourstore.com/account/rewards`, Button Text = `Redeem now`.
 5. Activate.
@@ -83,7 +83,7 @@ DelightChat triggers a pre-built **automation** rather than a raw template. You 
     Check the automation's template body in DelightChat. The variable placeholders correspond to the keys you'll pass here — typically numbered `1`, `2`, `3`.
   </Accordion>
   <Accordion title="Can the CTA URL be dynamic per customer?">
-    Yes — the CTA Button URL field supports shortcodes, so you can deep-link with customer-specific values (e.g., `https://yourstore.com/account?email={{customer_email}}`).
+    Yes — the CTA Button URL field supports shortcodes, so you can deep-link with customer-specific values (e.g., `https://yourstore.com/account?email={{email}}`).
   </Accordion>
   <Accordion title="How do I rotate the API key?">
     Generate a new key in DelightChat, then paste it into the Yuko DelightChat integration tile and click **Connect** again.
@@ -98,7 +98,7 @@ import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
 <CardGroup cols={2}>
   <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
-    How Yuko's WhatsApp integration works across all 7 providers.
+    How Yuko's WhatsApp integration works across all 13 providers.
   </Card>
   <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
     Setup, shortcodes, and example workflows.

@@ -91,6 +91,10 @@ These are written at Klaviyo's top-level profile object (not under `properties`)
 | `yuko_lifetime_points_earned` | Integer | All points the customer has ever earned (excludes redemptions and adjustments). |
 | `yuko_points_expire_at` | ISO 8601 string | The date the customer's *next* batch of points will expire. Empty if no points are scheduled to expire. |
 | `yuko_points_to_next_reward` | String | How many more points the customer needs to qualify for their next claimable reward. |
+| `yuko_points_expiring_in_30_days` | Integer | Points that expire within the next 30 days (includes the 7-day amount). `0` if none. |
+| `yuko_points_expiring_in_7_days` | Integer | Points that expire within the next 7 days. `0` if none. |
+| `yuko_points_expiring_in_30_days_as_cash_balance` | Number | The 30-day expiring points expressed in store currency. |
+| `yuko_points_expiring_in_7_days_as_cash_balance` | Number | The 7-day expiring points expressed in store currency. |
 
 ### VIP tier profile properties
 

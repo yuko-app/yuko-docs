@@ -1,160 +1,139 @@
 ---
 title: Points Multiplier Booster
-description: Lift points earning across all orders (or a chosen subset) for a defined window — without touching your prices.
+description: Multiply the points customers earn on an action for a window you control — without touching your prices.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Booster Campaigns → New booster → **Multiplier**
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Booster Campaigns → Create campaign → **Multiplier**
 </Note>
 
 ## Overview
 
-The core mechanic: orders earn points at a higher rate (2X, 3X, etc.) during a window you control. The customer pays the same price; they just earn more points on the same order.
+While the campaign runs, every time a customer completes the chosen earning action they earn a multiple (for example 2× or 3×) of the points that Way to Earn normally gives. The customer pays the same price and simply earns more.
+
+The multiplier works on any enabled Way to Earn, not just orders. To boost only certain products or collections, use the [Product & Collection Multiplier](/loyalty/booster-campaigns/product-collection-multiplier) instead.
 
 ## Why you need it?
 
-When sales are flat, the default reflex is to discount. Discounting trains customers to wait for the next promotion, eats into margin, and slowly degrades the perceived value of your products.
+When sales are flat, the default reflex is to discount. Discounting trains customers to wait for the next promotion, eats into margin and slowly erodes the perceived value of your products.
 
-A points multiplier creates the same urgency without cutting price. The customer sees an obvious reason to buy now, your margin holds, and your loyal customers feel rewarded rather than manipulated into a sale.
+A points multiplier creates the same urgency without cutting price. The customer sees an obvious reason to buy now, your margin holds, and loyal customers feel rewarded rather than pushed into a sale.
 
 ## When to use it?
 
-- You want to drive a near-term lift in revenue without discounting.
+- You want a near-term lift in revenue without discounting.
 - You're entering a slow week and need a lever that doesn't condition customers to expect markdowns.
-- You're running an alternative to a competitor's discount campaign during a high-stakes period.
-- You want to give your VIP tier or new members an always-on earning advantage.
-- You're launching a new collection and want the spotlight on that product range.
+- You want an alternative to a competitor's discount campaign during a high-stakes period.
+- You want to give a VIP tier or paid members an always-on earning advantage.
+- You want to boost a non-purchase action for a while, such as reviews.
 
 ## How to configure it?
 
 <Steps>
   <Step title="Open Booster Campaigns">
-    Go to **Apps → Yuko Loyalty → Loyalty → Booster Campaigns** and click **New booster**.
+    Go to **Apps → Yuko Loyalty → Loyalty → Programs**. In the **Booster Campaigns** section, click **Create campaign** and select **Multiplier**.
   </Step>
-  <Step title="Pick Multiplier">
-    Select the **Multiplier** booster type.
+  <Step title="Fill in Campaign Details">
+    Enter a **Campaign Name** (internal) and an optional **Description**.
   </Step>
-  <Step title="Configure the multiplier">
-    - **Earning action** — which Way to Earn this boost applies to (typically *Place an Order*).
-    - **Multiplier value** — between 1.1× and 10×. Most stores use 2×–3×.
-    - **Collection multiplier (optional)** — apply an additional multiplier when the order contains products from a specific collection. The two multipliers compound (e.g., 2× store-wide × 1.5× collection = 3× on that collection).
+  <Step title="Choose the earning action">
+    Under **Earning action**, pick the Way to Earn this campaign applies to (for example **Place an order**). Only enabled Ways to Earn are listed. The earning action can't be changed after the campaign is saved.
+  </Step>
+  <Step title="Add the Multiplier reward">
+    Click **Add Reward**. Enter a **Name** (visible on the storefront) and the **Multiplier**, a value between 1.1 and 10.0. A Multiplier campaign has exactly one reward.
+  </Step>
+  <Step title="Set targeting and limits (optional)">
+    Add **Targeting Rules** (for example **VIP Tiers** or **Customer Tags**). If the earning action is **Place an order**, you can also add **Products** or **Collections** rules. Set **Max participants** and **Max completions per customer** if needed.
   </Step>
   <Step title="Set the schedule">
-    Choose one of:
-    - **One-time window** — start date and end date.
-    - **Recurring** — every weekend / first week of every month / last Friday of every month / etc.
-    - **Always-on** — runs continuously for a defined cohort (typically used with targeting like VIP tier or new members).
+    **One-time** (start and end date), **Recurring** (by days, weeks or months) or **Evergreen (always on)**.
   </Step>
-  <Step title="Configure targeting (optional)">
-    Limit who qualifies: VIP tier, customer tag, lifetime spend threshold, membership status. Leave blank to apply to every loyalty customer.
+  <Step title="Set stacking">
+    **Stackable with other campaigns** is checked by default. Uncheck it to make the campaign exclusive. Check **Ignore if customer earned VIP tier multiplier** to skip the boost when the customer's VIP tier already gave them a bonus on the same action.
   </Step>
-  <Step title="Set product scope (optional)">
-    Restrict the boost to specific products or collections. For collection-launch campaigns, this is essential.
+  <Step title="Review display, publishing and icon">
+    Edit the **Body text** widget label if you want custom copy (tokens: `[title]`, `[reward]`, `[points_label]`, `[action]`), keep **Online store** selected under **Publishing**, and pick an **Icon**.
   </Step>
-  <Step title="Set stacking behaviour">
-    By default the multiplier stacks with VIP tier multipliers and other active boosters. Toggle **Exclusive** if you want this campaign to be the only multiplier during its window.
-  </Step>
-  <Step title="Save and activate">
-    Toggle the campaign **Active** and click **Save**. The boost begins crediting points the moment the window opens.
+  <Step title="Save">
+    **Status** is enabled by default. Click **Save**. The boost applies from the moment the schedule is active.
   </Step>
 </Steps>
+
+## How it works
+
+1. The customer completes the earning action and earns their normal points (plus any VIP tier bonus).
+2. Yuko credits the boost as a separate bonus entry: **base points × (multiplier − 1)**. With a 2× multiplier, a 100-point order earns 100 extra points.
+3. The bonus is calculated on the base points only, so it doesn't compound with the VIP tier bonus. The bonus also inherits the base points' pending period and expiry.
+4. If **Ignore if customer earned VIP tier multiplier** is checked and a VIP tier bonus was awarded for that same action, no boost is added.
 
 ## Use cases / Examples
 
 ### One-time uses
 
-**1. Slow week rescue**
+**1. Slow week rescue.** Numbers are flat on Monday morning, so you run a 3-day 2× event on **Place an order** instead of reaching for a discount code.
 
-Monday morning, numbers are flat, you flip on a 3-day 2X event instead of reaching for a discount code. Orders lift, margin holds.
+**2. BFCM alternative.** Instead of joining the discount race in November, run a 3× points event. Same urgency, no price cut.
 
-**2. BFCM alternative**
+**3. Review drive.** 2× on **Write a review** for two weeks after a big launch to collect feedback faster.
 
-Instead of joining the discount race in November, run a 3X points event. Same urgency, no price cut, and your loyal customers feel rewarded rather than manipulated.
-
-**3. New collection launch**
-
-Run 2X on just that collection for launch week. Drives traffic to the new range without touching the price tag.
-
-**4. Store anniversary or milestone**
-
-A natural reason to run a celebration event. Feels earned, not manufactured.
-
-**5. Post-Q4 January reactivation**
-
-January is dead for most stores. A 2X event gives lapsed customers a real reason to come back without conditioning them to wait for sales.
+**4. Store anniversary.** A natural reason to run a celebration event. Feels earned, not manufactured.
 
 ### Recurring uses
 
-**6. Payday multiplier**
+**5. Double-points month every quarter.** Recurring, **Months**, **Every quarter**: one month in every three runs at 2×. Customers learn the rhythm and plan purchases around it.
 
-2X points every last Friday of the month. Customers who know it start planning purchases around it. Builds a habit loop you own.
-
-**7. Weekend warrior**
-
-2X every Saturday and Sunday. Shopify traffic peaks on weekends. Reward the buyers who show up then.
-
-**8. First week of the month**
-
-Recurring multiplier that becomes something your best customers look forward to and talk about.
+**6. Fortnightly boost week.** Recurring, **Weeks**, **Every 2 weeks**: a 2× week, then a normal week, repeating.
 
 ### Always-on uses
 
-**9. VIP tier accelerator**
+**7. VIP tier accelerator.** Evergreen 2× with a **VIP Tiers** rule for your top tier. The points program becomes a real reason to climb.
 
-Members at your top tier always earn 2X or 3X. Points program stops being a participation trophy and becomes a real reason to climb the ladder.
-
-**10. New member first 30 days**
-
-Always-on 2X for the first month of membership. The first 30 days determine whether a customer comes back. Make those points feel real and worth chasing.
+**8. Member perk.** Evergreen 1.5× with a **Membership** rule so paid members always earn more.
 
 ## How to promote it
 
-Creating the booster is half the job. The other half is making sure customers actually know it exists. A well-designed multiplier campaign that no one hears about quietly misses most of the audience it was built for.
+### Storefront
 
-### Storefront — start with Loyalty Nudges
+The **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget shows active campaigns in a pinned strip and drawer on every storefront page. The Floating Launcher and the customer account page also list active boosters when **Show in loyalty widget** is checked.
 
-The **[Loyalty Nudges](/onsite-widgets/loyalty-nudges)** widget is the highest-leverage on-site promotion surface for boosters. It's a pinned strip on every storefront page that opens a drawer showing the customer's active campaigns automatically — no per-page setup. Enable it once and your multiplier shows up for every visitor and member.
+### Email and WhatsApp
 
-The Floating Launcher and Cart Redeem widget also surface active boosters. A homepage banner with the multiplier and dates adds extra reinforcement.
+Announce the multiplier through your ESP. Yuko syncs loyalty data such as `yuko_points_balance` and `yuko_vip_tier` to **[Klaviyo](/integrations/klaviyo)**, so you can segment the send.
 
-### Email — your primary outbound lever
+- **Subject line:** lead with the multiplier and the urgency, for example *"3× points — this weekend only"*.
+- **Body:** state the multiplier, the exact dates and what to buy.
+- **Last call:** if you've connected a WhatsApp provider, save WhatsApp for the last 24 hours of the campaign.
 
-Pair the multiplier with an email announcement through your ESP. **Klaviyo** is the strongest pairing because Yuko pushes loyalty data into Klaviyo automatically (see [Klaviyo integration](/integrations/klaviyo)) — every customer profile has `yuko_points_balance` and `yuko_vip_tier`, so you can segment by activity and personalise the email without extra work.
+For always-on multipliers (VIP tier, membership), promote once at the moment of qualification, then let the widgets do the rest.
 
-- **Subject line:** lead with the multiplier and the urgency. *“3X points — this weekend only”* outperforms *“This weekend's promotion”*.
-- **Body:** state the multiplier value, the exact dates, and what to buy. If the booster is collection-scoped, feature 2–3 products from the collection.
-- **Send to:** all opted-in customers, or the targeted cohort if the booster has targeting (e.g., Diamond-tier customers only when you've tier-targeted).
+## FAQs
 
-### WhatsApp — for last-call urgency
-
-If you've connected a WhatsApp provider (AiSensy, Zoko, WATI, etc.), reserve WhatsApp for the **last 24 hours** of the campaign. WhatsApp has ≈98% open rates — spend it where it matters most, not on the launch announcement.
-
-Example: *“Last 24 hours of 2X points. Don't miss it: [link]”*
-
-### Reminder cadence
-
-For a 7-day window:
-
-- **Day 0 (launch)** — enable Loyalty Nudges + full email blast.
-- **Day 3 (mid-window)** — short reminder email focused on customers who haven't bought yet.
-- **Day 6 (last 24 hours)** — WhatsApp last-call to opt-ins; email *“ends tonight”* to non-buyers.
-
-For **always-on** multipliers (VIP tier, first-30-days), promote once at the moment of qualification — the tier-upgrade email or the welcome series — then let Loyalty Nudges and the other storefront widgets take over from there.
+<AccordionGroup>
+  <Accordion title="Can I add a collection multiplier on top?">
+    Not inside a Multiplier campaign; it accepts one Multiplier reward. Create a separate [Product & Collection Multiplier](/loyalty/booster-campaigns/product-collection-multiplier) campaign. If both are stackable, both apply to matching orders.
+  </Accordion>
+  <Accordion title="Does the multiplier apply to points that are pending?">
+    Yes. The bonus copies the base points' pending period and expiry, so it becomes available at the same time as the base points.
+  </Accordion>
+  <Accordion title="Why is Max completions per customer missing?">
+    It's hidden when the earning action can only be earned once per customer, such as **Sign Up**, **Instagram Follow** or **Subscribe to Newsletter**.
+  </Accordion>
+</AccordionGroup>
 
 ## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
-    The pinned-strip widget that surfaces your booster on every storefront page.
+  <Card title="Booster Campaigns overview" icon="rocket" href="/loyalty/booster-campaigns/overview">
+    Schedule, targeting, stacking and display settings shared by all boosters.
+  </Card>
+  <Card title="Product & Collection Multiplier" icon="boxes-stacked" href="/loyalty/booster-campaigns/product-collection-multiplier">
+    Multiply points on selected products or collections only.
   </Card>
   <Card title="Bonus Flat Booster" icon="plus" href="/loyalty/booster-campaigns/bonus-flat">
-    Want a fixed bonus per order instead of a multiplier? Bonus Flat is simpler to communicate.
+    Prefer a fixed bonus per action? Bonus Flat is simpler to communicate.
   </Card>
   <Card title="VIP Tiers" icon="crown" href="/vip-tiers/overview">
     Pair always-on multipliers with VIP tier targeting.
-  </Card>
-  <Card title="Customers" icon="users" href="/loyalty/customers">
-    Watch the activity feed during your first campaign to see the boost land.
   </Card>
 </CardGroup>
 

@@ -53,19 +53,19 @@ WATI uses **named** template parameters. Each parameter has both a name (matchin
 | **Template Name** | The approved template name from your WATI dashboard | `order_update` |
 | **Broadcast Name** | A label to track this broadcast in WATI analytics | `loyalty_tier_upgrade` |
 | **Channel Number** | Your WhatsApp Business sender number with country code | `918888000000` |
-| **Parameter Count** | Number of named parameters the template expects (1–25) | `3` |
+| **Parameter Count** | Number of named parameters the template expects (1–10) | `3` |
 | **Template Parameters** | Name + value pairs — values support [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `customer_name` = `{{first_name}}` |
 
 <Tip>**Parameter names must match the template variables exactly.** If your WATI template defines `{{customer_name}}` and `{{coupon_code}}`, use those exact names in the parameter list — not `name` and `code`.</Tip>
 
 ## Example use case
 
-**Order shipped — with tracking link**
+**Order confirmation with order total**
 
-1. Approve a template in WATI called `order_shipped` with three named variables: `customer_name`, `order_number`, `tracking_link`.
-2. In Yuko Workflows, build: **Trigger: Order Fulfilled** → **WhatsApp (WATI)**.
+1. Approve a template in WATI called `order_shipped` with three named variables: `customer_name`, `order_number`, `order_total`.
+2. In Yuko Workflows, build: **Trigger: Fulfilled Order** → **WhatsApp (WATI)**.
 3. Set Template Name = `order_shipped`, Broadcast Name = `shipped_notifications`, Channel Number = your sender number, Parameter Count = `3`.
-4. Add three parameters: `customer_name` = `{{first_name}}`, `order_number` = `{{order_number}}`, `tracking_link` = `{{tracking_url}}`.
+4. Add three parameters: `customer_name` = `{{first_name}}`, `order_number` = `{{order_number}}`, `order_total` = `{{order_total}}`.
 5. Activate.
 
 ## Limitations
@@ -100,7 +100,7 @@ import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
 <CardGroup cols={2}>
   <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
-    How Yuko's WhatsApp integration works across all 7 providers.
+    How Yuko's WhatsApp integration works across all 13 providers.
   </Card>
   <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
     Setup, shortcodes, and example workflows.

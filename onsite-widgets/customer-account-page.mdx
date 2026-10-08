@@ -1,37 +1,39 @@
 ---
 title: Customer Account Page (Loyalty Hub)
-description: Add the full loyalty hub — balance, rewards, VIP status, activity — inside Shopify's new customer accounts.
+description: Give customers a full loyalty page inside Shopify customer accounts, with balance, VIP tiers, ways to earn and redeem, referrals and membership.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Customer Account Page
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets → Loyalty Rewards: Customer Account Page
 </Note>
 
 ## Introduction
 
-The Customer Account Page widget mounts a full loyalty hub inside Shopify's New Customer Accounts. Customers see their balance, available rewards, VIP status and activity feed without leaving Shopify.
+The **Loyalty Rewards: Customer Account Page** widget is a full loyalty page inside Shopify customer accounts. It's the **Yuko Loyalty account page** extension, a full-page extension on the `customer-account.page.render` target, not a block you drop into an existing page.
+
+Customers see their balance and activity, their VIP tier, ways to earn and redeem, their referral link and their membership, all on one page.
 
 ## What problem this solves
 
-Most loyalty apps push customers to a separate page or domain. Putting the hub inside Shopify's account experience removes friction — customers find it where they already manage their orders and profile.
+Customers expect to find their loyalty status where they manage their orders and profile. A dedicated page in the customer account removes the need to hunt for it on the storefront.
 
 ## Where it appears
 
-- The new Shopify Customer Accounts.
-- Both order pages (balance card) and the profile page (full hub).
+- A dedicated page in Shopify customer accounts.
 
 ## When to use
 
-- You've enabled **New Customer Accounts** in Shopify.
-- You want a loyalty hub without building a standalone landing page.
-- You want the loyalty experience to feel native to Shopify.
+- You use Shopify's customer accounts.
+- You want a complete loyalty hub without building a storefront page.
 
 ## Overview
 
-- Balance card on order pages.
-- Full hub on the profile page.
-- Includes points, rewards, VIP, activity.
-- Configured via the Customer Account extension.
+- Six sections you can drag into any order: **Header**, **VIP Tiers**, **Ways to Earn**, **Ways to Redeem**, **Referrals** and **Membership**.
+- Every heading, label, button and empty state is editable.
+- **Ways to earn — order** lets you show booster campaigns or standard campaigns first.
+- Membership management modals (manage, update payment, cancel, upgrade, downgrade).
+- VIP Tiers, Referrals and Membership sections show only when those features are active for your store.
+- This widget is available on select plans.
 
 ## Before you start
 
@@ -39,82 +41,128 @@ import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
 
 <BeforeYouStart />
 
-<Check>**New Customer Accounts** is enabled in **Shopify admin → Settings → Customer accounts**.</Check>
-<Check>The Customer Account extension is activated — see [Activate the Customer Account Extension](/installation-and-setup/customer-account-extension).</Check>
+<Check>Your store uses Shopify customer accounts (**Settings → Customer accounts**).</Check>
 
 ## Setup guide
 
-### 1. Configure in Yuko
+### 1. Configure the page in Yuko
 
 <Steps>
   <Step title="Open the widget settings">
-    Go to **Apps → Yuko Loyalty → Loyalty → Widgets → Customer Account Page**.
+    Go to **Loyalty → Widgets**, find **Loyalty Rewards: Customer Account Page** under **Post-Purchase**, and click **Customize**.
   </Step>
-  <Step title="Configure visible sections">
-    Choose which sections render in the hub:
-    - **Points balance**
-    - **Earned rewards**
-    - **Ways to redeem**
-    - **VIP tier** (if enabled)
-    - **Activity feed**
+  <Step title="Order the sections">
+    Drag sections by their handle to change the order they appear on the page. The default order is Header, VIP Tiers, Ways to Earn, Ways to Redeem, Referrals, Membership.
   </Step>
-  <Step title="Customise headings and copy">
-    Each section has a title and description you can override.
+  <Step title="Edit each section">
+    Click a section to expand it and edit its text. See [Sections and fields](#sections-and-fields) below.
   </Step>
-  <Step title="Activate">
-    Toggle **Active**.
+  <Step title="Save and enable">
+    Click **Save**. Back on **Loyalty → Widgets**, switch the widget's toggle on.
   </Step>
 </Steps>
 
-### 2. Add the extension in Shopify
+### 2. Make the page available in customer accounts
 
 import SetupCustomerAccount from '/snippets/setup-customer-account-extension.mdx';
 
 <SetupCustomerAccount />
 
-Add the **Yuko Loyalty** block to both the order list and profile pages for full coverage.
+The **Yuko Loyalty account page** is a full page, so instead of adding a block, link to it from your customer account menu so customers can open it. See [Customer Account Extension](/installation-and-setup/customer-account-extension) for details.
 
 ### 3. Verify
 
-Log in as a customer at `<store>.myshopify.com/account` and confirm the hub renders end-to-end.
+Log in as a customer and open the loyalty page from the customer account. Check each section and the order you set.
+
+## Sections and fields
+
+<AccordionGroup>
+  <Accordion title="Header">
+    The welcome card, balance, activity and VIP progress.
+    - **Landing banner image**: **Default** or **Custom** (upload your own banner)
+    - **Page title**: `Welcome!`
+    - **Page description**: `Track your progress and unlock rewards as you earn more [points_label] ...`
+    - **Available Points**: `[points_label] Balance`
+    - **View activity link**: `View activity`
+    - **Recent activities title**: `Recent Activities`
+    - **Admin reason text when point adjustment happens**: `note: [admin_reason]`
+    - **Recent activities load more text**: `Load more`
+    - **Total earned card title** / **Total earned description**: `TOTAL EARNED` / `Lifetime [points_label] earned`
+    - **Total redeemed card title** / **Total redeemed description**: `TOTAL REDEEMED` / `Rewards claimed and used`
+    - **Current VIP tier card title**: `Current VIP tier`
+    - **Next tier text**: `Next tier: [tier_name]`
+    - **Points to unlock text**: `To achieve [tier_name], [remaining_points] [points_label] more.`
+    - **Max tier reached text**: `You have reached the maximum tier`
+  </Accordion>
+  <Accordion title="VIP Tiers">
+    - **Section title**: `VIP rewards & perks`
+    - **Benefits section title**: `Benefits`
+    - **Active badge text** / **Upcoming badge text**: `Active` / `Upcoming`
+    - **No benefits text**: `No benefits`
+    - **Points multiplier benefit text**: `[multiplier_value]x multiplier`
+  </Accordion>
+  <Accordion title="Ways to Earn">
+    - **Section title**: `Ways to Earn Rewards`
+    - **Ways to earn — order**: **Booster campaigns first** (default) or **Standard campaigns first**
+    - **Earn points** group: **Place an order earning rule** (`Earn [points_value] [points_label] for every [currency] [amount_spent]`), and button labels **Follow**, **Share**, **Like** and **Visit**
+    - **Empty state title** / **Empty state description**: `No Ways to Earn` / `Nothing here yet.`
+    - **Birthday update** group: **Header prompt (shown under page description)** (`Enter your birthday to earn rewards.`), **Modal title** (`Birthday Reward`), **Birthday configure modal description**, **Day label**, **Month label**, **Year label**, **Configure button text** (`Set date`) and **Confirm button text** (`Save date`)
+  </Accordion>
+  <Accordion title="Ways to Redeem">
+    - **Existing rewards** group: **Existing rewards section title** (`Existing rewards`), **Points spent text** (`Spent [used_points] [points_label]`), **Discount code label**, **Show more button**, **No rewards data text**, **Copy button** (`Copy code`) and **Expires on text** (`Expires on [discount_expiry_date]`)
+    - **Ways to redeem** group: **Section title** (`Ways to redeem`), **Free products section title** (`Free Products`), **Earn more text** (`Earn [remaining] more [points_label]`), **Redeem button text**, **Redeem modal title** (`Redeem reward`), **Confirm redeem button text** (`Confirm Redeem`), **Show more button** and **Points to redeem label** (`[points_label] to Redeem`)
+    - **Empty states** group: **No rewards empty title** (`No Rewards`), **No coupons empty title** (`No Coupons`) and **Empty state description** (`Nothing here yet.`)
+  </Accordion>
+  <Accordion title="Referrals">
+    - **Section title**: `Referrals`
+    - **Card heading**: `Refer your friends`
+    - **Card description**: `Invite your friends or family to enjoy our products by sharing the link below, and we will reward you.`
+    - **Referrer Reward label** / **Friend reward label**: `You get` / `They get`
+    - **Get referral link button text**: `Get referral link`
+    - **Copy link button text** / **Copied confirmation text**: `Copy link` / `Copied!`
+  </Accordion>
+  <Accordion title="Membership">
+    - **Section title** (`Membership`), **Benefits title** (`Your benefits:`), **No benefits text**, **Benefits more label**, **Renews label**
+    - Buttons: **Manage button**, **Update payment button**, **Cancel button**, **Upgrade button**, **Downgrade button**, **Close button**
+    - **Monthly interval label** / **Yearly interval label**: `month` / `year`
+    - **Manage membership modal**: **Title** (`Manage membership`)
+    - **Update payment modal**: **Title**, **Description**, **Confirm button** (`Continue`), **Success text (no direct link)**, **Success text (direct link)** and **Open link button**
+    - **Cancel membership confirmation**: **Title**, **Description**, **Membership subtitle**, **Dismiss button (keep membership)** (`Close`) and **Confirm button** (`Cancel membership`)
+    - **Upgrade membership confirmation** and **Downgrade membership confirmation**: **Title** and **Description**
+    - **Action in progress**: **In progress text** (`Your membership change is being processed. This may take a few moments.`)
+    - **Activity log**: **View activity link text**, **Activity modal title** (`Membership Activity`) and **Empty state text** (`No membership activity found.`)
+  </Accordion>
+</AccordionGroup>
 
 ## How it works
 
-1. Shopify mounts the Yuko extension inside customer accounts.
-2. The extension fetches points, rewards, tier and activity from Yuko.
-3. The full hub renders on the profile page; a balance card renders on order pages.
-
-### Decision guidance
-
-- **Enable both placements** (order list + profile) so customers see balance everywhere.
-- **Show the activity feed** if customers ask *“where did my points go?”* often — it answers that question without a support ticket.
+1. A logged-in customer opens the loyalty page in their customer account.
+2. The extension loads their balance, tier, rewards, ways to earn, referral link and membership from Yuko.
+3. Sections render in the order you set. VIP Tiers, Referrals and Membership are skipped when those features aren't active.
+4. Customers can redeem rewards, copy codes, set their birthday, get their referral link and manage their membership without leaving the page.
 
 ### Limitations
 
-- Requires Shopify's New Customer Accounts.
-- Visual customisation is constrained by Shopify's extension surface.
-- Some text strings have character limits enforced by Shopify.
-
-## Examples
-
-- A growth-stage brand replaces a `/pages/rewards` Shopify page with this hub and reduces support tickets about *"where do I see my points?"* by 40%.
+- Works only with Shopify customer accounts.
+- The page's look follows Shopify's customer accounts styling; there's no custom CSS.
+- You can reorder sections but not hide individual ones; VIP Tiers, Referrals and Membership hide automatically when the feature isn't active.
 
 ## Best practices
 
-<Tip>**Add it on day one.** Customers expect loyalty inside their account; making them hunt for it costs redemption rate.</Tip>
-<Tip>**Pair with a points-balance reminder email** to bring customers back into the hub.</Tip>
+<Tip>**Put what matters most first.** If your program is VIP-led, drag **VIP Tiers** above **Ways to Earn**.</Tip>
+<Tip>**Show boosters first** during promotions so time-limited campaigns get noticed.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Can I use this with the legacy customer accounts?">
-    No — use the [Rewards Landing Page](/onsite-widgets/rewards-landing-page) instead.
+  <Accordion title="Can I use this with legacy customer accounts?">
+    No. Use the [Rewards Landing Page](/onsite-widgets/rewards-landing-page) instead.
   </Accordion>
-  <Accordion title="Why is the VIP section empty?">
-    Either VIP tiers are not enabled, or the customer hasn't been assigned a tier yet.
+  <Accordion title="Why doesn't the VIP Tiers section appear?">
+    The section is skipped when VIP tiers aren't active for your store. If they are, check the customer has been placed in a tier.
   </Accordion>
-  <Accordion title="Can I add custom sections?">
-    Not in v1. Stick with the section toggles provided.
+  <Accordion title="How is this different from the Order List and Profile widgets?">
+    [Order List: Point Balance](/onsite-widgets/order-list-balance) and [Customer Profile: Point Balance](/onsite-widgets/customer-profile-balance) are small blocks on existing account pages. This widget is a full page of its own.
   </Accordion>
 </AccordionGroup>
 

@@ -1,6 +1,6 @@
 ---
 title: Activate the Customer Account Extension
-description: Add the Yuko Loyalty hub inside Shopify's new customer accounts.
+description: Add Yuko's blocks and loyalty page to Shopify's new customer accounts.
 ---
 
 <Note>
@@ -9,70 +9,86 @@ description: Add the Yuko Loyalty hub inside Shopify's new customer accounts.
 
 ## Introduction
 
-The **Customer Account Extension** adds a Yuko Loyalty hub inside Shopify's new customer accounts surface. Customers see their balance, rewards, VIP status and activity log without leaving Shopify.
+Yuko adds loyalty to Shopify's **new customer accounts** in two ways:
+
+- **Blocks** that you place on the Order status, Orders and Profile pages, such as the customer's points balance or the points earned on an order.
+- A **full loyalty page**, **Yuko Loyalty account page**, where customers see their points, VIP tier, ways to earn and redeem, referrals and membership.
+
+You set the text for each in **Loyalty → Widgets** and place them in Shopify's Customer Accounts editor.
 
 ## What problem this solves
 
-Many loyalty programs send customers to a separate page to manage rewards. With this extension, the loyalty hub lives natively where customers already manage their orders and profile, dramatically improving discovery.
+Customers already go to their account to check orders. Showing their balance and rewards there means they don't have to hunt for a separate loyalty page.
 
-## Where it appears
+## Yuko customer account surfaces
 
-- The new Shopify Customer Account experience.
-- Both order pages (point balance) and the profile page (full loyalty hub).
+### Loyalty
+
+| Name in the Shopify editor | Shopify target | Yuko widget |
+|---|---|---|
+| **Yuko Order status earned points** | `customer-account.order-status.block.render` | [Order Status Earn](/onsite-widgets/order-status-earn) |
+| **Yuko Order index points display** | `customer-account.order-index.block.render` (Orders page) | [Order List Balance](/onsite-widgets/order-list-balance) |
+| **Yuko Profile loyalty program** | `customer-account.profile.block.render` | [Customer Profile Balance](/onsite-widgets/customer-profile-balance) |
+| **Yuko Loyalty account page** (full page, not a block) | `customer-account.page.render` | [Customer Account Page](/onsite-widgets/customer-account-page) |
+
+### Referrals and memberships
+
+| Name in the Shopify editor | Where it appears | Docs |
+|---|---|---|
+| **Yuko Referral Signup** | Order status page and Thank you page | [Referral widgets](/referrals/widget) |
+| **Yuko Profile membership management** | Profile page and Orders page | [Profile Membership](/memberships/widgets/profile-membership) |
+| **Yuko Order Manage Membership Action** | Order action menu | [Memberships overview](/memberships/overview) |
 
 ## When to use
 
-- You've enabled **New Customer Accounts** in Shopify.
-- You want a loyalty hub without building a separate landing page.
-
-## Overview
-
-- Shopify-native extension surface.
-- Adds the Yuko Loyalty hub block to customer accounts.
-- Works on any paid Shopify plan with new accounts enabled.
+- You've turned on Shopify's **new customer accounts**.
+- You want customers to see loyalty where they manage their orders and profile.
 
 ## Before you start
 
 <Check>Yuko is installed on your Shopify store.</Check>
-<Check>**New Customer Accounts** are enabled in **Settings → Customer accounts**.</Check>
+<Check>**New customer accounts** are turned on in **Shopify admin → Settings → Customer accounts**. Legacy (classic) customer accounts can't show these extensions.</Check>
+<Check>The matching widget is switched on in **Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets** (Post-Purchase group). The Customer Account Page is available on select Yuko plans.</Check>
 
 ## Setup guide
+
+### Add a block
 
 import CustomerAccountSetup from '/snippets/setup-customer-account-extension.mdx';
 
 <CustomerAccountSetup />
 
+### Add the loyalty page
+
+**Yuko Loyalty account page** is a full page, so you don't drop it into a block slot. Switch on **Loyalty Rewards: Customer Account Page** in **Loyalty → Widgets**, then add a link to the page in your customer account menu in Shopify's navigation settings so customers can open it. See [Customer Account Page](/onsite-widgets/customer-account-page) for the content settings.
+
 ## How it works
 
-When a logged-in customer visits their account, Shopify mounts the Yuko Loyalty extension. It fetches the customer's points, rewards, tier and activity feed and renders them in a single hub.
+When a logged-in customer opens their account, Shopify loads the Yuko blocks and page you added. They read the customer's points, tier and rewards from Yuko and the text from the matching widget in **Loyalty → Widgets**.
 
-### Decision guidance
-
-- **Enable both blocks** (orders + profile) so customers see their balance everywhere they expect to.
-- **Use the Rewards Landing Page** as a fallback for stores still on legacy customer accounts.
+These surfaces don't depend on the [Yuko App embed](/installation-and-setup/theme-app-embed). Shopify renders them, not your theme.
 
 ### Limitations
 
-- Requires Shopify's New Customer Accounts. Legacy accounts are not supported.
-- Visual customisation is constrained by Shopify's extension surface.
-
-## Examples
-
-- A growth-stage brand replaces a separate `/account/rewards` page with the embedded loyalty hub, simplifying their customer experience.
+- New customer accounts only.
+- Shopify controls the look of customer account extensions. You can change the text in Yuko but not the styling.
 
 ## Best practices
 
-<Tip>**Add it on day one**. Customers expect to find loyalty inside their account; making them hunt for it costs redemption rate.</Tip>
-<Tip>**Pair with a points-balance reminder email** so customers click into the new hub.</Tip>
+<Tip>**Add the Profile and Orders blocks together** so customers see their balance wherever they land in their account.</Tip>
+<Tip>**Use the Rewards Landing Page for logged-out shoppers.** Customer account surfaces only reach customers who are signed in. See [Rewards Landing Page](/onsite-widgets/rewards-landing-page).</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Can I use this with the legacy customer accounts?">
-    No. Use the Rewards Landing Page widget instead.
+  <Accordion title="Can I use these with legacy customer accounts?">
+    No. Turn on new customer accounts, or use storefront widgets such as [Floating Rewards](/onsite-widgets/floating-launcher) and the [Rewards Landing Page](/onsite-widgets/rewards-landing-page).
   </Accordion>
-  <Accordion title="Why don't I see the block in the editor?">
-    Confirm Yuko is installed and that New Customer Accounts are enabled.
+  <Accordion title="I don't see the Yuko blocks in the editor">
+    Confirm Yuko is installed and new customer accounts are turned on. Open the page the block belongs to (Order status, Orders or Profile), click **Add app block**, and look for the names in the tables above.
+  </Accordion>
+  <Accordion title="The block is placed but empty">
+    Check that the matching widget is switched on in **Loyalty → Widgets** and that you're testing as a signed-in customer.
   </Accordion>
 </AccordionGroup>
 

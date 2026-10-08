@@ -1,122 +1,133 @@
 ---
-title: Contracts
-description: Manage active customer memberships — view subscribers, status, history and handle cancellations.
+title: Members
+description: See every customer's membership, pause, cancel or reactivate it, change the next billing date, and review earned and scheduled benefits.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships → Contracts
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Membership → Members
 </Note>
 
 ## Introduction
 
-A Contract is the link between a customer and a membership plan. Each active contract represents one customer's subscription to one plan, with its own start date, renewal schedule and status.
+The **Members** tab lists every membership: one row per customer per plan, backed by a Shopify subscription contract. Each membership has its own status, billing frequency and next renewal date.
 
 ## What problem this solves
 
-You need a single view of who's subscribed to what — and the ability to act on individual contracts (cancel, pause, switch plan).
+You need one place to see who is subscribed to what, and to act on individual memberships when customers contact support.
 
 ## When to use
 
-- Resolving customer support tickets about their membership.
-- Auditing active members per plan.
-- Handling cancellations and pauses.
+- Answering a customer's question about their membership.
+- Pausing, cancelling or reactivating a membership.
+- Moving a member's next billing date.
+- Checking which benefits a member has received or has coming up.
 
 ## Overview
 
-- List view of all contracts.
-- Detail view per contract — customer, plan, start date, next renewal, status.
-- Cancel or pause individual contracts.
-- Activity log per contract.
+- Status tabs: **All**, **Active**, **Paused**, **Cancelled**, **Expired**, **Failed**.
+- Columns: **Membership**, **Customer**, **Billing frequency**, **Next renewal**, **Created at** and **Status**.
+- **Search memberships** by customer, membership number or product, and sort by membership, customer, status or created date.
+- A detail page per membership with plan details, subscriber details, **Earned benefits** and **Scheduled benefits**.
 
 ## Before you start
 
-import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
-
-<BeforeYouStart />
-
-<Check>At least one membership plan is published.</Check>
+<Check>At least one plan exists in **Membership → Plans**. See [Membership Plans](/memberships/plans).</Check>
 
 ## Setup guide
 
-### Find a contract
+### Find a membership
 
 <Steps>
-  <Step title="Open Contracts">
-    Go to **Apps → Yuko Loyalty → Memberships → Contracts**.
+  <Step title="Open Members">
+    Go to **Membership → Members**.
   </Step>
-  <Step title="Search">
-    Search by customer email or plan name. Filter by status (active, paused, cancelled).
+  <Step title="Filter and search">
+    Pick a status tab, or type in **Search memberships**.
   </Step>
-  <Step title="Open the contract">
-    Click a row to open the contract detail.
+  <Step title="Open the detail page">
+    Click a row to open **Membership #&lt;id&gt;**.
   </Step>
 </Steps>
 
-### View activity
+### Read the detail page
 
-The contract detail shows:
+- **Membership details**: **Plan name**, **Billing frequency**, **Price**, **Product**, **Next renewal date**, **Created at** and the originating **Order**.
+- **Subscriber**: customer name, **Email** and **Phone**.
+- **Earned benefits**: benefits already issued, with **Benefit**, **Value**, **Reward** and **Date**.
+- **Scheduled benefits**: upcoming benefits, with **Benefit**, **Value** and **Scheduled at**. Recurring benefits are marked **Recurring**.
 
-- Customer details and Shopify customer link.
-- Plan name and pricing.
-- Start date and next renewal date.
-- Status history.
-- All renewal events and status changes.
-
-### Cancel or pause
+### Pause, cancel or activate
 
 <Steps>
-  <Step title="Open the contract">
-    Find and open the contract.
+  <Step title="Open the status menu">
+    On the Members list, click the status badge of the membership.
   </Step>
-  <Step title="Click Cancel or Pause">
-    - **Cancel** — stops future renewals. Existing perks remain until the period ends.
-    - **Pause** — temporary stop. Resume manually.
+  <Step title="Pick an action">
+    - **Active** memberships offer **Pause** and **Cancel**.
+    - **Paused** memberships offer **Activate** and **Cancel**.
   </Step>
-  <Step title="Confirm and add a note">
-    Add a reason note for the audit log.
+  <Step title="Confirm">
+    Confirm in the dialog. Yuko updates the subscription contract in Shopify.
   </Step>
 </Steps>
+
+Cancelled, expired and failed memberships have no actions.
+
+### Change the next billing date
+
+<Steps>
+  <Step title="Open the membership">
+    Open an **Active** membership's detail page.
+  </Step>
+  <Step title="Click Change">
+    Next to **Next renewal date**, click **Change**.
+  </Step>
+  <Step title="Pick a date">
+    Choose a **Next billing date** (tomorrow at the earliest) and click **Continue**. Future cycles are calculated from this date.
+  </Step>
+  <Step title="Confirm">
+    Review the old and new dates and click **Confirm**.
+  </Step>
+</Steps>
+
+<Warning>
+The customer is charged the full membership price on the new billing date. No proration is applied.
+</Warning>
 
 ## How it works
 
-- A contract is created when a customer pays for a plan.
-- Yuko tracks renewal events from Shopify.
-- Cancellation stops future renewals; member benefits remain until the period ends.
-- Refunds are handled in Shopify; the contract status updates accordingly.
-
-### Decision guidance
-
-- Use **Pause** for short-term breaks (e.g., the customer is travelling).
-- Use **Cancel** for permanent leaves.
-- Always add a note — future support agents will thank you.
+- A membership is created when a customer buys the plan's linked product with the subscription option, or when you add them from the plan page.
+- Shopify bills each renewal. Yuko keeps the status and next renewal date in sync.
+- When a membership becomes active, Yuko tags the customer and schedules the plan's benefits.
+- When a membership ends, Yuko removes the plan's customer tag, and removes the general `YUKO:Membership` tag if the customer has no other active membership.
 
 ### Limitations
 
-- Renewal handling depends on Shopify's recurring billing capabilities.
-- Cancellation does not automatically refund — issue refunds in Shopify if needed.
-- One contract per customer per plan — a customer can't have two active contracts on the same plan.
+- Status changes are limited to Pause, Activate and Cancel. A cancelled membership can't be reactivated; the customer has to join again.
+- Refunds aren't issued from Yuko. Refund the order in Shopify if needed.
+- Search runs on the memberships loaded in the list.
 
 ## Examples
 
-- A customer pauses their VIP membership for two months while travelling, then resumes.
-- A support agent cancels a contract and refunds the latest charge in Shopify.
+- A customer travelling for two months asks to stop payments: **Pause** the membership, then **Activate** it when they're back.
+- A customer wants their billing to fall after payday: **Change** the next billing date to the 1st of the month.
 
 ## Best practices
 
-<Tip>**Always add a reason note** when cancelling or pausing. The audit log is your source of truth.</Tip>
-<Tip>**Surface contract status in your support tooling** by tagging Shopify customers via Yuko's tagging integration.</Tip>
+<Tip>**Pause before you cancel.** If a customer wants a break, pausing keeps their membership so they don't have to sign up again.</Tip>
+<Tip>**Tell customers about billing-date changes.** They're charged the full price on the new date.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="What happens to benefits after cancellation?">
-    Benefits remain active until the end of the current paid period, then end automatically.
+  <Accordion title="Can customers manage their own membership?">
+    Yes. With the [Profile Membership](/memberships/widgets/profile-membership) widget, members can upgrade, cancel and (if you allow it) downgrade from their customer account.
   </Accordion>
-  <Accordion title="Can a customer reactivate after cancelling?">
-    Yes — they purchase the plan again, which creates a new contract.
+  <Accordion title="Can a customer rejoin after cancelling?">
+    Yes. They buy the plan again, which creates a new membership.
   </Accordion>
   <Accordion title="Where do I issue refunds?">
-    Refund the underlying Shopify order. Yuko reflects the change automatically.
+    Refund the order in Shopify.
   </Accordion>
 </AccordionGroup>
 

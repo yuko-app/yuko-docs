@@ -51,8 +51,8 @@ When you add a WhatsApp node and pick AISensy, the node exposes the fields AISen
 | **Endpoint URL** | AISensy's campaign API endpoint | `https://backend.aisensy.com/campaign/t1/api/v2` |
 | **Campaign Name** | The name of the approved AISensy campaign to trigger | `loyalty_tier_upgrade` |
 | **Source** | Optional source identifier passed back to AISensy analytics | `yuko_workflow` |
-| **Template Parameter Count** | How many variables the template expects (1–25) | `3` |
-| **Template Parameters** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{vip_tier_name}}`, `{{points_balance}}` |
+| **Template Parameter Count** | How many variables the template expects (1–10) | `3` |
+| **Template Parameters** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{current_tier_name}}`, `{{points_balance}}` |
 | **Tags** | Optional comma-separated tags for AISensy reporting | `loyalty, tier_change` |
 | **Attributes** | Optional JSON of custom attributes | `{"segment": "vip"}` |
 
@@ -63,7 +63,7 @@ When you add a WhatsApp node and pick AISensy, the node exposes the fields AISen
 **Diamond tier welcome**
 
 1. Create an approved AISensy campaign called `loyalty_diamond_welcome` with three variables: customer name, points balance, exclusive perk.
-2. In Yuko Workflows, build: **Trigger: VIP Tier Entered** → **Filter: tier = Diamond** → **WhatsApp (AISensy)**.
+2. In Yuko Workflows, build: **Trigger: VIP Tier Entry** → **Filter: tier = Diamond** → **WhatsApp (AISensy)**.
 3. Set Campaign Name = `loyalty_diamond_welcome`, Parameter Count = `3`, Parameters = `{{first_name}}`, `{{points_balance}}`, `Free shipping on every order`.
 4. Activate. The next customer to hit Diamond gets the message within seconds.
 
@@ -98,7 +98,7 @@ import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
 <CardGroup cols={2}>
   <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
-    How Yuko's WhatsApp integration works across all 7 providers.
+    How Yuko's WhatsApp integration works across all 13 providers.
   </Card>
   <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
     Setup, shortcodes, and example workflows.

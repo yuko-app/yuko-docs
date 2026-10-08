@@ -1,6 +1,6 @@
 ---
 title: Referrals
-description: Turn customers into advocates with a dual-reward referral program — customisable rewards, fraud prevention, social sharing and UTM tracking, all built in.
+description: Turn customers into advocates with a two-sided referral program. Set referrer and friend rewards, fraud checks, social sharing and UTM tracking in one place.
 ---
 
 <Note>
@@ -9,35 +9,62 @@ description: Turn customers into advocates with a dual-reward referral program �
 
 ## What is the Referral Program
 
-The Referral Program lets your existing customers refer friends. Both sides get rewarded — the **referrer** for sharing, and the **friend** for completing a qualifying action (typically their first order).
+The Referral Program lets your customers (referrers) share a personal link with friends. Both sides get rewarded:
 
-It's not a separate app or page; it sits alongside your loyalty program and shares the same customer base, points balance and storefront widgets.
+- The **friend** gets a welcome reward (a discount code) when they open the link and enter their details.
+- The **referrer** gets their reward once the friend places a paid order using that discount code.
+
+It isn't a separate app. Referrals sit alongside your loyalty program and use the same customers, points balance and storefront widgets.
 
 ## Who it's for
 
-- Brands with positive word-of-mouth that want to systematise it.
-- High-AOV or considered-purchase stores where personal recommendations carry weight.
-- Stores looking to lower customer acquisition cost via existing customers.
+- Brands with strong word of mouth that want to make it repeatable.
+- High-AOV or considered-purchase stores, where a personal recommendation carries weight.
+- Stores that want to lower acquisition costs by rewarding existing customers.
+
+## The Referral menu
+
+The **Referral** section of the Yuko admin has three tabs:
+
+| Tab | What you do there |
+|---|---|
+| **Program** | Turn the program on, set the referrer and friend rewards, and configure the landing URL, social sharing, fraud prevention, auto enrollment and UTM tracking. See [Program Setup](/referrals/program-setup). |
+| **Widgets** | Configure the storefront and post-purchase referral widgets. See [Referral widgets](/referrals/widget). |
+| **Emails** | Edit the referral emails. See [Referral emails](/emails/referral-emails). |
 
 ## How it fits together
 
 ```
-Customer  ─→  Shares referral link  ─→  Friend clicks link
-                                                 │
-                                                 ▼
-Friend gets a discount on first order  ←──  Friend places order
-                                                 │
-                                                 ▼
-Referrer gets a reward (points / discount / store credit)
+Referrer gets a referral link  ─→  Shares it  ─→  Friend opens the link
+                                                         │
+                                                         ▼
+                                     Friend Welcome Popup: friend enters email
+                                                         │
+                                                         ▼
+                                     Friend gets a discount code (friend reward)
+                                                         │
+                                                         ▼
+                                     Friend places a paid order with that code
+                                                         │
+                                                         ▼
+                        Referrer gets their reward (discount, points or store credit)
 ```
 
-The referrer reward and friend reward are independent — pick what suits each side.
+The referrer reward and the friend reward are set separately, so you can pick what suits each side. See [Reward Types](/referrals/reward-types).
 
 ## Get started
 
-1. Read **[Program Setup](/referrals/program-setup)** end-to-end.
-2. Decide rewards in **[Reward Types](/referrals/reward-types)**.
-3. Add the **[Storefront Widget](/referrals/widget)** so customers can find their referral link.
+<Steps>
+  <Step title="Set up both rewards">
+    Open **Referral → Program**. The **Quick Start** card walks you through **Set up referrer reward**, **Set up friend reward** and **Enable referral popup**.
+  </Step>
+  <Step title="Review the program settings">
+    Check the landing URL, sharing channels and fraud prevention in [Program Setup](/referrals/program-setup).
+  </Step>
+  <Step title="Turn on the widgets">
+    Enable the **Friend Welcome Popup** so friends can claim their reward, then add a way for customers to get their link, such as the **Post-Purchase Widget** or the **Referral Landing Page**. See [Referral widgets](/referrals/widget).
+  </Step>
+</Steps>
 
 ## Recommended reading
 

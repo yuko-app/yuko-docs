@@ -1,6 +1,6 @@
 ---
 title: Checkout Boost
-description: One-click auto-provisioning of a read-only REST API key and signed key for the Checkout Boost app to render Yuko loyalty widgets inside Shopify checkout.
+description: One-toggle setup that creates a read-only REST API key and a signed key for the Checkout Boost app to render Yuko loyalty inside Shopify checkout.
 ---
 
 <Note>
@@ -9,24 +9,27 @@ description: One-click auto-provisioning of a read-only REST API key and signed 
 
 ## Introduction
 
-The **Checkout Boost** integration is a one-toggle setup that auto-provisions a **read-only REST API key** and a **signed key** so a companion Shopify checkout extension can render Yuko loyalty widgets (points balance, redemption, rewards) inside the Shopify checkout flow.
+The **Checkout Boost** integration is a one-toggle setup that creates a **read-only REST API key** and a **signed key** so the Checkout Boost app can render Yuko loyalty (points balance, rewards) inside the Shopify checkout flow.
 
-This is different from the general [REST API](/integrations/rest-api) integration — that one is for arbitrary API access. This one is a curated, single-purpose credential pair scoped to what the Checkout Boost extension needs.
+On the Integrations page, Checkout Boost is listed in the **Shopify Flow** category of the sidebar, but it isn't a Shopify Flow feature.
+
+This is different from the general [REST API](/integrations/rest-api) integration — that one is for arbitrary API access. This one is a single-purpose, read-only credential pair named **Checkout Boost**.
 
 ## What it does
 
-- Enabling it generates a **REST API key** (read-only, checkout-scoped) and a **signed key** (used to verify request authenticity).
-- Both keys are shown to you **once**, in a modal, with copy + download options.
+- Enabling it generates a **REST API key** (a `py_` key with read access to every API scope that supports reading) and a **signed key** (a `pysk_` key used to verify request authenticity).
+- Both keys appear in the **Your Private Keys** popup, with copy and **Download Keys** options.
+- While the integration is enabled, both keys stay available, masked, in the **API credentials** section of the page, where you can reveal and copy them.
 - The Checkout Boost extension uses these keys to fetch the current customer's Yuko loyalty state during checkout (points balance, tier, available rewards) and render widgets accordingly.
 - Disabling revokes both keys immediately.
 
-<Warning>The API and signed keys are shown **only once** at the moment of generation. Copy them or click **Download Keys** before closing the modal — you can't retrieve them afterward without regenerating (which disconnects the current extension).</Warning>
+<Tip>Click **Download Keys** in the popup to keep a copy. If you need the keys later, open the Checkout Boost page while the integration is enabled and copy them from **API credentials**.</Tip>
 
 ## When to use it
 
 - You want to surface Yuko loyalty inside Shopify's **checkout** UI, not just the storefront.
 - You're installing the Checkout Boost extension (or an equivalent that follows the same contract).
-- You want to keep the credential surface small — no arbitrary REST API access, just what checkout needs.
+- You want a read-only key, with no write access to customer data.
 
 ## Before you start
 
@@ -40,10 +43,10 @@ This is different from the general [REST API](/integrations/rest-api) integratio
     In Shopify admin, go to **Apps → Yuko Loyalty → Integrations**, and click **Checkout Boost**.
   </Step>
   <Step title="Toggle Enable">
-    Flip the **Checkout Boost Integration** toggle to on. Yuko generates the two keys.
+    Switch on the **Checkout Boost** toggle. Yuko generates the two keys.
   </Step>
   <Step title="Copy or download the keys">
-    A modal appears with the **REST API Key** and **Signed Key**. Click the copy icons or **Download Keys** to save them somewhere secure — you can't retrieve them later.
+    The **Your Private Keys** popup shows the **REST API Key** and **Signed Key**. Copy them or click **Download Keys** and store them somewhere secure.
   </Step>
   <Step title="Paste the keys in the Checkout Boost extension">
     Open the Checkout Boost extension's setup page in Shopify admin and paste both keys into their respective fields.
@@ -55,7 +58,7 @@ This is different from the general [REST API](/integrations/rest-api) integratio
 
 ## Disable Checkout Boost
 
-Toggle the switch off and confirm the disconnect. Both keys are revoked immediately — the Checkout Boost extension will stop being able to read customer loyalty state.
+Switch the toggle off and confirm in the **Disable Checkout Boost** dialog. Both keys are revoked immediately, and Checkout Boost can no longer read customer loyalty data.
 
 <Warning>Disabling **doesn't** uninstall or reconfigure the Checkout Boost extension itself. You'll need to remove or update the keys in the extension separately.</Warning>
 
@@ -70,8 +73,7 @@ There's no separate rotate button today — the disable / re-enable flow is the 
 
 ## Limitations
 
-- **Read-only scope.** The generated REST API key can read Yuko loyalty state but can't write. It's specifically scoped for checkout widgets.
-- **Keys shown once.** No retrieval; regenerate to get a new pair.
+- **Read-only.** The generated REST API key can read Yuko data but can't write, so it can't redeem rewards or change points.
 - **One key pair per store.** Regenerating invalidates the previous pair.
 - **Extension setup is separate.** Yuko provisions credentials — you still need to install and configure Checkout Boost separately.
 
@@ -79,10 +81,10 @@ There's no separate rotate button today — the disable / re-enable flow is the 
 
 <AccordionGroup>
   <Accordion title="How is this different from the REST API integration?">
-    The REST API integration lets you create arbitrary API keys with various scopes for any purpose (custom apps, headless commerce, etc.). Checkout Boost provisions a **single, pre-scoped, read-only** key pair specifically for the checkout widget — one toggle, no configuration.
+    The REST API integration lets you create arbitrary API keys with various scopes for any purpose (custom apps, headless commerce, etc.). Checkout Boost creates a **single read-only** key pair for the Checkout Boost app — one toggle, no configuration.
   </Accordion>
   <Accordion title="What if I lost the keys?">
-    You'll need to disable and re-enable to generate a new pair, then update the Checkout Boost extension with the new values.
+    While the integration is enabled, open the Checkout Boost page and copy them from **API credentials**. If you'd rather issue new keys, disable and re-enable the integration, then update Checkout Boost with the new values.
   </Accordion>
   <Accordion title="Does the customer's Yuko data appear in checkout automatically after enabling?">
     Only after you also paste the keys into the Checkout Boost extension. Enabling Yuko's toggle generates the credentials; the extension is what actually renders the widgets during checkout.

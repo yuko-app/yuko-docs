@@ -1,33 +1,15 @@
 ---
 title: Template Editor
-description: Use Yuko's visual editor to customise the content, layout and design of every email template.
+description: Edit an email's subject, message, button and footer in the form editor, set its delay, send a test, or design it visually in the Advanced Editor.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Notifications → [Any template] → Edit
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Emails → (any email) → **Edit**. The same editor opens from **Referral → Emails**, **Membership → Emails** and from a **Send Email** node in [Workflows](/workflows/action-nodes#send-email).
 </Note>
 
 ## Introduction
 
-The Template Editor is a visual editor for every email Yuko sends. You can change the subject, edit the body, swap images and reorder blocks — without writing HTML.
-
-## What problem this solves
-
-Default email copy gets the program working. On-brand copy gets customers to actually open and click. The visual editor closes the gap without requiring email-development time.
-
-## When to use
-
-- You're customising default copy to match your brand voice.
-- You want to add a header banner, footer, or CTA button.
-- You want to translate the template for a specific locale.
-
-## Overview
-
-- **Subject and preview text** — controls open rate.
-- **Body blocks** — add, reorder, remove text/image/button blocks.
-- **Shortcodes** — insert merge tags from a picker.
-- **Locale variants** — maintain a translation per language.
-- **Live preview** — see what the email will look like with sample data.
+Every Yuko email opens in a simple **form editor**: you fill in the subject, title, message and footer, and the preview updates beside it. For full control over layout, switch to the **Advanced Editor**, a drag-and-drop email builder (available on select plans).
 
 ## Before you start
 
@@ -35,112 +17,93 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <BeforeYouStart />
 
-## Setup guide
+<Check>Your sender details are set in **Account → Email Settings**. See [Email Settings & Custom Domains](/emails/sender-and-branding).</Check>
 
-### Open a template
+## The form editor
 
-<Steps>
-  <Step title="Open Notifications">
-    Go to **Apps → Yuko Loyalty → Loyalty → Notifications**.
-  </Step>
-  <Step title="Pick a template">
-    Click any template to open it.
-  </Step>
-  <Step title="Click Edit">
-    Open the visual editor.
-  </Step>
-</Steps>
+The left panel holds the email's settings and content fields. The right panel shows **Stats** and a live preview.
 
-### Edit the subject
+### Email fields
 
-<Steps>
-  <Step title="Edit Subject">
-    Click the subject line at the top.
-  </Step>
-  <Step title="Use shortcodes">
-    Insert shortcodes (e.g., `[first_name]`, `[points_value]`) from the picker.
-  </Step>
-  <Step title="Edit preview text">
-    Optional: set the preview text shown next to the subject in inboxes.
-  </Step>
-</Steps>
+| Field | What it does |
+|---|---|
+| **Email Subject** | The subject line. *"Displayed to customers in their inbox."* |
+| **Preview Text** | *"Text that appears next to the subject line in inboxes."* |
+| **Email Title** | The heading at the top of the email. Rich text. |
+| **Email Message** | The main body. Rich text. |
+| **Email Footer** | Footer text below the message. Rich text. |
+| **CTA Button**: **CTA label** / **CTA URL** | An optional button. The label is up to 60 characters. The URL must point to your store's domain. Leave the URL blank to hide the button. |
+| **Unsubscribe Text** | The unsubscribe link text, for example *"Unsubscribe"*. |
+| **Unsubscribe Description** | Text shown with the unsubscribe link. |
 
-### Edit the body
+You can use [shortcodes](/emails/shortcodes) such as `{{ first_name }}` or `{{ points_balance }}` in the subject, preview text and content fields. The **Available Template Variables** card at the bottom of the panel lists every shortcode for this email. Click the copy icon next to one and paste it into a field.
 
-<Steps>
-  <Step title="Use blocks">
-    The body is a stack of blocks: text, image, button, divider, footer.
-  </Step>
-  <Step title="Add a block">
-    Click **+ Add block** between any two existing blocks. Pick the block type.
-  </Step>
-  <Step title="Reorder blocks">
-    Drag the handle on the left of any block to reorder.
-  </Step>
-  <Step title="Edit text">
-    Click any text block to edit inline. Use the toolbar for bold, italic, links, headings.
-  </Step>
-  <Step title="Insert a shortcode">
-    Inside any text or button block, type `[` to open the shortcode picker, or use the toolbar's shortcode button.
-  </Step>
-</Steps>
+### Delay settings
+
+Most built-in emails have a delay setting at the top of the panel, so you can send the email some days after the event instead of immediately. Enter **0** to send right away.
+
+| Email | Setting |
+|---|---|
+| Points earned | **Days after earned reward** |
+| Points redeemed | **Days after redeemed reward** |
+| Tier unlocked | **Days after tier changed** |
+| Points expired | **Days after points expired** |
+| Reward expired | **Days after reward expired** |
+| Birthday award | **Days after birthday award** |
+| Anniversary award | **Days after anniversary award** |
+| Referrer welcome / Friend reward unlocked / Referrer reward issued | **Days after Referrer welcome** (and so on) |
+| Membership created / upgraded / downgraded / cancelled | **Days after membership created** (and so on) |
+
+<Note>The four reminder emails (**Point Expiry Reminder**, **Reward expiry reminder**, **Birthday Reminder** and **Anniversary Reminder**) have no delay setting in the editor. They go out a set number of days *before* the date. See [Loyalty Emails](/emails/loyalty-emails) for the defaults.</Note>
 
 ### Send a test
 
-<Steps>
-  <Step title="Click Send test">
-    From the editor toolbar.
-  </Step>
-  <Step title="Enter a recipient">
-    Use a real address you can check (your own works).
-  </Step>
-  <Step title="Verify rendering">
-    Check the email in inbox — desktop and mobile — before saving.
-  </Step>
-</Steps>
+Click **Send Test Email**, then **Send**. The test goes to **your account email** (the address shown in the dialog). You can't choose a different recipient. Test emails use sample data for the shortcodes.
 
-### Save and publish
+### Save
 
-<Steps>
-  <Step title="Click Save">
-    Saves your changes. The template is now active.
-  </Step>
-</Steps>
+Click **Save** at the top of the page. Saving also stores the delay setting.
 
-## How it works
+## Advanced Editor
 
-- The editor stores your template as structured blocks (not raw HTML).
-- At send time, Yuko renders the blocks with branding and shortcodes applied.
-- Locale variants are stored separately and selected based on customer locale.
+Click **Advanced Editor** at the top of the form editor to open the drag-and-drop builder. It's **available on select plans**. If your plan doesn't include it, the button shows an upgrade icon.
 
-### Decision guidance
+In the Advanced Editor you can:
 
-- **Edit subject before body.** It's the highest-leverage change you can make.
-- **Don't go below 80px tall headers** — mobile clients clip aggressively.
-- **Use one CTA button.** Multiple CTAs hurt click-through rate.
+- Drag in layout blocks (one to four columns, mixed columns) and content blocks such as **Text**, **Heading 1–3**, **Button**, **Image**, **Divider**, **Spacer**, **Logo**, **Unsubscribe** and **Coupon**.
+- Switch between **Desktop** and **Mobile** views, and undo or redo changes.
+- **Import** MJML (paste it into **MJML Content**) or **Export** the current design as MJML.
+- **Clear canvas** to start over (this removes all content).
+- **Preview** the email, **Send Test**, browse **Shortcodes**, open **Analytics** and **Save**.
 
-### Limitations
+Once you save an email in the Advanced Editor, it shows an **Advanced** badge in the Emails list and opens in the Advanced Editor next time.
 
-- The block library is curated — raw HTML insertion isn't exposed in v1.
-- You can't add custom unsubscribe text — unsubscribe handling is automatic.
+<Tip>**Show a workflow coupon in an email.** In a workflow, add a [Coupon node](/workflows/action-nodes#coupon) before the Send Email node. In the Advanced Editor, drag in the **Coupon** block and pick that node's identifier. The customer's unique code appears in the email.</Tip>
 
 ## Best practices
 
-<Tip>**Always send a test before saving.** Inboxes render small differences as broken layouts.</Tip>
-<Tip>**Keep the email above 600px tall.** Anything longer is rarely read.</Tip>
-<Tip>**Lead with the value** — the points the customer earned, the tier they reached — not the brand.</Tip>
+<Tip>**Keep the subject short and specific.** *"You've Got 50 Points"* beats a generic *"An update from our store"*.</Tip>
+<Tip>**Use the preview text.** It's free space next to the subject in most inboxes.</Tip>
+<Tip>**Always send a test** after changing shortcodes. Some values, like `{{ next_tier_name }}`, are empty for customers already in the top tier.</Tip>
+<Tip>**Point the CTA to a page that helps.** Your rewards page or a collection works better than the homepage.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Can I import HTML from another tool?">
-    Not in v1. Templates are built in the visual editor.
+  <Accordion title="Can I send the test email to a colleague?">
+    No. **Send Test Email** always goes to the email address on your Yuko account.
   </Accordion>
-  <Accordion title="Can I A/B test subject lines?">
-    Not in v1. Use Klaviyo or your ESP for A/B testing if needed.
+  <Accordion title="Why can't I save my CTA URL?">
+    The CTA URL must point to your store's domain (the editor shows which domain under the field). Links to other sites aren't allowed. Leave the field blank to hide the button.
   </Accordion>
-  <Accordion title="What happens to the original default copy?">
-    Yuko keeps the default and lets you reset to it via **Restore default** in the editor menu.
+  <Accordion title="Can I translate an email into several languages?">
+    Each email has one version. Write it in the language most of your customers use.
+  </Accordion>
+  <Accordion title="Where does the logo come from?">
+    From **Account → General → Logo** (*"Display logo in emails and other communications"*). In the Advanced Editor you can also place it with the **Logo** block.
+  </Accordion>
+  <Accordion title="Can I change the reminder timing for expiry, birthday and anniversary emails?">
+    Not from the email editor. These reminders use a fixed number of days before the date. See [Loyalty Emails](/emails/loyalty-emails).
   </Accordion>
 </AccordionGroup>
 

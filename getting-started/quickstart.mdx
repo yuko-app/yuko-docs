@@ -1,18 +1,18 @@
 ---
 title: Quickstart (Shopify)
-description: Install Yuko, configure your first earn and redeem rules, and launch a working loyalty program in under an hour.
+description: Install Yuko, review the program it sets up for you, turn on the storefront widgets and test your first earned points.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Home → Get started checklist
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Dashboard
 </Note>
 
-This quickstart walks you from a fresh install to a live loyalty program. By the end you'll have:
+This quickstart takes you from a fresh install to a live loyalty program. Yuko sets up a working program for you on install, so most of the work is reviewing it and switching on the widgets. By the end you'll have:
 
-- Yuko installed and configured for your store currency.
-- One **Way to Earn** (Place an Order) and one **Way to Redeem** (Amount Discount).
-- The Cart Earn and Cart Redeem widgets visible on your storefront.
-- A test customer with points credited from a real order.
+- Yuko installed, with points worth **100 points = $1** (in your store currency).
+- Default Ways to Earn, rewards, VIP tiers and a referral program you've reviewed.
+- Floating Rewards and the cart widgets showing on your storefront.
+- A test customer with points from a real order.
 
 <Info>
 If you'd rather have someone walk you through this live, [book a free 30-minute setup call](https://cal.com/rameshelamathi/yuko-demo).
@@ -21,92 +21,76 @@ If you'd rather have someone walk you through this live, [book a free 30-minute 
 ## Before you start
 
 <Check>You have admin access to your Shopify store.</Check>
-<Check>Your store is on a plan that supports public Shopify apps (any paid plan).</Check>
-<Check>Your active theme is Online Store 2.0 — see [Theme compatibility](/getting-started/theme-compatibility).</Check>
+<Check>Your active theme is an Online Store 2.0 theme. See [Theme compatibility](/getting-started/theme-compatibility).</Check>
 
-## Step 1 — Install Yuko
+## Step 1: Install Yuko and enter your contact details
 
 <Steps>
-  <Step title="Open the Shopify App Store listing">
-    Visit [apps.shopify.com/yuko](https://apps.shopify.com/yuko) and click **Install**.
+  <Step title="Install from the Shopify App Store">
+    Visit [apps.shopify.com/yuko](https://apps.shopify.com/yuko), click **Install** and approve the permissions Yuko requests.
   </Step>
-  <Step title="Approve the permissions">
-    Yuko requests scopes for orders, customers, products and discounts. Approve to continue.
-  </Step>
-  <Step title="Pick a plan">
-    Choose a plan and confirm the Shopify subscription charge.
+  <Step title="Set up your loyalty rewards">
+    Yuko opens a **Set up your loyalty rewards** screen. Enter your **Contact email** and, optionally, a **Phone number**, then click **Get Started**.
   </Step>
 </Steps>
 
-Full details: [Install Yuko on Shopify](/installation-and-setup/install-on-shopify).
+That's all the onboarding asks for. Yuko sets your points value to **100 points = $1** and creates a starter program for you. Full details: [Install Yuko on Shopify](/installation-and-setup/install-on-shopify).
 
-## Step 2 — Configure your program
+## Step 2: Review what Yuko set up for you
 
-1. Login to your Shopify admin and open **Apps → Yuko Loyalty**.
-2. Go to **Loyalty → Settings**.
-3. Set your **Points label** (e.g., *Points*, *Stars*, *Coins*).
-4. Set your **Points-to-currency ratio** (e.g., 100 points = $1).
-5. Toggle **Loyalty program** to **Active** and click **Save**.
+Yuko creates this starter program on install. Review it and change anything that doesn't fit your store.
 
-More detail: [Program Settings](/loyalty/program-settings).
-
-## Step 3 — Add a Way to Earn
+| Area | What's created |
+| --- | --- |
+| **Ways to Earn** | **Place an order** (1 point per $1 spent), **Sign Up** (100 points) and **Birthday** (500 points) are on. **Instagram Follow** and **Facebook Like** (100 points each) are created but off. |
+| **Ways to Redeem** | Three amount discounts: 500 points for $5 off, 1,000 points for $10 off and 2,000 points for $20 off. |
+| **VIP Tiers** | **Bronze** (default, 0 points, 1x), **Silver** (1,000 points, 2x) and **Gold** (5,000 points, 3x). |
+| **Referral program** | $10 off for the referrer and $10 off for the friend. |
+| **Floating Rewards** | The floating rewards widget is turned on. |
+| **Branding** | The **Eclipse Black** colour palette. |
 
 <Steps>
-  <Step title="Open Ways to Earn">
-    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn**, and click **Place an Order**.
+  <Step title="Open Loyalty">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty**. Check that **Loyalty Program Status** is enabled.
   </Step>
-  <Step title="Configure the campaign">
-    Choose **Points per spend**, set `1 point per $1`, and add a 7-day delay so refunds clean up automatically.
+  <Step title="Review Ways to earn and Ways to redeem">
+    On the **Programs** tab, open each Way to Earn and reward to adjust points, values and limits. See [Ways to Earn](/loyalty/ways-to-earn/overview) and [Ways to Redeem](/loyalty/ways-to-redeem/overview).
   </Step>
-  <Step title="Activate">
-    Toggle the campaign **Active** and click **Save**.
+  <Step title="Check your settings">
+    On the **Settings** tab, review your **Point Label**, the **Points to Cash Conversion Rate** and when points are earned. See [Program Settings](/loyalty/program-settings).
+  </Step>
+  <Step title="Review VIP and Referral (optional)">
+    Open **VIP** and **Referral** in the sidebar to review or turn on those programs. See [VIP Tiers](/vip-tiers/overview) and [Referrals](/referrals/overview).
   </Step>
 </Steps>
 
-Full guide: [Place an Order](/loyalty/ways-to-earn/place-an-order).
+The **Set up your programs** checklist on the [Dashboard](/analytics/dashboard) shows which programs are on.
 
-## Step 4 — Add a Way to Redeem
+## Step 3: Turn on the storefront widgets
 
 <Steps>
-  <Step title="Open Ways to Redeem">
-    Go to **Apps → Yuko Loyalty → Loyalty → Ways to Redeem**, and click **Amount Discount**.
+  <Step title="Enable the Yuko App embed">
+    On the Dashboard, under **Setup Guide**, click **Activate**. In the Theme Editor, switch on **Yuko App** under **App embeds** and click **Save**. Then click **Refresh status** in Yuko. See [Enable the Yuko App Embed](/installation-and-setup/theme-app-embed).
   </Step>
-  <Step title="Configure the reward">
-    Set `500 points = $5 off` with a $25 minimum order.
+  <Step title="Check Floating Rewards">
+    Open your storefront. The Floating Rewards button appears because it's on by default. Customise it under **Loyalty → Widgets**. See [Floating Rewards](/onsite-widgets/floating-launcher).
   </Step>
-  <Step title="Activate">
-    Toggle the reward **Active** and click **Save**.
+  <Step title="Add the cart widgets (optional)">
+    Turn on [Cart Earn](/onsite-widgets/cart-earn) and [Cart Redeem](/onsite-widgets/cart-redeem) under **Loyalty → Widgets** so customers see points and rewards in the cart.
   </Step>
 </Steps>
 
-Full guide: [Amount Discount](/loyalty/ways-to-redeem/amount-discount).
-
-## Step 5 — Enable widgets in your theme
-
-<Steps>
-  <Step title="Enable the Theme App Embed">
-    Open the Shopify Theme Editor and toggle the **Yuko** app embed on. See [Theme App Embed](/installation-and-setup/theme-app-embed).
-  </Step>
-  <Step title="Add the Cart Earn and Cart Redeem blocks">
-    From the Cart template, add the **Yuko Cart Earn** and **Yuko Cart Redeem** blocks near the checkout button.
-  </Step>
-  <Step title="Save and preview">
-    Click **Save** and open your live cart. Add a product and confirm both widgets render.
-  </Step>
-</Steps>
-
-## Step 6 — Test with a real order
+## Step 4: Test with a real order
 
 <Steps>
   <Step title="Place a test order">
-    Use a customer account on your storefront to place a small real order.
+    Log in to a customer account on your storefront and place a small real order.
   </Step>
-  <Step title="Wait for the credit">
-    After Shopify marks the order as paid, points are credited automatically (subject to any delay you configured).
+  <Step title="Wait for the points">
+    Points are credited when the order reaches the status set in **Earning Status** in Loyalty settings, after any delay you've set.
   </Step>
-  <Step title="Verify in Yuko">
-    Open **Apps → Yuko Loyalty → Loyalty → Customers**, click the test customer, and confirm the points balance and activity entry.
+  <Step title="Check in Yuko">
+    Go to **Customers** in the Yuko sidebar, click the test customer and check the points balance and activity.
   </Step>
 </Steps>
 
@@ -114,16 +98,16 @@ Full guide: [Amount Discount](/loyalty/ways-to-redeem/amount-discount).
 
 <CardGroup cols={2}>
   <Card title="Add more Ways to Earn" icon="hand-holding-dollar" href="/loyalty/ways-to-earn/overview">
-    Reward sign-ups, birthdays, social follows, reviews and more.
+    Reward reviews, social follows, newsletter sign-ups and more.
   </Card>
-  <Card title="Set up VIP Tiers" icon="crown" href="/loyalty/overview">
-    Reward your top customers with multipliers and tier-only perks.
+  <Card title="Set up VIP Tiers" icon="crown" href="/vip-tiers/overview">
+    Reward your top customers with multipliers and tier benefits.
   </Card>
-  <Card title="Launch Referrals" icon="share-nodes" href="/loyalty/overview">
-    Give existing customers a way to refer friends and earn.
+  <Card title="Launch Referrals" icon="share-nodes" href="/referrals/overview">
+    Give customers a way to refer friends and earn.
   </Card>
-  <Card title="Customise notifications" icon="envelope" href="/loyalty/overview">
-    Edit the emails customers receive when they earn or redeem.
+  <Card title="Customise emails" icon="envelope" href="/emails/overview">
+    Edit the emails customers receive when they earn, redeem or unlock a tier.
   </Card>
 </CardGroup>
 

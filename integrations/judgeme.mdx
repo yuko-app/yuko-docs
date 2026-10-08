@@ -1,6 +1,6 @@
 ---
 title: Judge.me
-description: Award loyalty points automatically when customers submit or update reviews on Judge.me — the loyalty integration for stores using Judge.me as their review platform.
+description: Award loyalty points automatically when customers write reviews on Judge.me, using your Write a review earn rule.
 ---
 
 <Note>
@@ -9,120 +9,117 @@ description: Award loyalty points automatically when customers submit or update 
 
 ## Introduction
 
-[Judge.me](https://judge.me) is a widely-used Shopify reviews platform. If your store already uses Judge.me for reviews and you'd like to reward customers with **Yuko loyalty points** for submitting a review there, the Judge.me integration wires the two together.
+[Judge.me](https://judge.me) is a widely used Shopify reviews app. The Judge.me integration lets customers earn **Yuko loyalty points** for the reviews they write on Judge.me.
 
-When connected, Yuko subscribes to Judge.me webhooks and awards loyalty points based on your **Write a Review** Way to Earn whenever a customer's review lands.
-
-<Tip>This integration is for stores that use **Judge.me** as their reviews platform. If you use Yuko's own reviews module, [Write a Review](/loyalty/ways-to-earn/write-a-review) awards points directly without an external integration.</Tip>
+When connected, Yuko registers webhooks on your Judge.me shop. Each time Judge.me sends a review event, Yuko checks the review and awards points based on your [Write a review](/loyalty/ways-to-earn/write-a-review) earn rule.
 
 ## When to use it
 
-- You're on Judge.me for reviews and don't plan to switch.
-- You want customers who write Judge.me reviews to earn Yuko loyalty points.
-- You want the reward to fire based on Judge.me's review lifecycle events (created / updated) rather than your own moderation flow.
+- You collect product reviews with Judge.me.
+- You want customers who write Judge.me reviews to earn loyalty points.
+- You want an extra bonus for reviews that include photos.
 
 ## Before you start
 
 <Check>You have an active Judge.me account connected to your Shopify store.</Check>
-<Check>You have your Judge.me **shop token** (available in Judge.me admin → Settings → API).</Check>
-<Check>Your Yuko **Write a Review** Way to Earn is enabled and configured with the point value you'd like to award.</Check>
+<Check>You have your Judge.me API token, or you can sign in to Judge.me to connect with OAuth.</Check>
+<Check>Your **Write a review** earn rule is enabled and set to the points you want to award.</Check>
 
 ## Connect Judge.me to Yuko
 
 <Steps>
-  <Step title="Get your Judge.me shop token">
-    In your Judge.me admin, go to **Settings → API**. Copy your shop token (API key).
-  </Step>
   <Step title="Open Judge.me in Yuko">
-    In Shopify admin, go to **Apps → Yuko Loyalty → Integrations**, and click **Judge.me**.
+    In Shopify admin, go to **Apps → Yuko Loyalty → Integrations** and click **Judge.me**.
   </Step>
-  <Step title="Paste the shop token and Connect">
-    Paste your Judge.me shop token and click **Connect**. Yuko validates it and registers the webhook subscriptions on your Judge.me shop.
+  <Step title="Choose an authentication type">
+    Under **Authentication Type**, pick **OAuth** or **API Key**.
+    - **OAuth**: click **Connect with OAuth**. Yuko redirects you to Judge.me to authorise the connection, then brings you back.
+    - **API Key**: paste your Judge.me API token into **API Key** and click **Connect Integration**.
   </Step>
-  <Step title="Pick which webhook events to listen to">
-    Toggle **review/created** and/or **review/updated** based on your Judge.me moderation flow — see below.
+  <Step title="Pick the webhook events">
+    Under **Webhook Events**, tick **review/created**, **review/updated** or both. See [Which events to enable](#which-events-to-enable).
   </Step>
   <Step title="Save settings">
-    Click **Save Settings**. Yuko starts awarding points on matching events.
+    Click **Save Settings**. Yuko registers the selected webhooks on your Judge.me shop and starts awarding points.
   </Step>
 </Steps>
 
-## The two webhook events
+## Which events to enable
 
-Judge.me exposes two review-lifecycle events; which one you want depends on whether you auto-publish or manually approve reviews in Judge.me.
+| Event | Fires when |
+|---|---|
+| **review/created** | A new review is created in Judge.me. |
+| **review/updated** | An existing review is updated, for example when a moderator publishes it. |
 
-| Event | Fires when | Enable if you |
-|---|---|---|
-| **`review/created`** | A new review is submitted **and auto-published** | Have Judge.me's auto-publish enabled and want to reward the moment a review lands |
-| **`review/updated`** | A pending review is **approved by a moderator** | Have auto-publish **disabled** in Judge.me and only want to reward once a moderator green-lights the review |
+Yuko awards points only for **published** reviews. A review that is still pending moderation when Judge.me sends the event doesn't earn anything yet.
 
-<Tip>Enable **only one** of the two based on your Judge.me moderation setting. Enabling both when auto-publish is on will double-award customers whenever an already-published review gets edited.</Tip>
+- **If Judge.me auto-publishes reviews**, enabling **review/created** is enough.
+- **If you moderate reviews before publishing**, also enable **review/updated**, so the customer earns when the review is published.
+
+<Tip>Enabling both events doesn't double-award. Yuko awards the base points only once per customer per product, and the photo bonus only once.</Tip>
 
 ## How the reward works
 
-1. Customer writes a review on your storefront (using the Judge.me widget).
-2. Judge.me processes the review per your moderation settings (auto-publish or pending review).
-3. When the matching webhook fires (`review/created` or `review/updated`), Judge.me sends the review data to Yuko.
-4. Yuko looks up the customer by the email on the review, and awards points using the **Write a Review** Way to Earn's configuration.
+1. A customer writes a review on your store using Judge.me.
+2. Judge.me sends the review event to Yuko.
+3. Yuko matches the reviewer to a Yuko customer, first by Shopify customer ID and then by email, and matches the reviewed product.
+4. If the review is published and the **Write a review** rule is active, Yuko awards the rule's points.
+5. If the review includes photos and **Enable Media Earning** is on in the **Write a review** rule, Yuko also awards the **Media earning value** as a bonus.
 
-The customer sees the reward in their loyalty account balance and receives the standard “you earned points” email if you have it enabled under [Email notifications](/emails/overview).
+The customer sees the points in their loyalty balance, and any points-earned email you have turned on is sent as usual.
 
 ## Example use case
 
-**Auto-publish store on Judge.me, 50 pts per review**
+**Moderated reviews, 50 points plus a 25-point photo bonus**
 
-1. In Yuko, open **Loyalty → Ways to Earn → Write a Review**, enable it, set to 50 pts, save.
-2. Connect Judge.me in **Integrations**, paste the shop token.
-3. Enable **review/created** (because Judge.me auto-publishes).
-4. Save. From now on, every new Judge.me review → 50 pts on the customer's Yuko balance.
-
-**Manual moderation store on Judge.me, 100 pts per approved review**
-
-1. Same setup, but enable **review/updated** instead of created (because reviews only “count” after a moderator approves them).
-2. When a moderator approves a pending review, `review/updated` fires → Yuko awards 100 pts.
+1. In Yuko, open the **Write a review** earn rule, set it to 50 points, turn on **Enable Media Earning** with a **Media earning value** of 25, and save.
+2. Connect Judge.me in **Integrations**.
+3. Tick **review/created** and **review/updated**, then click **Save Settings**.
+4. When a moderator publishes a review with a photo, the customer earns 50 + 25 points. Later edits to the same review don't award again.
 
 ## Limitations
 
-- **Requires a matching customer email.** If the reviewer's email doesn't match a Yuko customer profile, no points are awarded.
-- **Points value is set in the Way to Earn.** This integration doesn't offer per-review point overrides.
-- **Yuko can't fetch historical Judge.me reviews.** The integration only listens to new / updated webhooks going forward. To reward customers for older Judge.me reviews retroactively, see [Backfill Points](/loyalty/backfill-points).
-- **Judge.me webhook registration is subject to Judge.me's own rate limits and availability.**
-- **Anonymous reviews (no email) are skipped.**
+- **The reviewer must match a Yuko customer.** Reviews from people Yuko can't match by Shopify customer ID or email are skipped.
+- **The product must exist in Yuko.** Reviews for products Yuko hasn't synced are skipped.
+- **Only published reviews earn.**
+- **Points are set in the earn rule.** There's no per-review override.
+- **Points aren't reversed.** If a review is later deleted or unpublished in Judge.me, the points stay with the customer.
+- **No historical reviews.** Yuko only receives new and updated reviews after you connect. Reviews written before that don't earn points.
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Do I need Yuko's reviews module?">
-    No. This integration is exactly for stores that use Judge.me instead of Yuko's own reviews module. Yuko's reviews stay disabled.
-  </Accordion>
   <Accordion title="What if a review is deleted in Judge.me after points were awarded?">
-    Yuko doesn't automatically revoke the points — delete events aren't currently subscribed to. If you need to reverse an award, do it manually from the customer's activity in Yuko.
+    Yuko doesn't revoke the points automatically. If you need to reverse an award, adjust the customer's points manually from [Customers](/loyalty/customers).
   </Accordion>
-  <Accordion title="Can I award different point amounts for photo vs text reviews?">
-    Not in the current integration. Point amount is whatever the **Write a Review** Way to Earn is set to.
+  <Accordion title="Can I award extra points for photo reviews?">
+    Yes. Turn on **Enable Media Earning** in the **Write a review** earn rule and set a **Media earning value**. Judge.me reviews with photos earn that bonus on top of the base points.
   </Accordion>
-  <Accordion title="Which event fires first if I have both enabled?">
-    `review/created` fires the moment Judge.me publishes it. `review/updated` fires on any edit / re-approval. Enable both only if that's the exact behaviour you want.
+  <Accordion title="Can customers earn for reviews they wrote before I connected Judge.me?">
+    No. Yuko only receives review events sent after the webhooks are registered.
   </Accordion>
-  <Accordion title="How do I rotate the Judge.me shop token?">
-    Get a new token from Judge.me admin, then paste it into the Yuko Judge.me integration tile and click **Connect** again. Yuko re-registers the webhooks with the new token.
+  <Accordion title="I use a different reviews app. Can it award points?">
+    Yes, if it can trigger Shopify Flow. Use the **Yuko Add Points for Review** action in [Shopify Flow](/integrations/shopify-flow) to send reviews from other apps to your **Write a review** earn rule.
+  </Accordion>
+  <Accordion title="How do I switch Judge.me accounts or rotate the token?">
+    Disconnect Judge.me in Yuko, which also removes the webhooks Yuko registered. Then connect again with the new token or account and save your webhook events.
   </Accordion>
 </AccordionGroup>
 
 ## Related
 
 <CardGroup cols={2}>
-  <Card title="Write a Review Way to Earn" icon="pen" href="/loyalty/ways-to-earn/write-a-review">
-    The earning rule that determines how many points each Judge.me review is worth.
+  <Card title="Write a review" icon="pen" href="/loyalty/ways-to-earn/write-a-review">
+    The earn rule that sets how many points each review is worth.
   </Card>
-  <Card title="Backfill Points" icon="clock-rotate-left" href="/loyalty/backfill-points">
-    Retroactively award points for pre-integration Judge.me reviews via backfill.
+  <Card title="Shopify Flow" icon="shop" href="/integrations/shopify-flow">
+    Award review points from other reviews apps with the Add Points for Review action.
   </Card>
-  <Card title="Email Notifications" icon="envelope" href="/emails/overview">
-    Configure the “you earned points” email that fires when a review is credited.
+  <Card title="Email notifications" icon="envelope" href="/emails/overview">
+    Configure the emails customers get when they earn points.
   </Card>
   <Card title="Integrations overview" icon="puzzle-piece" href="/integrations/overview">
-    Browse all connected integrations for your Yuko account.
+    Browse all integrations for your Yuko account.
   </Card>
 </CardGroup>
 

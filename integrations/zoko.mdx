@@ -51,7 +51,7 @@ Zoko supports three template flavours. The node lets you pick which one matches 
 | **Template ID** | The approved template name from your Zoko dashboard | `shipping_01` |
 | **Message Type** | `Template` (text only), `Rich Template` (media header), or `Button Template` (interactive buttons) | `Template` |
 | **Template Language** | Language code | `en` |
-| **Template Argument Count** | Number of variables the template expects (1–25) | `2` |
+| **Template Argument Count** | Number of variables the template expects (1–10) | `2` |
 | **Template Arguments** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{coupon_code}}` |
 
 ### Three template modes
@@ -75,7 +75,7 @@ Zoko supports three template flavours. The node lets you pick which one matches 
 **Reward unlocked, redeem now**
 
 1. In Zoko, approve a template called `reward_unlocked` with two variables (customer name, coupon code).
-2. In Yuko Workflows, build: **Trigger: Reward Earned** → **WhatsApp (Zoko)**.
+2. In Yuko Workflows, build: **Trigger: Redeem Points** → **WhatsApp (Zoko)**.
 3. Set Template ID = `reward_unlocked`, Message Type = `Template`, Language = `en`, Argument Count = `2`, Arguments = `{{first_name}}`, `{{coupon_code}}`.
 4. Activate. Each new reward fires a Zoko message immediately.
 
@@ -96,7 +96,7 @@ Zoko supports three template flavours. The node lets you pick which one matches 
     No — pick **Rich Template** and put the media URL as the first argument. The approved template in Zoko must have a header media slot.
   </Accordion>
   <Accordion title="Can I have Zoko and another provider connected at the same time?">
-    Yes. Connect any combination of the 7 providers; the WhatsApp node lets you pick the provider per step.
+    Yes. Connect any combination of the 13 providers; the WhatsApp node lets you pick the provider per step.
   </Accordion>
   <Accordion title="How do I rotate the API key?">
     Generate a new key in Zoko, then paste it into the Yuko Zoko integration tile and click **Connect** again.
@@ -111,7 +111,7 @@ import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
 <CardGroup cols={2}>
   <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
-    How Yuko's WhatsApp integration works across all 7 providers.
+    How Yuko's WhatsApp integration works across all 13 providers.
   </Card>
   <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
     Setup, shortcodes, and example workflows.

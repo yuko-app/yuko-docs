@@ -162,8 +162,7 @@
                   "referrals/widget",
                   "referrals/widgets/post-purchase",
                   "referrals/widgets/landing-page",
-                  "referrals/widgets/friend-welcome-popup",
-                  "referrals/widgets/share-product"
+                  "referrals/widgets/friend-welcome-popup"
                 ]
               }
             ]

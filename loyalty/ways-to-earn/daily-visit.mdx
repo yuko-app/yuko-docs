@@ -1,32 +1,33 @@
 ---
 title: Daily Visit
-description: Reward customers for visiting your store on a daily, weekly or monthly cadence.
+description: Reward logged-in customers for visiting your store on a daily, weekly or monthly cadence.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Daily Visit
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn → Add another way → **Daily Visit**
 </Note>
 
 ## Introduction
 
-Award a small bonus to customers who return to your store on a regular cadence. Effective for stores with content beyond products — lookbooks, blogs, restock pages or pre-order announcements.
+Award a small bonus to customers who come back to your store regularly. Effective for stores with content beyond products, such as lookbooks, blogs, restock pages or drop calendars.
 
 ## What problem this solves
 
-It's easy to optimise for the *first* purchase and forget about repeat traffic. Daily Visit gently nudges customers to come back and treats engagement as worth rewarding.
+It's easy to focus on the first purchase and forget about repeat visits. Daily Visit rewards customers for coming back between orders.
 
 ## When to use
 
 - You publish content beyond products (blogs, lookbooks, drop calendars).
 - You run regular product drops or restocks.
-- You want to keep customers visiting between purchases.
+- You want customers visiting between purchases.
 
 ## Overview
 
-- Reward customers per visit on a configurable cadence.
-- Cadence options: daily, weekly or monthly.
-- Optional URL restriction (only count visits to a specific page).
-- Optional points expiry.
+- Reward a visit once per **Earning interval**: Daily, Weekly or Monthly.
+- Optional **URL** to only count visits to a specific page.
+- Points are awarded automatically; the customer doesn't need to click anything.
+- Optional points expiry and VIP tier multipliers.
+- Available on select plans.
 
 ## Before you start
 
@@ -37,65 +38,79 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 ## Setup guide
 
 <Steps>
-  <Step title="Open the campaign">
-    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Daily Visit**.
+  <Step title="Add the way to earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to earn**, click **Add another way** and pick **Daily Visit**.
   </Step>
-  <Step title="Set the points value">
-    Keep it small (e.g., 5–10 points). The cadence does the work, not the size.
+  <Step title="Fill in Basic Details">
+    - **Campaign Name** — shown to customers on the storefront. You can use `[earn_value]` and `[points_label]`, for example `Earn [earn_value] [points_label]`.
+    - **Description** — short copy shown with the way to earn.
   </Step>
-  <Step title="Pick the earning interval">
-    Choose **Daily**, **Weekly** or **Monthly**.
+  <Step title="Set the points">
+    Enter **Points to earn on daily visit** (a whole number, at least 1).
   </Step>
-  <Step title="Restrict by URL (optional)">
-    Limit earning to visits to a specific path (e.g., a blog or a drop page).
+  <Step title="Set the URL and Earning interval">
+    - **URL** (optional) — a store path where customers must visit to earn, for example `/pages/about-us` or `/products/example`. Leave it empty to allow earning on any page.
+    - **Earning interval** — how often customers can earn: **Daily** (the default), **Weekly** or **Monthly**.
   </Step>
-  <Step title="Configure expiry (optional)">
-    Recommended: short expiry (e.g., 30 days) to keep the loyalty economy clean.
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
   </Step>
-  <Step title="Save & activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Review the side panel">
+    - **Status** — on by default.
+    - **Icon** — **Default**, or **Custom** to upload your own (JPG, PNG, GIF or WEBP, under 1 MB).
+    - **Tiers** — turn on to apply VIP tier multipliers to this way to earn.
+  </Step>
+  <Step title="Save">
+    Click **Save**.
   </Step>
 </Steps>
 
 ## How it works
 
-- The widget runtime tracks the logged-in customer's visit per session.
-- A visit awards points only if the cadence window has elapsed since the last credit.
-- Activity is recorded in the customer's transaction log.
+- When a logged-in customer loads a storefront page, the Yuko theme app embed checks whether Daily Visit is active.
+- If you set a URL, the visit only counts on that path or pages under it. The launcher also shows a **Visit** button that links to it.
+- If the customer hasn't earned yet in the current interval, the points are credited automatically.
+- **Daily** resets each day, **Weekly** each calendar week (Monday start), **Monthly** each calendar month.
+
+With **Tiers** on and [VIP tiers](/vip-tiers/overview) enabled, customers in a tier earn the tier's multiplier for this way to earn, plus any bonus points the tier sets for it. The extra points appear as a separate tier bonus entry.
 
 ### Decision guidance
 
-- **Keep the value tiny** — 5 points daily, not 50. This campaign should not dominate the points economy.
-- **Use URL restriction** when you have content destinations worth rewarding (avoids gaming via bot traffic).
-- **Add a short expiry** — daily-visit points should burn quickly so they don't pile up.
+- **Keep the value tiny** — 5 points a day, not 50. This shouldn't dominate your points economy.
+- **Use a URL** when you have a page worth visiting, like a drops calendar.
+- **Add a short expiry** so daily points don't pile up.
 
 ### Limitations
 
-- Requires the customer to be logged in. Anonymous visits don't earn.
-- The widget runtime must be loaded — ensure the [Theme App Embed](/installation-and-setup/theme-app-embed) is enabled.
-- Refreshing the page repeatedly does not stack points; only one credit per cadence window.
+- Customers must be logged in. Anonymous visits don't earn.
+- The [Theme App Embed](/installation-and-setup/theme-app-embed) must be enabled.
+- Reloading or opening more tabs doesn't add points; one credit per interval.
+- You can have one Daily Visit way to earn.
 
 ## Examples
 
-- A streetwear brand awards 5 points per daily visit to its drops calendar page, expiring in 14 days.
-- A media-led store awards 10 points weekly for any logged-in visit to keep customers in the habit of checking back.
+- A streetwear brand awards 5 points per day for visiting `/pages/drops`, with a 14-day expiry.
+- A content-led store awards 10 points weekly for any logged-in visit.
 
 ## Best practices
 
-<Tip>**Restrict by URL whenever possible.** It encodes intent: visit *that* page, not just any page.</Tip>
-<Tip>**Don't run this in isolation.** It only works when paired with content worth visiting.</Tip>
+<Tip>**Use a URL whenever you can.** It rewards visiting a page that matters, not just any page.</Tip>
+<Tip>**Pair it with content worth visiting.** Daily Visit works best when there's something new to see.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
   <Accordion title="Can guests earn this?">
-    No — the customer must be logged in.
+    No. The customer must be logged in.
   </Accordion>
-  <Accordion title="What if the customer opens multiple tabs?">
-    Only one credit is awarded per cadence window per customer.
+  <Accordion title="What if the customer opens several tabs?">
+    Only one credit is awarded per interval per customer.
+  </Accordion>
+  <Accordion title="Does the customer need to click anything?">
+    No. Points are awarded automatically when a logged-in customer loads a matching page.
   </Accordion>
   <Accordion title="Does mobile count?">
-    Yes, any device with the storefront loaded counts — as long as the embed is enabled.
+    Yes. Any device counts as long as the customer is logged in and the theme app embed is enabled.
   </Accordion>
 </AccordionGroup>
 

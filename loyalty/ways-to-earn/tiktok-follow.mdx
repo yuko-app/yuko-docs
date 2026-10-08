@@ -1,0 +1,120 @@
+---
+title: TikTok Follow
+description: Reward customers with points for following your TikTok account.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn → Add another way → **TikTok Follow**
+</Note>
+
+## Introduction
+
+Award customers a one-time points bonus when they follow your TikTok account from your loyalty widgets.
+
+## What problem this solves
+
+Growing a TikTok audience organically is slow. A small points reward gets existing customers to take a two-second action that builds your following and social proof.
+
+## When to use
+
+- You have an active TikTok account.
+- Your audience is active on TikTok.
+- You want a low-effort, one-time way to earn.
+
+## Overview
+
+- One-time reward per customer.
+- Configured with your **TikTok Username**.
+- Points are credited when the customer clicks **Follow**.
+- Optional points expiry and VIP tier multipliers.
+- Available on select plans.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>You have an active TikTok account.</Check>
+
+## Setup guide
+
+<Steps>
+  <Step title="Add the way to earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to earn**, click **Add another way** and pick **TikTok Follow**.
+  </Step>
+  <Step title="Fill in Basic Details">
+    - **Campaign Name** — shown to customers on the storefront. You can use `[earn_value]` and `[points_label]`, for example `Earn [earn_value] [points_label]`.
+    - **Description** — short copy shown with the way to earn.
+  </Step>
+  <Step title="Set the points">
+    Enter **Points to earn on TikTok follow** (a whole number, at least 1).
+  </Step>
+  <Step title="Add your TikTok username">
+    Enter your **TikTok Username** without the @ symbol. Customers are sent to `https://www.tiktok.com/@yourusername`.
+  </Step>
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Review the side panel">
+    - **Status** — on by default.
+    - **Icon** — **Default**, or **Custom** to upload your own (JPG, PNG, GIF or WEBP, under 1 MB).
+    - **Tiers** — turn on to apply VIP tier multipliers to this way to earn.
+  </Step>
+  <Step title="Save">
+    Click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+1. The way to earn appears in the **Ways to earn** list of your loyalty widgets (for example the [floating launcher](/onsite-widgets/floating-launcher), [rewards landing page](/onsite-widgets/rewards-landing-page) and [customer account page](/onsite-widgets/customer-account-page)) with a **Follow** button.
+2. A logged-in customer clicks **Follow**. Your TikTok profile opens in a new tab.
+3. Yuko credits the points as soon as the customer clicks. Social networks don't let apps confirm the action, so earning is based on the click.
+4. The way to earn then shows as completed for that customer.
+
+With **Tiers** on and [VIP tiers](/vip-tiers/overview) enabled, customers in a tier earn the tier's multiplier for this way to earn, plus any bonus points the tier sets for it. The extra points appear as a separate tier bonus entry.
+
+### Decision guidance
+
+- **Keep the reward modest** (5–20 points). It's a quick one-time action.
+- **Only run networks where your customers are active.** Pick two or three rather than every network.
+
+### Limitations
+
+- Earning is based on the click; Yuko can't check whether the customer actually followed.
+- One reward per customer. Following again doesn't earn more.
+- Customers must be logged in to earn.
+- You can have one TikTok Follow way to earn.
+
+## Examples
+
+- A streetwear brand awards 15 points for following on TikTok ahead of a product drop.
+
+## Best practices
+
+<Tip>**Check the username before saving.** A typo sends customers to the wrong profile.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How is the follow verified?">
+    It isn't. TikTok doesn't let apps confirm follows, so Yuko credits points when the customer clicks **Follow**.
+  </Accordion>
+  <Accordion title="Can a customer earn this twice?">
+    No. It's a one-time reward per customer.
+  </Accordion>
+  <Accordion title="Do I enter the full profile URL?">
+    No. Enter only the username, without the @ symbol. Yuko builds the link `https://www.tiktok.com/@yourusername`.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

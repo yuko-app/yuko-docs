@@ -1,0 +1,272 @@
+---
+title: "Retrieve a reward"
+---
+
+Retrieves a single reward from your organisation's reward catalogue by its UUID. Unlike [List rewards](/developer/api/list-rewards), this endpoint also returns inactive rewards and Shopify POS rewards.
+
+**GET /public/rewards/\{id\}**
+
+#### **Authorizations**
+
+**Authorization**
+
+**string**
+
+**header**
+
+**required**
+
+Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
+
+#### **Required Scope**
+
+**`read:rewards`**
+
+This endpoint requires the `rewards` scope with **Read Access** (or **Read/Write Access**). See [Scopes](/developer/api/scopes).
+
+#### **Path Parameters**
+
+**id**
+
+**string\<uuid\>**
+
+**required**
+
+The UUID of the reward, as returned in the `id` field of [List rewards](/developer/api/list-rewards).
+
+Example:
+
+`"90424fa7-e8a9-4ef4-b43a-72c9b2028db5"`
+
+#### **Response**
+
+**200 - application/json**
+
+**data**
+
+**object**
+
+Hide child attributes
+
+**data.id**
+
+**string\<uuid\>**
+
+Unique UUID identifier for the reward.
+
+Example:
+
+`"90424fa7-e8a9-4ef4-b43a-72c9b2028db5"`
+
+**data.name**
+
+**string**
+
+The display name of the reward.
+
+Example:
+
+`"$5 off your next order"`
+
+**data.description**
+
+**string | null**
+
+A description of the reward shown to customers.
+
+Example:
+
+`"Redeem 500 points for a $5 discount."`
+
+**data.reward_type**
+
+**enum\<string\>**
+
+The type of reward issued to the customer.
+
+Available options:
+
+`fixed_discount`,
+
+`percentage_discount`,
+
+`free_shipping`,
+
+`free_product`,
+
+`store_credit`,
+
+`pos_fixed`,
+
+`pos_percentage`
+
+Example:
+
+`"fixed_discount"`
+
+**data.points_cost**
+
+**integer**
+
+The number of points required to redeem this reward.
+
+Example:
+
+`500`
+
+**data.reward_rule**
+
+**object**
+
+The rule configuration for this reward. Structure varies by `reward_type`.
+
+Example:
+
+`{ "points_required": 500, "discount_value": 5 }`
+
+**data.icon**
+
+**object | null**
+
+The reward's storefront icon, or `null` if none is set.
+
+Hide child attributes
+
+**data.icon.source**
+
+**enum\<string\>**
+
+`default` for a built-in icon, `custom` for an uploaded image.
+
+**data.icon.slug**
+
+**string | null**
+
+The built-in icon's slug. `null` for custom icons.
+
+**data.icon.id**
+
+**string | null**
+
+The uploaded image's ID. `null` for built-in icons.
+
+**data.icon.url**
+
+**string | null**
+
+A URL to render the icon (an SVG for built-in icons, the uploaded image for custom icons).
+
+**data.is_active**
+
+**boolean**
+
+Whether this reward is currently active and available for redemption.
+
+Example:
+
+`true`
+
+**data.created_at**
+
+**string\<date-time\>**
+
+Example:
+
+`"2025-12-01T09:00:00+00:00"`
+
+**data.updated_at**
+
+**string\<date-time\>**
+
+Example:
+
+`"2025-12-01T09:00:00+00:00"`
+
+<RequestExample>
+
+```bash cURL
+curl --request GET \
+  --url "https://api.yukoapp.com/api/v1/public/rewards/90424fa7-e8a9-4ef4-b43a-72c9b2028db5" \
+  --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+```javascript JavaScript
+const rewardId = "90424fa7-e8a9-4ef4-b43a-72c9b2028db5";
+
+const response = await fetch(
+  `https://api.yukoapp.com/api/v1/public/rewards/${rewardId}`,
+  {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    },
+  }
+);
+
+const data = await response.json();
+```
+
+```php PHP
+$rewardId = "90424fa7-e8a9-4ef4-b43a-72c9b2028db5";
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, "https://api.yukoapp.com/api/v1/public/rewards/{$rewardId}");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+]);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+$data = json_decode($response, true);
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "data": {
+    "id": "90424fa7-e8a9-4ef4-b43a-72c9b2028db5",
+    "name": "$5 off your next order",
+    "description": "Redeem 500 points for a $5 discount.",
+    "reward_type": "fixed_discount",
+    "points_cost": 500,
+    "reward_rule": {
+      "points_required": 500,
+      "discount_value": 5
+    },
+    "icon": {
+      "source": "default",
+      "slug": "gift",
+      "id": null,
+      "url": "https://cdn.example.com/yuko-icons/svg/gift.svg"
+    },
+    "is_active": true,
+    "created_at": "2025-12-01T09:00:00+00:00",
+    "updated_at": "2025-12-01T09:00:00+00:00"
+  }
+}
+```
+
+```json 403
+{
+  "error": {
+    "code": "insufficient_scope",
+    "message": "Your API token does not have the required 'rewards' scope for this action"
+  }
+}
+```
+
+```json 404
+{
+  "error": {
+    "code": "not_found",
+    "message": "Reward not found"
+  }
+}
+```
+
+</ResponseExample>

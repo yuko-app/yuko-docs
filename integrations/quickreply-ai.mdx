@@ -50,10 +50,10 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 | Field | What it is | Example |
 |---|---|---|
 | **Template ID** | The approved template's ID (Dashboard → Template → ⋮ → Copy Template Id) | `6543abc...` |
-| **Parameter Count** | Number of body variables (1–25) | `2` |
+| **Parameter Count** | Number of body variables (1–10) | `2` |
 | **Template Parameters** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{points_balance}}` |
 | **Media URL** *(optional)* | Public URL for media templates (JPEG/PNG image, MP4 video, or document) | `https://cdn.example.com/welcome.jpg` |
-| **Button Parameters** *(optional)* | Values for dynamic URL button placeholders (max 5) | `account?id={{customer_id}}` |
+| **Button Parameters** *(optional)* | Values for dynamic URL button placeholders (max 5) | `account?email={{email}}` |
 
 <Tip>The **Media URL** must be publicly reachable. If it's behind auth or expires, the template send will fail.</Tip>
 <Tip>**Button parameters** fill the dynamic part of CTA URLs defined in the QuickReply.ai template — e.g., a template with a button `https://shop.example.com/{dynamic}` will substitute the first button param into `{dynamic}`.</Tip>
@@ -63,7 +63,7 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 **Reward unlocked — deep-link to redemption page**
 
 1. In QuickReply.ai, approve a template with an image header and a dynamic CTA URL button. Note the Template ID.
-2. In Yuko Workflows, build: **Trigger: Reward Earned** → **WhatsApp (QuickReply.ai)**.
+2. In Yuko Workflows, build: **Trigger: Redeem Points** → **WhatsApp (QuickReply.ai)**.
 3. Configure: Template ID = (paste), Parameter Count = `2`, Parameters = `{{first_name}}`, `{{coupon_code}}`, Media URL = your reward banner image, Button Param 1 = `redeem?code={{coupon_code}}`.
 4. Activate.
 
@@ -102,7 +102,7 @@ import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
 <CardGroup cols={2}>
   <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
-    How Yuko's WhatsApp integration works across all 7 providers.
+    How Yuko's WhatsApp integration works across all 13 providers.
   </Card>
   <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
     Setup, shortcodes, and example workflows.

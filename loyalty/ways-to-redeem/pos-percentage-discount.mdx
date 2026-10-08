@@ -1,0 +1,114 @@
+---
+title: POS Percentage Discount
+description: Let in-store customers redeem points for a percentage discount at Shopify POS.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to redeem → Add another way → **Shopify POS** → **POS Percentage Discount**
+</Note>
+
+## Introduction
+
+A POS Percentage Discount lets customers spend points in your physical store for a percentage off the sale (for example, `1,000 points = 10% off`). The cashier redeems it from the Yuko tile in Shopify POS.
+
+## What problem this solves
+
+In-store baskets vary a lot in size. A percentage discount scales with the sale, so customers making bigger in-store purchases get a bigger reward.
+
+## When to use
+
+- You sell in person with Shopify POS.
+- Your in-store basket sizes vary widely.
+- You already offer a percentage reward online and want the same in store.
+
+## Overview
+
+- Redeemable **only at Shopify POS**.
+- One fixed exchange: **Points Required** for a **Percentage Discount** from 1% to 50%.
+- Optional minimum purchase amount.
+- Optional combinations with other discounts.
+- No description, coupon prefix, maximum discount amount, product targeting or expiry settings.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>The [Shopify POS integration](/integrations/shopify-pos) is connected. The **Shopify POS** section only appears in the reward picker after that.</Check>
+<Check>The Yuko tile is added to the smart grid on your POS devices.</Check>
+
+## Setup guide
+
+<Steps>
+  <Step title="Add the reward">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to redeem**, click **Add another way** and pick **POS Percentage Discount** under **Shopify POS**.
+  </Step>
+  <Step title="Name the reward">
+    Under **Basic Details**, set the **Reward Name**.
+  </Step>
+  <Step title="Complete the POS Reward Configuration">
+    - **Points Required** — the points cost.
+    - **Percentage Discount** — a whole number from 1 to 50.
+  </Step>
+  <Step title="Set Minimum Requirements (optional)">
+    Choose **No minimum requirements** or **Minimum purchase amount** and enter a **Minimum Subtotal**. POS rewards don't support a minimum quantity of items.
+  </Step>
+  <Step title="Choose combinations (optional)">
+    Under **Combine with other discounts**, tick any of **Product discount**, **Order discount** and **Free shipping**. All three are ticked by default.
+  </Step>
+  <Step title="Enable and save">
+    Turn on **Status** in the side panel and click **Save**. The reward shows a **POS** badge in the rewards list.
+  </Step>
+</Steps>
+
+## How it works
+
+1. The cashier adds the customer and at least one product to the cart in Shopify POS.
+2. They open the Yuko tile, go to the **Loyalty discounts** tab and tap **Redeem points**.
+3. Under **Available rewards**, they tap **Redeem** on this reward and confirm.
+4. Yuko deducts the points, creates a single-use percentage discount code for that customer and applies it to the cart.
+5. If the cart is below the Minimum Subtotal, the reward stays disabled and POS shows how much more the customer needs to spend.
+
+### Decision guidance
+
+- **Match your online Percentage Discount** so customers get the same value in both channels.
+- **Add a Minimum Subtotal** to keep percentage discounts for meaningful purchases.
+
+### Limitations
+
+- Only redeemable at Shopify POS.
+- There's no Maximum Discount Amount for POS percentage rewards, so the percentage applies to the full eligible amount.
+- Minimum requirement is subtotal only.
+- Shopify applies only the best discount when discounts don't combine. POS warns the cashier before applying.
+
+## Examples
+
+- *Furniture showroom:* `2,000 pts = 10% off`, Minimum Subtotal $200.
+- *Café:* `300 pts = 15% off`, no minimum, combines with product discounts.
+
+## Best practices
+
+<Tip>**Keep percentages modest.** Without a cap, a large in-store sale gets the full percentage off.</Tip>
+<Tip>**Train cashiers to add the customer first.** Rewards only appear once a customer is on the cart.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I cap the discount amount like the online Percentage Discount?">
+    No. Maximum Discount Amount is only available on the online Percentage Discount.
+  </Accordion>
+  <Accordion title="Can customers redeem this reward online?">
+    No. POS rewards are only offered at Shopify POS.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedRewards from '/snippets/related-rewards.mdx';
+
+<RelatedRewards />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

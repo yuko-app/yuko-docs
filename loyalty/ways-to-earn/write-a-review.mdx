@@ -1,32 +1,34 @@
 ---
-title: Write a Review
-description: Reward customers with points when they submit a product or shop review.
+title: Write a review
+description: Reward customers with points when they review a product, with an optional bonus for reviews that include photos or videos.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Write a Review
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn → Add another way → **Write a review**
 </Note>
 
 ## Introduction
 
-Award points to customers who leave a review after buying. Reviews are one of the highest-leverage forms of UGC, and a small points bonus consistently lifts submission rates.
+Award points to customers who review a product they bought. Reviews are one of the most valuable forms of social proof, and a small points reward consistently lifts submission rates.
 
 ## What problem this solves
 
-Most customers don't write reviews unless asked. Even fewer write them with photos or detail. A points reward turns a one-time post-purchase action into a measurable conversion.
+Most customers don't write reviews unless asked, and even fewer add photos. A points reward turns a forgettable post-purchase task into something worth doing.
 
 ## When to use
 
-- You're running Yuko Reviews (or another reviews app integrated with Yuko).
-- You want to lift review submission rate or photo-review rate.
+- You collect product reviews with a reviews app connected to Yuko.
+- You want more reviews, or more reviews with photos.
 - You're launching a new product and need fresh social proof.
 
 ## Overview
 
-- Award points per submitted review.
-- Optional **media bonus** — extra points if the review includes a photo or video.
-- One-time per review per customer per product.
-- Optional points expiry.
+- Points for each product review.
+- Optional **Media Bonus**: extra points when the review includes media.
+- Optional **Limits**: verified purchases only, and one reward per order.
+- One reward per product per customer.
+- Optional points expiry and VIP tier multipliers.
+- Available on select plans.
 
 ## Before you start
 
@@ -34,62 +36,89 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <BeforeYouStart />
 
-<Check>Reviews are enabled on your store — either Yuko Reviews or a connected reviews tool.</Check>
+<Check>Reviews reach Yuko from your reviews app: [Judge.me](/integrations/judgeme), or any app through the Shopify Flow action **Add Points for Review** (see [Shopify Flow](/integrations/shopify-flow)).</Check>
 
 ## Setup guide
 
 <Steps>
-  <Step title="Open the campaign">
-    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Write a Review**.
+  <Step title="Add the way to earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to earn**, click **Add another way** and pick **Write a review**.
   </Step>
-  <Step title="Set details and points">
-    Enter campaign name and base points value (e.g., `20`).
+  <Step title="Fill in Basic Details">
+    - **Campaign Name** — shown to customers on the storefront. You can use `[earn_value]` and `[points_label]`, for example `Earn [earn_value] [points_label] for a review`.
+    - **Description** — short copy shown with the way to earn.
   </Step>
-  <Step title="Configure media bonus (optional)">
-    Add extra points awarded when a review includes a photo or video (e.g., +30).
+  <Step title="Set the points">
+    Enter **Points to earn for product review** (a whole number, at least 1).
   </Step>
-  <Step title="Configure expiry (optional)">
-    A 30-day expiry encourages prompt redemption.
+  <Step title="Set the Media Bonus (optional)">
+    Tick **Enable Media Earning**, then enter the **Media earning value**: additional points awarded when the customer includes media with their review (default 10).
   </Step>
-  <Step title="Save & activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Set Limits (optional)">
+    - **Limit to verified purchase** — reward only reviews of products purchased in the linked order.
+    - **Limit to one reward per order** — only the first rewarded review in an order earns points. The media bonus applies only to that same review.
+
+    Limits apply only to reviews collected by Yuko's own reviews module, not to reviews from Judge.me or the Shopify Flow action.
+  </Step>
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Review the side panel">
+    - **Status** — on by default.
+    - **Icon** — **Default**, or **Custom** to upload your own (JPG, PNG, GIF or WEBP, under 1 MB).
+    - **Tiers** — turn on to apply VIP tier multipliers.
+  </Step>
+  <Step title="Save">
+    Click **Save**.
   </Step>
 </Steps>
 
 ## How it works
 
-- Yuko awards points when a review is submitted and approved.
-- If the review is rejected or removed, the points are reversed.
-- The bonus is paid once per review; editing a review doesn't re-trigger it.
+1. A customer reviews a product in your reviews app.
+2. The review reaches Yuko:
+   - **Judge.me** sends published reviews to Yuko automatically once the [integration](/integrations/judgeme) is connected. A review counts as having media when it includes pictures.
+   - **Other reviews apps** use the Shopify Flow action **Add Points for Review**. Map the **Customer identifier** (customer ID or email), **Product ID** and **Photo Url** from your app's Flow trigger. If a photo URL is passed, the review counts as having media.
+3. Yuko matches the customer and product and awards **Points to earn for product review**.
+4. If the media bonus is on and the review has media, Yuko awards the **Media earning value** as a separate entry.
+5. With **Tiers** on, the tier multiplier applies to both the base and media lines. Tier bonus points are added once per review.
+
+Each customer earns the base points once per product. If a customer first reviews without media and later adds media to the same review, they can still earn the media bonus once.
 
 ### Decision guidance
 
-- **Set a higher media bonus** — photo reviews convert dramatically better than text-only.
-- **Pair with a post-purchase review request email** to maximise opt-in.
-- **Don't reward fake reviews** — use moderation in your reviews tool to gate approvals.
+- **Make the media bonus worth it.** Photo reviews convert better than text-only ones, so reward them.
+- **Pair with your reviews app's review-request email** so customers know the reward exists.
+- **Use moderation in your reviews tool** to keep low-quality reviews from being published.
 
 ### Limitations
 
-- The campaign relies on review approval. Auto-approval awards points immediately; moderated approval awards on approval.
-- Customers can only earn once per product, even if they submit multiple reviews.
+- Only published reviews earn. Unpublished Judge.me reviews are ignored.
+- Points aren't reversed if a review is later unpublished or deleted. Adjust the balance manually in [Customers](/loyalty/customers) if needed.
+- One base reward per customer per product, even if the customer submits several reviews.
+- The Shopify Flow action needs a customer and product that Yuko can match. Unmatched runs don't award points.
 
 ## Examples
 
-- 20 points per review + 30 bonus for a photo → 50 points for a media review. At 100 pts = $1, that's $0.50 reward.
+- 20 points per review plus a 30-point media bonus: a photo review earns 50 points.
+- A store using Loox connects it through Shopify Flow, mapping the reviewer's email, the product ID and the photo URL into **Add Points for Review**.
 
 ## Best practices
 
 <Tip>**Set the media bonus higher than the base reward.** Photos drive conversion; pay for them.</Tip>
-<Tip>**Always moderate reviews** before they earn — stops fake-review farming.</Tip>
+<Tip>**Moderate before publishing.** Since points follow published reviews, moderation is your first line of defence against fake reviews.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="What happens if a review is rejected?">
-    The points are reversed automatically.
+  <Accordion title="Which reviews apps work with this?">
+    [Judge.me](/integrations/judgeme) through its integration, and any other app that can trigger Shopify Flow, through the **Add Points for Review** action. See [Shopify Flow](/integrations/shopify-flow).
   </Accordion>
-  <Accordion title="Does this work with other reviews apps?">
-    Yuko Reviews is supported natively. Other apps require an integration; check **Integrations** for the list.
+  <Accordion title="What happens if a review is deleted or unpublished?">
+    The points stay with the customer. Yuko doesn't reverse review points automatically. Use **Adjust balance** in [Customers](/loyalty/customers) to remove them manually.
+  </Accordion>
+  <Accordion title="Can a customer earn twice for the same product?">
+    No. The base reward is paid once per customer per product, and the media bonus once per customer per product.
   </Accordion>
 </AccordionGroup>
 

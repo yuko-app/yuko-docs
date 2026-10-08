@@ -49,7 +49,7 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 |---|---|---|
 | **Channel ID** | BotSpace channel ID for the WhatsApp number to send from | `your-channel-id` |
 | **Template ID** | Approved template identifier from your BotSpace dashboard | `loyalty_points_earned` |
-| **Template Parameter Count** | Number of body variables (1–25) | `2` |
+| **Template Parameter Count** | Number of body variables (1–10) | `2` |
 | **Template Parameters** | One value per body variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{points_balance}}` |
 
 Template parameters are **positional** — they fill the template's `{{1}}`, `{{2}}`, ... placeholders in order.
@@ -59,8 +59,8 @@ Template parameters are **positional** — they fill the template's `{{1}}`, `{{
 **Points earned confirmation**
 
 1. In BotSpace, approve a template called `loyalty_points_earned` with two body variables. Note the Channel ID and Template ID.
-2. In Yuko Workflows, build: **Trigger: Points Awarded** → **WhatsApp (BotSpace)**.
-3. Configure: Channel ID, Template ID = `loyalty_points_earned`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{points_earned}}`.
+2. In Yuko Workflows, build: **Trigger: Earn Points** → **WhatsApp (BotSpace)**.
+3. Configure: Channel ID, Template ID = `loyalty_points_earned`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{points_balance}}`.
 4. Activate.
 
 ## Limitations
@@ -95,7 +95,7 @@ import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
 <CardGroup cols={2}>
   <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
-    How Yuko's WhatsApp integration works across all 11 providers.
+    How Yuko's WhatsApp integration works across all 13 providers.
   </Card>
   <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
     Setup, shortcodes, and example workflows.

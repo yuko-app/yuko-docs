@@ -1,62 +1,91 @@
 ---
-title: Email Notifications
-description: Automated emails sent to customers in response to loyalty events — points earned, rewards redeemed, tier changes, referrals, memberships and more.
+title: Emails
+description: Built-in emails Yuko sends when customers earn, redeem, change tier, join referrals or manage a membership. Each module has its own Emails tab.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Notifications
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Emails (also **Referral → Emails** and **Membership → Emails**)
 </Note>
 
-## What are email notifications
+## Introduction
 
-Yuko sends automated emails to customers when meaningful loyalty events happen — they earn points, redeem a reward, move up a tier, or unlock a membership. Each event has a built-in template that you can fully customise.
+Yuko ships with ready-made emails for the key moments in your loyalty, referral and membership programs, such as points earned, a reward redeemed, a new tier or a membership upgrade. Each email has a default subject and message, which you can edit in the [Template Editor](/emails/template-editor).
 
-Emails inherit your store **[Branding & Locale](/onsite-widgets/branding-and-locale)** settings, so colors, logo and language are consistent with your widgets without extra setup.
+Emails live inside the module they belong to:
 
-## All templates
+| Module | Where | Emails |
+|---|---|---|
+| Loyalty | **Loyalty → Emails** | 11 emails. See [Loyalty Emails](/emails/loyalty-emails) |
+| Referral | **Referral → Emails** | 3 emails. See [Referral Emails](/emails/referral-emails) |
+| Membership | **Membership → Emails** | 4 emails. See [Membership Emails](/emails/membership-emails) |
 
-import RelatedEmails from '/snippets/related-emails.mdx';
+<Info>For anything the built-in emails don't cover, such as multi-step sequences, conditions, coupons or WhatsApp messages, build a [Workflow](/workflows/overview). Built-in emails and workflows use the same editor and the same [shortcodes](/emails/shortcodes).</Info>
 
-<RelatedEmails />
+## The Emails list
+
+Each module's Emails tab lists its emails with:
+
+- **Tabs:** **All**, **Active** and **Inactive**.
+- **Search** by email name, and an **Email type** filter.
+- An **on/off toggle** on every row. Turning an email on or off opens an **Activate email** / **Deactivate email** confirmation.
+- An **Edit** button that opens the email in the editor.
+- An **Advanced** badge on emails that were last saved in the [Advanced Editor](/emails/template-editor#advanced-editor).
+
+<Note>Built-in emails start **inactive**. Switch on the ones you want customers to receive.</Note>
+
+## Monthly sending limit
+
+If your store has a monthly email limit, a banner at the top of the Emails list shows it: *"Your monthly email sending limit is N emails. Contact us to increase the limit."* Click **Contact us** to ask the Yuko team for a higher limit.
+
+## Email analytics
+
+Open any email to see its **Stats** next to the preview:
+
+- **All**: emails triggered
+- **Delivered**
+- **Opened**
+- **Clicked**
+
+Click **View Details** to open **Email Analytics**. It lists every send with its **Subscriber ID**, **Customer**, **Sent At**, **Status**, **Skipped**, **Opened** and **Clicked**. If an email was skipped, hover the info icon next to **Yes** in the **Skipped** column to see why. Click a metric card to filter the table by that status.
 
 ## How emails work
 
-1. A customer triggers a loyalty event (e.g., places an order that earns points).
-2. Yuko evaluates whether the corresponding template is enabled.
-3. The template's content is rendered — shortcodes are replaced with real data, branding is applied.
-4. The email is sent to the customer's email address from your configured sender.
-5. The send is logged in the customer's activity feed.
+1. A customer event happens, for example they earn points from an order.
+2. Yuko checks whether the matching email is active.
+3. If the email has a delay (for example *Days after earned reward*), Yuko waits that long.
+4. Yuko fills in the [shortcodes](/emails/shortcodes) with the customer's data and sends the email from the sender set in [Email Settings](/emails/sender-and-branding).
+5. The send is counted in the email's Stats.
 
-## Enabling or disabling templates
+## Sender and branding
 
-Every template has its own toggle. Disabling a template stops Yuko from sending it — useful if you handle a specific event in your own ESP (e.g., Klaviyo for points-earned emails).
-
-<Tip>**Keep tier-change and reward-redeemed enabled in Yuko.** They're tied to loyalty data Yuko owns; replicating them in an ESP is fragile.</Tip>
+The From name, Reply-To and From address are set once for all emails under **Account → Email Settings**. You can also send from your own domain. See [Email Settings & Custom Domains](/emails/sender-and-branding). The logo comes from **Account → General → Logo**.
 
 ## Best practices
 
-<Tip>**Don't enable everything.** Customers ignore high-volume notification streams. Pick the 4–6 emails that matter most.</Tip>
-<Tip>**Match your store voice.** Default copy works, but on-brand copy converts better.</Tip>
-<Tip>**Test every template** with a real recipient address before going live.</Tip>
+<Tip>**Start with the high-value moments.** Points earned, Points redeemed and Tier unlocked are a good first set.</Tip>
+<Tip>**Send yourself a test before going live.** **Send Test Email** goes to your account email, so you can check the layout in a real inbox.</Tip>
+<Tip>**Only turn on expiry emails if you use expiry.** Point Expiry Reminder and Reward expiry reminder only make sense when your earn rules or rewards actually expire.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Can I send emails through my own ESP instead of Yuko?">
-    Yes — disable Yuko's template and trigger your own via [Workflows](/workflows/overview) or [Integrations](/integrations/overview) (Klaviyo / Omnisend).
+  <Accordion title="Why isn't a customer receiving an email?">
+    Check that the email is **Active** in the module's Emails tab, and that the customer's address isn't on your [Email Blacklist](/account/email-blacklist). Then open the email's **View Details** analytics. Skipped sends show the reason in a tooltip.
   </Accordion>
-  <Accordion title="Can I add custom HTML?">
-    The visual editor covers most use cases. For advanced customisation, contact support.
+  <Accordion title="Can I send these emails through Klaviyo or Omnisend instead?">
+    Yes. Turn off Yuko's email and build the flow in [Klaviyo](/integrations/klaviyo) or [Omnisend](/integrations/omnisend), using the Yuko events and profile properties those integrations receive.
   </Accordion>
-  <Accordion title="What happens if I don't customise a template?">
-    Yuko sends the default copy with your branding applied. It's safe to launch with defaults.
+  <Accordion title="Can I add my own HTML?">
+    The [Advanced Editor](/emails/template-editor#advanced-editor) lets you design the email visually and import or export MJML. It's available on select plans.
   </Accordion>
-  <Accordion title="Are emails localised?">
-    Yes — each template can have a translation per locale. See **[Sender & Branding](/emails/sender-and-branding)**.
+  <Accordion title="Where do I change the From name and Reply-To?">
+    In **Account → Email Settings → General**. See [Email Settings & Custom Domains](/emails/sender-and-branding).
   </Accordion>
 </AccordionGroup>
 
-## Recommended reading
+## Related
+
+import RelatedEmails from '/snippets/related-emails.mdx';
 
 <RelatedEmails />
 

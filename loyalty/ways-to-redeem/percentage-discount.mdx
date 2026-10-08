@@ -1,32 +1,33 @@
 ---
 title: Percentage Discount
-description: Let customers redeem points for a percentage discount on their order.
+description: Let customers redeem points for a percentage discount, with an optional cap on the discount amount.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Redeem → Percentage Discount
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to redeem → Add another way → **Percentage Discount**
 </Note>
 
 ## Introduction
 
-Let customers spend points for a percentage discount on their order (e.g., `1000 points = 10% off`). Best when you want bigger orders to feel rewarded proportionally.
+Let customers spend points on a percentage discount (for example, `1,000 points = 10% off`). Bigger orders get a bigger reward, and you can cap it with a **Maximum Discount Amount**.
 
 ## What problem this solves
 
-Flat-amount discounts under-reward big spenders. A percentage discount scales with cart value, so a customer placing a $300 order with `10% off` gets a meaningfully bigger reward than one redeeming on a $40 order.
+Flat discounts under-reward big spenders. A percentage discount scales with the cart, so a customer placing a $300 order gets a meaningfully bigger reward than one on a $40 order. The cap keeps very large orders from producing a discount you didn't plan for.
 
 ## When to use
 
-- You sell high-AOV products where 10–20% is meaningful.
-- You want the redemption value to scale with order size.
-- You want to drive larger basket sizes by making redemption more attractive on big orders.
+- You sell higher-priced products where 10–20% is meaningful.
+- You want the reward to scale with order size.
+- You want a percentage off specific products or collections only.
 
 ## Overview
 
-- Percentage off the order subtotal.
-- Optional **maximum cap** to prevent overly generous discounts on huge orders.
-- Optional minimum purchase amount.
-- Optional combinability and expiry.
+- Percentage off, from 1% to 50%.
+- Optional **Maximum Discount Amount** to cap the discount.
+- Optional **Coupon Prefix**, **Purchase type** and product or collection targeting.
+- Optional minimum purchase amount or minimum quantity of items.
+- Optional combinations with other discounts and an optional expiry.
 
 ## Before you start
 
@@ -37,62 +38,80 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 ## Setup guide
 
 <Steps>
-  <Step title="Open the reward">
-    Login to your Shopify admin, then go to **Apps → Yuko Loyalty → Loyalty → Ways to Redeem → Percentage Discount**.
+  <Step title="Add the reward">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to redeem**, click **Add another way** and pick **Percentage Discount** under **Online Store**.
   </Step>
-  <Step title="Configure basic details">
-    Set reward name and description.
+  <Step title="Fill in Basic Details">
+    Set the **Reward Name** (shortcodes `[reward_value]`, `[points_required]` and `[points_label]` are supported) and a **Description**.
   </Step>
-  <Step title="Set points and percentage">
-    Enter the points cost and the percentage (e.g., `1000 pts = 10% off`).
+  <Step title="Complete the Reward Configuration">
+    - **Points Required** — the points cost.
+    - **Percentage Discount** — a whole number from 1 to 50.
+    - **Maximum Discount Amount** — caps the discount at this amount. Leave it empty for no limit.
+    - **Coupon Prefix** — the start of every code (up to 8 characters, default `yuko`).
+    - **Purchase type** — **One-time purchase**, **Subscription** or **Both** (default). Subscription options only take effect if your store sells subscriptions.
+    - **Applies to specific products or collections** — leave unchecked to discount the whole order. When checked, choose **Specific products** or **Specific collections** and select at least one.
   </Step>
-  <Step title="Configure additional settings">
-    - **Minimum / maximum points** allowed.
-    - **Minimum purchase amount** to qualify.
-    - **Maximum discount cap** — cap the absolute dollar value of the discount.
-    - **Combinability** with other discounts.
-    - **Expiry** of the issued discount code.
+  <Step title="Set Minimum Requirements (optional)">
+    Choose **No minimum requirements**, **Minimum purchase amount** (**Minimum Subtotal**) or **Minimum quantity of items** (**Minimum Quantity**).
   </Step>
-  <Step title="Save & activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Choose combinations (optional)">
+    Under **Combine with other discounts**, tick any of **Product discount**, **Order discount** and **Free shipping**.
+  </Step>
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry** and set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Enable and save">
+    Turn on **Status** in the side panel and click **Save**.
   </Step>
 </Steps>
 
 ## How it works
 
-1. Customer redeems the reward.
-2. Yuko deducts points and issues a Shopify percentage discount code.
-3. The percentage applies to the cart subtotal at checkout.
-4. If a cap is set, the discount is capped at the cap value.
+1. The customer redeems the reward from a loyalty widget.
+2. Yuko deducts the points and creates a single-use Shopify discount code for that customer.
+3. The percentage applies to the eligible items at checkout.
+
+### How the Maximum Discount Amount works
+
+Shopify's standard percentage codes can't be capped. So when you set a **Maximum Discount Amount**, Yuko creates the code as a Shopify app discount that runs on Yuko's discount function, **Percentage discount (Yuko)**. The function applies your percentage and stops at the cap. It also respects the minimum requirement, purchase type and products or collections you chose.
+
+In **Shopify admin → Discounts**, these codes show a **Yuko discount details** panel with the discount, maximum discount, minimum requirement, purchase type and what it applies to. You can't edit their settings there; you can only deactivate or delete them. To change future codes, edit the reward in Yuko.
+
+Without a cap, Yuko creates a standard Shopify percentage discount code.
 
 ### Decision guidance
 
-- **Set a maximum cap** for any percentage above 5%. Without it, a $2,000 order can produce a $400 discount you didn't intend.
-- **Restrict to non-sale collections** if you're worried about stacking with promos.
+- **Set a Maximum Discount Amount** for higher percentages. Without it, a $2,000 order at 20% off produces a $400 discount.
+- **Target specific collections** to keep the discount off sale items or low-margin products.
 
 ### Limitations
 
-- Percentage discounts can stack with sale prices unexpectedly. Use combinability + product exclusions deliberately.
-- The discount is issued as a Shopify discount code; same one-code-per-order rule applies unless combinability is enabled.
+- The maximum percentage is 50%.
+- The code is a Shopify discount, so Shopify's combination rules apply.
+- Shopify percentage discounts don't reduce taxes or shipping.
 
 ## Examples
 
-- *High-AOV electronics:* `1000 pts = 10% off`, max $50 cap, $100 minimum order.
-- *Apparel store:* `2000 pts = 15% off`, no cap, 30-day expiry, excludes sale collection.
+- *Higher-priced store:* `1,000 pts = 10% off`, Maximum Discount Amount $50, Minimum Subtotal $100.
+- *Apparel store:* `2,000 pts = 15% off` a "New arrivals" collection, expires after 30 days.
 
 ## Best practices
 
-<Tip>**Always set a max cap** for percentages above 5%. Otherwise edge cases will surprise you.</Tip>
-<Tip>**Disable combinability with sale promos** unless you've explicitly modelled the impact.</Tip>
+<Tip>**Set a cap for anything above 5–10%.** It protects margin on unusually large orders.</Tip>
+<Tip>**Leave combinations off with sale promos** unless you've modelled the impact.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Can the discount apply to taxes or shipping?">
-    No. Shopify percentage discounts apply to the order subtotal only, before tax and shipping.
+  <Accordion title="Why does the discount show as an app discount in Shopify?">
+    Because you set a Maximum Discount Amount. Capped codes run on Yuko's discount function so the cap can be enforced. Uncapped codes are standard Shopify percentage codes.
   </Accordion>
-  <Accordion title="What's the difference vs Amount Discount?">
-    Percentage scales with cart value; Amount Discount is fixed. Use percentage for high-AOV stores; amount for predictability.
+  <Accordion title="Can the discount apply to taxes or shipping?">
+    No. It applies to the eligible items only, before tax and shipping.
+  </Accordion>
+  <Accordion title="What's the difference from Amount Discount?">
+    Percentage scales with cart value; Amount Discount is a fixed value and also supports incremented points.
   </Accordion>
 </AccordionGroup>
 

@@ -1,75 +1,160 @@
 ---
 title: Shortcodes Reference
-description: Every merge tag available in Yuko email templates, grouped by category.
+description: Every shortcode you can use in Yuko's loyalty, referral and membership emails, grouped the way the editor shows them.
 ---
 
 <Note>
-**Where to find this:** Inside the template editor — type `[` or click the shortcode picker.
+**Where to find this:** Open any email and look at the **Available Template Variables** card in the form editor, or click **Shortcodes** in the Advanced Editor.
 </Note>
 
 ## How shortcodes work
 
-Shortcodes are placeholders Yuko replaces with real customer or event data when the email is sent. Wrap them in square brackets, e.g., `[first_name]`.
+Shortcodes are placeholders that Yuko replaces with the customer's real data when the email is sent. Wrap the key in double curly braces, for example `{{ first_name }}` or `{{ points_balance }}`. Spaces inside the braces are optional.
 
-Not every shortcode is available in every template. The picker in the editor only shows shortcodes valid for the template you're editing.
+Each email only supports the shortcodes for its own event. The editor lists exactly the ones you can use, so copy them from there. The tables below show which emails support each shortcode.
 
-## Customer shortcodes
+<Info>Shortcodes are rendered with Liquid, so you can also use simple conditions. For example, `{% if current_tier_name == "Gold" %} ... {% endif %}` shows a block only to Gold members. The Tier unlocked email lists this pattern as **Current tier conditions** and **Next tier conditions**.</Info>
 
-| Shortcode | Replaced with |
+## Customer
+
+Available in every loyalty, referral and membership email.
+
+| Shortcode | Label in the editor |
 |---|---|
-| `[first_name]` | Customer's first name |
-| `[last_name]` | Customer's last name |
-| `[email]` | Customer's email |
-| `[customer_id]` | Shopify customer ID |
-| `[point_balance]` | Current points balance |
-| `[points_label]` | Your configured points label (e.g., *Stars*) |
-| `[tier_name]` | Current VIP tier name |
+| `{{ customer_name }}` | Customer Name |
+| `{{ first_name }}` | First Name |
+| `{{ last_name }}` | Last Name |
+| `{{ email }}` | Email |
+| `{{ phone }}` | Phone |
+| `{{ address }}` | Address |
+| `{{ city }}` | City |
+| `{{ zip }}` | Zip Code |
+| `{{ country }}` | Country (loyalty emails only) |
 
-## Event shortcodes (loyalty)
+## Loyalty: points and balance
 
-| Shortcode | Replaced with | Used in |
+| Shortcode | Label | Available in |
 |---|---|---|
-| `[points_value]` | Points earned or redeemed in the event | points-earned, reward-redeemed |
-| `[campaign_name]` | The campaign that fired | points-earned |
-| `[reward_name]` | Reward redeemed | reward-redeemed |
-| `[discount_code]` | Issued discount code | reward-redeemed |
-| `[discount_expiry_date]` | Reward expiry date | reward-redeemed, reward-expiring |
-| `[next_tier]` | Next tier name | tier-changed |
-| `[multiplier_value]` | Points multiplier | tier-changed |
+| `{{ points_label }}` | Points label | Points earned, Point Expiry Reminder, Points expired, Birthday and Anniversary emails |
+| `{{ points_value }}` | Points value | Points earned, Birthday Reminder, Birthday award, Anniversary Reminder, Anniversary award |
+| `{{ points_balance }}` | Points Balance | All loyalty emails; Referrer reward issued |
+| `{{ total_earned_points }}` | Total Earned Points | All loyalty emails |
+| `{{ total_redeemed_points }}` | Total Redeemed Points | All loyalty emails |
+| `{{ points_to_next_reward }}` | Points to Next Reward | Points earned, Points redeemed, Point Expiry Reminder, Points expired; Friend reward unlocked |
+| `{{ total_orders }}` | Total Orders | Points earned, Points redeemed, Tier unlocked, Point Expiry Reminder, Points expired, Birthday and Anniversary emails |
+| `{{ points_value_as_cash }}` | Points Value as Cash | Points earned, Birthday Reminder, Anniversary Reminder |
+| `{{ points_balance_as_cash }}` | Points Balance as Cash | Points earned, Points redeemed, Birthday and Anniversary emails; Referrer reward issued |
+| `{{ earned_points_cash }}` | Earned Points as Cash | Points earned, Points redeemed, Tier unlocked, Point Expiry Reminder, Points expired, Birthday and Anniversary emails |
 
-## Event shortcodes (referral)
+The `*_as_cash` values convert points to money using your points-to-cash rate.
 
-| Shortcode | Replaced with | Used in |
+## Loyalty: event details
+
+| Shortcode | Label | Available in |
 |---|---|---|
-| `[referrer_name]` | First name of the referrer | referral templates |
-| `[friend_name]` | First name of the friend | referral templates |
-| `[referral_link]` | The customer's referral URL | referral-advocate-registered |
-| `[referral_count]` | Number of successful referrals | referral templates |
-| `[reward_value]` | The reward issued | referral-advocate-rewarded |
+| `{{ earn_program_name }}` | Program Name (the earn rule that awarded the points) | Points earned |
+| `{{ earn_program_description }}` | Program Description | Points earned |
+| `{{ expires_at }}` | Expire Date | Points earned |
+| `{{ order_id }}` / `{{ order_name }}` | Order ID / Order Name | Points earned |
+| `{{ birthday_date }}` | Birthday date | Points earned, Birthday Reminder, Birthday award |
+| `{{ anniversary_date }}` | Anniversary date | Anniversary Reminder, Anniversary award |
+| `{{ customer_years }}` / `{{ customer_year_label }}` | Customer Years / Customer Year Label | Points earned, Tier unlocked, Anniversary Reminder, Anniversary award |
+| `{{ expiring_points }}` | Expiring Points | Point Expiry Reminder |
+| `{{ expiring_points_as_cash }}` | Expiring Points as Cash | Point Expiry Reminder |
+| `{{ points_expiry_at }}` | Expiry Date | Point Expiry Reminder |
+| `{{ days_until_expiry }}` | Days Until Expiry | Point Expiry Reminder, Reward expiry reminder |
+| `{{ expired_points }}` | Expired Points | Points expired |
+| `{{ expired_points_as_cash }}` | Expired Points as Cash | Points expired |
+| `{{ current_tier_name }}` | Current Tier Name | Tier unlocked |
+| `{{ next_tier_name }}` | Next Tier Name | Tier unlocked |
 
-## Event shortcodes (membership)
+## Loyalty: rewards
 
-| Shortcode | Replaced with | Used in |
-|---|---|---|
-| `[plan_name]` | Membership plan name | membership templates |
-| `[plan_price]` | Plan price and interval | membership-unlocked |
-| `[next_renewal_date]` | Next renewal date | membership-unlocked |
-| `[lost_reason]` | Reason for losing the plan | membership-lost |
+Available in **Points redeemed**, **Reward expiry reminder** and **Reward expired**.
 
-## Store shortcodes
-
-| Shortcode | Replaced with |
+| Shortcode | Label |
 |---|---|
-| `[store_name]` | Your store name |
-| `[store_url]` | Your storefront URL |
-| `[support_email]` | Configured support email |
-| `[unsubscribe_url]` | Auto-generated unsubscribe URL (always required by law) |
+| `{{ reward_name }}` | Reward Name |
+| `{{ reward_description }}` | Reward Description |
+| `{{ reward_code }}` | Reward Code (the discount code) |
+| `{{ reward_value }}` | Reward Value |
+| `{{ reward_type }}` | Reward Type |
+| `{{ points_spent }}` | Points Spent |
+| `{{ reward_minimum_purchase }}` | Reward Minimum Purchase |
+| `{{ reward_minimum_quantity }}` | Reward Minimum Quantity |
+| `{{ reward_expire_at }}` | Reward Expire Date |
+| `{{ points_spent_as_cash }}` | Points Spent as Cash (Points redeemed only) |
+
+## Referral
+
+| Shortcode | Label | Available in |
+|---|---|---|
+| `{{ referral_link }}` | Referral Link | Every loyalty, referral and membership email |
+| `{{ referral_code }}` | Referral Code | Referrer welcome, Referrer reward issued |
+| `{{ advocate_name }}` | Advocate Name | Referrer welcome |
+| `{{ expiry }}` | Expiry | Referrer welcome |
+| `{{ discount_code }}` | Discount Code | Friend reward unlocked, Referrer reward issued |
+| `{{ reward_value }}` / `{{ reward_type }}` | Reward Value / Reward Type | Friend reward unlocked, Referrer reward issued |
+| `{{ reward_value_as_cash }}` | Reward Value as Cash | Friend reward unlocked, Referrer reward issued |
+| `{{ status }}` / `{{ expires_at }}` | Status / Expires At | Friend reward unlocked, Referrer reward issued |
+| `{{ referral_code_used }}` | Referral Code Used | Friend reward unlocked |
+| `{{ friend_email }}` | Friend Email | Friend reward unlocked |
+| `{{ referred_by }}` | Referred By | Friend reward unlocked |
+| `{{ reward_currency }}` | Reward Currency | Referrer reward issued |
+| `{{ referrer_email }}` | Referrer Email | Referrer reward issued |
+| `{{ friend_first_name }}` | Friend Name | Referrer reward issued |
+| `{{ total_referrals }}` | Total Referrals | Referrer reward issued |
+
+## Membership
+
+Available in **Membership created**, **upgraded**, **downgraded** and **cancelled**.
+
+| Shortcode | Label | Notes |
+|---|---|---|
+| `{{ membership_name }}` | Membership Name | |
+| `{{ membership_description }}` | Membership Description | |
+| `{{ membership_price }}` | Membership Price | |
+| `{{ billing_interval }}` | Billing Interval | |
+| `{{ membership_benefits }}` | Benefits | Created and upgraded only |
+| `{{ previous_price }}` | Previous Price | Upgraded and downgraded only |
+| `{{ benefits_lost }}` / `{{ benefits_retained }}` | Benefits Lost / Benefits Retained | Downgraded only |
+| `{{ benefit_1_name }}` … `{{ benefit_10_name }}` | Benefit 1 Name … Benefit 10 Name | One slot per benefit. Empty slots print nothing |
+| `{{ benefit_1_description }}` … `{{ benefit_10_description }}` | Benefit 1 Description … | |
+| `{{ subscription_status }}` | Subscription Status | |
+| `{{ next_billing_date }}` | Next Billing Date | |
+| `{{ member_since }}` | Member Since | |
+| `{{ cancellation_reason }}` | Cancellation Reason | Cancelled only |
+
+## Redemption
+
+Added to **every** email.
+
+| Shortcode | Label | What it does |
+|---|---|---|
+| `{{ redemption_link }}` | Redemption Link | A personal, signed link to your store's primary domain. It identifies the customer to Yuko's storefront widgets, so they can see their points and redeem without signing in first. |
+| `{{ redemption_link_params }}` | Redemption Link Params | Only the query string of that link (starting with `?`), so you can add it to another store URL, such as a collection page. |
+
+<Tip>Use `{{ redemption_link }}` as the CTA URL in points-earned or points-expiring emails so customers can turn points into a reward in one click.</Tip>
 
 ## Best practices
 
-<Tip>**Always test with a real customer record.** Some shortcodes (e.g., `[next_tier]`) are empty for max-tier customers — the editor's preview uses a sample customer that may not surface this.</Tip>
-<Tip>**Don't put `[unsubscribe_url]` inside a heading.** Anti-spam tools flag prominent unsubscribe links.</Tip>
-<Tip>**Use `[first_name]` with a sensible fallback.** *“Hi [first_name]”* breaks if the field is empty; *“Hi there”* always works.</Tip>
+<Tip>**Copy shortcodes from the editor.** The **Available Template Variables** card only lists shortcodes that work in the email you're editing. A shortcode from another email will print nothing.</Tip>
+<Tip>**Plan for empty values.** `{{ first_name }}` is empty when Shopify has no first name, and `{{ next_tier_name }}` is empty for top-tier customers. Write copy that still reads well, or wrap it in a Liquid `{% if %}` block.</Tip>
+<Tip>**Send a test after editing.** Tests use sample data, so you can check the layout without waiting for a real event.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Do the old square-bracket shortcodes like [first_name] still work?">
+    No. Use double curly braces: `{{ first_name }}`.
+  </Accordion>
+  <Accordion title="Can I use these shortcodes in workflow emails?">
+    Yes. A Send Email node in a [workflow](/workflows/action-nodes#send-email) gets the shortcodes for the workflow's trigger, plus the Redemption group.
+  </Accordion>
+  <Accordion title="Is there a store name or store URL shortcode?">
+    Not in loyalty, referral or membership emails. Type your store name directly, and use the CTA URL for links.
+  </Accordion>
+</AccordionGroup>
 
 ## Related
 

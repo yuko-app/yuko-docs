@@ -50,8 +50,8 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 | **Channel ID** | BiteSpeed's ID for your WhatsApp Business phone number | provided by BiteSpeed |
 | **Template ID** | BiteSpeed's internal ID for the approved template | `loyalty_sample_template` |
 | **Add CTA Button** *(toggle)* | Enable if the template has a click-through button | on |
-| **CTA URL** | Where the CTA button links to — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `https://shop.example.com/account?ref={{customer_id}}` |
-| **Params Count** | Number of body variables (1–25) | `3` |
+| **CTA URL** | Where the CTA button links to — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `https://shop.example.com/account?email={{email}}` |
+| **Params Count** | Number of body variables (1–10) | `3` |
 | **Template Params** | Name + value pairs — values support shortcodes | `customer_name` = `{{first_name}}` |
 
 <Tip>BiteSpeed template parameters are **named** (Name + Value). The names must match the variable names in the approved template. If your template body says `Hi {{customer_name}}`, the param name is `customer_name`.</Tip>
@@ -60,7 +60,7 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
 CTA URLs are prime real estate for personalisation. Instead of a static link, use shortcodes to deep-link to something specific to the customer:
 
-- `https://shop.example.com/account?email={{customer_email}}` — opens their loyalty account signed in.
+- `https://shop.example.com/account?email={{email}}` — opens their loyalty account signed in.
 - `https://shop.example.com/redeem?code={{coupon_code}}` — opens the redemption page with the coupon pre-filled.
 
 ## Example use case
@@ -68,7 +68,7 @@ CTA URLs are prime real estate for personalisation. Instead of a static link, us
 **Reward earned — redeem now button**
 
 1. In BiteSpeed, approve a template with two body variables and a CTA URL button. Note the Template ID and Channel ID.
-2. In Yuko Workflows, build: **Trigger: Reward Earned** → **WhatsApp (BiteSpeed)**.
+2. In Yuko Workflows, build: **Trigger: Redeem Points** → **WhatsApp (BiteSpeed)**.
 3. Configure: Channel ID, Template ID, Params Count = `2`, Params: `customer_name` = `{{first_name}}`, `coupon_code` = `{{coupon_code}}`.
 4. Toggle **Add CTA Button**, CTA URL = `https://shop.example.com/redeem?code={{coupon_code}}`.
 5. Activate.
@@ -106,7 +106,7 @@ import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
 <CardGroup cols={2}>
   <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
-    How Yuko's WhatsApp integration works across all 11 providers.
+    How Yuko's WhatsApp integration works across all 13 providers.
   </Card>
   <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
     Setup, shortcodes, and example workflows.

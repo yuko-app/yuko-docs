@@ -1,115 +1,90 @@
 ---
 title: Membership Validation at Checkout
-description: A Shopify Checkout extension that validates active membership at checkout and enforces member-only product access.
+description: A Shopify checkout rule that stops customers who already have an active membership from buying another one.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships → Validation
+**Where to find this:** Shopify admin → Settings → Checkout → Checkout rules. This isn't a tab in the Yuko admin; it's a Shopify Function (**yuko-membership-validation**) that ships with the Yuko app.
 </Note>
 
 ## Introduction
 
-The Membership Validation extension is a Shopify Checkout UI extension that runs at the moment of checkout. If the cart includes a member-only product, the extension checks that the customer has an active membership contract — and blocks checkout otherwise.
+Membership Validation is a cart and checkout validation function. When the cart contains a membership product, it checks whether the customer already has an active membership. If they do, checkout is blocked with the message **"You already have an active membership"**.
 
 ## What problem this solves
 
-Without checkout validation, a customer could grab a member-only product link and check out without being a member. Validation enforces member-only access at the point that matters: the order.
+Without it, an existing member could buy a membership product again and end up with two paid subscriptions. Members who want a different plan should switch plans from their customer account instead (see [Profile Membership](/memberships/widgets/profile-membership)).
 
 ## Where it appears
 
-- Shopify Checkout (transparently — only surfaces if validation fails).
+- Shopify checkout. The error only shows when the rule blocks the purchase.
 
 ## When to use
 
-- You sell member-only products that should only be purchasable by members.
-- You're enforcing access to gated drops or limited-supply releases.
+- You sell more than one plan, or you want to make sure no customer pays for two memberships at once.
 
 ## Overview
 
-- Shopify Checkout UI extension.
-- Validates the customer's active membership against the cart's gated products.
-- Blocks checkout with a clear message if the customer isn't a member.
+- Runs on every cart and checkout validation.
+- Looks for products tagged `YUKO:Membership:Product`. Yuko adds this tag to each plan's linked product.
+- Checks whether the customer has the `YUKO:Membership` tag. Yuko adds it to customers with an active membership and removes it when they no longer have one.
+- There's nothing to configure in Yuko; the message is fixed.
 
 ## Before you start
 
-import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
-
-<BeforeYouStart />
-
-<Check>Your Shopify plan supports Checkout Extensibility.</Check>
-<Check>At least one membership plan exists.</Check>
-<Check>You've identified the products that should be member-only.</Check>
+<Check>At least one membership plan exists in **Membership → Plans**, so its linked product carries the `YUKO:Membership:Product` tag.</Check>
 
 ## Setup guide
 
-### 1. Configure in Yuko
+### 1. Turn on the checkout rule in Shopify
 
 <Steps>
-  <Step title="Open the validation settings">
-    Go to **Apps → Yuko Loyalty → Memberships → Validation**.
+  <Step title="Open Checkout settings">
+    In your Shopify admin, go to **Settings → Checkout**.
   </Step>
-  <Step title="Pick which products are member-only">
-    Use the Shopify resource picker to select products or collections that require an active membership.
+  <Step title="Add the rule">
+    In **Checkout rules**, click **Add rule** and choose **yuko-membership-validation**.
   </Step>
-  <Step title="Configure the block message">
-    The message shown at checkout when validation fails (e.g., *“This product is for Yuko VIP members only. [Join now](/products/yuko-vip)”*).
-  </Step>
-  <Step title="Activate">
-    Toggle the validation **Active**.
+  <Step title="Turn it on">
+    Turn the rule on and save.
   </Step>
 </Steps>
 
-### 2. Add the extension in Shopify Checkout
-
-import SetupCheckout from '/snippets/setup-checkout-extension.mdx';
-
-<SetupCheckout />
-
-### 3. Verify
+### 2. Verify
 
 <Steps>
-  <Step title="Test as a non-member">
-    Add a member-only product to cart as a non-member account and try to check out. The block message should appear.
+  <Step title="Test as an existing member">
+    Log in as a customer with an active membership, add a membership product to the cart and go to checkout. You should see **"You already have an active membership"** and be unable to complete the order.
   </Step>
-  <Step title="Test as a member">
-    Repeat as an active member. Checkout should proceed normally.
+  <Step title="Test as a non-member">
+    Repeat as a customer without a membership. Checkout should proceed normally.
   </Step>
 </Steps>
 
 ## How it works
 
-- The extension runs validation logic on every checkout where a gated product is present.
-- If the customer has an active contract that includes the product, checkout proceeds.
-- Otherwise, an error message is shown and the customer can't complete checkout.
-
-### Decision guidance
-
-- **Use this only on truly member-only products.** Over-gating frustrates customers.
-- **Pair with the Cart Membership Upsell** so customers can join right there without leaving the flow.
+1. The rule reads the cart lines and the customer's tags.
+2. If no line is a product tagged `YUKO:Membership:Product`, checkout continues.
+3. If there is one and the customer has the `YUKO:Membership` tag, the rule returns an error and checkout is blocked.
 
 ### Limitations
 
-- Requires Checkout Extensibility (Shopify Plus / eligible plans).
-- Doesn't prevent non-members from adding gated products to cart — only blocks at checkout.
-- Validation is per-product / per-collection; granular per-variant gating isn't supported.
-
-## Examples
-
-- A streetwear brand gates limited drops to Yuko VIP members. Non-members see *“This drop is for VIP members only — join Yuko VIP to unlock”* at checkout.
+- It only checks for an existing active membership. It doesn't restrict regular products to members.
+- It relies on Shopify customer and product tags. Don't remove the `YUKO:Membership` or `YUKO:Membership:Product` tags manually.
+- Guest checkouts without an identified customer can't be matched to a membership.
 
 ## Best practices
 
-<Tip>**Always link to the membership page** in the block message. The customer is at peak intent; make joining a single click.</Tip>
-<Tip>**Pre-announce gated drops** so non-members know to join in advance.</Tip>
+<Tip>**Turn on the profile widget too.** Members who want a different plan can upgrade or downgrade from their account instead of buying again.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="What if the customer has multiple memberships?">
-    Validation passes if any active contract grants access to the product.
+  <Accordion title="Can I use this to make products members-only?">
+    No. The rule only stops existing members from buying a second membership.
   </Accordion>
-  <Accordion title="Can I gate at the variant level?">
-    Not in v1. Use product- or collection-level gating.
+  <Accordion title="Can I change the error message?">
+    No. The message is set in the function.
   </Accordion>
 </AccordionGroup>
 

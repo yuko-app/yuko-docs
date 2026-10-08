@@ -1,93 +1,96 @@
 ---
-title: Enable the Yuko Theme App Embed
-description: Activate Yuko's theme app embed so storefront widgets can render on your Shopify theme.
+title: Enable the Yuko App Embed
+description: Turn on the "Yuko App" app embed so Yuko's storefront widgets can load on your Shopify theme.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Online Store → Themes → Customize → App embeds
+**Where to find this:** Shopify admin → Online Store → Themes → Customize → App embeds → Yuko App
 </Note>
 
 ## Introduction
 
-The **Theme App Embed** is a Shopify feature that lets an app inject scripts and assets into your theme without modifying theme code. Every Yuko storefront widget — product page, cart, floating launcher, customer account — depends on this embed being enabled.
+Yuko adds one app embed to your theme, called **Yuko App**. It loads Yuko's storefront script and styles on every page of your online store. The floating and pinned widgets render directly through it, and every Yuko theme block gets its content from it.
 
 ## What problem this solves
 
-Without an app embed, each widget would need a manual theme-code edit. The embed enables and disables Yuko's storefront runtime in a single toggle.
+You don't need to edit theme code. One toggle in the Theme Editor turns Yuko's storefront runtime on or off.
 
-## Where it appears
+## What depends on the embed
 
-- All Yuko storefront widgets (product, cart, landing, launcher, account page).
-- The Customer Account extension still works without the embed because it's served by Shopify, not by your theme.
+| Surface | Needs the Yuko App embed? |
+|---|---|
+| [Floating Rewards](/onsite-widgets/floating-launcher) | Yes. It renders through the embed, so you don't add a block. |
+| [Loyalty Nudges](/onsite-widgets/loyalty-nudges) | Yes. It renders through the embed, so you don't add a block. |
+| [Cart Earn](/onsite-widgets/cart-earn) and [Cart Redeem](/onsite-widgets/cart-redeem) messages | Yes. With the embed on, they can be placed in the cart automatically, or with the **Yuko: Cart Earn Message** / **Yuko: Cart Redeem Message** blocks. |
+| [Product Page Earn](/onsite-widgets/product-page-earn) (**Yuko:Product Earn Message** block) | Yes. The block is an empty container that the embed's script fills. |
+| [Rewards Landing Page](/onsite-widgets/rewards-landing-page) blocks | Yes. The earn, redeem, VIP and membership content is loaded by the embed's script. |
+| Referral and membership theme blocks such as **Yuko: Referral Signup** and **Yuko: Member Cart Upsell** | Yes. Their content is filled by the embed's script. |
+| [Checkout widgets](/installation-and-setup/checkout-ui-extension) | No. Shopify renders them in checkout. |
+| [Customer account blocks and the account page](/installation-and-setup/customer-account-extension) | No. Shopify renders them in customer accounts. |
 
 ## When to use
 
-- Always enable the embed on your active production theme.
-- Enable it on any preview themes you're testing widgets on.
-- Disable temporarily only if you're troubleshooting a render issue and want to confirm Yuko is the cause.
-
-## Overview
-
-- One toggle in the Shopify Theme Editor.
-- Per-theme: enabling on one theme doesn't enable on others.
-- Required by every theme widget; not required by Checkout or Customer Account extensions.
+- Always enable the embed on your published theme.
+- Enable it on any unpublished theme you're using to preview or test widgets.
 
 ## Before you start
 
 <Check>Yuko is installed on your Shopify store.</Check>
-<Check>You are working on the active or a preview Online Store 2.0 theme.</Check>
+<Check>You know which theme is published, plus any theme you're preparing to publish.</Check>
 
 ## Setup guide
 
 <Steps>
   <Step title="Open the Theme Editor">
-    In your Shopify admin, go to **Online Store → Themes**, find your active theme, and click **Customize**.
+    In your Shopify admin, go to **Online Store → Themes**, find your theme, and click **Customize**.
   </Step>
-  <Step title="Open App Embeds">
-    In the Theme Editor's left sidebar, click the **App embeds** icon (looks like a puzzle piece).
+  <Step title="Open App embeds">
+    In the Theme Editor's left sidebar, click the **App embeds** icon.
   </Step>
-  <Step title="Enable Yuko">
-    Find **Yuko** in the list and toggle it **On**.
+  <Step title="Turn on Yuko App">
+    Find **Yuko App** in the list and switch it on.
   </Step>
   <Step title="Save the theme">
     Click **Save** in the top right.
   </Step>
 </Steps>
 
+<Tip>
+You can also start from inside Yuko. On the **Dashboard**, the Setup Guide item **Enable Yuko Theme App Extension** has an **Activate** button that opens the Theme Editor's App embeds with **Yuko App** switched on, ready for you to save. Click **Refresh status** once you've saved. The Cart Earn and Cart Redeem widget pages show an **Enable Theme Extension** button while the embed is off.
+</Tip>
+
 ## How it works
 
-With the embed enabled, Shopify includes Yuko's script tag on every page of your theme. The script:
+With the embed on, Shopify adds Yuko's script and stylesheet to every storefront page. The script:
 
-- Reads the active customer's session.
-- Mounts each Yuko app block when its container is found.
-- Calls the Yuko API to fetch points, rewards and VIP status.
+- Reads your widget settings from Yuko and the logged-in customer from Shopify.
+- Renders Floating Rewards and Loyalty Nudges if they're enabled in **Loyalty → Widgets**.
+- Fills every Yuko theme block it finds on the page.
+- Inserts the cart messages into the cart automatically, using your theme's cart area or the **Custom placement** selector you set on the widget.
 
-### Decision guidance
-
-- **Enable on every theme you publish** — enabling it later, after launch, is a common cause of “missing widget” support tickets.
-- **Don't enable on themes you're not actively using** to keep the Theme Editor clean.
+A widget appears only when it's also switched on in **Shopify admin → Apps → Yuko Loyalty → Loyalty → Widgets**.
 
 ### Limitations
 
-- Online Store 1.0 (vintage) themes don't support app embeds. Either upgrade the theme or have a developer add Yuko's snippet manually.
-- The embed is per-theme: duplicating a theme requires re-enabling the embed on the duplicate.
+- The embed is per theme. Turning it on for one theme doesn't turn it on for others, including duplicates.
+- App embeds work on any theme, but theme **blocks** (product, cart and landing page) need an Online Store 2.0 theme that supports app blocks.
 
 ## Best practices
 
-<Tip>**Enable on the live theme first**, then on any duplicates you're using for QA.</Tip>
-<Tip>**Re-check after every theme update**. Some merchants accidentally publish an older theme that hasn't had the embed enabled.</Tip>
+<Tip>**Check the embed whenever you publish a new theme.** A newly published theme that never had the embed turned on is the most common cause of missing widgets.</Tip>
+<Tip>**Turn it on before you add blocks.** Blocks added without the embed show up in the editor but stay empty on the storefront.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Will enabling the embed affect site speed?">
-    Yuko's runtime is loaded asynchronously and only fetches data when a widget is on the page. Lighthouse impact is negligible on most themes.
+  <Accordion title="My widget shows in the preview but not on the live store">
+    The embed is per theme. Make sure **Yuko App** is on in the **published** theme, not just the one you previewed.
   </Accordion>
-  <Accordion title="My widget shows up in preview but not on the live site">
-    The embed is per-theme. Make sure it's enabled on the **published** theme, not just a preview.
+  <Accordion title="Can I show Yuko on only some pages?">
+    The embed itself loads on every page. Control where widgets appear from each widget: add theme blocks only to the templates you want, and use the visibility settings on [Floating Rewards](/onsite-widgets/floating-launcher) and [Loyalty Nudges](/onsite-widgets/loyalty-nudges).
   </Accordion>
-  <Accordion title="Can I enable Yuko for only some pages?">
-    The embed is store-wide, but each individual widget block can be added or removed per template.
+  <Accordion title="Do I need the embed for checkout or customer account widgets?">
+    No. Those are Shopify extensions that you add in the Checkout and Customer Accounts editors.
   </Accordion>
 </AccordionGroup>
 

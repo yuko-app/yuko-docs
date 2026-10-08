@@ -1,99 +1,125 @@
 ---
 title: Profile Membership Widget
-description: Show the customer's membership status, benefits and renewal date inside their profile.
+description: Let members see their plan, renewal date, benefits and rewards in their customer account, and upgrade, downgrade or cancel themselves.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships → Widgets → Profile Membership
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Membership → Widgets → Profile: Membership
 </Note>
 
 ## Introduction
 
-Show the customer's active membership status — plan name, benefits, renewal date — on their storefront profile.
+The **Profile: Membership** widget shows a customer's membership in their Shopify customer account and lets them manage it themselves. It's the **Yuko Profile membership management** customer account UI extension block, not a theme block.
 
 ## What problem this solves
 
-Members want to see what they're paying for and when the next renewal is. Surfacing it on the profile reduces *“when does my membership renew?”* support tickets.
+Members want to know what they're paying for, when they renew, and how to change plans. A self-serve card answers those questions and handles plan changes without a support ticket.
 
 ## Where it appears
 
-- The customer's profile page on the storefront.
-- Also embedded in the Customer Account hub when membership is active.
-
-## When to use
-
-- You've launched at least one membership plan.
-- You want active members to see their plan status.
+- The **Profile** page in Shopify customer accounts (`customer-account.profile.block.render`).
+- The **Orders** page in Shopify customer accounts (`customer-account.order-index.block.render`).
 
 ## Overview
 
-- Renders on the customer profile via theme app block.
-- Shows plan name, benefits, renewal date.
-- Hides itself for non-members.
+- Shows the current plan, price, renewal date and benefits.
+- **View rewards** opens a modal with the rewards issued by the membership.
+- **Manage** opens plan cards where the member can **Upgrade**, **Downgrade** (if allowed) or **Cancel**.
+- Customers without a membership see the **No membership text**.
+- Text fields only. The block uses Shopify's customer account styling.
 
 ## Before you start
 
-import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
-
-<BeforeYouStart />
-
-<Check>At least one membership plan is published.</Check>
+<Check>At least one plan exists in **Membership → Plans**.</Check>
+<Check>Your store uses Shopify's new customer accounts (**Settings → Customer accounts**).</Check>
+<Check>To let members move to a lower plan, turn on **Show downgrade option to customers** in **Membership → Plans → Membership Settings**.</Check>
 
 ## Setup guide
 
-### 1. Configure in Yuko
+### 1. Configure the widget in Yuko
 
 <Steps>
-  <Step title="Open the widget settings">
-    Go to **Apps → Yuko Loyalty → Memberships → Widgets → Profile Membership**.
+  <Step title="Open the widget">
+    Go to **Membership → Widgets** and open **Profile: Membership**.
   </Step>
-  <Step title="Customise copy">
-    Set the heading and labels.
+  <Step title="Manage paid membership">
+    | Field | Default |
+    |---|---|
+    | **Title** | `Your Membership` |
+    | **No membership text** | `No active membership` |
+    | **Subscription renews** | Use `[renewal_date]` for the membership renewal date, for example `Renews: [renewal_date]`. |
+    | **Manage button** | `Manage` |
+    | **Manage modal title** | `Manage membership` |
+    | **Active badge label** | `Active` |
+    | **Upgrade button** | `Upgrade` |
+    | **Downgrade button** | `Downgrade` |
+    | **Benefits list title** | `Benefits` |
+    | **Benefits more label** | `more` (as in "+5 more") |
   </Step>
-  <Step title="Activate">
-    Toggle the widget **Active**.
+  <Step title="Rewards">
+    | Field | Default |
+    |---|---|
+    | **View rewards button** | `View rewards` |
+    | **Rewards modal title** | `Your Rewards` |
+    | **No rewards text** | `No active rewards found.` |
+    | **Reward expires text** | `Expires on [discount_expiry_date]` |
+    | **Load more button** | `Load more` |
+    | **Cancel button** | `Cancel` |
+  </Step>
+  <Step title="Pricing labels">
+    **Monthly interval label** (`month`) and **Yearly interval label** (`year`).
+  </Step>
+  <Step title="Confirmation and progress text">
+    - **Cancel membership confirmation**: **Title** (`Cancel membership`), **Description** (`If you cancel your membership you will lose your benefits immediately. Canceling a membership cannot be undone.`), **Close button** (`Close`), **Cancel button** (`Cancel membership`).
+    - **Upgrade membership confirmation**: **Title** (`Upgrade membership`), **Description** (`You are about to upgrade your membership.`).
+    - **Downgrade membership confirmation**: **Title** (`Downgrade membership`), **Description** (`You are about to downgrade your membership.`).
+    - **Action in progress**: **In progress text** (`Your membership change is being processed. This may take a few moments.`), shown while a purchase, cancellation, upgrade or downgrade is processed.
+  </Step>
+  <Step title="Save and enable">
+    Click **Save** and switch the widget on.
   </Step>
 </Steps>
 
-### 2. Add the widget to your theme
+### 2. Add the block in the customer accounts editor
 
-import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
+import SetupCustomerAccount from '/snippets/setup-customer-account-extension.mdx';
 
-<SetupThemeBlock />
+<SetupCustomerAccount />
 
-Pick the **Customer profile** template.
+On the **Profile** page (and the **Orders** page if you want it there too), add the **Yuko Profile membership management** block. See [Customer Account Extension](/installation-and-setup/customer-account-extension).
 
 ### 3. Verify
 
-Log in as a member and confirm the widget renders with the active plan and renewal date.
+Log in as a member and open your profile. Check the plan, renewal date and benefits, then open **Manage** to see the plan options.
 
 ## How it works
 
-- Reads the customer's active contract.
-- Renders plan name, benefits and renewal date.
-- Hides for customers without an active contract.
-
-### Decision guidance
-
-- **Always include the renewal date.** It's the highest-leverage detail for support deflection.
+1. The block reads the customer's active membership. Without one, it shows the **No membership text**.
+2. **Manage** lists your plans in the order set on the **Plans** tab:
+   - Plans after the member's current plan show **Upgrade**.
+   - Plans before it show **Downgrade**, but only if **Show downgrade option to customers** is on.
+3. Upgrade and downgrade move the member's existing Shopify subscription to the new plan and its price.
+4. **Cancel** cancels the subscription in Shopify. The membership tags are removed and benefits end.
+5. While a change is processing, the block shows the **In progress text**.
 
 ### Limitations
 
-- Member-only — hidden for non-members.
-
-## Examples
-
-- *“Yuko VIP — renews on May 12, $9.99/mo”* with a list of benefits below.
+- Works only with Shopify's new customer accounts.
+- The look follows Shopify's customer account styling.
 
 ## Best practices
 
-<Tip>**Pair with the Customer Account hub** so members have one consistent place to manage their plan.</Tip>
+<Tip>**Order your plans from lowest to highest** on the Plans tab, so upgrade and downgrade labels make sense.</Tip>
+<Tip>**Keep the cancel description honest.** It's the last thing a member reads before cancelling.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Where does cancel happen?">
-    Customers contact support, or you handle cancellations from **Memberships → Contracts**. Customer-side self-cancel is not exposed in v1.
+  <Accordion title="Can members cancel on their own?">
+    Yes. **Manage → Cancel** cancels their membership after a confirmation step. You can also cancel from **Membership → Members**.
+  </Accordion>
+  <Accordion title="Why don't members see a Downgrade option?">
+    Turn on **Show downgrade option to customers** in **Membership → Plans → Membership Settings**.
   </Accordion>
 </AccordionGroup>
 

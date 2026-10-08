@@ -1,0 +1,116 @@
+---
+title: Friend Welcome Popup
+description: The popup friends see when they open a referral link. It collects their details and reveals their welcome discount code.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Referral → Widgets → Friend Welcome Popup
+</Note>
+
+## Introduction
+
+The **Friend Welcome Popup** is what a friend sees after clicking a referral link. In two steps, it asks for their details, then reveals their friend reward code with a button to apply it.
+
+## What problem this solves
+
+This popup is how friends claim their reward. Without it, a friend who opens a referral link gets no discount code, and the referrer can't be rewarded. That's why turning it on is a Quick Start step (**Enable referral popup**).
+
+## Where it appears
+
+- On any storefront page opened from a referral link (a URL that contains `yuko_referral`). It opens on the landing page set in **Referral → Program → Referrals Landing URL**.
+- It loads through the **Yuko App** embed. There's no block to add.
+
+## Overview
+
+- **Step 1: Input Screen** collects the friend's details.
+- **Step 2: Reward Screen** shows the discount code and an apply button.
+- A **Styles** tab with colours, sizes and Custom CSS.
+- An optional hero image (desktop only).
+
+## Before you start
+
+<Check>The referral program is enabled and a friend reward is set in **Referral → Program**. The popup doesn't open without a friend reward.</Check>
+<Check>The **Yuko App** embed is turned on in your theme. See [Theme App Embed](/installation-and-setup/theme-app-embed).</Check>
+
+## Setup guide
+
+### 1. Configure the content
+
+<Steps>
+  <Step title="Open the widget">
+    Go to **Referral → Widgets** and open **Friend Welcome Popup**. The **Configuration** tab opens first.
+  </Step>
+  <Step title="Content - Step 1: Input Screen">
+    | Field | Default |
+    |---|---|
+    | **Enable Hero Image** / **Hero Image** | Off. Recommended size 800×1000px (JPG, PNG or GIF). Shown on desktop only. |
+    | **Label** | `Friend Invitation` |
+    | **Heading** | `Unlock your offer!` |
+    | **Message** | `Enter your email to reveal your discount code.` |
+    | **Form** | First Name, Last Name, Your email and Your phone. **Email** is always included. You can also add **Marketing Consent**. |
+    | **Button Text** (max 30 characters) | `Unlock Offer` |
+
+    For each form field you can edit the **Label** and **Placeholder**, mark it as a **Required field**, show or hide it, and drag fields into a new order.
+  </Step>
+  <Step title="Content - Step 2: Reward Screen">
+    | Field | Default |
+    |---|---|
+    | **Label** | `Your Reward` |
+    | **Heading** | `Welcome! Enjoy $10 off` |
+    | **Message** | `Use the code below at checkout to get $10 off your first purchase of $5 or more.` |
+    | **Button Text** (max 30 characters) | `Apply at checkout` |
+  </Step>
+  <Step title="Success & Feedback">
+    Set **Success message (toast)**, shown after the friend clicks the apply button and the discount is applied. Default: `Discount applied. Proceed to checkout.`
+  </Step>
+</Steps>
+
+Headings and messages accept `{{friend_reward}}` and `{{referrer_reward}}`, which are replaced with your reward titles. Using `{{friend_reward}}` in place of a hard-coded "$10 off" keeps the popup accurate when you change the reward.
+
+### 2. Style the popup
+
+On the **Styles** tab, set the font size and weight, heading and label font sizes, padding, border radius, border width and colour, background and text colours, button colours, success and error colours, and optional **Custom CSS**.
+
+### 3. Save and enable
+
+Click **Save**, then switch the toggle next to the widget title on.
+
+### 4. Verify
+
+Copy a customer's referral link and open it in a private window. The popup should open. Enter a new email address and check that a discount code appears and that **Apply at checkout** applies it.
+
+## How it works
+
+1. A friend opens a referral link. The Yuko App embed sees the referral code in the URL and opens the popup.
+2. The friend fills in the form and clicks the Step 1 button.
+3. Yuko checks the claim against your fraud rules and confirms the friend is a new customer, then creates their discount code.
+4. Step 2 shows the code. Clicking the apply button adds the code to the cart and shows the success message.
+5. When the friend places a paid order with that code, the referrer is rewarded.
+
+If the claim fails (for example, a self-referral, or a friend who already has orders), the popup shows an error and no code is issued.
+
+## Best practices
+
+<Tip>**Use `{{friend_reward}}` in the heading** so the popup always matches the real reward.</Tip>
+<Tip>**Ask only for what you need.** Email is required. Every extra field lowers completion.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why doesn't the popup open when I click a referral link?">
+    Check that the widget toggle is on, a friend reward is set, the referral program is enabled, and the Yuko App embed is on in your live theme.
+  </Accordion>
+  <Accordion title="Can existing customers claim the friend reward?">
+    No. Friends must have no previous orders, and each customer can receive only one friend reward.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedReferrals from '/snippets/related-referrals.mdx';
+
+<RelatedReferrals />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

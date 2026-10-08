@@ -1,110 +1,105 @@
 ---
 title: Cart Membership Upsell Widget
-description: Promote your membership plans on the cart page so customers can join before checking out.
+description: Promote your membership plan in the cart drawer or cart page so customers can join before checking out.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships → Widgets → Cart Membership Upsell
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Membership → Widgets → Cart membership upsell
 </Note>
 
 ## Introduction
 
-Show membership plans on the cart page. Customers see how much they could save with the plan compared to their current cart.
+The **Cart membership upsell** widget shows a membership offer in the cart drawer or on the cart page, so customers can add the plan to their cart before checkout.
 
 ## What problem this solves
 
-The cart is the highest-intent screen on your storefront. Showing the membership offer there — with the value calculated against the actual cart — turns one-time buyers into members at the most decisive moment.
+The cart is the highest-intent moment on your storefront. Showing the membership offer there turns one-time buyers into members just before they pay.
 
 ## Where it appears
 
-- Cart page or cart drawer.
-
-## When to use
-
-- You've launched at least one membership plan.
-- You want to convert one-time buyers into members during checkout.
+- The cart drawer and the cart page.
+- It's placed automatically through the **Yuko App** embed. You can also place it yourself with the **Yuko: Member Cart Upsell** theme app block, or point it at a specific element with a CSS selector.
 
 ## Overview
 
-- Renders on the cart page via theme app block.
-- Surfaces the most relevant plan based on cart value.
-- One-click add the plan to cart.
-- Customer becomes a member after checkout completes.
+- Promotes the plan chosen in **Membership → Plans → Membership Settings → Membership to upsell**.
+- **Configuration** and **Styles** tabs.
+- Hidden from customers who already have a membership, and when the cart is empty.
 
 ## Before you start
 
-import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
-
-<BeforeYouStart />
-
-<Check>At least one membership plan is published.</Check>
+<Check>At least one plan exists in **Membership → Plans**.</Check>
+<Check>A plan is selected in **Membership to upsell** (in **Membership Settings** on the Plans tab).</Check>
+<Check>The **Yuko App** embed is turned on in your theme. See [Theme App Embed](/installation-and-setup/theme-app-embed).</Check>
 
 ## Setup guide
 
-### 1. Configure in Yuko
+### 1. Configure the widget in Yuko
 
 <Steps>
-  <Step title="Open the widget settings">
-    Go to **Apps → Yuko Loyalty → Memberships → Widgets → Cart Membership Upsell**.
+  <Step title="Open the widget">
+    Go to **Membership → Widgets** and open **Cart membership upsell**.
   </Step>
-  <Step title="Pick which plans to show">
-    By default, the widget shows the most relevant plan. You can pin a specific plan instead.
+  <Step title="Edit the text">
+    | Field | Default |
+    |---|---|
+    | **Title** | `Save with membership` |
+    | **Description** | `Save on all your future orders by becoming a member` |
+    | **Monthly interval label** | `month` (as in "$9.99/month") |
+    | **Yearly interval label** | `year` (as in "$99/year") |
   </Step>
-  <Step title="Customise copy">
-    Set the heading, subheading and CTA label.
+  <Step title="Set the placement (optional)">
+    Under **App embed placement**, enter a **CSS Selector** for the element the upsell should appear above, for example `.cart__footer`. Leave it empty to use the default placement.
   </Step>
-  <Step title="Activate">
-    Toggle the widget **Active**.
+  <Step title="Style it">
+    On the **Styles** tab, set **Border color**, **Background color**, **Title text color**, **Description text color**, **Padding** and optional **Custom CSS**.
+  </Step>
+  <Step title="Save and enable">
+    Click **Save** and switch the widget on. If the Yuko App embed isn't on yet, click **Enable Theme Extension** to open the theme editor with the embed ready to turn on.
   </Step>
 </Steps>
 
-### 2. Add the widget to your theme
+### 2. Place the block manually (optional)
+
+To control exactly where the upsell appears, add the theme app block:
 
 import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
 
 <SetupThemeBlock />
 
-Pick the **Cart** template (and the cart drawer if applicable). Place the widget near the cart total.
+Open the **Cart** template and add **Yuko: Member Cart Upsell**. The block has no theme-editor settings; text and styles come from Yuko.
 
 ### 3. Verify
 
-Add products to your live cart and confirm the widget renders with the correct plan suggestion.
+As a logged-out customer (or one without a membership), add a product to the cart and open the cart. The upsell should appear with your plan's price.
 
 ## How it works
 
-1. Reads cart contents and the customer's existing memberships.
-2. If the customer is not a member, surfaces the most valuable plan to upsell.
-3. Clicking the CTA adds the plan to cart.
-4. The customer becomes a member after checkout completes.
-
-### Decision guidance
-
-- **Lead with annual plans** if you want commitment.
-- **Lead with monthly plans** if you want quick conversion.
-- **Pin a specific plan** if you're running a launch promo.
+1. When the cart changes, the Yuko App embed checks that memberships and the widget are on, the customer has no membership, a plan is set to upsell, and the cart isn't empty.
+2. If all checks pass, the widget shows the upsell plan with its price and billing interval.
+3. The customer adds the plan to the cart and becomes a member once they complete checkout.
 
 ### Limitations
 
-- The customer must add the plan to cart and check out to start the membership.
-- Plan visibility depends on the plan being published in **Memberships → Plans**.
-
-## Examples
-
-- *“Become a Yuko VIP — free shipping + 10% off this order, $9.99/mo”* with an Add to cart button.
+- The widget promotes one plan: the **Membership to upsell**.
+- Customers have to check out with the plan to start their membership.
 
 ## Best practices
 
-<Tip>**Quote the saving on the current cart** in the widget copy — it makes the value concrete.</Tip>
-<Tip>**Test on mobile.** Cart widgets get tight on small screens.</Tip>
+<Tip>**Quote a concrete saving in the description**, for example "Members save 10% on every order".</Tip>
+<Tip>**Test in your cart drawer on mobile.** Space is tight there, so use the CSS selector if the default spot doesn't work.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
   <Accordion title="What if the customer is already a member?">
-    The widget hides itself for active members.
+    The widget hides itself.
   </Accordion>
-  <Accordion title="Can I A/B test which plan is shown?">
-    Not in v1. The widget uses a single rule per store.
+  <Accordion title="How do I choose which plan is shown?">
+    Set **Membership to upsell** in **Membership → Plans → Membership Settings**. The same plan is used by the checkout upsell, the rewards landing page and the Floating Rewards launcher.
+  </Accordion>
+  <Accordion title="The upsell appears in the wrong place">
+    Enter a **CSS Selector** under **App embed placement**, or add the **Yuko: Member Cart Upsell** block exactly where you want it.
   </Accordion>
 </AccordionGroup>
 

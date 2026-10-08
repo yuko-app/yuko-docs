@@ -1,17 +1,17 @@
 ---
 title: Welcome to Yuko
-description: Yuko is a loyalty, referrals, VIP, memberships and workflows platform built for Shopify merchants.
+description: Yuko is a loyalty, VIP tiers, referrals, memberships and workflows app built for Shopify merchants.
 ---
 
 ## What is Yuko
 
-Yuko is an all-in-one customer retention platform for Shopify. It bundles the tools modern brands stitch together — loyalty points, referrals, VIP tiers, paid memberships, email notifications and workflow automation — into a single app, dashboard and codebase.
+Yuko is a customer retention platform for Shopify. It brings loyalty points, VIP tiers, referrals, paid memberships, email notifications and workflow automation together in one app, with one set of customers and one dashboard.
 
-This documentation focuses on the **Shopify** experience. WooCommerce-specific guides are out of scope here.
+This documentation covers the **Shopify** version of Yuko.
 
 ## Install on Shopify
 
-Yuko is a public Shopify app. Installation takes under 5 minutes, and most plans include a free trial.
+Yuko is a public Shopify app, and installation takes a few minutes.
 
 <CardGroup cols={1}>
   <Card title="Install Yuko on Shopify" icon="shop" href="https://apps.shopify.com/yuko">
@@ -25,22 +25,34 @@ Already installed? Open Yuko from your **Shopify admin → Apps → Yuko Loyalty
 
 <CardGroup cols={2}>
   <Card title="Loyalty Program" icon="star" href="/loyalty/overview">
-    Reward customers with points for orders, sign-ups, social actions, birthdays and more.
+    Reward orders, sign-ups, social follows, birthdays and more with points, and let customers redeem them for discounts, free products or store credit.
   </Card>
-  <Card title="Onsite Widgets" icon="window" href="/onsite-widgets/overview">
-    Show points, rewards and VIP status across product, cart, checkout and account pages.
+  <Card title="Booster Campaigns" icon="bolt" href="/loyalty/booster-campaigns/overview">
+    Run limited-time multipliers, spending goals, streaks and challenges on top of your program.
   </Card>
   <Card title="VIP Tiers" icon="crown" href="/vip-tiers/overview">
-    Reward your most valuable customers with multipliers and exclusive benefits.
+    Reward your best customers with tier multipliers, per-campaign bonuses and entry benefits.
   </Card>
   <Card title="Referrals" icon="share-nodes" href="/referrals/overview">
-    Turn customers into advocates with dual-reward referral programs.
+    Reward customers and their friends for successful referrals.
   </Card>
   <Card title="Memberships" icon="id-card" href="/memberships/overview">
-    Sell paid memberships with recurring contracts and exclusive perks.
+    Sell paid membership plans with recurring benefits.
   </Card>
-  <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
-    Automate emails, points and coupons based on customer behaviour.
+  <Card title="Onsite Widgets" icon="window" href="/onsite-widgets/overview">
+    Show points, rewards and VIP status with Floating Rewards, the Rewards Landing Page, cart, checkout and customer account widgets.
+  </Card>
+  <Card title="Shopify POS" icon="cash-register" href="/integrations/shopify-pos">
+    Let staff redeem points and apply loyalty discounts in your physical store.
+  </Card>
+  <Card title="Emails and Workflows" icon="diagram-project" href="/workflows/overview">
+    Send loyalty, referral and membership emails, and automate emails, points and coupons based on customer behaviour.
+  </Card>
+  <Card title="Analytics" icon="chart-line" href="/analytics/reports">
+    Track loyalty-driven revenue, points, tiers, referrals and retention.
+  </Card>
+  <Card title="Integrations" icon="plug" href="/integrations/overview">
+    Connect Klaviyo, Omnisend, Shopify Flow, WhatsApp providers, Judge.me and more.
   </Card>
 </CardGroup>
 
@@ -49,25 +61,26 @@ Already installed? Open Yuko from your **Shopify admin → Apps → Yuko Loyalty
 - **DTC brands** that want repeat purchases driven by an in-house loyalty program.
 - **Subscription stores** that need tier-based perks and member-only experiences.
 - **High-AOV stores** where word-of-mouth and referrals move the needle.
-- **Marketing teams** that want one tool instead of four for retention and lifecycle email.
+- **Marketing teams** that want one tool instead of several for retention and lifecycle email.
+- **Omnichannel stores** that want the same loyalty program online and in-store with Shopify POS.
 
 ## How Yuko fits with Shopify
 
-Yuko plugs into your store via:
+Yuko plugs into your store through:
 
-- **Theme App Embed** for storefront widgets (product page, cart, floating launcher, landing page).
-- **Checkout UI Extension** for points and redemption inside Shopify Checkout (Plus / eligible plans).
-- **Customer Account Extension** for the loyalty hub inside the new customer accounts.
-- **Webhooks** for orders, customers, carts and refunds.
-- **Shopify Flow connector** so Yuko events can trigger Shopify Flow workflows.
+- The **Yuko App** theme app embed and theme blocks for storefront widgets, such as Floating Rewards, product and cart messages and the Rewards Landing Page.
+- **Checkout UI extensions** for showing and redeeming points in Shopify Checkout.
+- **Customer account extensions** for points, rewards and memberships in Shopify's customer accounts.
+- A **Shopify POS** tile for in-store redemption.
+- **Shopify Flow** triggers and actions, so Yuko events can drive your Flow automations.
 
-No theme code edits are needed. Everything is configured from inside the Yuko app and dropped into your theme via Shopify's app blocks.
+You don't need to edit theme code. You configure everything in Yuko and add widgets with Shopify's theme editor and extension settings.
 
 ## Where to start
 
 <CardGroup cols={2}>
   <Card title="Quickstart" icon="rocket" href="/getting-started/quickstart">
-    Install Yuko, configure your first earn rule and ship a working loyalty program in under an hour.
+    Install Yuko, review the default program and get your first points earned.
   </Card>
   <Card title="Glossary" icon="book" href="/getting-started/glossary">
     A one-page glossary of every term used in this documentation.

@@ -1,0 +1,110 @@
+---
+title: Subscribe to WhatsApp
+description: Reward customers with points when they subscribe to WhatsApp marketing in Shopify.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn → Add another way → **Subscribe to WhatsApp**
+</Note>
+
+## Introduction
+
+Award customers a one-time points bonus when they subscribe to your WhatsApp marketing. Points are awarded automatically when Shopify records their WhatsApp consent.
+
+## What problem this solves
+
+WhatsApp is a personal, high-engagement channel. A points reward gives customers a reason to opt in to your messages.
+
+## When to use
+
+- You send WhatsApp marketing messages.
+- You want to grow your WhatsApp subscriber list.
+
+## Overview
+
+- One-time reward per customer.
+- Triggered when Shopify records the customer's WhatsApp marketing consent as subscribed.
+- Optional points expiry and VIP tier multipliers.
+- Available on Shopify stores, on select plans.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+<Steps>
+  <Step title="Add the way to earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to earn**, click **Add another way** and pick **Subscribe to WhatsApp**.
+  </Step>
+  <Step title="Fill in Basic Details">
+    - **Campaign Name** — shown to customers on the storefront. You can use `[earn_value]` and `[points_label]`, for example `Earn [earn_value] [points_label]`.
+    - **Description** — short copy shown with the way to earn.
+  </Step>
+  <Step title="Set the points">
+    Enter **Points to earn for WhatsApp subscription** (a whole number, at least 1).
+  </Step>
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Review the side panel">
+    - **Status** — on by default.
+    - **Icon** — **Default**, or **Custom** to upload your own (JPG, PNG, GIF or WEBP, under 1 MB).
+    - **Tiers** — turn on to apply VIP tier multipliers to this way to earn.
+  </Step>
+  <Step title="Save">
+    Click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+- Shopify notifies Yuko when a customer's WhatsApp marketing consent changes.
+- If the customer is now subscribed, Yuko awards the points.
+- It doesn't matter where the customer subscribed (for example your storefront, checkout, or an app that updates consent in Shopify), as long as Shopify records the consent.
+- Each customer earns once. Unsubscribing doesn't remove the points, and subscribing again doesn't earn more.
+
+With **Tiers** on and [VIP tiers](/vip-tiers/overview) enabled, customers in a tier earn the tier's multiplier for this way to earn, plus any bonus points the tier sets for it. The extra points appear as a separate tier bonus entry.
+
+### Decision guidance
+
+- **Calibrate the bonus** so it doesn't outweigh your other one-time ways to earn.
+- **Tell customers about the reward** wherever you ask them to subscribe.
+
+### Limitations
+
+- Shopify stores only. It doesn't appear on other platforms.
+- Customers who were already subscribed before you enabled it don't earn for past consent.
+- One reward per customer.
+- You can have one Subscribe to WhatsApp way to earn.
+
+## Examples
+
+- 50 points for subscribing to WhatsApp marketing, then a welcome message through your [WhatsApp integration](/integrations/whatsapp).
+
+## Best practices
+
+<Tip>**Follow up with a welcome message.** Use [Workflows](/workflows/overview) or your WhatsApp provider to confirm the points.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="What happens if a customer unsubscribes?">
+    The points stay. They aren't reversed.
+  </Accordion>
+  <Accordion title="Do existing subscribers earn?">
+    Not for consent given before you enabled it. Only new consent updates recorded by Shopify trigger the reward.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

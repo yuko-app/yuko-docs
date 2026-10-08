@@ -1,33 +1,33 @@
 ---
 title: Amount Discount
-description: Let customers redeem points for a fixed-amount discount applied at cart or checkout.
+description: Let customers redeem points for a fixed-amount discount code they use at checkout.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Redeem → Amount Discount
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to redeem → Add another way → **Amount Discount**
 </Note>
 
 ## Introduction
 
-Allow customers to spend points for a fixed-amount discount (e.g., `500 points = $5 off`). This is the simplest, most predictable reward type and the one most customers expect to see first.
+Let customers spend points on a fixed-amount discount (for example, `500 points = $5 off`). It's the simplest, most predictable reward type and usually the one customers expect to see first.
 
 ## What problem this solves
 
-Percentage discounts can feel abstract (“how much will 10% off be?”). A flat amount discount is concrete — customers know exactly what they're getting before they redeem.
+Percentage discounts can feel abstract ("how much is 10% off?"). A flat amount is concrete: customers know exactly what they get before they redeem.
 
 ## When to use
 
-- You want the simplest possible reward to get the program off the ground.
-- Your store has predictable basket sizes where a fixed amount maps cleanly to value.
-- You're targeting low-AOV stores where percentage discounts compound badly.
+- You want the simplest possible reward to launch the program.
+- Your basket sizes are predictable, so a fixed amount maps cleanly to value.
+- You want to discount only certain products or collections by a set amount.
 
 ## Overview
 
-- Fixed dollar (or store-currency) discount.
-- Either a single tier (e.g., 500 pts = $5) or **incremented points** (multiple tiers in one reward).
-- Optional minimum purchase amount or quantity.
-- Optional combinability with other discounts.
-- Optional reward expiry.
+- Fixed amount off, in your store currency.
+- **Fixed amount of points** (one price) or **Incremented points** (customers choose how many points to spend).
+- Optional **Coupon Prefix**, **Purchase type** and product or collection targeting.
+- Optional minimum purchase amount or minimum quantity of items.
+- Optional combinations with other discounts and an optional expiry.
 
 ## Before you start
 
@@ -35,84 +35,98 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <BeforeYouStart />
 
-<Check>You have at least one Way to Earn active so customers actually have points.</Check>
+<Check>You have at least one Way to Earn active, so customers actually have points.</Check>
 
 ## Setup guide
 
 <Steps>
-  <Step title="Open the reward">
-    Login to your Shopify admin, then go to **Apps → Yuko Loyalty → Loyalty → Ways to Redeem → Amount Discount**.
+  <Step title="Add the reward">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to redeem**, click **Add another way** and pick **Amount Discount** under **Online Store**.
   </Step>
-  <Step title="Configure basic details">
-    - **Reward name** — customer-facing label (e.g., *“$5 off”*).
-    - **Description** — short copy shown next to the reward.
+  <Step title="Fill in Basic Details">
+    - **Reward Name** — customer-facing name. You can use `[reward_value]`, `[points_required]` and `[points_label]`, for example `[reward_value] off for [points_required] [points_label]`.
+    - **Description** — short copy shown with the reward.
   </Step>
-  <Step title="Choose reward type">
+  <Step title="Choose the Reward type">
     <AccordionGroup>
       <Accordion title="Fixed amount of points">
-        One tier. Customer pays N points for the same dollar discount every time.
+        One price. Set **Points Required** and **Discount Amount**, for example 500 points for $5 off.
       </Accordion>
       <Accordion title="Incremented points">
-        Multiple tiers in one reward (e.g., 500/1000/2000 pts → $5/$10/$25 off). Customers pick.
+        Customers choose how many points to spend, in steps.
+        - **Point Increments** — points per discount unit (for example 100).
+        - **Discount per Increment** — discount for each increment (for example $1).
+        - **Minimum points to redeem** — the fewest points a customer can spend in one redemption.
+        - **Maximum points to redeem** — the most points a customer can spend in one redemption. Leave it at 0 for no cap. If set, it must be at least the minimum.
       </Accordion>
     </AccordionGroup>
   </Step>
-  <Step title="Set points required and discount amount">
-    For each tier, enter the points cost and the discount value.
+  <Step title="Complete the Reward Configuration">
+    - **Coupon Prefix** — the start of every code this reward creates (up to 8 characters, default `yuko`). Codes look like `YUKO-AB1-C2D`.
+    - **Purchase type** — **One-time purchase**, **Subscription** or **Both** (default). Subscription options only take effect if your store sells subscriptions; otherwise the discount applies to one-time purchases.
+    - **Applies to specific products or collections** — leave unchecked to discount the whole order. When checked, choose **Specific products** or **Specific collections** and select at least one.
+    - **Only apply discount once per order** — shown when you target specific products or collections, and checked by default. If unchecked, the amount is taken off each eligible item in the order.
   </Step>
-  <Step title="Configure additional settings (optional)">
-    - **Minimum / maximum points** to redeem in one transaction.
-    - **Minimum purchase amount or quantity** (e.g., min cart of $25).
-    - **Combinability** — whether this stacks with other Shopify discounts.
-    - **Reward expiry** — how long after issue the discount code stays valid.
+  <Step title="Set Minimum Requirements (optional)">
+    Under **Minimum purchase requirements**, choose **No minimum requirements**, **Minimum purchase amount** (enter a **Minimum Subtotal**) or **Minimum quantity of items** (enter a **Minimum Quantity**). Values must be at least 1.
   </Step>
-  <Step title="Save & activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Choose combinations (optional)">
+    Under **Combine with other discounts**, tick any of **Product discount**, **Order discount** and **Free shipping**.
+  </Step>
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). The code stops working after that time. Expiry is available on select plans.
+  </Step>
+  <Step title="Enable and save">
+    Turn on **Status** in the side panel and click **Save**.
   </Step>
 </Steps>
 
 ## How it works
 
-1. The customer opens the Cart Redeem widget (or the Customer Account hub).
-2. They select this reward and click **Redeem**.
-3. Yuko deducts the points and issues a Shopify discount code unique to that customer.
-4. The customer applies the code at checkout (or it's auto-applied via the Cart Redeem widget).
-5. On order completion, Yuko logs the redemption.
+1. The customer opens a loyalty widget (for example the Cart Redeem widget or the customer account page) and redeems this reward. With incremented points, they also choose how many points to spend.
+2. Yuko deducts the points and creates a Shopify discount code for that customer. The code can be used once.
+3. The customer applies the code at checkout. Widgets that apply it to the cart do this for them.
+4. Yuko logs the redemption in the customer's activity.
 
 ### Decision guidance
 
-- **Use fixed-amount tiers** when starting out — simpler to communicate.
-- **Switch to incremented points** when customers ask for higher-value rewards.
-- **Set a minimum purchase** to keep the discount from being applied to a $1 product (and a $0 cart).
-- **Avoid combinability with sale promos** unless you intentionally want stacking.
+- **Start with a fixed amount of points.** It's the easiest to explain.
+- **Switch to incremented points** when customers have large balances and want to spend more at once.
+- **Set a minimum purchase** so the discount isn't used on a near-empty cart.
+- **Leave combinations off** unless you deliberately want stacking with sales.
 
 ### Limitations
 
-- The discount is issued as a Shopify discount code; some Shopify discount restrictions apply (e.g., one code per order if combinability is off).
-- Cannot exceed cart subtotal — capped at the cart amount automatically.
+- The code is a Shopify discount, so Shopify's discount rules apply. If it doesn't combine with another discount in the cart, Shopify applies only one.
+- The discount can't take an order below zero.
 
 ## Examples
 
-- *Starter program:* `500 pts = $5 off`, min cart $25, 30-day expiry.
-- *Tiered program:* `500 / 1000 / 2000 pts → $5 / $10 / $25`, no min cart, 60-day expiry.
+- *Starter program:* fixed, `500 pts = $5 off`, Minimum Subtotal $25, expires after 30 days.
+- *Flexible balance:* incremented, 100 points per $1, minimum 500 points, maximum 5,000 points.
+- *Collection promo:* fixed, `300 pts = $3 off` items in a "Basics" collection, applied once per order.
 
 ## Best practices
 
-<Tip>**Anchor your value clearly.** “500 pts = $5” is the easiest mental model. Avoid awkward ratios.</Tip>
-<Tip>**Use a 30–60 day expiry** on the issued code to drive prompt redemption.</Tip>
-<Warning>Combining with site-wide percentage promos can cause stacking customers don't expect. Test combinations before launch.</Warning>
+<Tip>**Anchor your value clearly.** "500 pts = $5" is the easiest mental model. Avoid awkward ratios.</Tip>
+<Tip>**Use a 30–60 day expiry** on the issued code to encourage prompt use.</Tip>
+<Tip>**Use a recognisable Coupon Prefix** (for example `LOYAL`) so you can spot loyalty codes in Shopify reports.</Tip>
+<Warning>Combining with site-wide percentage promos can stack in ways customers don't expect. Test combinations before launch.</Warning>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Can a customer use multiple amount discounts on one order?">
-    Only if combinability is enabled and Shopify allows multiple codes per order. By default, one code per order.
+  <Accordion title="Can a customer use two amount discounts on one order?">
+    Only if both discounts allow combining with an order discount in Shopify. Otherwise Shopify applies one.
   </Accordion>
-  <Accordion title="What happens if the discount exceeds the cart total?">
-    The discount is capped at the cart total. The customer is not refunded the difference.
+  <Accordion title="Can someone else use the customer's code?">
+    No. The code is restricted to the customer who redeemed it and can be used once.
   </Accordion>
-  <Accordion title="Can I cancel a redemption?">
-    Yes — from the customer's profile in Yuko, you can revoke the issued reward and return the points.
+  <Accordion title="What happens if the discount is larger than the cart?">
+    Shopify caps the discount at the eligible amount. The customer doesn't get the difference back.
+  </Accordion>
+  <Accordion title="Do I need Purchase type if I don't sell subscriptions?">
+    No. Leave it on **Both**. Without subscriptions, the discount applies to one-time purchases.
   </Accordion>
 </AccordionGroup>
 

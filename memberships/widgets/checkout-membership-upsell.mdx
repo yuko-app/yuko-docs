@@ -1,104 +1,99 @@
 ---
 title: Checkout Membership Upsell Widget
-description: Promote membership plans inside Shopify Checkout via the Checkout UI extension.
+description: Offer your membership plan inside Shopify Checkout so customers can add it to their order.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships → Widgets → Checkout Membership Upsell
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Membership → Widgets → Checkout: Membership upsell
 </Note>
 
 ## Introduction
 
-Show membership plans inside Shopify Checkout itself, via a Checkout UI extension. Customers can join the program at the moment of purchase.
+The **Checkout: Membership upsell** widget shows your membership plan inside Shopify Checkout. It's the **Yuko Checkout Membership Upsell** checkout UI extension block.
 
 ## What problem this solves
 
-If a customer didn't add the membership in cart, you've still got one more chance at checkout. The Checkout extension catches those last-second conversions.
+If a customer didn't add the membership in the cart, checkout is your last chance. The block lets them add the plan to the order in one click.
 
 ## Where it appears
 
-- Shopify Checkout (information / shipping / payment pages).
-
-## When to use
-
-- You're on Shopify Plus or a plan with Checkout Extensibility.
-- You already run the Cart Membership Upsell and want a second touchpoint.
+- Shopify Checkout (`purchase.checkout.block.render`). By default it sits in the order summary; you can move it in the checkout editor.
 
 ## Overview
 
-- Renders inside Shopify Checkout via the Checkout UI extension.
-- Surfaces the most relevant plan based on the order.
-- Plan-gated by Shopify.
+- Promotes the plan chosen in **Membership → Plans → Membership Settings → Membership to upsell**.
+- Text fields only. The block uses Shopify's checkout styling.
+- Hidden from customers who already have a membership.
+- Requires Shopify Plus. On other plans, the widget card shows a **Shopify Plus** badge.
 
 ## Before you start
 
-import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
-
-<BeforeYouStart />
-
-<Check>Your Shopify plan supports Checkout Extensibility.</Check>
-<Check>The Checkout UI extension has been activated — see [Activate the Checkout UI Extension](/installation-and-setup/checkout-ui-extension).</Check>
-<Check>At least one membership plan is published.</Check>
+<Check>Your store is on Shopify Plus.</Check>
+<Check>A plan is selected in **Membership to upsell**.</Check>
 
 ## Setup guide
 
-### 1. Configure in Yuko
+### 1. Configure the widget in Yuko
 
 <Steps>
-  <Step title="Open the widget settings">
-    Go to **Apps → Yuko Loyalty → Memberships → Widgets → Checkout Membership Upsell**.
+  <Step title="Open the widget">
+    Go to **Membership → Widgets** and open **Checkout: Membership upsell**.
   </Step>
-  <Step title="Customise copy">
-    Set the heading and CTA.
+  <Step title="Edit the text">
+    | Field | Default |
+    |---|---|
+    | **Title** | `Become a member and save` |
+    | **Description** | `Save on all your future orders by becoming a member` |
+    | **Shipping upsell description** | `Get FREE shipping on all your future orders by becoming a member` |
+    | **Add button** | `Add` |
+    | **Added button** | `Added` |
+    | **View benefits button** | `View benefits` |
+    | **Monthly interval label** | `month` |
+    | **Yearly interval label** | `year` |
   </Step>
-  <Step title="Activate">
-    Toggle the widget **Active**.
+  <Step title="Save and enable">
+    Click **Save** and switch the widget on.
   </Step>
 </Steps>
 
-### 2. Add the widget in Shopify Checkout
+### 2. Add the block in the checkout editor
 
 import SetupCheckout from '/snippets/setup-checkout-extension.mdx';
 
 <SetupCheckout />
 
-Place the widget near the order summary.
+Choose the **Yuko Checkout Membership Upsell** block.
 
 ### 3. Verify
 
-Proceed to a test checkout and confirm the upsell renders.
+Go through a test checkout as a customer without a membership. The block should show the plan and an **Add** button.
 
 ## How it works
 
-1. Shopify renders the Yuko Checkout Membership Upsell extension at checkout.
-2. The extension fetches the most valuable plan to surface.
-3. The customer can add the plan to the order with one click.
-
-### Decision guidance
-
-- **Don't double up** — if you have the Cart Upsell, the Checkout Upsell is your last-chance fallback. Don't make it pushy.
+1. Shopify renders the block in checkout.
+2. The block checks that memberships and the widget are on, and that the customer has no membership.
+3. It shows the upsell plan with its price, billing interval, and a **View benefits** button that expands the plan's benefits.
+4. **Add** adds the plan's product, with its subscription option, to the order. The button then shows the **Added** label.
 
 ### Limitations
 
-- Requires Checkout Extensibility (Shopify Plus / eligible plans).
-- Visual customisation is constrained by Shopify's extension surface.
-
-## Examples
-
-- *“Add Yuko VIP for $9.99/mo and save $5 on this order.”*
+- Requires Shopify Plus.
+- Promotes one plan: the **Membership to upsell**.
+- Visual styling follows Shopify's checkout.
 
 ## Best practices
 
-<Tip>**Test in a real checkout preview.** Shopify caches checkout aggressively.</Tip>
+<Tip>**Use it alongside the cart upsell** as a second, lighter touchpoint.</Tip>
+<Tip>**Test in the checkout editor preview and in a real checkout.** Shopify can cache checkout settings for a short time.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="My checkout doesn't show the widget">
-    Confirm Checkout Extensibility is enabled and the extension is added in the Checkout Editor.
+  <Accordion title="My checkout doesn't show the block">
+    Check that your store is on Shopify Plus, the widget is switched on in Yuko, the block is added in the checkout editor, and you're testing as a customer without a membership.
   </Accordion>
   <Accordion title="What if the customer is already a member?">
-    The widget hides itself.
+    The block hides itself.
   </Accordion>
 </AccordionGroup>
 

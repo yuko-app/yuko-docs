@@ -1,6 +1,6 @@
 ---
-title: Program Settings
-description: Configure your program-wide loyalty rules — points label, conversion ratio, customer eligibility, exclusions and Shopify customer tagging.
+title: Loyalty Settings
+description: Program-wide loyalty settings — point rounding and labels, cash value of points, which order statuses earn and revert points, login trigger, storefront languages, customer exclusions, Shopify order tags and reset.
 ---
 
 <Note>
@@ -9,27 +9,38 @@ description: Configure your program-wide loyalty rules — points label, convers
 
 ## Introduction
 
-This is the single page where you define the rules every campaign and reward inherits: what points are called, how many points equal one unit of currency, which customers are eligible to earn, and how customers are tagged in Shopify.
+The **Settings** tab holds the rules that apply across your whole loyalty program: what points are called, how fractional points are rounded, which order status earns points and which status takes them back, and which customers are left out of the program.
+
+Earning amounts, expiry and product exclusions are **not** set here. Those live on each [Way to Earn](/loyalty/ways-to-earn/overview) and [Way to Redeem](/loyalty/ways-to-redeem/overview).
 
 ## What problem this solves
 
-In most loyalty apps, settings are scattered across each campaign and reward. Yuko centralises program-wide rules so you set them once and every Way to Earn / Way to Redeem honours them.
+Every store handles orders differently. Some want points the moment an order is paid, others only once it ships or is delivered. Settings lets you match the program to how your store actually works, in one place, without editing each earning rule.
 
 ## When to use
 
-- During initial setup.
-- When changing your points label, currency or conversion ratio.
-- When you launch a new market and need to exclude specific countries.
-- When you change customer eligibility (e.g., “only logged-in customers earn”).
+- During initial setup, before you launch the program.
+- When you rename points (for example *Stars* or *Coins*).
+- When you change when orders earn points (Paid, Fulfilled or Delivered).
+- When you want to keep staff, wholesale or test accounts out of the program.
+- When you need to wipe test data before going live.
 
 ## Overview
 
-- **Points label** — the display name customers see.
-- **Points-to-currency ratio** — how many points equal one unit of your store currency.
-- **Customer eligibility** — who can earn (all customers, registered only, tagged customers).
-- **Exclusions** — products, collections or customer tags excluded from earning.
-- **Shopify customer tagging** — push tier and program tags back to Shopify customers.
-- **Reset activities** — wipe customer points data (use carefully).
+| Setting | What it controls |
+|---|---|
+| **Rounding Type** | How fractional points are rounded: Round, Floor or Ceil |
+| **Point Label** | Singular and plural name for points |
+| **Store Credit Label** | Singular and plural name for store credit |
+| **Points to Cash Conversion Rate** | What 100 points are worth, used to show customers the value of their balance |
+| **Earning Status** | Which order status earns points: Paid, Fulfilled and/or Delivered |
+| **Revert Point Status** | Which order status takes points back: Refunded and/or Cancelled |
+| **Custom login trigger** | How logged-out customers are sent to log in from Yuko widgets |
+| **Primary language** / **Languages** | The storefront languages your loyalty widgets use |
+| **Exclude customers by tag** | Customer tags that keep customers out of the program |
+| **Orders** (Shopify only) | Tags Yuko adds to Shopify orders that earned or redeemed points |
+| **Backfill points for past orders** | A one-time award for orders placed before loyalty was enabled |
+| **Reset customer activities** | Wipes all customer points and activity |
 
 ## Before you start
 
@@ -40,84 +51,134 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 ## Setup guide
 
 <Steps>
-  <Step title="Open Loyalty Settings">
-    Login to your Shopify admin and go to **Apps → Yuko Loyalty → Loyalty → Settings**.
+  <Step title="Open Settings">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty** and open the **Settings** tab.
   </Step>
-  <Step title="Set points label and conversion">
-    - **Points label**: what customers see in widgets and emails (e.g., *Stars*, *Coins*).
-    - **Conversion ratio**: e.g., `100 points = $1`. This is the implicit value used across redemption math.
+  <Step title="Choose a Rounding Type">
+    Pick **Round** (the default), **Floor** (always round down) or **Ceil** (always round up). This decides what happens when a calculation produces a fraction of a point, for example 1 point per $1 on a $24.60 order.
   </Step>
-  <Step title="Configure customer eligibility">
-    Choose who can earn:
-    <AccordionGroup>
-      <Accordion title="All customers">
-        Anyone with a customer record can earn. Best for most stores.
-      </Accordion>
-      <Accordion title="Registered only">
-        Guest checkouts don't earn unless they create an account.
-      </Accordion>
-      <Accordion title="Tagged customers">
-        Only customers with a specific Shopify tag earn. Useful for invite-only programs.
-      </Accordion>
-    </AccordionGroup>
+  <Step title="Name your points and store credit">
+    - **Point Label** — **Singular** and **Plural** fields (defaults `point` and `points`). Customers see these in widgets and emails.
+    - **Store Credit Label** — **Singular** and **Plural** fields (defaults `store credit` and `store credits`).
   </Step>
-  <Step title="Set exclusions">
-    Add products, collections or customer tags that should not earn or redeem points.
+  <Step title="Set the Points to Cash Conversion Rate">
+    Answer *"What are 100 points worth in your store?"*. Enter the cash value of 100 points, for example `1` for $1. Yuko uses this to show customers what their points balance is worth in notifications and emails.
   </Step>
-  <Step title="Configure Shopify customer tagging">
-    Toggle on to write the customer's loyalty status back to their Shopify record (e.g., `yuko-tier-gold`). This unlocks Shopify-native segmentation.
+  <Step title="Choose the Earning Status">
+    Tick one or more of **Paid** (the default), **Fulfilled** and **Delivered**. An order earns points the first time it reaches any ticked status, and only once.
+  </Step>
+  <Step title="Choose the Revert Point Status">
+    Tick **Refunded**, **Cancelled** or both (both are ticked by default). When an order reaches a ticked status, the points it earned are taken back.
+  </Step>
+  <Step title="Set a Custom login trigger (optional)">
+    When a logged-out customer opens the launcher, spotlight or cart redeem widget, Yuko can start your store's own login flow instead of redirecting to the Shopify account page:
+    - **Use a CSS element** — enter a **Login element selector** (for example `#login-button` or `a[href='/account']`). Yuko clicks that element, such as your theme's own login button.
+    - **Use a link** — enter a **Login link** (for example `https://example.com/account/login`). Yuko sends the customer to that URL.
+
+    Leave it empty to keep the default redirect.
+  </Step>
+  <Step title="Set storefront languages">
+    Choose a **Primary language** and add every language you want available under **Languages**. Edit the wording for each language in [Translations](/account/translations).
+  </Step>
+  <Step title="Exclude customers by tag (optional)">
+    Under **Exclude customers by tag**, search for and add the customer tags to keep out of the loyalty program (for example `wholesale` or `staff`).
+  </Step>
+  <Step title="Set order tags (Shopify only)">
+    Under **Orders**, edit the tags Yuko adds to Shopify orders:
+    - **Earned orders tags** — added to orders where customers earned points (default `YUKO:EARNED`).
+    - **Redeemed orders tags** — added to orders where customers redeemed points (default `YUKO:REDEEMED`).
+
+    Type a tag and press Enter to add it.
   </Step>
   <Step title="Save">
-    Click **Save**. Changes apply immediately to all future earn and redeem events.
+    Click **Save**. Changes apply to earning and redemption events from then on.
   </Step>
 </Steps>
 
 ## How it works
 
-- **Points label** is purely cosmetic; internally Yuko stores points as integers.
-- **Conversion ratio** drives reward math: a 500-point reward at 100 pts = $1 is worth $5.
-- **Eligibility** is checked at the moment Yuko receives an earning event. Ineligible customers' events are dropped silently.
-- **Exclusions** are applied at calculation time — the order is ingested, but excluded line items don't contribute points.
-- **Shopify customer tagging** runs whenever a tier changes or a customer joins/leaves the program.
+### Earning Status
+
+- **Paid** — the order earns when Shopify marks it as paid.
+- **Fulfilled** — the order earns when it's fulfilled.
+- **Delivered** — the order earns when Shopify records the fulfillment as delivered.
+
+If you tick more than one, the order earns at whichever ticked status it reaches first. Yuko records that the order has earned, so reaching a second ticked status later doesn't award points again. Cancelled orders never earn.
+
+### Revert Point Status
+
+- **Refunded** — points are taken back when the order's payment status becomes refunded.
+- **Cancelled** — points are taken back when the order is cancelled.
+
+Both the base points and any VIP tier bonus points from that order are reverted. If the order's points are still in their [holding period](/loyalty/ways-to-earn/place-an-order#holding-period), they're cancelled before they ever reach the customer's balance.
+
+### Excluded customers
+
+A customer is excluded from the program if they have one of your excluded tags, or if you excluded them manually from [Customers](/loyalty/customers). Excluded customers don't earn points and show the **Excluded** status on the Customers list.
+
+### Order tags
+
+Order tags are written to the Shopify order, not the customer. Use them to filter orders in Shopify, build reports, or trigger Shopify Flow automations for loyalty orders.
+
+### Points to Cash Conversion Rate
+
+This rate is for display. Each reward defines its own points cost and value, so changing the rate doesn't change what any reward costs or gives.
 
 ### Decision guidance
 
-- **Pick a points label that fits your brand** but isn't confusing. *Points*, *Stars*, *Bucks* all work.
-- **Use a clean ratio**. `100 pts = $1` is the easiest mental model. Avoid awkward ratios like 137 pts = $1.
-- **Default to All customers** for eligibility. Restrict only if you have a clear business reason.
-- **Enable Shopify tagging** if you do email or ads segmentation — it pays for itself the first campaign.
+- **Paid** suits most stores. Choose **Fulfilled** or **Delivered** if you see many cancellations before shipping, or if you want points to arrive when the customer has the product.
+- Keep both **Refunded** and **Cancelled** ticked unless you have a clear reason to let customers keep points from those orders.
+- For a return window, combine **Paid** with a **Holding period** on [Place an order](/loyalty/ways-to-earn/place-an-order) instead of switching to Delivered.
+- Pick a points name that fits your brand but stays obvious: *Points*, *Stars* and *Coins* all work.
 
 ### Limitations
 
-- Changing the conversion ratio doesn't retroactively re-cost existing customer rewards.
-- Excluding a product retroactively doesn't claw back already-credited points.
-- **Reset activities** is destructive and cannot be undone.
+- Changing the Earning Status doesn't re-process past orders.
+- Revert Point Status works on the whole order. A partial refund doesn't take back a share of the points.
+- Order tags and the Orders section are only available on Shopify stores.
+- There's no program-wide points expiry or product exclusion here. Set expiry on each Way to Earn and Way to Redeem, and product or collection exclusions on [Place an order](/loyalty/ways-to-earn/place-an-order).
+
+## Backfill points for past orders
+
+The Settings tab also holds **Backfill points for past orders**, a one-time award for orders customers placed before loyalty was enabled. See [Backfill Points](/loyalty/backfill-points).
+
+## Reset customer activities
+
+**Reset customer activities** deletes all customer points activity for your store: activity history, points transactions and balances. It also resets VIP tier memberships and removes the reward discount codes Yuko created for customers in Shopify. Your customers, ways to earn, rewards and settings stay as they are.
+
+To run it, click **Reset customer activities**, type `RESET` in the confirmation box and click **Confirm Reset**.
+
+<Warning>**Reset customer activities can't be undone.** Use it only to clear test data before launch.</Warning>
 
 ## Examples
 
-- A boutique uses *Stars*, 100 stars = $1, all customers eligible, with sale-collection exclusions on Black Friday week.
-- A B2B brand uses *Credits*, registered customers only, with a `wholesale` tag exclusion to keep wholesale orders out of the loyalty pool.
+- A fashion store keeps **Paid** as the Earning Status and adds a 14-day holding period on Place an order to cover returns.
+- A furniture brand switches the Earning Status to **Delivered** so points land when the customer receives their order.
+- A B2B and retail store adds the `wholesale` tag under **Exclude customers by tag** so trade accounts don't earn.
 
 ## Best practices
 
-<Tip>**Lock in your label and ratio early.** Customers anchor on these in their first interaction with the program.</Tip>
-<Tip>**Tag customers in Shopify**. The downstream marketing flexibility is worth the toggle.</Tip>
-<Warning>**Don't run Reset activities on a live program** unless you've exported customer data first. The action is irreversible.</Warning>
+<Tip>**Lock in your points name early.** Customers anchor on it the first time they see the program.</Tip>
+<Tip>**Use order tags in Shopify.** Filtering orders by `YUKO:REDEEMED` is a quick way to see how many orders used a loyalty reward.</Tip>
+<Warning>**Never reset a live program.** Reset removes every customer's balance and history.</Warning>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Can I change the points label after launch?">
-    Yes — but customers will see the new label immediately, including in past activity entries. Pick the right label up front.
+  <Accordion title="Can I change the point label after launch?">
+    Yes. Customers see the new label straight away in widgets and emails, so pick it carefully before launch.
   </Accordion>
-  <Accordion title="What does Reset activities do?">
-    It wipes all customer points balances, transactions and earned rewards. Customers and program configuration remain. Use it only on a fresh setup or when intentionally wiping a test environment.
+  <Accordion title="Can an order earn twice if I tick Paid and Fulfilled?">
+    No. The order earns at the first ticked status it reaches. Yuko marks it as earned so later statuses don't award again.
   </Accordion>
-  <Accordion title="How are exclusions evaluated?">
-    Exclusions apply at line-item level. If only some products in an order are excluded, the rest still earn.
+  <Accordion title="What happens to points from a refunded order?">
+    If **Refunded** is ticked under Revert Point Status, Yuko takes back the points the order earned, including any VIP tier bonus. Points still on hold are cancelled instead.
   </Accordion>
-  <Accordion title="What tags does Yuko write to Shopify customers?">
-    Tags include `yuko-customer`, `yuko-tier-<tier>`, and any custom tags configured in the **Shopify tagging** settings.
+  <Accordion title="Does Yuko tag customers in Shopify?">
+    The tagging setting here tags **orders**, not customers. Use **Earned orders tags** and **Redeemed orders tags** to label orders that earned or redeemed points.
+  </Accordion>
+  <Accordion title="What does Reset customer activities delete?">
+    All customer points activity, transactions and balances, plus tier memberships and the customer discount codes Yuko created. Customers and your program setup stay.
   </Accordion>
 </AccordionGroup>
 

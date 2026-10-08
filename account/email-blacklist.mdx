@@ -1,72 +1,75 @@
 ---
 title: Email Blacklist
-description: Block disposable email domains and known fraud sources from earning loyalty rewards.
+description: Stop Yuko emails from going to specific email addresses or whole domains.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Account → Email Blacklist
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Account → Email Settings → Email Blacklist
 </Note>
 
 ## Introduction
 
-The Email Blacklist is a list of email domains (or specific addresses) that should be excluded from earning rewards. The most common use is blocking disposable / temporary email services that fraudsters use to abuse referral programs.
-
-## What problem this solves
-
-Referral fraud almost always uses temporary email services — a fraudster signs up for a hundred accounts via Mailinator and rinses the friend reward. Blocking those domains kills 90% of fraud at the source.
+The Email Blacklist is a suppression list. Email addresses on it don't receive any emails sent from Yuko, such as points, reward, referral and membership emails and workflow emails. Customers on the list can still earn and redeem points as usual.
 
 ## When to use
 
-- Before launching the referral program.
-- When you spot fraudulent referral activity.
-- When onboarding to a new market with known fraud patterns.
+- A customer has asked not to receive any emails from your loyalty program.
+- You want to keep Yuko emails away from internal, test or staff accounts.
+- You want to stop emails to a whole domain or to automated addresses, such as `no-reply@` mailboxes.
 
 ## Overview
 
-- Domain-level or address-level blacklist.
-- Applied at customer signup and at referral attribution.
-- Common defaults pre-loaded.
-- Editable at any time.
+- An **Email Blacklist Activation** toggle turns the list on or off. The list starts empty and the toggle starts off.
+- Add entries with **Add Manually** or **Upload CSV**.
+- Entries can be exact addresses or patterns with a `*` wildcard.
+- Entries are listed under **Email Address**, where you can delete one or several at once.
+
+<Info>The Email Blacklist is available on select plans. If it isn't included in your plan, the page shows an upgrade banner.</Info>
 
 ## Setup
 
 <Steps>
   <Step title="Open Email Blacklist">
-    Go to **Apps → Yuko Loyalty → Account → Email Blacklist**.
+    Go to **Apps → Yuko Loyalty → Account → Email Settings** and select the **Email Blacklist** tab.
   </Step>
-  <Step title="Review the default list">
-    Yuko ships with a curated list of well-known disposable-email domains.
+  <Step title="Add addresses manually">
+    Click **Add Manually**. In **Email addresses**, enter one or more entries separated by commas. Supported formats:
+    - `sample@example.com` blocks one exact email.
+    - `*@anydomain.com` blocks every email from a specific domain.
+    - `no-reply@*` blocks any email starting with `no-reply@` across all domains.
   </Step>
-  <Step title="Add domains or addresses">
-    Enter one entry per line:
-    - Domain: `mailinator.com`
-    - Address: `bad-actor@example.com`
+  <Step title="Or upload a CSV">
+    Click **Upload CSV** and drop in a `.csv` file of addresses. The file must be 15 KB or smaller. Click **Download a sample CSV** in the upload window to see the format.
   </Step>
-  <Step title="Save">
-    The list applies immediately to new signups and referrals.
+  <Step title="Turn on the blacklist">
+    Switch on **Email Blacklist Activation**. While it's off, a banner warns that addresses on the list still receive emails from Yuko.
   </Step>
 </Steps>
 
 ## How it works
 
-- At customer creation: if the email matches a blacklist entry, the customer is created but won't earn loyalty rewards.
-- At referral attribution: if the friend's email matches a blacklist entry, the referral is rejected.
-- The blacklist applies prospectively — customers already created keep their existing data.
+- When the blacklist is on and a customer's email matches an entry, Yuko skips the emails and workflows triggered for that customer.
+- Matching uses the exact address or your wildcard pattern.
+- Turning the toggle off keeps your list, so you can turn it back on later. Turning it off asks for confirmation.
+- The list only affects Yuko. It doesn't change the customer's marketing consent in Shopify or in other email tools.
 
 ## Best practices
 
-<Tip>**Keep the default list and add to it** as you spot specific abuse domains.</Tip>
-<Tip>**Don't blacklist legitimate ESPs** like Gmail or Outlook — you'll exclude real customers.</Tip>
-<Tip>**Pair with [Referrals → Program Setup → Fraud prevention](/referrals/program-setup#configure-fraud-prevention)** for layered fraud controls.</Tip>
+<Tip>**Add your test and staff accounts** so test orders don't send real loyalty emails.</Tip>
+<Tip>**Use wildcards carefully.** `*@gmail.com` would stop emails to every Gmail customer.</Tip>
+<Tip>**Keep a CSV backup** of large lists so you can re-upload them if needed.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Can I exclude a single email address?">
-    Yes — add the full address (e.g., `bad-actor@gmail.com`) instead of the domain.
+  <Accordion title="Does the blacklist stop customers from earning points or using referrals?">
+    No. It only stops Yuko from emailing them. To remove someone from your loyalty program, use **Exclude from Program** on the customer in [Customers](/loyalty/customers).
   </Accordion>
-  <Accordion title="How do I find new disposable domains?">
-    Search community-maintained lists (e.g., `disposable-email-domains` on GitHub). Your support team will also surface common offenders.
+  <Accordion title="I added addresses but they still get emails. Why?">
+    Check that **Email Blacklist Activation** is switched on. The list has no effect while the toggle is off.
+  </Accordion>
+  <Accordion title="How do I remove an address?">
+    Delete it from the list, or select several entries and delete them together.
   </Accordion>
 </AccordionGroup>
 

@@ -21,4 +21,17 @@ All requests must include the following headers:
 
 ## Response format
 
-All responses return JSON. Successful responses include the requested resource. Error responses include an error object with a `message` field describing what went wrong.
+All responses return JSON. Successful responses include the requested resource. Successful responses wrap the result in a `data` key; list endpoints also return `meta.pagination`. Error responses return an `error` object with a machine-readable `code` and a human-readable `message`:
+
+```json
+{
+  "error": {
+    "code": "insufficient_scope",
+    "message": "Your API token does not have the required 'rewards' scope for this action"
+  }
+}
+```
+
+## Authentication and scopes
+
+Authenticate with a REST API key as a Bearer token. Each key is limited to the scopes the merchant chose, written as `read:<scope>` or `write:<scope>`. See [Authentication](/developer/api/authentication) and [Scopes](/developer/api/scopes).

@@ -1,185 +1,186 @@
 ---
 title: Program Setup
-description: Configure the referral rewards, sharing channels, fraud prevention and UTM tracking for your referral program.
+description: Turn on the referral program and configure rewards, the landing URL, social sharing, fraud prevention, auto enrollment and UTM tracking.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Referral → Program Setup
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Referral → Program
 </Note>
 
 ## Introduction
 
-This is the single page where you configure the entire referral program — rewards on both sides, where customers land, what channels they share through, and how Yuko stops fraud.
+The **Program** tab is where you configure the whole referral program: rewards for both sides, where referral links land, which sharing channels customers see, and how Yuko blocks fraudulent referrals.
 
 ## What problem this solves
 
-Most referral programs require stitching together a referral app, a discount engine, a tracking tool and an email tool. Yuko's referral program covers all of that in one configuration.
+Running referrals usually means combining a referral app, a discount tool and a tracking setup. The Program tab covers all three. Yuko creates the Shopify discount codes, tracks referral links with a UTM campaign, and checks every claim against your fraud rules.
 
 ## When to use
 
-- During the initial launch of the referral program.
-- Any time you want to change reward values or add a sharing channel.
-- When you suspect fraud and need to tighten controls.
+- When you launch the referral program.
+- When you change reward values or sharing channels.
+- When you want to tighten fraud controls.
 
 ## Overview
 
-- Enable / disable the program.
-- Configure referrer and friend rewards (see [Reward Types](/referrals/reward-types)).
-- Set the landing URL friends arrive at.
-- Enable sharing channels (Twitter / X, Facebook, Email, WhatsApp).
-- Set fraud prevention rules.
-- Configure auto-enrollment.
-- Set UTM parameters for analytics attribution.
+The Program tab has these sections:
+
+| Section | What it controls |
+|---|---|
+| **Referrals Program Status** | Turns the program on or off. |
+| **Quick Start** | Setup checklist: **Set up referrer reward**, **Set up friend reward**, **Enable referral popup**. |
+| **Referral Rewards** | The **Referrer Reward** and the **Friend Reward**. |
+| **Referrals Landing URL** | The page a referral link opens. |
+| **Social Sharing Settings** | Which share channels customers see, and the pre-filled messages. |
+| **Fraud Prevention** | **IP Address Match** and **Block Self-Referrals**. |
+| **Auto Enrollment** | **Enroll on first point earned**. |
+| **UTM Tracking** | The **UTM Campaign** value added to referral links. |
 
 ## Before you start
 
-import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
-
-<BeforeYouStart />
-
-<Check>You've reviewed [Reward Types](/referrals/reward-types) and decided what each side gets.</Check>
+<Check>Yuko is installed on your Shopify store. See [Install Yuko on Shopify](/installation-and-setup/install-on-shopify).</Check>
+<Check>The **Yuko App** embed is turned on in your theme, so the Friend Welcome Popup can open. See [Theme App Embed](/installation-and-setup/theme-app-embed).</Check>
+<Check>You've decided what each side gets. See [Reward Types](/referrals/reward-types).</Check>
 
 ## Setup guide
 
-### 1. Enable the program
+### 1. Turn on the program
 
 <Steps>
-  <Step title="Open Program Setup">
-    In your Shopify admin, go to **Apps → Yuko Loyalty → Referral → Program Setup**.
+  <Step title="Open the Program tab">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Referral → Program**.
   </Step>
-  <Step title="Toggle Enable Referral Program">
-    Turn the program on. Settings below become editable.
+  <Step title="Enable the program">
+    In **Referrals Program Status**, switch the toggle on. The card shows "This program is currently enabled". If you later switch it off, Yuko asks you to confirm in a **Disable Referrals Program** dialog.
   </Step>
 </Steps>
 
-### 2. Configure the referrer reward
+### 2. Set up the rewards
 
 <Steps>
-  <Step title="Open Referrer Reward">
-    Pick the reward type the referrer gets when their friend converts. See [Reward Types → Referrer reward types](/referrals/reward-types#available-reward-types-for-referrers).
+  <Step title="Choose the referrer reward">
+    In **Referral Rewards**, click **Add Reward** on the **Referrer Reward** card (or **Change Reward** to replace the current one). Pick a reward type and fill in the configuration page. See [Reward Types](/referrals/reward-types).
   </Step>
-  <Step title="Set the value">
-    Enter the points / discount value, and any expiry.
-  </Step>
-  <Step title="Cap per referrer (optional)">
-    Limit how many successful referrals one customer can earn rewards for.
+  <Step title="Choose the friend reward">
+    Do the same on the **Friend Reward** card.
   </Step>
 </Steps>
 
-### 3. Configure the friend reward
+<Info>
+On a new install, Yuko seeds both rewards as a fixed $10 amount discount: "Referral reward" (coupon prefix `YRA`) for the referrer and "Welcome reward" (coupon prefix `YRF`) for the friend. Change them to suit your store.
+</Info>
+
+### 3. Set the landing URL
 
 <Steps>
-  <Step title="Open Friend Reward">
-    Pick the reward the friend gets on their first order. Friend rewards are discount-based only.
-  </Step>
-  <Step title="Set value and minimum">
-    Enter the value and any minimum cart amount required.
+  <Step title="Enter a path">
+    In **Referrals Landing URL**, fill in **Referrals Landing URL Path**, for example `/collections/best-sellers` or `/pages/welcome`. If you leave it blank, referral links open your homepage.
   </Step>
 </Steps>
 
-### 4. Set the landing URL
+### 4. Choose the sharing channels
 
 <Steps>
-  <Step title="Set the landing URL">
-    The page friends are sent to after clicking the referral link. Typically `/`, a featured product, or a dedicated landing page (e.g., `/pages/welcome`).
+  <Step title="Tick the channels">
+    In **Social Sharing Settings**, tick the channels customers can share through: **Twitter**, **Facebook**, **Email** and **Whatsapp**.
+  </Step>
+  <Step title="Write the pre-filled messages">
+    Each ticked channel shows its message fields:
+    - **Twitter**: **Message to tweet**
+    - **Email**: **Email Subject** and **Email Body**
+    - **Whatsapp**: **Message to Whatsapp**
+
+    Use `[shop_name]` for your store name and `[referral_link]` for the customer's referral link. The Email Subject supports `[shop_name]` only.
   </Step>
 </Steps>
 
-### 5. Enable social sharing
+<Note>
+Facebook doesn't let third-party apps pre-fill share messages, so there's no message field for Facebook. Customers write their own message when they share.
+</Note>
+
+### 5. Configure fraud prevention
 
 <Steps>
-  <Step title="Toggle channels">
-    Pick which channels appear in the referral widget:
-    - Twitter / X
-    - Facebook
-    - Email
-    - WhatsApp
+  <Step title="Block Self-Referrals">
+    Stops customers from using their own referral link. It's **on by default**. Yuko blocks the claim when the friend's email matches the referrer's, or when the friend resolves to the same Shopify customer as the referrer.
   </Step>
-  <Step title="Customise share copy">
-    Optional: pre-fill the message that opens in each channel.
+  <Step title="IP Address Match">
+    Blocks the claim when the friend and the referrer share the same IP address. This toggle is available on select plans.
   </Step>
 </Steps>
 
-### 6. Configure fraud prevention
+### 6. Configure auto enrollment
 
 <Steps>
-  <Step title="Block self-referral">
-    Prevent the same customer from being both referrer and friend (matched by email, IP or device).
-  </Step>
-  <Step title="Block disposable email domains">
-    Reject referrals from temporary-email services (configured in **Account & Settings → Email Blacklist**).
-  </Step>
-  <Step title="Cap per IP / device">
-    Limit how many referrals can come from the same IP or device.
+  <Step title="Enroll on first point earned">
+    Turn this on to enroll a customer in the referral program automatically the first time they earn loyalty points. Enrolled customers get a referral code and link without having to request one.
   </Step>
 </Steps>
 
-### 7. Configure auto-enrollment
+Customers who aren't enrolled can still join by clicking **Get my referral link** in a referral widget.
+
+### 7. Set the UTM campaign
 
 <Steps>
-  <Step title="Pick enrollment mode">
-    <AccordionGroup>
-      <Accordion title="Auto-enroll all customers">
-        Every customer gets a referral link by default. Recommended.
-      </Accordion>
-      <Accordion title="Manual enrollment">
-        Customers must opt in to participate. Use only if you have legal or brand reasons.
-      </Accordion>
-    </AccordionGroup>
+  <Step title="Enter the UTM Campaign">
+    In **UTM Tracking**, set **UTM Campaign**. This is the `utm_campaign` value added to every referral link. If you leave it empty, Yuko uses `yuko_referral_program`.
   </Step>
 </Steps>
 
-### 8. Set UTM parameters
+Only the campaign value is configurable. A referral link looks like this:
 
-<Steps>
-  <Step title="Configure UTM parameters">
-    Default UTM parameters appended to referral links: `utm_source=yuko_referral`, `utm_medium=referral`, `utm_campaign=customer_referral`. Customise to match your analytics taxonomy.
-  </Step>
-</Steps>
+```
+https://your-store.com/<landing path>?yuko_referral=<CODE>&utm_campaign=yuko_referral_program
+```
+
+### 8. Save
+
+Click **Save** in the save bar.
 
 ## How it works
 
-1. Customer shares their unique referral link via the widget.
-2. Friend clicks the link and lands on your store.
-3. Yuko tracks the click via cookie + UTM.
-4. Friend places their first order and the friend reward is applied.
-5. After the order is paid, the referrer reward is issued.
-6. Activity is logged on both customer profiles.
-
-### Decision guidance
-
-- **Use generous referrer rewards** if you have high LTV — you make it back on the friend's lifetime value.
-- **Use clear friend rewards** (an actual discount) — vague *“points”* rewards perform poorly for new customers.
-- **Always enable fraud prevention** before turning the program on.
+1. A customer becomes a referrer, either automatically (if **Enroll on first point earned** is on) or by clicking **Get my referral link** in a referral widget. Yuko gives them a unique referral code and link.
+2. The referrer shares the link through a widget or one of the enabled channels.
+3. A friend opens the link. The **Friend Welcome Popup** asks for their details (at least an email).
+4. Yuko checks the claim:
+   - The referral code is valid and the referrer isn't blocked.
+   - **Block Self-Referrals** and **IP Address Match** rules pass (when turned on).
+   - The friend has no previous orders and hasn't already received a friend reward.
+5. If the claim passes, Yuko creates the friend's discount code and shows it in the popup.
+6. When the friend places a paid order using that code, Yuko issues the referrer reward and counts the referral as successful.
 
 ### Limitations
 
-- Referrals are tracked via cookies — privacy-blocking browsers may break attribution.
-- Only the friend's first order qualifies; subsequent orders don't generate referrer rewards.
-- One-active-referral per friend — a customer can't be referred twice.
+- The referrer is rewarded only for a paid order that uses the friend's referral discount code.
+- Friends must be new customers. A friend with an existing order can't claim a friend reward.
+- Each customer can receive only one friend reward.
+- Referral links rely on the `yuko_referral` URL parameter, so the friend must open the full link.
 
 ## Examples
 
-- 500 points to the referrer + $10 off for the friend, capped at 5 successful referrals per customer.
-- 15% off for the friend + $20 store credit for the referrer.
+- Referrer gets 500 points (**Earn Points**); friend gets $10 off (**Amount Discount**), with **Block Self-Referrals** and **IP Address Match** on.
+- Referrer gets $20 **Store Credit**; friend gets 15% off (**Percentage Off**), with the landing URL set to `/collections/best-sellers`.
 
 ## Best practices
 
-<Tip>**Test the full flow end-to-end** before promoting the program: share, click, place an order, verify both sides earn.</Tip>
-<Tip>**Promote the program in your transactional emails** — order confirmation and shipping emails are the highest-engagement moments.</Tip>
-<Tip>**Enable fraud prevention from day one.** It's much easier than untangling fraudulent rewards after the fact.</Tip>
+<Tip>**Test the whole flow before you promote it.** Share a link, open it in a private window, claim the friend reward, place an order with the code, and check that the referrer is rewarded.</Tip>
+<Tip>**Keep Block Self-Referrals on.** It's the main guard against customers rewarding themselves.</Tip>
+<Tip>**Promote referrals in your post-purchase moments.** The Post-Purchase Widget and your order emails reach customers when they're most engaged.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="What happens if the friend's order is refunded?">
-    Both rewards are reversed automatically.
+  <Accordion title="When is the referrer rewarded?">
+    When the friend places a paid order that uses the friend's referral discount code. Orders without that code don't count as referral orders.
   </Accordion>
-  <Accordion title="Can the referrer reward themselves?">
-    With fraud prevention enabled, no. Self-referrals are blocked by email / IP / device match.
+  <Accordion title="Can a referrer refer themselves?">
+    Not while **Block Self-Referrals** is on. Yuko blocks claims where the friend's email or Shopify customer matches the referrer. Turn on **IP Address Match** too if you want to block claims from the referrer's IP address.
   </Accordion>
-  <Accordion title="Where do customers see their referrals?">
-    In the Customer Account hub, on the Rewards Landing Page, and in the Floating Launcher panel — see [Storefront Widget](/referrals/widget).
+  <Accordion title="Can I add utm_source or utm_medium to referral links?">
+    No. Only **UTM Campaign** is configurable.
+  </Accordion>
+  <Accordion title="Where do customers find their referral link?">
+    In the referral widgets (the Post-Purchase Widget and the Referral Landing Page), and in the referral sections of the Floating Rewards launcher and the customer account page. See [Referral widgets](/referrals/widget).
   </Accordion>
 </AccordionGroup>
 

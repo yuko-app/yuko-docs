@@ -1,31 +1,31 @@
 ---
 title: Subscribe to Newsletter
-description: Reward customers for opting in to your email newsletter.
+description: Reward customers with points when they subscribe to email marketing in Shopify.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Subscribe to Newsletter
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn → Add another way → **Subscribe to Newsletter**
 </Note>
 
 ## Introduction
 
-Award points when a customer subscribes to your email newsletter. A direct way to convert anonymous browsers into a marketable list.
+Award customers a one-time points bonus when they subscribe to your email marketing. Points are awarded automatically when Shopify records their email consent.
 
 ## What problem this solves
 
-Free shipping and 10%-off popups have lost their punch. A points-based opt-in incentive feels like ongoing value rather than a one-shot discount.
+Email is one of your most valuable owned channels. A points reward gives customers a concrete reason to opt in.
 
 ## When to use
 
 - You're growing an email list.
-- You want to convert email captures into loyalty members from day one.
-- You're running Klaviyo, Omnisend, Shopify Email or similar.
+- You want to turn email sign-ups into loyalty members from day one.
 
 ## Overview
 
-- One-time reward when a customer opts in.
-- Triggered by Shopify customer email-marketing-consent or via integration with your ESP.
-- Optional expiry on awarded points.
+- One-time reward per customer.
+- Triggered when Shopify records the customer's email marketing consent as subscribed.
+- Optional points expiry and VIP tier multipliers.
+- Available on Shopify stores, on select plans.
 
 ## Before you start
 
@@ -36,49 +36,69 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 ## Setup guide
 
 <Steps>
-  <Step title="Open the campaign">
-    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Subscribe to Newsletter**.
+  <Step title="Add the way to earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to earn**, click **Add another way** and pick **Subscribe to Newsletter**.
   </Step>
-  <Step title="Set details and points">
-    Enter campaign name and points value (e.g., `30`).
+  <Step title="Fill in Basic Details">
+    - **Campaign Name** — shown to customers on the storefront. You can use `[earn_value]` and `[points_label]`, for example `Earn [earn_value] [points_label]`.
+    - **Description** — short copy shown with the way to earn.
   </Step>
-  <Step title="Save & activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Set the points">
+    Enter **Points to earn for newsletter subscription** (a whole number, at least 1).
+  </Step>
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Review the side panel">
+    - **Status** — on by default.
+    - **Icon** — **Default**, or **Custom** to upload your own (JPG, PNG, GIF or WEBP, under 1 MB).
+    - **Tiers** — turn on to apply VIP tier multipliers to this way to earn.
+  </Step>
+  <Step title="Save">
+    Click **Save**.
   </Step>
 </Steps>
 
 ## How it works
 
-- Yuko detects email-marketing-consent on the Shopify customer record.
-- Points are credited once per customer.
-- If the customer unsubscribes, the points stay; they don't reverse.
+- Shopify notifies Yuko when a customer's email marketing consent changes.
+- If the customer is now subscribed, Yuko awards the points.
+- It doesn't matter where the customer subscribed (for example your storefront, checkout, or an app that updates consent in Shopify), as long as Shopify records the consent.
+- Each customer earns once. Unsubscribing doesn't remove the points, and subscribing again doesn't earn more.
+
+With **Tiers** on and [VIP tiers](/vip-tiers/overview) enabled, customers in a tier earn the tier's multiplier for this way to earn, plus any bonus points the tier sets for it. The extra points appear as a separate tier bonus entry.
 
 ### Decision guidance
 
-- **Calibrate the bonus** so it doesn't outweigh other one-time campaigns.
-- **Surface the bonus on your popup or signup form** — customers need to know it exists.
+- **Calibrate the bonus** so it doesn't outweigh your other one-time ways to earn.
+- **Tell customers about the reward** wherever you ask them to subscribe.
 
 ### Limitations
 
-- Customers who were already opted in before installing Yuko don't earn historically.
-- Re-subscribing after unsubscribing doesn't re-earn.
+- Shopify stores only. It doesn't appear on other platforms.
+- Customers who were already subscribed before you enabled it don't earn for past consent.
+- One reward per customer.
+- You can have one Subscribe to Newsletter way to earn.
 
 ## Examples
 
-- 30 points for newsletter subscription, paired with a popup that says *“Join our list. Get 30 points.”*
+- 30 points for subscribing, promoted in a pop-up that says *Join our list, get 30 points.*
 
 ## Best practices
 
-<Tip>**Mention the points reward in your popup copy.** Conversion lifts noticeably.</Tip>
+<Tip>**Mention the points in your sign-up pop-up copy.** It's a clear reason to subscribe.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
   <Accordion title="What happens if a customer unsubscribes?">
-    Points stay; they don't reverse.
+    The points stay. They aren't reversed.
   </Accordion>
-  <Accordion title="Can I integrate with Klaviyo?">
-    Yes — see the [Klaviyo integration](/getting-started/welcome) (coming soon in this docs section).
+  <Accordion title="Do existing subscribers earn?">
+    Not for consent given before you enabled it. Only new consent updates recorded by Shopify trigger the reward.
+  </Accordion>
+  <Accordion title="Does this work with my email app?">
+    It works whenever the customer's email marketing consent is recorded in Shopify. If your email app writes consent back to Shopify, those sign-ups earn too.
   </Accordion>
 </AccordionGroup>
 

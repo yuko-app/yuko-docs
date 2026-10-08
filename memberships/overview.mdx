@@ -1,39 +1,67 @@
 ---
 title: Memberships
-description: Sell paid memberships with recurring contracts, exclusive perks and Shopify-native checkout validation.
+description: Sell paid membership plans as Shopify subscriptions, with benefits such as discounts, free shipping, bonus points and store credit.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Memberships
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Membership
 </Note>
 
 ## What is the Memberships module
 
-Memberships let you sell paid loyalty plans — customers pay a recurring fee for ongoing perks like free shipping, exclusive discounts, member-only products, or VIP tier acceleration.
+Memberships let you sell paid plans. Customers pay a monthly or yearly fee and get benefits in return, such as discounts, free shipping, bonus points, store credit or a custom perk.
 
-It's distinct from VIP Tiers (which are *earned*, not bought) and from referrals (which are about acquisition). Memberships are a separate revenue line and a tighter relationship with your most committed customers.
+Memberships are different from [VIP tiers](/vip-tiers/overview), which customers *earn* through activity rather than buy. Memberships are a separate recurring revenue line tied to your most committed customers.
+
+Memberships are available on select plans.
 
 ## Who it's for
 
-- Brands with a recurring purchase pattern that benefits from a paid membership layer.
-- DTC brands that want a paid VIP plan above their free loyalty program.
-- Stores that want a predictable, recurring revenue line tied to their best customers.
+- Brands with repeat purchases that would benefit from a paid membership layer.
+- DTC brands that want a paid plan above their free loyalty program.
+- Stores that want predictable recurring revenue from their best customers.
+
+## The Membership menu
+
+| Tab | What you do there |
+|---|---|
+| **Plans** | Turn memberships on, create and order plans, add members, and set **Membership Settings**. See [Membership Plans](/memberships/plans). |
+| **Members** | See every customer's membership, change its status and next billing date, and review benefits. See [Members](/memberships/contracts). |
+| **Widgets** | Configure the cart, checkout, customer profile and product-page widgets. See [Cart Membership Upsell](/memberships/widgets/cart-membership-upsell). |
+| **Emails** | Edit the membership emails (created, upgraded, downgraded, cancelled). See [Membership emails](/emails/membership-emails). |
 
 ## How it fits together
 
 ```
-Membership Plan  ─→  Customer purchases  ─→  Active Contract  ─→  Member benefits unlocked
-     (Plans)                                  (Contracts)                        │
-                                                                                  ▼
-                                                          (Validated at checkout, shown in widgets)
+Plan (Membership → Plans)
+  │  Yuko creates a Shopify selling plan and a linked membership product
+  ▼
+Customer buys the product with the subscription option, or you add them manually
+  │
+  ▼
+Shopify subscription contract → Member (Membership → Members)
+  │  Yuko tags the customer and schedules the plan's benefits
+  ▼
+Benefits issued · Status shown in the profile widget · Renewals billed by Shopify
 ```
 
 ## Get started
 
-1. Create a membership **plan** in **[Plans](/memberships/plans)**.
-2. Add the **[Cart Membership Upsell](/memberships/widgets/cart-membership-upsell)** widget so customers see the offer.
-3. Configure **[Checkout Validation](/memberships/validation-extension)** so member-only perks work at checkout.
-4. Track active members in **[Contracts](/memberships/contracts)**.
+The **Quick Start** card on the Plans tab walks you through these steps:
+
+<Steps>
+  <Step title="Create a membership plan">
+    Add a plan with a price, billing interval and at least one benefit. See [Membership Plans](/memberships/plans).
+  </Step>
+  <Step title="Enable the cart upsell widget">
+    Promote your plan in the cart. See [Cart Membership Upsell](/memberships/widgets/cart-membership-upsell).
+  </Step>
+  <Step title="Enable the profile widget">
+    Let members view and manage their membership from their customer account. See [Profile Membership](/memberships/widgets/profile-membership).
+  </Step>
+</Steps>
+
+You can also add the [Purchase Options](/memberships/widgets/purchase-options) widget to product pages, and turn on [Membership Validation](/memberships/validation-extension) to stop customers buying a second membership.
 
 ## Recommended reading
 

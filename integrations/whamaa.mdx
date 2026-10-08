@@ -1,0 +1,113 @@
+---
+title: Whamaa
+description: Connect Whamaa as your WhatsApp Business API provider and send approved template messages, with optional CTA buttons, from any Yuko workflow.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → Whamaa
+</Note>
+
+## Introduction
+
+Whamaa is a WhatsApp Business API platform for sending template messages. Once connected, the [WhatsApp Workflow node](/workflows/whatsapp-node) can send your approved Whamaa templates whenever a loyalty event fires: points earned, reward redeemed, tier upgraded, points about to expire and so on.
+
+For the provider-agnostic overview of how Yuko's WhatsApp integration works, see [WhatsApp](/integrations/whatsapp).
+
+## When to use Whamaa
+
+- You already send WhatsApp messages through Whamaa.
+- You want loyalty events to trigger the same approved templates you use elsewhere.
+- You want URL buttons in your messages that link each customer to a personalised page.
+
+## Before you start
+
+<Check>You have an active Whamaa account connected to the WhatsApp Business API.</Check>
+<Check>You have at least one **approved** template in Whamaa.</Check>
+<Check>You have your Whamaa API key.</Check>
+
+## Connect Whamaa to Yuko
+
+<Steps>
+  <Step title="Get your Whamaa API key">
+    Copy the API key from your Whamaa account.
+  </Step>
+  <Step title="Open Whamaa in Yuko">
+    In Shopify admin, go to **Apps → Yuko Loyalty → Integrations**, pick the **WhatsApp** category from the left sidebar, and click **Whamaa**.
+  </Step>
+  <Step title="Paste the API key and connect">
+    Paste the key into **API Key** and click **Connect Integration**. The page shows **Connected**.
+  </Step>
+  <Step title="Add a Whamaa step to a workflow">
+    Open any workflow, click **+**, pick **WhatsApp**, and select **Whamaa** as the provider.
+  </Step>
+</Steps>
+
+## Configure the Whamaa step in a workflow
+
+| Field | What it is | Example |
+|---|---|---|
+| **Template Name** | Approved template name from your Whamaa dashboard (no spaces) | `loyalty_points_earned` |
+| **Language Code** | The template's language code | `en`, `hi`, `ar` |
+| **Add CTA Button** *(optional)* | Turn on to add URL call-to-action buttons with dynamic suffixes | On |
+| **CTA Button Count** | How many URL buttons the template has (1–2). Shown when **Add CTA Button** is on. | `1` |
+| **CTA Button URL Suffixes** | One dynamic suffix per button, appended to the button's base URL in the template. Supports [shortcodes](/workflows/whatsapp-node#available-shortcodes). | `{{coupon_code}}` |
+| **Parameter Count** | Number of body variables in the template (1–10) | `2` |
+| **Template Parameters** | One value per body variable, in order. Supports [shortcodes](/workflows/whatsapp-node#available-shortcodes). | `{{first_name}}`, `{{points_balance}}` |
+
+You must fill in exactly as many parameters and button suffixes as the counts you set. Template names can't contain spaces.
+
+<Tip>The **Template Name**, **Language Code**, parameter count and number of URL buttons must match the approved template in Whamaa exactly. A mismatch is the most common reason a send fails.</Tip>
+
+If a button suffix resolves to an empty value at send time, Yuko sends `?from=yuko` instead so the button still opens a valid link.
+
+Yuko sends the customer's phone number from Shopify as stored, including the country code.
+
+## Example use case
+
+**Points-earned message with a shop link**
+
+1. In Whamaa, get a template called `loyalty_points_earned` approved, with two body variables (first name, points balance) and one URL button whose base URL is your store's discount link.
+2. In Yuko Workflows, build: **Trigger: Earn Points** → **WhatsApp (Whamaa)**.
+3. Set Template Name = `loyalty_points_earned`, Language Code = `en`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{points_balance}}`.
+4. Turn on **Add CTA Button**, set CTA Button Count = `1`, and Button 1 URL Suffix = `{{coupon_code}}`.
+5. Activate the workflow.
+
+## Limitations
+
+- **Approved templates only.** Meta must approve every template before it can be sent.
+- **No template authoring inside Yuko.** Create and edit templates in Whamaa.
+- **Up to 10 body parameters and 2 URL buttons per step.**
+- **No delivery status in Yuko.** The workflow node records the send as pending, completed or failed based on Whamaa's API response, not on delivered or read events.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="The node logs the action as failed. What do I check?">
+    1. The template name matches Whamaa exactly. 2. The template is approved. 3. The language code matches the approved template. 4. The parameter count and button count match the template. 5. The customer has a phone number in Shopify.
+  </Accordion>
+  <Accordion title="Can I use the same template in several workflows?">
+    Yes. Each WhatsApp node points to one template, and any number of nodes can use the same one.
+  </Accordion>
+  <Accordion title="How do I rotate the API key?">
+    Disconnect Whamaa in Yuko, generate a new key in Whamaa, then connect again with the new key.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
+
+<RelatedWhatsAppProviders />
+
+<CardGroup cols={2}>
+  <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
+    How Yuko's WhatsApp integration works across all 13 providers.
+  </Card>
+  <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
+    Setup, shortcodes, and example workflows.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

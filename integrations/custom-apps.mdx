@@ -1,61 +1,67 @@
 ---
 title: Custom Apps
-description: Connect a custom OAuth or API-key based integration that's not in the standard catalogue.
+description: OAuth apps that let a partner or in-house tool connect to a merchant's Yuko data through the REST API, with merchant-approved scopes.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → Custom Apps
+**Where to find this:** Custom Apps aren't listed on the Integrations page yet. [Contact support](https://yuko.so/support/) to set one up.
 </Note>
 
 ## Introduction
 
-If the tool you want to integrate isn't in Yuko's standard connector catalogue, you can build a custom integration using:
+A **custom app** is an OAuth 2.0 client registered with Yuko. It lets an external tool (a checkout provider, a partner app or your own internal system) ask a merchant for access to their Yuko data, instead of the merchant copying a REST API key by hand.
 
-- **Custom OAuth Connector** — for tools with OAuth 2.0 endpoints.
-- **Custom REST API Connector** — for tools with API-key authentication.
-- **Webhooks + REST API** — for fully custom flows.
+Once the merchant approves, the app receives an access token and calls the [REST API](/integrations/rest-api) with the scopes the merchant granted.
+
+<Info>Custom Apps don't push Yuko events to other tools. To receive events, use [Webhooks](/integrations/webhooks). To call the API from a single store's systems, a [REST API](/integrations/rest-api) key is simpler.</Info>
 
 ## When to use
 
-- The tool you want isn't in the catalogue.
-- You're building an internal tool that consumes Yuko data.
-- You're integrating Yuko with a partner that supports OAuth 2.0 or REST APIs.
+- You're building an app that many Yuko merchants will connect to.
+- You want merchants to connect with one click and approve access, rather than paste an API key.
+- You need tokens that can be revoked without affecting the merchant's other keys.
 
-## Prerequisites
+## What a custom app includes
 
-<Check>You have OAuth credentials or API keys from the target tool.</Check>
-<Check>You have a developer who can configure the connector mapping.</Check>
+| Setting | What it is |
+|---|---|
+| **App name** and **Description** | Shown to the merchant on the approval screen. |
+| **Redirect URL (Callback)** | Where Yuko sends the merchant after they approve or deny access. |
+| **Installation URL** and **Settings URL** | Your app's install and settings pages. |
+| **Client ID** and **Client Secret** | The app's OAuth credentials. Keep the secret on your server. |
+| **API Scopes** | The access the app requests: **Custom**, **Read-Only** (read access for all scopes) or **Full Access** (read/write access for all scopes). With **Custom**, set each resource to **None**, **Read** or **Read/Write**. See [Scopes](/developer/api/scopes). |
 
-## Setup
+## How the connection works
 
 <Steps>
-  <Step title="Open Custom Apps">
-    Go to **Apps → Yuko Loyalty → Integrations → Custom Apps**.
+  <Step title="Your app sends the merchant to Yuko">
+    The app redirects the merchant to Yuko's authorisation page with its client ID, redirect URL, requested scopes and a `state` value.
   </Step>
-  <Step title="Pick the connector type">
-    Choose **OAuth** or **API key** based on what your target tool supports.
+  <Step title="The merchant approves">
+    Yuko shows the app's name and the access it's asking for. The merchant clicks **Authorize** or **Deny**.
   </Step>
-  <Step title="Configure endpoints and credentials">
-    Enter the OAuth callback URLs / API key + base URL.
+  <Step title="Your app exchanges the code">
+    Yuko redirects back to the app's redirect URL with an authorisation code. The app's server exchanges the code for an access token and a refresh token.
   </Step>
-  <Step title="Map events to endpoints">
-    Pick which Yuko events should hit which endpoint on the target tool.
-  </Step>
-  <Step title="Save and test">
-    Yuko sends a test request to verify the connection.
+  <Step title="Your app calls the API">
+    The app sends the access token as a Bearer token on [REST API](/developer/api/introduction) requests, within the approved scopes.
   </Step>
 </Steps>
 
 ## Best practices
 
-<Tip>**Use Webhooks + your own integration code** for the most flexible custom flows. Custom Apps is for low-code mappings; webhooks are for full control.</Tip>
-<Tip>**Start in a development store.** Custom integrations are easy to misconfigure on production.</Tip>
+<Tip>**Request only the scopes you need.** Merchants are more likely to approve narrow access.</Tip>
+<Tip>**Keep the client secret and tokens on your server.** Never put them in browser or mobile code.</Tip>
+<Tip>**Test with a development store** before asking real merchants to connect.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
+  <Accordion title="What's the difference between a custom app and a REST API key?">
+    A REST API key is created by the merchant in **Integrations → REST API** and pasted into your tool. A custom app uses OAuth, so the merchant approves access from your app without handling keys.
+  </Accordion>
   <Accordion title="What's the difference vs Webhooks?">
-    Custom Apps lets you push Yuko data to an arbitrary external endpoint without writing receiver code. Webhooks lets you receive Yuko events on your own server. Use either or both.
+    Custom apps call Yuko's API. Webhooks send Yuko events to your server. Many integrations use both.
   </Accordion>
 </AccordionGroup>
 

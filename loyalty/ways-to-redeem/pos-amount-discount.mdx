@@ -1,0 +1,127 @@
+---
+title: POS Amount Discount
+description: Let in-store customers redeem points for a fixed-amount discount at Shopify POS.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to redeem → Add another way → **Shopify POS** → **POS Amount Discount**
+</Note>
+
+## Introduction
+
+A POS Amount Discount lets customers spend their points in your physical store. The cashier redeems it from the Yuko tile in Shopify POS, and a fixed amount comes off the sale (for example, `500 points = $5 off`).
+
+## What problem this solves
+
+Customers who earn points online also shop in person. Without a POS reward, they can't spend their balance at the counter. This reward gives in-store customers the same earn-and-redeem loop.
+
+## When to use
+
+- You sell in person with Shopify POS.
+- You want in-store customers to redeem points at the register.
+- You want a simple, fixed value the cashier can explain quickly.
+
+## Overview
+
+- Redeemable **only at Shopify POS**. It doesn't appear in your online widgets, and online rewards can't be redeemed at POS.
+- **Fixed amount of points** or **Incremented points**.
+- Optional minimum purchase amount.
+- Optional combinations with other discounts.
+- No description, coupon prefix, product targeting or expiry settings.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>The [Shopify POS integration](/integrations/shopify-pos) is connected. The **Shopify POS** section only appears in the reward picker after that.</Check>
+<Check>The Yuko tile is added to the smart grid on your POS devices.</Check>
+
+## Setup guide
+
+<Steps>
+  <Step title="Add the reward">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to redeem**, click **Add another way** and pick **POS Amount Discount** under **Shopify POS**.
+  </Step>
+  <Step title="Name the reward">
+    Under **Basic Details**, set the **Reward Name**. Cashiers and customers see it in POS.
+  </Step>
+  <Step title="Choose the Reward type">
+    <AccordionGroup>
+      <Accordion title="Fixed amount of points">
+        Set **Points Required** and **Discount Amount**, for example 500 points for $5 off.
+      </Accordion>
+      <Accordion title="Incremented points">
+        The cashier chooses how many points to spend, in steps.
+        - **Point Increments** — points per discount unit.
+        - **Discount per Increment** — discount for each increment.
+        - **Minimum points to redeem** and **Maximum points to redeem** — the range allowed in one redemption. If you set a maximum, it must be at least the minimum.
+      </Accordion>
+    </AccordionGroup>
+  </Step>
+  <Step title="Set Minimum Requirements (optional)">
+    Choose **No minimum requirements** or **Minimum purchase amount** and enter a **Minimum Subtotal**. POS rewards don't support a minimum quantity of items.
+  </Step>
+  <Step title="Choose combinations (optional)">
+    Under **Combine with other discounts**, tick any of **Product discount**, **Order discount** and **Free shipping**. All three are ticked by default.
+  </Step>
+  <Step title="Enable and save">
+    Turn on **Status** in the side panel and click **Save**. The reward shows a **POS** badge in the rewards list.
+  </Step>
+</Steps>
+
+## How it works
+
+1. The cashier adds the customer and at least one product to the cart in Shopify POS.
+2. They open the Yuko tile, go to the **Loyalty discounts** tab and tap **Redeem points**.
+3. Under **Available rewards**, they tap **Redeem** on this reward. For incremented rewards, they first set the points to spend with the stepper.
+4. After the confirmation, Yuko deducts the points, creates a single-use discount code for that customer and applies it to the cart.
+5. If the cart is below the Minimum Subtotal, the reward stays disabled and POS shows how much more the customer needs to spend.
+
+Codes a customer already redeemed but hasn't used are listed in the **Loyalty discounts** tab, so the cashier can apply them to the cart without spending more points.
+
+### Decision guidance
+
+- **Use the same value as your online Amount Discount** so customers get a consistent rate in both channels.
+- **Use incremented points** if customers often have large balances to spend in store.
+
+### Limitations
+
+- Only redeemable at Shopify POS.
+- Minimum requirement is subtotal only.
+- If another discount is already in the cart, Shopify applies only the best discount unless both allow combinations. POS warns the cashier about this before applying.
+
+## Examples
+
+- *Boutique:* fixed, `500 pts = $5 off`, Minimum Subtotal $30.
+- *Flexible balance:* incremented, 100 points per $1, minimum 500, maximum 5,000.
+
+## Best practices
+
+<Tip>**Train cashiers to add the customer first.** The tile can't show rewards until a customer is on the cart.</Tip>
+<Tip>**Allow combinations** if you often run in-store promotions, so the loyalty discount isn't silently dropped.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Why don't I see the Shopify POS section in the reward picker?">
+    Connect the [Shopify POS integration](/integrations/shopify-pos) first. The section only appears when POS is connected.
+  </Accordion>
+  <Accordion title="Can customers redeem this reward online?">
+    No. POS rewards are only offered at Shopify POS, and online rewards are only offered online.
+  </Accordion>
+  <Accordion title="Can I change the text the cashier sees?">
+    Yes. The POS tile and modal text are edited in the [Shopify POS integration](/integrations/shopify-pos) settings.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedRewards from '/snippets/related-rewards.mdx';
+
+<RelatedRewards />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

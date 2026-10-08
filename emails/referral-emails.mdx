@@ -1,70 +1,75 @@
 ---
 title: Referral Emails
-description: Templates for the three referral lifecycle moments — advocate signup, friend reward delivery and advocate reward delivery.
+description: The three built-in referral emails, Referrer welcome, Friend reward unlocked and Referrer reward issued, with their default subjects and delays.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Referral → Notifications
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Referral → Emails
 </Note>
 
-Referrals have three distinct email moments. Each maps to a built-in template you can customise in the [Template Editor](/emails/template-editor).
+Your [referral program](/referrals/overview) has three built-in emails. They start **inactive**. Switch them on in **Referral → Emails** and edit them in the [Template Editor](/emails/template-editor).
 
-## Advocate Registered
+| Email | Sent to | Sent when | Default subject |
+|---|---|---|---|
+| [Referrer welcome](#referrer-welcome) | The referrer | They join the referral program | Welcome to our referral program |
+| [Friend reward unlocked](#friend-reward-unlocked) | The referred friend | They claim their friend reward | Your referral discount is ready |
+| [Referrer reward issued](#referrer-reward-issued) | The referrer | Their reward is issued for a successful referral | Your referral advocate reward is ready |
 
-**Trigger:** A customer becomes a referrer — either by being auto-enrolled when they reach the criteria, or when they manually opt in.
+Each email has a delay setting (**Days after Referrer welcome**, **Days after Friend reward unlocked**, **Days after Referrer reward issued**). Leave it at **0** to send immediately.
 
-**Default subject:** *“Here's your referral link, [first_name]”*
+## Referrer welcome
 
-**Default body summary:** Greeting → program explanation (what the friend gets, what the referrer gets) → the referral link → share buttons.
+**Sent when:** a customer joins your referral program as a referrer.
 
-**Useful shortcodes:** `[first_name]`, `[referral_link]`, `[reward_value]`.
+**Default subject:** *Welcome to our referral program*
 
-<Tip>**Make this the most-polished email in the program.** It's the one that actually drives shares.</Tip>
+**Default message:** Greeting → thanks for joining → *"Here is your personal referral link: `{{ referral_link }}`"* → share the link, and when friends complete their first purchase you may earn rewards.
 
----
+**Useful shortcodes:** `{{ first_name }}`, `{{ referral_link }}`, `{{ referral_code }}`, `{{ advocate_name }}`, `{{ expiry }}`.
 
-## Friend Reward Claimed
-
-**Trigger:** A friend's reward has been issued (their first qualifying order completed).
-
-**Default subject:** *“Your [reward_value] discount is ready”*
-
-**Default body summary:** Greeting → reward name + discount code → expiry → CTA to redeem.
-
-**Useful shortcodes:** `[first_name]`, `[reward_value]`, `[discount_code]`, `[discount_expiry_date]`.
-
-<Tip>**Send this to the friend, not the referrer.** The friend is the new customer being onboarded.</Tip>
+<Tip>**Make the link the hero.** This email is what gets referrers sharing, so put `{{ referral_link }}` in a button, not just the body text.</Tip>
 
 ---
 
-## Advocate Rewarded
+## Friend reward unlocked
 
-**Trigger:** A referrer's reward has been issued (after their friend's order is paid).
+**Sent when:** a referred friend claims their friend reward, for example through the [Friend Welcome Popup](/referrals/widgets/friend-welcome-popup). It goes to the **friend**.
 
-**Default subject:** *“Your referral worked! Here's your reward”*
+**Default subject:** *Your referral discount is ready*
 
-**Default body summary:** Greeting → the friend converted → referrer's reward (points / discount / store credit) → CTA to keep sharing.
+**Default message:** Greeting → *"You've just unlocked a special discount through a referral. Here is your discount code: `{{ discount_code }}`"* → enter it at checkout.
 
-**Useful shortcodes:** `[first_name]`, `[friend_name]`, `[reward_value]`, `[referral_count]`.
+**Useful shortcodes:** `{{ discount_code }}`, `{{ reward_value }}`, `{{ reward_type }}`, `{{ expires_at }}`, `{{ referred_by }}`, `{{ referral_code_used }}`.
 
-<Tip>**Always include the referral count** — it gives top referrers a reason to keep going.</Tip>
+<Tip>**Mention who sent them.** `{{ referred_by }}` makes the email feel personal and builds trust with a first-time shopper.</Tip>
 
 ---
+
+## Referrer reward issued
+
+**Sent when:** a referrer earns their reward because a friend they referred completed a qualifying order. It goes to the **referrer**.
+
+**Default subject:** *Your referral advocate reward is ready*
+
+**Default message:** Greeting → *"You've just unlocked a special reward through a referral. Here is your reward code/ value: `{{ discount_code }}`"*.
+
+**Useful shortcodes:** `{{ discount_code }}`, `{{ reward_value }}`, `{{ reward_type }}`, `{{ friend_first_name }}`, `{{ total_referrals }}`, `{{ points_balance }}`.
+
+<Tip>**Show their progress.** `{{ total_referrals }}` gives your best referrers a reason to keep sharing.</Tip>
 
 ## Best practices
 
-<Tip>**Pair Advocate Registered with the Referrals widget.** The widget is the daily surface; the email is the one-time *“you're in the program”* moment.</Tip>
-<Tip>**Test all three with a real referral flow.** Place a test referral order to verify both Friend Reward and Advocate Rewarded fire correctly.</Tip>
-<Tip>**Don't over-promote.** A flood of *“your friend signed up”* emails feels spammy.</Tip>
+<Tip>**Turn on all three together.** They cover both sides of the referral loop: the referrer gets their link, the friend gets their code, and the referrer hears when it paid off.</Tip>
+<Tip>**Test with a real referral.** Join as a referrer, open your link in a private window, claim the friend reward and place a test order. This checks all three emails.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="What happens if the friend's order is refunded?">
-    Both rewards are reversed automatically. No additional emails are sent for the reversal.
+  <Accordion title="Can I send a milestone email, for example after 5 referrals?">
+    Not as a separate email. Workflow conditions can't filter on referral count, so the simplest option is to mention the count in Referrer reward issued with `{{ total_referrals }}`. For other follow-ups, build a [workflow](/workflows/overview) on the **Referrer Rewarded** trigger.
   </Accordion>
-  <Accordion title="Can I send a thank-you email after every successful referral?">
-    The Advocate Rewarded email serves that purpose. For richer behaviour (e.g., milestone emails after 5 successful referrals), use [Workflows](/workflows/overview).
+  <Accordion title="Is there an email when a referral is completed?">
+    There's no built-in one, but you can build a workflow on the **Referral Completed** trigger.
   </Accordion>
 </AccordionGroup>
 

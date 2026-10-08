@@ -1,0 +1,105 @@
+---
+title: Purchase Options Widget
+description: Show one-time and subscription purchase options, with the price and charge timing, on product pages.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Membership → Widgets → Product page: Purchase options
+</Note>
+
+## Introduction
+
+The **Product page: Purchase options** widget shows a product's purchase options on the product page: a one-time purchase plus each subscription plan, with its price and how often it's charged. It's the **Yuko: Purchase Options** theme app block.
+
+## What problem this solves
+
+Many themes don't show subscription options clearly, or don't show them at all. Without them, customers can't pick the subscription on your membership product. This widget lists every option with clear pricing and renewal terms.
+
+## Where it appears
+
+- Product pages, wherever you add the **Yuko: Purchase Options** block.
+- It shows only on products that have subscription options (selling plans), such as your plans' linked membership products.
+
+## Overview
+
+- A one-time purchase option (unless the product is subscription-only) and one option per subscription plan.
+- A summary under the options showing the charge, your renewal terms and a link to your subscription policy.
+- Optionally changes the theme's buy button text when a subscription is selected.
+- A **Custom CSS** field.
+
+## Before you start
+
+<Check>At least one plan exists in **Membership → Plans**, so its linked product has a subscription option.</Check>
+<Check>The **Yuko App** embed is turned on in your theme. See [Theme App Embed](/installation-and-setup/theme-app-embed).</Check>
+
+## Setup guide
+
+### 1. Configure the widget in Yuko
+
+<Steps>
+  <Step title="Open the widget">
+    Go to **Membership → Widgets** and open **Product page: Purchase options**.
+  </Step>
+  <Step title="Edit the text">
+    | Field | Default |
+    |---|---|
+    | **Title** | `Purchase options` |
+    | **One-time purchase label** | `One-time purchase` |
+    | **Charge prefix** (under **Charge timing**) | `Billed`, shown before the frequency, as in "Billed every month" |
+    | **Renewal terms** | `Auto-renews, skip or cancel anytime` |
+    | **Subscription policy link label** | `View subscription policy`. Shown only when your store has a subscription policy in Shopify's legal settings. |
+  </Step>
+  <Step title="Set the buy button">
+    Under **Buy button**, **Update the buy button text when a subscription is selected** is on by default. Set the **Subscription buy button label** (default `Add subscription to cart`), or turn the option off to keep your theme's button text.
+  </Step>
+  <Step title="Add Custom CSS (optional)">
+    Use the **Custom CSS** field to adjust the widget's look.
+  </Step>
+  <Step title="Save and enable">
+    Click **Save** and switch the widget on.
+  </Step>
+</Steps>
+
+### 2. Add the block to your product template
+
+import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
+
+<SetupThemeBlock />
+
+Open the **Product** template used by your membership product and add **Yuko: Purchase Options**, usually just above the buy buttons. The block has no theme-editor settings.
+
+### 3. Verify
+
+Open your membership product on the storefront. Check that the options appear, that selecting the subscription shows the charge summary, and that the buy button text changes (if enabled).
+
+## How it works
+
+1. On a product with subscription options, the block lists the one-time option (if allowed) and each plan with its price.
+2. When the customer selects a subscription, the summary shows the price with your charge prefix and frequency, your renewal terms and the policy link.
+3. The selected plan is added to the cart with the product.
+
+### Limitations
+
+- Shows only on products with subscription options.
+- In the theme editor, the block always shows so you can position it; on the live store it shows only when the widget is switched on.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="The block doesn't appear on my product">
+    Check that the product has a subscription option, the widget is switched on in Yuko, and the block is added to the product template that product uses.
+  </Accordion>
+  <Accordion title="Why is there no policy link?">
+    The link appears only when your store has a subscription policy set in Shopify's legal policy settings.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import MembershipWidgetsCrossLinks from '/snippets/membership-widgets-cross-links.mdx';
+
+<MembershipWidgetsCrossLinks />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

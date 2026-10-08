@@ -1,9 +1,28 @@
+Placeholders are written in square brackets, for example `[points_label]`. Each text field's help text in the widget editor lists the placeholders that field supports.
+
+**Available in every storefront widget text**
+
 | Placeholder | Replaced with |
 |---|---|
-| `[points_value]` | The numeric points value (per product, per cart or per order, depending on widget). |
-| `[points_label]` | Your configured points label (e.g., *Points*, *Stars*, *Coins*). |
+| `[points_label]` | Your points label from **Loyalty → Settings** (singular or plural, e.g. *point* / *points*). |
 | `[point_balance]` | The customer's current points balance. |
-| `[discount_expiry_date]` | The date a redeemed reward expires. |
-| `[next_tier]` | Name of the customer's next VIP tier. |
-| `[tier_entry_amount]` | Spend or points threshold to reach the next tier. |
-| `[multiplier_value]` | Points multiplier applied at the customer's current tier. |
+| `[points_cash_value]` | What the customer's balance is worth in your store currency, based on your points-to-cash conversion rate. |
+| `[store_name]` | Your store name. |
+
+**Widget-specific placeholders**
+
+| Placeholder | Replaced with | Used in |
+|---|---|---|
+| `[points_value]` | Points the customer can earn on this product, cart or order. | Product page, Cart earn, Checkout earn, Order status earn |
+| `[first_name]` | The customer's first name (logged-in customers only). | Cart redeem greeting, Loyalty Nudges |
+| `[customer_name]` | The customer's full name (logged-in customers only). | Loyalty Nudges |
+| `[points_needed]` | How many more points the customer needs for a reward. | Insufficient-points text (Cart redeem, Loyalty Nudges) |
+| `[expiration_date]` | The expiry date of an earned reward. Hidden automatically when the reward doesn't expire. `[discount_expiry_date]` works the same way. | Reward expiry text (Cart redeem, Loyalty Nudges, Floating Rewards) |
+| `[points_to_redeem]` | The number of points the customer chose to redeem. | Checkout redeem summary |
+| `[discount_value]` | The discount those points unlock. | Checkout redeem summary |
+| `[tier_name]` | A VIP tier name. | VIP tier text (Floating Rewards) |
+| `[next_tier]` | The name of the customer's next VIP tier. | VIP progress text |
+| `[tier_entry_amount]` | The threshold needed to enter a tier. | Cart redeem tier entry text |
+| `[tier_reach_level]` | The threshold needed to reach a tier. | Floating Rewards VIP text |
+| `[multiplier_value]` | The points multiplier for a VIP tier (e.g. *2*). Shown only when the multiplier is greater than 1. | Points multiplier benefit text |
+| `[renewal_date]` | The date a paid membership renews. | Floating Rewards membership text |

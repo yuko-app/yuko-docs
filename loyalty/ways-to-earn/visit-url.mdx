@@ -1,0 +1,121 @@
+---
+title: Visit URL
+description: Reward customers with points for opening a link you choose, such as your YouTube channel, blog or community page.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn → Add another way → **Visit URL**
+</Note>
+
+## Introduction
+
+Award customers points for opening a link you want to promote, like your YouTube channel, blog, podcast or community page. You choose how often a customer can earn: once, daily, weekly or monthly.
+
+## What problem this solves
+
+Your social channels and content need traffic, but customers rarely go looking for them. A points reward in your loyalty widget sends them there.
+
+## When to use
+
+- You want to drive traffic to a channel that isn't covered by the follow and share ways to earn (for example YouTube or a community forum).
+- You publish regular content and want customers to keep coming back to it.
+- You want to promote one link at a time.
+
+## Overview
+
+- Configured with one **URL**.
+- **Frequency**: Once, Daily, Weekly or Monthly.
+- Points are credited when the customer clicks **Visit**.
+- Optional points expiry and VIP tier multipliers.
+- Available on select plans.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+## Setup guide
+
+<Steps>
+  <Step title="Add the way to earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to earn**, click **Add another way** and pick **Visit URL**.
+  </Step>
+  <Step title="Fill in Basic Details">
+    - **Campaign Name** — shown to customers on the storefront. You can use `[earn_value]` and `[points_label]`, for example `Earn [earn_value] [points_label]`.
+    - **Description** — short copy shown with the way to earn.
+  </Step>
+  <Step title="Set the points">
+    Enter **Points to earn for visiting the URL** (a whole number, at least 1).
+  </Step>
+  <Step title="Add the URL and Frequency">
+    - **URL** — the link customers open to earn points, for example `https://www.youtube.com/@yourchannel`. It must start with `http://` or `https://`.
+    - **Frequency** — how often each customer can earn from this URL: **Once** (the default), **Daily**, **Weekly** or **Monthly**.
+  </Step>
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Review the side panel">
+    - **Status** — on by default.
+    - **Icon** — **Default**, or **Custom** to upload your own (JPG, PNG, GIF or WEBP, under 1 MB).
+    - **Tiers** — turn on to apply VIP tier multipliers to this way to earn.
+  </Step>
+  <Step title="Save">
+    Click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+1. The way to earn appears in the **Ways to earn** list of your loyalty widgets (for example the [floating launcher](/onsite-widgets/floating-launcher), [rewards landing page](/onsite-widgets/rewards-landing-page) and [customer account page](/onsite-widgets/customer-account-page)) with a **Visit** button.
+2. A logged-in customer clicks **Visit**. Your URL opens in a new tab.
+3. Yuko credits the points as soon as the customer clicks. Yuko can't see what happens on the other site, so earning is based on the click.
+4. The way to earn then shows as completed for that customer until they can earn again.
+5. With a Daily, Weekly or Monthly frequency, the customer can earn again in the next day, week (weeks start on Monday) or calendar month. Periods follow UTC.
+
+With **Tiers** on and [VIP tiers](/vip-tiers/overview) enabled, customers in a tier earn the tier's multiplier for this way to earn, plus any bonus points the tier sets for it. The extra points appear as a separate tier bonus entry.
+
+### Decision guidance
+
+- **Use Once** for a one-off push, like a new channel launch.
+- **Use Weekly or Monthly** for content you update regularly, like a newsletter archive or video series.
+- **Keep the reward small** if you allow repeat earning.
+
+### Limitations
+
+- **Only one Visit URL way to earn per store**, so you can promote one link at a time. To promote a different link, edit the URL.
+- Earning is based on the click; Yuko can't check how long the customer stayed.
+- Customers must be logged in to earn.
+
+## Examples
+
+- A cooking brand awards 10 points once for visiting its YouTube channel.
+- A wellness store awards 5 points weekly for opening its blog, to build a reading habit.
+
+## Best practices
+
+<Tip>**Promote your newest content.** Swap the URL when you publish something you want customers to see.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I add several Visit URL ways to earn for different links?">
+    No. A store can have one Visit URL way to earn with one link. Edit the URL to promote something else.
+  </Accordion>
+  <Accordion title="When can a customer earn again?">
+    It depends on **Frequency**: never again for Once, the next day for Daily, the next week (Monday start) for Weekly, and the next calendar month for Monthly.
+  </Accordion>
+  <Accordion title="How is this different from Daily Visit?">
+    [Daily Visit](/loyalty/ways-to-earn/daily-visit) rewards customers for visiting your own store, automatically. Visit URL rewards a click on a link you choose, which can be on any website.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

@@ -4,29 +4,30 @@ description: Reward customers with points for liking your Facebook page.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Facebook Like
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn → Add another way → **Facebook Like**
 </Note>
 
 ## Introduction
 
-Award customers a one-time bonus when they like your Facebook page through the loyalty widget.
+Award customers a one-time points bonus when they like your Facebook page from your loyalty widgets.
 
 ## What problem this solves
 
-Growing a Facebook page audience organically is hard. A small points reward gets your existing customers to take a 2-second action that compounds your social proof.
+Growing a Facebook page audience organically is hard. A small points reward gets your existing customers to take a two-second action that adds to your social proof.
 
 ## When to use
 
 - You have an active Facebook page.
-- Your audience is on Facebook in non-trivial numbers.
-- You want a low-friction earning action with a one-time cap.
+- Your audience is on Facebook in meaningful numbers.
+- You want a low-effort, one-time way to earn.
 
 ## Overview
 
 - One-time reward per customer.
-- Configured with your Facebook page URL.
-- Verification is intent-based (the customer clicks through to like).
-- Optional points expiry.
+- Configured with your **Facebook Page** name or ID.
+- Points are credited when the customer clicks **Like**.
+- Optional points expiry and VIP tier multipliers.
+- Available on select plans.
 
 ## Before you start
 
@@ -34,61 +35,77 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <BeforeYouStart />
 
-<Check>You have an active Facebook business page.</Check>
+<Check>You have an active Facebook page.</Check>
 
 ## Setup guide
 
 <Steps>
-  <Step title="Open the campaign">
-    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Facebook Like**.
+  <Step title="Add the way to earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to earn**, click **Add another way** and pick **Facebook Like**.
   </Step>
-  <Step title="Set details and points">
-    Enter campaign name, description and points value (e.g., `10`).
+  <Step title="Fill in Basic Details">
+    - **Campaign Name** — shown to customers on the storefront. You can use `[earn_value]` and `[points_label]`, for example `Earn [earn_value] [points_label]`.
+    - **Description** — short copy shown with the way to earn.
   </Step>
-  <Step title="Add your Facebook page URL">
-    Paste the full URL to your Facebook page.
+  <Step title="Set the points">
+    Enter **Points to earn on Facebook like** (a whole number, at least 1).
   </Step>
-  <Step title="Configure expiry (optional)">
-    Set expiry if desired.
+  <Step title="Add your Facebook Page">
+    Enter your **Facebook Page** name or ID (the part after `facebook.com/`). Customers are sent to `https://www.facebook.com/yourpage`.
   </Step>
-  <Step title="Save & activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Review the side panel">
+    - **Status** — on by default.
+    - **Icon** — **Default**, or **Custom** to upload your own (JPG, PNG, GIF or WEBP, under 1 MB).
+    - **Tiers** — turn on to apply VIP tier multipliers to this way to earn.
+  </Step>
+  <Step title="Save">
+    Click **Save**.
   </Step>
 </Steps>
 
 ## How it works
 
-- The action appears in the loyalty widget on the storefront.
-- The customer clicks through to your Facebook page in a new tab.
-- They click Like on Facebook.
-- Yuko credits the points (intent-based verification — see Limitations).
+1. The way to earn appears in the **Ways to earn** list of your loyalty widgets (for example the [floating launcher](/onsite-widgets/floating-launcher), [rewards landing page](/onsite-widgets/rewards-landing-page) and [customer account page](/onsite-widgets/customer-account-page)) with a **Like** button.
+2. A logged-in customer clicks **Like**. Your Facebook page opens in a new tab.
+3. Yuko credits the points as soon as the customer clicks. Social networks don't let apps confirm the action, so earning is based on the click.
+4. The way to earn then shows as completed for that customer.
+
+With **Tiers** on and [VIP tiers](/vip-tiers/overview) enabled, customers in a tier earn the tier's multiplier for this way to earn, plus any bonus points the tier sets for it. The extra points appear as a separate tier bonus entry.
 
 ### Decision guidance
 
-- **Keep the bonus modest** (5–15 points). It's a low-friction one-time action.
-- **Don't run all social campaigns at once** — pick the 2–3 networks where your audience actually engages.
+- **Keep the reward modest** (5–20 points). It's a quick one-time action.
+- **Only run networks where your customers are active.** Pick two or three rather than every network.
 
 ### Limitations
 
-- Facebook restricts programmatic verification of likes; verification is intent-based.
-- One-time per customer; subsequent likes don't earn.
+- Earning is based on the click; Yuko can't check whether the customer actually liked the page.
+- One reward per customer.
+- Customers must be logged in to earn.
+- You can have one Facebook Like way to earn.
 
 ## Examples
 
-- A beauty brand awards 10 points for a Facebook Like, expiring in 30 days.
+- A beauty brand awards 10 points for a Facebook like, expiring in 30 days.
 
 ## Best practices
 
-<Tip>**Audit the audience match before running.** If your customers aren't on Facebook, this campaign yields little.</Tip>
+<Tip>**Check your page name before saving.** Open `facebook.com/yourpage` yourself to make sure it's the right page.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
   <Accordion title="How is the like verified?">
-    Verification is intent-based: the customer is sent to your page and the points are credited. Yuko cannot programmatically check Facebook's like state.
+    It isn't. Facebook doesn't let apps confirm likes, so Yuko credits points when the customer clicks **Like**.
   </Accordion>
   <Accordion title="Can a customer earn this twice?">
-    No — one-time per customer.
+    No. It's a one-time reward per customer.
+  </Accordion>
+  <Accordion title="What do I enter in Facebook Page?">
+    Your page name or ID only, for example `yourpage`, not the full URL.
   </Accordion>
 </AccordionGroup>
 

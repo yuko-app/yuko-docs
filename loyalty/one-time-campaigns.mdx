@@ -1,37 +1,39 @@
 ---
 title: One-time Campaigns
-description: Drop a lump-sum of points on a customer segment in one shot — immediately or scheduled, with an optional expiry that creates urgency to redeem.
+description: Award a one-off batch of points to a Shopify segment, tagged customers or everyone, immediately or on a schedule, and track the orders it drives.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → One-time Campaigns
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → One-time Campaigns
 </Note>
 
 ## Overview
 
-A one-time campaign is a **single, targeted points drop** to a group of customers. Pick the audience, pick the point amount, decide when it fires, and Yuko awards every matched customer once. That's it.
+A one-time campaign is a **single, targeted points award** to a group of customers. Pick the audience, set the points, decide when it runs, and Yuko awards every matched customer once.
 
-Where a [Way to Earn](/loyalty/ways-to-earn/overview) rewards *every* qualifying action forever, and a [Booster Campaign](/loyalty/booster-campaigns/overview) *multiplies or adds* to those rewards over a window, a one-time campaign is the loyalty-native equivalent of an email blast: **a one-shot event with a clear start, a clear end, and a measurable audience**.
+Where a [Way to Earn](/loyalty/ways-to-earn/overview) rewards *every* qualifying action, and a [Booster Campaign](/loyalty/booster-campaigns/overview) *multiplies or adds* to those rewards over a period, a one-time campaign is the loyalty version of an email blast: **a one-shot event with a clear start, a clear end and a measurable audience**.
+
+One-time Campaigns are available on select plans.
 
 ## Why you need them
 
-Boosters and Ways to Earn are structural — they change the *rules* of your program. One-time campaigns are tactical — they let you take a specific action right now:
+Boosters and Ways to Earn are structural: they change the *rules* of your program. One-time campaigns are tactical: they let you act right now.
 
-- *“We just launched, our loyalty program has 0 balances. Let's give everyone 200 pts to spend so day-one activity happens.”*
-- *“A batch of orders shipped late. Let's drop 300 pts on those 214 customers to smooth things over.”*
-- *“Black Friday morning. Everyone opens their inbox to find fresh points already on their account.”*
+- *"We just launched and every balance is 0. Let's give everyone 200 points so day-one activity happens."*
+- *"A batch of orders shipped late. Let's give those customers 300 points to smooth things over."*
+- *"Black Friday morning. Everyone opens their inbox to find fresh points already on their account."*
 
-These are the moments where a coupon would work, but a coupon leaks margin and every recipient has to do the manual work of applying it. A one-time points drop lands the value **directly on the customer's balance**, where the loyalty program already tells them how to spend it.
+A coupon could do the same job, but every recipient has to remember and apply it. A points award lands **directly on the customer's balance**, where your loyalty program already shows them how to spend it.
 
 ## When to use them
 
 - You need a targeted goodwill gesture (apology, thank-you, VIP recognition).
-- You want to seed balances on program launch so customers *have something to spend on day one*.
-- You want a scheduled push tied to a moment (BFCM, anniversary, product launch).
-- You want to award a defined cohort a bonus (contest winners, beta testers, early adopters).
-- You want to reward a Shopify segment you've already built for other purposes (email, ads).
+- You want to seed balances at program launch so customers *have something to spend on day one*.
+- You want a scheduled push tied to a moment (BFCM, an anniversary, a product launch).
+- You want to reward a defined group (contest winners, beta testers, early adopters) that you've tagged in Shopify.
+- You want to reward a Shopify segment you've already built for email or ads.
 
-If what you need instead is a *rule that keeps rewarding forever*, use a [Way to Earn](/loyalty/ways-to-earn/overview). If you need a *multiplier or bonus during a window*, use a [Booster Campaign](/loyalty/booster-campaigns/overview). One-time campaigns fire **once per matched customer** and then close.
+If you need a *rule that keeps rewarding*, use a [Way to Earn](/loyalty/ways-to-earn/overview). If you need a *multiplier or bonus over a period*, use a [Booster Campaign](/loyalty/booster-campaigns/overview). One-time campaigns award **once per matched customer** and then close.
 
 ## Before you start
 
@@ -39,198 +41,246 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <BeforeYouStart />
 
-<Check>You've decided the audience: everyone, a specific Shopify segment, or a specific customer tag.</Check>
-<Check>You've decided how many points — either a flat amount, or points computed from your active Place-an-order earning rule.</Check>
-<Check>You've decided whether points should expire (recommended for goodwill / apology drops).</Check>
+<Check>You've chosen the audience: a Shopify segment, one or more customer tags, or all customers.</Check>
+<Check>You've chosen how many points each customer gets.</Check>
+<Check>You've decided whether the points should expire (recommended for goodwill and launch awards).</Check>
 
 ## How to configure a one-time campaign
 
 <Steps>
-  <Step title="Open One-time Campaigns">
-    Go to **Apps → Yuko Loyalty → Loyalty**, scroll to **One-time Campaigns** and click **Create campaign**.
+  <Step title="Create the campaign">
+    Go to **Apps → Yuko Loyalty → Loyalty → Programs**, scroll to **One-time Campaigns** and click **Create campaign**.
   </Step>
-  <Step title="Name it">
-    Use a name your future self will recognize in the participants list (e.g., `bfcm-2026-all-customers-200pts`, not `Test 1`).
+  <Step title="Name it and set the points">
+    - **Campaign Name** — internal, not shown to customers. Pick something you'll recognise later (for example `bfcm-2026-all-200pts`, not `Test 1`).
+    - **Points amount** — the flat amount every matched customer gets, from 1 to 10,000,000.
   </Step>
-  <Step title="Pick the audience">
-    - **All customers** — every customer in your Yuko database.
-    - **Shopify segment** — pick any existing Shopify Customers segment. Yuko fetches the members at run time, so a segment that grows keeps expanding the recipient list right up to send.
+  <Step title="Pick the Target audience">
+    - **Shopify Segment** (default) — type to search, or click **Browse** to pick from your Shopify customer segments.
+    - **Customer Tags** — pick one or more Shopify customer tags. Customers matching ANY selected tag are awarded.
+    - **All Customers** — every customer in Yuko.
   </Step>
-  <Step title="Set the points">
-    - **Flat** — every matched customer gets the same number of points (1 to 10,000,000).
+  <Step title="Set the Scheduling">
+    Tick **Run immediately**, or set a **Send date** and **Send time** for a scheduled run.
   </Step>
-  <Step title="Set the schedule">
-    Either **Run immediately** or **Schedule for a specific date and time**. Scheduled campaigns show up in the list as `scheduled` and can be cancelled up until the send window opens.
+  <Step title="Set the Expiry (optional)">
+    Turn on **Expiry**, then set **Expires after** (1 to 3,650) and a **Period** of **Days**, **Weeks** or **Months**. The awarded points expire that long after they're awarded.
   </Step>
-  <Step title="(Optional) Set points expiry">
-    Add a duration (e.g., 30 days) after which the awarded points expire. Great for creating a redeem-by-date urgency.
+  <Step title="Trigger workflow events (optional)">
+    Under **Workflow events**, tick **Trigger workflow events** to fire the **One-time Campaign Points Awarded** event for each customer who receives points. Any matching workflow can then send WhatsApp or email messages. See [Workflow events and identifiers](#workflow-events-and-identifiers).
   </Step>
-  <Step title="Preview">
-    Click **Preview** to see the estimated recipient count and the total points you're about to award. Use this to sanity-check the audience before you commit.
+  <Step title="Preview the audience">
+    In **Estimated reach**, click **Preview audience**. Yuko shows how many customers match and the total points you're about to award. Nothing is awarded yet.
   </Step>
-  <Step title="Send / schedule">
-    Click **Run now** or **Schedule**. The campaign appears in the list; scheduled ones sit as `scheduled`, live ones flip to `running`, and finished ones land at `completed` (or `completed_with_errors` if some recipients failed).
+  <Step title="Save">
+    Click **Save**. A campaign set to **Run immediately** starts right away; otherwise it shows as **Scheduled** until its send time.
   </Step>
 </Steps>
+
+The form checks your input before saving. For example: *Campaign name is required*, *Segment is required*, *Select at least one tag* and *Send time is required*. HTML isn't allowed in text fields.
 
 ### Audience types in detail
 
 | Audience | What it targets | Best for |
 |---|---|---|
-| **All customers** | Every customer in Yuko | Program launch drops, storewide holiday bonuses, apology gestures affecting everyone |
-| **Shopify segment** | Any live Shopify Customers segment | Precise cohorts you've already defined for marketing ("VIP dormant 90d", "Bought Collection X", "Newsletter subscribers") |
+| **Shopify Segment** | Members of a Shopify customer segment | Precise groups you've already built for marketing ("VIP dormant 90d", "Bought Collection X") |
+| **Customer Tags** | Customers with ANY of the selected Shopify tags | Hand-picked lists: contest winners, affected customers, beta testers |
+| **All Customers** | Every customer in Yuko | Launch awards, storewide holiday bonuses, apologies that affect everyone |
 
-Segments are evaluated **at send time**, not at create time — a scheduled campaign that targets “VIP dormant 60d” will award whoever matches that segment at the moment it runs.
-
-### Points modes in detail
-
-- **Flat** — Every recipient gets the same amount. Simplest, most predictable, easiest to explain in the email that announces the drop.
+Audiences are resolved **when the campaign runs**, not when you create it. A scheduled campaign targeting a segment awards whoever is in that segment at send time. Customers banned from the loyalty program are never awarded.
 
 ### Points expiry
 
-Expiry is optional but powerful. Points awarded by a one-time campaign are *free* to the customer — they didn't earn them, they were gifted them. That means the psychological anchor is low and they can sit unused for months.
+Expiry is optional but powerful. Points from a one-time campaign are a gift, so customers feel less urgency to use them and they can sit unused for months.
 
-Adding a short expiry (e.g., **30 days**) turns the gift into a *“use it or lose it”* trigger, which is what usually drives the redemption → next-order chain you're trying to create.
+A short expiry (for example **30 days**) turns the gift into a *"use it or lose it"* moment, which drives the redemption and next order you're after. The campaign summary shows *Points do not expire (lifetime)* when expiry is off.
 
 ### Preview before you run
 
-The preview shows two numbers:
+**Preview audience** shows:
 
-1. **Recipient count** — how many customers match right now.
-2. **Estimated total points** — recipient count × flat amount (for flat mode). For campaign-based mode, the exact total depends on each customer's history and appears on the campaign detail page after it runs.
+1. **Customers** — how many customers match right now.
+2. **Total points** — customers × Points amount.
 
-Use preview freely — nothing is written to the database until you actually click **Run now** or **Schedule**.
+Use it as often as you like. Nothing is written until you save.
 
-## Tracking the campaign after it runs
+## Tracking the campaign
 
-Open any one-time campaign to see:
+Open a campaign from the list (click **View**) to see three tabs.
 
-- **Progress bar** with `processed / total` counts and a percent.
-- **Live status** — `scheduled`, `running`, `completed`, `completed_with_errors`, `cancelling`, `cancelled`, `failed`.
-- **Participants tab** — the per-customer log: who was awarded, who was skipped (e.g., customer had opted out), who failed, and how many points landed.
-- **Search and status filter** — quickly find one customer or drill into all failures.
-- **CSV export** — download the entire participants list for reporting or cross-checking against an email campaign send list.
+### Configuration
+
+- **Progress** — a progress bar with **Recipients**, **Processed**, **Awarded** and **Failed** counts.
+- **Status** — **Scheduled**, **Running**, **Completed**, **Completed with errors**, **Cancelling**, **Cancelled** or **Failed**.
+- **Banners** for the current state:
+  - **Campaign in progress** — points are being awarded; the page refreshes every few seconds.
+  - **Completed with errors** — some customers couldn't be awarded; see the Participants tab.
+  - **No customers matched** — the audience matched 0 customers, so no points were awarded.
+  - **Campaign failed** — the run stopped with an error. Contact support if this happens.
+- **Status** toggle (side panel) — while a campaign is scheduled or running, you can disable it. A disabled campaign is skipped by the scheduler until you enable it again.
+- **Identifier** — the campaign's unique ID, with a **Copy** button (see below).
+
+You can edit a campaign's settings only while it's **Scheduled**.
+
+### Participants
+
+The per-customer log: customer, points, status and when they were processed.
+
+- Search by name or email, and filter by status: **Awarded**, **Skipped**, **Failed** or **Pending**.
+- Customers are **Skipped** (not failed) when, for example, they're banned from the loyalty program or no longer exist in Yuko.
+- Once the campaign is **Completed** or **Completed with errors**, click **Export** to download a CSV with these columns: `customer_name`, `email`, `phone`, `platform_customer_id`, `point_balance`, `points_awarded`, `status`, `expiry_date` and `redemption_link`.
+
+The `redemption_link` column holds a personal, signed link parameter for each customer (it starts with `?customer_uuid=`). Add it to the end of your store URL in an SMS, WhatsApp or email send, and Yuko recognises the customer when they land on your store so they can redeem their points straight away.
+
+### Conversions
+
+Shows **orders placed using coupons that were redeemed with points awarded by this campaign**:
+
+- **Revenue**, **Orders**, **Customers** and **Points redeemed** totals.
+- A table of each order with the customer, order number and discount code, points used, order total and date.
+
+The campaign list also shows **Orders** and **Revenue** for each campaign at a glance.
+
+## Workflow events and identifiers
+
+Tick **Trigger workflow events** to fire the **One-time Campaign Points Awarded** workflow trigger for every customer who receives points. Build a [workflow](/workflows/overview) on that trigger to send a WhatsApp or email message the moment the points land. Messages can use shortcodes such as Campaign Name, Awarded Points, Points Expiry Date and Points Balance.
+
+To send different messages for different campaigns, add a condition to the workflow:
+
+- **Campaign Identifier** — matches the campaign's **Identifier**. Copy it from the campaign's Configuration tab.
+- **Campaign Name** — matches the campaign's name.
+
+See [Triggers and conditions](/workflows/triggers-and-conditions) for how conditions work.
 
 ## Cancelling a campaign
 
-Scheduled campaigns can be cancelled outright. Running campaigns can be cancelled mid-way — already-awarded customers keep their points, but no more customers get processed. Once a campaign is `completed`, `cancelled`, or `failed` it's terminal and can't be resumed.
+Click **Cancel campaign** on a **Scheduled** or **Running** campaign.
+
+- A scheduled campaign is cancelled before it awards anyone.
+- A running campaign stops processing. Customers already awarded keep their points.
+
+Once a campaign is **Completed**, **Completed with errors**, **Cancelled** or **Failed**, it's final and can't be resumed.
 
 ## Use cases
 
-Seven ways teams actually use one-time campaigns. Each maps to a distinct problem and each has a natural pairing with an email or WhatsApp send — more on that in the [How to promote it](#how-to-promote-it) section below.
+Seven ways teams use one-time campaigns. Each pairs naturally with a message; see [How to promote it](#how-to-promote-it).
 
-### 1. Program launch — seed everyone with a starter balance
+### 1. Program launch: seed everyone with a starter balance
 
-**The problem:** you just switched Yuko on. Every customer's balance is 0. There's nothing to redeem, so no one goes to check the loyalty page, so no one starts the earn/redeem flywheel.
+**The problem:** you just switched Yuko on. Every balance is 0, so there's nothing to redeem and no reason to visit the loyalty page.
 
-**The play:** run a one-time campaign to **All customers** for a modest starter amount (100–300 pts). Set a 30–60 day expiry to create redemption urgency. Announce it via a broadcast email with the subject *“There's already $5 waiting on your account”*.
+**The play:** run a one-time campaign to **All Customers** for a modest starter amount (100–300 pts) with a 30–60 day expiry. Announce it with an email such as *"There's already $5 waiting on your account."*
 
-The effect is that day-one loyalty page traffic goes from ~0 to whatever your open rate is, and the first redemption cycle starts weeks earlier than it would otherwise.
+Day-one loyalty traffic jumps to roughly your open rate, and the first redemption cycle starts weeks earlier.
 
-### 2. VIP win-back — a targeted drop for dormant high-value customers
+### 2. VIP win-back: a targeted award for dormant high-value customers
 
-**The problem:** customers who spent >$500 with you last year haven't ordered in 90+ days. A discount would work, but it teaches them to wait for discounts. A points drop lands the value directly and doesn't erode price integrity.
+**The problem:** customers who spent more than $500 last year haven't ordered in 90+ days. A discount would work, but it teaches them to wait for discounts.
 
-**The play:** build a Shopify segment for `lifetime_spend > 500 AND days_since_last_order > 90`. Run a one-time campaign targeting that segment with 500–1,000 pts and a **21-day expiry**. Announce it with a personal-sounding email: *“It's been a while — we've added [500 pts] to your account, on us.”*
+**The play:** build a Shopify segment for `lifetime_spend > 500 AND days_since_last_order > 90`. Run a one-time campaign to that segment with 500–1,000 pts and a **21-day expiry**. Announce it personally: *"It's been a while, so we've added 500 points to your account."*
 
 The short expiry does the heavy lifting.
 
-### 3. Apology / service recovery — make it right at scale
+### 3. Apology or service recovery
 
-**The problem:** something went wrong — a shipping delay, a defective batch, an outage, a mispriced product. You want to acknowledge it to every affected customer without cutting individual coupons manually.
+**The problem:** something went wrong (a shipping delay, a defective batch, an outage) and you want to make it right for every affected customer without creating coupons by hand.
 
-**The play:** create a Shopify segment for the affected orders (or ask your ops team to tag the customers). Run a one-time campaign to that segment with a proportional amount (e.g., 500 pts for shipping delays, 1,000 pts for a defective product). Include the acknowledgment in the accompanying email — the points arriving *before* the customer complains is often the entire remedy.
+**The play:** tag the affected customers in Shopify (for example `delay-oct-2026`) and run a one-time campaign with **Customer Tags**. Use a proportional amount (for example 500 pts for a delay, 1,000 pts for a defective product) and turn on **Trigger workflow events** so a workflow sends the apology the moment the points land.
 
-### 4. BFCM / holiday all-hands bonus
+### 4. BFCM or holiday bonus for everyone
 
-**The problem:** on Black Friday morning, everyone's inbox is a wall of “50% off” subject lines. You need to stand out without matching a discount you can't afford.
+**The problem:** on Black Friday morning, every inbox is full of "50% off" subject lines. You need to stand out without matching a discount you can't afford.
 
-**The play:** **schedule** a one-time campaign to **All customers** for 8:00 AM on Black Friday. Award a flat 200 pts with a **72-hour expiry**. The email announces *“200 loyalty points, added to your account. Redeem by Sunday.”* Because it's on their loyalty account (not a code they have to remember), redemption friction drops to a click.
+**The play:** **schedule** a one-time campaign to **All Customers** for 8:00 AM on Black Friday. Award 200 pts with a **3-day expiry**. The message says *"200 loyalty points added to your account. Redeem by Sunday."* There's no code to remember, so redeeming is one click.
 
-### 5. Cohort birthday / anniversary drop
+### 5. Cohort anniversary
 
-**The problem:** you want to reward a specific cohort — e.g., customers who signed up in March 2025 — on the anniversary of their sign-up. This isn't a per-customer birthday (use [Birthday Way to Earn](/loyalty/ways-to-earn/birthday) for that); it's a cohort-level moment.
+**The problem:** you want to reward a group, such as customers who joined in March 2025, on the anniversary of joining. This isn't a personal birthday (use the [Birthday Way to Earn](/loyalty/ways-to-earn/birthday) for that).
 
-**The play:** tag customers by cohort in Shopify (or build a segment on the sign-up date range), then schedule a one-time campaign to that segment on the cohort anniversary. 150–250 pts, 30-day expiry. The email frames it as *“It's been a year since you joined us.”*
+**The play:** tag the cohort in Shopify or build a segment on the sign-up date range, then schedule a one-time campaign on the anniversary. 150–250 pts, 30-day expiry, with a message like *"It's been a year since you joined us."*
 
-### 6. Contest / campaign winners
+### 6. Contest or campaign winners
 
-**The problem:** you ran a UGC contest, a referral push, an Instagram-follow campaign, an ambassador drive — anything with a defined winner list. Manually crediting each winner is tedious and error-prone.
+**The problem:** you ran a UGC contest, a referral push or an ambassador drive with a defined winner list. Crediting each winner by hand is slow and error-prone.
 
-**The play:** tag the winners in Shopify (`contest_winner_nov2026`). Build a segment on that tag. Run a one-time campaign to that segment for the winner points value (2,000–5,000 pts). Include a customized email announcing them by name.
+**The play:** tag the winners in Shopify (`contest_winner_nov2026`) and run a one-time campaign to that tag with **Customer Tags** for the prize value (2,000–5,000 pts).
 
-### 7. Migration bump — make new customers whole after switching platforms
+### 7. Migration bonus after switching loyalty platforms
 
-**The problem:** you migrated to Yuko from another loyalty platform. Your customers had balances there — sometimes years of accumulated points — and now they're staring at 0. Even if you migrated the numeric balance, they don't feel the emotional continuity.
+**The problem:** you moved to Yuko from another loyalty platform. Even if you migrated balances, customers may not feel the continuity.
 
-**The play:** run a one-time campaign to **All customers** for a symbolic bump (100–250 pts) with a clear communication: *“We've moved your account to a new loyalty program. Here's a welcome bonus to say thanks for staying with us.”* Combine with the [Backfill Points](/loyalty/backfill-points) feature if you also want to award points based on their actual pre-Yuko order history.
+**The play:** run a one-time campaign to **All Customers** for a symbolic bonus (100–250 pts) with a clear message: *"We've moved your account to a new loyalty program. Here's a welcome bonus for staying with us."* Combine it with [Backfill Points](/loyalty/backfill-points) if you also want to award points for customers' past orders.
 
 ## How to promote it
 
-A one-time campaign quietly awards points to a customer's balance — but the customer only *knows* if you tell them. Every use case above is 2× more effective if paired with a message going out at the same time.
+A one-time campaign quietly adds points to a customer's balance, but the customer only *knows* if you tell them. Every use case above works better with a message sent at the same time.
 
 <CardGroup cols={2}>
+  <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
+    Tick **Trigger workflow events** and send a WhatsApp or email message from a workflow the moment each customer is awarded.
+  </Card>
   <Card title="Klaviyo" icon="envelope" href="/integrations/klaviyo">
-    Yuko syncs `yuko_points_balance` to Klaviyo profiles, so you can send an email that reads *“You have {{ person.yuko_points_balance }} points”* right after the drop.
+    Use the synced points balance on Klaviyo profiles to send an email that shows each customer their new balance.
   </Card>
   <Card title="WhatsApp" icon="comments" href="/integrations/whatsapp">
-    Fire a WhatsApp template announcing the new balance for the moments where email won't cut through — apologies, VIP win-back, BFCM.
+    Reach customers where email won't cut through: apologies, VIP win-backs, BFCM.
   </Card>
   <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
-    Show a site-wide slide-up drawer that surfaces the fresh balance the next time the customer lands on your store.
-  </Card>
-  <Card title="Direct customer email" icon="paper-plane" href="/emails/overview">
-    Yuko's own transactional emails can include the new balance and the redemption CTA in the confirmation flow.
+    Show the fresh balance on your storefront the next time the customer visits.
   </Card>
 </CardGroup>
 
 ### Sequencing a launch
 
-For a 200-pt drop to all customers on BFCM morning, a typical sequence:
+For a 200-point award to all customers on BFCM morning:
 
-1. **T–2 days.** Schedule the one-time campaign for BFCM 8am. Preview to confirm recipient count and total points.
-2. **T–0.** Yuko awards the points. Klaviyo sync fires, updating every profile's `yuko_points_balance`.
-3. **T + 5 min.** Klaviyo flow sends a segmented email: *“You now have {balance} points. Redeem by Sunday.”* WhatsApp template fires to VIP tier only.
-4. **T + 6 hours.** Loyalty Nudges on the storefront show the fresh balance the moment a customer lands.
-5. **T + 72 hours.** Points expire. Optional follow-up: *“Last-call, your points expire in 2 hours.”* to non-redeemers.
+1. **2 days before.** Create the campaign, schedule it for 8:00 AM on BFCM, tick **Trigger workflow events** and preview the audience.
+2. **Send time.** Yuko awards the points and fires **One-time Campaign Points Awarded** for each customer.
+3. **Minutes later.** Your workflow (filtered by **Campaign Identifier**) sends *"You now have new points. Redeem by Sunday."*
+4. **Same day.** Loyalty Nudges on the storefront show the fresh balance when customers visit.
+5. **After it runs.** Watch the **Conversions** tab for orders, revenue and points redeemed.
+6. **3 days later.** The points expire. Optionally send a last-call reminder to customers who haven't redeemed.
 
 ## Limitations
 
-- **One-shot per customer per campaign.** A given campaign can only award a matched customer once. Run a new campaign if you want to award them again.
-- **No mid-run edits.** Once a campaign is `running`, you can only cancel it, not adjust points/audience.
-- **Segments are evaluated at send time.** If you schedule a campaign and the Shopify segment grows in the meantime, everyone who's in the segment at send time gets awarded.
-- **Guest orders / customers without a linked Yuko customer profile are skipped.** Those show up in the participants tab as `skipped` with a reason.
-- **Campaign audit lives in the participants tab.** No separate reporting dashboard — the participants CSV is the audit trail.
+- **One award per customer per campaign.** Create a new campaign to award the same customers again.
+- **Edits only while Scheduled.** Once a campaign is running, you can only cancel it.
+- **Audiences are resolved at send time.** Anyone in the segment or with the tag at that moment is awarded.
+- **Flat points only.** Every matched customer gets the same Points amount.
+- **Expiry is a duration**, not a fixed calendar date.
 
 ## FAQs
 
 <AccordionGroup>
   <Accordion title="How is a one-time campaign different from a Booster?">
-    Boosters change the earning *rules* over a window — e.g., *“2× points on all orders this weekend”*. One-time campaigns don't touch the rules; they credit a fixed amount of points to a fixed audience once. Use a booster when you want to reward future behaviour; use a one-time campaign when you want to award points right now.
+    Boosters change the earning rules over a period, for example *"2× points on all orders this weekend"*. One-time campaigns don't touch the rules; they award a fixed amount of points to a fixed audience once.
   </Accordion>
-  <Accordion title="Can I run the same campaign to the same customers twice?">
-    Yes — create a new campaign. A given campaign is one-shot per customer, but nothing prevents you from creating campaign A on Monday and campaign B to the same audience on Friday.
+  <Accordion title="Can I award the same customers twice?">
+    Yes. Create a new campaign. Each campaign awards a customer only once, but nothing stops you running campaign A on Monday and campaign B to the same audience on Friday.
   </Accordion>
-  <Accordion title="What happens if a customer is in two segments I target on the same day?">
-    They get awarded once per campaign. If you run two campaigns targeting overlapping segments, they'll be awarded once by each — that's usually what you want.
+  <Accordion title="What if a customer has two of the tags I selected?">
+    They're awarded once. Customer Tags matches customers with ANY selected tag, and each customer is awarded once per campaign.
   </Accordion>
   <Accordion title="Can I cancel a scheduled campaign?">
-    Yes — while it's `scheduled` or `running`. Cancelling a running campaign stops further awards; customers already awarded keep their points.
+    Yes, while it's **Scheduled** or **Running**. Cancelling a running campaign stops further awards; customers already awarded keep their points. You can also disable a scheduled campaign with the **Status** toggle and enable it again later.
   </Accordion>
-  <Accordion title="Can I set expiry so points expire on a specific date (not a duration)?">
-    Today, expiry is expressed as a duration (X days/weeks/months from award). If you need a fixed calendar-date expiry, schedule the campaign for the right day so the duration lands on the date you want.
+  <Accordion title="Can points expire on a specific date?">
+    Expiry is a duration (days, weeks or months after the award). For a fixed date, schedule the campaign so the duration ends on the day you want.
   </Accordion>
-  <Accordion title="Are guest orders eligible?">
-    No. Only customers with a Yuko customer profile (i.e., linked to a Shopify customer) can be awarded. Guest orders show as `skipped` in the participants tab.
+  <Accordion title="Why were some customers skipped?">
+    Customers are skipped when they're banned from the loyalty program or no longer exist in Yuko. Skipped customers don't make the campaign fail.
   </Accordion>
-  <Accordion title="What about backfilling points for orders that happened before Yuko was installed?">
-    That's a related but distinct flow. See [Backfill Points](/loyalty/backfill-points) — it uses the same engine but with all-time audience defaults and a one-shot lock.
+  <Accordion title="How do I see whether the campaign drove sales?">
+    Open the **Conversions** tab. It shows revenue, orders, customers and points redeemed for orders that used coupons redeemed with this campaign's points.
+  </Accordion>
+  <Accordion title="What about points for orders placed before I installed Yuko?">
+    Use [Backfill Points](/loyalty/backfill-points). It's a related, separate flow for past orders.
   </Accordion>
   <Accordion title="Is there a limit on how many customers I can target?">
-    No hard cap — large campaigns are processed in the background and the progress bar updates as the queue drains. Very large drops (>100k customers) can take a few minutes.
+    No fixed cap. Large campaigns are processed in the background and the progress bar updates as they run. Very large audiences can take a few minutes.
   </Accordion>
   <Accordion title="Can I test with a small audience first?">
-    Yes. Build a Shopify segment containing 5–10 test customers, run the campaign against that segment, verify the participants tab and the email/WhatsApp fires, then run the real thing.
+    Yes. Tag 5–10 test customers, run a campaign with **Customer Tags**, check the Participants tab and your workflow messages, then run the real one.
   </Accordion>
 </AccordionGroup>
 
@@ -238,16 +288,16 @@ For a 200-pt drop to all customers on BFCM morning, a typical sequence:
 
 <CardGroup cols={2}>
   <Card title="Backfill Points" icon="clock-rotate-left" href="/loyalty/backfill-points">
-    Reward customers for orders placed before you launched Yuko — the one-shot cousin of one-time campaigns.
+    Award points for orders placed before you launched Yuko.
   </Card>
   <Card title="Booster Campaigns" icon="rocket" href="/loyalty/booster-campaigns/overview">
-    When you want to change the earning *rules* over a window, not drop a fixed amount.
+    Change the earning rules over a period instead of awarding a fixed amount.
   </Card>
   <Card title="Ways to Earn" icon="hand-holding-dollar" href="/loyalty/ways-to-earn/overview">
-    The always-on earning rules — the baseline your boosters and one-time campaigns layer on top of.
+    The always-on earning rules your boosters and one-time campaigns build on.
   </Card>
-  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
-    Surface the fresh balance on the storefront the moment a customer lands.
+  <Card title="Triggers and conditions" icon="diagram-project" href="/workflows/triggers-and-conditions">
+    Use the One-time Campaign Points Awarded trigger and campaign conditions.
   </Card>
 </CardGroup>
 

@@ -1,6 +1,6 @@
 ---
 title: Account Settings
-description: Configure store-wide preferences — platform connections, email blacklist and core account details.
+description: Store-wide settings for Yuko, including date and coupon formats, your Shopify sync, email sending and translations.
 ---
 
 <Note>
@@ -9,19 +9,25 @@ description: Configure store-wide preferences — platform connections, email bl
 
 ## What's in Account Settings
 
-Account-level settings are store-wide preferences that don't fit inside the loyalty / referral / membership modules. They cover:
+Account Settings hold store-wide preferences that apply across loyalty, referrals and memberships. On Shopify stores, there are four tabs:
 
-import RelatedAccount from '/snippets/related-account.mdx';
+| Tab | What you configure |
+| --- | --- |
+| [General](/account/general) | Timezone, date and time format, the default coupon prefix and your logo for emails |
+| [Platforms](/account/platforms) | Your Shopify connection details and customer and product sync |
+| **Email Settings** | **General**: sender name, reply-to address, From address and custom sending domains. See [Sender and branding](/emails/sender-and-branding). **Email Blacklist**: addresses that should never receive Yuko emails. See [Email Blacklist](/account/email-blacklist). |
+| [Translations](/account/translations) | Translations of storefront labels and your campaign and reward content for each store language |
 
-<RelatedAccount />
+Integrations such as Klaviyo, Shopify Flow, Shopify POS and the REST API have their own **Integrations** item in the sidebar. See [Integrations](/integrations/overview).
 
 ## Decision guidance
 
-- Configure **General** during initial setup and revisit if your store currency or timezone changes.
-- Configure **Platforms** when adding a second Shopify store or troubleshooting a sync issue.
-- Configure **Email Blacklist** before launching your referral program — disposable-email domains are the most common referral fraud vector.
+- Set **General** during initial setup. Your timezone controls when date-based events, such as birthdays and anniversaries, happen.
+- Use **Platforms** to sync existing Shopify customers and products into Yuko, or to re-sync after a large import.
+- Set up **Email Settings** before you turn on emails, so customers see your brand name and reply address.
+- Use **Translations** if your Shopify store publishes more than one language.
 
-## Recommended reading
+import RelatedAccount from '/snippets/related-account.mdx';
 
 <RelatedAccount />
 

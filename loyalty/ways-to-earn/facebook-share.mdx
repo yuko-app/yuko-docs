@@ -1,30 +1,33 @@
 ---
 title: Facebook Share
-description: Reward customers with points for sharing your store on Facebook.
+description: Reward customers with points for sharing a link to your store on Facebook.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Facebook Share
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn → Add another way → **Facebook Share**
 </Note>
 
 ## Introduction
 
-Award points when customers share your store on Facebook from the loyalty widget.
+Award customers a one-time points bonus when they share a link to your store or a product on Facebook from your loyalty widgets.
 
 ## What problem this solves
 
-Word-of-mouth is the highest-converting acquisition channel and the hardest to manufacture. A points reward for shares is one of the few ways to nudge it on demand.
+Word of mouth is a high-converting acquisition channel and hard to create on demand. A points reward gives customers a nudge to share.
 
 ## When to use
 
 - Your audience is on Facebook.
-- You want a measurable lift in shares around a launch or promo.
+- You have a page worth sharing, such as your homepage, a launch or a bestseller.
+- You want a low-effort, one-time way to earn.
 
 ## Overview
 
-- Points awarded per share, with optional cap per customer.
-- Configurable share link.
-- Optional points expiry.
+- One-time reward per customer.
+- Configured with a **Share URL**.
+- Points are credited when the customer clicks **Share**.
+- Optional points expiry and VIP tier multipliers.
+- Available on select plans.
 
 ## Before you start
 
@@ -35,51 +38,72 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 ## Setup guide
 
 <Steps>
-  <Step title="Open the campaign">
-    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Facebook Share**.
+  <Step title="Add the way to earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to earn**, click **Add another way** and pick **Facebook Share**.
   </Step>
-  <Step title="Set details and points">
-    Enter campaign name, description and points value (e.g., `15`).
+  <Step title="Fill in Basic Details">
+    - **Campaign Name** — shown to customers on the storefront. You can use `[earn_value]` and `[points_label]`, for example `Earn [earn_value] [points_label]`.
+    - **Description** — short copy shown with the way to earn.
   </Step>
-  <Step title="Configure share link (if applicable)">
-    Set the URL or product page that gets shared.
+  <Step title="Set the points">
+    Enter **Points to earn on Facebook share** (a whole number, at least 1).
   </Step>
-  <Step title="Configure expiry (optional)">
-    Set expiry to keep balances clean.
+  <Step title="Add the Share URL">
+    Enter the complete **Share URL** customers will share, for example `https://yourwebsite.com/product`. It must be a valid URL.
   </Step>
-  <Step title="Save & activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Review the side panel">
+    - **Status** — on by default.
+    - **Icon** — **Default**, or **Custom** to upload your own (JPG, PNG, GIF or WEBP, under 1 MB).
+    - **Tiers** — turn on to apply VIP tier multipliers to this way to earn.
+  </Step>
+  <Step title="Save">
+    Click **Save**.
   </Step>
 </Steps>
 
 ## How it works
 
-- The share action surfaces in the loyalty widget.
-- Clicking opens Facebook's share dialog.
-- Points are credited on share intent.
+1. The way to earn appears in the **Ways to earn** list of your loyalty widgets (for example the [floating launcher](/onsite-widgets/floating-launcher), [rewards landing page](/onsite-widgets/rewards-landing-page) and [customer account page](/onsite-widgets/customer-account-page)) with a **Share** button.
+2. A logged-in customer clicks **Share**. Facebook's share dialog opens with your Share URL.
+3. Yuko credits the points as soon as the customer clicks. Social networks don't let apps confirm the action, so earning is based on the click.
+4. The way to earn then shows as completed for that customer.
+
+With **Tiers** on and [VIP tiers](/vip-tiers/overview) enabled, customers in a tier earn the tier's multiplier for this way to earn, plus any bonus points the tier sets for it. The extra points appear as a separate tier bonus entry.
 
 ### Decision guidance
 
-- **Cap the action per cadence** to prevent spam shares.
-- **Pair with a meaningful share asset** — a product launch, a campaign page, etc.
+- **Share a page worth sharing.** A launch page or bestseller gets more clicks from friends than a generic homepage.
+- **Keep the reward modest.** It's a quick one-time action.
 
 ### Limitations
 
-- Verification is intent-based; Facebook does not expose share confirmation programmatically.
+- Earning is based on the click; Facebook doesn't let apps confirm that a post was published.
+- One reward per customer. Sharing again doesn't earn more.
+- Customers must be logged in to earn.
+- You can have one Facebook Share way to earn, with one Share URL.
 
 ## Examples
 
-- 15 points per Facebook Share around a Black Friday launch, capped at 1 per customer per week.
+- 15 points for sharing a new collection page on Facebook during a launch.
 
 ## Best practices
 
-<Tip>**Don't reward generic shares** — give customers a focal page worth sharing.</Tip>
+<Tip>**Update the Share URL for big moments.** Point it at your current launch or sale page.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
   <Accordion title="Can customers earn multiple times?">
-    Depends on your cap settings. Without a cap, share spam is possible.
+    No. Facebook Share is a one-time reward per customer.
+  </Accordion>
+  <Accordion title="Can I change the shared link later?">
+    Yes. Edit the **Share URL** and save. Customers who already earned won't earn again.
+  </Accordion>
+  <Accordion title="How is the share verified?">
+    It isn't. Yuko credits points when the customer clicks **Share** and the share dialog opens.
   </Accordion>
 </AccordionGroup>
 

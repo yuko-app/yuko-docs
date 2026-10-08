@@ -4,47 +4,169 @@ description: Time-limited or targeted loyalty promotions that layer on top of yo
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Booster Campaigns
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Booster Campaigns
 </Note>
 
 ## Overview
 
-Booster campaigns are loyalty promotions that layer on top of your standard **Ways to Earn**. Where a Way to Earn is *always on* and quietly rewards every qualifying action, a booster is a *campaign* — time-windowed, targeted, and designed to move a specific metric over a specific period.
+Booster campaigns are loyalty promotions that layer on top of your standard **Ways to Earn**. A Way to Earn is *always on* and quietly rewards every qualifying action. A booster is a *campaign*: it can run in a window, target a group of customers, and reward a specific behaviour such as a bigger basket, more orders or a return visit.
 
-Where a discount cuts price, a booster increases the points reward. The customer pays the same; they earn more.
+Where a discount cuts the price, a booster increases the reward. The customer pays the same and earns more.
 
 ## Why you need them?
 
-Loyalty programs work in the background. They reward customers reliably, but they rarely create urgency. When you need to drive a near-term result — a slow week, a launch, a winback push — the only lever most stores reach for is a discount.
+Loyalty programs work in the background. They reward customers reliably, but they rarely create urgency. When you need a near-term result (a slow week, a launch, a winback push), most stores reach for a discount.
 
-Discounts work, but they train customers to wait. Run enough of them and your customers learn to never buy at full price.
-
-Boosters give you the same urgency-and-results lever as a discount — without touching your margin or training customers to wait. They're the loyalty-native answer to *“we need to drive sales this week.”*
+Discounts work, but they train customers to wait. Boosters give you the same urgency lever without touching your margin or teaching customers to hold out for the next sale.
 
 ## When to use them?
 
 - You need a near-term lift in revenue without discounting.
 - You're launching a new product or collection and want focused earning on it.
 - You're running a campaign during a high-stakes period (BFCM, holidays, anniversaries).
-- You want to give your VIP tier or new members a permanent earning advantage.
-- You want to automatically catch returning customers or first-time buyers with a meaningful welcome bonus.
+- You want to give a VIP tier or paid members a permanent earning advantage.
+- You want to automatically reward returning customers or first-time buyers.
 
-## The 8 booster types
+## The 9 booster types
 
 import RelatedBoosters from '/snippets/related-boosters.mdx';
 
 <RelatedBoosters />
 
+| Type | What it rewards | Reward options |
+|---|---|---|
+| **Multiplier** | Every time the chosen earning action happens | One **Multiplier** reward (1.1× to 10×) |
+| **Product & Collection Multiplier** | Orders containing selected products or collections | One **Multiplier** reward (1.1× to 10×) |
+| **Bonus Flat** | Every time the chosen earning action happens | **Bonus points** |
+| **Spending Goal** | Cumulative spend reaching each milestone | Any reward, per milestone |
+| **Order Booster** | Number of orders reaching each milestone | Any reward, per milestone |
+| **Streak** | Repeating an action across consecutive periods | Any reward |
+| **Multi-Action Challenge** | Completing a set of different actions | Any reward |
+| **Dormant Reactivation** | An inactive customer coming back | Any reward |
+| **First Purchase Boost** | A customer's very first order | Any reward |
+
+"Any reward" means **Amount discount**, **% off discount**, **Free shipping**, **Free product**, **Bonus points** or **Store credit** (Store credit is Shopify only). Discount rewards are always issued as a **One-time discount code**; automatic discounts aren't available in boosters.
+
+<Info>
+**Product & Collection Multiplier**, **Spending Goal**, **Order Booster** and **First Purchase Boost** are driven by orders, so they need the **Place an order** Way to Earn to be enabled. If it's off, these types are greyed out in the **Create Booster Campaign** picker with a note telling you to enable it in Ways to Earn first. For the other types, the earning-action list only shows Ways to Earn that are currently enabled.
+</Info>
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>The Ways to Earn you want to boost are enabled (for example, **Place an order**).</Check>
+
+## Setup guide
+
+<Steps>
+  <Step title="Turn booster campaigns on">
+    Go to **Apps → Yuko Loyalty → Loyalty → Programs**. Under **Booster Campaigns Status**, make sure the toggle shows *Booster campaigns are currently enabled*.
+  </Step>
+  <Step title="Create a campaign">
+    In the **Booster Campaigns** section, click **Create campaign**. The **Create Booster Campaign** picker opens. Select a booster type.
+  </Step>
+  <Step title="Fill in Campaign Details">
+    - **Campaign Name** — internal name, not visible to customers.
+    - **Description** — optional internal note.
+  </Step>
+  <Step title="Configure the type-specific settings">
+    Each type has its own section (earning action, milestones, streak period and so on). See the page for each type.
+  </Step>
+  <Step title="Add the reward">
+    Click **Add Reward** and configure it. Spending Goal and Order Booster attach rewards to each milestone instead.
+  </Step>
+  <Step title="Set targeting, limits and display (optional)">
+    Configure **Targeting Rules**, **Limits** and **Display Settings**, described below.
+  </Step>
+  <Step title="Set the schedule, publishing, stacking and icon">
+    These are in the right-hand column, together with the **Status** toggle and a live **Summary** of the campaign.
+  </Step>
+  <Step title="Save">
+    **Status** is enabled by default. Click **Save**.
+  </Step>
+</Steps>
+
+## Common settings
+
+Every booster type shares the settings below.
+
+### Schedule
+
+| Option | How it works |
+|---|---|
+| **One-time** | Runs between a **Start Date & Time** and an **End Date & Time** (both required). |
+| **Recurring** | Repeats on a cycle from a **Start Date & Time**. Choose a **Recurring Period**: **Days** (select weekdays under **Recurring days**; only offered for Multiplier, Product & Collection Multiplier and Bonus Flat), **Weeks** (**Every 2 weeks** or **Every 3 weeks**) or **Months** (**Every 2 months**, **Every quarter** or **Every 6 months**). |
+| **Evergreen (always on)** | Runs continuously with no dates. This is the default. |
+
+For weekly and monthly recurrence, each cycle is active for one week or one calendar month, then the campaign is quiet until the next cycle starts. For example, *Every 2 weeks* from June 5 is active June 5–11, quiet June 12–18 and active again from June 19. Progress on goal-based boosters (spending, orders, streaks, challenges) is tracked per cycle.
+
+### Targeting Rules
+
+By default a campaign applies to every loyalty customer. Click **Add Rule** to narrow it down, then choose whether **Customers must** **Match ALL rules (AND)** or **Match ANY rule (OR)**.
+
+| Rule | What it checks |
+|---|---|
+| **Customer Tags** | The customer has one of the selected Shopify customer tags. |
+| **VIP Tiers** | The customer is in one of the selected VIP tiers. Multiplier and Product & Collection Multiplier only. |
+| **Membership** | The customer holds one of the selected memberships. |
+| **Products** | **All products** with optional **Exclude specific products from this campaign**, or **Specific products**. Only for order-driven campaigns (see below). |
+| **Collections** | **All collections** with optional **Exclude specific collections from this campaign**, or **Specific collections**. Only for order-driven campaigns. |
+| **Min lifetime orders** | The customer has placed at least this many orders. |
+| **Min lifetime spend** | The customer has spent at least this amount. |
+| **Min account age** | The customer's account is at least this many days old. |
+| **Min points earned** | Total points the customer has earned to date. |
+| **Min points spent** | Total points the customer has redeemed to date. |
+
+The **Products** and **Collections** rules appear when there's an order to check: always for Spending Goal, Order Booster and First Purchase Boost, and for Multiplier, Bonus Flat, Streak and Dormant Reactivation when the action is **Place an order**. They aren't offered for Multi-Action Challenge or Product & Collection Multiplier (which has its own product picker). Minimum values must be greater than 0.
+
+### Limits
+
+- **Max participants** — the most customers who can join the campaign. Leave blank for unlimited.
+- **Max completions per customer** — how many times one customer can complete it. Leave blank for unlimited. This field is hidden for First Purchase Boost and Multi-Action Challenge (one completion each), and for Multiplier or Bonus Flat campaigns built on an action customers can only earn once (**Sign Up**, **Facebook Like**, **Facebook Share**, **Instagram Follow**, **Twitter Follow**, **Twitter Share**, **Subscribe to Newsletter** or **Subscribe to SMS**).
+
+### Stacking
+
+- **Stackable with other campaigns** — checked by default. If unchecked, this campaign is exclusive. When an exclusive campaign qualifies, only one exclusive campaign is applied to that action (the one highest in your campaign list) and other boosters don't fire alongside it. Drag campaigns in the list to set their order.
+- **Ignore if customer earned VIP tier multiplier** — Multiplier and Product & Collection Multiplier only. Skips the boost for an action where the customer already received a VIP tier bonus, so tier and campaign multipliers don't pile up.
+
+### Display Settings
+
+- **Show in loyalty widget** — display this campaign across all loyalty widgets. Checked by default.
+- **Widget labels** — customer-facing copy for the campaign. Which labels appear depends on the type: **Body text**, **Call-to-action above progress bar**, **Status text under progress bar**, **Reward banner — locked** and **Reward banner — unlocked**. Each label shows its default as a placeholder and lists the tokens you can use (for example `[title]`, `[reward]`, `[points_label]`). Labels are required while **Show in loyalty widget** is checked.
+
+### Publishing
+
+Choose where the campaign is available. **Online store** is currently the only sales channel, and at least one channel must be selected.
+
+### Icon
+
+Pick one of the preset icons. It's shown in the widgets next to the campaign title.
+
+## Managing campaigns
+
+- **Tabs** — the list has **Active & inactive** and **Archived** tabs. Each row shows the earning action, a **Stackable** or **Exclusive** badge, the type and the schedule.
+- **Enable/disable** — use the toggle on each row.
+- **Reorder** — drag rows to set priority. Order matters for exclusive campaigns.
+- **Archive** — the archive icon stops the campaign and moves it to the **Archived** tab. You can unarchive it at any time.
+- **Delete** — campaigns that already have participants can't be deleted. Archive them instead to keep the participant history.
+- **Turn off all boosters** — switching off **Booster Campaigns Status** opens **Disable Booster Campaigns**. Confirming hides booster campaigns from your widgets and stops all boosted earning.
+
+When you open a saved campaign, it has three tabs:
+
+- **Configuration** — the campaign settings.
+- **Participants** — customers in the campaign, with their progress and a status of **In Progress**, **Completed** or **Expired**. Search by name or email, filter by status and sort by joined date, progress or completion date.
+- **Activity** — every reward the campaign issued, with customer, activity, value, reward (including any coupon code) and date.
+
 ## How boosters work
 
-Every booster campaign has the same four ingredients:
-
-1. **A type** — multiplier, bonus flat, spending goal, order frequency, streak, multi-action challenge, dormant reactivation, or first purchase boost.
-2. **A schedule** — a one-time window, a recurring pattern (weekly / monthly / quarterly), or always-on.
-3. **Targeting (optional)** — which customers qualify, by VIP tier, customer tag, lifetime spend, or membership status.
-4. **Product scope (optional)** — which products or collections it applies to.
-
-When a qualifying action fires (e.g., an order is placed), Yuko checks every active booster campaign in order, applies the matching ones, and credits the customer with the bonus.
+1. A customer performs an action (for example, places an order).
+2. Yuko checks every enabled booster campaign whose schedule is active, and filters by the campaign's targeting rules and limits.
+3. Each matching campaign updates the customer's progress. When a campaign's condition is met (an action is multiplied, a milestone is reached, a streak completes), its reward is issued.
+4. Exclusive campaigns win over stackable ones, as described under **Stacking**.
+5. The reward shows in the customer's activity, and in the campaign's **Activity** tab.
 
 ## When to use a booster vs. a Way to Earn
 
@@ -52,35 +174,38 @@ When a qualifying action fires (e.g., an order is placed), Yuko checks every act
 |---|---|
 | Reward every qualifying action, always | **Way to Earn** |
 | Drive a result over a specific window or for a specific cohort | **Booster Campaign** |
-| Give VIP members a permanent earning advantage | **Booster Campaign** (always-on, tier-targeted) |
-| Reward a customer's first order | **Booster Campaign** — First Purchase Boost |
-| Recover customers when they return after being inactive | **Booster Campaign** — Dormant Reactivation |
-| Drive AOV (basket size) | **Booster Campaign** — Spending Goal |
-| Drive purchase frequency | **Booster Campaign** — Order Frequency or Streak |
-
-## Stacking with VIP tiers and other campaigns
-
-By default, booster campaigns stack with VIP tier multipliers and with each other. You can set a campaign to **exclusive** if you want it to be the only multiplier in effect during its window — useful for headline campaigns where you don't want VIP customers to compound to extreme multiplier values.
-
-## Get started
-
-1. Pick a booster type from the list above.
-2. Open **Apps → Yuko Loyalty → Loyalty → Booster Campaigns** and click **New booster**.
-3. Configure the schedule, targeting, and product scope.
-4. Toggle **Active** and click **Save**.
-
-The campaign begins crediting points the moment the window opens (or immediately, for always-on campaigns).
+| Give VIP members a permanent earning advantage | **Multiplier** (evergreen, VIP Tiers rule) |
+| Push a specific product range | **Product & Collection Multiplier** |
+| Reward a customer's first order | **First Purchase Boost** |
+| Recover customers who come back after being inactive | **Dormant Reactivation** |
+| Drive basket size | **Spending Goal** |
+| Drive purchase frequency | **Order Booster** or **Streak** |
 
 ## Best practices
 
 <Tip>**Start with one or two boosters.** A storefront with five overlapping boosters dilutes attention and confuses your earning math.</Tip>
 <Tip>**Use a multiplier instead of a discount** the next time you'd reach for a percentage off. Same urgency, no margin hit.</Tip>
-<Tip>**Reserve “always-on” boosters for cohorts** — VIP members, first-30-days customers, paid members. Always-on store-wide boosters become invisible.</Tip>
-<Tip>**Test with a real customer record** before launching publicly. Booster math compounds in ways you don't always anticipate.</Tip>
+<Tip>**Reserve evergreen boosters for cohorts** such as VIP tiers or paid members. Store-wide boosters that never end become invisible.</Tip>
+<Tip>**Test with a real customer record** before launching publicly, then check the **Participants** and **Activity** tabs.</Tip>
 
-## Recommended reading
+## FAQs
 
-<RelatedBoosters />
+<AccordionGroup>
+  <Accordion title="Why is a booster type greyed out?">
+    Product & Collection Multiplier, Spending Goal, Order Booster and First Purchase Boost need the **Place an order** Way to Earn to be enabled. Turn it on under Ways to Earn and the type becomes selectable.
+  </Accordion>
+  <Accordion title="Can I change the earning action after saving?">
+    No. The earning action (or qualifying action) is locked once the campaign is saved. Create a new campaign if you need a different action.
+  </Accordion>
+  <Accordion title="Why can't I delete a campaign?">
+    Campaigns with participants can't be deleted. Archive them instead; archiving stops the campaign and keeps its history.
+  </Accordion>
+  <Accordion title="Do boosters stack with VIP tier multipliers?">
+    Yes, by default. On Multiplier and Product & Collection Multiplier campaigns, check **Ignore if customer earned VIP tier multiplier** to skip the boost when a tier bonus was already awarded for the same action.
+  </Accordion>
+</AccordionGroup>
+
+## Related
 
 import RelatedLoyalty from '/snippets/related-loyalty.mdx';
 

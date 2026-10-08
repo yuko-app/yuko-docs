@@ -4,28 +4,29 @@ description: Award customers a yearly points bonus on their birthday.
 ---
 
 <Note>
-**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Ways to Earn → Birthday
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn → Add another way → **Birthday**
 </Note>
 
 ## Introduction
 
-Give customers a points bonus on their birthday. It's a low-cost, high-emotion gesture that consistently drives high engagement and unprompted purchases.
+Give customers a points bonus on their birthday. It's a low-cost, high-emotion gesture that brings customers back to your store.
 
 ## What problem this solves
 
-Birthday emails are everywhere. A points bonus stands out because it's an actual gift the customer can spend, not a generic *Happy Birthday!* email.
+Birthday emails are everywhere. A points bonus stands out because it's a gift the customer can actually spend.
 
 ## When to use
 
 - You collect (or are willing to collect) birthdays from customers.
-- You want a recurring engagement moment that doesn't feel promotional.
-- You want to reward your most loyal customers with something their inbox doesn't already do.
+- You want a yearly engagement moment that doesn't feel promotional.
+- You want to reward customers with something their inbox doesn't already offer.
 
 ## Overview
 
 - Yearly bonus on the customer's birthday.
-- Requires the customer's birthdate — collected via account profile, popup or imported.
-- Optional points expiry to encourage prompt use.
+- Needs the customer's birth date, which customers can add in your loyalty widgets.
+- Optional points expiry and VIP tier multipliers.
+- Available on select plans.
 
 ## Before you start
 
@@ -33,58 +34,76 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <BeforeYouStart />
 
-<Check>You have a way to collect birthdates (Yuko's account block, your signup form, or an existing CRM).</Check>
+<Check>Customers can add their birthday, for example through the birthday section of the [floating launcher](/onsite-widgets/floating-launcher).</Check>
 
 ## Setup guide
 
 <Steps>
-  <Step title="Open the campaign">
-    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Ways to Earn → Birthday**.
+  <Step title="Add the way to earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to earn**, click **Add another way** and pick **Birthday**.
   </Step>
-  <Step title="Set details and points">
-    Enter a campaign name, description and points value (e.g., `200`).
+  <Step title="Fill in Basic Details">
+    - **Campaign Name** — shown to customers on the storefront. You can use `[earn_value]` and `[points_label]`, for example `Earn [earn_value] [points_label]`.
+    - **Description** — short copy shown with the way to earn.
   </Step>
-  <Step title="Set expiry (optional)">
-    A 30-day expiry is a healthy default — it tells customers the gift is for now.
+  <Step title="Set the points">
+    Enter **Points to earn on birthday** (a whole number, at least 1).
   </Step>
-  <Step title="Save & activate">
-    Toggle **Active** and click **Save**.
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Review the side panel">
+    - **Status** — on by default.
+    - **Icon** — **Default**, or **Custom** to upload your own (JPG, PNG, GIF or WEBP, under 1 MB).
+    - **Tiers** — turn on to apply VIP tier multipliers to this way to earn.
+  </Step>
+  <Step title="Save">
+    Click **Save**.
   </Step>
 </Steps>
 
 ## How it works
 
-- Yuko runs a daily check at the start of each customer's local day.
-- If today matches the customer's stored birthdate (year ignored), the points are credited.
-- The customer can be notified via the **Points earned** email if enabled.
+- Yuko runs a daily check for customers whose birthday is today (month and day; the year is ignored).
+- Matching customers with an active Birthday way to earn get the points.
+- Each customer earns once per year.
+- Customers born on 29 February are rewarded on 1 March in non-leap years.
+- You can also send the [Birthday Reminder](/emails/loyalty-emails) email and use the Birthday Reminder trigger in [Shopify Flow](/integrations/shopify-flow).
+
+With **Tiers** on and [VIP tiers](/vip-tiers/overview) enabled, customers in a tier earn the tier's multiplier for this way to earn, plus any bonus points the tier sets for it. The extra points appear as a separate tier bonus entry.
 
 ### Decision guidance
 
-- **Pick a generous bonus** — birthdays only happen once a year. 200–500 points is a common range.
-- **Add an expiry** so the gift creates urgency to come back.
+- **Pick a generous bonus.** Birthdays happen once a year; 200–500 points is a common range.
+- **Add an expiry** so the gift creates a reason to come back soon.
 
 ### Limitations
 
-- Customers without a stored birthdate don't earn (silent skip).
-- Year-of-birth is ignored; only month + day are matched.
+- Customers without a birth date don't earn.
+- Excluded customers don't earn.
+- Birthday points are awarded to Shopify customers.
+- You can have one Birthday way to earn.
 
 ## Examples
 
-- A homeware brand awards 300 points on birthday with 30-day expiry. Customers redeem on a self-treat purchase.
+- A homeware brand awards 300 points on birthdays with a 30-day expiry. Customers use them on a self-treat purchase.
 
 ## Best practices
 
-<Tip>**Collect birthdates at signup**. Adding a single optional field captures most of the data you need.</Tip>
-<Tip>**Pair with a birthday email**. The points bonus + a celebratory email outperforms either alone.</Tip>
+<Tip>**Ask for birthdays early.** Prompt customers to add their birthday when they join.</Tip>
+<Tip>**Pair with a birthday email.** Points plus a celebratory message work better than either alone.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
   <Accordion title="How do customers add their birthday?">
-    Through the Yuko account block on your storefront, or through your signup form if you collect it there. You can also import birthdates via CSV.
+    Through the birthday section in your loyalty widgets, such as the [floating launcher](/onsite-widgets/floating-launcher). You can also see each customer's birthday on the [Customers](/loyalty/customers) list.
   </Accordion>
-  <Accordion title="What if a customer changes their birthday after earning?">
-    Yuko prevents earning more than once per calendar year for the same customer. Edits don't re-trigger the bonus in the same year.
+  <Accordion title="Can customers change their birthday?">
+    Not from the storefront. Once a birthday is saved through the loyalty widget, the customer can't change it there.
+  </Accordion>
+  <Accordion title="Can a customer earn more than once a year?">
+    No. Customers earn the Birthday reward on their birthday, once a year.
   </Accordion>
 </AccordionGroup>
 

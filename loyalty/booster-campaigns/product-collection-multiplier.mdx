@@ -1,0 +1,115 @@
+---
+title: Product & Collection Multiplier Booster
+description: Multiply the points earned on selected products or collections only. Everything else in the order earns at the standard rate.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Booster Campaigns → Create campaign → **Product & Collection Multiplier**
+</Note>
+
+## Overview
+
+A Product & Collection Multiplier boosts points only for the part of an order that matches the products or collections you pick. If a customer buys a boosted item and a regular item in one order, only the boosted item's share of the order earns the multiplied points.
+
+It always works on the **Place an order** Way to Earn.
+
+## Why you need it?
+
+A store-wide multiplier rewards whatever the customer happens to buy. When you want to steer attention to a launch, a hero category or overstock, you need the boost to apply to those products only, so you don't pay extra points on everything else.
+
+## When to use it?
+
+- You're launching a new collection and want to drive traffic to it.
+- You want to move slow-selling or overstocked items without marking them down.
+- You want a permanent earning advantage on a high-margin category.
+- You want to promote a seasonal range (gifting, summer, back-to-school) for a few weeks.
+
+## Before you start
+
+<Check>The **Place an order** Way to Earn is enabled. If it's off, this type is greyed out in the **Create Booster Campaign** picker.</Check>
+
+## How to configure it?
+
+<Steps>
+  <Step title="Open Booster Campaigns">
+    Go to **Apps → Yuko Loyalty → Loyalty → Programs**. In the **Booster Campaigns** section, click **Create campaign** and select **Product & Collection Multiplier**.
+  </Step>
+  <Step title="Fill in Campaign Details">
+    Enter a **Campaign Name** (internal) and an optional **Description**.
+  </Step>
+  <Step title="Select products and collections">
+    In **Products & Collections**, click **Browse** next to **Products** and/or **Collections** and pick the items. You must select at least one product or collection.
+  </Step>
+  <Step title="Add the Multiplier reward">
+    Click **Add Reward**. Enter a **Name** (visible on the storefront) and the **Multiplier**, a value between 1.1 and 10.0. The campaign has exactly one reward.
+  </Step>
+  <Step title="Set targeting and limits (optional)">
+    Add **Targeting Rules** such as **VIP Tiers**, **Customer Tags** or **Membership**. Set **Max participants** and **Max completions per customer** if needed.
+  </Step>
+  <Step title="Set the schedule">
+    **One-time**, **Recurring** or **Evergreen (always on)**.
+  </Step>
+  <Step title="Set stacking">
+    Keep **Stackable with other campaigns** checked, or uncheck it to make the campaign exclusive. Check **Ignore if customer earned VIP tier multiplier** to skip the boost on orders where the customer's VIP tier already gave them a bonus.
+  </Step>
+  <Step title="Review display, publishing and icon">
+    The **Body text** widget label defaults to *"Earn extra points on selected products & collections while this campaign is live."* Available tokens: `[title]`, `[reward]`, `[points_label]`. Keep **Online store** selected under **Publishing** and choose an **Icon**.
+  </Step>
+  <Step title="Save">
+    **Status** is enabled by default. Click **Save**.
+  </Step>
+</Steps>
+
+## How it works
+
+1. A customer places an order and earns their normal **Place an order** points.
+2. Yuko works out how much of the order subtotal comes from the selected products or collections.
+3. The bonus is **base points × (eligible subtotal ÷ order subtotal) × (multiplier − 1)**, credited as a separate entry.
+4. If nothing in the order matches, no bonus is added.
+
+**Example:** a 2× campaign on your *New Arrivals* collection. A customer places a $100 order (earning 100 base points) where $60 is from *New Arrivals*. They get 100 × 0.6 × 1 = **60 bonus points**, for 160 in total.
+
+## Use cases / Examples
+
+**1. Collection launch week.** 2× on the new collection for its first week (**One-time** schedule).
+
+**2. Overstock clearance.** 3× on a specific overstocked product for 10 days, instead of a markdown.
+
+**3. Evergreen hero category.** 1.5× on your highest-margin collection, always on, so customers learn which range earns fastest.
+
+**4. VIP-only launch.** 2× on a new collection with a **VIP Tiers** rule for your top tier, as an early-access perk.
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Can I use this with a store-wide Multiplier at the same time?">
+    Yes. If both campaigns are stackable, a matching order gets both bonuses. Each bonus is calculated on the base order points, so they add up rather than multiply each other.
+  </Accordion>
+  <Accordion title="Can I choose an earning action other than Place an order?">
+    No. This type only works on orders, because it needs the order's items to check against your selection.
+  </Accordion>
+  <Accordion title="Why can't I add Products or Collections targeting rules?">
+    This type has its own **Products & Collections** picker, so those targeting rules aren't offered.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Booster Campaigns overview" icon="rocket" href="/loyalty/booster-campaigns/overview">
+    Schedule, targeting, stacking and display settings shared by all boosters.
+  </Card>
+  <Card title="Multiplier Booster" icon="xmark" href="/loyalty/booster-campaigns/multiplier">
+    Multiply points on every order, or on any other earning action.
+  </Card>
+  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
+    Show the campaign on every storefront page.
+  </Card>
+  <Card title="Place an Order" icon="bag-shopping" href="/loyalty/ways-to-earn/place-an-order">
+    The base Way to Earn this booster builds on.
+  </Card>
+</CardGroup>
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

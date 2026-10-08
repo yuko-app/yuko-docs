@@ -1,6 +1,6 @@
 ---
 title: Platforms
-description: Connected commerce platforms and multi-store setup.
+description: Check your Shopify connection and sync your existing customers and products into Yuko.
 ---
 
 <Note>
@@ -9,52 +9,62 @@ description: Connected commerce platforms and multi-store setup.
 
 ## Introduction
 
-The Platforms tab shows the commerce platforms connected to your Yuko organisation — typically just your Shopify store, but if you operate multiple Shopify stores under one brand, this is where you manage the connections.
+The Platforms tab shows your Shopify connection and lets you sync your store's existing customers and products into Yuko. New customers and products are picked up automatically after install. A manual sync is for bringing in your existing data or refreshing it later.
 
 ## What's configured here
 
-- The list of connected Shopify stores.
-- The primary store (used as the source of truth for shared loyalty data).
-- Connection status for each.
+- **Connection status**: a badge next to the **Shopify** title shows **Connected** when Yuko can reach your store.
+- **Connection Details**: your read-only **Store URL**, with a button to open your storefront.
+- **Data Synchronisation**: a three-step sync of customers and products, plus the status of your most recent sync.
 
 ## When to use
 
-- During initial setup, to confirm the Shopify connection is active.
-- When adding a second Shopify store under the same Yuko organisation.
-- When troubleshooting a sync issue.
+- Right after installing Yuko, to bring existing customers and products into Yuko.
+- Before importing customer points from a CSV in **Customers**. The import needs a completed sync.
+- When customers or products in Yuko look out of date compared with Shopify.
 
-## How multi-store works
-
-- Each Shopify store has its own Yuko install.
-- A single Yuko organisation can group multiple stores.
-- Data sharing across stores depends on your plan — contact support for multi-store coordination.
-
-## Setup
+## Sync your store data
 
 <Steps>
   <Step title="Open Platforms">
     Go to **Apps → Yuko Loyalty → Account → Platforms**.
   </Step>
-  <Step title="Verify the Shopify connection">
-    The store should show as **Connected**. If not, reinstall the Yuko app.
+  <Step title="Fetch Data">
+    Under **Sync Progress**, click **Fetch Data**. Yuko connects to your Shopify store and counts the available data.
   </Step>
-  <Step title="Add another store (optional)">
-    Multi-store setup is plan-gated. Contact [Support](https://yuko.so/support/) to enable it.
+  <Step title="Review the Store Data step">
+    Yuko shows how many customers and products it found and that they're ready to synchronize.
+  </Step>
+  <Step title="Click Sync Now">
+    Yuko imports the customers and products. The **Complete** step shows the overall status: **In progress**, **Completed** or **Failed**.
+  </Step>
+  <Step title="Check Recent Sync status">
+    **Recent Sync status** shows the latest result for **Customers** and **Products** separately.
   </Step>
 </Steps>
 
+To run another sync later, click **Start Sync Again** and repeat the steps.
+
 ## Best practices
 
-<Tip>**Don't disconnect the platform** unless you intend to uninstall — disconnection breaks all loyalty syncing.</Tip>
+<Tip>**Sync before launch** so existing customers can see their balance and tier as soon as your program goes live.</Tip>
+<Tip>**Sync before a points import.** The customer points import in [Customers](/loyalty/customers) needs a completed sync first.</Tip>
+<Tip>**Re-sync after bulk changes** in Shopify, such as a large customer import, if the data doesn't look right in Yuko.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Can I run Yuko on Shopify and WooCommerce simultaneously?">
-    Yes, but it's an Enterprise configuration. Contact support.
+  <Accordion title="Do I need to sync to get new customers into Yuko?">
+    No. New customers and products are picked up automatically. The sync is for existing data and for refreshing it.
   </Accordion>
-  <Accordion title="What if my Shopify store shows as Disconnected?">
-    Reinstall Yuko from the Shopify App Store. Existing customer data is retained.
+  <Accordion title="The sync shows Failed. What should I do?">
+    Click **Start Sync Again** and run it again. If it keeps failing, [contact support](https://yuko.so/support/).
+  </Accordion>
+  <Accordion title="Can I connect more than one store?">
+    Each Shopify store installs Yuko separately and has its own settings, customers and program.
+  </Accordion>
+  <Accordion title="What if Yuko can't reach my store?">
+    Reinstall Yuko from the [Shopify App Store](https://apps.shopify.com/yuko). If the connection still doesn't show as **Connected**, contact support.
   </Accordion>
 </AccordionGroup>
 
