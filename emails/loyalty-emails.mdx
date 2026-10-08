@@ -18,9 +18,9 @@ Yuko has 11 built-in loyalty emails. They all start **inactive**. Switch on the 
 | [Points expired](#points-expired) | Points have expired | Your `{{ points_label }}` have expired | **Days after points expired** |
 | [Reward expiry reminder](#reward-expiry-reminder) | A redeemed reward is about to expire | Your reward is expiring in `{{days_until_expiry}}` days! | 3 days before expiry |
 | [Reward expired](#reward-expired) | A redeemed reward has expired | Your reward has expired | **Days after reward expired** |
-| [Birthday Reminder](#birthday-reminder) | A customer's birthday is coming up | Celebrate Your Birthday With Us! | 7 days before the birthday |
+| [Birthday Reminder](#birthday-reminder) | A customer's birthday is coming up | Celebrate Your Birthday With Us! | 3 days before the birthday |
 | [Birthday award](#birthday-award) | Birthday points are awarded | Happy Birthday, `{{ first_name }}`! | **Days after birthday award** |
-| [Anniversary Reminder](#anniversary-reminder) | A customer's anniversary is coming up | Celebrate Your Anniversary With Us! | 7 days before the anniversary |
+| [Anniversary Reminder](#anniversary-reminder) | A customer's anniversary is coming up | Celebrate Your Anniversary With Us! | 3 days before the anniversary |
 | [Anniversary award](#anniversary-award) | Anniversary points are awarded | Happy Anniversary, `{{ first_name }}`! | **Days after anniversary award** |
 
 Settings in **bold** are delay fields in the email editor. Set them to **0** to send immediately (the default). The four reminders use a fixed number of days before the date and have no timing field in the editor.
@@ -139,7 +139,7 @@ Settings in **bold** are delay fields in the email editor. Set them to **0** to 
 
 **Default message:** Greeting → *"As a token of our appreciation, we're offering you `{{ points_value }}` `{{ points_label }}` on `{{birthday_date}}`"*.
 
-**Timing:** 7 days before the birthday.
+**Timing:** 3 days before the birthday.
 
 **Useful shortcodes:** `{{ points_value }}`, `{{ points_label }}`, `{{ birthday_date }}`, `{{ points_balance }}`.
 
@@ -167,7 +167,7 @@ Settings in **bold** are delay fields in the email editor. Set them to **0** to 
 
 **Default message:** Greeting → *"As a token of our appreciation, we're offering you `{{ points_value }}` `{{ points_label }}` on `{{anniversary_date}}`"*.
 
-**Timing:** 7 days before the anniversary.
+**Timing:** 3 days before the anniversary.
 
 **Useful shortcodes:** `{{ points_value }}`, `{{ anniversary_date }}`, `{{ customer_years }}`, `{{ customer_year_label }}`.
 
@@ -195,7 +195,7 @@ Settings in **bold** are delay fields in the email editor. Set them to **0** to 
 
 <AccordionGroup>
   <Accordion title="Can I change when the expiry and birthday reminders are sent?">
-    Not from the email editor. The built-in reminders go out 3 days before points or reward expiry, and 7 days before birthdays and anniversaries. For other timing, use a workflow with the matching trigger and a **Days Before** trigger filter.
+    Not from the email editor. All four built-in reminders go out 3 days before the date (points expiry, reward expiry, birthday or anniversary). For other timing, use a workflow with the matching trigger and a **Days Before** trigger filter.
   </Accordion>
   <Accordion title="Why didn't a customer get the Tier unlocked email after an upgrade?">
     Tier unlocked only sends when a customer enters their first tier. Use a workflow on **VIP Tier Upgrade** for upgrades.

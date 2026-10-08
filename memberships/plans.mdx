@@ -49,8 +49,8 @@ The **Plans** tab has these sections:
     - **Description**: shown to customers in membership widgets.
   </Step>
   <Step title="Set the price and billing interval">
-    - **Membership price**: the amount charged each billing period.
-    - **Billing interval**: **Monthly** or **Yearly**.
+    - **Membership price**: enter the **Amount per month** or **Amount per year** charged each billing period.
+    - **Billing interval**: **Monthly** or **Yearly**. You can't change the interval after the plan is created.
 
     The **Summary** card shows the amount per month or year and the number of benefits.
   </Step>
@@ -64,7 +64,7 @@ The **Plans** tab has these sections:
 
 After saving, the plan editor also shows:
 
-- **Membership Identifier**: a read-only identifier with a copy button. Use it to reference the plan in integrations. Yuko tags members' Shopify customer records with `YUKO:Membership:<identifier>`, plus the general `YUKO:Membership` tag.
+- **Membership Identifier**: the plan's read-only customer tag, in the form `YUKO:Membership:<identifier>`, with a copy button. Yuko adds this tag to members' Shopify customer records, plus the general `YUKO:Membership` tag. Use it to reference the plan in segments and integrations.
 - **Membership Status**: switch the plan **Active** or **Inactive**. You can't make a plan inactive while it has active members.
 - **Linked product**: the Shopify product customers buy to join. Yuko tags it `YUKO:Membership:Product`.
 
@@ -77,7 +77,7 @@ You can enrol customers without them buying the product. Manually added membersh
     Click a plan in **Paid Memberships**. The plan must be **Active**.
   </Step>
   <Step title="Add one customer">
-    In the **Add Member** card, open **Add member**, search for a customer and add them.
+    In the **Add Member** card, click **Add**, search for a customer and click **Add member**.
   </Step>
   <Step title="Or add by tag">
     Click **Add by tag**, enter a **Customer tag** (or click **Browse** to pick one) and click **Create memberships**. Yuko queues every customer with that tag. Check the **Members** tab for the results.
@@ -101,12 +101,12 @@ A customer who already has an active or paused membership on the plan isn't adde
 
 | Benefit | What members get | Key settings |
 |---|---|---|
-| **Amount discount** | A fixed amount off. | **Method** (**Automatic discount** or **One-time discount code**), **Discount value**, **Minimum purchase requirements**, **Maximum discount uses**, **Recurring payments for subscriptions**, **Combine with other discounts**, **Coupon Prefix**, **Expiry Settings**. |
-| **% off discount** | A percentage off. | As Amount discount, plus **Maximum amount**. |
-| **Free shipping** | Free shipping. | **Method** (**Automatic** or **One-time code**), minimum requirements, usage limits, combinations, prefix and expiry. |
-| **Free product** | A chosen product for free. | **Method**, **Select Product**, minimum requirements, usage limits, combinations, prefix and expiry. |
-| **Bonus points** | Loyalty points. | **Name**, **Number of points**, optional **Expiry**. |
-| **Store credit** | Shopify store credit. | **Store Credit Type**: **One time**, **Recurring** (with a **Recurring Period** and schedule) or **% cashback after every purchase**. Optional **Expiry** and **Enable Holdings**. Only one store credit benefit per plan, and only on Shopify stores. |
+| **Amount discount** | A fixed amount off. | **Method** (**Automatic discount** or **One-time discount code**), **Discount value**, **Applies to** (all products, specific collections or specific products), **Only apply discount once per order**, **Purchase type**, **Minimum purchase requirements**, **Combine with other discounts**, **Coupon Prefix** (one-time codes only), **Expiry Settings**. |
+| **% off discount** | A percentage off. | As Amount discount, without the once-per-order option. The **Discount value** can be up to 50%. |
+| **Free shipping** | Free shipping. | **Method** (**Automatic** or **One-time code**), **Purchase type**, minimum requirements, combinations, prefix and expiry. |
+| **Free product** | A chosen product for free. | **Method**, **Select Product**, minimum requirements, combinations, prefix and expiry. |
+| **Bonus points** | Loyalty points. | **Name**, **Number of points**, optional expiry (**Expire after**). |
+| **Store credit** | Shopify store credit. | **Store Credit Type**: **One time**, **Recurring** (with a **Recurring Period** and schedule) or **% cashback after every purchase**. Optional expiry and **Enable Holdings**. Only one store credit benefit per plan, and only on Shopify stores. |
 | **Custom benefit** | A perk you deliver yourself, such as early access. | **Name**. It's shown to members but Yuko doesn't issue anything. |
 
 ## How it works

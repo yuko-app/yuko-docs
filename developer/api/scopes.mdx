@@ -4,7 +4,7 @@ title: "Scopes"
 
 Every REST API key carries a list of scopes that controls which endpoints it can call. The merchant sets them when creating the key in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**:
 
-- **Full Access Key**: read and write access for every scope.
+- **Full Access Key**: the highest access level each scope supports (read and write where available).
 - **Read-Only Key**: read access for every scope.
 - **Custom Key**: **No Access**, **Read Access** or **Read/Write Access** per scope.
 
@@ -20,7 +20,7 @@ Scopes are stored on the key as `read:<scope>` or `write:<scope>`, for example `
 | Scope | Label in Yuko | Access levels | What it allows |
 |---|---|---|---|
 | `customers` | Customers | read, write | View customer profiles and points balances |
-| `orders` | Orders | write | Post sales and cancellations from external channels |
+| `orders` | Orders | write | Not used by any endpoint in this reference |
 | `rewards` | Rewards | read, write | View the reward catalogue and redeem points for rewards |
 | `transactions` | Transactions | read, write | View points transaction history and manually adjust points |
 | `activities` | Activities | read | View the customer loyalty activity log |
@@ -28,7 +28,7 @@ Scopes are stored on the key as `read:<scope>` or `write:<scope>`, for example `
 | `earning_rules` | Earning Rules | read | View points earning rules |
 | `referrals` | Referrals | read | View the referral program configuration and customer referrals |
 | `points` | Points | read | Estimate the points a cart will earn (checkout integrations) |
-| `booster_campaigns` | Booster Campaigns | read, write | View booster campaigns |
+| `booster_campaigns` | Booster Campaigns | read, write | View active booster campaigns (no write endpoints yet) |
 
 ## Endpoints by scope
 

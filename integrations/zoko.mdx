@@ -29,16 +29,16 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
 <Steps>
   <Step title="Get your Zoko API key">
-    Log in to the Zoko dashboard → **Settings → API**. Copy the API key.
+    Log in to your Zoko dashboard and copy your API key.
   </Step>
   <Step title="Open Zoko in Yuko">
     In Shopify admin, go to **Apps → Yuko Loyalty → Integrations → Zoko**.
   </Step>
   <Step title="Paste the API key and Connect">
-    Paste the key and click **Connect**. The tile flips to **Connected**.
+    Paste the key into the **API Key** field and click **Connect Integration**. The page shows **Connected**.
   </Step>
   <Step title="Add a Zoko step to a workflow">
-    Open any workflow, click **+**, pick **WhatsApp**, and select **Zoko** in the provider dropdown.
+    Open any workflow, click **+**, pick **WhatsApp**, and choose the **Zoko** card from the provider list.
   </Step>
 </Steps>
 
@@ -52,7 +52,7 @@ Zoko supports three template flavours. The node lets you pick which one matches 
 | **Message Type** | `Template` (text only), `Rich Template` (media header), or `Button Template` (interactive buttons) | `Template` |
 | **Template Language** | Language code | `en` |
 | **Template Argument Count** | Number of variables the template expects (1–10) | `2` |
-| **Template Arguments** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{coupon_code}}` |
+| **Template Arguments** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#shortcodes) | `{{first_name}}`, `{{reward_code}}` |
 
 ### Three template modes
 
@@ -76,7 +76,7 @@ Zoko supports three template flavours. The node lets you pick which one matches 
 
 1. In Zoko, approve a template called `reward_unlocked` with two variables (customer name, coupon code).
 2. In Yuko Workflows, build: **Trigger: Redeem Points** → **WhatsApp (Zoko)**.
-3. Set Template ID = `reward_unlocked`, Message Type = `Template`, Language = `en`, Argument Count = `2`, Arguments = `{{first_name}}`, `{{coupon_code}}`.
+3. Set Template ID = `reward_unlocked`, Message Type = `Template`, Language = `en`, Argument Count = `2`, Arguments = `{{first_name}}`, `{{reward_code}}`.
 4. Activate. Each new reward fires a Zoko message immediately.
 
 ## Limitations
@@ -99,7 +99,7 @@ Zoko supports three template flavours. The node lets you pick which one matches 
     Yes. Connect any combination of the 13 providers; the WhatsApp node lets you pick the provider per step.
   </Accordion>
   <Accordion title="How do I rotate the API key?">
-    Generate a new key in Zoko, then paste it into the Yuko Zoko integration tile and click **Connect** again.
+    Generate a new key in Zoko, then open **Integrations → Zoko** in Yuko, switch off the **Connection** toggle and confirm **Disconnect**, and connect again with the new key. Existing workflow steps keep their settings.
   </Accordion>
 </AccordionGroup>
 

@@ -55,13 +55,13 @@ Keep this page open in a tab. Terms are grouped by the area of Yuko they belong 
 : The top-level sidebar item where you see every customer's balance, tier and activity, and adjust their points.
 
 **Member**
-: A customer who has joined your loyalty program.
+: A customer who has taken part in your loyalty program, for example by earning points, getting a reward or making a referral.
 
 **Guest**
-: A customer Yuko knows about who hasn't joined the loyalty program.
+: A customer synced from your store who hasn't taken part in the loyalty program yet.
 
 **Excluded**
-: A customer removed from the loyalty program with **Exclude from Program**.
+: A customer left out of the loyalty program, either manually with **Exclude from Program** or by an excluded customer tag.
 
 **Adjust balance**
 : Manually adding (**Credit**) or removing (**Debit**) points for a customer, with an **Update reason**.
@@ -90,7 +90,10 @@ Keep this page open in a tab. Terms are grouped by the area of Yuko they belong 
 : The window used to measure tier progress: *Lifetime*, *Rolling year* or *Calendar year*.
 
 **Retention window**
-: The time a customer keeps a tier after entering it, even if their activity drops.
+: The time a customer keeps a tier after entering it, even if their activity drops. It never ends for *Lifetime*, ends on December 31 for *Calendar year* (or a year later with **Include the last year**) and 12 months after entry for *Rolling year*.
+
+**Tier Reset Options**
+: What happens when a customer's retention window ends: **Reset After Period End** moves them to the tier they now qualify for, and **No Tier After Reset** removes them from all tiers until they qualify again.
 
 ## Referrals
 

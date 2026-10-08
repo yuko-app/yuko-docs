@@ -1,6 +1,6 @@
 ---
 title: Customers
-description: Find customers, see their points, tier and activity, adjust balances, redeem rewards for them, assign tiers, exclude them from the program and import points.
+description: Find customers, see their points, tier and activity, adjust balances, assign tiers, exclude them from the program and import points.
 ---
 
 <Note>
@@ -17,13 +17,12 @@ You can also see a customer's loyalty details and adjust their points without le
 
 ## What problem this solves
 
-When a customer asks *"where are my points?"* you need to answer quickly. The Customers page gives you the full history, and lets you fix balances, issue a reward or change a tier without touching anything else.
+When a customer asks *"where are my points?"* you need to answer quickly. The Customers page gives you the full history, and lets you fix balances or change a tier without touching anything else.
 
 ## When to use
 
 - Answering support questions about missing or incorrect points.
 - Giving a goodwill credit or removing points awarded in error.
-- Redeeming a reward on a customer's behalf.
 - Placing a customer in a VIP tier manually.
 - Removing a customer (for example a staff or test account) from the program.
 - Moving point balances in from a previous loyalty app.
@@ -34,7 +33,6 @@ When a customer asks *"where are my points?"* you need to answer quickly. The Cu
 - Filters for status, points balance, total earned, total redeemed, VIP tier, membership and referral count.
 - Customer detail page with **Activities**, **Active Rewards**, **Recent Orders**, a loyalty summary, VIP tier and referrals.
 - **Adjust balance** to credit or debit points, with optional expiry on credits.
-- **Redeem points** for a reward on the customer's behalf.
 - **Assign tier** to override a customer's VIP tier.
 - **Exclude from program**, optionally resetting the customer's points, discounts and tags.
 - **Import customer points** from a CSV.
@@ -54,9 +52,9 @@ The list shows these columns: **Name** (with email), **Phone**, **Status**, **VI
 
 | Status | Meaning |
 |---|---|
-| **Member** | A customer who has taken part in the program, for example by earning points, getting a reward or making a referral |
+| **Member** | A customer who has taken part in the program, for example by earning or redeeming points |
 | **Guest** | A customer synced from your store who hasn't taken part in the program yet |
-| **Excluded** | Left out of the loyalty program, manually or by an excluded customer tag |
+| **Excluded** | Excluded from the loyalty program with **Exclude from program** on the customer's page |
 
 ### Search, filter and sort
 
@@ -92,7 +90,7 @@ The detail page shows the customer's name and status badge, and three main secti
 
 The side panel shows:
 
-- **Overview** — the **Loyalty point balance**, with the **Adjust balance** and **Redeem points** buttons.
+- **Overview** — the **Loyalty point balance**, with the **Adjust balance** button.
 - **Loyalty summary** — **Points earned**, **Points spent**, **Points expired** and **Total orders**.
 - **VIP tier** — the current tier (marked **Manual** if assigned by hand), **Tier multiplier**, **Next tier**, **Progress to next tier** and **Highest tier reached**, with **Assign tier** and **Clear override**.
 - **Membership** — the customer's paid membership, if the Membership program is enabled.
@@ -121,10 +119,6 @@ From the page header you can also open **View on Shopify** and **Exclude from pr
 </Steps>
 
 A debit can't remove more points than the customer has. Excluded customers can't have their balance adjusted.
-
-### Redeem points
-
-Click **Redeem points**, choose a reward, enter the **Points to redeem**, and confirm. Yuko redeems the reward for the customer just as if they'd done it on the storefront, and the new code appears under **Active Rewards**.
 
 ### Assign tier
 
@@ -183,9 +177,10 @@ Use these when your team works from Shopify's customer page, for example while h
 ## How it works
 
 - Customers sync from your Shopify store into Yuko. Every synced customer is listed, starting as a **Guest** until they take part in the program.
-- Every adjustment, redemption and import is written to the customer's points ledger and appears in **Activities**.
+- Every adjustment and import is written to the customer's points ledger and appears in **Activities**.
 - Adjustments are direct changes to the balance. They don't trigger Ways to Earn.
 - Excluded customers stay on the list with the **Excluded** status but don't earn.
+- Customers with a tag listed under **Exclude customers by tag** in [Loyalty Settings](/loyalty/program-settings) don't earn either, but they keep their **Member** or **Guest** status on this list.
 
 ### Decision guidance
 
@@ -216,7 +211,7 @@ Use these when your team works from Shopify's customer page, for example while h
 
 <AccordionGroup>
   <Accordion title="Why does a customer show as Guest?">
-    They're in your store's customer list but haven't taken part in the loyalty program yet. They become a **Member** once they earn points, get a reward, make a referral or join a membership.
+    They're in your store's customer list but haven't taken part in the loyalty program yet. They become a **Member** once they take part, for example by earning or redeeming points.
   </Accordion>
   <Accordion title="Can I export the customer list?">
     Not from the Customers page. Use the [REST API](/integrations/rest-api) or an integration such as [Klaviyo](/integrations/klaviyo) to get loyalty data out of Yuko.

@@ -12,8 +12,8 @@ Paid [memberships](/memberships/overview) have four built-in emails, one for eac
 | Email | Sent when | Default subject | Delay setting |
 |---|---|---|---|
 | [Membership created](#membership-created) | A customer subscribes to a membership for the first time | Welcome to `{{ membership_name }}`, `{{ first_name }}`! | **Days after membership created** |
-| [Membership upgraded](#membership-upgraded) | A member moves to a higher-priced plan | You've upgraded to `{{ membership_name }}`, `{{ first_name }}`! | **Days after membership upgraded** |
-| [Membership downgraded](#membership-downgraded) | A member moves to a lower-priced plan | Your membership plan has changed, `{{ first_name }}` | **Days after membership downgraded** |
+| [Membership upgraded](#membership-upgraded) | A member switches to a higher plan | You've upgraded to `{{ membership_name }}`, `{{ first_name }}`! | **Days after membership upgraded** |
+| [Membership downgraded](#membership-downgraded) | A member switches to a lower plan | Your membership plan has changed, `{{ first_name }}` | **Days after membership downgraded** |
 | [Membership cancelled](#membership-cancelled) | A member's subscription is cancelled | Your `{{ membership_name }}` membership has been cancelled, `{{ first_name }}` | **Days after membership cancelled** |
 
 Leave the delay at **0** to send immediately.
@@ -36,7 +36,7 @@ Leave the delay at **0** to send immediately.
 
 ## Membership upgraded
 
-**Sent when:** a member's subscription is updated to a higher-priced plan.
+**Sent when:** a member switches to a plan that comes later in your plan order on the [Plans](/memberships/plans) tab. Yuko uses that order, not the price, to decide what counts as an upgrade.
 
 **Default subject:** *You've upgraded to `{{ membership_name }}`, `{{ first_name }}`!*
 
@@ -50,7 +50,7 @@ Leave the delay at **0** to send immediately.
 
 ## Membership downgraded
 
-**Sent when:** a member's subscription is updated to a lower-priced plan.
+**Sent when:** a member switches to a plan that comes earlier in your plan order on the [Plans](/memberships/plans) tab.
 
 **Default subject:** *Your membership plan has changed, `{{ first_name }}`*
 

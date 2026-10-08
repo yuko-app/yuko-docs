@@ -18,6 +18,12 @@ Retrieves all VIP tiers configured for your organisation, sorted by `threshold_v
 
 Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
 
+#### **Required Scope**
+
+**`read:tiers`**
+
+This endpoint requires the `tiers` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
+
 #### **Response**
 
 **200 - application/json**
@@ -68,15 +74,15 @@ Example:
 
 `2.0`
 
-**data.icon_url**
+**data.icon**
 
-**string | null**
+**object | null**
 
-URL of the tier icon image.
+The tier icon, or `null` if none is set. Contains `source` (`default` or `custom`), `slug` (built-in icons), `id` (custom uploads) and `url` (the image URL).
 
 Example:
 
-`"https://cdn.yukoapp.com/tiers/gold-icon.png"`
+`{ "source": "custom", "slug": null, "id": "12", "url": "https://example.com/gold-icon.png" }`
 
 **data.benefits**
 
@@ -104,27 +110,33 @@ The type of benefit issued to the customer.
 
 Available options:
 
-`fixed_discount`,
+`fixed`,
 
-`percentage_discount`,
+`percentage`,
+
+`free_product`,
 
 `free_shipping`,
 
-`multiplier`
+`bonus_points`,
+
+`store_credit`,
+
+`custom`
 
 Example:
 
-`"percentage_discount"`
+`"percentage"`
 
 **data.benefits.benefit_value**
 
 **object**
 
-The value configuration for this benefit. Structure varies by `benefit_type`.
+The value configuration for this benefit. Structure varies by `benefit_type`. For example, discount benefits include `reward_type`, `method` (`automatic` or `one_time`) and `discount_value`.
 
 Example:
 
-`{ "value": 10 }`
+`{ "reward_type": "percentage", "method": "automatic", "discount_value": 10 }`
 
 **data.created_at**
 
@@ -132,7 +144,7 @@ Example:
 
 Example:
 
-`"2025-09-12T15:44:44.000Z"`
+`"2025-09-12T15:44:44+00:00"`
 
 <RequestExample>
 
@@ -182,27 +194,27 @@ $data = json_decode($response, true);
       "name": "Silver",
       "threshold_value": 500,
       "multiplier": 1.5,
-      "icon_url": null,
+      "icon": null,
       "benefits": [
         {
           "name": "5% Discount on every order",
-          "benefit_type": "percentage_discount",
-          "benefit_value": { "value": 5 }
+          "benefit_type": "percentage",
+          "benefit_value": { "reward_type": "percentage", "method": "automatic", "discount_value": 5 }
         }
       ],
-      "created_at": "2025-09-12T15:44:44.000Z"
+      "created_at": "2025-09-12T15:44:44+00:00"
     },
     {
-      "id": "8ac40d96-4b4e-5358-9444-3f16ba d9bf39",
+      "id": "8ac40d96-4b4e-5358-9444-3f16bab9bf39",
       "name": "Gold",
       "threshold_value": 1000,
       "multiplier": 2.0,
-      "icon_url": "https://cdn.yukoapp.com/tiers/gold-icon.png",
+      "icon": { "source": "custom", "slug": null, "id": "12", "url": "https://example.com/gold-icon.png" },
       "benefits": [
         {
           "name": "10% Discount on every order",
-          "benefit_type": "percentage_discount",
-          "benefit_value": { "value": 10 }
+          "benefit_type": "percentage",
+          "benefit_value": { "reward_type": "percentage", "method": "automatic", "discount_value": 10 }
         },
         {
           "name": "Free Shipping",
@@ -210,7 +222,7 @@ $data = json_decode($response, true);
           "benefit_value": {}
         }
       ],
-      "created_at": "2025-09-12T15:44:44.000Z"
+      "created_at": "2025-09-12T15:44:44+00:00"
     }
   ]
 }

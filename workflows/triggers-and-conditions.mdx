@@ -83,13 +83,13 @@ The trigger list is grouped into **Loyalty**, **VIP Tiers**, **Referral**, **Mem
 
 ## Trigger filters
 
-After you pick a trigger, click **Add trigger filters** to only let in events that match. Conditions are grouped, and you choose whether groups and conditions combine with **AND** or **OR**. Each condition has a **Field**, an **Operator** (such as *equals*, *contains*, *is greater than*) and a **Value**.
+After you pick a trigger, click **Add** under **Trigger filters** to only let in events that match. Conditions are grouped, and you choose whether groups and conditions combine with **AND** or **OR**. Each condition has a **Field**, an **Operator** (such as *equals*, *contains*, *is greater than*) and a **Value**.
 
 The fields depend on the trigger:
 
 | Fields | Triggers |
 |---|---|
-| **Email**, **First name**, **Last name**, **Phone number** | Almost every trigger |
+| **Email**, **First name**, **Last name**, **Phone number** | Every trigger except Benefit Unlocked |
 | **City**, **Country Code** | Order, loyalty, VIP, booster and membership triggers |
 | **Points Balance**, **Total Earned Points** | Loyalty, VIP and booster triggers |
 | **Point Source** | Earn Points, Redeem Points, Points Expired, Points Adjusted, One-time Campaign Points Awarded |
@@ -103,7 +103,7 @@ The fields depend on the trigger:
 | **Benefit Module**, **Benefit Type** | Benefit Unlocked |
 | **Membership Name**, **Subscription Status** | Membership triggers |
 | **Referral Link** | Referral triggers and several loyalty triggers |
-| **Category**, **Collection**, **Product Name**, **Product ID**, **Variant ID**, **Order Status**, **Order Financial Status**, **Order Fulfillment Status**, **Currency**, **Language**, **Province Code**, **Order Count** | Order Paid, Order Delivered |
+| **Category**, **Collection**, **Product Name**, **Product ID**, **Variant ID**, **Order Status**, **Order Financial Status**, **Order Fulfillment Status**, **Currency**, **Language**, **Province Code**, **Order Count** | Order Paid, Order Delivered (**Currency**, **Product Name** and **Province Code** are also available on Earn Points) |
 
 ### One-time campaign conditions
 
@@ -117,7 +117,7 @@ The identifier never changes, so it's safer than the name if you might rename th
 
 ## Profile filters
 
-Click **Add profile filters** to filter on the customer rather than the event. Choose a **Condition type**:
+Click **Add** under **Profile filters** to filter on the customer rather than the event. Choose a **Condition type**:
 
 | Condition type | What it checks |
 |---|---|
@@ -139,7 +139,7 @@ Under **Re-entry criteria** on the trigger node, set whether a customer can go t
 
 ## If / Else
 
-Add **If / Else** from the **Logic** group in **Add Node**. It *"splits profiles into two paths based on whether they meet the condition"*. Customers who match take the **Yes** path. Everyone else takes the **No** path.
+Add **If / Else** from the **Logic** group in **Add Node**: *"Profiles are split into two paths based on whether they meet the condition."* Customers who match take the **Yes** path. Everyone else takes the **No** path.
 
 The If / Else panel has two sections:
 

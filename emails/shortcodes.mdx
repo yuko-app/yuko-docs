@@ -13,7 +13,7 @@ Shortcodes are placeholders that Yuko replaces with the customer's real data whe
 
 Each email only supports the shortcodes for its own event. The editor lists exactly the ones you can use, so copy them from there. The tables below show which emails support each shortcode.
 
-<Info>Shortcodes are rendered with Liquid, so you can also use simple conditions. For example, `{% if current_tier_name == "Gold" %} ... {% endif %}` shows a block only to Gold members. The Tier unlocked email lists this pattern as **Current tier conditions** and **Next tier conditions**.</Info>
+<Info>Shortcodes are rendered with Liquid, so you can also use simple conditions. For example, `{% if current_tier_name == "Gold" %} ... {% endif %}` shows a block only to Gold members.</Info>
 
 ## Customer
 
@@ -67,6 +67,13 @@ The `*_as_cash` values convert points to money using your points-to-cash rate.
 | `{{ expired_points_as_cash }}` | Expired Points as Cash | Points expired |
 | `{{ current_tier_name }}` | Current Tier Name | Tier unlocked |
 | `{{ next_tier_name }}` | Next Tier Name | Tier unlocked |
+| `{{ next_tier_threshold }}` | Next Tier Threshold | Tier unlocked |
+| `{{ current_tier_icon_url }}` | Current Tier Icon | Tier unlocked |
+| `{{ benefits_unlocked }}` | Benefits Unlocked | Tier unlocked |
+| `{{ tier_entry_at }}` | Tier Entry At | Tier unlocked |
+| `{{ retention_expires_at }}` | Retention Expires At | Tier unlocked |
+| `{{ all_tiers }}` | All Tiers | Tier unlocked |
+| `{{ progress_toward_next }}` / `{{ progress_percentage }}` | Progress Toward Next / Progress Percentage | Tier unlocked |
 
 ## Loyalty: rewards
 

@@ -30,16 +30,16 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
 <Steps>
   <Step title="Get your WATI API key and Client ID">
-    Log in to the WATI dashboard → **API Docs** (or **API → Access Token**). Copy the access token and note the Client ID from the API base URL.
+    Log in to your WATI dashboard, copy your API access token, and note the Client ID from your API base URL.
   </Step>
   <Step title="Open WATI in Yuko">
     In Shopify admin, go to **Apps → Yuko Loyalty → Integrations → WATI**.
   </Step>
   <Step title="Paste the API key and Connect">
-    Paste the access token and click **Connect**. The tile flips to **Connected**.
+    Paste the access token into the **API Key** field and click **Connect Integration**. The page shows **Connected**.
   </Step>
   <Step title="Add a WATI step to a workflow">
-    Open any workflow, click **+**, pick **WhatsApp**, and select **WATI** in the provider dropdown.
+    Open any workflow, click **+**, pick **WhatsApp**, and choose the **WATI** card from the provider list.
   </Step>
 </Steps>
 
@@ -54,7 +54,7 @@ WATI uses **named** template parameters. Each parameter has both a name (matchin
 | **Broadcast Name** | A label to track this broadcast in WATI analytics | `loyalty_tier_upgrade` |
 | **Channel Number** | Your WhatsApp Business sender number with country code | `918888000000` |
 | **Parameter Count** | Number of named parameters the template expects (1–10) | `3` |
-| **Template Parameters** | Name + value pairs — values support [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `customer_name` = `{{first_name}}` |
+| **Template Parameters** | Name + value pairs — values support [shortcodes](/workflows/whatsapp-node#shortcodes) | `customer_name` = `{{first_name}}` |
 
 <Tip>**Parameter names must match the template variables exactly.** If your WATI template defines `{{customer_name}}` and `{{coupon_code}}`, use those exact names in the parameter list — not `name` and `code`.</Tip>
 
@@ -65,7 +65,7 @@ WATI uses **named** template parameters. Each parameter has both a name (matchin
 1. Approve a template in WATI called `order_shipped` with three named variables: `customer_name`, `order_number`, `order_total`.
 2. In Yuko Workflows, build: **Trigger: Fulfilled Order** → **WhatsApp (WATI)**.
 3. Set Template Name = `order_shipped`, Broadcast Name = `shipped_notifications`, Channel Number = your sender number, Parameter Count = `3`.
-4. Add three parameters: `customer_name` = `{{first_name}}`, `order_number` = `{{order_number}}`, `order_total` = `{{order_total}}`.
+4. Add three parameters: `customer_name` = `{{customer_name}}`, `order_number` = `{{order_id}}`, `order_total` = `{{order_total}}`.
 5. Activate.
 
 ## Limitations
@@ -88,7 +88,7 @@ WATI uses **named** template parameters. Each parameter has both a name (matchin
     Yes — connect WATI once, and pick the Channel Number per workflow step. Each step can use a different sender number.
   </Accordion>
   <Accordion title="How do I rotate the API key?">
-    Generate a new access token in WATI, then paste it into the Yuko WATI integration tile and click **Connect** again.
+    Generate a new access token in WATI, then open **Integrations → WATI** in Yuko, switch off the **Connection** toggle and confirm **Disconnect**, and connect again with the new key. Existing workflow steps keep their settings.
   </Accordion>
 </AccordionGroup>
 

@@ -1,54 +1,29 @@
 ---
-title: "Customer Identity Object"
+title: "Customer Object"
+description: "Fields returned for a customer by the Yuko REST API, and how customers are identified."
 ---
 
-Customer identities represent how customers from an external platform (e.g. WooCommerce, Shopify) are linked to customers in Yuko. A single Yuko customer may have one or more customer identities across different platforms.
+Yuko creates customer records automatically from your Shopify store. Each customer is linked to their store account by `platform` and `platform_customer_id`. The customer object is returned by [List customers](/developer/api/list-customers) and [Retrieve a customer](/developer/api/retrieve-a-customer) (scope `customers` read).
 
-**uuid**
+<Note>
+Whenever an endpoint asks for `customer_id`, pass the customer's ID from your store (the `platform_customer_id` below, for example the Shopify customer ID), not the Yuko `id`.
+</Note>
 
-**string\<uuid\>**
-
-Unique identifier for the customer identity in Yuko.
-
-Example:
-
-`"a1b2c3d4-e5f6-7890-abcd-ef1234567890"`
-
-**customer_uuid**
+**id**
 
 **string\<uuid\>**
 
-The UUID of the Yuko customer this identity is linked to.
+Yuko's internal UUID for the customer.
 
 Example:
 
 `"63a2c89a-9936-4bc0-9d5f-93db46110b76"`
 
-**platform**
-
-**string**
-
-The ecommerce platform this identity originates from.
-
-Example:
-
-`"woocommerce"`
-
-**platform_customer_id**
-
-**string | null**
-
-The customer's unique identifier in the external platform.
-
-Example:
-
-`"cust_19238475"`
-
 **first_name**
 
 **string | null**
 
-The customer's first name in the external platform.
+The customer's first name.
 
 Example:
 
@@ -58,7 +33,7 @@ Example:
 
 **string | null**
 
-The customer's last name in the external platform.
+The customer's last name.
 
 Example:
 
@@ -66,30 +41,128 @@ Example:
 
 **email**
 
-**string\<email\>**
+**string | null**
 
-The customer's email address in the external platform.
+The customer's email address.
 
 Example:
 
 `"jane@doe.com"`
 
+**phone**
+
+**string | null**
+
+The customer's phone number.
+
+Example:
+
+`"+15555550123"`
+
+**platform**
+
+**string**
+
+The store platform the customer comes from.
+
+Example:
+
+`"shopify"`
+
+**platform_customer_id**
+
+**string**
+
+The customer's ID in your store. Use this value as `customer_id` in API requests.
+
+Example:
+
+`"7012345678901"`
+
+**state**
+
+**enum\<string\>**
+
+`member` for customers in the loyalty program, or `disabled` for customers you've excluded from it.
+
+Available options:
+
+`member`,
+
+`disabled`
+
+Example:
+
+`"member"`
+
+**date_of_birth**
+
+**string\<date\> | null**
+
+The customer's birthday, if known (`YYYY-MM-DD`).
+
+Example:
+
+`"1990-04-21"`
+
+**referral_code**
+
+**string | null**
+
+The customer's referral code, if they have one.
+
+Example:
+
+`"JANE10"`
+
+**referral_url**
+
+**string | null**
+
+The customer's referral link, if they have a referral code.
+
+Example:
+
+`"https://yourstore.com?ref=JANE10"`
+
+**points**
+
+**object**
+
+The customer's points summary: `balance` (spendable points, always `0` for a `disabled` customer), `earned` (total earned) and `redeemed` (total redeemed). All integers.
+
+Example:
+
+`{ "balance": 650, "earned": 1200, "redeemed": 550 }`
+
+**tier** (Retrieve a customer only)
+
+**object | null**
+
+The customer's current VIP tier, with the same fields as `current_tier` in the [Membership Object](/membership-object). `null` if VIP tiers are turned off or the customer hasn't reached a tier.
+
+**membership** (Retrieve a customer only)
+
+**object**
+
+`status` (always `active`) and `member_since` (the date the customer was added to Yuko).
+
 **created_at**
 
 **string\<date-time\>**
 
-The date and time when the customer identity was created in Yuko.
+When the customer was added to Yuko (ISO 8601).
 
 Example:
 
-`"2026-03-09T14:02:06.000Z"`
+`"2026-03-09T14:02:06+00:00"`
 
 **updated_at**
 
 **string\<date-time\>**
 
-The date and time when the customer identity was last updated in Yuko.
+When the customer record was last updated (ISO 8601).
 
 Example:
 
-`"2026-03-09T14:02:06.000Z"`
+`"2026-03-09T14:02:06+00:00"`

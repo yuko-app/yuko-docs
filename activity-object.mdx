@@ -1,10 +1,11 @@
 ---
 title: "Activity Object"
+description: "Fields returned for a loyalty activity by the Yuko REST API."
 ---
 
-Activities represent actions performed by customers in Yuko. They are used to track customer behavior and trigger loyalty program events.
+An activity is an entry in a customer's loyalty activity log: points earned for an order, a reward redemption, a manual points adjustment, a VIP tier change, and so on. Activities are returned by [List customer activities](/developer/api/list-customer-activities) (`GET /public/customers/activities`, scope `activities` read).
 
-**uuid**
+**id**
 
 **string\<uuid\>**
 
@@ -14,42 +15,88 @@ Example:
 
 `"a1b2c3d4-e5f6-7890-abcd-ef1234567890"`
 
-**customer_uuid**
+**customer_id**
 
 **string\<uuid\>**
 
-The UUID of the customer who performed the activity.
+Yuko's internal UUID for the customer the activity belongs to. This is not the Shopify customer ID you pass as the `customer_id` query parameter.
 
 Example:
 
-`"d4e5f6a1-b2c3-4567-89ab-cdef01234567"`
+`"63a2c89a-9936-4bc0-9d5f-93db46110b76"`
 
-**type**
+**activity_type**
 
 **string**
 
-The type of activity that was performed.
+The kind of activity, for example `purchase`, `point_adjustment` or `vip_tier_upgrade`. You can filter by this value with the `activity_type` query parameter.
 
 Example:
 
-`"review_submitted"`
+`"purchase"`
+
+**source_type**
+
+**string**
+
+What produced the activity, for example `loyalty_campaigns` (an earn rule), `loyalty_tiers` (a VIP tier change) or `users` (a manual adjustment). You can filter by this value with the `source_type` query parameter.
+
+Example:
+
+`"loyalty_campaigns"`
+
+**source_id**
+
+**string\<uuid\> | null**
+
+The UUID of the record that produced the activity, such as the earn rule or reward.
+
+Example:
+
+`"7fb39c85-3a3f-4247-8333-2e05a9c8ae28"`
+
+**entry_type**
+
+**string | null**
+
+`credit` when points were added, `debit` when points were removed, or `null` when the activity didn't change the points balance.
+
+Example:
+
+`"credit"`
+
+**points**
+
+**integer**
+
+The number of points earned or used in this activity. `0` when no points were involved.
+
+Example:
+
+`100`
+
+**earning_type**
+
+**string | null**
+
+How the activity rewarded the customer (for example `points`), when applicable.
+
+Example:
+
+`"points"`
+
+**metadata**
+
+**object**
+
+The full activity payload. Its structure depends on `activity_type`. For VIP tier changes, see [VIP Tier Change Object](/vip-tier-change-object).
 
 **created_at**
 
 **string\<date-time\>**
 
-The date and time when the activity was created.
+The date and time when the activity was recorded (ISO 8601).
 
 Example:
 
-`"2024-05-15T08:35:08.920Z"`
-
-**updated_at**
-
-**string\<date-time\>**
-
-The date and time when the activity was last updated.
-
-Example:
-
-`"2024-05-15T08:35:08.920Z"`
+`"2026-03-09T14:02:06+00:00"`

@@ -2,7 +2,7 @@
 title: "List earning rules"
 ---
 
-Retrieves a paginated list of active earning rules (campaigns) for your organisation. Results are sorted by `created_at` in descending order.
+Retrieves a paginated list of active earning rules (Ways to earn) for your organisation. Results are sorted by `created_at` in descending order.
 
 **GET /public/earning-rules**
 
@@ -18,41 +18,13 @@ Retrieves a paginated list of active earning rules (campaigns) for your organisa
 
 Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
 
+#### **Required Scope**
+
+**`read:earning_rules`**
+
+This endpoint requires the `earning_rules` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
+
 #### **Query Parameters**
-
-**campaign_type**
-
-**enum\<string\>**
-
-Filter results to only earning rules of the given type.
-
-Available options:
-
-`purchase`,
-
-`signup`,
-
-`review`,
-
-`daily_visit`,
-
-`birthday`,
-
-`anniversary`,
-
-`twitter_follow`,
-
-`twitter_share`,
-
-`instagram_follow`,
-
-`instagram_share`,
-
-`facebook_like`,
-
-`facebook_share`,
-
-`newsletter_subscribe`
 
 **per_page**
 
@@ -114,63 +86,35 @@ Example:
 
 **data.campaign_type**
 
-**enum\<string\>**
+**null**
 
-The type of action that triggers this earning rule.
+Currently always `null`. The API doesn't expose the earn rule's trigger (purchase, signup and so on); use `name` and `earning_rule` to identify the rule.
 
 Example:
 
-`"purchase"`
+`null`
 
 **data.earning_rule**
 
 **object | null**
 
-Defines how points are calculated when the rule is triggered.
+How points are calculated when the rule triggers. Keys vary by rule type. Common keys:
 
-Show child attributes
-
-**data.earning_rule.type**
-
-**enum\<string\>**
-
-The method used to calculate points awarded.
-
-Available options:
-
-`fixed`,
-
-`variable`
+- `type`: what the rule awards, for example `points`.
+- `method`: `fixed` (a set amount each time) or `increment` (an amount per unit of spend, purchase rules only).
+- `earn_value`: the points awarded.
+- `earn_from_amount`: for `increment`, the spend amount that earns `earn_value` points.
+- `is_expire_enabled`, `expire_after`, `expire_period`: points expiry settings, if turned on.
 
 Example:
 
-`"variable"`
-
-**data.earning_rule.value**
-
-**number**
-
-Points awarded. For `variable` type, this is points earned per `per_amount` unit.
-
-Example:
-
-`5`
-
-**data.earning_rule.per_amount**
-
-**number | null**
-
-Only present for `variable` type. The unit amount required to earn the `value` of points.
-
-Example:
-
-`1`
+`{ "type": "points", "method": "increment", "earn_value": 5, "earn_from_amount": 1 }`
 
 **data.conditions**
 
-**object | null**
+**array | null**
 
-Optional conditions that must be met for the rule to trigger.
+Optional conditions that limit when the rule applies, such as product, collection or customer restrictions.
 
 Example:
 
@@ -186,13 +130,25 @@ Example:
 
 `true`
 
+**data.starts_at**
+
+**null**
+
+Currently always `null`.
+
+**data.ends_at**
+
+**null**
+
+Currently always `null`.
+
 **data.created_at**
 
 **string\<date-time\>**
 
 Example:
 
-`"2026-01-10T09:00:00.000Z"`
+`"2026-01-10T09:00:00+00:00"`
 
 **meta**
 
@@ -250,12 +206,12 @@ Example:
 
 ```bash cURL
 curl --request GET \
-  --url "https://api.yukoapp.com/api/v1/public/earning-rules?campaign_type=purchase" \
+  --url "https://api.yukoapp.com/api/v1/public/earning-rules?per_page=20" \
   --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
 ```javascript JavaScript
-const params = new URLSearchParams({ campaign_type: "purchase" });
+const params = new URLSearchParams({ per_page: 20 });
 
 const response = await fetch(
   `https://api.yukoapp.com/api/v1/public/earning-rules?${params}`,
@@ -271,7 +227,7 @@ const data = await response.json();
 ```
 
 ```php PHP
-$query = http_build_query(["campaign_type" => "purchase"]);
+$query = http_build_query(["per_page" => 20]);
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, "https://api.yukoapp.com/api/v1/public/earning-rules?{$query}");
@@ -297,29 +253,34 @@ $data = json_decode($response, true);
       "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
       "name": "Place an order",
       "description": "Earn 5 points for every $1 spent.",
-      "campaign_type": "purchase",
+      "campaign_type": null,
       "earning_rule": {
-        "type": "variable",
-        "value": 5,
-        "per_amount": 1
+        "type": "points",
+        "method": "increment",
+        "earn_value": 5,
+        "earn_from_amount": 1
       },
       "conditions": null,
       "is_active": true,
-      "created_at": "2026-01-10T09:00:00.000Z"
+      "starts_at": null,
+      "ends_at": null,
+      "created_at": "2026-01-10T09:00:00+00:00"
     },
     {
       "id": "b2c3d4e5-f6a7-8901-bcde-f01234567890",
       "name": "Sign up",
       "description": "Earn 200 points when you create an account.",
-      "campaign_type": "signup",
+      "campaign_type": null,
       "earning_rule": {
-        "type": "fixed",
-        "value": 200,
-        "per_amount": null
+        "type": "points",
+        "method": "fixed",
+        "earn_value": 200
       },
       "conditions": null,
       "is_active": true,
-      "created_at": "2026-01-10T09:00:00.000Z"
+      "starts_at": null,
+      "ends_at": null,
+      "created_at": "2026-01-10T09:00:00+00:00"
     }
   ],
   "meta": {

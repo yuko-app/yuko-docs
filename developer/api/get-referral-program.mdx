@@ -2,7 +2,7 @@
 title: "Get referral program"
 ---
 
-Retrieves the referral program configuration for your organisation, including referrer and friend reward settings, qualifying rules, and fraud protection rules.
+Retrieves the referral program configuration for your organisation, including referrer and friend reward settings, fraud protection rules and referral link settings.
 
 **GET /public/referrals/program**
 
@@ -17,6 +17,12 @@ Retrieves the referral program configuration for your organisation, including re
 **required**
 
 Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
+
+#### **Required Scope**
+
+**`read:referrals`**
+
+This endpoint requires the `referrals` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
 
 #### **Response**
 
@@ -42,103 +48,59 @@ Example:
 
 **object**
 
-The reward configuration for the customer who makes the referral (the advocate).
+The reward for the customer who makes the referral (the advocate), as configured in **Referral → Program**. Common keys:
 
-Show child attributes
-
-**data.referrer_reward.type**
-
-**enum\<string\>**
-
-The type of reward issued to the referrer.
-
-Available options:
-
-`points`,
-
-`fixed_discount`,
-
-`percentage_discount`,
-
-`free_shipping`
+- `title`, `description`: the reward's display text.
+- `is_active`: whether the referrer reward is turned on.
+- `reward_type`: one of `fixed`, `percentage`, `free_product`, `free_shipping`, `store_credit` or `points`.
+- `discount_value`: the discount amount, percentage, credit amount or points.
+- `coupon_prefix`, `is_auto_apply`, `combines_with`, `min_requirement_type`, `applied_to`, `purchase_type`: discount code settings.
+- `is_expire_enabled`, `expire_after`, `expire_period`: reward expiry.
+- `icon`: the reward icon.
 
 Example:
 
-`"points"`
-
-**data.referrer_reward.value**
-
-**number**
-
-The reward value (points or discount amount).
-
-Example:
-
-`500`
+`{ "title": "500 points", "is_active": true, "reward_type": "points", "discount_value": 500 }`
 
 **data.friend_reward**
 
 **object**
 
-The reward configuration for the referred friend.
-
-Show child attributes
-
-**data.friend_reward.type**
-
-**enum\<string\>**
-
-The type of reward issued to the referred friend.
-
-Available options:
-
-`points`,
-
-`fixed_discount`,
-
-`percentage_discount`,
-
-`free_shipping`
+The reward for the referred friend. Uses the same keys as `referrer_reward`, except `reward_type` is one of `fixed`, `percentage`, `free_product` or `free_shipping`.
 
 Example:
 
-`"fixed_discount"`
-
-**data.friend_reward.value**
-
-**number**
-
-The reward value (points or discount amount).
-
-Example:
-
-`10`
+`{ "title": "$10 off", "is_active": true, "reward_type": "fixed", "discount_value": 10 }`
 
 **data.qualifying_rules**
 
 **object | null**
 
-Rules that determine whether a referral qualifies for a reward (e.g. minimum order value).
+Reserved. Usually `null`.
 
 Example:
 
-`{ "min_order_value": 50 }`
+`null`
 
 **data.fraud_rules**
 
 **object | null**
 
-Rules used to detect and prevent fraudulent referrals.
+Fraud protection settings, such as `block_self_referral`.
 
 Example:
 
-`{ "same_ip_block": true, "same_email_domain_block": false }`
+`{ "block_self_referral": true }`
 
 **data.display_config**
 
 **object | null**
 
-Display configuration for the referral widget.
+Referral link settings, such as `landing_page_url`, `utm_campaign` and `social_share`.
+
+Example:
+
+`{ "landing_page_url": "https://example.com/pages/refer", "utm_campaign": "referral" }`
 
 **data.created_at**
 
@@ -146,7 +108,7 @@ Display configuration for the referral widget.
 
 Example:
 
-`"2025-10-01T00:00:00.000Z"`
+`"2025-10-01T00:00:00+00:00"`
 
 **data.updated_at**
 
@@ -154,7 +116,7 @@ Example:
 
 Example:
 
-`"2026-01-15T10:00:00.000Z"`
+`"2026-01-15T10:00:00+00:00"`
 
 <RequestExample>
 
@@ -201,23 +163,28 @@ $data = json_decode($response, true);
   "data": {
     "id": "c3d4e5f6-a7b8-9012-cdef-a01234567890",
     "referrer_reward": {
-      "type": "points",
-      "value": 500
+      "title": "500 points",
+      "is_active": true,
+      "reward_type": "points",
+      "discount_value": 500
     },
     "friend_reward": {
-      "type": "fixed_discount",
-      "value": 10
+      "title": "$10 off",
+      "is_active": true,
+      "reward_type": "fixed",
+      "discount_value": 10,
+      "coupon_prefix": "REF"
     },
-    "qualifying_rules": {
-      "min_order_value": 50
-    },
+    "qualifying_rules": null,
     "fraud_rules": {
-      "same_ip_block": true,
-      "same_email_domain_block": false
+      "block_self_referral": true
     },
-    "display_config": null,
-    "created_at": "2025-10-01T00:00:00.000Z",
-    "updated_at": "2026-01-15T10:00:00.000Z"
+    "display_config": {
+      "landing_page_url": "https://example.com/pages/refer",
+      "utm_campaign": "referral"
+    },
+    "created_at": "2025-10-01T00:00:00+00:00",
+    "updated_at": "2026-01-15T10:00:00+00:00"
   }
 }
 ```

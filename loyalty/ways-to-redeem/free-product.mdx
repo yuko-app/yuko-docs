@@ -24,7 +24,7 @@ A free product feels more generous than a discount of the same value. It also pu
 ## Overview
 
 - One product per reward. Create more Free Product rewards to offer more products.
-- The reward is a discount code that takes 100% off the selected product.
+- The reward is a discount code worth the selected product's price, applied to that product.
 - Optional **Coupon Prefix**.
 - Optional minimum purchase amount or minimum quantity of items.
 - Optional combinations with other discounts and an optional expiry.
@@ -70,7 +70,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 ## How it works
 
 1. The customer redeems the reward from a loyalty widget.
-2. Yuko deducts the points and creates a single-use Shopify discount code for that customer that takes 100% off the selected product.
+2. Yuko deducts the points and creates a single-use Shopify discount code for that customer, worth the product's current price and applied only to that product.
 3. When the customer applies the reward from the storefront widget, Yuko adds the product to the cart if it isn't there already.
 4. At checkout, the code makes that product free. Any minimum requirement must be met.
 

@@ -9,8 +9,8 @@ Yuko's widgets ship as Shopify **app blocks**, **theme app embeds** and **checko
 
 <Check>An **Online Store 2.0** theme (any modern free or paid theme on the Shopify Theme Store).</Check>
 <Check>The **Yuko App** embed enabled for your active theme. See [Enable the Yuko App Embed](/installation-and-setup/theme-app-embed).</Check>
-<Check>For Checkout widgets: a Shopify plan with **Checkout Extensibility** access — typically Shopify Plus, but some annual plans qualify too.</Check>
-<Check>For the loyalty hub in account pages: **New Customer Accounts** enabled.</Check>
+<Check>For Checkout widgets: a **Shopify Plus** store. Shopify only allows checkout UI extension blocks on Shopify Plus.</Check>
+<Check>For Yuko blocks in account pages: Shopify's **customer accounts** (new customer accounts) enabled.</Check>
 
 ## Theme requirements
 
@@ -30,7 +30,7 @@ Quick check:
 </Steps>
 
 <Warning>
-If your theme doesn't expose **Add block** for apps, your theme is vintage (Online Store 1.0). You'll either need to upgrade the theme or have a developer manually inject Yuko's snippet. Contact support if you need a workaround.
+If your theme doesn't expose **Add block** for apps, your theme is vintage (Online Store 1.0). You'll need to upgrade to an Online Store 2.0 theme. Contact support if you need a workaround.
 </Warning>
 
 ### Cart drawer vs cart page
@@ -42,15 +42,15 @@ Some themes use a **cart drawer** (slide-out) instead of a full cart page. Yuko'
 | Surface | Shopify plan needed |
 | --- | --- |
 | Theme widgets (product, cart, account, landing, launcher) | Any paid plan |
-| Checkout UI Extension (Checkout Earn / Redeem) | Shopify Plus, or a plan with Checkout Extensibility |
-| Customer Account Extension (Loyalty hub in accounts) | Any paid plan with **New Customer Accounts** enabled |
+| Checkout UI Extension (Checkout Earn / Redeem) | Shopify Plus |
+| Customer Account Extension (blocks in customer accounts) | Any paid plan with Shopify's **customer accounts** enabled |
 | Shopify Flow connector | Plans where Shopify Flow is available |
 
 ## What if my store doesn't qualify
 
-- **Older theme** → upgrade to an Online Store 2.0 theme, or have a developer add the Yuko snippet manually.
-- **No Checkout Extensibility but want points at checkout** → show earned points on the order status page with the [Order Status Earn](/onsite-widgets/order-status-earn) widget (needs New Customer Accounts), and let customers redeem in the cart with [Cart Redeem](/onsite-widgets/cart-redeem).
-- **Legacy customer accounts** → either enable New Customer Accounts or use the Yuko Rewards Landing Page as the loyalty hub.
+- **Older theme** → upgrade to an Online Store 2.0 theme, or contact support.
+- **Not on Shopify Plus but want points around checkout** → show earned points on the order status page with the [Order Status Earn](/onsite-widgets/order-status-earn) widget (needs Shopify's customer accounts), and let customers redeem in the cart with [Cart Redeem](/onsite-widgets/cart-redeem).
+- **Legacy customer accounts** → either enable Shopify's customer accounts or use the Yuko [Rewards Landing Page](/onsite-widgets/rewards-landing-page) as the loyalty hub.
 
 import NeedHelp from '/snippets/need-help.mdx';
 

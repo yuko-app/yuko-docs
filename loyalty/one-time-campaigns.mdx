@@ -87,7 +87,7 @@ The form checks your input before saving. For example: *Campaign name is require
 | **Customer Tags** | Customers with ANY of the selected Shopify tags | Hand-picked lists: contest winners, affected customers, beta testers |
 | **All Customers** | Every customer in Yuko | Launch awards, storewide holiday bonuses, apologies that affect everyone |
 
-Audiences are resolved **when the campaign runs**, not when you create it. A scheduled campaign targeting a segment awards whoever is in that segment at send time. Customers banned from the loyalty program are never awarded.
+Audiences are resolved **when the campaign runs**, not when you create it. A scheduled campaign targeting a segment awards whoever is in that segment at send time. Customers excluded from the loyalty program are never awarded.
 
 ### Points expiry
 
@@ -113,7 +113,7 @@ Open a campaign from the list (click **View**) to see three tabs.
 - **Progress** — a progress bar with **Recipients**, **Processed**, **Awarded** and **Failed** counts.
 - **Status** — **Scheduled**, **Running**, **Completed**, **Completed with errors**, **Cancelling**, **Cancelled** or **Failed**.
 - **Banners** for the current state:
-  - **Campaign in progress** — points are being awarded; the page refreshes every few seconds.
+  - **Campaign in progress** — points are being awarded; the page refreshes every 5 seconds.
   - **Completed with errors** — some customers couldn't be awarded; see the Participants tab.
   - **No customers matched** — the audience matched 0 customers, so no points were awarded.
   - **Campaign failed** — the run stopped with an error. Contact support if this happens.
@@ -127,7 +127,7 @@ You can edit a campaign's settings only while it's **Scheduled**.
 The per-customer log: customer, points, status and when they were processed.
 
 - Search by name or email, and filter by status: **Awarded**, **Skipped**, **Failed** or **Pending**.
-- Customers are **Skipped** (not failed) when, for example, they're banned from the loyalty program or no longer exist in Yuko.
+- Customers are **Skipped** (not failed) when, for example, they're excluded from the loyalty program or no longer exist in Yuko.
 - Once the campaign is **Completed** or **Completed with errors**, click **Export** to download a CSV with these columns: `customer_name`, `email`, `phone`, `platform_customer_id`, `point_balance`, `points_awarded`, `status`, `expiry_date` and `redemption_link`.
 
 The `redemption_link` column holds a personal, signed link parameter for each customer (it starts with `?customer_uuid=`). Add it to the end of your store URL in an SMS, WhatsApp or email send, and Yuko recognises the customer when they land on your store so they can redeem their points straight away.
@@ -143,7 +143,7 @@ The campaign list also shows **Orders** and **Revenue** for each campaign at a g
 
 ## Workflow events and identifiers
 
-Tick **Trigger workflow events** to fire the **One-time Campaign Points Awarded** workflow trigger for every customer who receives points. Build a [workflow](/workflows/overview) on that trigger to send a WhatsApp or email message the moment the points land. Messages can use shortcodes such as Campaign Name, Awarded Points, Points Expiry Date and Points Balance.
+Tick **Trigger workflow events** to fire the **One-time Campaign Points Awarded** workflow trigger for every customer who receives points. Build a [workflow](/workflows/overview) on that trigger to send a WhatsApp or email message the moment the points land. The event carries the campaign name, the points awarded, their expiry date and the customer's details, so your messages can include them.
 
 To send different messages for different campaigns, add a condition to the workflow:
 
@@ -170,8 +170,6 @@ Seven ways teams use one-time campaigns. Each pairs naturally with a message; se
 **The problem:** you just switched Yuko on. Every balance is 0, so there's nothing to redeem and no reason to visit the loyalty page.
 
 **The play:** run a one-time campaign to **All Customers** for a modest starter amount (100–300 pts) with a 30–60 day expiry. Announce it with an email such as *"There's already $5 waiting on your account."*
-
-Day-one loyalty traffic jumps to roughly your open rate, and the first redemption cycle starts weeks earlier.
 
 ### 2. VIP win-back: a targeted award for dormant high-value customers
 
@@ -268,7 +266,7 @@ For a 200-point award to all customers on BFCM morning:
     Expiry is a duration (days, weeks or months after the award). For a fixed date, schedule the campaign so the duration ends on the day you want.
   </Accordion>
   <Accordion title="Why were some customers skipped?">
-    Customers are skipped when they're banned from the loyalty program or no longer exist in Yuko. Skipped customers don't make the campaign fail.
+    Customers are skipped when they're excluded from the loyalty program or no longer exist in Yuko. Skipped customers don't make the campaign fail.
   </Accordion>
   <Accordion title="How do I see whether the campaign drove sales?">
     Open the **Conversions** tab. It shows revenue, orders, customers and points redeemed for orders that used coupons redeemed with this campaign's points.

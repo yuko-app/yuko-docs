@@ -1,131 +1,17 @@
 ---
 title: "Retrieve a points transaction"
+description: "How to look up a customer's points transactions with the REST API."
 ---
 
-fRetrieves a single points transaction by ID.
+The Yuko REST API doesn't have an endpoint to fetch a single points transaction by ID. To find a transaction, list the customer's transactions with [List points transactions](/developer/api/list-points-transactions):
 
-**GET** / **points_transactions** /  **- Try it**
+**GET /public/customers/transactions**
 
-#### **Authorizations**
+- Requires the `transactions` scope with read access. See [Scopes](/developer/api/scopes).
+- Pass the customer's store ID as `customer_id`.
+- Optionally filter with `entry_type` (`credit` or `debit`) and page through results with `page` and `per_page` (maximum `100`).
+- Results are sorted newest first.
 
-[**​**](https://dev.smile.io/api/resources/points-transactions/retrieve-points-transaction#authorization-authorization)
+When you create a transaction with [Create a points transaction](/developer/api/create-a-points-transaction), the response includes its `transaction_id`. That value matches the `id` of the transaction in the list results.
 
-**Authorization**
-
-**string**
-
-**header**
-
-**required**
-
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your auth token.
-
-#### **Path Parameters**
-
-[**​**](https://dev.smile.io/api/resources/points-transactions/retrieve-points-transaction#parameter-id)
-
-**id**
-
-**integer**
-
-**required**
-
-ID of the points transaction to retrieve.
-
-#### **Response**
-
-**200 - application/json**
-
-The points transaction was successfully retrieved.
-
-[**​**](https://dev.smile.io/api/resources/points-transactions/retrieve-points-transaction#response-points-transaction)
-
-**points_transaction**
-
-**object**
-
-Hide child attributes
-
-[**​**](https://dev.smile.io/api/resources/points-transactions/retrieve-points-transaction#response-points-transaction-id)
-
-**points\_**[**transaction.id**](http://transaction.id)
-
-**integer**
-
-Unique identifier for the points transaction.
-
-Example:
-
-`825673452`
-
-[**​**](https://dev.smile.io/api/resources/points-transactions/retrieve-points-transaction#response-points-transaction-customer-id)
-
-**points_transaction.customer_id**
-
-**integer**
-
-The ID of the customer whose balance this points transaction applies to.
-
-Example:
-
-`304169228`
-
-[**​**](https://dev.smile.io/api/resources/points-transactions/retrieve-points-transaction#response-points-transaction-points-change)
-
-**points_transaction.points_change**
-
-**integer**
-
-The number of points added or removed from the customer's points balance. The value is positive if points were added to the customer's balance and negative if points were deducted.
-
-Example:
-
-`100`
-
-[**​**](https://dev.smile.io/api/resources/points-transactions/retrieve-points-transaction#response-points-transaction-description)
-
-**points_transaction.description**
-
-**string**
-
-A message visible to the customer that describes the reason for the points change.
-
-Example:
-
-`"Points correction"`
-
-[**​**](https://dev.smile.io/api/resources/points-transactions/retrieve-points-transaction#response-points-transaction-internal-note-one-of-0)
-
-**points_transaction.internal_note**
-
-**string | null**
-
-A note that is visible to the merchant. This note should never be visible to customers.
-
-Example:
-
-`"Due to issue with order #6834"`
-
-[**​**](https://dev.smile.io/api/resources/points-transactions/retrieve-points-transaction#response-points-transaction-created-at)
-
-**points_transaction.created_at**
-
-**string\<date-time\>**
-
-The date and time when the points transaction was created.
-
-Example:
-
-`"2024-12-07T20:15:27.893Z"`
-
-[**​**](https://dev.smile.io/api/resources/points-transactions/retrieve-points-transaction#response-points-transaction-updated-at)
-
-**points_transaction.updated_at**
-
-**string\<date-time\>**
-
-The date and time when the points transaction was last updated.
-
-Example:
-
-`"2024-12-07T20:15:27.893Z"`
+See the [Points Transaction Object](/points-transaction-object) for every field returned.

@@ -4,15 +4,29 @@ title: "Errors"
 
 Yuko uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error caused by the information provided. Codes in the `5xx` range indicate an error on Yuko's servers.
 
+Most errors return an `error` object with a machine-readable `code` and a human-readable `message`. Validation errors also include `details`, keyed by field name.
+
+```json
+{
+  "error": {
+    "code": "validation_error",
+    "message": "The customer id field is required.",
+    "details": {
+      "customer_id": ["The customer id field is required."]
+    }
+  }
+}
+```
+
 ## Error response codes
 
-| **Status Code** | **Description** |
-| :-------------- | :-------------- |
-| 400 | The request was not accepted, often due to missing parameters, bad syntax, or a missing `Content-Type` header. |
-| 401 | The required authentication credentials are missing or incorrect. |
-| 403 | The server is refusing to respond, usually because you do not have access or permission to the requested resource. |
-| 404 | The requested resource doesn't exist. |
-| 422 | The request body was well-formed but contains semantic errors (e.g. insufficient points balance). Refer to the response body for further information. |
-| 429 | Your API token has exceeded its rate limit. |
-| 500 | An internal error occurred in Yuko. Retry your request. If the issue persists, contact Yuko support. |
-| 503 | The server is currently unavailable. |
+| **Status Code** | **Error code** | **Description** |
+| :-------------- | :------------- | :-------------- |
+| 401 | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| 403 | `insufficient_scope` | The API key doesn't have the scope this endpoint needs. |
+| 404 | `not_found` | The requested resource (for example the customer or reward) doesn't exist. |
+| 422 | `validation_error` | A required parameter is missing or invalid. |
+| 422 | `adjustment_failed` | A points adjustment couldn't be made, for example because of an insufficient points balance. |
+| 422 | `redemption_failed` | A reward couldn't be redeemed, for example because of an insufficient points balance or an inactive reward. |
+| 429 | | Your API key has exceeded its [rate limit](/developer/api/rate-limits). |
+| 500 | `internal_error` | An internal error occurred in Yuko. Retry your request. If the issue persists, contact Yuko support. |

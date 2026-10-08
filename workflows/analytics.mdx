@@ -37,13 +37,13 @@ Search the table with **Search by email**, or filter it by **Status**.
 
 ### Timeline and failure reasons
 
-Click **View** on a row to see each step the customer went through, with its **Step Name**, status and **Completed At** time. Use the refresh button in the timeline header to reload it.
+Click **View** on a row to see each step the customer went through, with its **Step Name**, **Type**, **Status**, **Retries** and **Completed At** time. Use the refresh button in the timeline header to reload it.
 
 When a step **failed**, an **"i"** icon appears next to its status. Hover over it to see the reason, for example:
 
 - *"Customer phone number not found"* (WhatsApp, Engati or kwikEngage node)
 - *"Insufficient point balance"* (Points Debit)
-- *"Order not found"* (Points Credit set to Incremental on a trigger with no order)
+- *"Order not found"* (Points Credit set to Incremental when the order can't be found)
 - A provider API error from a WhatsApp node
 
 Some failures (WhatsApp and partner nodes) let the customer continue to the next step. Others, such as Points Credit and Points Debit failures, stop the run and mark the subscriber **Failed**.

@@ -67,7 +67,7 @@ The Program tab has these sections:
 </Steps>
 
 <Info>
-On a new install, Yuko seeds both rewards as a fixed $10 amount discount: "Referral reward" (coupon prefix `YRA`) for the referrer and "Welcome reward" (coupon prefix `YRF`) for the friend. Change them to suit your store.
+On a new install, Yuko seeds both rewards as an **Amount Discount** of 10 in your store currency: "Referral reward" (coupon prefix `YRA`) for the referrer and "Welcome reward" (coupon prefix `YRF`) for the friend. Change them to suit your store.
 </Info>
 
 ### 3. Set the landing URL
@@ -117,7 +117,7 @@ Facebook doesn't let third-party apps pre-fill share messages, so there's no mes
   </Step>
 </Steps>
 
-Customers who aren't enrolled can still join by clicking **Get my referral link** in a referral widget.
+Customers who aren't enrolled can still join by clicking **Get referral link** in a referral widget.
 
 ### 7. Set the UTM campaign
 
@@ -139,7 +139,7 @@ Click **Save** in the save bar.
 
 ## How it works
 
-1. A customer becomes a referrer, either automatically (if **Enroll on first point earned** is on) or by clicking **Get my referral link** in a referral widget. Yuko gives them a unique referral code and link.
+1. A customer becomes a referrer, either automatically (if **Enroll on first point earned** is on) or by clicking **Get referral link** in a referral widget. Yuko gives them a unique referral code and link.
 2. The referrer shares the link through a widget or one of the enabled channels.
 3. A friend opens the link. The **Friend Welcome Popup** asks for their details (at least an email).
 4. Yuko checks the claim:
@@ -177,7 +177,7 @@ Click **Save** in the save bar.
     Not while **Block Self-Referrals** is on. Yuko blocks claims where the friend's email or Shopify customer matches the referrer. Turn on **IP Address Match** too if you want to block claims from the referrer's IP address.
   </Accordion>
   <Accordion title="Can I add utm_source or utm_medium to referral links?">
-    No. Only **UTM Campaign** is configurable.
+    No. Only **UTM Campaign** is configurable. Links copied or shared from the Referral Landing Page also add `utm_source=yuko_referral`, a `utm_medium` for the share channel (for example `copy_link`) and `utm_content` set to the referral code.
   </Accordion>
   <Accordion title="Where do customers find their referral link?">
     In the referral widgets (the Post-Purchase Widget and the Referral Landing Page), and in the referral sections of the Floating Rewards launcher and the customer account page. See [Referral widgets](/referrals/widget).

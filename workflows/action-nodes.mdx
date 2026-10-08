@@ -50,10 +50,11 @@ Creates a unique Shopify discount code for the customer at this step. Show it in
 
 | Setting | Options |
 |---|---|
-| **Coupon identifier** | A random identifier for this node, with a copy button (*"Unique identifier for this coupon node."*). Email coupon blocks use it to find this coupon. |
+| **Node Identifier** | A random identifier for this node, with a copy button (*"Unique identifier for this coupon node."*). Email coupon blocks use it to find this coupon. |
 | **Discount Type** | **Percentage (%)** (default, 10), **Amount** or **Free Shipping** |
 | **Value** | The percentage or amount (not shown for Free Shipping) |
 | **Set validity** | Toggle on and enter **Valid upto (in days)** to make the code expire |
+| **Purchase type** | **One-time purchase**, **Subscription** or **Both** |
 | **Minimum purchase requirements** | **No minimum requirements**, **Minimum purchase amount** or **Minimum quantity of items** |
 | **Product Restrictions** | **Applies to**: **All products**, **Specific collections** or **Specific products**. For Amount discounts, **Only apply discount once per order**. |
 | **Shipping Restrictions** (Free Shipping) | **All countries** or **Selected countries**, and **Exclude shipping rates over a certain amount** with a **Maximum shipping rate** |
@@ -67,14 +68,14 @@ Adds points to the customer's balance. Available on Shopify stores.
 
 | Setting | What it does |
 |---|---|
-| **Method** | **Fixed amount of points**: the same number of points for everyone. **Incremental points**: points based on the order amount. |
+| **Method** | **Fixed amount of points**: the same number of points for everyone. **Incremental points**: points based on the order amount. You can only choose **Incremental points** when the workflow trigger is **Order Paid**. On every other trigger, Method is fixed to **Fixed amount of points**. |
 | **Points to earn** | Fixed: the number of points to credit. Incremental: the points earned *for every* **Amount spent**. |
 | **Amount spent** | Incremental only. For example, 1 point for every 10 spent gives 25 points on an order with a subtotal of 250. |
 | **Credited reason** | *"Store why these points were credited for support and audit logs."* Shown in the customer's points history. |
 | **Enable points expiry for this credit** | Expire these points after **Expire after** N **Days**, **Weeks**, **Months** or **Years**. |
 | **Enable on-hold period before crediting points** | Hold the points as pending for **Hold points for** N **Days**, **Weeks**, **Months** or **Years** before they become available. |
 
-<Note>**Incremental points** use the order subtotal, so they need an order-based trigger such as **Order Paid** or **Order Delivered**. On a trigger with no order, the step fails with *"Order not found"* and the customer's run stops there.</Note>
+<Note>**Incremental points** use the order subtotal, which is why they're only offered on the **Order Paid** trigger. If the order can't be found or its subtotal is zero, the step fails and the customer's run stops there.</Note>
 
 Points credited by a workflow count as earned points. Without an on-hold period, they fire the **Earn Points** event right away, which also sends the built-in **Points earned** email if it's active.
 
@@ -97,7 +98,7 @@ If the customer doesn't have enough points, the step fails with *"Insufficient p
 
 **2. Downgrade win-back.** Trigger **VIP Tier Downgrade** → Coupon (Percentage, 15, valid 14 days) → Send Email with the Coupon block.
 
-**3. Extra points on delivered orders.** Trigger **Order Delivered** → Points Credit (Incremental, 1 point for every 20 spent, hold for 14 days).
+**3. Extra points on paid orders.** Trigger **Order Paid** → Points Credit (Incremental, 1 point for every 20 spent, hold for 14 days).
 
 ## Best practices
 

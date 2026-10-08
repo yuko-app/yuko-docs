@@ -30,16 +30,16 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
 <Steps>
   <Step title="Get your BiteSpeed API key">
-    Log in to the BiteSpeed dashboard → **Settings → API**. Copy the API key and note the Channel ID for the WhatsApp number you'll send from.
+    Log in to your BiteSpeed dashboard, copy your API key, and note the Channel ID for the WhatsApp number you'll send from.
   </Step>
   <Step title="Open BiteSpeed in Yuko">
     In Shopify admin, go to **Apps → Yuko Loyalty → Integrations**, pick the **WhatsApp** category from the left sidebar, and click **BiteSpeed**.
   </Step>
   <Step title="Paste the API key and Connect">
-    Paste the key and click **Connect**. The tile flips to **Connected**.
+    Paste the key into the **API Key** field and click **Connect Integration**. The page shows **Connected**.
   </Step>
   <Step title="Add a BiteSpeed step to a workflow">
-    Open any workflow, click **+**, pick **WhatsApp**, and select **BiteSpeed** in the provider dropdown.
+    Open any workflow, click **+**, pick **WhatsApp**, and choose the **BiteSpeed** card from the provider list.
   </Step>
 </Steps>
 
@@ -50,7 +50,7 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 | **Channel ID** | BiteSpeed's ID for your WhatsApp Business phone number | provided by BiteSpeed |
 | **Template ID** | BiteSpeed's internal ID for the approved template | `loyalty_sample_template` |
 | **Add CTA Button** *(toggle)* | Enable if the template has a click-through button | on |
-| **CTA URL** | Where the CTA button links to — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `https://shop.example.com/account?email={{email}}` |
+| **CTA URL** | Where the CTA button links to — supports [shortcodes](/workflows/whatsapp-node#shortcodes) | `https://shop.example.com/account?email={{email}}` |
 | **Params Count** | Number of body variables (1–10) | `3` |
 | **Template Params** | Name + value pairs — values support shortcodes | `customer_name` = `{{first_name}}` |
 
@@ -60,8 +60,8 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
 CTA URLs are prime real estate for personalisation. Instead of a static link, use shortcodes to deep-link to something specific to the customer:
 
-- `https://shop.example.com/account?email={{email}}` — opens their loyalty account signed in.
-- `https://shop.example.com/redeem?code={{coupon_code}}` — opens the redemption page with the coupon pre-filled.
+- `https://shop.example.com/account?email={{email}}` — passes the customer's email to your page.
+- `https://shop.example.com/redeem?code={{reward_code}}` — opens the redemption page with the coupon pre-filled.
 
 ## Example use case
 
@@ -69,8 +69,8 @@ CTA URLs are prime real estate for personalisation. Instead of a static link, us
 
 1. In BiteSpeed, approve a template with two body variables and a CTA URL button. Note the Template ID and Channel ID.
 2. In Yuko Workflows, build: **Trigger: Redeem Points** → **WhatsApp (BiteSpeed)**.
-3. Configure: Channel ID, Template ID, Params Count = `2`, Params: `customer_name` = `{{first_name}}`, `coupon_code` = `{{coupon_code}}`.
-4. Toggle **Add CTA Button**, CTA URL = `https://shop.example.com/redeem?code={{coupon_code}}`.
+3. Configure: Channel ID, Template ID, Params Count = `2`, Params: `customer_name` = `{{first_name}}`, `coupon_code` = `{{reward_code}}`.
+4. Toggle **Add CTA Button**, CTA URL = `https://shop.example.com/redeem?code={{reward_code}}`.
 5. Activate.
 
 ## Limitations
@@ -88,13 +88,13 @@ CTA URLs are prime real estate for personalisation. Instead of a static link, us
     BiteSpeed lets you connect multiple WhatsApp Business numbers per account. The Channel ID identifies which one to send from. Get it from the BiteSpeed dashboard where your WhatsApp channels are listed.
   </Accordion>
   <Accordion title="Does the CTA URL support dynamic shortcodes?">
-    Yes — use any [shortcode](/workflows/whatsapp-node#available-shortcodes) inside the URL. It's rendered per-recipient just like body parameters.
+    Yes — use any [shortcode](/workflows/whatsapp-node#shortcodes) inside the URL. It's rendered per-recipient just like body parameters.
   </Accordion>
   <Accordion title="The send failed — what do I check?">
     1. Template ID exact match. 2. Template approved. 3. Channel ID matches your active WhatsApp channel. 4. Parameter names match the template's variable names. 5. Customer has a phone number in Shopify.
   </Accordion>
   <Accordion title="How do I rotate the API key?">
-    Generate a new key in BiteSpeed, then paste it into the Yuko BiteSpeed integration tile and click **Connect** again.
+    Generate a new key in BiteSpeed, then open **Integrations → BiteSpeed** in Yuko, switch off the **Connection** toggle and confirm **Disconnect**, and connect again with the new key. Existing workflow steps keep their settings.
   </Accordion>
 </AccordionGroup>
 

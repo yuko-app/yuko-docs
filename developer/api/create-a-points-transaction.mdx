@@ -4,7 +4,7 @@ title: "Create a points transaction"
 
 Add or remove points from a customer's balance. Pass a positive `points` value to credit points, or a negative value to debit them.
 
-Debit transactions that would result in a negative points balance will be rejected.
+A debit larger than the customer's current points balance is rejected with `adjustment_failed`. Adjustments for banned customers are also rejected. The transaction is recorded as a `point_adjustment` with `source` set to `rest_api`.
 
 **POST /public/customers/transactions**
 
@@ -26,7 +26,9 @@ Bearer authentication header of the form `Bearer <token>`, where `<token>` is yo
 
 This endpoint requires the `transactions` scope with **Read/Write Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
 
-#### **Query Parameters**
+#### **Body**
+
+**application/json**
 
 **customer_id**
 
@@ -39,10 +41,6 @@ The platform customer ID (e.g. Shopify customer ID)
 Example:
 
 `"9049402769586"`
-
-#### **Body**
-
-**application/json**
 
 **points**
 
@@ -62,7 +60,7 @@ Example:
 
 **required**
 
-A human-readable reason for the adjustment, visible in the customer's activity log.
+A human-readable reason for the adjustment (maximum 255 characters). It's returned as `description` when you list points transactions.
 
 Example:
 
@@ -92,13 +90,13 @@ Example:
 
 **data.customer_id**
 
-**string\<uuid\>**
+**string**
 
-The UUID of the customer whose balance was adjusted.
+The platform customer ID of the customer whose balance was adjusted.
 
 Example:
 
-`"63a2c89a-9936-4bc0-9d5f-93db46110b76"`
+`"9049402769586"`
 
 **data.points**
 
@@ -134,6 +132,7 @@ curl --request POST \
   --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
   --header "Content-Type: application/json" \
   --data '{
+    "customer_id": "9049402769586",
     "points": 100,
     "description": "Bonus points for completing a survey"
   }'
@@ -151,6 +150,7 @@ const response = await fetch(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      customer_id: customerId,
       points: 100,
       description: "Bonus points for completing a survey",
     }),
@@ -163,6 +163,7 @@ const data = await response.json();
 ```php PHP
 $customerId = "9049402769586";
 $payload = json_encode([
+    "customer_id" => $customerId,
     "points" => 100,
     "description" => "Bonus points for completing a survey",
 ]);
@@ -191,7 +192,7 @@ $data = json_decode($response, true);
 {
   "data": {
     "transaction_id": "d4e5f6a7-b8c9-0123-defa-b01234567890",
-    "customer_id": "63a2c89a-9936-4bc0-9d5f-93db46110b76",
+    "customer_id": "9049402769586",
     "points": 100,
     "type": "credit"
   }
@@ -211,7 +212,7 @@ $data = json_decode($response, true);
 {
   "error": {
     "code": "validation_error",
-    "message": "The given data was invalid",
+    "message": "The points field is required.",
     "details": {
       "points": ["The points field is required."],
       "description": ["The description field is required."]

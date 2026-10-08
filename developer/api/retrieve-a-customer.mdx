@@ -120,6 +120,52 @@ Example:
 
 `"7823491023"`
 
+**data.state**
+
+**enum\<string\>**
+
+`member` for active loyalty members, or `disabled` if the customer is banned from the loyalty program.
+
+Available options:
+
+`member`,
+
+`disabled`
+
+Example:
+
+`"member"`
+
+**data.date_of_birth**
+
+**string\<date\> | null**
+
+The customer's birthday in `YYYY-MM-DD` format, if collected.
+
+Example:
+
+`"1990-04-12"`
+
+**data.referral_code**
+
+**string | null**
+
+The customer's referral code. `null` if the customer has no referral code yet.
+
+Example:
+
+`"JANE10"`
+
+**data.referral_url**
+
+**string | null**
+
+The customer's referral link, built from the referral landing page URL plus `?ref=<referral_code>`. `null` if there's no referral code or no landing page URL is set.
+
+Example:
+
+`"https://example.com/pages/refer?ref=JANE10"`
+
 **data.points**
 
 **object**
@@ -132,7 +178,7 @@ Hide child attributes
 
 **integer**
 
-The customer's current redeemable points balance.
+The customer's current redeemable points balance. Always `0` for banned customers.
 
 Example:
 
@@ -162,7 +208,7 @@ Example:
 
 **object | null**
 
-The customer's current VIP tier. `null` if the customer has not reached any tier threshold.
+The customer's current VIP tier. `null` if the customer hasn't reached a tier or VIP tiers are turned off. Has the same fields as a tier in [List VIP tiers](/developer/api/list-vip-tiers), including `icon`, `benefits` and `created_at`.
 
 Hide child attributes
 
@@ -220,11 +266,11 @@ Example:
 
 **string\<date-time\>**
 
-The date the customer joined the loyalty programme.
+The date the customer was created in Yuko (same as `created_at`).
 
 Example:
 
-`"2024-06-01T10:00:00.000Z"`
+`"2024-06-01T10:00:00+00:00"`
 
 **data.created_at**
 
@@ -234,7 +280,7 @@ The date and time when the customer was created in Yuko.
 
 Example:
 
-`"2024-06-01T10:00:00.000Z"`
+`"2024-06-01T10:00:00+00:00"`
 
 **data.updated_at**
 
@@ -244,7 +290,7 @@ The date and time when the customer was last updated in Yuko.
 
 Example:
 
-`"2026-02-15T08:30:00.000Z"`
+`"2026-02-15T08:30:00+00:00"`
 
 <RequestExample>
 
@@ -300,6 +346,10 @@ $data = json_decode($response, true);
     "phone": "+14155552671",
     "platform": "shopify",
     "platform_customer_id": "9049402769586",
+    "state": "member",
+    "date_of_birth": "1990-04-12",
+    "referral_code": "JANE10",
+    "referral_url": "https://example.com/pages/refer?ref=JANE10",
     "points": {
       "balance": 350,
       "earned": 500,
@@ -310,16 +360,16 @@ $data = json_decode($response, true);
       "name": "Silver",
       "threshold_value": 500,
       "multiplier": 1.5,
-      "icon_url": null,
+      "icon": null,
       "benefits": [],
-      "created_at": "2025-09-12T15:44:44.000Z"
+      "created_at": "2025-09-12T15:44:44+00:00"
     },
     "membership": {
       "status": "active",
-      "member_since": "2024-06-01T10:00:00.000Z"
+      "member_since": "2024-06-01T10:00:00+00:00"
     },
-    "created_at": "2024-06-01T10:00:00.000Z",
-    "updated_at": "2026-02-15T08:30:00.000Z"
+    "created_at": "2024-06-01T10:00:00+00:00",
+    "updated_at": "2026-02-15T08:30:00+00:00"
   }
 }
 ```

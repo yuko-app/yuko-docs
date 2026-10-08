@@ -11,10 +11,10 @@ description: Sync customers, points, VIP tier, referral and membership data into
 
 Yuko's Klaviyo connector pushes two kinds of data into Klaviyo:
 
-1. **Profile properties** — written to every known customer's Klaviyo profile (e.g., `yuko_points_balance`, `yuko_vip_tier`). Use these to **segment** and **personalise** content.
+1. **Profile properties** — written to the customer's Klaviyo profile each time Yuko sends them an event (e.g., `yuko_points_balance`, `yuko_vip_tier`). Use these to **segment** and **personalise** content.
 2. **Trigger events** — Klaviyo “metrics” that Yuko fires when something happens in the loyalty program (e.g., *Earn Points*, *VIP Tier Upgrade*). Use these to **start flows**.
 
-This page documents every property and every event that Yuko sends.
+This page documents the profile properties and the main events that Yuko sends.
 
 <Tip>
 **Why this matters for email design:** In Klaviyo's email editor, you reference Yuko data using the exact property names below — e.g., `{{ person.yuko_points_balance }}` to show the live balance, or `{{ event.yuko_points_earned }}` inside a flow triggered by *Earn Points*. Get the property name wrong and the placeholder renders empty.
@@ -29,10 +29,10 @@ This page documents every property and every event that Yuko sends.
 
 ## Overview
 
-- **Profile sync** is automatic and continuous. Every loyalty event refreshes the customer's profile properties.
-- **Events** are opt-in per-event. You pick which events get forwarded when you set up the integration.
+- **Events** are opt-in per-event. You pick which events get forwarded after you connect.
+- **Profile properties** travel with each event. Every event Yuko sends refreshes that customer's profile properties. Customers are only created or updated in Klaviyo when Yuko sends an event for them; there's no bulk sync of existing customers.
 - **One-way:** Yuko → Klaviyo. Yuko does not pull data from Klaviyo.
-- **Authentication:** Klaviyo Private API key. Optional OAuth where available.
+- **Authentication:** OAuth or a Klaviyo Private API key.
 
 ## Before you start
 
@@ -41,7 +41,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 <BeforeYouStart />
 
 <Check>You have a Klaviyo account.</Check>
-<Check>You have a Klaviyo **Private API key** with the necessary scopes (Profiles + Events at minimum).</Check>
+<Check>You can sign in to Klaviyo to connect with OAuth, or you have a Klaviyo **Private API key** with the necessary scopes (Profiles + Events at minimum).</Check>
 
 ## Connect Yuko to Klaviyo
 
@@ -49,14 +49,16 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
   <Step title="Open the Klaviyo integration">
     In your Shopify admin, go to **Apps → Yuko Loyalty → Integrations → Klaviyo**.
   </Step>
-  <Step title="Paste your Klaviyo Private API key">
-    Generate a Private API key from your Klaviyo account (Klaviyo dashboard → Settings → API keys), then paste it into Yuko.
+  <Step title="Choose an authentication type">
+    Under **Authentication Type**, pick **OAuth** or **API Key**.
+    - **OAuth**: click **Connect with OAuth** and approve access in Klaviyo.
+    - **API Key**: generate a Private API key in Klaviyo (Settings → API keys), paste it into **API Key** and click **Connect Integration**.
   </Step>
   <Step title="Pick which events to forward">
-    Tick the events you want sent to Klaviyo as metrics. You can change this any time later.
+    Once connected, tick the events you want sent to Klaviyo as metrics and click **Save Events**. You can change this any time later.
   </Step>
-  <Step title="Save and verify">
-    Click **Connect**. Yuko's profile sync begins immediately — within a few minutes, your loyalty customers should appear (or update) on Klaviyo profiles with the `yuko_*` properties listed below.
+  <Step title="Test (optional)">
+    Click **Send Test Events** to send sample events, then check them in Klaviyo. From then on, each selected event creates or updates the customer's Klaviyo profile with the `yuko_*` properties listed below.
   </Step>
 </Steps>
 
@@ -64,7 +66,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 ## Profile properties
 
-Every loyalty customer Yuko knows about has the following properties on their Klaviyo profile. Profiles are keyed by **email** and **external_id** (the Shopify customer ID). Properties refresh automatically every time Yuko fires an event for the customer.
+Yuko writes the following properties to the customer's Klaviyo profile with every event it sends. Profiles are keyed by **email** and **external_id** (the Shopify customer ID). Properties refresh every time Yuko sends one of your selected events for the customer.
 
 Use these in Klaviyo segments and inside any email template (`{{ person.<property> }}`).
 
@@ -114,7 +116,7 @@ These are written at Klaviyo's top-level profile object (not under `properties`)
 
 | Property | Type | Description |
 |---|---|---|
-| `yuko_referral_url` | String | The customer's personal referral link. Use directly in emails — *“Share your link: \{\{ person.yuko_referral_url \}\}”*. |
+| `yuko_referral_url` | String | The customer's personal referral link. Use directly in emails — `Share your link: {{ person.yuko_referral_url }}`. |
 | `yuko_referral_code` | String | The short referral code, embedded in the URL. |
 | `yuko_total_referrals` | Integer | Total referrals the customer has initiated. |
 | `yuko_successful_referrals` | Integer | Referrals that converted (friend completed the qualifying action). |
@@ -151,7 +153,7 @@ These are written at Klaviyo's top-level profile object (not under `properties`)
 | `yuko_timestamp` | ISO 8601 string | When the event was triggered in Yuko. |
 | `yuko_org_uuid` | String | Yuko organisation UUID. Useful in multi-store Klaviyo accounts. |
 
-In Klaviyo flow filters and template content, reference these as `\{\{ event.yuko_customer_email \}\}`, `\{\{ event.yuko_timestamp \}\}`, etc.
+In Klaviyo flow filters and template content, reference these as `{{ event.yuko_customer_email }}`, `{{ event.yuko_timestamp }}`, etc.
 
 ---
 
@@ -159,7 +161,9 @@ In Klaviyo flow filters and template content, reference these as `\{\{ event.yuk
 
 Each event below shows up in Klaviyo as a **metric** (the name in **bold**). Use it as the trigger of a flow, or as a metric filter elsewhere.
 
-Properties listed are **in addition to the common event properties** above and are also accessible inside Klaviyo flows as `\{\{ event.<property> \}\}`.
+Properties listed are **in addition to the common event properties** above and are also accessible inside Klaviyo flows as `{{ event.<property> }}`.
+
+You can also forward **Reward Expired**, **Membership Paused**, **Benefit Unlocked**, **Booster Campaign Entered**, **Booster Campaign Progression** and **Booster Campaign Rewarded**. These carry the common event properties and the profile properties only.
 
 ### Loyalty events
 
@@ -344,7 +348,7 @@ Same properties as **Customer Anniversary** — Klaviyo can pre-announce.
 |---|---|---|
 | `yuko_tier_name` | String | The tier the customer entered. |
 | `yuko_tier_id` | String | UUID of the tier. |
-| `yuko_tier_icon_url` | String | Tier icon URL — use as `<img src="\{\{ event.yuko_tier_icon_url \}\}">` in emails. |
+| `yuko_tier_icon_url` | String | Tier icon URL — use as `<img src="{{ event.yuko_tier_icon_url }}">` in emails. |
 | `yuko_tier_is_entry` | Boolean | `true` (always, for entry events). |
 | `yuko_benefits_unlocked` | String | Comma-separated list of benefits. |
 | `yuko_all_tiers` | String | Serialised list of all configured tiers (for “tier ladder” displays). |
@@ -725,21 +729,21 @@ Build segments using profile properties. Examples:
 Reference profile properties in any Klaviyo email:
 
 ```
-Hi \{\{ person.first_name|default:"there" \}\},
+Hi {{ person.first_name|default:"there" }},
 
-Your current balance is \{\{ person.yuko_points_balance|default:0 \}\} points
-(\{\{ person.yuko_points_as_cash_balance|default:0 \}\} in store credit).
+Your current balance is {{ person.yuko_points_balance|default:0 }} points
+({{ person.yuko_points_as_cash_balance|default:0 }} in store credit).
 
-You're \{\{ person.yuko_vip_next_tier_amount_needed \}\} away from \{\{ person.yuko_vip_next_tier \}\}.
+You're {{ person.yuko_vip_next_tier_amount_needed }} away from {{ person.yuko_vip_next_tier }}.
 ```
 
 Reference event properties inside flow-triggered emails:
 
 ```
-Welcome to \{\{ event.yuko_new_tier_name \}\}!
+Welcome to {{ event.yuko_new_tier_name }}!
 
-You unlocked: \{\{ event.yuko_benefits_unlocked \}\}
-Your new earning rate is \{\{ event.yuko_new_earning_rate \}\}x points.
+You unlocked: {{ event.yuko_benefits_unlocked }}
+Your new earning rate is {{ event.yuko_new_earning_rate }}x points.
 ```
 
 ### Flows
@@ -756,14 +760,14 @@ A common pattern: trigger a flow on a Yuko event, send an email built around eve
 <Tip>**Disable Yuko's email template if Klaviyo is sending the same one.** Otherwise the customer gets two emails.</Tip>
 <Tip>**Test every flow with a real customer record** before activating. Empty event properties typically mean a configuration issue (e.g., reward not yet generated).</Tip>
 <Tip>**Use `external_id`** to deduplicate Klaviyo profiles when customers change their email.</Tip>
-<Tip>**Include fallbacks in template tags.** `\{\{ person.yuko_points_balance|default:0 \}\}` keeps emails clean when properties haven't synced yet.</Tip>
+<Tip>**Include fallbacks in template tags.** `{{ person.yuko_points_balance|default:0 }}` keeps emails clean when properties haven't synced yet.</Tip>
 <Tip>**Don't reference event properties inside campaigns** (they're only meaningful inside flows triggered by that event). Use profile properties for campaigns.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
   <Accordion title="When are profile properties refreshed?">
-    Every time Yuko sends an event for that customer, the profile properties are recomputed and pushed. In practice that means whenever they earn, redeem, change tier, etc. Most properties can be considered live within a few minutes.
+    Every time Yuko sends one of your selected events for that customer, the profile properties are recomputed and pushed. If you forward only a few events, properties update less often.
   </Accordion>
   <Accordion title="What's the difference between a profile property and an event property?">
     Profile properties live on the customer record permanently and reflect the **current** state — use them in segments and templates that aren't tied to a specific event.
@@ -776,7 +780,7 @@ A common pattern: trigger a flow on a Yuko event, send an email built around eve
     Most often: the customer hasn't reached that part of the program yet (e.g., `yuko_vip_next_tier_amount_needed` is empty for top-tier customers). Or the event was for a non-loyalty action that doesn't carry that property. Always include `default:` in your template tags.
   </Accordion>
   <Accordion title="Can I disable specific events?">
-    Yes — open the Klaviyo integration in Yuko and toggle individual events off. Profile sync continues regardless.
+    Yes — open the Klaviyo integration in Yuko, untick the events and click **Save Events**. Profile properties are only refreshed when a selected event is sent.
   </Accordion>
   <Accordion title="How do I find a customer in Klaviyo using their Shopify ID?">
     Use Klaviyo's profile lookup by `external_id`. Yuko writes `external_id` = Shopify customer ID on every profile.

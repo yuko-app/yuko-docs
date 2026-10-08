@@ -2,7 +2,7 @@
 title: "Get redeemable rewards"
 ---
 
-Retrieves the customer's points balance and the full reward catalogue with affordability info per reward. Intended as the primary endpoint for rendering a loyalty redemption UI.
+Retrieves the customer's points balance, every active online reward with affordability info, and the rewards the customer has already redeemed. Shopify POS rewards aren't included. Intended as the primary endpoint for rendering a loyalty redemption UI.
 
 **GET /public/customers/rewards/redeemable**
 
@@ -52,7 +52,7 @@ Hide child attributes
 
 **integer**
 
-The customer's current redeemable points balance.
+The customer's current redeemable points balance. Always `0` for banned customers.
 
 Example:
 
@@ -96,9 +96,9 @@ Example:
 
 Available options:
 
-`fixed_discount`,
+`fixed`,
 
-`percentage_discount`,
+`percentage`,
 
 `free_shipping`,
 
@@ -108,7 +108,7 @@ Available options:
 
 Example:
 
-`"fixed_discount"`
+`"fixed"`
 
 **data.rewards[].points_cost**
 
@@ -128,7 +128,17 @@ The rule configuration for this reward. Structure varies by `reward_type`.
 
 Example:
 
-`{ "points_required": 500, "discount_value": 5 }`
+`{ "points_required": 500, "value": 5 }`
+
+**data.rewards[].icon**
+
+**object | null**
+
+The reward's storefront icon, or `null` if none is set. Contains `source` (`default` or `custom`), `slug`, `id` and `url`. See [Retrieve a reward](/developer/api/retrieve-a-reward) for details.
+
+Example:
+
+`null`
 
 **data.rewards[].can_redeem**
 
@@ -154,7 +164,7 @@ Example:
 
 **object[]**
 
-The customer's previously redeemed coupons and discounts, sorted by `created_at` descending.
+The customer's previously redeemed coupons and discounts, sorted by `created_at` descending. Each item has the same fields as [List customer rewards](/developer/api/list-customer-rewards), including `customer_id` (the customer's Yuko UUID) and `reward_id`.
 
 Hide child attributes
 
@@ -172,7 +182,7 @@ Example:
 
 Example:
 
-`"fixed_discount"`
+`"fixed"`
 
 **data.customer_rewards[].status**
 
@@ -279,12 +289,13 @@ $data = json_decode($response, true);
         "id": "90424fa7-e8a9-4ef4-b43a-72c9b2028db5",
         "name": "$5 off your next order",
         "description": "Redeem 500 points for a $5 discount.",
-        "reward_type": "fixed_discount",
+        "reward_type": "fixed",
         "points_cost": 500,
         "reward_rule": {
           "points_required": 500,
-          "discount_value": 5
+          "value": 5
         },
+        "icon": null,
         "can_redeem": true,
         "points_needed": 0
       },
@@ -292,12 +303,13 @@ $data = json_decode($response, true);
         "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
         "name": "10% off your next order",
         "description": "Redeem 1000 points for 10% off.",
-        "reward_type": "percentage_discount",
+        "reward_type": "percentage",
         "points_cost": 1000,
         "reward_rule": {
           "points_required": 1000,
-          "discount_percentage": 10
+          "value": 10
         },
+        "icon": null,
         "can_redeem": false,
         "points_needed": 350
       }
@@ -305,7 +317,9 @@ $data = json_decode($response, true);
     "customer_rewards": [
       {
         "id": "1fd80ced-326f-4082-951b-21a38632a603",
-        "reward_type": "fixed_discount",
+        "customer_id": "63a2c89a-9936-4bc0-9d5f-93db46110b76",
+        "reward_id": "90424fa7-e8a9-4ef4-b43a-72c9b2028db5",
+        "reward_type": "fixed",
         "status": "active",
         "discount_code": "YUKO-TVJ-BL1",
         "points_used": 500,

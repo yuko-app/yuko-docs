@@ -38,7 +38,7 @@ For the provider-agnostic overview of how Yuko's WhatsApp integration works, see
     Paste the key into **API Key** and click **Connect Integration**. The page shows **Connected**.
   </Step>
   <Step title="Add a ConvertWay step to a workflow">
-    Open any workflow, click **+**, pick **WhatsApp**, and select **ConvertWay** as the provider.
+    Open any workflow, click **+**, pick **WhatsApp**, and choose the **ConvertWay** card from the provider list.
   </Step>
 </Steps>
 
@@ -50,9 +50,9 @@ For the provider-agnostic overview of how Yuko's WhatsApp integration works, see
 | **Language Code** | The template's language code | `en`, `hi`, `ar` |
 | **Add CTA Button** *(optional)* | Turn on to add URL call-to-action buttons with dynamic suffixes | On |
 | **CTA Button Count** | How many URL buttons the template has (1–2). Shown when **Add CTA Button** is on. | `1` |
-| **CTA Button URL Suffixes** | One dynamic suffix per button, appended to the button's base URL in the template. Supports [shortcodes](/workflows/whatsapp-node#available-shortcodes). | `{{coupon_code}}` |
+| **CTA Button URL Suffixes** | One dynamic suffix per button, appended to the button's base URL in the template. Supports [shortcodes](/workflows/whatsapp-node#shortcodes). | `{{reward_code}}` |
 | **Parameter Count** | Number of body variables in the template (1–10) | `2` |
-| **Template Parameters** | One value per body variable, in order. Supports [shortcodes](/workflows/whatsapp-node#available-shortcodes). | `{{first_name}}`, `{{points_balance}}` |
+| **Template Parameters** | One value per body variable, in order. Supports [shortcodes](/workflows/whatsapp-node#shortcodes). | `{{first_name}}`, `{{points_balance}}` |
 
 You must fill in exactly as many parameters and button suffixes as the counts you set. Template names can't contain spaces.
 
@@ -64,12 +64,12 @@ Yuko uses the customer's country in Shopify to set the country code for the mess
 
 ## Example use case
 
-**Points-earned message with a shop link**
+**Reward-redeemed message with a shop link**
 
-1. In ConvertWay, get a template called `loyalty_points_earned` approved, with two body variables (first name, points balance) and one URL button whose base URL is your store's discount link.
-2. In Yuko Workflows, build: **Trigger: Earn Points** → **WhatsApp (ConvertWay)**.
-3. Set Template Name = `loyalty_points_earned`, Language Code = `en`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{points_balance}}`.
-4. Turn on **Add CTA Button**, set CTA Button Count = `1`, and Button 1 URL Suffix = `{{coupon_code}}`.
+1. In ConvertWay, get a template called `loyalty_reward_redeemed` approved, with two body variables (first name, reward name) and one URL button whose base URL is your store's discount link.
+2. In Yuko Workflows, build: **Trigger: Redeem Points** → **WhatsApp (ConvertWay)**.
+3. Set Template Name = `loyalty_reward_redeemed`, Language Code = `en`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{reward_name}}`.
+4. Turn on **Add CTA Button**, set CTA Button Count = `1`, and Button 1 URL Suffix = `{{reward_code}}`.
 5. Activate the workflow.
 
 ## Limitations

@@ -85,8 +85,8 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
   </Step>
   <Step title="Set order tags (Shopify only)">
     Under **Orders**, edit the tags Yuko adds to Shopify orders:
-    - **Earned orders tags** — added to orders where customers earned points (default `YUKO:EARNED`).
-    - **Redeemed orders tags** — added to orders where customers redeemed points (default `YUKO:REDEEMED`).
+    - **Earned orders** — tags added to orders where customers earned points (default `YUKO:EARNED`).
+    - **Redeemed orders** — tags added to orders where customers redeemed points (default `YUKO:REDEEMED`).
 
     Type a tag and press Enter to add it.
   </Step>
@@ -114,7 +114,7 @@ Both the base points and any VIP tier bonus points from that order are reverted.
 
 ### Excluded customers
 
-A customer is excluded from the program if they have one of your excluded tags, or if you excluded them manually from [Customers](/loyalty/customers). Excluded customers don't earn points and show the **Excluded** status on the Customers list.
+A customer is excluded from the program if they have one of your excluded tags, or if you excluded them manually from [Customers](/loyalty/customers). Excluded customers don't earn points. Only customers excluded manually show the **Excluded** status on the Customers list; tag-excluded customers keep their Member or Guest status there.
 
 ### Order tags
 
@@ -175,7 +175,7 @@ To run it, click **Reset customer activities**, type `RESET` in the confirmation
     If **Refunded** is ticked under Revert Point Status, Yuko takes back the points the order earned, including any VIP tier bonus. Points still on hold are cancelled instead.
   </Accordion>
   <Accordion title="Does Yuko tag customers in Shopify?">
-    The tagging setting here tags **orders**, not customers. Use **Earned orders tags** and **Redeemed orders tags** to label orders that earned or redeemed points.
+    The tagging setting here tags **orders**, not customers. Use the **Earned orders** and **Redeemed orders** tags to label orders that earned or redeemed points.
   </Accordion>
   <Accordion title="What does Reset customer activities delete?">
     All customer points activity, transactions and balances, plus tier memberships and the customer discount codes Yuko created. Customers and your program setup stay.

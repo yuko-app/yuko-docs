@@ -2,7 +2,9 @@
 title: "Points estimate"
 ---
 
-Estimates how many loyalty points a customer will earn for a given set of cart items. Customer is optional — guest checkouts are fully supported.
+Estimates how many loyalty points a customer will earn for a given set of cart items, based on your active **Place an order** earn rules. Customer is optional, so guest checkouts are supported.
+
+<Note>The request carries product and variant IDs only, with no prices or quantities, so cart value isn't part of the calculation. Spend-based earn rules can therefore return `0` points. Test the endpoint against your own earn rules before showing the estimate to shoppers.</Note>
 
 **POST /public/points/estimate**
 
@@ -17,6 +19,12 @@ Estimates how many loyalty points a customer will earn for a given set of cart i
 **required**
 
 Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
+
+#### **Required Scope**
+
+**`read:points`**
+
+This endpoint requires the `points` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
 
 #### **Request Body**
 
@@ -42,7 +50,7 @@ Example:
 
 **string\<email\> | null**
 
-The customer's email address. Takes priority over `id` when both are provided.
+The customer's email address. Takes priority over `id` when both are provided; if no customer matches the email, `id` isn't tried.
 
 Example:
 
@@ -213,7 +221,7 @@ $data = json_decode($response, true);
 }
 ```
 
-```json 200 (guest checkout or no matching campaign)
+```json 200 (no eligible earn rule)
 {
   "data": {
     "points_earned": 0,
@@ -226,7 +234,7 @@ $data = json_decode($response, true);
 {
   "error": {
     "code": "validation_error",
-    "message": "The given data was invalid",
+    "message": "The items field is required.",
     "details": {
       "items": ["The items field is required."]
     }

@@ -9,7 +9,7 @@ description: Connect AISensy as your WhatsApp Business API provider — used by 
 
 ## Introduction
 
-[AISensy](https://www.aisensy.com) is an India-headquartered WhatsApp Business API platform popular with high-volume Shopify stores in India and Southeast Asia. Once connected, the [WhatsApp Workflow node](/workflows/whatsapp-node) can send AISensy campaign messages from any workflow — points earned, reward redeemed, tier upgraded, streak about to break, and so on.
+[AISensy](https://www.aisensy.com) is an India-headquartered WhatsApp Business API platform popular with high-volume Shopify stores in India and Southeast Asia. Once connected, the [WhatsApp Workflow node](/workflows/whatsapp-node) can send AISensy campaign messages from any workflow — points earned, reward redeemed, tier upgraded, points about to expire, and so on.
 
 For the provider-agnostic overview of how Yuko's WhatsApp integration works, see [WhatsApp](/integrations/whatsapp).
 
@@ -29,16 +29,16 @@ For the provider-agnostic overview of how Yuko's WhatsApp integration works, see
 
 <Steps>
   <Step title="Get your AISensy API key">
-    Log in to the AISensy dashboard → **Manage → API Key**. Copy the API key.
+    Log in to your AISensy dashboard and copy your API key.
   </Step>
   <Step title="Open AISensy in Yuko">
     In Shopify admin, go to **Apps → Yuko Loyalty → Integrations → AISensy**.
   </Step>
   <Step title="Paste the API key and Connect">
-    Paste the key and click **Connect**. The tile flips to **Connected**.
+    Paste the key into the **API Key** field and click **Connect Integration**. The page shows **Connected**.
   </Step>
   <Step title="Add an AISensy step to a workflow">
-    Open any workflow, click **+**, pick **WhatsApp**, and choose **AISensy** in the provider dropdown.
+    Open any workflow, click **+**, pick **WhatsApp**, and choose the **AISensy** card from the provider list.
   </Step>
 </Steps>
 
@@ -52,9 +52,9 @@ When you add a WhatsApp node and pick AISensy, the node exposes the fields AISen
 | **Campaign Name** | The name of the approved AISensy campaign to trigger | `loyalty_tier_upgrade` |
 | **Source** | Optional source identifier passed back to AISensy analytics | `yuko_workflow` |
 | **Template Parameter Count** | How many variables the template expects (1–10) | `3` |
-| **Template Parameters** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{current_tier_name}}`, `{{points_balance}}` |
+| **Template Parameters** | One value per variable — supports [shortcodes](/workflows/whatsapp-node#shortcodes) | `{{first_name}}`, `{{current_tier_name}}`, `{{points_balance}}` |
 | **Tags** | Optional comma-separated tags for AISensy reporting | `loyalty, tier_change` |
-| **Attributes** | Optional JSON of custom attributes | `{"segment": "vip"}` |
+| **Attributes** | Optional JSON object of custom attributes | `{"segment": "vip"}` |
 
 <Tip>The **Campaign Name** must match the campaign name in your AISensy dashboard exactly — it's case-sensitive. A typo here is the most common reason an AISensy step fails silently.</Tip>
 
@@ -63,7 +63,7 @@ When you add a WhatsApp node and pick AISensy, the node exposes the fields AISen
 **Diamond tier welcome**
 
 1. Create an approved AISensy campaign called `loyalty_diamond_welcome` with three variables: customer name, points balance, exclusive perk.
-2. In Yuko Workflows, build: **Trigger: VIP Tier Entry** → **Filter: tier = Diamond** → **WhatsApp (AISensy)**.
+2. In Yuko Workflows, build: **Trigger: VIP Tier Entry** → **If / Else** (tier is Diamond) → **WhatsApp (AISensy)**.
 3. Set Campaign Name = `loyalty_diamond_welcome`, Parameter Count = `3`, Parameters = `{{first_name}}`, `{{points_balance}}`, `Free shipping on every order`.
 4. Activate. The next customer to hit Diamond gets the message within seconds.
 
@@ -86,7 +86,7 @@ When you add a WhatsApp node and pick AISensy, the node exposes the fields AISen
     In the AISensy dashboard. Yuko shows aggregate node-level pending / completed / failed counts only.
   </Accordion>
   <Accordion title="How do I rotate the API key?">
-    Generate a new key in AISensy, then paste it into the Yuko AISensy integration tile and click **Connect** again.
+    Generate a new key in AISensy, then open **Integrations → AISensy** in Yuko, switch off the **Connection** toggle and confirm **Disconnect**, and connect again with the new key. Existing workflow steps keep their settings.
   </Accordion>
 </AccordionGroup>
 

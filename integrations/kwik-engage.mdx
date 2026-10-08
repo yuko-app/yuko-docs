@@ -29,16 +29,16 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
 <Steps>
   <Step title="Get your Kwik Engage API key">
-    Log in to Kwik Engage → **Settings → API**. Copy the API key and note the API endpoint URL.
+    Log in to your Kwik Engage dashboard, copy your API key, and note the API endpoint URL.
   </Step>
   <Step title="Open Kwik Engage in Yuko">
     In Shopify admin, go to **Apps → Yuko Loyalty → Integrations → Kwik Engage**.
   </Step>
   <Step title="Paste the API key and Connect">
-    Paste the key and click **Connect**. The tile flips to **Connected**.
+    Paste the key into the **API Key** field and click **Connect Integration**. The page shows **Connected**.
   </Step>
   <Step title="Add a Kwik Engage step to a workflow">
-    Open any workflow, click **+**, pick **WhatsApp**, and select **Kwik Engage** in the provider dropdown.
+    Open any workflow, click **+**, pick **WhatsApp**, and choose the **Kwik Engage** card from the provider list.
   </Step>
 </Steps>
 
@@ -52,21 +52,21 @@ Kwik Engage splits body parameters from CTA button parameters — toggle CTA but
 | **Template Name** | Template identifier (no spaces) | `points_expiring_soon` |
 | **Language Code** | Template language | `en_US` or `hi_IN` |
 | **Parameter Count** | Number of body variables (1–10) | `2` |
-| **Template Parameters** | One value per body variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{points_balance}}` |
+| **Template Parameters** | One value per body variable — supports [shortcodes](/workflows/whatsapp-node#shortcodes) | `{{first_name}}`, `{{points_balance}}` |
 | **Add CTA Button** *(toggle)* | Enable if the template has dynamic URL buttons | on |
 | **CTA Button Count** | Number of CTA buttons (1–2) | `1` |
-| **CTA Button Parameters** | Dynamic URL variables — one per button | `redeem?code={{coupon_code}}` |
+| **CTA Button Parameters** | Dynamic URL variables — one per button | `redeem?code={{reward_code}}` |
 
 <Tip>The **Add CTA Button** toggle controls a separate parameter list from the body parameters. Each CTA button parameter fills a dynamic placeholder in the button's URL, defined in the Kwik Engage template.</Tip>
 
 ## Example use case
 
-**Points expiring — redeem now button**
+**Points expiring — visit-store button**
 
 1. In Kwik Engage, approve a template called `points_expiring_soon` with two body variables and one CTA button (URL = `https://shop.example.com/account?ref={dynamic}`). Note the endpoint URL.
 2. In Yuko Workflows, build: **Trigger: Points Expiring Reminder** → **WhatsApp (Kwik Engage)**.
 3. Configure: Endpoint, Template Name = `points_expiring_soon`, Language = `en_US`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{points_balance}}`.
-4. Toggle **Add CTA Button**, set CTA Button Count = `1`, Button Param 1 = `{{coupon_code}}`.
+4. Toggle **Add CTA Button**, set CTA Button Count = `1`, Button Param 1 = `rewards` (plain text works as well as shortcodes).
 5. Activate.
 
 ## Limitations
@@ -90,7 +90,7 @@ Kwik Engage splits body parameters from CTA button parameters — toggle CTA but
     Standard WhatsApp Business API language codes — `en_US`, `hi_IN`, `en_GB`, etc. Use whatever matches the language of your approved template.
   </Accordion>
   <Accordion title="How do I rotate the API key?">
-    Generate a new key in Kwik Engage, then paste it into the Yuko Kwik Engage integration tile and click **Connect** again.
+    Generate a new key in Kwik Engage, then open **Integrations → Kwik Engage** in Yuko, switch off the **Connection** toggle and confirm **Disconnect**, and connect again with the new key. Existing workflow steps keep their settings.
   </Accordion>
 </AccordionGroup>
 

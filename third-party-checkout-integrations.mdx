@@ -43,7 +43,7 @@ Your checkout identifies the customer
   Returns:                                     Returns:
   · Points balance                             · Points earned on this cart
   · Rewards available to redeem
-  · Unused coupon codes already held
+  · Rewards already issued (codes)
         │                                             │
         └────────────────┬────────────────────────────┘
                          ▼
@@ -140,7 +140,7 @@ https://api.yukoapp.com/api/v1/public
 
 ### General rules
 
-- Always use **HTTPS** — plain HTTP requests are rejected
+- Always use **HTTPS**
 - Always set `Content-Type: application/json` on POST requests
 - All responses are JSON
 - Successful responses wrap data inside a `"data"` key
@@ -158,7 +158,7 @@ This is the primary endpoint for your checkout loyalty panel.
 
 - The customer's current points balance
 - All rewards they can redeem (with a flag showing if they have enough points for each)
-- Coupon codes they've already redeemed but haven't applied yet
+- Rewards already issued to the customer (with their discount codes and status)
 
 <Note>
   `/customers/rewards/redeemable` is a single endpoint that covers both the points balance **and** the full rewards list. You do not need a separate "get balance" call.
@@ -209,6 +209,7 @@ curl --request GET \
           "points_required": 500,
           "discount_value": 5
         },
+        "icon": null,
         "can_redeem": true,
         "points_needed": 0
       },
@@ -222,6 +223,7 @@ curl --request GET \
           "points_required": 1000,
           "discount_percentage": 10
         },
+        "icon": null,
         "can_redeem": false,
         "points_needed": 350
       }
@@ -229,6 +231,8 @@ curl --request GET \
     "customer_rewards": [
       {
         "id": "1fd80ced-326f-4082-951b-21a38632a603",
+        "customer_id": "63a2c89a-9936-4bc0-9d5f-93db46110b76",
+        "reward_id": "90424fa7-e8a9-4ef4-b43a-72c9b2028db5",
         "reward_type": "fixed_discount",
         "status": "active",
         "discount_code": "YUKO-TVJ-BL1",
@@ -251,7 +255,7 @@ curl --request GET \
 </ResponseField>
 
 <ResponseField name="data.rewards" type="array">
-  All rewards the merchant has configured, enriched with affordability data for this specific customer.
+  All active rewards for the online store (point-of-sale rewards are excluded), enriched with affordability data for this specific customer.
 
   <Expandable title="rewards[] fields">
     <ResponseField name="id" type="string (uuid)">
@@ -272,6 +276,9 @@ curl --request GET \
     <ResponseField name="reward_rule" type="object">
       The discount configuration. Structure varies by `reward_type`. For example, `fixed_discount` includes `discount_value`; `percentage_discount` includes `discount_percentage`.
     </ResponseField>
+    <ResponseField name="icon" type="object | null">
+      The reward's icon, if one is set.
+    </ResponseField>
     <ResponseField name="can_redeem" type="boolean">
       `true` if the customer has enough points. `false` if not.
     </ResponseField>
@@ -282,7 +289,7 @@ curl --request GET \
 </ResponseField>
 
 <ResponseField name="data.customer_rewards" type="array">
-  Coupon codes the customer has already redeemed (converted points into a discount code) but not yet applied at checkout.
+  Every reward already issued to the customer, newest first, in any status (including used and expired ones). Filter on `status === "active"` to find codes the customer can still apply. Each item is a [Customer Reward Object](/customer-reward-object).
 
   <Expandable title="customer_rewards[] fields">
     <ResponseField name="discount_code" type="string | null">
@@ -422,13 +429,13 @@ curl --request POST \
 }
 ```
 
-### Example response (200) — no active campaign
+### Example response (200) — no points earned
 
 ```json
 {
   "data": {
     "points_earned": 0,
-    "message": null
+    "message": "You will earn 0 points after completing this purchase"
   }
 }
 ```
@@ -441,12 +448,12 @@ curl --request POST \
   Example: `120`
 </ResponseField>
 
-<ResponseField name="data.message" type="string | null">
+<ResponseField name="data.message" type="string">
   A ready-to-display string. You can show this directly in your UI without additional formatting.
 
   Example: `"You will earn 120 points after completing this purchase"`
 
-  Will be `null` if no earning campaign matches the cart.
+  The message is always returned, even when `points_earned` is `0`, so check `points_earned` before showing it.
 </ResponseField>
 
 ### Display logic
@@ -455,7 +462,7 @@ curl --request POST \
 If points_earned > 0:
   Show the message field directly in your UI
 
-If points_earned === 0 or message === null:
+If points_earned === 0:
   Hide this section entirely — never show "You will earn 0 points"
 ```
 
@@ -562,7 +569,7 @@ A `201` status means the redemption was successful and a new coupon code has bee
 <ResponseField name="data.discount_value" type="number | null">
   The discount amount or percentage associated with the coupon.
 
-  - For `fixed_discount`: this is the rupee/dollar amount (e.g. `5` means \$5 off)
+  - For `fixed_discount`: this is the amount in the store's currency (e.g. `5` means 5 off)
   - For `percentage_discount`: this is the percentage (e.g. `10` means 10% off)
   - Will be `null` for `free_shipping` and `free_product` reward types
 </ResponseField>
@@ -577,8 +584,9 @@ A `201` status means the redemption was successful and a new coupon code has bee
 
 | Code  | Scenario                            | What to do                                                                                                                                             |
 | ----- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `422` | Customer doesn't have enough points | This shouldn't happen if you used `can_redeem` from Endpoint 1 correctly. Show the customer a message: "You don't have enough points for this reward." |
-| `422` | Reward not found or is inactive     | The reward may have been deactivated by the merchant. Refresh the rewards list by calling Endpoint 1 again.                                            |
+| `422` | Customer doesn't have enough points (`redemption_failed`) | This shouldn't happen if you used `can_redeem` from Endpoint 1 correctly. Show the customer a message: "You don't have enough points for this reward." |
+| `422` | Reward not found or is inactive (`redemption_failed`) | The reward may have been deactivated by the merchant. Refresh the rewards list by calling Endpoint 1 again.                                            |
+| `422` | Customer is excluded from the loyalty program, or loyalty is turned off (`redemption_failed`) | Hide the loyalty panel.                                                                                     |
 | `404` | Customer not found                  | The `customer_id` is not in Yuko.                                                                                                                      |
 | `401` | Invalid API key                     | Check the `Authorization` header.                                                                                                                      |
 
@@ -648,9 +656,9 @@ curl --request POST \
   }'
 ```
 
-### Step 4 — Render the loyalty panel  - Example
+### Step 4 — Render the loyalty panel
 
-Combine both responses to display the loyalty section: Its an example. Customize as per your UI.
+Combine both responses to display the loyalty section. This is only an example; adapt it to your UI.
 
 ```text
 ┌──────────────────────────────────────────────┐
@@ -711,14 +719,12 @@ Full list of error codes → [Errors reference](/developer/api/errors)
 | Code  | Meaning                                        | What to do                                                            |
 | ----- | ---------------------------------------------- | --------------------------------------------------------------------- |
 | `200` | Success                                        | Use the response data                                                 |
-| `400` | Bad request — missing or malformed parameters  | Check your request structure                                          |
 | `401` | Unauthorized — API key missing or incorrect    | Check the `Authorization` header and key value                        |
 | `403` | Forbidden — token missing the right scope (`insufficient_scope`) | Ask the merchant to create a key with `write:rewards` and `read:points` |
 | `404` | Customer not found                             | The `customer_id` doesn't exist in Yuko — hide the panel silently     |
-| `422` | Validation error — logically incorrect request | Check the `message` field in the response                             |
+| `422` | Validation error (`validation_error`) or failed redemption (`redemption_failed`) | Check the `message` field in the response                             |
 | `429` | Rate limit exceeded                            | Wait 1 second and retry once — see [Rate Limits](#rate-limits)        |
 | `500` | Yuko internal error                            | Retry once. If it persists, hide the panel and let checkout continue. |
-| `503` | Yuko temporarily unavailable                   | Same as 500 — retry once, then fail gracefully                        |
 
 ### Error response format
 
@@ -777,7 +783,7 @@ See full details → [Rate Limits reference](/developer/api/rate-limits)
 - ❌ Never commit it to a public code repository
 - ✅ Make all Yuko API calls from your backend — pass only the results to your frontend
 
-**Rule 2 — Use HTTPS everywhere.** All requests to Yuko must use `https://`. Plain HTTP will be rejected.
+**Rule 2 — Use HTTPS everywhere.** Always send requests to the `https://` base URL so the API key is never sent unencrypted.
 
 ---
 
@@ -1032,8 +1038,3 @@ Verify: Returns HTTP 200 with no `customer` field in the request body.
     Full Yuko API reference.
   </Card>
 </CardGroup>
-
----
-
-_Built by Flycart — the team behind 100K+ WooCommerce plugin installs._\
-_Discount Rules · WPLoyalty · Yuko_

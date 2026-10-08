@@ -36,10 +36,10 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
     In Shopify admin, go to **Apps → Yuko Loyalty → Integrations**, pick the **WhatsApp** category from the left sidebar, and click **Interakt**.
   </Step>
   <Step title="Paste the API key and Connect">
-    Paste the key and click **Connect**. The tile flips to **Connected**.
+    Paste the key into the **API Key** field and click **Connect Integration**. The page shows **Connected**.
   </Step>
   <Step title="Add an Interakt step to a workflow">
-    Open any workflow, click **+**, pick **WhatsApp**, and select **Interakt** in the provider dropdown.
+    Open any workflow, click **+**, pick **WhatsApp**, and choose the **Interakt** card from the provider list.
   </Step>
 </Steps>
 
@@ -51,9 +51,9 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 | **Language Code** | Facebook language code | `en`, `hi`, `ar` |
 | **Add CTA Button** *(optional)* | Turn on to add URL call-to-action buttons with dynamic suffixes | On |
 | **CTA Button Count** | How many URL buttons the template has (1–2). Shown when **Add CTA Button** is on. | `1` |
-| **CTA Button URL Suffixes** | One dynamic suffix per button, appended to the button's base URL in the Interakt template. Supports [shortcodes](/workflows/whatsapp-node#available-shortcodes). | `{{coupon_code}}` |
+| **CTA Button URL Suffixes** | One dynamic suffix per button, appended to the button's base URL in the Interakt template. Supports [shortcodes](/workflows/whatsapp-node#shortcodes). | `{{reward_code}}` |
 | **Template Parameter Count** | Number of body variables (1–10) | `2` |
-| **Template Parameters** | One value per body variable — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `{{first_name}}`, `{{points_balance}}` |
+| **Template Parameters** | One value per body variable — supports [shortcodes](/workflows/whatsapp-node#shortcodes) | `{{first_name}}`, `{{points_balance}}` |
 | **Callback Data** *(optional)* | Metadata returned on Interakt's delivery webhooks (max 512 chars) | `yuko_tier_upgrade` |
 
 You must fill in exactly as many parameters and button suffixes as the counts you set. If a button suffix resolves to an empty value at send time, Yuko sends `?from=yuko` instead so the button still opens a valid link.
@@ -91,7 +91,7 @@ You must fill in exactly as many parameters and button suffixes as the counts yo
     1. Template name exact match. 2. Template approved. 3. Parameter count and CTA button count match the template. 4. Language code matches the approved template's language. 5. Customer has a phone number in Shopify.
   </Accordion>
   <Accordion title="How do I rotate the API key?">
-    Generate a new key in Interakt, then paste it into the Yuko Interakt integration tile and click **Connect** again.
+    Generate a new key in Interakt, then open **Integrations → Interakt** in Yuko, switch off the **Connection** toggle and confirm **Disconnect**, and connect again with the new key. Existing workflow steps keep their settings.
   </Accordion>
 </AccordionGroup>
 

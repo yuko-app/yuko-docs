@@ -103,6 +103,8 @@ Then set the **Qualification period type**:
     Under **Advanced Program Settings**, pick a month and year. The program starts on the 1st day of that month. Activity before this date doesn't count toward tiers.
   </Step>
   <Step title="Choose a Tier Reset Option">
+    Under **Tier Reset Options**, pick one:
+
     - **Reset After Period End**: automatically moves customers back to lower tiers when program periods reset, based on what they qualify for in the new period.
     - **No Tier After Reset**: removes customers from all tiers when periods reset, so they have to re-qualify.
   </Step>
@@ -175,9 +177,9 @@ Amount discount, % off discount, Free shipping and Free product benefits share t
 
 - **Method**: **Automatic** applies the discount at checkout without a code. **One-time code** (labelled **One-time discount code** on discount benefits) issues the customer a code and lets you set a **Coupon Prefix**.
 - **Applies to**: All products, Specific collections or Specific products (amount and percentage discounts). Amount discounts can also be set to **Only apply discount once per order**.
-- **Purchase type**: One-time purchase, Subscription or Both. Subscription options only take effect if your store sells subscriptions.
+- **Purchase type** (amount, percentage and free shipping benefits): One-time purchase, Subscription or Both. Subscription options only take effect if your store sells subscriptions.
 - **Minimum purchase requirements**: none, a minimum purchase amount or a minimum quantity of items.
-- **Combine with other discounts**: product, order and shipping discounts.
+- **Combine with other discounts**: product and order discounts. Amount, percentage and free product benefits can also combine with free shipping.
 - **Expiry Settings**: an optional expiry after a number of days, weeks, months or years.
 
 ### Store credit benefits
@@ -200,7 +202,7 @@ You can add an expiry, and with **Enable Holdings** you can hold each credit for
   - **Calendar year**: December 31 of the year they entered the tier, or December 31 of the following year with **Include the last year**.
   - **Rolling year**: 12 months after they entered the tier.
 
-  When the window ends, the **Tier Reset Option** decides whether they move down to the tier they qualify for or lose their tier.
+  When the window ends, the **Tier Reset Options** setting decides whether they move down to the tier they qualify for or lose their tier.
 - **Admin changes skip retention.** Changing the qualification settings or using **Reset All Tiers** re-evaluates everyone under the new rules, regardless of retention. These recalculations don't send customer-facing workflow events.
 - **Points.** The tier multiplier and campaign bonus points are added as a separate tier bonus entry in the customer's activity, alongside the base points. Multipliers apply when points are awarded, not retroactively.
 - **Bulk updates.** While Yuko updates customer tags or metafields in bulk, a banner at the top of the VIP page shows the update is in progress, or that it failed.

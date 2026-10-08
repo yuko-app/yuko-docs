@@ -30,16 +30,16 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
 <Steps>
   <Step title="Get your DelightChat API key">
-    Log in to DelightChat → **Settings → API** (or **Developer Settings**). Copy the API key.
+    Log in to your DelightChat dashboard and copy your API key.
   </Step>
   <Step title="Open DelightChat in Yuko">
     In Shopify admin, go to **Apps → Yuko Loyalty → Integrations → DelightChat**.
   </Step>
   <Step title="Paste the API key and Connect">
-    Paste the key and click **Connect**. The tile flips to **Connected**.
+    Paste the key into the **API Key** field and click **Connect Integration**. The page shows **Connected**.
   </Step>
   <Step title="Add a DelightChat step to a workflow">
-    Open any workflow, click **+**, pick **WhatsApp**, and select **DelightChat** in the provider dropdown.
+    Open any workflow, click **+**, pick **WhatsApp**, and choose the **DelightChat** card from the provider list.
   </Step>
 </Steps>
 
@@ -51,7 +51,7 @@ DelightChat triggers a pre-built **automation** rather than a raw template. You 
 |---|---|---|
 | **Automation ID** | The ID of the WhatsApp automation in DelightChat | `abc123` |
 | **Message Data Count** | Number of template variables the automation expects (1–10) | `2` |
-| **Message Data** | Key-value pairs (keys typically numbered `1`, `2`, `3`…) — values support [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `1` = `{{first_name}}`, `2` = `{{points_balance}}` |
+| **Message Data** | Key-value pairs (keys typically numbered `1`, `2`, `3`…) — values support [shortcodes](/workflows/whatsapp-node#shortcodes) | `1` = `{{first_name}}`, `2` = `{{points_balance}}` |
 | **CTA Button URL** | Optional click-through URL on the button (supports shortcodes) | `https://shop.example.com/account` |
 | **CTA Button Text** | Optional button label | `View my points` |
 
@@ -86,7 +86,7 @@ DelightChat triggers a pre-built **automation** rather than a raw template. You 
     Yes — the CTA Button URL field supports shortcodes, so you can deep-link with customer-specific values (e.g., `https://yourstore.com/account?email={{email}}`).
   </Accordion>
   <Accordion title="How do I rotate the API key?">
-    Generate a new key in DelightChat, then paste it into the Yuko DelightChat integration tile and click **Connect** again.
+    Generate a new key in DelightChat, then open **Integrations → DelightChat** in Yuko, switch off the **Connection** toggle and confirm **Disconnect**, and connect again with the new key. Existing workflow steps keep their settings.
   </Accordion>
 </AccordionGroup>
 

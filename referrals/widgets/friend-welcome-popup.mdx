@@ -43,11 +43,11 @@ This popup is how friends claim their reward. Without it, a friend who opens a r
   <Step title="Content - Step 1: Input Screen">
     | Field | Default |
     |---|---|
-    | **Enable Hero Image** / **Hero Image** | Off. Recommended size 800×1000px (JPG, PNG or GIF). Shown on desktop only. |
+    | **Enable Hero Image** / **Hero Image** | On, with a default banner image. Recommended size 800×1000px (JPG, PNG or GIF). Shown on desktop only. |
     | **Label** | `Friend Invitation` |
     | **Heading** | `Unlock your offer!` |
     | **Message** | `Enter your email to reveal your discount code.` |
-    | **Form** | First Name, Last Name, Your email and Your phone. **Email** is always included. You can also add **Marketing Consent**. |
+    | **Form** | First Name, Last Name and Your email. **Email** is always included. You can also add **Phone** or **Marketing Consent** with **Add form field**. |
     | **Button Text** (max 30 characters) | `Unlock Offer` |
 
     For each form field you can edit the **Label** and **Placeholder**, mark it as a **Required field**, show or hide it, and drag fields into a new order.
@@ -56,16 +56,16 @@ This popup is how friends claim their reward. Without it, a friend who opens a r
     | Field | Default |
     |---|---|
     | **Label** | `Your Reward` |
-    | **Heading** | `Welcome! Enjoy $10 off` |
-    | **Message** | `Use the code below at checkout to get $10 off your first purchase of $5 or more.` |
+    | **Heading** | `Welcome! Enjoy {{friend_reward}}` |
+    | **Message** | `Use the code below at checkout to get {{friend_reward}}.` |
     | **Button Text** (max 30 characters) | `Apply at checkout` |
   </Step>
   <Step title="Success & Feedback">
-    Set **Success message (toast)**, shown after the friend clicks the apply button and the discount is applied. Default: `Discount applied. Proceed to checkout.`
+    Set **Success message (toast)**, shown after the friend clicks the apply button and the discount is applied. Default: `Your discount code has been revealed! Use it at checkout.`
   </Step>
 </Steps>
 
-Headings and messages accept `{{friend_reward}}` and `{{referrer_reward}}`, which are replaced with your reward titles. Using `{{friend_reward}}` in place of a hard-coded "$10 off" keeps the popup accurate when you change the reward.
+Headings and messages accept `{{friend_reward}}` and `{{referrer_reward}}`, which are replaced with your reward titles. The default Step 2 text uses `{{friend_reward}}`, so it stays accurate when you change the reward.
 
 ### 2. Style the popup
 

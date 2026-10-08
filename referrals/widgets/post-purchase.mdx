@@ -24,7 +24,7 @@ Customers are most enthusiastic right after buying. Showing the referral offer a
 
 - Four text fields: title, description and two button labels.
 - No Styles tab. The block uses Shopify's checkout and customer account styling.
-- A customer who isn't a referrer yet sees **Get my referral link**. Clicking it enrolls them and shows their link with a copy button. Existing referrers see their link straight away.
+- A customer who isn't a referrer yet sees **Get referral link**. Clicking it enrolls them and shows their link with a copy button. Existing referrers see their link straight away.
 
 ## Before you start
 
@@ -43,9 +43,9 @@ Customers are most enthusiastic right after buying. Showing the referral offer a
     | Field | Default |
     |---|---|
     | **Title** | `Refer a friend & get rewarded!` |
-    | **Description** | `Give your friends 10% off and get 100 points for each successful referral.` |
+    | **Description** | `Give your friends {{friend_reward}} and get {{referrer_reward}} for each successful referral.` |
     | **Copy Button Text** (shown once the link is displayed, max 30 characters) | `Copy Link` |
-    | **Get Link Button Text** (shown before the link is loaded, max 30 characters) | `Get my referral link` |
+    | **Get Link Button Text** (shown before the link is loaded, max 30 characters) | `Get referral link` |
 
     In **Title** and **Description**, use `{{friend_reward}}` and `{{referrer_reward}}` to insert the reward titles, so the text stays in sync with your rewards.
   </Step>
@@ -78,13 +78,13 @@ On the **Order status** page, add the **Yuko Referral Signup** block.
 
 ### 4. Verify
 
-Place a test order and check that the widget appears on the thank-you page. Click **Get my referral link**, then copy the link and open it in a private window to check that the Friend Welcome Popup appears.
+Place a test order and check that the widget appears on the thank-you page. Click **Get referral link**, then copy the link and open it in a private window to check that the Friend Welcome Popup appears.
 
 ## How it works
 
 1. The block checks that the referral module is on, a friend reward exists and the widget is enabled.
 2. If the customer already has a referral code, the block shows their link.
-3. Otherwise the block shows **Get my referral link**. Clicking it enrolls the customer as a referrer and shows the new link.
+3. Otherwise the block shows **Get referral link**. Clicking it enrolls the customer as a referrer and shows the new link.
 4. The customer copies the link and shares it.
 
 ### Limitations

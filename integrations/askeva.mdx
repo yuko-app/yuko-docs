@@ -29,16 +29,16 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
 <Steps>
   <Step title="Get your AskEva API key">
-    Log in to AskEva → **Settings → API**. Copy the API key.
+    Log in to your AskEva dashboard and copy your API key.
   </Step>
   <Step title="Open AskEva in Yuko">
     In Shopify admin, go to **Apps → Yuko Loyalty → Integrations**, pick the **WhatsApp** category from the left sidebar, and click **AskEva**.
   </Step>
   <Step title="Paste the API key and Connect">
-    Paste the key and click **Connect**. The tile flips to **Connected**.
+    Paste the key into the **API Key** field and click **Connect Integration**. The page shows **Connected**.
   </Step>
   <Step title="Add an AskEva step to a workflow">
-    Open any workflow, click **+**, pick **WhatsApp**, and select **AskEva** in the provider dropdown.
+    Open any workflow, click **+**, pick **WhatsApp**, and choose the **AskEva** card from the provider list.
   </Step>
 </Steps>
 
@@ -50,7 +50,7 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 | **Language Code** | Template language | `en`, `hi`, `ar` |
 | **Add CTA Button** *(toggle)* | Enable if the template has dynamic-URL CTA buttons | on |
 | **CTA Button Count** | Number of CTA buttons on the template (1–2) | `1` |
-| **CTA Button URL Suffixes** | Dynamic suffix appended to each button's base URL — supports [shortcodes](/workflows/whatsapp-node#available-shortcodes) | `redeem?code={{coupon_code}}` |
+| **CTA Button URL Suffixes** | Dynamic suffix appended to each button's base URL — supports [shortcodes](/workflows/whatsapp-node#shortcodes) | `redeem?code={{reward_code}}` |
 | **Parameter Count** | Number of body variables (1–10) | `2` |
 | **Template Parameters** | Body variable values — supports shortcodes | `{{first_name}}`, `{{current_tier_name}}` |
 
@@ -58,7 +58,7 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
 ### CTA button suffixes vs whole URLs
 
-Different from BiteSpeed / Kwik Engage, which take the full URL as input. AskEva templates already carry the button base URL; Yuko only passes the variable tail.
+Different from BiteSpeed and DelightChat, which take the full URL as input. AskEva templates already carry the button base URL; Yuko only passes the variable tail.
 
 Example: template defines button URL as `https://shop.example.com/`. If you pass suffix `account?email={{email}}`, the customer receives `https://shop.example.com/account?email=jane@example.com`.
 
@@ -93,7 +93,7 @@ Example: template defines button URL as `https://shop.example.com/`. If you pass
     1. Template name exact match, no spaces. 2. Template approved. 3. Language code matches template. 4. Parameter count matches template body. 5. If CTA is enabled, button count matches template. 6. Customer has a phone number in Shopify.
   </Accordion>
   <Accordion title="How do I rotate the API key?">
-    Generate a new key in AskEva, then paste it into the Yuko AskEva integration tile and click **Connect** again.
+    Generate a new key in AskEva, then open **Integrations → AskEva** in Yuko, switch off the **Connection** toggle and confirm **Disconnect**, and connect again with the new key. Existing workflow steps keep their settings.
   </Accordion>
 </AccordionGroup>
 

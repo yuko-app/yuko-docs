@@ -2,7 +2,7 @@
 title: "Redeem a reward"
 ---
 
-Exchanges a customer's loyalty points for a reward. Deducts the required points using FIFO logic, generates a coupon or discount code on the connected platform (e.g. Shopify), and returns the code to present to the customer.
+Exchanges a customer's loyalty points for a reward. Deducts the required points using FIFO logic, generates a coupon or discount code on the connected platform (e.g. Shopify), and returns the code to present to the customer. Redemption fails if loyalty is turned off for the store, the customer is banned, the reward is inactive, or the customer doesn't have enough points.
 
 **POST /public/customers/rewards/redeem**
 
@@ -17,6 +17,12 @@ Exchanges a customer's loyalty points for a reward. Deducts the required points 
 **required**
 
 Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
+
+#### **Required Scope**
+
+**`write:rewards`**
+
+This endpoint requires the `rewards` scope with **Read/Write Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
 
 #### **Request Body**
 
@@ -38,7 +44,7 @@ Example:
 
 **required**
 
-The UUID of the reward to redeem. Obtain this from the `rewards[].id` field in the [Get redeemable rewards](/get-redeemable-rewards) response.
+The UUID of the reward to redeem. Obtain this from the `rewards[].id` field in the [Get redeemable rewards](/developer/api/get-redeemable-rewards) response.
 
 Example:
 
@@ -82,25 +88,29 @@ The type of reward that was redeemed.
 
 Available options:
 
-`fixed_discount`,
+`fixed`,
 
-`percentage_discount`,
+`percentage`,
 
 `free_shipping`,
 
 `free_product`,
 
-`store_credit`
+`store_credit`,
+
+`pos_fixed`,
+
+`pos_percentage`
 
 Example:
 
-`"fixed_discount"`
+`"fixed"`
 
 **data.discount_value**
 
-**number | null**
+**number**
 
-The discount amount or percentage associated with the coupon. `null` for free shipping and free product rewards.
+The discount amount or percentage associated with the coupon. `0` when the reward type has no discount value.
 
 Example:
 
@@ -110,7 +120,7 @@ Example:
 
 **string\<date-time\> | null**
 
-The expiry date of the generated coupon. `null` if the reward has no expiry.
+The expiry date of the generated coupon. `null` if the reward has no expiry or is a store credit reward.
 
 Example:
 
@@ -174,7 +184,7 @@ $data = json_decode($response, true);
   "data": {
     "coupon_code": "YUKO-TVJ-BL1",
     "points_spent": 500,
-    "reward_type": "fixed_discount",
+    "reward_type": "fixed",
     "discount_value": 5,
     "expires_at": "2026-06-01T00:00:00+00:00"
   }
@@ -203,7 +213,7 @@ $data = json_decode($response, true);
 {
   "error": {
     "code": "validation_error",
-    "message": "The given data was invalid",
+    "message": "The reward id field is required.",
     "details": {
       "reward_id": ["The reward id field is required."]
     }
