@@ -53,6 +53,13 @@
             ]
           },
           {
+            "group": "Dashboard & Analytics",
+            "pages": [
+              "analytics/dashboard",
+              "analytics/reports"
+            ]
+          },
+          {
             "group": "Loyalty Program",
             "pages": [
               "loyalty/overview",
@@ -72,7 +79,13 @@
                   "loyalty/ways-to-earn/facebook-like",
                   "loyalty/ways-to-earn/facebook-share",
                   "loyalty/ways-to-earn/instagram-follow",
-                  "loyalty/ways-to-earn/twitter-follow"
+                  "loyalty/ways-to-earn/twitter-follow",
+                  "loyalty/ways-to-earn/twitter-share",
+                  "loyalty/ways-to-earn/tiktok-follow",
+                  "loyalty/ways-to-earn/pinterest-follow",
+                  "loyalty/ways-to-earn/visit-url",
+                  "loyalty/ways-to-earn/subscribe-to-sms",
+                  "loyalty/ways-to-earn/subscribe-to-whatsapp"
                 ]
               },
               {
@@ -83,7 +96,9 @@
                   "loyalty/ways-to-redeem/percentage-discount",
                   "loyalty/ways-to-redeem/free-product",
                   "loyalty/ways-to-redeem/free-shipping",
-                  "loyalty/ways-to-redeem/store-credit"
+                  "loyalty/ways-to-redeem/store-credit",
+                  "loyalty/ways-to-redeem/pos-amount-discount",
+                  "loyalty/ways-to-redeem/pos-percentage-discount"
                 ]
               },
               {
@@ -91,6 +106,7 @@
                 "pages": [
                   "loyalty/booster-campaigns/overview",
                   "loyalty/booster-campaigns/multiplier",
+                  "loyalty/booster-campaigns/product-collection-multiplier",
                   "loyalty/booster-campaigns/bonus-flat",
                   "loyalty/booster-campaigns/spending-goal",
                   "loyalty/booster-campaigns/order-frequency",
@@ -100,14 +116,19 @@
                   "loyalty/booster-campaigns/first-purchase-boost"
                 ]
               },
-              "loyalty/one-time-campaigns",
-              "loyalty/customers"
+              "loyalty/one-time-campaigns"
             ]
           },
           {
             "group": "VIP Tiers",
             "pages": [
               "vip-tiers/overview"
+            ]
+          },
+          {
+            "group": "Customers",
+            "pages": [
+              "loyalty/customers"
             ]
           },
           {
@@ -135,7 +156,16 @@
               "referrals/overview",
               "referrals/program-setup",
               "referrals/reward-types",
-              "referrals/widget"
+              {
+                "group": "Referral Widgets",
+                "pages": [
+                  "referrals/widget",
+                  "referrals/widgets/post-purchase",
+                  "referrals/widgets/landing-page",
+                  "referrals/widgets/friend-welcome-popup",
+                  "referrals/widgets/share-product"
+                ]
+              }
             ]
           },
           {
@@ -149,7 +179,8 @@
                 "pages": [
                   "memberships/widgets/cart-membership-upsell",
                   "memberships/widgets/checkout-membership-upsell",
-                  "memberships/widgets/profile-membership"
+                  "memberships/widgets/profile-membership",
+                  "memberships/widgets/purchase-options"
                 ]
               },
               "memberships/validation-extension"
@@ -187,6 +218,7 @@
               "integrations/rest-api",
               "integrations/webhooks",
               "integrations/shopify-flow",
+              "integrations/shopify-pos",
               "integrations/klaviyo",
               "integrations/omnisend",
               {
@@ -203,14 +235,14 @@
                   "integrations/interakt",
                   "integrations/bitespeed",
                   "integrations/botspace",
-                  "integrations/askeva"
+                  "integrations/askeva",
+                  "integrations/whamaa",
+                  "integrations/convertway"
                 ]
               },
               "integrations/judgeme",
               "integrations/checkout-boost",
               "integrations/retainful",
-              "integrations/facebook-instagram",
-              "integrations/google-business",
               "integrations/custom-apps"
             ]
           },
@@ -220,7 +252,8 @@
               "account/overview",
               "account/general",
               "account/platforms",
-              "account/email-blacklist"
+              "account/email-blacklist",
+              "account/translations"
             ]
           },
           {
@@ -239,6 +272,7 @@
             "pages": [
               "developer/api/introduction",
               "developer/api/authentication",
+              "developer/api/scopes",
               "developer/api/errors",
               "developer/api/classic-pagination",
               "developer/api/rate-limits"
@@ -267,7 +301,14 @@
               {
                 "group": "Rewards",
                 "pages": [
-                  "developer/api/list-rewards"
+                  "developer/api/list-rewards",
+                  "developer/api/retrieve-a-reward"
+                ]
+              },
+              {
+                "group": "Booster Campaigns",
+                "pages": [
+                  "developer/api/list-booster-campaigns"
                 ]
               },
               {
@@ -351,5 +392,79 @@
       "cursor",
       "vscode"
     ]
-  }
+  },
+  "redirects": [
+    {
+      "source": "/quickstart",
+      "destination": "/getting-started/quickstart"
+    },
+    {
+      "source": "/integrations/index",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/integrations/shopify",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/integrations/woocommerce",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/integrations/wployalty",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/integrations/zapier",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/integrations/facebook",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/integrations/facebook-instagram",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/integrations/google-business",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/integrations/google-seo",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/integrations/google-shopping",
+      "destination": "/integrations/overview"
+    },
+    {
+      "source": "/installation-and-setup/woocommerce",
+      "destination": "/installation-and-setup/install-on-shopify"
+    },
+    {
+      "source": "/workflows/index",
+      "destination": "/workflows/overview"
+    },
+    {
+      "source": "/workflows/getting-started-with-workflows",
+      "destination": "/workflows/build-your-first"
+    },
+    {
+      "source": "/account/account-settings",
+      "destination": "/account/general"
+    },
+    {
+      "source": "/account/updating-logo",
+      "destination": "/account/general"
+    },
+    {
+      "source": "/account/multi-store-management",
+      "destination": "/account/platforms"
+    },
+    {
+      "source": "/account/security-and-access",
+      "destination": "/account/overview"
+    }
+  ]
 }

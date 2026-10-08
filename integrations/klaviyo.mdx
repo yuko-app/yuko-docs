@@ -704,53 +704,6 @@ This event fires on the **friend's** profile, not the advocate's.
 
 ---
 
-### Reviews events
-
-<Note>
-The Reviews documentation is reorganised in v1.1. The two events below are already enabled and forward to Klaviyo today.
-</Note>
-
-#### Review Submitted
-
-- **Klaviyo metric:** *Review Submitted*
-- **Event slug:** `review_submitted`
-- **When it fires:** A customer submits a product review.
-
-| Property | Type | Description |
-|---|---|---|
-| `yuko_review_uuid` | String | Review UUID. |
-| `yuko_email` | String | Review author email. |
-| `yuko_rating` | Integer | 1–5 rating. |
-| `yuko_status` | String | Status (e.g., `pending`, `approved`). |
-| `yuko_review_title` | String | Review title. |
-| `yuko_review_content` | String | Review body. |
-| `yuko_platform_product_id` | String | Shopify product ID. |
-| `yuko_platform_variation_id` | String | Shopify variant ID. |
-| `yuko_product_name` | String | Product name. |
-| `yuko_created_at` | ISO 8601 string | Submission timestamp. |
-| `yuko_has_media` | Boolean | `true` if review has media. |
-| `yuko_has_photos` | Boolean | `true` if photos. |
-| `yuko_has_videos` | Boolean | `true` if videos. |
-| `yuko_is_verified` | Boolean | `true` if verified buyer. |
-
-#### Question Submitted
-
-- **Klaviyo metric:** *Question Submitted*
-- **Event slug:** `question_submitted`
-- **When it fires:** A customer submits a product Q&A question.
-
-| Property | Type | Description |
-|---|---|---|
-| `yuko_question_uuid` | String | Question UUID. |
-| `yuko_question_content` | String | Question text. |
-| `yuko_question_status` | String | Status. |
-| `yuko_question_author_email` | String | Author email. |
-| `yuko_created_at` | ISO 8601 string | Submission timestamp. |
-| `yuko_platform_product_id` | String | Shopify product ID. |
-| `yuko_product_name` | String | Product name. |
-
----
-
 ## Using profile + event data in Klaviyo
 
 ### Segments
