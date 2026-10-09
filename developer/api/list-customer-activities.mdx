@@ -1,244 +1,99 @@
 ---
 title: "List customer activities"
+api: "GET /public/customers/activities"
+description: "Retrieves a paginated list of a customer's loyalty activities, newest first."
 ---
 
-Retrieves a paginated list of loyalty activities for a customer — including points earned, rewards redeemed, tier changes, and manual adjustments. Results are sorted by `created_at` in descending order.
-
-**GET /public/customers/activities**
-
-#### **Authorizations**
-
-**Authorization**
-
-**string**
-
-**header**
-
-**required**
-
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
-
-#### **Required Scope**
-
-**`read:activities`**
-
-This endpoint requires the `activities` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Query Parameters**
-
-**customer_id**
-
-**string**
-
-**required**
-
-The platform customer ID (e.g. Shopify customer ID)
-
-Example:
-
-`"9049402769586"`
-
-
-
-**source_type**
-
-**string**
-
-Filter results to activities from the specified source. Common values include `loyalty_campaigns`, `loyalty_rewards`, `loyalty_customer_rewards`, `loyalty_transactions`, `loyalty_tiers`, `loyalty_tier_benefits`, `events` (workflow point awards), `referral_transactions`, `referral_rewards`, `referral_advocates` and `users` (manual and API point adjustments). Exact match.
-
-Example:
-
-`"loyalty_campaigns"`
-
-**activity_type**
-
-**string**
-
-Filter results to a specific activity type (e.g. `purchase`, `point_adjustment`, `reward_used`, `point_expiry`, `vip_tier_upgrade`). Exact match.
-
-Example:
-
-`"purchase"`
-
-**per_page**
-
-**integer**
-
-**default: 20**
-
-The number of results per page.
-
-Required range: `1 <= x <= 100`
-
-**page**
-
-**integer**
-
-**default: 1**
-
-The page number to retrieve.
-
-#### **Response**
-
-**200 - application/json**
-
-**data**
-
-**object[]**
-
-Hide child attributes
-
-**data.id**
-
-**string\<uuid\>**
-
-Unique UUID identifier for the activity.
-
-Example:
-
-`"f7a8b9c0-d1e2-3456-fabc-d01234567890"`
-
-**data.customer_id**
-
-**string\<uuid\>**
-
-The UUID of the customer this activity belongs to.
-
-Example:
-
-`"63a2c89a-9936-4bc0-9d5f-93db46110b76"`
-
-**data.activity_type**
-
-**string**
-
-The type of action that occurred.
-
-Example:
-
-`"purchase"`
-
-**data.source_type**
-
-**string**
-
-The module or entity that generated this activity.
-
-Example:
-
-`"loyalty_campaigns"`
-
-**data.source_id**
-
-**string\<uuid\> | null**
-
-The UUID of the source record (e.g. campaign, reward) that triggered this activity.
-
-Example:
-
-`"a1b2c3d4-e5f6-7890-abcd-ef1234567890"`
-
-**data.entry_type**
-
-**enum\<string\> | null**
-
-Whether the activity resulted in a points credit or debit.
-
-Available options:
-
-`credit`,
-
-`debit`
-
-Example:
-
-`"credit"`
-
-**data.points**
-
-**integer**
-
-The number of points involved in this activity, taken from `metadata.earning_value` (or `metadata.used_point` for redemptions). `0` when no points were involved.
-
-Example:
-
-`100`
-
-**data.earning_type**
-
-**string | null**
-
-The type of earning (e.g. `points`, `store_credit`).
-
-Example:
-
-`"points"`
-
-**data.metadata**
-
-**object**
-
-The full activity payload. Structure varies by `activity_type`. Returned as an empty array (`[]`) when the activity has no payload.
-
-**data.created_at**
-
-**string\<date-time\>**
-
-Example:
-
-`"2026-02-15T08:30:00+00:00"`
-
-**meta**
-
-**object**
-
-Hide child attributes
-
-**meta.pagination**
-
-**object**
-
-Hide child attributes
-
-**meta.pagination.current_page**
-
-**integer**
-
-Example:
-
-`1`
-
-**meta.pagination.per_page**
-
-**integer**
-
-Example:
-
-`20`
-
-**meta.pagination.total**
-
-**integer**
-
-Example:
-
-`12`
-
-**meta.pagination.last_page**
-
-**integer**
-
-Example:
-
-`1`
-
-**meta.pagination.has_more**
-
-**boolean**
-
-Example:
-
-`false`
+Activities include points earned, rewards redeemed, tier changes and manual adjustments. Results are sorted by `created_at`, newest first.
+
+<Info>Requires the `read:activities` scope. See [Scopes](/developer/api/scopes).</Info>
+
+## Query parameters
+
+<ParamField query="customer_id" type="string" required>
+  The platform customer ID (for example, the Shopify customer ID).
+</ParamField>
+
+<ParamField query="source_type" type="string">
+  Return only activities from this source. Exact match. Common values include `loyalty_campaigns`, `loyalty_rewards`, `loyalty_customer_rewards`, `loyalty_transactions`, `loyalty_tiers`, `loyalty_tier_benefits`, `events` (workflow point awards), `referral_transactions`, `referral_rewards`, `referral_advocates` and `users` (manual and API point adjustments).
+</ParamField>
+
+<ParamField query="activity_type" type="string">
+  Return only activities of this type, for example `purchase`, `point_adjustment`, `reward_used`, `point_expiry` or `vip_tier_upgrade`. Exact match.
+</ParamField>
+
+<ParamField query="per_page" type="integer" default={20}>
+  The number of results per page. Must be between `1` and `100`.
+</ParamField>
+
+<ParamField query="page" type="integer" default={1}>
+  The page number to retrieve. See [Classic pagination](/developer/api/classic-pagination).
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object[]">
+  The activities on this page.
+
+  <Expandable title="activity properties">
+    <ResponseField name="id" type="string<uuid>">
+      Unique identifier for the activity.
+    </ResponseField>
+    <ResponseField name="customer_id" type="string<uuid>">
+      Yuko's UUID for the customer this activity belongs to.
+    </ResponseField>
+    <ResponseField name="activity_type" type="string">
+      The type of action that occurred.
+    </ResponseField>
+    <ResponseField name="source_type" type="string">
+      The module or entity that generated this activity.
+    </ResponseField>
+    <ResponseField name="source_id" type="string<uuid> | null">
+      The UUID of the source record (for example, a campaign or reward) that triggered this activity.
+    </ResponseField>
+    <ResponseField name="entry_type" type="enum<string> | null">
+      Whether the activity resulted in a points credit or debit. One of `credit`, `debit`.
+    </ResponseField>
+    <ResponseField name="points" type="integer">
+      The number of points involved in this activity, taken from `metadata.earning_value` (or `metadata.used_point` for redemptions). `0` when no points were involved.
+    </ResponseField>
+    <ResponseField name="earning_type" type="string | null">
+      The type of earning, for example `points` or `store_credit`.
+    </ResponseField>
+    <ResponseField name="metadata" type="object">
+      The full activity payload. Structure varies by `activity_type`. Returned as an empty array (`[]`) when the activity has no payload.
+    </ResponseField>
+    <ResponseField name="created_at" type="string<date-time>">
+      When the activity happened (ISO 8601).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="meta" type="object">
+  <Expandable title="meta properties">
+    <ResponseField name="pagination" type="object">
+      Pagination details. See [Classic pagination](/developer/api/classic-pagination).
+
+      <Expandable title="pagination properties">
+        <ResponseField name="current_page" type="integer">The page returned.</ResponseField>
+        <ResponseField name="per_page" type="integer">The number of records per page.</ResponseField>
+        <ResponseField name="total" type="integer">The total number of records.</ResponseField>
+        <ResponseField name="last_page" type="integer">The number of the last page.</ResponseField>
+        <ResponseField name="has_more" type="boolean">`true` if there are more pages after this one.</ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Errors
+
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:activities`. |
+| `404` | `not_found` | No customer matches `customer_id`. Message: "Customer not found". |
+| `422` | `validation_error` | `customer_id` is missing. Message: "The customer id field is required." |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 

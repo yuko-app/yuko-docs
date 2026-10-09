@@ -3,14 +3,19 @@ title: "Retrieve a points transaction"
 description: "How to look up a customer's points transactions with the REST API."
 ---
 
-The Yuko REST API doesn't have an endpoint to fetch a single points transaction by ID. To find a transaction, list the customer's transactions with [List points transactions](/developer/api/list-points-transactions):
+The Yuko REST API doesn't have an endpoint to fetch a single points transaction by ID. To find a transaction, list the customer's transactions with [List points transactions](/developer/api/list-points-transactions).
 
-**GET /public/customers/transactions**
+## Listing a customer's transactions
 
-- Requires the `transactions` scope with read access. See [Scopes](/developer/api/scopes).
+`GET /public/customers/transactions`
+
+<Info>Requires the `read:transactions` scope. See [Scopes](/developer/api/scopes).</Info>
+
 - Pass the platform customer ID (for example, the Shopify customer ID) as `customer_id`.
 - Optionally filter with `entry_type` (`credit` or `debit`) and page through results with `page` and `per_page` (maximum `100`).
 - Results are sorted newest first.
+
+## Matching a transaction you created
 
 When you create a transaction with [Create a points transaction](/developer/api/create-a-points-transaction), the response includes its `transaction_id`. That value matches the `id` of the transaction in the list results.
 

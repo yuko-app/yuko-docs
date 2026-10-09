@@ -3,166 +3,127 @@ title: "Customer Object"
 description: "Fields returned for a customer by the Yuko REST API, and how customers are identified."
 ---
 
-Yuko creates customer records automatically from your Shopify store. Each customer is linked to their store account by `platform` and `platform_customer_id`. The customer object is returned by [List customers](/developer/api/list-customers) and [Retrieve a customer](/developer/api/retrieve-a-customer) (scope `customers` read).
+Yuko creates customer records automatically from your Shopify store. Each customer is linked to their store account by `platform` and `platform_customer_id`. The customer object is returned by [List customers](/developer/api/list-customers) and [Retrieve a customer](/developer/api/retrieve-a-customer), which require the `read:customers` scope.
 
 <Note>
 Whenever an endpoint asks for `customer_id`, pass the customer's ID from your store (the `platform_customer_id` below, for example the Shopify customer ID), not the Yuko `id`.
 </Note>
 
-**id**
-
-**string\<uuid\>**
-
-Yuko's internal UUID for the customer.
-
-Example:
-
-`"63a2c89a-9936-4bc0-9d5f-93db46110b76"`
-
-**first_name**
-
-**string | null**
-
-The customer's first name.
-
-Example:
-
-`"Jane"`
-
-**last_name**
-
-**string | null**
-
-The customer's last name.
-
-Example:
-
-`"Doe"`
-
-**email**
-
-**string | null**
-
-The customer's email address.
-
-Example:
-
-`"jane@doe.com"`
-
-**phone**
-
-**string | null**
-
-The customer's phone number.
-
-Example:
-
-`"+15555550123"`
-
-**platform**
-
-**string**
-
-The store platform the customer comes from.
-
-Example:
-
-`"shopify"`
-
-**platform_customer_id**
-
-**string | null**
-
-The customer's ID in your store. Use this value as `customer_id` in API requests.
-
-Example:
-
-`"7012345678901"`
-
-**state**
-
-**enum\<string\>**
-
-`member` for customers in the loyalty program, or `disabled` for customers you've banned from it. Customers excluded only by a customer tag still show `member`.
-
-Available options:
-
-`member`,
-
-`disabled`
-
-Example:
-
-`"member"`
-
-**date_of_birth**
-
-**string\<date\> | null**
-
-The customer's birthday, if known (`YYYY-MM-DD`).
-
-Example:
-
-`"1990-04-21"`
-
-**referral_code**
-
-**string | null**
-
-The customer's referral code, if they have one.
-
-Example:
-
-`"JANE10"`
-
-**referral_url**
-
-**string | null**
-
-The customer's referral link, if they have a referral code.
-
-Example:
-
-`"https://yourstore.com?ref=JANE10"`
-
-**points**
-
-**object**
-
-The customer's points summary: `balance` (spendable points, always `0` for a banned customer or one excluded by a customer tag), `earned` (total earned) and `redeemed` (total redeemed). All integers.
-
-Example:
-
-`{ "balance": 650, "earned": 1200, "redeemed": 550 }`
-
-**tier** (Retrieve a customer only)
-
-**object | null**
-
-The customer's current VIP tier, with the same fields as `current_tier` in the [Membership Object](/membership-object). `null` if VIP tiers are turned off or the customer hasn't reached a tier.
-
-**membership** (Retrieve a customer only)
-
-**object**
-
-`status` (always `active`) and `member_since` (the date the customer was added to Yuko).
-
-**created_at**
-
-**string\<date-time\>**
-
-When the customer was added to Yuko (ISO 8601).
-
-Example:
-
-`"2026-03-09T14:02:06+00:00"`
-
-**updated_at**
-
-**string\<date-time\>**
-
-When the customer record was last updated (ISO 8601).
-
-Example:
-
-`"2026-03-09T14:02:06+00:00"`
+## Properties
+
+<ResponseField name="id" type="string<uuid>">
+  Yuko's internal UUID for the customer.
+</ResponseField>
+
+<ResponseField name="first_name" type="string | null">
+  The customer's first name.
+</ResponseField>
+
+<ResponseField name="last_name" type="string | null">
+  The customer's last name.
+</ResponseField>
+
+<ResponseField name="email" type="string | null">
+  The customer's email address.
+</ResponseField>
+
+<ResponseField name="phone" type="string | null">
+  The customer's phone number.
+</ResponseField>
+
+<ResponseField name="platform" type="string">
+  The store platform the customer comes from, for example `shopify`.
+</ResponseField>
+
+<ResponseField name="platform_customer_id" type="string | null">
+  The customer's ID in your store. Use this value as `customer_id` in API requests.
+</ResponseField>
+
+<ResponseField name="state" type="enum<string>">
+  `member` for customers in the loyalty program, or `disabled` for customers you've banned from it. Customers excluded only by a customer tag still show `member`. One of `member`, `disabled`.
+</ResponseField>
+
+<ResponseField name="date_of_birth" type="string<date> | null">
+  The customer's birthday in `YYYY-MM-DD` format, if known.
+</ResponseField>
+
+<ResponseField name="referral_code" type="string | null">
+  The customer's referral code, if they have one.
+</ResponseField>
+
+<ResponseField name="referral_url" type="string | null">
+  The customer's referral link, if they have a referral code.
+</ResponseField>
+
+<ResponseField name="points" type="object">
+  The customer's points summary.
+
+  <Expandable title="points properties">
+    <ResponseField name="balance" type="integer">
+      Spendable points. Always `0` for a banned customer or one excluded by a customer tag.
+    </ResponseField>
+    <ResponseField name="earned" type="integer">
+      Total points earned.
+    </ResponseField>
+    <ResponseField name="redeemed" type="integer">
+      Total points redeemed.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="tier" type="object | null">
+  Returned by Retrieve a customer only. The customer's current VIP tier, with the same fields as `current_tier` in the [Membership Object](/membership-object). `null` if VIP tiers are turned off or the customer hasn't reached a tier.
+</ResponseField>
+
+<ResponseField name="membership" type="object">
+  Returned by Retrieve a customer only. The customer's loyalty membership summary.
+
+  <Expandable title="membership properties">
+    <ResponseField name="status" type="string">
+      Always `active`.
+    </ResponseField>
+    <ResponseField name="member_since" type="string<date-time>">
+      The date the customer was added to Yuko.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="created_at" type="string<date-time>">
+  When the customer was added to Yuko (ISO 8601).
+</ResponseField>
+
+<ResponseField name="updated_at" type="string<date-time>">
+  When the customer record was last updated (ISO 8601).
+</ResponseField>
+
+<ResponseExample>
+
+```json The Customer object
+{
+  "id": "63a2c89a-9936-4bc0-9d5f-93db46110b76",
+  "first_name": "Jane",
+  "last_name": "Doe",
+  "email": "jane@doe.com",
+  "phone": "+15555550123",
+  "platform": "shopify",
+  "platform_customer_id": "7012345678901",
+  "state": "member",
+  "date_of_birth": "1990-04-21",
+  "referral_code": "JANE10",
+  "referral_url": "https://yourstore.com?ref=JANE10",
+  "points": {
+    "balance": 650,
+    "earned": 1200,
+    "redeemed": 550
+  },
+  "tier": null,
+  "membership": {
+    "status": "active",
+    "member_since": "2026-03-09T14:02:06+00:00"
+  },
+  "created_at": "2026-03-09T14:02:06+00:00",
+  "updated_at": "2026-03-09T14:02:06+00:00"
+}
+```
+
+</ResponseExample>

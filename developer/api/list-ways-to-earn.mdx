@@ -1,207 +1,92 @@
 ---
 title: "List earning rules"
+api: "GET /public/earning-rules"
+description: "Retrieves a paginated list of active earning rules (Ways to earn) for your organisation."
 ---
 
-Retrieves a paginated list of active earning rules (Ways to earn) for your organisation. Results are sorted by `created_at` in descending order.
-
-**GET /public/earning-rules**
-
-#### **Authorizations**
-
-**Authorization**
-
-**string**
-
-**header**
-
-**required**
-
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
-
-#### **Required Scope**
-
-**`read:earning_rules`**
-
-This endpoint requires the `earning_rules` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Query Parameters**
-
-**per_page**
-
-**integer**
-
-**default: 20**
-
-The number of results per page. Values above `100` are capped at `100`.
-
-Required range: `1 <= x <= 100`
-
-**page**
-
-**integer**
-
-**default: 1**
-
-The page number to retrieve.
-
-#### **Response**
-
-**200 - application/json**
-
-**data**
-
-**object[]**
-
-Hide child attributes
-
-**data.id**
-
-**string\<uuid\>**
-
-Unique UUID identifier for the earning rule.
-
-Example:
-
-`"a1b2c3d4-e5f6-7890-abcd-ef1234567890"`
-
-**data.name**
-
-**string**
-
-The display name of the earning rule.
-
-Example:
-
-`"Place an order"`
-
-**data.description**
-
-**string | null**
-
-A short description shown to customers.
-
-Example:
-
-`"Earn 5 points for every $1 spent."`
-
-**data.campaign_type**
-
-**null**
-
-Currently always `null`. The API doesn't expose the earn rule's trigger (purchase, signup and so on); use `name` and `earning_rule` to identify the rule.
-
-Example:
-
-`null`
-
-**data.earning_rule**
-
-**object | null**
-
-How points are calculated when the rule triggers. Keys vary by rule type. Common keys:
-
-- `type`: what the rule awards, for example `points`.
-- `method`: `fixed` (a set amount each time) or `increment` (an amount per unit of spend, purchase rules only).
-- `earn_value`: the points awarded.
-- `earn_from_amount`: for `increment`, the spend amount that earns `earn_value` points.
-- `is_expire_enabled`, `expire_after`, `expire_period`: points expiry settings, if turned on.
-- `url`: for social follow/like rules, the handle or page the customer is asked to visit.
-
-Example:
-
-`{ "type": "points", "method": "increment", "earn_value": 5, "earn_from_amount": 1 }`
-
-**data.conditions**
-
-**array | null**
-
-Optional conditions that limit when the rule applies, such as product, collection or customer restrictions.
-
-Example:
-
-`null`
-
-**data.is_active**
-
-**boolean**
-
-Whether this earning rule is currently active. Only active rules are returned, so this is always `true`.
-
-Example:
-
-`true`
-
-**data.starts_at**
-
-**null**
-
-Currently always `null`.
-
-**data.ends_at**
-
-**null**
-
-Currently always `null`.
-
-**data.created_at**
-
-**string\<date-time\>**
-
-Example:
-
-`"2026-01-10T09:00:00+00:00"`
-
-**meta**
-
-**object**
-
-Hide child attributes
-
-**meta.pagination**
-
-**object**
-
-Hide child attributes
-
-**meta.pagination.current_page**
-
-**integer**
-
-Example:
-
-`1`
-
-**meta.pagination.per_page**
-
-**integer**
-
-Example:
-
-`20`
-
-**meta.pagination.total**
-
-**integer**
-
-Example:
-
-`4`
-
-**meta.pagination.last_page**
-
-**integer**
-
-Example:
-
-`1`
-
-**meta.pagination.has_more**
-
-**boolean**
-
-Example:
-
-`false`
+Results are sorted by `created_at`, newest first. Only active rules are returned.
+
+<Info>Requires the `read:earning_rules` scope. See [Scopes](/developer/api/scopes).</Info>
+
+## Query parameters
+
+<ParamField query="per_page" type="integer" default={20}>
+  The number of results per page. Values above `100` are treated as `100`.
+</ParamField>
+
+<ParamField query="page" type="integer" default={1}>
+  The page number to retrieve. See [Classic pagination](/developer/api/classic-pagination).
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object[]">
+  The earning rules on this page.
+
+  <Expandable title="earning rule properties">
+    <ResponseField name="id" type="string<uuid>">
+      Unique UUID identifier for the earning rule.
+    </ResponseField>
+    <ResponseField name="name" type="string">
+      The display name of the earning rule.
+    </ResponseField>
+    <ResponseField name="description" type="string | null">
+      A short description shown to customers.
+    </ResponseField>
+    <ResponseField name="campaign_type" type="null">
+      Currently always `null`. The API doesn't expose the earn rule's trigger (purchase, signup and so on); use `name` and `earning_rule` to identify the rule.
+    </ResponseField>
+    <ResponseField name="earning_rule" type="object | null">
+      How points are calculated when the rule triggers. Keys vary by rule type. Common keys:
+
+      - `type`: what the rule awards, for example `points`.
+      - `method`: `fixed` (a set amount each time) or `increment` (an amount per unit of spend, purchase rules only).
+      - `earn_value`: the points awarded.
+      - `earn_from_amount`: for `increment`, the spend amount that earns `earn_value` points.
+      - `is_expire_enabled`, `expire_after`, `expire_period`: points expiry settings, if turned on.
+      - `url`: for social follow/like rules, the handle or page the customer is asked to visit.
+    </ResponseField>
+    <ResponseField name="conditions" type="array | null">
+      Optional conditions that limit when the rule applies, such as product, collection or customer restrictions.
+    </ResponseField>
+    <ResponseField name="is_active" type="boolean">
+      Whether this earning rule is currently active. Only active rules are returned, so this is always `true`.
+    </ResponseField>
+    <ResponseField name="starts_at" type="null">
+      Currently always `null`.
+    </ResponseField>
+    <ResponseField name="ends_at" type="null">
+      Currently always `null`.
+    </ResponseField>
+    <ResponseField name="created_at" type="string<date-time>">
+      When the earning rule was created (ISO 8601).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="meta" type="object">
+  <Expandable title="meta properties">
+    <ResponseField name="pagination" type="object">
+      Pagination details. See [Classic pagination](/developer/api/classic-pagination).
+
+      <Expandable title="pagination properties">
+        <ResponseField name="current_page" type="integer">The page returned.</ResponseField>
+        <ResponseField name="per_page" type="integer">The number of records per page.</ResponseField>
+        <ResponseField name="total" type="integer">The total number of records.</ResponseField>
+        <ResponseField name="last_page" type="integer">The number of the last page.</ResponseField>
+        <ResponseField name="has_more" type="boolean">`true` if there are more pages after this one.</ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Errors
+
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:earning_rules`. |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 

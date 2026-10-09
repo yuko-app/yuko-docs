@@ -1,17 +1,24 @@
 ---
 title: "Rate Limits"
+description: "How many requests each Yuko API key can make, and how to handle 429 responses."
 ---
 
 To ensure platform stability and efficient processing for everyone, all of our API endpoints are rate limited.
 
+## Limit
+
 Each API key can make up to 10 requests per second. Once this limit is reached, further requests return an `HTTP 429 - Too Many Requests` error.
+
+## Rate limit headers
 
 Every response includes `X-RateLimit-Limit` and `X-RateLimit-Remaining` headers. A `429` response also includes a `Retry-After` header with the number of seconds to wait, and its body is:
 
-```json
+```json 429
 {
   "message": "Too Many Attempts."
 }
 ```
+
+## Staying within the limit
 
 After one second has elapsed, the key's limit resets and additional requests respond normally. Use techniques like caching, limiting the number of requests you make, and retries with backoff to stay within the limit.

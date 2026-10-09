@@ -1,12 +1,19 @@
 ---
 title: "Classic pagination"
+description: "Page through list endpoints with the page and per_page query parameters."
 ---
 
 With classic pagination, a collection of records is broken down into pages which are returned one at a time.
 
+## Page size
+
 List endpoints accept a `per_page` query parameter (default: `20`, maximum: `100`) that sets how many records are included in each page of results.
 
+## Moving between pages
+
 To move between pages, increment the `page` query parameter with each request. If you don't pass `page`, you get the first page of results.
+
+## Pagination metadata
 
 Paginated responses include a `meta.pagination` object:
 

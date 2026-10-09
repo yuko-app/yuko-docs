@@ -1,130 +1,61 @@
 ---
 title: "Redeem a reward"
+api: "POST /public/customers/rewards/redeem"
+description: "Exchanges a customer's loyalty points for a reward and returns the generated discount code."
 ---
 
-Exchanges a customer's loyalty points for a reward. Deducts the required points using FIFO logic, generates a coupon or discount code on the connected platform (e.g. Shopify), and returns the code to present to the customer. Redemption fails with a `422` `redemption_failed` error if loyalty is turned off for the store (`Loyalty not enabled`), the customer is banned (`Customer banned`), the reward doesn't exist or is inactive (`Reward not found or inactive`), the customer doesn't have enough points (`Insufficient points balance`), or the discount or store credit can't be created on the platform (for example `Failed to generate platform coupon`).
+Deducts the required points using FIFO logic, generates a coupon or discount code on the connected platform (for example Shopify), and returns the code to present to the customer. Store credit rewards are added to the customer's Shopify store credit balance instead of returning a code.
 
-**POST /public/customers/rewards/redeem**
+<Info>Requires the `write:rewards` scope. See [Scopes](/developer/api/scopes).</Info>
 
-#### **Authorizations**
+## Body parameters
 
-**Authorization**
+<ParamField body="customer_id" type="string" required>
+  The platform customer ID, for example the Shopify customer ID.
+</ParamField>
 
-**string**
+<ParamField body="reward_id" type="string<uuid>" required>
+  The UUID of the reward to redeem. Get it from the `rewards[].id` field in the [Get redeemable rewards](/developer/api/get-redeemable-rewards) response.
+</ParamField>
 
-**header**
+## Response
 
-**required**
+Returns `201 Created`.
 
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
+<ResponseField name="data" type="object">
+  <Expandable title="data properties">
+    <ResponseField name="coupon_code" type="string | null">
+      The generated coupon or discount code to apply at checkout. `null` for store credit rewards, which are added to the customer's Shopify store credit balance instead.
+    </ResponseField>
+    <ResponseField name="points_spent" type="integer">
+      The number of points deducted from the customer's balance.
+    </ResponseField>
+    <ResponseField name="reward_type" type="enum<string> | null">
+      The type of reward that was redeemed. One of `fixed`, `percentage`, `free_shipping`, `free_product`, `store_credit`, `pos_fixed`, `pos_percentage`.
+    </ResponseField>
+    <ResponseField name="discount_value" type="number">
+      The discount amount or percentage associated with the coupon. `0` when the reward type has no discount value, including store credit rewards.
+    </ResponseField>
+    <ResponseField name="expires_at" type="string<date-time> | null">
+      The expiry date of the generated coupon. `null` if the reward has no expiry or is a store credit reward.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
-#### **Required Scope**
+## Errors
 
-**`write:rewards`**
-
-This endpoint requires the `rewards` scope with **Read/Write Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Request Body**
-
-**customer_id**
-
-**string**
-
-**required**
-
-The platform customer ID (e.g. Shopify customer ID)
-
-Example:
-
-`"9049402769586"`
-
-**reward_id**
-
-**string\<uuid\>**
-
-**required**
-
-The UUID of the reward to redeem. Obtain this from the `rewards[].id` field in the [Get redeemable rewards](/developer/api/get-redeemable-rewards) response.
-
-Example:
-
-`"90424fa7-e8a9-4ef4-b43a-72c9b2028db5"`
-
-#### **Response**
-
-**201 - application/json**
-
-**data**
-
-**object**
-
-Hide child attributes
-
-**data.coupon_code**
-
-**string | null**
-
-The generated coupon or discount code to apply at checkout. `null` for store credit rewards, which are added to the customer's Shopify store credit balance instead.
-
-Example:
-
-`"YUKO-TVJ-BL1"`
-
-**data.points_spent**
-
-**integer**
-
-The number of points deducted from the customer's balance.
-
-Example:
-
-`500`
-
-**data.reward_type**
-
-**enum\<string\> | null**
-
-The type of reward that was redeemed.
-
-Available options:
-
-`fixed`,
-
-`percentage`,
-
-`free_shipping`,
-
-`free_product`,
-
-`store_credit`,
-
-`pos_fixed`,
-
-`pos_percentage`
-
-Example:
-
-`"fixed"`
-
-**data.discount_value**
-
-**number**
-
-The discount amount or percentage associated with the coupon. `0` when the reward type has no discount value, including store credit rewards.
-
-Example:
-
-`5`
-
-**data.expires_at**
-
-**string\<date-time\> | null**
-
-The expiry date of the generated coupon. `null` if the reward has no expiry or is a store credit reward.
-
-Example:
-
-`"2026-06-01T00:00:00+00:00"`
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `write:rewards`. |
+| `404` | `not_found` | No customer matches `customer_id` (`Customer not found`). |
+| `422` | `validation_error` | A body parameter is missing or invalid. |
+| `422` | `redemption_failed` | Loyalty is turned off for the store (`Loyalty not enabled`). |
+| `422` | `redemption_failed` | The customer is banned (`Customer banned`). |
+| `422` | `redemption_failed` | The reward doesn't exist or is inactive (`Reward not found or inactive`). |
+| `422` | `redemption_failed` | The customer doesn't have enough points (`Insufficient points balance`). |
+| `422` | `redemption_failed` | The discount or store credit can't be created on the platform, for example `Failed to generate platform coupon`. |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 

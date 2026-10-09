@@ -1,124 +1,65 @@
 ---
 title: "Points estimate"
+api: "POST /public/points/estimate"
+description: "Estimates how many loyalty points a customer will earn for a given set of cart items."
 ---
 
-Estimates how many loyalty points a customer will earn for a given set of cart items, based on your active **Place an order** earn rules. Customer is optional, so guest checkouts are supported.
+The estimate is based on your active **Place an order** earn rules. The customer is optional, so guest checkouts are supported.
 
 <Warning>The request carries product and variant IDs only, with no prices or quantities, so the cart amount used in the calculation is always `0`. Every **Place an order** rule then falls at or below its minimum purchase, so the endpoint currently returns `0` points for every request, including fixed-points rules. Don't show this estimate to shoppers until you've confirmed it returns non-zero values for your earn rules.</Warning>
 
-**POST /public/points/estimate**
+<Info>Requires the `read:points` scope. See [Scopes](/developer/api/scopes).</Info>
 
-#### **Authorizations**
+## Body parameters
 
-**Authorization**
+<ParamField body="customer" type="object | null">
+  The customer placing the order. Optional: omit it entirely (or send `null`) for guest checkouts. If you send a `customer` object, include at least `id` or `email`; an object with neither returns a `500` error.
 
-**string**
+  <Expandable title="customer properties">
+    <ParamField body="id" type="string | null">
+      The platform customer ID. Used to look up the customer if `email` is not provided.
+    </ParamField>
+    <ParamField body="email" type="string<email> | null">
+      The customer's email address. Takes priority over `id` when both are provided; if no customer matches the email, `id` isn't tried.
+    </ParamField>
+  </Expandable>
+</ParamField>
 
-**header**
+<ParamField body="items" type="object[]" required>
+  The line items in the cart. Must contain at least one item.
 
-**required**
+  <Expandable title="item properties">
+    <ParamField body="product_id" type="string" required>
+      The platform product ID.
+    </ParamField>
+    <ParamField body="variant_id" type="string" required>
+      The platform variant/SKU ID.
+    </ParamField>
+  </Expandable>
+</ParamField>
 
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
+## Response
 
-#### **Required Scope**
+<ResponseField name="data" type="object">
+  <Expandable title="estimate properties">
+    <ResponseField name="points_earned" type="integer">
+      The estimated number of loyalty points the customer will earn after completing the purchase. Currently always `0` (see the warning above).
+    </ResponseField>
+    <ResponseField name="message" type="string">
+      A human-readable message to display to the customer.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
-**`read:points`**
+## Errors
 
-This endpoint requires the `points` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Request Body**
-
-**customer**
-
-**object | null**
-
-The customer placing the order. Optional — omit entirely (or send `null`) for guest checkouts. If you send a `customer` object, include at least `id` or `email`; an object with neither returns a `500` error.
-
-Show child attributes
-
-**customer.id**
-
-**string | null**
-
-The platform customer ID. Used to look up the customer if `email` is not provided.
-
-Example:
-
-`"cus_847362"`
-
-**customer.email**
-
-**string\<email\> | null**
-
-The customer's email address. Takes priority over `id` when both are provided; if no customer matches the email, `id` isn't tried.
-
-Example:
-
-`"rahul.sharma@example.com"`
-
-**items**
-
-**object[]**
-
-**required**
-
-The line items in the cart. Must contain at least one item.
-
-Show child attributes
-
-**items[].product_id**
-
-**string**
-
-**required**
-
-The platform product ID.
-
-Example:
-
-`"prod_1001"`
-
-**items[].variant_id**
-
-**string**
-
-**required**
-
-The platform variant/SKU ID.
-
-Example:
-
-`"var_1001_red_m"`
-
-#### **Response**
-
-**200 - application/json**
-
-**data**
-
-**object**
-
-Hide child attributes
-
-**data.points_earned**
-
-**integer**
-
-The estimated number of loyalty points the customer will earn after completing the purchase. Currently always `0` (see the warning above).
-
-Example:
-
-`0`
-
-**data.message**
-
-**string**
-
-A human-readable message to display to the customer.
-
-Example:
-
-`"You will earn 0 points after completing this purchase"`
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:points`. |
+| `422` | `validation_error` | The request body is invalid, for example `items` is missing or empty. |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
+| `500` | | A `customer` object was sent with neither `id` nor `email`. |
 
 <RequestExample>
 

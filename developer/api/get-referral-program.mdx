@@ -1,124 +1,62 @@
 ---
 title: "Get referral program"
+api: "GET /public/referrals/program"
+description: "Retrieves the referral program configuration for your organisation."
 ---
 
-Retrieves the referral program configuration for your organisation, including referrer and friend reward settings, fraud protection rules and referral link settings.
+The configuration includes referrer and friend reward settings, fraud protection rules and referral link settings.
 
-**GET /public/referrals/program**
+<Info>Requires the `read:referrals` scope. See [Scopes](/developer/api/scopes).</Info>
 
-#### **Authorizations**
+## Response
 
-**Authorization**
+<ResponseField name="data" type="object">
+  <Expandable title="referral program properties">
+    <ResponseField name="id" type="string<uuid>">
+      Unique UUID identifier for the referral program.
+    </ResponseField>
+    <ResponseField name="referrer_reward" type="object | null">
+      The reward for the customer who makes the referral (the advocate), as configured in **Referral → Program**. Common keys:
 
-**string**
+      - `title`, `description`: the reward's display text.
+      - `is_active`: whether the referrer reward is turned on.
+      - `reward_type`: one of `fixed`, `percentage`, `free_product`, `free_shipping`, `store_credit` or `points`.
+      - `discount_value`: the discount amount, percentage, credit amount or points.
+      - `coupon_prefix`, `is_auto_apply`, `combines_with`, `applied_to`, `purchase_type`: discount code settings.
+      - `min_requirement_type` (`none`, `amount` or `quantity`) with `min_purchase_amount` or `min_quantity_items`: minimum purchase requirement.
+      - `customer_selection` (referrer reward only): `all` or `original`.
+      - `is_expire_enabled`, `expire_after`, `expire_period`: reward expiry.
+      - `icon`: the reward icon.
+    </ResponseField>
+    <ResponseField name="friend_reward" type="object | null">
+      The reward for the referred friend. Uses the same keys as `referrer_reward`, except `reward_type` is one of `fixed`, `percentage`, `free_product` or `free_shipping`.
+    </ResponseField>
+    <ResponseField name="qualifying_rules" type="object | null">
+      Reserved. Currently always `null`.
+    </ResponseField>
+    <ResponseField name="fraud_rules" type="object | null">
+      Fraud protection settings, such as `block_self_referral`.
+    </ResponseField>
+    <ResponseField name="display_config" type="object | null">
+      Referral link settings: `landing_page_url`, `utm_campaign` and `social_share` (an array of objects with `platform` and `message`, where `platform` is `facebook`, `twitter`, `whatsapp` or `email`).
+    </ResponseField>
+    <ResponseField name="created_at" type="string<date-time> | null">
+      When the referral program was created (ISO 8601).
+    </ResponseField>
+    <ResponseField name="updated_at" type="string<date-time> | null">
+      When the referral program was last updated (ISO 8601).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
-**header**
+## Errors
 
-**required**
-
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
-
-#### **Required Scope**
-
-**`read:referrals`**
-
-This endpoint requires the `referrals` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Response**
-
-**200 - application/json**
-
-**data**
-
-**object**
-
-Hide child attributes
-
-**data.id**
-
-**string\<uuid\>**
-
-Unique UUID identifier for the referral program.
-
-Example:
-
-`"c3d4e5f6-a7b8-9012-cdef-a01234567890"`
-
-**data.referrer_reward**
-
-**object | null**
-
-The reward for the customer who makes the referral (the advocate), as configured in **Referral → Program**. Common keys:
-
-- `title`, `description`: the reward's display text.
-- `is_active`: whether the referrer reward is turned on.
-- `reward_type`: one of `fixed`, `percentage`, `free_product`, `free_shipping`, `store_credit` or `points`.
-- `discount_value`: the discount amount, percentage, credit amount or points.
-- `coupon_prefix`, `is_auto_apply`, `combines_with`, `applied_to`, `purchase_type`: discount code settings.
-- `min_requirement_type` (`none`, `amount` or `quantity`) with `min_purchase_amount` or `min_quantity_items`: minimum purchase requirement.
-- `customer_selection` (referrer reward only): `all` or `original`.
-- `is_expire_enabled`, `expire_after`, `expire_period`: reward expiry.
-- `icon`: the reward icon.
-
-Example:
-
-`{ "title": "500 points", "is_active": true, "reward_type": "points", "discount_value": 500 }`
-
-**data.friend_reward**
-
-**object | null**
-
-The reward for the referred friend. Uses the same keys as `referrer_reward`, except `reward_type` is one of `fixed`, `percentage`, `free_product` or `free_shipping`.
-
-Example:
-
-`{ "title": "$10 off", "is_active": true, "reward_type": "fixed", "discount_value": 10 }`
-
-**data.qualifying_rules**
-
-**object | null**
-
-Reserved. Currently always `null`.
-
-Example:
-
-`null`
-
-**data.fraud_rules**
-
-**object | null**
-
-Fraud protection settings, such as `block_self_referral`.
-
-Example:
-
-`{ "block_self_referral": true }`
-
-**data.display_config**
-
-**object | null**
-
-Referral link settings: `landing_page_url`, `utm_campaign` and `social_share` (an array of `{ "platform", "message" }` objects, where `platform` is `facebook`, `twitter`, `whatsapp` or `email`).
-
-Example:
-
-`{ "landing_page_url": "https://example.com/pages/refer", "utm_campaign": "referral" }`
-
-**data.created_at**
-
-**string\<date-time\> | null**
-
-Example:
-
-`"2025-10-01T00:00:00+00:00"`
-
-**data.updated_at**
-
-**string\<date-time\> | null**
-
-Example:
-
-`"2026-01-15T10:00:00+00:00"`
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:referrals`. |
+| `404` | `not_found` | No referral program is set up for your organisation. Message: `Referral program not found`. |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 

@@ -3,96 +3,141 @@ title: "Membership Object"
 description: "Fields returned for a customer's loyalty membership summary by the Yuko REST API."
 ---
 
-The membership object summarizes a customer's standing in your loyalty program: points balance, current VIP tier, next tier and progress toward it. It's returned by [Get customer membership](/developer/api/list-memberships) (`GET /public/customers/memberships`, scope `customers` read).
+The membership object summarizes a customer's standing in your loyalty program: points balance, current VIP tier, next tier and progress toward it. It's returned by [Get customer membership](/developer/api/list-memberships) (`GET /public/customers/memberships`, requires the `read:customers` scope).
 
 <Note>
 This object describes loyalty program membership. Paid membership plans (Membership → Plans) aren't available through the REST API.
 </Note>
 
-**status**
+## Properties
 
-**string**
+<ResponseField name="status" type="string">
+  The customer's membership status. Always `active` for a customer returned by this endpoint.
+</ResponseField>
 
-The customer's membership status. Always `active` for a customer returned by this endpoint.
+<ResponseField name="member_since" type="string<date-time>">
+  When the customer was added to Yuko (ISO 8601).
+</ResponseField>
 
-Example:
+<ResponseField name="points" type="object">
+  The customer's points summary.
 
-`"active"`
+  <Expandable title="points properties">
+    <ResponseField name="balance" type="integer">
+      The customer's spendable points balance. Always `0` for a customer who is banned or excluded from the loyalty program by a customer tag.
+    </ResponseField>
+    <ResponseField name="earned" type="integer">
+      Total points the customer has earned.
+    </ResponseField>
+    <ResponseField name="redeemed" type="integer">
+      Total points the customer has redeemed.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
-**member_since**
+<ResponseField name="current_tier" type="object | null">
+  The customer's current VIP tier, or `null` if VIP tiers are turned off or the customer hasn't reached a tier.
 
-**string\<date-time\>**
+  <Expandable title="tier properties">
+    <ResponseField name="id" type="string<uuid>">
+      The tier's unique identifier.
+    </ResponseField>
+    <ResponseField name="name" type="string">
+      The tier's name.
+    </ResponseField>
+    <ResponseField name="threshold_value" type="integer">
+      The value needed to reach the tier.
+    </ResponseField>
+    <ResponseField name="multiplier" type="number">
+      The tier's points multiplier, `1` when none is set.
+    </ResponseField>
+    <ResponseField name="icon" type="object | null">
+      The tier's icon.
+    </ResponseField>
+    <ResponseField name="benefits" type="object[]">
+      The tier's benefits.
 
-When the customer was added to Yuko (ISO 8601).
+      <Expandable title="benefit properties">
+        <ResponseField name="name" type="string">
+          The benefit's name.
+        </ResponseField>
+        <ResponseField name="benefit_type" type="enum<string>">
+          One of `fixed`, `percentage`, `free_product`, `free_shipping`, `bonus_points`, `store_credit`, `custom`.
+        </ResponseField>
+        <ResponseField name="benefit_value" type="object">
+          The benefit's value configuration. Its structure depends on `benefit_type`; see [List VIP tiers](/developer/api/list-vip-tiers).
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="created_at" type="string<date-time>">
+      When the tier was created.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
-Example:
+<ResponseField name="next_tier" type="object | null">
+  The next VIP tier the customer can reach, with the same fields as `current_tier`. `null` if VIP tiers are turned off, the customer hasn't been evaluated for tiers yet, or the customer is already at the highest tier.
+</ResponseField>
 
-`"2025-11-02T10:15:00+00:00"`
+<ResponseField name="progress_to_next_tier" type="object | null">
+  The customer's progress toward `next_tier`, or `null` if VIP tiers are turned off or there's no next tier.
 
-**points**
+  <Expandable title="progress properties">
+    <ResponseField name="current_value" type="integer">
+      The customer's current qualifying value, rounded down.
+    </ResponseField>
+    <ResponseField name="required_value" type="integer">
+      The value needed for the next tier.
+    </ResponseField>
+    <ResponseField name="remaining_value" type="integer">
+      How much more is needed.
+    </ResponseField>
+    <ResponseField name="progress_percentage" type="number">
+      Progress as a percentage, rounded to 2 decimal places.
+    </ResponseField>
+    <ResponseField name="threshold_type" type="string | null">
+      The metric used for tier progression (`total_earned_points`, `total_amount_spents` or `total_orders`). Can be `null` even when VIP tiers are set up.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
-**object**
+<ResponseExample>
 
-The customer's points summary.
+```json The Membership object
+{
+  "status": "active",
+  "member_since": "2025-11-02T10:15:00+00:00",
+  "points": {
+    "balance": 650,
+    "earned": 1200,
+    "redeemed": 550
+  },
+  "current_tier": {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "name": "Silver",
+    "threshold_value": 500,
+    "multiplier": 1,
+    "icon": null,
+    "benefits": [],
+    "created_at": "2025-01-10T09:00:00+00:00"
+  },
+  "next_tier": {
+    "id": "7fb39c85-3a3f-4247-8333-2e05a9c8ae28",
+    "name": "Gold",
+    "threshold_value": 2000,
+    "multiplier": 1.5,
+    "icon": null,
+    "benefits": [],
+    "created_at": "2025-01-10T09:00:00+00:00"
+  },
+  "progress_to_next_tier": {
+    "current_value": 1200,
+    "required_value": 2000,
+    "remaining_value": 800,
+    "progress_percentage": 60,
+    "threshold_type": "total_earned_points"
+  }
+}
+```
 
-**points.balance**
-
-**integer**
-
-The customer's spendable points balance. Always `0` for a customer who is banned or excluded from the loyalty program by a customer tag.
-
-Example:
-
-`650`
-
-**points.earned**
-
-**integer**
-
-Total points the customer has earned.
-
-Example:
-
-`1200`
-
-**points.redeemed**
-
-**integer**
-
-Total points the customer has redeemed.
-
-Example:
-
-`550`
-
-**current_tier**
-
-**object | null**
-
-The customer's current VIP tier, or `null` if VIP tiers are turned off or the customer hasn't reached a tier. Contains:
-
-- `id` (string, UUID)
-- `name` (string)
-- `threshold_value` (integer): the value needed to reach the tier
-- `multiplier` (number): the tier's points multiplier, `1` when none is set
-- `icon` (object | null)
-- `benefits` (array of objects with `name`, `benefit_type` and `benefit_value`; `benefit_type` is one of `fixed`, `percentage`, `free_product`, `free_shipping`, `bonus_points`, `store_credit`, `custom`)
-- `created_at` (string, date-time)
-
-**next_tier**
-
-**object | null**
-
-The next VIP tier the customer can reach, with the same fields as `current_tier`. `null` if VIP tiers are turned off, the customer hasn't been evaluated for tiers yet, or the customer is already at the highest tier.
-
-**progress_to_next_tier**
-
-**object | null**
-
-The customer's progress toward `next_tier`, or `null` if VIP tiers are turned off or there's no next tier. Contains:
-
-- `current_value` (integer): the customer's current qualifying value, rounded down
-- `required_value` (integer): the value needed for the next tier
-- `remaining_value` (integer): how much more is needed
-- `progress_percentage` (number): progress as a percentage, rounded to 2 decimal places
-- `threshold_type` (string | null): the metric used for tier progression (`total_earned_points`, `total_amount_spents` or `total_orders`). Can be `null` even when VIP tiers are set up
+</ResponseExample>

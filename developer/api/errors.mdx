@@ -1,12 +1,13 @@
 ---
 title: "Errors"
+description: "HTTP status codes and error codes returned by the Yuko API."
 ---
 
 Yuko uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error caused by the information provided. Codes in the `5xx` range indicate an error on Yuko's servers.
 
 Most errors return an `error` object with a machine-readable `code` and a human-readable `message`. Validation errors also include `details`, keyed by field name.
 
-```json
+```json 422
 {
   "error": {
     "code": "validation_error",
@@ -18,15 +19,25 @@ Most errors return an `error` object with a machine-readable `code` and a human-
 }
 ```
 
-## Error response codes
+## Error codes
 
-| **Status Code** | **Error code** | **Description** |
-| :-------------- | :------------- | :-------------- |
-| 401 | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
-| 403 | `insufficient_scope` | The API key doesn't have the scope this endpoint needs. |
-| 404 | `not_found` | The requested resource (for example the customer or reward) doesn't exist. |
-| 422 | `validation_error` | A required parameter is missing or invalid. |
-| 422 | `adjustment_failed` | A points adjustment couldn't be made, for example because of an insufficient points balance. |
-| 422 | `redemption_failed` | A reward couldn't be redeemed, for example because of an insufficient points balance or an inactive reward. |
-| 429 | | Your API key has exceeded its [rate limit](/developer/api/rate-limits). The body is `{"message": "Too Many Attempts."}` and has no `error` object. |
-| 500 | `internal_error` | An internal error occurred in Yuko. Retry your request. If the issue persists, contact Yuko support. |
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The API key doesn't have the scope this endpoint needs. |
+| `404` | `not_found` | The requested resource (for example the customer or reward) doesn't exist. |
+| `422` | `validation_error` | A required parameter is missing or invalid. |
+| `422` | `adjustment_failed` | A points adjustment couldn't be made, for example because of an insufficient points balance. |
+| `422` | `redemption_failed` | A reward couldn't be redeemed, for example because of an insufficient points balance or an inactive reward. |
+| `429` | | Your API key has exceeded its [rate limit](/developer/api/rate-limits). The body has no `error` object (see below). |
+| `500` | `internal_error` | An internal error occurred in Yuko. Retry your request. If the issue persists, contact Yuko support. |
+
+## Rate limit errors
+
+A `429` response has a different body from other errors, with a single `message` and no `error` object:
+
+```json 429
+{
+  "message": "Too Many Attempts."
+}
+```

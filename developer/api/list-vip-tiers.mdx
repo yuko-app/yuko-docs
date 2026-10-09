@@ -1,152 +1,62 @@
 ---
 title: "List VIP tiers"
+api: "GET /public/tiers"
+description: "Retrieves all VIP tiers configured for your organisation, with their benefits."
 ---
 
-Retrieves all VIP tiers configured for your organisation, sorted by `threshold_value` in ascending order. Each tier includes its associated benefits.
-
-**GET /public/tiers**
-
-#### **Authorizations**
-
-**Authorization**
-
-**string**
-
-**header**
-
-**required**
-
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
-
-#### **Required Scope**
-
-**`read:tiers`**
-
-This endpoint requires the `tiers` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Response**
-
-**200 - application/json**
-
-**data**
-
-**object[]**
-
-Hide child attributes
-
-**data.id**
-
-**string\<uuid\>**
-
-Unique UUID identifier for the VIP tier.
-
-Example:
-
-`"7fb39c85-3a3f-4247-8333-2e05a9c8ae28"`
-
-**data.name**
-
-**string**
-
-The display name of the VIP tier.
-
-Example:
-
-`"Gold"`
-
-**data.threshold_value**
-
-**integer**
-
-The value a customer must reach to qualify for this tier, measured in the program's tier metric: amount spent (default), points earned or orders placed, as configured in your VIP settings.
-
-Example:
-
-`1000`
-
-**data.multiplier**
-
-**number**
-
-The points earning multiplier applied to customers in this tier.
-
-Example:
-
-`2.0`
-
-**data.icon**
-
-**object | null**
-
-The tier icon, or `null` if none is set. Always has four keys: `source` (`default` or `custom`), `slug` (built-in icons, otherwise `null`), `id` (custom uploads, otherwise `null`) and `url` (the custom upload URL, or the hosted SVG for a built-in icon).
-
-Example:
-
-`{ "source": "custom", "slug": null, "id": "12", "url": "https://example.com/gold-icon.png" }`
-
-**data.benefits**
-
-**object[]**
-
-A list of benefits associated with this tier.
-
-Hide child attributes
-
-**data.benefits.name**
-
-**string**
-
-The display name of the benefit.
-
-Example:
-
-`"10% Discount on every order"`
-
-**data.benefits.benefit_type**
-
-**string**
-
-The type of benefit issued to the customer.
-
-Available options:
-
-`fixed`,
-
-`percentage`,
-
-`free_product`,
-
-`free_shipping`,
-
-`bonus_points`,
-
-`store_credit`,
-
-`custom`
-
-Example:
-
-`"percentage"`
-
-**data.benefits.benefit_value**
-
-**object**
-
-The stored value configuration for this benefit, returned as-is. Structure varies by `benefit_type`. For example, `fixed`/`percentage` benefits include `reward_type`, `method` (`automatic` or `one_time`), `discount_value`, `coupon_prefix` and `min_requirement`; `bonus_points` and `store_credit` include `method`, `reward_type` and `discount_value`; `custom` benefits may be empty.
-
-Example:
-
-`{ "reward_type": "percentage", "method": "automatic", "discount_value": 10 }`
-
-**data.created_at**
-
-**string\<date-time\> | null**
-
-ISO 8601 timestamp of when the tier was created.
-
-Example:
-
-`"2025-09-12T15:44:44+00:00"`
+Tiers are sorted by `threshold_value` in ascending order. Each tier includes its associated benefits.
+
+<Info>Requires the `read:tiers` scope. See [Scopes](/developer/api/scopes).</Info>
+
+## Response
+
+<ResponseField name="data" type="object[]">
+  The VIP tiers, lowest threshold first.
+
+  <Expandable title="tier properties">
+    <ResponseField name="id" type="string<uuid>">
+      Unique UUID identifier for the VIP tier.
+    </ResponseField>
+    <ResponseField name="name" type="string">
+      The display name of the VIP tier.
+    </ResponseField>
+    <ResponseField name="threshold_value" type="integer">
+      The value a customer must reach to qualify for this tier, measured in the program's tier metric: amount spent (default), points earned or orders placed, as configured in your VIP settings.
+    </ResponseField>
+    <ResponseField name="multiplier" type="number">
+      The points earning multiplier applied to customers in this tier.
+    </ResponseField>
+    <ResponseField name="icon" type="object | null">
+      The tier icon, or `null` if none is set. Always has four keys: `source` (`default` or `custom`), `slug` (built-in icons, otherwise `null`), `id` (custom uploads, otherwise `null`) and `url` (the custom upload URL, or the hosted SVG for a built-in icon).
+    </ResponseField>
+    <ResponseField name="benefits" type="object[]">
+      A list of benefits associated with this tier.
+
+      <Expandable title="benefit properties">
+        <ResponseField name="name" type="string">
+          The display name of the benefit.
+        </ResponseField>
+        <ResponseField name="benefit_type" type="enum<string>">
+          The type of benefit issued to the customer. One of `fixed`, `percentage`, `free_product`, `free_shipping`, `bonus_points`, `store_credit`, `custom`.
+        </ResponseField>
+        <ResponseField name="benefit_value" type="object">
+          The stored value configuration for this benefit, returned as-is. Structure varies by `benefit_type`. For example, `fixed`/`percentage` benefits include `reward_type`, `method` (`automatic` or `one_time`), `discount_value`, `coupon_prefix` and `min_requirement`; `bonus_points` and `store_credit` include `method`, `reward_type` and `discount_value`; `custom` benefits may be empty.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="created_at" type="string<date-time> | null">
+      When the tier was created (ISO 8601).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Errors
+
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:tiers`. |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 

@@ -464,5 +464,16 @@
       "source": "/account/security-and-access",
       "destination": "/account/overview"
     }
-  ]
+  ],
+  "api": {
+    "mdx": {
+      "server": "https://api.yukoapp.com/api/v1",
+      "auth": {
+        "method": "bearer"
+      }
+    },
+    "playground": {
+      "display": "simple"
+    }
+  }
 }

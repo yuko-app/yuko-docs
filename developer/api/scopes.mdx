@@ -1,5 +1,6 @@
 ---
 title: "Scopes"
+description: "The scopes a Yuko API key can carry and the scope each endpoint requires."
 ---
 
 Every REST API key carries a list of scopes that controls which endpoints it can call. The merchant sets them when creating the key in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**:
@@ -18,7 +19,7 @@ Scopes are stored on the key as `read:<scope>` or `write:<scope>`, for example `
 ## Available scopes
 
 | Scope | Label in Yuko | Access levels | What it allows |
-|---|---|---|---|
+| :---- | :----------- | :------------ | :------------- |
 | `customers` | Customers | read, write | View customer profiles and points balances |
 | `orders` | Orders | write | Not used by any endpoint in this reference |
 | `rewards` | Rewards | read, write | View the reward catalogue and redeem points for rewards |
@@ -33,7 +34,7 @@ Scopes are stored on the key as `read:<scope>` or `write:<scope>`, for example `
 ## Endpoints by scope
 
 | Endpoint | Required scope |
-|---|---|
+| :------- | :------------- |
 | [`GET /customers`](/developer/api/list-customers) | `read:customers` |
 | [`GET /customers/{id}`](/developer/api/retrieve-a-customer) | `read:customers` |
 | [`GET /customers/balance`](/developer/api/get-customer-balance) | `read:customers` |

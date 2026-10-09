@@ -1,246 +1,136 @@
 ---
 title: "Get customer tier"
+api: "GET /public/customers/tiers"
+description: "Retrieves a customer's current VIP tier, their next tier and their progress toward it."
 ---
 
-Retrieves the current VIP tier for a customer, including their next tier and progress toward it. If VIP tiers are turned off for the store, `current_tier`, `next_tier` and `progress_to_next_tier` are all `null`.
-
-**GET /public/customers/tiers**
-
-#### **Authorizations**
-
-**Authorization**
-
-**string**
-
-**header**
-
-**required**
-
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
-
-#### **Required Scope**
-
-**`read:tiers`**
-
-This endpoint requires the `tiers` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Query Parameters**
-
-**customer_id**
-
-**string**
-
-**required**
-
-The platform customer ID (e.g. Shopify customer ID)
-
-Example:
-
-`"9049402769586"`
-
-#### **Response**
-
-**200 - application/json**
-
-**data**
-
-**object**
-
-Hide child attributes
-
-**data.current_tier**
-
-**object | null**
-
-The customer's current VIP tier. `null` if the customer has not reached any tier threshold or VIP tiers are turned off.
-
-Hide child attributes
-
-**data.current_tier.id**
-
-**string\<uuid\>**
-
-Example:
-
-`"7fb39c85-3a3f-4247-8333-2e05a9c8ae28"`
-
-**data.current_tier.name**
-
-**string**
-
-Example:
-
-`"Silver"`
-
-**data.current_tier.threshold_value**
-
-**integer**
-
-Example:
-
-`500`
-
-**data.current_tier.multiplier**
-
-**number**
-
-Example:
-
-`1.5`
-
-**data.current_tier.icon**
-
-**object | null**
-
-The tier icon, or `null` if none is set. Contains `source` (`default` or `custom`), `slug` (built-in icons), `id` (custom uploads) and `url` (the image URL).
-
-Example:
-
-`null`
-
-**data.current_tier.benefits**
-
-**object[]**
-
-The benefits associated with this tier. Each item has `name` (string), `benefit_type` (one of `fixed`, `percentage`, `free_product`, `free_shipping`, `bonus_points`, `store_credit`, `custom`) and `benefit_value` (object whose shape depends on `benefit_type`).
-
-**data.current_tier.created_at**
-
-**string\<date-time\>**
-
-Example:
-
-`"2025-09-12T15:44:44+00:00"`
-
-**data.next_tier**
-
-**object | null**
-
-The next VIP tier the customer can reach, with the same fields as `current_tier`. `null` if the customer is already at the highest tier, hasn't been evaluated for tiers yet, or VIP tiers are turned off.
-
-Hide child attributes
-
-**data.next_tier.id**
-
-**string\<uuid\>**
-
-Example:
-
-`"8ac40d96-4b4e-5358-9444-3f16bab9bf39"`
-
-**data.next_tier.name**
-
-**string**
-
-Example:
-
-`"Gold"`
-
-**data.next_tier.threshold_value**
-
-**integer**
-
-Example:
-
-`1000`
-
-**data.next_tier.multiplier**
-
-**number**
-
-Example:
-
-`2.0`
-
-**data.next_tier.icon**
-
-**object | null**
-
-The tier icon, or `null` if none is set. Same shape as `current_tier.icon`.
-
-Example:
-
-`null`
-
-**data.next_tier.benefits**
-
-**object[]**
-
-The benefits associated with the next tier. Same shape as `current_tier.benefits`.
-
-**data.next_tier.created_at**
-
-**string\<date-time\>**
-
-Example:
-
-`"2025-09-12T15:44:44+00:00"`
-
-**data.progress_to_next_tier**
-
-**object | null**
-
-The customer's progress toward the next tier. `null` if there's no `next_tier` or VIP tiers are turned off.
-
-Hide child attributes
-
-**data.progress_to_next_tier.current_value**
-
-**integer**
-
-The customer's current qualifying value (points earned, amount spent or orders placed), rounded down to a whole number.
-
-Example:
-
-`650`
-
-**data.progress_to_next_tier.required_value**
-
-**integer**
-
-The value required to reach the next tier.
-
-Example:
-
-`1000`
-
-**data.progress_to_next_tier.remaining_value**
-
-**integer**
-
-The remaining value needed to reach the next tier.
-
-Example:
-
-`350`
-
-**data.progress_to_next_tier.progress_percentage**
-
-**number**
-
-The percentage of the way to the next tier, rounded to 2 decimal places.
-
-Example:
-
-`65.0`
-
-**data.progress_to_next_tier.threshold_type**
-
-**string | null**
-
-The metric used to determine tier progression. Can be `null` even when VIP tiers are set up, so don't rely on it; the metric is set in your VIP tier settings.
-
-Available options:
-
-`total_earned_points`,
-
-`total_amount_spents`,
-
-`total_orders`
-
-Example:
-
-`"total_earned_points"`
+If VIP tiers are turned off for the store, `current_tier`, `next_tier` and `progress_to_next_tier` are all `null`.
+
+<Info>Requires the `read:tiers` scope. See [Scopes](/developer/api/scopes).</Info>
+
+## Query parameters
+
+<ParamField query="customer_id" type="string" required>
+  The platform customer ID (for example, the Shopify customer ID).
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  The customer's tier status.
+
+  <Expandable title="tier status properties">
+    <ResponseField name="current_tier" type="object | null">
+      The customer's current VIP tier. `null` if the customer has not reached any tier threshold or VIP tiers are turned off.
+
+      <Expandable title="current_tier properties">
+        <ResponseField name="id" type="string<uuid>">
+          The tier's unique identifier.
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          The tier's name.
+        </ResponseField>
+        <ResponseField name="threshold_value" type="integer">
+          The qualifying value needed to reach the tier.
+        </ResponseField>
+        <ResponseField name="multiplier" type="number">
+          The tier's multiplier.
+        </ResponseField>
+        <ResponseField name="icon" type="object | null">
+          The tier icon, or `null` if none is set. Contains `source` (`default` or `custom`), `slug` (built-in icons), `id` (custom uploads) and `url` (the image URL).
+        </ResponseField>
+        <ResponseField name="benefits" type="object[]">
+          The benefits associated with this tier.
+
+          <Expandable title="benefit properties">
+            <ResponseField name="name" type="string">
+              The benefit's name.
+            </ResponseField>
+            <ResponseField name="benefit_type" type="enum<string>">
+              The kind of benefit. One of `fixed`, `percentage`, `free_product`, `free_shipping`, `bonus_points`, `store_credit`, `custom`.
+            </ResponseField>
+            <ResponseField name="benefit_value" type="object">
+              The benefit's settings. Its shape depends on `benefit_type`.
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="created_at" type="string<date-time>">
+          When the tier was created (ISO 8601).
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="next_tier" type="object | null">
+      The next VIP tier the customer can reach, with the same fields as `current_tier`. `null` if the customer is already at the highest tier, hasn't been evaluated for tiers yet, or VIP tiers are turned off.
+
+      <Expandable title="next_tier properties">
+        <ResponseField name="id" type="string<uuid>">
+          The tier's unique identifier.
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          The tier's name.
+        </ResponseField>
+        <ResponseField name="threshold_value" type="integer">
+          The qualifying value needed to reach the tier.
+        </ResponseField>
+        <ResponseField name="multiplier" type="number">
+          The tier's multiplier.
+        </ResponseField>
+        <ResponseField name="icon" type="object | null">
+          The tier icon, or `null` if none is set. Same shape as `current_tier.icon`.
+        </ResponseField>
+        <ResponseField name="benefits" type="object[]">
+          The benefits associated with the next tier. Same shape as `current_tier.benefits`.
+
+          <Expandable title="benefit properties">
+            <ResponseField name="name" type="string">
+              The benefit's name.
+            </ResponseField>
+            <ResponseField name="benefit_type" type="enum<string>">
+              The kind of benefit. One of `fixed`, `percentage`, `free_product`, `free_shipping`, `bonus_points`, `store_credit`, `custom`.
+            </ResponseField>
+            <ResponseField name="benefit_value" type="object">
+              The benefit's settings. Its shape depends on `benefit_type`.
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="created_at" type="string<date-time>">
+          When the tier was created (ISO 8601).
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="progress_to_next_tier" type="object | null">
+      The customer's progress toward the next tier. `null` if there's no `next_tier` or VIP tiers are turned off.
+
+      <Expandable title="progress_to_next_tier properties">
+        <ResponseField name="current_value" type="integer">
+          The customer's current qualifying value (points earned, amount spent or orders placed), rounded down to a whole number.
+        </ResponseField>
+        <ResponseField name="required_value" type="integer">
+          The value required to reach the next tier.
+        </ResponseField>
+        <ResponseField name="remaining_value" type="integer">
+          The remaining value needed to reach the next tier.
+        </ResponseField>
+        <ResponseField name="progress_percentage" type="number">
+          The percentage of the way to the next tier, rounded to 2 decimal places.
+        </ResponseField>
+        <ResponseField name="threshold_type" type="enum<string> | null">
+          The metric used to determine tier progression. One of `total_earned_points`, `total_amount_spents`, `total_orders`. Can be `null` even when VIP tiers are set up, so don't rely on it; the metric is set in your VIP tier settings.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Errors
+
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:tiers`. |
+| `404` | `not_found` | No customer matches `customer_id`. Message: "Customer not found". |
+| `422` | `validation_error` | `customer_id` is missing. Message: "The customer id field is required." |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 

@@ -1,92 +1,49 @@
 ---
 title: "Get customer balance"
+api: "GET /public/customers/balance"
+description: "Returns a customer's current loyalty points balance, including total earned and redeemed."
 ---
 
-Returns the current loyalty points balance for a customer, including total earned and redeemed.
+To get the balance along with tier and membership details, use [Get customer membership](/developer/api/list-memberships).
 
-**GET /public/customers/balance**
+<Info>Requires the `read:customers` scope. See [Scopes](/developer/api/scopes).</Info>
 
-#### **Authorizations**
+## Query parameters
 
-**Authorization**
+<ParamField query="customer_id" type="string" required>
+  The platform customer ID (for example, the Shopify customer ID). If you leave it out, this endpoint returns a `500` `internal_error` rather than a `422` validation error, so always send it.
+</ParamField>
 
-**string**
+## Response
 
-**header**
+<ResponseField name="data" type="object">
+  The customer's points balance.
 
-**required**
+  <Expandable title="balance properties">
+    <ResponseField name="customer_id" type="string">
+      The platform customer ID.
+    </ResponseField>
+    <ResponseField name="balance" type="integer">
+      The customer's current redeemable points balance. Always `0` for customers who are banned or excluded from the loyalty program by a customer tag.
+    </ResponseField>
+    <ResponseField name="earned" type="integer">
+      Total loyalty points ever earned by the customer.
+    </ResponseField>
+    <ResponseField name="redeemed" type="integer">
+      Total points the customer has redeemed.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
+## Errors
 
-#### **Required Scope**
-
-**`read:customers`**
-
-This endpoint requires the `customers` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Query Parameters**
-
-**customer_id**
-
-**string**
-
-**required**
-
-The platform customer ID (e.g. Shopify customer ID). If you leave it out, this endpoint returns a `500` `internal_error` rather than a `422` validation error, so always send it.
-
-Example:
-
-`"9049402769586"`
-
-#### **Response**
-
-**200 - application/json**
-
-**data**
-
-**object**
-
-Hide child attributes
-
-**data.customer_id**
-
-**string**
-
-The platform customer ID.
-
-Example:
-
-`"9049402769586"`
-
-**data.balance**
-
-**integer**
-
-The customer's current redeemable points balance. Always `0` for customers who are banned or excluded from the loyalty program by a customer tag.
-
-Example:
-
-`350`
-
-**data.earned**
-
-**integer**
-
-Total loyalty points ever earned by the customer.
-
-Example:
-
-`500`
-
-**data.redeemed**
-
-**integer**
-
-Total points the customer has redeemed.
-
-Example:
-
-`150`
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:customers`. |
+| `404` | `not_found` | No customer matches `customer_id`. Message: "Customer not found". |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
+| `500` | `internal_error` | `customer_id` was left out. Message: "An unexpected error occurred. Please try again later." |
 
 <RequestExample>
 

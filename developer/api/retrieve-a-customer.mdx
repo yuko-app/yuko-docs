@@ -1,296 +1,120 @@
 ---
 title: "Retrieve a customer"
+api: "GET /public/customers/{id}"
+description: "Retrieves a single customer by their platform customer ID."
 ---
 
-Retrieves a single customer by their platform customer ID, enriched with current VIP tier and loyalty membership status.
-
-**GET /public/customers/\{id\}**
-
-#### **Authorizations**
-
-**Authorization**
-
-**string**
-
-**header**
-
-**required**
-
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
-
-#### **Required Scope**
-
-**`read:customers`**
-
-This endpoint requires the `customers` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Path Parameters**
-
-**id**
-
-**string**
-
-**required**
-
-The platform customer ID (e.g. Shopify customer ID)
-
-Example:
-
-`"9049402769586"`
-
-#### **Response**
-
-**200 - application/json**
-
-The customer was successfully retrieved.
-
-**data**
-
-**object**
-
-Hide child attributes
-
-**data.id**
-
-**string\<uuid\>**
-
-Unique UUID identifier for the customer in Yuko.
-
-Example:
-
-`"63a2c89a-9936-4bc0-9d5f-93db46110b76"`
-
-**data.first_name**
-
-**string | null**
-
-The customer's first name.
-
-Example:
-
-`"Jane"`
-
-**data.last_name**
-
-**string | null**
-
-The customer's last name.
-
-Example:
-
-`"Smith"`
-
-**data.email**
-
-**string | null**
-
-The customer's email address.
-
-Example:
-
-`"jane.smith@example.com"`
-
-**data.phone**
-
-**string | null**
-
-The customer's phone number.
-
-Example:
-
-`"+14155552671"`
-
-**data.platform**
-
-**string**
-
-The ecommerce platform the customer was synced from.
-
-Example:
-
-`"shopify"`
-
-**data.platform_customer_id**
-
-**string | null**
-
-The customer's unique identifier in the external platform.
-
-Example:
-
-`"7823491023"`
-
-**data.state**
-
-**enum\<string\>**
-
-`member` for active loyalty members, or `disabled` if the customer is banned from the loyalty program.
-
-Available options:
-
-`member`,
-
-`disabled`
-
-Example:
-
-`"member"`
-
-**data.date_of_birth**
-
-**string\<date\> | null**
-
-The customer's birthday in `YYYY-MM-DD` format, if collected.
-
-Example:
-
-`"1990-04-12"`
-
-**data.referral_code**
-
-**string | null**
-
-The customer's referral code. `null` if the customer has no referral code yet.
-
-Example:
-
-`"JANE10"`
-
-**data.referral_url**
-
-**string | null**
-
-The customer's referral link, built from the referral landing page URL plus `?ref=<referral_code>`. `null` if there's no referral code or no landing page URL is set.
-
-Example:
-
-`"https://example.com/pages/refer?ref=JANE10"`
-
-**data.points**
-
-**object**
-
-The customer's loyalty points summary.
-
-Hide child attributes
-
-**data.points.balance**
-
-**integer**
-
-The customer's current redeemable points balance. Always `0` for customers who are banned or excluded from the loyalty program by a customer tag.
-
-Example:
-
-`350`
-
-**data.points.earned**
-
-**integer**
-
-Total points ever earned by the customer.
-
-Example:
-
-`500`
-
-**data.points.redeemed**
-
-**integer**
-
-Total points redeemed by the customer.
-
-Example:
-
-`150`
-
-**data.tier**
-
-**object | null**
-
-The customer's current VIP tier. `null` if the customer hasn't reached a tier or VIP tiers are turned off. Has the same fields as a tier in [List VIP tiers](/developer/api/list-vip-tiers), including `icon`, `benefits` and `created_at`.
-
-Hide child attributes
-
-**data.tier.id**
-
-**string\<uuid\>**
-
-Example:
-
-`"7fb39c85-3a3f-4247-8333-2e05a9c8ae28"`
-
-**data.tier.name**
-
-**string**
-
-Example:
-
-`"Silver"`
-
-**data.tier.threshold_value**
-
-**integer**
-
-Example:
-
-`500`
-
-**data.tier.multiplier**
-
-**number**
-
-Example:
-
-`1.5`
-
-**data.membership**
-
-**object**
-
-Loyalty membership summary.
-
-Hide child attributes
-
-**data.membership.status**
-
-**string**
-
-Always `"active"`.
-
-Example:
-
-`"active"`
-
-**data.membership.member_since**
-
-**string\<date-time\>**
-
-The date the customer was created in Yuko (same as `created_at`).
-
-Example:
-
-`"2024-06-01T10:00:00+00:00"`
-
-**data.created_at**
-
-**string\<date-time\>**
-
-The date and time when the customer was created in Yuko.
-
-Example:
-
-`"2024-06-01T10:00:00+00:00"`
-
-**data.updated_at**
-
-**string\<date-time\>**
-
-The date and time when the customer was last updated in Yuko.
-
-Example:
-
-`"2026-02-15T08:30:00+00:00"`
+The customer is enriched with their current VIP tier and loyalty membership status. To fetch many customers at once, use [List customers](/developer/api/list-customers).
+
+<Info>Requires the `read:customers` scope. See [Scopes](/developer/api/scopes).</Info>
+
+## Path parameters
+
+<ParamField path="id" type="string" required>
+  The platform customer ID (for example, the Shopify customer ID).
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  The customer. Has the properties of the [Customer object](/customer-identity-object), plus `tier` and `membership`.
+
+  <Expandable title="customer properties">
+    <ResponseField name="id" type="string<uuid>">
+      Yuko's unique identifier for the customer.
+    </ResponseField>
+    <ResponseField name="first_name" type="string | null">
+      The customer's first name.
+    </ResponseField>
+    <ResponseField name="last_name" type="string | null">
+      The customer's last name.
+    </ResponseField>
+    <ResponseField name="email" type="string | null">
+      The customer's email address.
+    </ResponseField>
+    <ResponseField name="phone" type="string | null">
+      The customer's phone number.
+    </ResponseField>
+    <ResponseField name="platform" type="string">
+      The ecommerce platform the customer was synced from, for example `shopify`.
+    </ResponseField>
+    <ResponseField name="platform_customer_id" type="string | null">
+      The customer's unique identifier in the external platform.
+    </ResponseField>
+    <ResponseField name="state" type="enum<string>">
+      `member` for active loyalty members, or `disabled` if the customer is banned from the loyalty program.
+    </ResponseField>
+    <ResponseField name="date_of_birth" type="string<date> | null">
+      The customer's birthday in `YYYY-MM-DD` format, if collected.
+    </ResponseField>
+    <ResponseField name="referral_code" type="string | null">
+      The customer's referral code. `null` if the customer has no referral code yet.
+    </ResponseField>
+    <ResponseField name="referral_url" type="string | null">
+      The customer's referral link, built from the referral landing page URL plus `?ref=<referral_code>`. `null` if there's no referral code or no landing page URL is set.
+    </ResponseField>
+    <ResponseField name="points" type="object">
+      The customer's loyalty points summary.
+
+      <Expandable title="points properties">
+        <ResponseField name="balance" type="integer">
+          Current redeemable points balance. Always `0` for customers who are banned or excluded from the loyalty program by a customer tag.
+        </ResponseField>
+        <ResponseField name="earned" type="integer">
+          Total points ever earned.
+        </ResponseField>
+        <ResponseField name="redeemed" type="integer">
+          Total points redeemed.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="tier" type="object | null">
+      The customer's current VIP tier. `null` if the customer hasn't reached a tier or VIP tiers are turned off. Has the same fields as a tier in [List VIP tiers](/developer/api/list-vip-tiers), including `icon`, `benefits` and `created_at`.
+
+      <Expandable title="tier properties">
+        <ResponseField name="id" type="string<uuid>">
+          The tier's unique identifier.
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          The tier's name.
+        </ResponseField>
+        <ResponseField name="threshold_value" type="integer">
+          The qualifying value needed to reach the tier.
+        </ResponseField>
+        <ResponseField name="multiplier" type="number">
+          The tier's multiplier.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="membership" type="object">
+      Loyalty membership summary.
+
+      <Expandable title="membership properties">
+        <ResponseField name="status" type="string">
+          Always `active`.
+        </ResponseField>
+        <ResponseField name="member_since" type="string<date-time>">
+          When the customer was created in Yuko (same as `created_at`).
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="created_at" type="string<date-time>">
+      When the customer was created in Yuko (ISO 8601).
+    </ResponseField>
+    <ResponseField name="updated_at" type="string<date-time>">
+      When the customer was last updated in Yuko (ISO 8601).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Errors
+
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:customers`. |
+| `404` | `not_found` | No customer matches `id`. Message: "Customer not found". |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 

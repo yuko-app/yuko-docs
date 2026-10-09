@@ -1,274 +1,94 @@
 ---
 title: "List customer rewards"
+api: "GET /public/customers/rewards"
+description: "Retrieves a paginated list of discount codes issued to a customer, such as rewards redeemed with points."
 ---
 
-Retrieves a paginated list of discount codes issued to a customer, such as rewards redeemed with points. Store credit redemptions don't create a customer reward; they appear as points transactions instead. Results are sorted by `created_at` in descending order.
-
-**GET /public/customers/rewards**
-
-#### **Authorizations**
-
-**Authorization**
-
-**string**
-
-**header**
-
-**required**
-
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
-
-#### **Required Scope**
-
-**`read:rewards`**
-
-This endpoint requires the `rewards` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Query Parameters**
-
-**customer_id**
-
-**string**
-
-**required**
-
-The platform customer ID (e.g. Shopify customer ID)
-
-Example:
-
-`"9049402769586"`
-
-
-
-**status**
-
-**enum\<string\>**
-
-Filter results to only rewards matching the provided status.
-
-Available options:
-
-`active`,
-
-`used`,
-
-`inactive`,
-
-`expired`,
-
-`deleted`,
-
-`revert`
-
-**per_page**
-
-**integer**
-
-**default: 20**
-
-The number of results per page.
-
-Required range: `1 <= x <= 100`
-
-**page**
-
-**integer**
-
-**default: 1**
-
-The page number to retrieve.
-
-#### **Response**
-
-**200 - application/json**
-
-**data**
-
-**object[]**
-
-Hide child attributes
-
-**data.id**
-
-**string\<uuid\>**
-
-Unique UUID identifier for the customer reward.
-
-Example:
-
-`"1fd80ced-326f-4082-951b-21a38632a603"`
-
-**data.customer_id**
-
-**string\<uuid\>**
-
-Yuko's internal UUID for the customer this reward was issued to. This is not the platform customer ID you pass as `customer_id`.
-
-Example:
-
-`"63a2c89a-9936-4bc0-9d5f-93db46110b76"`
-
-**data.reward_id**
-
-**string\<uuid\> | null**
-
-The UUID of the record that issued this reward, such as the catalogue reward that was redeemed.
-
-Example:
-
-`"90424fa7-e8a9-4ef4-b43a-72c9b2028db5"`
-
-**data.reward_type**
-
-**string | null**
-
-The type of discount issued. For rewards redeemed with points, this is the catalogue reward's `reward_type`. `null` when no type was recorded.
-
-Available options:
-
-`fixed`,
-
-`percentage`,
-
-`free_shipping`,
-
-`free_product`,
-
-`pos_fixed`,
-
-`pos_percentage`
-
-Example:
-
-`"fixed"`
-
-**data.status**
-
-**enum\<string\>**
-
-The current status of this reward.
-
-Available options:
-
-`active`,
-
-`used`,
-
-`inactive`,
-
-`expired`,
-
-`deleted`,
-
-`revert`
-
-Example:
-
-`"used"`
-
-**data.discount_code**
-
-**string | null**
-
-The discount or coupon code issued to the customer.
-
-Example:
-
-`"YUKO-TVJ-BL1"`
-
-**data.points_used**
-
-**integer**
-
-The number of loyalty points spent to generate this reward.
-
-Example:
-
-`500`
-
-**data.expires_at**
-
-**string\<date-time\> | null**
-
-The date and time when this reward expires. `null` if it does not expire.
-
-Example:
-
-`"2026-06-01T00:00:00+00:00"`
-
-**data.used_at**
-
-**string\<date-time\> | null**
-
-The date and time when the reward was used. `null` if not yet used.
-
-Example:
-
-`"2026-02-20T14:22:00+00:00"`
-
-**data.created_at**
-
-**string\<date-time\>**
-
-The date and time when the reward was issued.
-
-Example:
-
-`"2026-02-15T08:30:00+00:00"`
-
-**meta**
-
-**object**
-
-Hide child attributes
-
-**meta.pagination**
-
-**object**
-
-Pagination details for the result set.
-
-Hide child attributes
-
-**meta.pagination.current_page**
-
-**integer**
-
-Example:
-
-`1`
-
-**meta.pagination.per_page**
-
-**integer**
-
-Example:
-
-`20`
-
-**meta.pagination.total**
-
-**integer**
-
-Example:
-
-`5`
-
-**meta.pagination.last_page**
-
-**integer**
-
-Example:
-
-`1`
-
-**meta.pagination.has_more**
-
-**boolean**
-
-Example:
-
-`false`
+Store credit redemptions don't create a customer reward; they appear as [points transactions](/developer/api/list-points-transactions) instead. Results are sorted by `created_at`, newest first.
+
+<Info>Requires the `read:rewards` scope. See [Scopes](/developer/api/scopes).</Info>
+
+## Query parameters
+
+<ParamField query="customer_id" type="string" required>
+  The platform customer ID, for example the Shopify customer ID.
+</ParamField>
+
+<ParamField query="status" type="enum<string>">
+  Return only rewards with this status. One of `active`, `used`, `inactive`, `expired`, `deleted`, `revert`.
+</ParamField>
+
+<ParamField query="per_page" type="integer" default={20}>
+  The number of results per page. Must be between `1` and `100`.
+</ParamField>
+
+<ParamField query="page" type="integer" default={1}>
+  The page number to retrieve. See [Classic pagination](/developer/api/classic-pagination).
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object[]">
+  The customer rewards on this page.
+
+  <Expandable title="customer reward properties">
+    <ResponseField name="id" type="string<uuid>">
+      Unique identifier for the customer reward.
+    </ResponseField>
+    <ResponseField name="customer_id" type="string<uuid>">
+      Yuko's internal UUID for the customer this reward was issued to. This is not the platform customer ID you pass as `customer_id`.
+    </ResponseField>
+    <ResponseField name="reward_id" type="string<uuid> | null">
+      The UUID of the record that issued this reward, such as the catalogue reward that was redeemed.
+    </ResponseField>
+    <ResponseField name="reward_type" type="string | null">
+      The type of discount issued. For rewards redeemed with points, this is the catalogue reward's `reward_type`. `null` when no type was recorded. One of `fixed`, `percentage`, `free_shipping`, `free_product`, `pos_fixed`, `pos_percentage`.
+    </ResponseField>
+    <ResponseField name="status" type="enum<string>">
+      The current status of this reward. One of `active`, `used`, `inactive`, `expired`, `deleted`, `revert`.
+    </ResponseField>
+    <ResponseField name="discount_code" type="string | null">
+      The discount or coupon code issued to the customer.
+    </ResponseField>
+    <ResponseField name="points_used" type="integer">
+      The number of loyalty points spent to generate this reward.
+    </ResponseField>
+    <ResponseField name="expires_at" type="string<date-time> | null">
+      When this reward expires. `null` if it doesn't expire.
+    </ResponseField>
+    <ResponseField name="used_at" type="string<date-time> | null">
+      When the reward was used. `null` if not yet used.
+    </ResponseField>
+    <ResponseField name="created_at" type="string<date-time>">
+      When the reward was issued.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="meta" type="object">
+  <Expandable title="meta properties">
+    <ResponseField name="pagination" type="object">
+      Pagination details. See [Classic pagination](/developer/api/classic-pagination).
+
+      <Expandable title="pagination properties">
+        <ResponseField name="current_page" type="integer">The page returned.</ResponseField>
+        <ResponseField name="per_page" type="integer">The number of records per page.</ResponseField>
+        <ResponseField name="total" type="integer">The total number of records.</ResponseField>
+        <ResponseField name="last_page" type="integer">The number of the last page.</ResponseField>
+        <ResponseField name="has_more" type="boolean">`true` if there are more pages after this one.</ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Errors
+
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:rewards`. |
+| `404` | `not_found` | No customer matches `customer_id` (`Customer not found`). |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 

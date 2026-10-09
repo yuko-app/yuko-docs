@@ -1,186 +1,79 @@
 ---
 title: "Retrieve a reward"
+api: "GET /public/rewards/{id}"
+description: "Retrieves a single reward from your reward catalogue by its UUID."
 ---
 
-Retrieves a single reward from your organisation's reward catalogue by its UUID. Unlike [List rewards](/developer/api/list-rewards), this endpoint also returns inactive rewards and Shopify POS rewards.
-
-**GET /public/rewards/\{id\}**
-
-#### **Authorizations**
-
-**Authorization**
-
-**string**
-
-**header**
-
-**required**
-
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
-
-#### **Required Scope**
-
-**`read:rewards`**
-
-This endpoint requires the `rewards` scope with **Read Access** (or **Read/Write Access**). See [Scopes](/developer/api/scopes).
-
-#### **Path Parameters**
-
-**id**
-
-**string\<uuid\>**
-
-**required**
-
-The UUID of the reward, as returned in the `id` field of [List rewards](/developer/api/list-rewards).
-
-Example:
-
-`"90424fa7-e8a9-4ef4-b43a-72c9b2028db5"`
-
-#### **Response**
-
-**200 - application/json**
-
-**data**
-
-**object**
-
-Hide child attributes
-
-**data.id**
-
-**string\<uuid\>**
-
-Unique UUID identifier for the reward.
-
-Example:
-
-`"90424fa7-e8a9-4ef4-b43a-72c9b2028db5"`
-
-**data.name**
-
-**string**
-
-The display name of the reward.
-
-Example:
-
-`"$5 off your next order"`
-
-**data.description**
-
-**string | null**
-
-A description of the reward shown to customers.
-
-Example:
-
-`"Redeem 500 points for a $5 discount."`
-
-**data.reward_type**
-
-**enum\<string\>**
-
-The type of reward issued to the customer.
-
-Available options:
-
-`fixed`,
-
-`percentage`,
-
-`free_shipping`,
-
-`free_product`,
-
-`store_credit`,
-
-`pos_fixed`,
-
-`pos_percentage`
-
-Example:
-
-`"fixed"`
-
-**data.points_cost**
-
-**integer**
-
-The number of points required to redeem this reward.
-
-Example:
-
-`500`
-
-**data.reward_rule**
-
-**object**
-
-The rule configuration for this reward. Structure varies by `reward_type`.
-
-Example:
-
-`{ "points_required": 500, "value": 5 }`
-
-**data.icon**
-
-**object | null**
-
-The reward's storefront icon, or `null` if none is set.
-
-Hide child attributes
-
-**data.icon.source**
-
-**enum\<string\>**
-
-`default` for a built-in icon, `custom` for an uploaded image.
-
-**data.icon.slug**
-
-**string | null**
-
-The built-in icon's slug. `null` for custom icons.
-
-**data.icon.id**
-
-**string | null**
-
-The uploaded image's ID. `null` for built-in icons.
-
-**data.icon.url**
-
-**string | null**
-
-A URL to render the icon (an SVG for built-in icons, the uploaded image for custom icons).
-
-**data.is_active**
-
-**boolean**
-
-Whether this reward is currently active and available for redemption.
-
-Example:
-
-`true`
-
-**data.created_at**
-
-**string\<date-time\>**
-
-Example:
-
-`"2025-12-01T09:00:00+00:00"`
-
-**data.updated_at**
-
-**string\<date-time\>**
-
-Example:
-
-`"2025-12-01T09:00:00+00:00"`
+Unlike [List rewards](/developer/api/list-rewards), this endpoint also returns inactive rewards and Shopify POS rewards.
+
+<Info>Requires the `read:rewards` scope. See [Scopes](/developer/api/scopes).</Info>
+
+## Path parameters
+
+<ParamField path="id" type="string<uuid>" required>
+  The UUID of the reward, as returned in the `id` field of [List rewards](/developer/api/list-rewards).
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  <Expandable title="reward properties">
+    <ResponseField name="id" type="string<uuid>">
+      Unique identifier for the reward.
+    </ResponseField>
+    <ResponseField name="name" type="string">
+      The display name of the reward.
+    </ResponseField>
+    <ResponseField name="description" type="string | null">
+      A description of the reward shown to customers.
+    </ResponseField>
+    <ResponseField name="reward_type" type="enum<string>">
+      The type of reward issued to the customer. One of `fixed`, `percentage`, `free_shipping`, `free_product`, `store_credit`, `pos_fixed`, `pos_percentage`.
+    </ResponseField>
+    <ResponseField name="points_cost" type="integer">
+      The number of points required to redeem this reward.
+    </ResponseField>
+    <ResponseField name="reward_rule" type="object">
+      The rule configuration for this reward. Structure varies by `reward_type`.
+    </ResponseField>
+    <ResponseField name="icon" type="object | null">
+      The reward's storefront icon, or `null` if none is set.
+
+      <Expandable title="icon properties">
+        <ResponseField name="source" type="enum<string>">
+          `default` for a built-in icon, `custom` for an uploaded image.
+        </ResponseField>
+        <ResponseField name="slug" type="string | null">
+          The built-in icon's slug. `null` for custom icons.
+        </ResponseField>
+        <ResponseField name="id" type="string | null">
+          The uploaded image's ID. `null` for built-in icons.
+        </ResponseField>
+        <ResponseField name="url" type="string | null">
+          A URL to render the icon (an SVG for built-in icons, the uploaded image for custom icons).
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="is_active" type="boolean">
+      Whether this reward is currently active and available for redemption.
+    </ResponseField>
+    <ResponseField name="created_at" type="string<date-time>">
+      When the reward was created.
+    </ResponseField>
+    <ResponseField name="updated_at" type="string<date-time>">
+      When the reward was last updated.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Errors
+
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:rewards`. |
+| `404` | `not_found` | No reward matches `id` (`Reward not found`). |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 

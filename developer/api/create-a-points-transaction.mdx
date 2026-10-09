@@ -1,128 +1,59 @@
 ---
 title: "Create a points transaction"
+api: "POST /public/customers/transactions"
+description: "Adds or removes points from a customer's balance."
 ---
 
-Add or remove points from a customer's balance. Pass a positive `points` value to credit points, or a negative value to debit them.
+Pass a positive `points` value to credit points, or a negative value to debit them. The transaction is recorded with `action_type` `point_adjustment` and `source` `rest_api`. Points credited through the API don't expire.
 
-A debit larger than the customer's current points balance is rejected with `adjustment_failed` (`Insufficient point balance`). Adjustments for banned customers are also rejected (`Customer is banned`). The transaction is recorded with `action_type` `point_adjustment` and `source` `rest_api`. Points credited through the API don't expire.
+<Info>Requires the `write:transactions` scope. See [Scopes](/developer/api/scopes).</Info>
 
-**POST /public/customers/transactions**
+## Body parameters
 
-#### **Authorizations**
+<ParamField body="customer_id" type="string" required>
+  The platform customer ID, for example the Shopify customer ID.
+</ParamField>
 
-**Authorization**
+<ParamField body="points" type="integer" required>
+  The number of points to add or remove. Use a positive value to credit points and a negative value to debit them. Can't be zero.
+</ParamField>
 
-**string**
+<ParamField body="description" type="string" required>
+  A human-readable reason for the adjustment, up to 255 characters. It's returned as `description` when you [list points transactions](/developer/api/list-points-transactions).
+</ParamField>
 
-**header**
+## Response
 
-**required**
+Returns `201 Created` when the points transaction is created.
 
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
+<ResponseField name="data" type="object">
+  <Expandable title="data properties">
+    <ResponseField name="transaction_id" type="string<uuid>">
+      The UUID of the newly created transaction.
+    </ResponseField>
+    <ResponseField name="customer_id" type="string">
+      The platform customer ID of the customer whose balance was adjusted.
+    </ResponseField>
+    <ResponseField name="points" type="integer">
+      The points value as submitted (positive for credit, negative for debit).
+    </ResponseField>
+    <ResponseField name="type" type="enum<string>">
+      Whether the transaction was a credit or debit. One of `credit`, `debit`.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
-#### **Required Scope**
+## Errors
 
-**`write:transactions`**
-
-This endpoint requires the `transactions` scope with **Read/Write Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Body**
-
-**application/json**
-
-**customer_id**
-
-**string**
-
-**required**
-
-The platform customer ID (e.g. Shopify customer ID)
-
-Example:
-
-`"9049402769586"`
-
-**points**
-
-**integer**
-
-**required**
-
-The number of points to add or remove. Use a positive value to credit points and a negative value to debit. Cannot be zero.
-
-Example:
-
-`100`
-
-**description**
-
-**string**
-
-**required**
-
-A human-readable reason for the adjustment (maximum 255 characters). It's returned as `description` when you list points transactions.
-
-Example:
-
-`"Bonus points for completing a survey"`
-
-#### **Response**
-
-**201 - application/json**
-
-The points transaction was successfully created.
-
-**data**
-
-**object**
-
-Hide child attributes
-
-**data.transaction_id**
-
-**string\<uuid\>**
-
-The UUID of the newly created transaction.
-
-Example:
-
-`"d4e5f6a7-b8c9-0123-defa-b01234567890"`
-
-**data.customer_id**
-
-**string**
-
-The platform customer ID of the customer whose balance was adjusted.
-
-Example:
-
-`"9049402769586"`
-
-**data.points**
-
-**integer**
-
-The points value as submitted (positive for credit, negative for debit).
-
-Example:
-
-`100`
-
-**data.type**
-
-**enum\<string\>**
-
-Whether the transaction was a credit or debit.
-
-Available options:
-
-`credit`,
-
-`debit`
-
-Example:
-
-`"credit"`
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `write:transactions`. |
+| `404` | `not_found` | No customer matches `customer_id` (`Customer not found`). |
+| `422` | `validation_error` | A body parameter is missing or invalid. |
+| `422` | `adjustment_failed` | A debit is larger than the customer's current points balance (`Insufficient point balance`). |
+| `422` | `adjustment_failed` | The customer is banned (`Customer is banned`). |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 
@@ -199,7 +130,7 @@ $data = json_decode($response, true);
 }
 ```
 
-```json 422
+```json 422 (insufficient balance)
 {
   "error": {
     "code": "adjustment_failed",
@@ -208,7 +139,7 @@ $data = json_decode($response, true);
 }
 ```
 
-```json 422
+```json 422 (validation)
 {
   "error": {
     "code": "validation_error",

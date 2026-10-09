@@ -23,7 +23,7 @@ Three API calls. One seamless checkout experience.
 
 ---
 
-## How It Works
+## How it works
 
 ```text
 Customer reaches checkout
@@ -77,7 +77,7 @@ Your checkout identifies the customer
 
 ---
 
-## Before You Start
+## Before you start
 
 ### What the merchant needs to do
 
@@ -150,11 +150,9 @@ See the [API Introduction](/developer/api/introduction) for a full overview of r
 
 ---
 
-## Endpoint 1 — Get Points Balance & Redeemable Rewards
+## Endpoint 1: Get points balance and redeemable rewards
 
-This is the primary endpoint for your checkout loyalty panel.
-
-**One call returns everything:**
+This is the primary endpoint for your checkout loyalty panel. One call returns everything:
 
 - The customer's current points balance
 - All rewards they can redeem (with a flag showing if they have enough points for each)
@@ -172,17 +170,13 @@ Full API reference → [`GET /customers/rewards/redeemable`](/developer/api/get-
 GET https://api.yukoapp.com/api/v1/public/customers/rewards/redeemable
 ```
 
-### Query parameter
+<Info>Requires the `read:rewards` scope (or `write:rewards`). The merchant configures this in **Shopify Admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).</Info>
+
+### Query parameters
 
 <ParamField query="customer_id" type="string" required>
-  The Shopify Customer ID of the logged-in customer. This is mandatory — do not call this endpoint for guest checkouts.
-
-  Example: `9049402769586`
+  The Shopify Customer ID of the logged-in customer, for example `9049402769586`. This is mandatory — do not call this endpoint for guest checkouts.
 </ParamField>
-
-### Required token scope
-
-Your API token must have `read:rewards` (or `write:rewards`). The merchant configures this in **Shopify Admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
 
 ### Example request
 
@@ -192,9 +186,9 @@ curl --request GET \
   --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
-### Example response (200)
+### Example response
 
-```json
+```json 200
 {
   "data": {
     "points_balance": 650,
@@ -248,64 +242,64 @@ curl --request GET \
 
 ### Response fields
 
-<ResponseField name="data.points_balance" type="integer">
-  The customer's current redeemable points balance. Always `0` for customers who are excluded (banned) from the loyalty program. Display this prominently at the top of your loyalty panel.
+<ResponseField name="data" type="object">
+  <Expandable title="data properties">
+    <ResponseField name="points_balance" type="integer">
+      The customer's current redeemable points balance. Always `0` for customers who are excluded (banned) from the loyalty program. Display this prominently at the top of your loyalty panel.
+    </ResponseField>
+    <ResponseField name="rewards" type="object[]">
+      All active rewards for the online store (point-of-sale rewards are excluded), enriched with affordability data for this specific customer.
 
-  Example: `650`
-</ResponseField>
+      <Expandable title="reward properties">
+        <ResponseField name="id" type="string<uuid>">
+          Unique ID of the reward.
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          The reward name to display to the customer.
+        </ResponseField>
+        <ResponseField name="description" type="string | null">
+          Optional longer description of the reward.
+        </ResponseField>
+        <ResponseField name="reward_type" type="enum<string>">
+          The type of reward. One of `fixed`, `percentage`, `free_shipping`, `free_product`, `store_credit`.
+        </ResponseField>
+        <ResponseField name="points_cost" type="integer">
+          How many points the customer must spend to redeem this reward (taken from `reward_rule.points_required`).
+        </ResponseField>
+        <ResponseField name="reward_rule" type="object">
+          The reward configuration, returned as stored. Structure varies by `reward_type`. Every reward includes `points_required`; `fixed`, `percentage` and `store_credit` rewards include `value` (the amount, percentage or credit amount).
+        </ResponseField>
+        <ResponseField name="icon" type="object | null">
+          The reward's icon, or `null` if none is set. Contains `source` (`default` or `custom`), `slug`, `id` and `url`.
+        </ResponseField>
+        <ResponseField name="can_redeem" type="boolean">
+          `true` if the customer has enough points. `false` if not.
+        </ResponseField>
+        <ResponseField name="points_needed" type="integer">
+          How many more points the customer needs. Always `0` when `can_redeem` is `true`.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="customer_rewards" type="object[]">
+      Every reward already issued to the customer, newest first, in any status (including used and expired ones) and from any source (points redemptions as well as VIP tier, referral and membership rewards, so `reward_id` isn't always a catalogue reward ID). Filter on `status === "active"` to find codes the customer can still apply. Each item is a [Customer Reward Object](/customer-reward-object).
 
-<ResponseField name="data.rewards" type="array">
-  All active rewards for the online store (point-of-sale rewards are excluded), enriched with affordability data for this specific customer.
-
-  <Expandable title="rewards[] fields">
-    <ResponseField name="id" type="string (uuid)">
-      Unique ID of the reward.
-    </ResponseField>
-    <ResponseField name="name" type="string">
-      The reward name to display to the customer.
-    </ResponseField>
-    <ResponseField name="description" type="string | null">
-      Optional longer description of the reward.
-    </ResponseField>
-    <ResponseField name="reward_type" type="enum">
-      The type of reward. Possible values: `fixed`, `percentage`, `free_shipping`, `free_product`, `store_credit`.
-    </ResponseField>
-    <ResponseField name="points_cost" type="integer">
-      How many points the customer must spend to redeem this reward (taken from `reward_rule.points_required`).
-    </ResponseField>
-    <ResponseField name="reward_rule" type="object">
-      The reward configuration, returned as stored. Structure varies by `reward_type`. Every reward includes `points_required`; `fixed`, `percentage` and `store_credit` rewards include `value` (the amount, percentage or credit amount).
-    </ResponseField>
-    <ResponseField name="icon" type="object | null">
-      The reward's icon, or `null` if none is set. Contains `source` (`default` or `custom`), `slug`, `id` and `url`.
-    </ResponseField>
-    <ResponseField name="can_redeem" type="boolean">
-      `true` if the customer has enough points. `false` if not.
-    </ResponseField>
-    <ResponseField name="points_needed" type="integer">
-      How many more points the customer needs. Always `0` when `can_redeem` is `true`.
-    </ResponseField>
-  </Expandable>
-</ResponseField>
-
-<ResponseField name="data.customer_rewards" type="array">
-  Every reward already issued to the customer, newest first, in any status (including used and expired ones) and from any source (points redemptions as well as VIP tier, referral and membership rewards, so `reward_id` isn't always a catalogue reward ID). Filter on `status === "active"` to find codes the customer can still apply. Each item is a [Customer Reward Object](/customer-reward-object).
-
-  <Expandable title="customer_rewards[] fields">
-    <ResponseField name="discount_code" type="string | null">
-      The actual coupon code (e.g. `YUKO-TVJ-BL1`). This is a standard Shopify discount code — pass it directly through your checkout discount flow.
-    </ResponseField>
-    <ResponseField name="status" type="enum">
-      Current status. Only show coupons where `status === "active"`. Possible values: `active`, `used`, `inactive`, `expired`, `deleted`, `revert`.
-    </ResponseField>
-    <ResponseField name="expires_at" type="string (datetime) | null">
-      When this coupon expires. `null` means no expiry.
-    </ResponseField>
-    <ResponseField name="used_at" type="string (datetime) | null">
-      `null` if the coupon has not been used yet.
-    </ResponseField>
-    <ResponseField name="points_used" type="integer">
-      How many points were spent to create this coupon.
+      <Expandable title="customer reward properties">
+        <ResponseField name="discount_code" type="string | null">
+          The actual coupon code (e.g. `YUKO-TVJ-BL1`). This is a standard Shopify discount code — pass it directly through your checkout discount flow.
+        </ResponseField>
+        <ResponseField name="status" type="enum<string>">
+          Current status. Only show coupons where `status === "active"`. One of `active`, `used`, `inactive`, `expired`, `deleted`, `revert`.
+        </ResponseField>
+        <ResponseField name="expires_at" type="string<date-time> | null">
+          When this coupon expires. `null` means no expiry.
+        </ResponseField>
+        <ResponseField name="used_at" type="string<date-time> | null">
+          `null` if the coupon has not been used yet.
+        </ResponseField>
+        <ResponseField name="points_used" type="integer">
+          How many points were spent to create this coupon.
+        </ResponseField>
+      </Expandable>
     </ResponseField>
   </Expandable>
 </ResponseField>
@@ -326,7 +320,7 @@ For each item in customer_rewards[] where status === "active":
 
 ---
 
-## Endpoint 2 — Points Estimate at Checkout
+## Endpoint 2: Points estimate at checkout
 
 This endpoint tells the customer how many loyalty points they will **earn** when they complete this purchase.
 
@@ -338,9 +332,7 @@ No Shopify Customer ID is required (you still need the API key), so it works for
 
 Full API reference → [`POST /points/estimate`](/developer/api/checkout-points-estimate)
 
-### Required token scope
-
-Your API token must have `read:points`. See [Scopes](/developer/api/scopes).
+<Info>Requires the `read:points` scope. See [Scopes](/developer/api/scopes).</Info>
 
 ### Request
 
@@ -353,34 +345,30 @@ POST https://api.yukoapp.com/api/v1/public/points/estimate
 <ParamField body="customer" type="object">
   Optional. Include only if the customer is logged in. Omit entirely for guest checkouts. If you send it, include at least `id` or `email`.
 
-  <Expandable title="customer fields">
-    <ParamField body="customer.id" type="string">
+  <Expandable title="customer properties">
+    <ParamField body="id" type="string">
       Shopify Customer ID. Used to look up the customer if `email` is not provided.
     </ParamField>
-    <ParamField body="customer.email" type="string (email)">
+    <ParamField body="email" type="string">
       Customer email address. Takes priority over `id` when both are provided; if no customer matches the email, `id` isn't tried.
     </ParamField>
   </Expandable>
 </ParamField>
 
-<ParamField body="items" type="array" required>
+<ParamField body="items" type="object[]" required>
   The line items in the cart. Must contain at least one item.
 
-  <Expandable title="items[] fields">
-    <ParamField body="items[].product_id" type="string" required>
+  <Expandable title="item properties">
+    <ParamField body="product_id" type="string" required>
       The Shopify Product ID.
-
-      Example: `"prod_1001"`
     </ParamField>
-    <ParamField body="items[].variant_id" type="string" required>
+    <ParamField body="variant_id" type="string" required>
       The Shopify Variant/SKU ID.
-
-      Example: `"var_1001_red_m"`
     </ParamField>
   </Expandable>
 </ParamField>
 
-### Example request — logged-in customer
+### Example request: logged-in customer
 
 ```bash
 curl --request POST \
@@ -405,7 +393,7 @@ curl --request POST \
   }'
 ```
 
-### Example request — guest checkout
+### Example request: guest checkout
 
 ```bash
 curl --request POST \
@@ -422,9 +410,9 @@ curl --request POST \
   }'
 ```
 
-### Example response (200)
+### Example response
 
-```json
+```json 200
 {
   "data": {
     "points_earned": 0,
@@ -435,18 +423,15 @@ curl --request POST \
 
 ### Response fields
 
-<ResponseField name="data.points_earned" type="integer">
-  The number of loyalty points the customer will earn after completing the purchase. Currently always `0` (see the warning above).
-
-  Example: `0`
-</ResponseField>
-
-<ResponseField name="data.message" type="string">
-  A ready-to-display string. You can show this directly in your UI without additional formatting.
-
-  Example: `"You will earn 0 points after completing this purchase"`
-
-  The message is always returned, even when `points_earned` is `0`, so check `points_earned` before showing it.
+<ResponseField name="data" type="object">
+  <Expandable title="data properties">
+    <ResponseField name="points_earned" type="integer">
+      The number of loyalty points the customer will earn after completing the purchase. Currently always `0` (see the warning above).
+    </ResponseField>
+    <ResponseField name="message" type="string">
+      A ready-to-display string. You can show this directly in your UI without additional formatting. The message is always returned, even when `points_earned` is `0`, so check `points_earned` before showing it.
+    </ResponseField>
+  </Expandable>
 </ResponseField>
 
 ### Display logic
@@ -461,7 +446,7 @@ If points_earned === 0:
 
 ---
 
-## Endpoint 3 — Redeem a Reward (Burn Points)
+## Endpoint 3: Redeem a reward (burn points)
 
 This is the endpoint your checkout calls when a customer **actively chooses to spend their points** on a reward.
 
@@ -481,9 +466,7 @@ When the customer clicks "Redeem" on an available reward, call this endpoint. Yu
 
 Full API reference → [`POST /customers/rewards/redeem`](/developer/api/redeem-reward)
 
-### Required token scope
-
-Your API token must have `write:rewards`. Read-only keys can't redeem. See [Scopes](/developer/api/scopes).
+<Info>Requires the `write:rewards` scope. Read-only keys can't redeem. See [Scopes](/developer/api/scopes).</Info>
 
 ### Request
 
@@ -502,14 +485,10 @@ POST https://api.yukoapp.com/api/v1/public/customers/rewards/redeem
 
 <ParamField body="customer_id" type="string" required>
   The Shopify Customer ID of the logged-in customer.
-
-  Example: `"9049402769586"`
 </ParamField>
 
-<ParamField body="reward_id" type="string (uuid)" required>
+<ParamField body="reward_id" type="string<uuid>" required>
   The UUID of the reward the customer wants to redeem. Get this from the `rewards[].id` field in the Endpoint 1 response (`GET /customers/rewards/redeemable`).
-
-  Example: `"90424fa7-e8a9-4ef4-b43a-72c9b2028db5"`
 </ParamField>
 
 ### Example request
@@ -529,11 +508,11 @@ curl --request POST \
   The `reward_id` comes directly from the `rewards[].id` field in the Endpoint 1 response. Store these IDs when you render the rewards list so you have them ready when the customer clicks "Redeem".
 </Tip>
 
-### Example response (201 — Created)
+### Example response
 
-A `201` status means the redemption was successful and a new coupon code has been generated.
+A `201 Created` status means the redemption was successful and a new coupon code has been generated.
 
-```json
+```json 201
 {
   "data": {
     "coupon_code": "YUKO-TVJ-BL1",
@@ -547,38 +526,32 @@ A `201` status means the redemption was successful and a new coupon code has bee
 
 ### Response fields
 
-<ResponseField name="data.coupon_code" type="string | null">
-  The newly generated Shopify discount code (e.g. `YUKO-TVJ-BL1`). Apply this directly through your checkout's discount flow.
+<ResponseField name="data" type="object">
+  <Expandable title="data properties">
+    <ResponseField name="coupon_code" type="string | null">
+      The newly generated Shopify discount code (e.g. `YUKO-TVJ-BL1`). Apply this directly through your checkout's discount flow. `null` for `store_credit` reward types — the credit is added to the customer's account automatically.
+    </ResponseField>
+    <ResponseField name="points_spent" type="integer">
+      The number of points deducted from the customer's balance.
+    </ResponseField>
+    <ResponseField name="reward_type" type="enum<string>">
+      The type of reward that was redeemed. One of `fixed`, `percentage`, `free_shipping`, `free_product`, `store_credit`.
+    </ResponseField>
+    <ResponseField name="discount_value" type="number">
+      The discount amount or percentage associated with the coupon.
 
-  Will be `null` for `store_credit` reward types — the credit is added to the customer's account automatically.
+      - For `fixed`: this is the amount in the store's currency (e.g. `5` means 5 off)
+      - For `percentage`: this is the percentage (e.g. `10` means 10% off)
+      - For `free_product`: the free product's price, or `0` if it isn't known
+      - `0` for `free_shipping` and `store_credit` reward types
+    </ResponseField>
+    <ResponseField name="expires_at" type="string<date-time> | null">
+      When the generated coupon expires. `null` if the reward has no expiry, and always `null` for `store_credit` rewards.
+    </ResponseField>
+  </Expandable>
 </ResponseField>
 
-<ResponseField name="data.points_spent" type="integer">
-  The number of points deducted from the customer's balance.
-
-  Example: `500`
-</ResponseField>
-
-<ResponseField name="data.reward_type" type="enum">
-  The type of reward that was redeemed. Possible values: `fixed`, `percentage`, `free_shipping`, `free_product`, `store_credit`.
-</ResponseField>
-
-<ResponseField name="data.discount_value" type="number">
-  The discount amount or percentage associated with the coupon.
-
-  - For `fixed`: this is the amount in the store's currency (e.g. `5` means 5 off)
-  - For `percentage`: this is the percentage (e.g. `10` means 10% off)
-  - For `free_product`: the free product's price, or `0` if it isn't known
-  - `0` for `free_shipping` and `store_credit` reward types
-</ResponseField>
-
-<ResponseField name="data.expires_at" type="string (datetime) | null">
-  When the generated coupon expires. `null` if the reward has no expiry, and always `null` for `store_credit` rewards.
-
-  Example: `"2026-06-01T00:00:00+00:00"`
-</ResponseField>
-
-### Error responses for this endpoint
+### Errors
 
 | Code  | Scenario                            | What to do                                                                                                                                             |
 | ----- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -612,101 +585,99 @@ On successful 201 response:
 
 ---
 
-## Full Checkout Flow
+## Full checkout flow
 
-### Step 1 — Collect what you need at checkout
+<Steps>
+  <Step title="Collect what you need at checkout">
+    - **Shopify Customer ID** — only if the customer is logged in (needed for Endpoint 1)
+    - **Product IDs and Variant IDs** for every item in the cart (needed for Endpoint 2)
+  </Step>
+  <Step title="Decide which endpoints to call">
+    | Customer state                           | Call Endpoint 1? | Call Endpoint 2?                 | Call Endpoint 3?                      |
+    | ---------------------------------------- | ---------------- | -------------------------------- | ------------------------------------- |
+    | Logged in, Shopify Customer ID available | ✅ Yes            | ✅ Yes — include `customer` field | ✅ Yes — when customer clicks "Redeem" |
+    | Guest checkout                           | ❌ No — skip      | ✅ Yes — omit `customer` field    | ❌ No — guests can't redeem points     |
+  </Step>
+  <Step title="Fire both calls in parallel">
+    Do not wait for one to finish before starting the other. Running them in parallel keeps checkout fast.
 
-- **Shopify Customer ID** — only if the customer is logged in (needed for Endpoint 1)
-- **Product IDs and Variant IDs** for every item in the cart (needed for Endpoint 2)
+    ```bash
+    # Call 1 — Only if the customer is logged in
+    curl --request GET \
+      --url "https://api.yukoapp.com/api/v1/public/customers/rewards/redeemable?customer_id=9049402769586" \
+      --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    ```
 
-### Step 2 — Decide which endpoints to call
+    ```bash
+    # Call 2 — Always run this, for both logged-in and guest customers
+    curl --request POST \
+      --url "https://api.yukoapp.com/api/v1/public/points/estimate" \
+      --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
+      --header "Content-Type: application/json" \
+      --data '{
+        "customer": {
+          "id": "9049402769586"
+        },
+        "items": [
+          {
+            "product_id": "prod_1001",
+            "variant_id": "var_1001_red_m"
+          }
+        ]
+      }'
+    ```
+  </Step>
+  <Step title="Render the loyalty panel">
+    Combine both responses to display the loyalty section. This is only an example; adapt it to your UI.
 
-| Customer state                           | Call Endpoint 1? | Call Endpoint 2?                 | Call Endpoint 3?                      |
-| ---------------------------------------- | ---------------- | -------------------------------- | ------------------------------------- |
-| Logged in, Shopify Customer ID available | ✅ Yes            | ✅ Yes — include `customer` field | ✅ Yes — when customer clicks "Redeem" |
-| Guest checkout                           | ❌ No — skip      | ✅ Yes — omit `customer` field    | ❌ No — guests can't redeem points     |
+    ```text
+    ┌──────────────────────────────────────────────┐
+    │  🏆  Your Rewards                            │
+    │                                              │
+    │  Points Balance: 650 pts                     │
+    │                                              │
+    │  ✅  $5 off your next order                 │
+    │      Costs 500 pts              [Redeem →]  │
+    │                                              │
+    │  🔒  10% off your next order                │
+    │      Earn 350 more points to unlock          │
+    │                                              │
+    │  🎟️  You have an unused coupon              │
+    │      YUKO-TVJ-BL1          [Apply to order] │
+    │                                              │
+    │  💰  You'll earn 120 points on this order!  │
+    └──────────────────────────────────────────────┘
+    ```
+  </Step>
+  <Step title="Handle the Redeem button click">
+    When a customer clicks "Redeem" on an available reward, call Endpoint 3 with their `customer_id` and the `reward_id` of the reward they selected.
 
-### Step 3 — Fire both calls in parallel
+    ```bash
+    curl --request POST \
+      --url "https://api.yukoapp.com/api/v1/public/customers/rewards/redeem" \
+      --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
+      --header "Content-Type: application/json" \
+      --data '{
+        "customer_id": "9049402769586",
+        "reward_id": "90424fa7-e8a9-4ef4-b43a-72c9b2028db5"
+      }'
+    ```
 
-Do not wait for one to finish before starting the other. Running them in parallel keeps checkout fast.
+    On a `201` response:
 
-```bash
-# Call 1 — Only if the customer is logged in
-curl --request GET \
-  --url "https://api.yukoapp.com/api/v1/public/customers/rewards/redeemable?customer_id=9049402769586" \
-  --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-```
+    - Take the `coupon_code` from the response and apply it to the checkout order
+    - Update the displayed points balance: `new_balance = old_balance - points_spent`
+    - Remove the redeemed reward from the UI rewards list
 
-```bash
-# Call 2 — Always run this, for both logged-in and guest customers
-curl --request POST \
-  --url "https://api.yukoapp.com/api/v1/public/points/estimate" \
-  --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
-  --header "Content-Type: application/json" \
-  --data '{
-    "customer": {
-      "id": "9049402769586"
-    },
-    "items": [
-      {
-        "product_id": "prod_1001",
-        "variant_id": "var_1001_red_m"
-      }
-    ]
-  }'
-```
-
-### Step 4 — Render the loyalty panel
-
-Combine both responses to display the loyalty section. This is only an example; adapt it to your UI.
-
-```text
-┌──────────────────────────────────────────────┐
-│  🏆  Your Rewards                            │
-│                                              │
-│  Points Balance: 650 pts                     │
-│                                              │
-│  ✅  $5 off your next order                 │
-│      Costs 500 pts              [Redeem →]  │
-│                                              │
-│  🔒  10% off your next order                │
-│      Earn 350 more points to unlock          │
-│                                              │
-│  🎟️  You have an unused coupon              │
-│      YUKO-TVJ-BL1          [Apply to order] │
-│                                              │
-│  💰  You'll earn 120 points on this order!  │
-└──────────────────────────────────────────────┘
-```
-
-### Step 5 — Handle the "Redeem" button click
-
-When a customer clicks "Redeem" on an available reward, call Endpoint 3 with their `customer_id` and the `reward_id` of the reward they selected.
-
-```bash
-curl --request POST \
-  --url "https://api.yukoapp.com/api/v1/public/customers/rewards/redeem" \
-  --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
-  --header "Content-Type: application/json" \
-  --data '{
-    "customer_id": "9049402769586",
-    "reward_id": "90424fa7-e8a9-4ef4-b43a-72c9b2028db5"
-  }'
-```
-
-On a `201` response:
-
-- Take the `coupon_code` from the response and apply it to the checkout order
-- Update the displayed points balance: `new_balance = old_balance - points_spent`
-- Remove the redeemed reward from the UI rewards list
-
-<Note>
-  The `reward_id` is the `id` field from the `rewards[]` array in the Endpoint 1 response. You should store these IDs when you render the rewards list so they're ready when the customer clicks.
-</Note>
+    <Note>
+      The `reward_id` is the `id` field from the `rewards[]` array in the Endpoint 1 response. You should store these IDs when you render the rewards list so they're ready when the customer clicks.
+    </Note>
+  </Step>
+</Steps>
 
 ---
 
-## Error Handling
+## Error handling
 
 <Warning>
   The loyalty panel is an **enhancement** to checkout — it must never block or break the purchase. If any Yuko API call fails, hide the loyalty panel silently and let checkout continue.
@@ -751,7 +722,7 @@ Any other error → Hide the loyalty panel. Never block checkout.
 
 ---
 
-## Rate Limits
+## Rate limits
 
 See full details → [Rate Limits reference](/developer/api/rate-limits)
 
@@ -770,24 +741,28 @@ See full details → [Rate Limits reference](/developer/api/rate-limits)
 
 ---
 
-## Security Rules
+## Security rules
 
 <Warning>
   **These rules are not optional.** Violating them exposes the merchant's API key and puts their store at risk.
 </Warning>
 
-**Rule 1 — Never expose the API key on the frontend.** The key is a secret. It must only ever live on your backend server.
+### Rule 1: Never expose the API key on the frontend
+
+The key is a secret. It must only ever live on your backend server.
 
 - ❌ Never put it in browser-side JavaScript
 - ❌ Never put it in a mobile app binary
 - ❌ Never commit it to a public code repository
 - ✅ Make all Yuko API calls from your backend — pass only the results to your frontend
 
-**Rule 2 — Use HTTPS everywhere.** Always send requests to the `https://` base URL so the API key is never sent unencrypted.
+### Rule 2: Use HTTPS everywhere
+
+Always send requests to the `https://` base URL so the API key is never sent unencrypted.
 
 ---
 
-## Authentication Setup Options
+## Authentication setup options
 
 Choose whichever approach fits your architecture.
 
@@ -795,7 +770,7 @@ Choose whichever approach fits your architecture.
   <Tab title="Token-Based (Easy Quick Start)">
     This is the simplest approach. No OAuth flow required.
 
-    **How it works:**
+    How it works:
 
     <Steps>
       <Step title="Merchant generates a token">
@@ -808,13 +783,14 @@ Choose whichever approach fits your architecture.
         Your backend reads the token from your settings and includes it in every Yuko API request for that merchant.
       </Step>
     </Steps>
+
     **Pros:** Fast to set up. No OAuth flow required.\
     **Cons:** The merchant must manually copy-paste the token. If they regenerate it, it needs to be updated on your side.
   </Tab>
   <Tab title="OAuth-Based (Recommended)">
     This gives merchants a one-click **Connect Yuko** button inside your checkout dashboard — no manual copy-pasting.
 
-    **How it works:**
+    How it works:
 
     <Steps>
       <Step title="Add a Connect button">
@@ -833,7 +809,8 @@ Choose whichever approach fits your architecture.
         Store the token securely. Use it for all Yuko API calls for that merchant going forward.
       </Step>
     </Steps>
-    **Integration can be initiated from either side:**
+
+    Integration can be initiated from either side:
 
     | Initiated by               | Description                                                                                   |
     | -------------------------- | --------------------------------------------------------------------------------------------- |
@@ -850,129 +827,124 @@ Choose whichever approach fits your architecture.
 
 ## Testing
 
-### Step 1 — Get a test API key
+<Steps>
+  <Step title="Get a test API key">
+    Contact the Yuko team for a test key, or use a real merchant's key on a development Shopify store.
+  </Step>
+  <Step title="Verify authentication">
+    ```bash
+    curl --request GET \
+      --url "https://api.yukoapp.com/api/v1/public/customers/rewards/redeemable?customer_id=9049402769586" \
+      --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    ```
 
-Contact the Yuko team for a test key, or use a real merchant's key on a development Shopify store.
+    **Expected:** HTTP 200 with `data.points_balance` in the response body.\
+    If you get HTTP 401, the API key is wrong — check for extra spaces or incorrect values.
+  </Step>
+  <Step title="Test Endpoint 1 with a real customer">
+    ```bash
+    curl --request GET \
+      --url "https://api.yukoapp.com/api/v1/public/customers/rewards/redeemable?customer_id=REAL_CUSTOMER_ID" \
+      --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    ```
 
-### Step 2 — Verify authentication
+    Verify:
 
-```bash
-curl --request GET \
-  --url "https://api.yukoapp.com/api/v1/public/customers/rewards/redeemable?customer_id=9049402769586" \
-  --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-```
+    - `points_balance` returns a number
+    - `rewards[]` is populated with the merchant's reward options
+    - `can_redeem` correctly reflects the customer's balance
+    - `customer_rewards[]` returns any existing coupons
+  </Step>
+  <Step title="Test Endpoint 2 with real cart items">
+    ```bash
+    curl --request POST \
+      --url "https://api.yukoapp.com/api/v1/public/points/estimate" \
+      --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
+      --header "Content-Type: application/json" \
+      --data '{
+        "customer": {
+          "id": "REAL_SHOPIFY_CUSTOMER_ID"
+        },
+        "items": [
+          {
+            "product_id": "REAL_PRODUCT_ID",
+            "variant_id": "REAL_VARIANT_ID"
+          }
+        ]
+      }'
+    ```
 
-**Expected:** HTTP 200 with `data.points_balance` in the response body.\
-If you get HTTP 401, the API key is wrong — check for extra spaces or incorrect values.
+    Verify: the request returns HTTP 200 with `points_earned` and `message`. `points_earned` is currently always `0` (see the warning in Endpoint 2).
+  </Step>
+  <Step title="Test Endpoint 3: redeem a reward">
+    Use a `reward_id` from the Endpoint 1 response (choose one where `can_redeem === true`).
 
-### Step 3 — Test Endpoint 1 with a real customer
+    ```bash
+    curl --request POST \
+      --url "https://api.yukoapp.com/api/v1/public/customers/rewards/redeem" \
+      --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
+      --header "Content-Type: application/json" \
+      --data '{
+        "customer_id": "REAL_SHOPIFY_CUSTOMER_ID",
+        "reward_id": "REWARD_ID_FROM_ENDPOINT_1_RESPONSE"
+      }'
+    ```
 
-```bash
-curl --request GET \
-  --url "https://api.yukoapp.com/api/v1/public/customers/rewards/redeemable?customer_id=REAL_CUSTOMER_ID" \
-  --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-```
+    Verify:
 
-Verify:
+    - Response is HTTP `201` (not 200)
+    - `coupon_code` is returned and is a valid Shopify discount code
+    - `points_spent` matches the `points_cost` of the reward you redeemed
+    - `expires_at` is present (or `null` if the reward has no expiry or is store credit)
+  </Step>
+  <Step title="Test Endpoint 2 for guest checkout">
+    ```bash
+    curl --request POST \
+      --url "https://api.yukoapp.com/api/v1/public/points/estimate" \
+      --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
+      --header "Content-Type: application/json" \
+      --data '{
+        "items": [
+          {
+            "product_id": "REAL_PRODUCT_ID",
+            "variant_id": "REAL_VARIANT_ID"
+          }
+        ]
+      }'
+    ```
 
-- `points_balance` returns a number
-- `rewards[]` is populated with the merchant's reward options
-- `can_redeem` correctly reflects the customer's balance
-- `customer_rewards[]` returns any existing coupons
-
-### Step 4 — Test Endpoint 2 with real cart items
-
-```bash
-curl --request POST \
-  --url "https://api.yukoapp.com/api/v1/public/points/estimate" \
-  --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
-  --header "Content-Type: application/json" \
-  --data '{
-    "customer": {
-      "id": "REAL_SHOPIFY_CUSTOMER_ID"
-    },
-    "items": [
-      {
-        "product_id": "REAL_PRODUCT_ID",
-        "variant_id": "REAL_VARIANT_ID"
-      }
-    ]
-  }'
-```
-
-Verify: the request returns HTTP 200 with `points_earned` and `message`. `points_earned` is currently always `0` (see the warning in Endpoint 2).
-
-### Step 5 — Test Endpoint 3 — Redeem a reward
-
-Use a `reward_id` from the Endpoint 1 response (choose one where `can_redeem === true`).
-
-```bash
-curl --request POST \
-  --url "https://api.yukoapp.com/api/v1/public/customers/rewards/redeem" \
-  --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
-  --header "Content-Type: application/json" \
-  --data '{
-    "customer_id": "REAL_SHOPIFY_CUSTOMER_ID",
-    "reward_id": "REWARD_ID_FROM_ENDPOINT_1_RESPONSE"
-  }'
-```
-
-Verify:
-
-- Response is HTTP `201` (not 200)
-- `coupon_code` is returned and is a valid Shopify discount code
-- `points_spent` matches the `points_cost` of the reward you redeemed
-- `expires_at` is present (or `null` if the reward has no expiry or is store credit)
-
-### Step 6 — Test Endpoint 2 for guest checkout
-
-```bash
-curl --request POST \
-  --url "https://api.yukoapp.com/api/v1/public/points/estimate" \
-  --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
-  --header "Content-Type: application/json" \
-  --data '{
-    "items": [
-      {
-        "product_id": "REAL_PRODUCT_ID",
-        "variant_id": "REAL_VARIANT_ID"
-      }
-    ]
-  }'
-```
-
-Verify: Returns HTTP 200 with no `customer` field in the request body.
-
-### Step 7 — Test error cases
-
-| Test                            | How to trigger                                 | Expected result |
-| ------------------------------- | ---------------------------------------------- | --------------- |
-| Wrong API key                   | Use `Bearer wrong_key`                         | HTTP 401        |
-| Unknown customer                | Use `customer_id=0000000`                      | HTTP 404        |
-| Missing items                   | Send `"items": []`                             | HTTP 422        |
-| Guest checkout                  | Omit `customer` entirely                       | HTTP 200        |
-| Redeem with insufficient points | Use a `reward_id` where `can_redeem === false` | HTTP 422        |
-| Redeem with invalid reward ID   | Use a made-up UUID as `reward_id`              | HTTP 422        |
-
-### Step 8 — Test UI edge cases
-
-- Customer with 0 points — panel shows rewards, all greyed out
-- Customer with no prior redemptions — `customer_rewards[]` is an empty array — handle without crashing
-- Guest customer — Endpoint 1 and Endpoint 3 are not called; only show earn estimate from Endpoint 2
-- `points_earned === 0` — hide the earn message; do not show "0 points"
-- After a successful redemption — UI updates the balance and removes the redeemed reward from the list
+    Verify: Returns HTTP 200 with no `customer` field in the request body.
+  </Step>
+  <Step title="Test error cases">
+    | Test                            | How to trigger                                 | Expected result |
+    | ------------------------------- | ---------------------------------------------- | --------------- |
+    | Wrong API key                   | Use `Bearer wrong_key`                         | HTTP 401        |
+    | Unknown customer                | Use `customer_id=0000000`                      | HTTP 404        |
+    | Missing items                   | Send `"items": []`                             | HTTP 422        |
+    | Guest checkout                  | Omit `customer` entirely                       | HTTP 200        |
+    | Redeem with insufficient points | Use a `reward_id` where `can_redeem === false` | HTTP 422        |
+    | Redeem with invalid reward ID   | Use a made-up UUID as `reward_id`              | HTTP 422        |
+  </Step>
+  <Step title="Test UI edge cases">
+    - Customer with 0 points — panel shows rewards, all greyed out
+    - Customer with no prior redemptions — `customer_rewards[]` is an empty array — handle without crashing
+    - Guest customer — Endpoint 1 and Endpoint 3 are not called; only show earn estimate from Endpoint 2
+    - `points_earned === 0` — hide the earn message; do not show "0 points"
+    - After a successful redemption — UI updates the balance and removes the redeemed reward from the list
+  </Step>
+</Steps>
 
 ---
 
-## Go-Live Checklist
+## Go-live checklist
 
-**Security**
+### Security
 
 - API key stored as an environment variable — not hardcoded anywhere
 - All Yuko API calls made from the backend server — not the browser
 - HTTPS used for all requests
 
-**API Integration**
+### API integration
 
 - `GET /customers/rewards/redeemable` working and returning correct data
 - `POST /points/estimate` working for both logged-in and guest customers
@@ -981,7 +953,7 @@ Verify: Returns HTTP 200 with no `customer` field in the request body.
 - Endpoint 3 is only called on an explicit customer "Redeem" click — not at page load
 - If any call fails, checkout continues without breaking
 
-**UI**
+### UI
 
 - Points balance displayed clearly
 - Redeemable rewards shown with a "Redeem" button for rewards where `can_redeem === true`
@@ -992,18 +964,18 @@ Verify: Returns HTTP 200 with no `customer` field in the request body.
 - No loyalty UI shown for guest checkouts
 - Empty `customer_rewards[]` handled gracefully — no crash, no blank space
 
-**Rate Limiting**
+### Rate limiting
 
 - Retry logic in place for HTTP 429 — wait 1 second, retry once
 - No polling within a single checkout session
 
-**Authentication**
+### Authentication
 
 - Plan in place for token rotation if the merchant regenerates their API key
 
 ---
 
-## API Reference Links
+## API reference links
 
 <CardGroup cols={2}>
   <Card icon="gift" href="/developer/api/get-redeemable-rewards" title="Get Redeemable Rewards">

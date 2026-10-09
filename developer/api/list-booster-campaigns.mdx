@@ -1,242 +1,97 @@
 ---
 title: "List booster campaigns"
+api: "GET /public/booster-campaigns"
+description: "Retrieves a paginated list of your organisation's active booster campaigns."
 ---
 
-Retrieves a paginated list of your organisation's **active** booster campaigns. Results are sorted by `created_at` in descending order. Draft, completed, cancelled and disabled campaigns are not returned. The list is filtered by status only, not by date, so check `starts_at`, `ends_at` and `schedule` to see whether a campaign is running right now.
-
-**GET /public/booster-campaigns**
-
-#### **Authorizations**
-
-**Authorization**
-
-**string**
-
-**header**
-
-**required**
-
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
-
-#### **Required Scope**
-
-**`read:booster_campaigns`**
-
-This endpoint requires the `booster_campaigns` scope with **Read Access** (or **Read/Write Access**). See [Scopes](/developer/api/scopes).
-
-#### **Query Parameters**
-
-**per_page**
-
-**integer**
-
-**default: 20**
-
-The number of results per page. Values above 100 are capped at 100.
-
-**page**
-
-**integer**
-
-**default: 1**
-
-The page number to retrieve.
-
-#### **Response**
-
-**200 - application/json**
-
-**data**
-
-**object[]**
-
-Hide child attributes
-
-**data.uuid**
-
-**string\<uuid\>**
-
-Unique UUID identifier for the booster campaign.
-
-Example:
-
-`"5b1f2c9e-7d3a-4e8b-9c11-2f6a8d4e0b73"`
-
-**data.name**
-
-**string**
-
-The campaign name.
-
-Example:
-
-`"Double points weekend"`
-
-**data.description**
-
-**string | null**
-
-The campaign description.
-
-**data.type**
-
-**enum\<string\>**
-
-The booster campaign type.
-
-Available options:
-
-`multiplier`,
-
-`bonus_flat`,
-
-`spending_goal`,
-
-`order_frequency`,
-
-`streak`,
-
-`multi_action`,
-
-`dormant_reactivation`,
-
-`first_purchase_boost`,
-
-`product_collection_multiplier`
-
-Example:
-
-`"multiplier"`
-
-**data.status**
-
-**string**
-
-The campaign status. Always `active` for this endpoint.
-
-Example:
-
-`"active"`
-
-**data.stackable**
-
-**boolean**
-
-Whether the campaign can stack with other booster campaigns.
-
-Example:
-
-`false`
-
-**data.schedule**
-
-**object | null**
-
-When the campaign runs, for example `type` (`evergreen`, `one_time` or `recurring`), recurrence settings, `days_of_week`, and `active_hours_start` / `active_hours_end`.
-
-**data.targeting**
-
-**object | null**
-
-Targeting settings, such as the `products` and `collections` the campaign applies to.
-
-**data.product_scope**
-
-**object | null**
-
-The product scope the campaign applies to.
-
-**data.display**
-
-**object**
-
-Storefront display settings, such as `show_in_widget` and `labels`. Always includes an `icon` object (or `null`) with `source`, `slug`, `id` and `url`, the same shape as a reward's icon.
-
-**data.config**
-
-**object | null**
-
-Type-specific settings. Structure varies by `type`, for example `milestones` for spending goals and order frequency, or `actions` and `completion_logic` for multi-action challenges.
-
-**data.starts_at**
-
-**string\<date-time\> | null**
-
-When the campaign starts.
-
-Example:
-
-`"2026-10-10T00:00:00+00:00"`
-
-**data.ends_at**
-
-**string\<date-time\> | null**
-
-When the campaign ends, or `null` if it has no end date.
-
-Example:
-
-`"2026-10-12T23:59:59+00:00"`
-
-**data.created_at**
-
-**string\<date-time\> | null**
-
-Example:
-
-`"2026-10-01T09:00:00+00:00"`
-
-**meta**
-
-**object**
-
-Hide child attributes
-
-**meta.pagination**
-
-**object**
-
-Hide child attributes
-
-**meta.pagination.current_page**
-
-**integer**
-
-Example:
-
-`1`
-
-**meta.pagination.per_page**
-
-**integer**
-
-Example:
-
-`20`
-
-**meta.pagination.total**
-
-**integer**
-
-Example:
-
-`1`
-
-**meta.pagination.last_page**
-
-**integer**
-
-Example:
-
-`1`
-
-**meta.pagination.has_more**
-
-**boolean**
-
-Example:
-
-`false`
+Results are sorted by `created_at`, newest first. Draft, completed, cancelled and disabled campaigns are not returned. The list is filtered by status only, not by date, so check `starts_at`, `ends_at` and `schedule` to see whether a campaign is running right now.
+
+<Info>Requires the `read:booster_campaigns` scope. See [Scopes](/developer/api/scopes).</Info>
+
+## Query parameters
+
+<ParamField query="per_page" type="integer" default={20}>
+  The number of results per page. Values above `100` are capped at `100`.
+</ParamField>
+
+<ParamField query="page" type="integer" default={1}>
+  The page number to retrieve. See [Classic pagination](/developer/api/classic-pagination).
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object[]">
+  The active booster campaigns on this page.
+
+  <Expandable title="booster campaign properties">
+    <ResponseField name="uuid" type="string<uuid>">
+      Unique UUID identifier for the booster campaign.
+    </ResponseField>
+    <ResponseField name="name" type="string">
+      The campaign name.
+    </ResponseField>
+    <ResponseField name="description" type="string | null">
+      The campaign description.
+    </ResponseField>
+    <ResponseField name="type" type="enum<string>">
+      The booster campaign type. One of `multiplier`, `bonus_flat`, `spending_goal`, `order_frequency`, `streak`, `multi_action`, `dormant_reactivation`, `first_purchase_boost`, `product_collection_multiplier`.
+    </ResponseField>
+    <ResponseField name="status" type="string">
+      The campaign status. Always `active` for this endpoint.
+    </ResponseField>
+    <ResponseField name="stackable" type="boolean">
+      Whether the campaign can stack with other booster campaigns.
+    </ResponseField>
+    <ResponseField name="schedule" type="object | null">
+      When the campaign runs, for example `type` (`evergreen`, `one_time` or `recurring`), recurrence settings, `days_of_week`, and `active_hours_start` / `active_hours_end`.
+    </ResponseField>
+    <ResponseField name="targeting" type="object | null">
+      Targeting settings, such as the `products` and `collections` the campaign applies to.
+    </ResponseField>
+    <ResponseField name="product_scope" type="object | null">
+      The product scope the campaign applies to.
+    </ResponseField>
+    <ResponseField name="display" type="object">
+      Storefront display settings, such as `show_in_widget` and `labels`. Always includes an `icon` object (or `null`) with `source`, `slug`, `id` and `url`, the same shape as a reward's icon.
+    </ResponseField>
+    <ResponseField name="config" type="object | null">
+      Type-specific settings. Structure varies by `type`, for example `milestones` for spending goals and order frequency, or `actions` and `completion_logic` for multi-action challenges.
+    </ResponseField>
+    <ResponseField name="starts_at" type="string<date-time> | null">
+      When the campaign starts (ISO 8601).
+    </ResponseField>
+    <ResponseField name="ends_at" type="string<date-time> | null">
+      When the campaign ends (ISO 8601), or `null` if it has no end date.
+    </ResponseField>
+    <ResponseField name="created_at" type="string<date-time> | null">
+      When the campaign was created (ISO 8601).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="meta" type="object">
+  <Expandable title="meta properties">
+    <ResponseField name="pagination" type="object">
+      Pagination details. See [Classic pagination](/developer/api/classic-pagination).
+
+      <Expandable title="pagination properties">
+        <ResponseField name="current_page" type="integer">The page returned.</ResponseField>
+        <ResponseField name="per_page" type="integer">The number of records per page.</ResponseField>
+        <ResponseField name="total" type="integer">The total number of records.</ResponseField>
+        <ResponseField name="last_page" type="integer">The number of the last page.</ResponseField>
+        <ResponseField name="has_more" type="boolean">`true` if there are more pages after this one.</ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Errors
+
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:booster_campaigns`. |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 

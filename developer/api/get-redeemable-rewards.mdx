@@ -1,240 +1,100 @@
 ---
 title: "Get redeemable rewards"
+api: "GET /public/customers/rewards/redeemable"
+description: "Retrieves a customer's points balance, every active online reward with affordability info, and the rewards the customer has already redeemed."
 ---
 
-Retrieves the customer's points balance, every active online reward with affordability info, and the rewards the customer has already redeemed. Shopify POS rewards aren't included. Intended as the primary endpoint for rendering a loyalty redemption UI.
-
-**GET /public/customers/rewards/redeemable**
-
-#### **Authorizations**
-
-**Authorization**
-
-**string**
-
-**header**
-
-**required**
-
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
-
-#### **Required Scope**
-
-**`read:rewards`**
-
-This endpoint requires the `rewards` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Query Parameters**
-
-**customer_id**
-
-**string**
-
-**required**
-
-The platform customer ID (e.g. Shopify customer ID)
-
-Example:
-
-`"9049402769586"`
-
-#### **Response**
-
-**200 - application/json**
-
-**data**
-
-**object**
-
-Hide child attributes
-
-**data.points_balance**
-
-**integer**
-
-The customer's current redeemable points balance. Always `0` for banned customers.
-
-Example:
-
-`650`
-
-**data.rewards**
-
-**object[]**
-
-The active reward catalogue for this organisation, enriched with affordability fields for this customer.
-
-Hide child attributes
-
-**data.rewards[].id**
-
-**string\<uuid\>**
-
-Example:
-
-`"90424fa7-e8a9-4ef4-b43a-72c9b2028db5"`
-
-**data.rewards[].name**
-
-**string**
-
-Example:
-
-`"$5 off your next order"`
-
-**data.rewards[].description**
-
-**string | null**
-
-Example:
-
-`"Redeem 500 points for a $5 discount."`
-
-**data.rewards[].reward_type**
-
-**enum\<string\>**
-
-Available options:
-
-`fixed`,
-
-`percentage`,
-
-`free_shipping`,
-
-`free_product`,
-
-`store_credit`
-
-Example:
-
-`"fixed"`
-
-**data.rewards[].points_cost**
-
-**integer**
-
-The number of points required to redeem this reward.
-
-Example:
-
-`500`
-
-**data.rewards[].reward_rule**
-
-**object**
-
-The rule configuration for this reward. Structure varies by `reward_type`.
-
-Example:
-
-`{ "points_required": 500, "value": 5 }`
-
-**data.rewards[].icon**
-
-**object | null**
-
-The reward's storefront icon, or `null` if none is set. Contains `source` (`default` or `custom`), `slug`, `id` and `url`. See [Retrieve a reward](/developer/api/retrieve-a-reward) for details.
-
-Example:
-
-`null`
-
-**data.rewards[].can_redeem**
-
-**boolean**
-
-Whether the customer currently has enough points to redeem this reward.
-
-Example:
-
-`true`
-
-**data.rewards[].points_needed**
-
-**integer**
-
-The additional points needed to redeem this reward. `0` if `can_redeem` is `true`.
-
-Example:
-
-`0`
-
-**data.customer_rewards**
-
-**object[]**
-
-The customer's previously redeemed coupons and discounts, sorted by `created_at` descending. Each item has the same fields as [List customer rewards](/developer/api/list-customer-rewards), including `customer_id` (the customer's Yuko UUID) and `reward_id`.
-
-Hide child attributes
-
-**data.customer_rewards[].id**
-
-**string\<uuid\>**
-
-Example:
-
-`"1fd80ced-326f-4082-951b-21a38632a603"`
-
-**data.customer_rewards[].reward_type**
-
-**string | null**
-
-Example:
-
-`"fixed"`
-
-**data.customer_rewards[].status**
-
-**enum\<string\>**
-
-Available options:
-
-`active`, `used`, `inactive`, `expired`, `deleted`, `revert`
-
-Example:
-
-`"active"`
-
-**data.customer_rewards[].discount_code**
-
-**string | null**
-
-Example:
-
-`"YUKO-TVJ-BL1"`
-
-**data.customer_rewards[].points_used**
-
-**integer**
-
-Example:
-
-`500`
-
-**data.customer_rewards[].expires_at**
-
-**string\<date-time\> | null**
-
-Example:
-
-`"2026-06-01T00:00:00+00:00"`
-
-**data.customer_rewards[].used_at**
-
-**string\<date-time\> | null**
-
-Example:
-
-`null`
-
-**data.customer_rewards[].created_at**
-
-**string\<date-time\>**
-
-Example:
-
-`"2026-02-15T08:30:00+00:00"`
+Shopify POS rewards aren't included. This is intended as the primary endpoint for rendering a loyalty redemption UI.
+
+<Info>Requires the `read:rewards` scope. See [Scopes](/developer/api/scopes).</Info>
+
+## Query parameters
+
+<ParamField query="customer_id" type="string" required>
+  The platform customer ID, for example the Shopify customer ID.
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  <Expandable title="data properties">
+    <ResponseField name="points_balance" type="integer">
+      The customer's current redeemable points balance. Always `0` for banned customers.
+    </ResponseField>
+    <ResponseField name="rewards" type="object[]">
+      The active reward catalogue for this organisation, enriched with affordability fields for this customer.
+
+      <Expandable title="reward properties">
+        <ResponseField name="id" type="string<uuid>">
+          The reward's unique identifier. Pass this as `reward_id` to [Redeem a reward](/developer/api/redeem-reward).
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          The reward's name.
+        </ResponseField>
+        <ResponseField name="description" type="string | null">
+          The reward's description.
+        </ResponseField>
+        <ResponseField name="reward_type" type="enum<string>">
+          One of `fixed`, `percentage`, `free_shipping`, `free_product`, `store_credit`.
+        </ResponseField>
+        <ResponseField name="points_cost" type="integer">
+          The number of points required to redeem this reward.
+        </ResponseField>
+        <ResponseField name="reward_rule" type="object">
+          The rule configuration for this reward. Structure varies by `reward_type`.
+        </ResponseField>
+        <ResponseField name="icon" type="object | null">
+          The reward's storefront icon, or `null` if none is set. Contains `source` (`default` or `custom`), `slug`, `id` and `url`. See [Retrieve a reward](/developer/api/retrieve-a-reward) for details.
+        </ResponseField>
+        <ResponseField name="can_redeem" type="boolean">
+          Whether the customer currently has enough points to redeem this reward.
+        </ResponseField>
+        <ResponseField name="points_needed" type="integer">
+          The additional points needed to redeem this reward. `0` if `can_redeem` is `true`.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="customer_rewards" type="object[]">
+      The customer's previously redeemed coupons and discounts, sorted by `created_at`, newest first. Each item has the same fields as [List customer rewards](/developer/api/list-customer-rewards), including `customer_id` (the customer's Yuko UUID) and `reward_id`.
+
+      <Expandable title="customer reward properties">
+        <ResponseField name="id" type="string<uuid>">
+          Unique identifier for the customer reward.
+        </ResponseField>
+        <ResponseField name="reward_type" type="string | null">
+          The type of discount issued.
+        </ResponseField>
+        <ResponseField name="status" type="enum<string>">
+          One of `active`, `used`, `inactive`, `expired`, `deleted`, `revert`.
+        </ResponseField>
+        <ResponseField name="discount_code" type="string | null">
+          The discount or coupon code issued to the customer.
+        </ResponseField>
+        <ResponseField name="points_used" type="integer">
+          The number of points spent on this reward.
+        </ResponseField>
+        <ResponseField name="expires_at" type="string<date-time> | null">
+          When this reward expires.
+        </ResponseField>
+        <ResponseField name="used_at" type="string<date-time> | null">
+          When the reward was used.
+        </ResponseField>
+        <ResponseField name="created_at" type="string<date-time>">
+          When the reward was issued.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Errors
+
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:rewards`. |
+| `404` | `not_found` | No customer matches `customer_id` (`Customer not found`). |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 

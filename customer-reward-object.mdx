@@ -3,118 +3,65 @@ title: "Customer Reward Object"
 description: "Fields returned for a reward issued to a customer by the Yuko REST API."
 ---
 
-A customer reward is a reward that has been issued to a specific customer, such as a discount code from redeeming points, a referral reward or a VIP tier benefit. Customer rewards are returned by [List customer rewards](/developer/api/list-customer-rewards) (`GET /public/customers/rewards`, scope `rewards` read) and in the `customer_rewards` array of [Get redeemable rewards](/developer/api/get-redeemable-rewards). A new one is created when you [redeem a reward](/developer/api/redeem-reward).
+A customer reward is a reward that has been issued to a specific customer, such as a discount code from redeeming points, a referral reward or a VIP tier benefit. Customer rewards are returned by [List customer rewards](/developer/api/list-customer-rewards) (`GET /public/customers/rewards`, requires the `read:rewards` scope) and in the `customer_rewards` array of [Get redeemable rewards](/developer/api/get-redeemable-rewards). A new one is created when you [redeem a reward](/developer/api/redeem-reward).
 
-**id**
+## Properties
 
-**string\<uuid\>**
+<ResponseField name="id" type="string<uuid>">
+  Unique identifier for the customer reward.
+</ResponseField>
 
-Unique identifier for the customer reward.
+<ResponseField name="customer_id" type="string<uuid>">
+  Yuko's internal UUID for the customer the reward was issued to. This is not the Shopify customer ID you pass as the `customer_id` parameter.
+</ResponseField>
 
-Example:
+<ResponseField name="reward_id" type="string<uuid> | null">
+  The UUID of the record that issued the reward, such as the reward in your catalogue (see [Retrieve a reward](/developer/api/retrieve-a-reward)).
+</ResponseField>
 
-`"1fd80ced-326f-4082-951b-21a38632a603"`
+<ResponseField name="reward_type" type="string | null">
+  The type of discount issued, for example `fixed`, `percentage`, `free_shipping`, `free_product`, `pos_fixed` or `pos_percentage`. For rewards redeemed with points, this is the catalogue reward's `reward_type`. `null` when no type was recorded for the reward. Store credit redemptions don't create a customer reward.
+</ResponseField>
 
-**customer_id**
+<ResponseField name="status" type="enum<string>">
+  The current status of the reward. You can filter by this value with the `status` query parameter. One of `active`, `used`, `inactive`, `expired`, `deleted`, `revert`.
+</ResponseField>
 
-**string\<uuid\>**
+<ResponseField name="discount_code" type="string | null">
+  The discount code the customer applies at checkout.
+</ResponseField>
 
-Yuko's internal UUID for the customer the reward was issued to. This is not the Shopify customer ID you pass as the `customer_id` parameter.
+<ResponseField name="points_used" type="integer">
+  The number of points spent to get this reward. `0` for rewards that weren't bought with points.
+</ResponseField>
 
-Example:
+<ResponseField name="expires_at" type="string<date-time> | null">
+  When the reward expires (ISO 8601), or `null` if it doesn't expire.
+</ResponseField>
 
-`"63a2c89a-9936-4bc0-9d5f-93db46110b76"`
+<ResponseField name="used_at" type="string<date-time> | null">
+  When the reward was used on an order (ISO 8601), or `null` if it hasn't been used.
+</ResponseField>
 
-**reward_id**
+<ResponseField name="created_at" type="string<date-time>">
+  When the reward was issued (ISO 8601).
+</ResponseField>
 
-**string\<uuid\> | null**
+<ResponseExample>
 
-The UUID of the record that issued the reward, such as the reward in your catalogue (see [Retrieve a reward](/developer/api/retrieve-a-reward)).
+```json The Customer Reward object
+{
+  "id": "1fd80ced-326f-4082-951b-21a38632a603",
+  "customer_id": "63a2c89a-9936-4bc0-9d5f-93db46110b76",
+  "reward_id": "7fb39c85-3a3f-4247-8333-2e05a9c8ae28",
+  "reward_type": "fixed",
+  "status": "active",
+  "discount_code": "YUKO-5OFF-A1B2C3",
+  "points_used": 500,
+  "expires_at": "2026-06-30T23:59:59+00:00",
+  "used_at": null,
+  "created_at": "2026-03-09T14:02:06+00:00"
+}
+```
 
-Example:
-
-`"7fb39c85-3a3f-4247-8333-2e05a9c8ae28"`
-
-**reward_type**
-
-**string | null**
-
-The type of discount issued, for example `fixed`, `percentage`, `free_shipping`, `free_product`, `pos_fixed` or `pos_percentage`. For rewards redeemed with points, this is the catalogue reward's `reward_type`. `null` when no type was recorded for the reward. Store credit redemptions don't create a customer reward.
-
-Example:
-
-`"fixed"`
-
-**status**
-
-**enum\<string\>**
-
-The current status of the reward. You can filter by this value with the `status` query parameter.
-
-Available options:
-
-`active`,
-
-`used`,
-
-`inactive`,
-
-`expired`,
-
-`deleted`,
-
-`revert`
-
-Example:
-
-`"active"`
-
-**discount_code**
-
-**string | null**
-
-The discount code the customer applies at checkout.
-
-Example:
-
-`"YUKO-5OFF-A1B2C3"`
-
-**points_used**
-
-**integer**
-
-The number of points spent to get this reward. `0` for rewards that weren't bought with points.
-
-Example:
-
-`500`
-
-**expires_at**
-
-**string\<date-time\> | null**
-
-When the reward expires (ISO 8601), or `null` if it doesn't expire.
-
-Example:
-
-`"2026-06-30T23:59:59+00:00"`
-
-**used_at**
-
-**string\<date-time\> | null**
-
-When the reward was used on an order (ISO 8601), or `null` if it hasn't been used.
-
-Example:
-
-`null`
-
-**created_at**
-
-**string\<date-time\>**
-
-When the reward was issued (ISO 8601).
-
-Example:
-
-`"2026-03-09T14:02:06+00:00"`
+</ResponseExample>

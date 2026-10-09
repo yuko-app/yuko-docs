@@ -1,288 +1,117 @@
 ---
 title: "List customers"
+api: "GET /public/customers"
+description: "Retrieves a paginated list of your store's customers, newest first."
 ---
 
-Retrieves a paginated list of customers for your organisation. Results are sorted by `created_at` in descending order.
+Results are sorted by `created_at`, newest first. To fetch a single customer, use [Retrieve a customer](/developer/api/retrieve-a-customer).
+
+<Info>Requires the `read:customers` scope. See [Scopes](/developer/api/scopes).</Info>
+
+## Query parameters
+
+<ParamField query="email" type="string">
+  Return only the customer whose email address exactly matches this value.
+</ParamField>
+
+<ParamField query="platform" type="enum<string>">
+  Return only customers synced from this platform. One of `shopify`, `woocommerce`.
+</ParamField>
+
+<ParamField query="per_page" type="integer" default={20}>
+  The number of results per page. Values above `100` are treated as `100`.
+</ParamField>
+
+<ParamField query="page" type="integer" default={1}>
+  The page number to retrieve. See [Classic pagination](/developer/api/classic-pagination).
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object[]">
+  The customers on this page. Each customer has the properties of the [Customer object](/customer-identity-object).
+
+  <Expandable title="customer properties">
+    <ResponseField name="id" type="string<uuid>">
+      Yuko's unique identifier for the customer.
+    </ResponseField>
+    <ResponseField name="first_name" type="string | null">
+      The customer's first name.
+    </ResponseField>
+    <ResponseField name="last_name" type="string | null">
+      The customer's last name.
+    </ResponseField>
+    <ResponseField name="email" type="string | null">
+      The customer's email address.
+    </ResponseField>
+    <ResponseField name="phone" type="string | null">
+      The customer's phone number.
+    </ResponseField>
+    <ResponseField name="platform" type="string">
+      The ecommerce platform the customer was synced from, for example `shopify`.
+    </ResponseField>
+    <ResponseField name="platform_customer_id" type="string | null">
+      The customer's ID in your store. Pass this value as `customer_id` to other endpoints.
+    </ResponseField>
+    <ResponseField name="state" type="enum<string>">
+      `member` for active loyalty members, or `disabled` if the customer is banned from the loyalty program.
+    </ResponseField>
+    <ResponseField name="date_of_birth" type="string<date> | null">
+      The customer's birthday in `YYYY-MM-DD` format, if collected.
+    </ResponseField>
+    <ResponseField name="referral_code" type="string | null">
+      The customer's referral code. `null` if the customer has no referral code yet.
+    </ResponseField>
+    <ResponseField name="referral_url" type="string | null">
+      The customer's referral link, built from the referral landing page URL plus `?ref=<referral_code>`. `null` if there's no referral code or no landing page URL is set.
+    </ResponseField>
+    <ResponseField name="points" type="object">
+      The customer's points totals.
+
+      <Expandable title="points properties">
+        <ResponseField name="balance" type="integer">
+          Current redeemable points balance. Always `0` for customers who are banned or excluded from the loyalty program by a customer tag.
+        </ResponseField>
+        <ResponseField name="earned" type="integer">
+          Total points ever earned.
+        </ResponseField>
+        <ResponseField name="redeemed" type="integer">
+          Total points redeemed.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="created_at" type="string<date-time>">
+      When the customer was created in Yuko (ISO 8601).
+    </ResponseField>
+    <ResponseField name="updated_at" type="string<date-time>">
+      When the customer was last updated in Yuko (ISO 8601).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="meta" type="object">
+  <Expandable title="meta properties">
+    <ResponseField name="pagination" type="object">
+      Pagination details. See [Classic pagination](/developer/api/classic-pagination).
+
+      <Expandable title="pagination properties">
+        <ResponseField name="current_page" type="integer">The page returned.</ResponseField>
+        <ResponseField name="per_page" type="integer">The number of records per page.</ResponseField>
+        <ResponseField name="total" type="integer">The total number of records.</ResponseField>
+        <ResponseField name="last_page" type="integer">The number of the last page.</ResponseField>
+        <ResponseField name="has_more" type="boolean">`true` if there are more pages after this one.</ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Errors
 
-**GET /public/customers**
-
-#### **Authorizations**
-
-**Authorization**
-
-**string**
-
-**header**
-
-**required**
-
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
-
-#### **Required Scope**
-
-**`read:customers`**
-
-This endpoint requires the `customers` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Query Parameters**
-
-**email**
-
-**string**
-
-Filter results to customers whose email address exactly matches the provided value.
-
-Example:
-
-`"jane.smith@example.com"`
-
-**platform**
-
-**enum\<string\>**
-
-Filter results to customers from the specified platform.
-
-Available options:
-
-`shopify`,
-
-`woocommerce`
-
-**per_page**
-
-**integer**
-
-**default: 20**
-
-The number of results per page. This endpoint doesn't validate `per_page`: values above `100` are treated as `100`.
-
-**page**
-
-**integer**
-
-**default: 1**
-
-The page number to retrieve.
-
-#### **Response**
-
-**200 - application/json**
-
-**data**
-
-**object[]**
-
-Hide child attributes
-
-**data.id**
-
-**string\<uuid\>**
-
-Unique UUID identifier for the customer in Yuko.
-
-Example:
-
-`"63a2c89a-9936-4bc0-9d5f-93db46110b76"`
-
-**data.first_name**
-
-**string | null**
-
-Example:
-
-`"Jane"`
-
-**data.last_name**
-
-**string | null**
-
-Example:
-
-`"Smith"`
-
-**data.email**
-
-**string | null**
-
-Example:
-
-`"jane.smith@example.com"`
-
-**data.phone**
-
-**string | null**
-
-Example:
-
-`"+14155552671"`
-
-**data.platform**
-
-**string**
-
-The ecommerce platform the customer was synced from.
-
-Example:
-
-`"shopify"`
-
-**data.platform_customer_id**
-
-**string | null**
-
-Example:
-
-`"7823491023"`
-
-**data.state**
-
-**enum\<string\>**
-
-`member` for active loyalty members, or `disabled` if the customer is banned from the loyalty program.
-
-Available options:
-
-`member`,
-
-`disabled`
-
-Example:
-
-`"member"`
-
-**data.date_of_birth**
-
-**string\<date\> | null**
-
-The customer's birthday in `YYYY-MM-DD` format, if collected.
-
-Example:
-
-`"1990-04-12"`
-
-**data.referral_code**
-
-**string | null**
-
-The customer's referral code. `null` if the customer has no referral code yet.
-
-Example:
-
-`"JANE10"`
-
-**data.referral_url**
-
-**string | null**
-
-The customer's referral link, built from the referral landing page URL plus `?ref=<referral_code>`. `null` if there's no referral code or no landing page URL is set.
-
-Example:
-
-`"https://example.com/pages/refer?ref=JANE10"`
-
-**data.points**
-
-**object**
-
-Hide child attributes
-
-**data.points.balance**
-
-**integer**
-
-Current redeemable points balance. Always `0` for customers who are banned or excluded from the loyalty program by a customer tag.
-
-Example:
-
-`350`
-
-**data.points.earned**
-
-**integer**
-
-Total points ever earned.
-
-Example:
-
-`500`
-
-**data.points.redeemed**
-
-**integer**
-
-Total points redeemed.
-
-Example:
-
-`150`
-
-**data.created_at**
-
-**string\<date-time\>**
-
-Example:
-
-`"2024-06-01T10:00:00+00:00"`
-
-**data.updated_at**
-
-**string\<date-time\>**
-
-Example:
-
-`"2026-02-15T08:30:00+00:00"`
-
-**meta**
-
-**object**
-
-Hide child attributes
-
-**meta.pagination**
-
-**object**
-
-Hide child attributes
-
-**meta.pagination.current_page**
-
-**integer**
-
-Example:
-
-`1`
-
-**meta.pagination.per_page**
-
-**integer**
-
-Example:
-
-`20`
-
-**meta.pagination.total**
-
-**integer**
-
-Example:
-
-`120`
-
-**meta.pagination.last_page**
-
-**integer**
-
-Example:
-
-`6`
-
-**meta.pagination.has_more**
-
-**boolean**
-
-Example:
-
-`true`
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:customers`. |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 

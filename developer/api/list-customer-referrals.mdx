@@ -1,232 +1,91 @@
 ---
 title: "List customer referrals"
+api: "GET /public/customers/referrals"
+description: "Retrieves a paginated list of referral transactions where the customer was the advocate, newest first."
 ---
 
-Retrieves a paginated list of referral transactions where the customer was the advocate (the person who made the referral). Results are sorted by `created_at` in descending order.
-
-If the customer has no referral code yet (no advocate record), the response is `{"data": []}` with no `meta` object.
-
-**GET /public/customers/referrals**
-
-#### **Authorizations**
-
-**Authorization**
-
-**string**
-
-**header**
-
-**required**
-
-Bearer authentication header of the form `Bearer <token>`, where `<token>` is your REST API token.
-
-#### **Required Scope**
-
-**`read:referrals`**
-
-This endpoint requires the `referrals` scope with **Read Access**. Configure key scopes in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**. See [Scopes](/developer/api/scopes).
-
-#### **Query Parameters**
-
-**customer_id**
-
-**string**
-
-**required**
-
-The platform customer ID (e.g. Shopify customer ID)
-
-Example:
-
-`"9049402769586"`
-
-
-
-**status**
-
-**enum\<string\>**
-
-Filter results to only referrals with the provided status.
-
-Available options:
-
-`pending`,
-
-`rewarded`,
-
-`cancelled`,
-
-`expired`,
-
-`fraudulent`
-
-**per_page**
-
-**integer**
-
-**default: 20**
-
-The number of results per page.
-
-Required range: `1 <= x <= 100`
-
-**page**
-
-**integer**
-
-**default: 1**
-
-The page number to retrieve.
-
-#### **Response**
-
-**200 - application/json**
-
-**data**
-
-**object[]**
-
-Hide child attributes
-
-**data.id**
-
-**string\<uuid\>**
-
-Unique UUID identifier for the referral transaction.
-
-Example:
-
-`"d4e5f6a7-b8c9-0123-defa-b01234567890"`
-
-**data.advocate_id**
-
-**string\<uuid\>**
-
-The UUID of the referral advocate record for this customer.
-
-Example:
-
-`"b2c3d4e5-f6a7-8901-bcde-f01234567890"`
-
-**data.friend_customer_id**
-
-**string\<uuid\>**
-
-Yuko's internal UUID for the friend who was referred. A referral is only recorded once the friend has a customer record, so this is always set.
-
-Example:
-
-`"f8a9b0c1-d2e3-4567-fabc-d01234567890"`
-
-**data.order_id**
-
-**string\<uuid\> | null**
-
-Yuko's internal UUID for the friend's qualifying order. `null` until the friend places a qualifying order.
-
-Example:
-
-`"a0b1c2d3-e4f5-6789-abcd-e01234567890"`
-
-**data.referral_code**
-
-**string | null**
-
-Intended to hold the referral code the friend used. Currently always `null`; use `referral_code` from [Retrieve a customer](/developer/api/retrieve-a-customer) to get the advocate's code.
-
-Example:
-
-`null`
-
-**data.status**
-
-**enum\<string\>**
-
-The current status of the referral transaction.
-
-Available options:
-
-`pending`,
-
-`rewarded`,
-
-`cancelled`,
-
-`expired`,
-
-`fraudulent`
-
-Example:
-
-`"rewarded"`
-
-**data.created_at**
-
-**string\<date-time\>**
-
-Example:
-
-`"2026-01-20T14:00:00+00:00"`
-
-**data.updated_at**
-
-**string\<date-time\>**
-
-Example:
-
-`"2026-01-22T09:00:00+00:00"`
-
-**meta**
-
-**object**
-
-Hide child attributes
-
-**meta.pagination**
-
-**object**
-
-Hide child attributes
-
-**meta.pagination.current_page**
-
-**integer**
-
-Example:
-
-`1`
-
-**meta.pagination.per_page**
-
-**integer**
-
-Example:
-
-`20`
-
-**meta.pagination.total**
-
-**integer**
-
-Example:
-
-`3`
-
-**meta.pagination.last_page**
-
-**integer**
-
-Example:
-
-`1`
-
-**meta.pagination.has_more**
-
-**boolean**
-
-Example:
-
-`false`
+The advocate is the person who made the referral. Results are sorted by `created_at`, newest first.
+
+<Note>If the customer has no referral code yet (no advocate record), the response is `{"data": []}` with no `meta` object.</Note>
+
+<Info>Requires the `read:referrals` scope. See [Scopes](/developer/api/scopes).</Info>
+
+## Query parameters
+
+<ParamField query="customer_id" type="string" required>
+  The platform customer ID (for example, the Shopify customer ID).
+</ParamField>
+
+<ParamField query="status" type="enum<string>">
+  Return only referrals with this status. One of `pending`, `rewarded`, `cancelled`, `expired`, `fraudulent`.
+</ParamField>
+
+<ParamField query="per_page" type="integer" default={20}>
+  The number of results per page. Must be between `1` and `100`.
+</ParamField>
+
+<ParamField query="page" type="integer" default={1}>
+  The page number to retrieve. See [Classic pagination](/developer/api/classic-pagination).
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object[]">
+  The referral transactions on this page.
+
+  <Expandable title="referral properties">
+    <ResponseField name="id" type="string<uuid>">
+      Unique identifier for the referral transaction.
+    </ResponseField>
+    <ResponseField name="advocate_id" type="string<uuid>">
+      The UUID of the referral advocate record for this customer.
+    </ResponseField>
+    <ResponseField name="friend_customer_id" type="string<uuid>">
+      Yuko's internal UUID for the friend who was referred. A referral is only recorded once the friend has a customer record, so this is always set.
+    </ResponseField>
+    <ResponseField name="order_id" type="string<uuid> | null">
+      Yuko's internal UUID for the friend's qualifying order. `null` until the friend places a qualifying order.
+    </ResponseField>
+    <ResponseField name="referral_code" type="string | null">
+      Intended to hold the referral code the friend used. Currently always `null`; use `referral_code` from [Retrieve a customer](/developer/api/retrieve-a-customer) to get the advocate's code.
+    </ResponseField>
+    <ResponseField name="status" type="enum<string>">
+      The current status of the referral transaction. One of `pending`, `rewarded`, `cancelled`, `expired`, `fraudulent`.
+    </ResponseField>
+    <ResponseField name="created_at" type="string<date-time>">
+      When the referral transaction was created (ISO 8601).
+    </ResponseField>
+    <ResponseField name="updated_at" type="string<date-time>">
+      When the referral transaction was last updated (ISO 8601).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="meta" type="object">
+  <Expandable title="meta properties">
+    <ResponseField name="pagination" type="object">
+      Pagination details. See [Classic pagination](/developer/api/classic-pagination).
+
+      <Expandable title="pagination properties">
+        <ResponseField name="current_page" type="integer">The page returned.</ResponseField>
+        <ResponseField name="per_page" type="integer">The number of records per page.</ResponseField>
+        <ResponseField name="total" type="integer">The total number of records.</ResponseField>
+        <ResponseField name="last_page" type="integer">The number of the last page.</ResponseField>
+        <ResponseField name="has_more" type="boolean">`true` if there are more pages after this one.</ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Errors
+
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:referrals`. |
+| `404` | `not_found` | No customer matches `customer_id`. Message: "Customer not found". |
+| `422` | `validation_error` | `status` isn't one of the allowed values. Message: "The selected status is invalid." |
+| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 
