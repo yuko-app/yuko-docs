@@ -32,7 +32,7 @@ This endpoint requires the `customers` scope with **Read Access**. Configure key
 
 **required**
 
-The platform customer ID (e.g. Shopify customer ID)
+The platform customer ID (e.g. Shopify customer ID). If you leave it out, this endpoint returns a `500` `internal_error` rather than a `422` validation error, so always send it.
 
 Example:
 
@@ -62,7 +62,7 @@ Example:
 
 **integer**
 
-The customer's current redeemable points balance. Always `0` for banned customers.
+The customer's current redeemable points balance. Always `0` for customers who are banned or excluded from the loyalty program by a customer tag.
 
 Example:
 
@@ -148,6 +148,15 @@ $data = json_decode($response, true);
   "error": {
     "code": "not_found",
     "message": "Customer not found"
+  }
+}
+```
+
+```json 500 (customer_id missing)
+{
+  "error": {
+    "code": "internal_error",
+    "message": "An unexpected error occurred. Please try again later."
   }
 }
 ```

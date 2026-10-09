@@ -46,7 +46,7 @@ Example:
 
 **data.referrer_reward**
 
-**object**
+**object | null**
 
 The reward for the customer who makes the referral (the advocate), as configured in **Referral → Program**. Common keys:
 
@@ -54,7 +54,9 @@ The reward for the customer who makes the referral (the advocate), as configured
 - `is_active`: whether the referrer reward is turned on.
 - `reward_type`: one of `fixed`, `percentage`, `free_product`, `free_shipping`, `store_credit` or `points`.
 - `discount_value`: the discount amount, percentage, credit amount or points.
-- `coupon_prefix`, `is_auto_apply`, `combines_with`, `min_requirement_type`, `applied_to`, `purchase_type`: discount code settings.
+- `coupon_prefix`, `is_auto_apply`, `combines_with`, `applied_to`, `purchase_type`: discount code settings.
+- `min_requirement_type` (`none`, `amount` or `quantity`) with `min_purchase_amount` or `min_quantity_items`: minimum purchase requirement.
+- `customer_selection` (referrer reward only): `all` or `original`.
 - `is_expire_enabled`, `expire_after`, `expire_period`: reward expiry.
 - `icon`: the reward icon.
 
@@ -64,7 +66,7 @@ Example:
 
 **data.friend_reward**
 
-**object**
+**object | null**
 
 The reward for the referred friend. Uses the same keys as `referrer_reward`, except `reward_type` is one of `fixed`, `percentage`, `free_product` or `free_shipping`.
 
@@ -76,7 +78,7 @@ Example:
 
 **object | null**
 
-Reserved. Usually `null`.
+Reserved. Currently always `null`.
 
 Example:
 
@@ -96,7 +98,7 @@ Example:
 
 **object | null**
 
-Referral link settings, such as `landing_page_url`, `utm_campaign` and `social_share`.
+Referral link settings: `landing_page_url`, `utm_campaign` and `social_share` (an array of `{ "platform", "message" }` objects, where `platform` is `facebook`, `twitter`, `whatsapp` or `email`).
 
 Example:
 
@@ -104,7 +106,7 @@ Example:
 
 **data.created_at**
 
-**string\<date-time\>**
+**string\<date-time\> | null**
 
 Example:
 
@@ -112,7 +114,7 @@ Example:
 
 **data.updated_at**
 
-**string\<date-time\>**
+**string\<date-time\> | null**
 
 Example:
 

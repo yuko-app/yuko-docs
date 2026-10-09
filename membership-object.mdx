@@ -39,7 +39,7 @@ The customer's points summary.
 
 **integer**
 
-The customer's spendable points balance. Always `0` for a customer who is excluded from the loyalty program.
+The customer's spendable points balance. Always `0` for a customer who is banned or excluded from the loyalty program by a customer tag.
 
 Example:
 
@@ -76,14 +76,14 @@ The customer's current VIP tier, or `null` if VIP tiers are turned off or the cu
 - `threshold_value` (integer): the value needed to reach the tier
 - `multiplier` (number): the tier's points multiplier, `1` when none is set
 - `icon` (object | null)
-- `benefits` (array of objects with `name`, `benefit_type` and `benefit_value`)
+- `benefits` (array of objects with `name`, `benefit_type` and `benefit_value`; `benefit_type` is one of `fixed`, `percentage`, `free_product`, `free_shipping`, `bonus_points`, `store_credit`, `custom`)
 - `created_at` (string, date-time)
 
 **next_tier**
 
 **object | null**
 
-The next VIP tier the customer can reach, with the same fields as `current_tier`. `null` if VIP tiers are turned off or the customer is already at the highest tier.
+The next VIP tier the customer can reach, with the same fields as `current_tier`. `null` if VIP tiers are turned off, the customer hasn't been evaluated for tiers yet, or the customer is already at the highest tier.
 
 **progress_to_next_tier**
 
@@ -91,8 +91,8 @@ The next VIP tier the customer can reach, with the same fields as `current_tier`
 
 The customer's progress toward `next_tier`, or `null` if VIP tiers are turned off or there's no next tier. Contains:
 
-- `current_value` (integer): the customer's current qualifying value
+- `current_value` (integer): the customer's current qualifying value, rounded down
 - `required_value` (integer): the value needed for the next tier
 - `remaining_value` (integer): how much more is needed
-- `progress_percentage` (number): progress as a percentage
-- `threshold_type` (string): the metric used for tier progression
+- `progress_percentage` (number): progress as a percentage, rounded to 2 decimal places
+- `threshold_type` (string | null): the metric used for tier progression (`total_earned_points`, `total_amount_spents` or `total_orders`). Can be `null` even when VIP tiers are set up

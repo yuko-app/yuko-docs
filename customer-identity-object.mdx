@@ -71,7 +71,7 @@ Example:
 
 **platform_customer_id**
 
-**string**
+**string | null**
 
 The customer's ID in your store. Use this value as `customer_id` in API requests.
 
@@ -83,7 +83,7 @@ Example:
 
 **enum\<string\>**
 
-`member` for customers in the loyalty program, or `disabled` for customers you've excluded from it.
+`member` for customers in the loyalty program, or `disabled` for customers you've banned from it. Customers excluded only by a customer tag still show `member`.
 
 Available options:
 
@@ -129,7 +129,7 @@ Example:
 
 **object**
 
-The customer's points summary: `balance` (spendable points, always `0` for a `disabled` customer), `earned` (total earned) and `redeemed` (total redeemed). All integers.
+The customer's points summary: `balance` (spendable points, always `0` for a banned customer or one excluded by a customer tag), `earned` (total earned) and `redeemed` (total redeemed). All integers.
 
 Example:
 

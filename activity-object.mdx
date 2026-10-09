@@ -69,7 +69,7 @@ Example:
 
 **integer**
 
-The number of points earned or used in this activity. `0` when no points were involved.
+The number of points earned or used in this activity, taken from `metadata.earning_value` (or `metadata.used_point` for redemptions). `0` when no points were involved.
 
 Example:
 
@@ -89,7 +89,7 @@ Example:
 
 **object**
 
-The full activity payload. Its structure depends on `activity_type`. For VIP tier changes, see [VIP Tier Change Object](/vip-tier-change-object).
+The full activity payload. Its structure depends on `activity_type`, and it's an empty array (`[]`) when the activity has no payload. For VIP tier changes, see [VIP Tier Change Object](/vip-tier-change-object).
 
 **created_at**
 

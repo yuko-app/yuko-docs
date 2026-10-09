@@ -32,7 +32,7 @@ This endpoint requires the `earning_rules` scope with **Read Access**. Configure
 
 **default: 20**
 
-The number of results per page.
+The number of results per page. Values above `100` are capped at `100`.
 
 Required range: `1 <= x <= 100`
 
@@ -105,6 +105,7 @@ How points are calculated when the rule triggers. Keys vary by rule type. Common
 - `earn_value`: the points awarded.
 - `earn_from_amount`: for `increment`, the spend amount that earns `earn_value` points.
 - `is_expire_enabled`, `expire_after`, `expire_period`: points expiry settings, if turned on.
+- `url`: for social follow/like rules, the handle or page the customer is asked to visit.
 
 Example:
 
@@ -124,7 +125,7 @@ Example:
 
 **boolean**
 
-Whether this earning rule is currently active.
+Whether this earning rule is currently active. Only active rules are returned, so this is always `true`.
 
 Example:
 

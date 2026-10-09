@@ -8,7 +8,7 @@ The Yuko REST API doesn't have an endpoint to fetch a single points transaction 
 **GET /public/customers/transactions**
 
 - Requires the `transactions` scope with read access. See [Scopes](/developer/api/scopes).
-- Pass the customer's store ID as `customer_id`.
+- Pass the platform customer ID (for example, the Shopify customer ID) as `customer_id`.
 - Optionally filter with `entry_type` (`credit` or `debit`) and page through results with `page` and `per_page` (maximum `100`).
 - Results are sorted newest first.
 

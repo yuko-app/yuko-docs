@@ -30,7 +30,7 @@ This endpoint requires the `customers` scope with **Read Access**. Configure key
 
 **string**
 
-Filter results to the customer matching the provided email address.
+Filter results to customers whose email address exactly matches the provided value.
 
 Example:
 
@@ -54,9 +54,7 @@ Available options:
 
 **default: 20**
 
-The number of results per page.
-
-Required range: `1 <= x <= 100`
+The number of results per page. This endpoint doesn't validate `per_page`: values above `100` are treated as `100`.
 
 **page**
 
@@ -104,7 +102,7 @@ Example:
 
 **data.email**
 
-**string**
+**string | null**
 
 Example:
 
@@ -192,7 +190,7 @@ Hide child attributes
 
 **integer**
 
-Current redeemable points balance. Always `0` for banned customers.
+Current redeemable points balance. Always `0` for customers who are banned or excluded from the loyalty program by a customer tag.
 
 Example:
 

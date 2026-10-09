@@ -241,8 +241,7 @@
               },
               "integrations/judgeme",
               "integrations/checkout-boost",
-              "integrations/retainful",
-              "integrations/custom-apps"
+              "integrations/retainful"
             ]
           },
           {

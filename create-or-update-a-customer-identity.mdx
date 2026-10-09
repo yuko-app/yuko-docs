@@ -3,9 +3,9 @@ title: "Creating and updating customers"
 description: "How customer records get into Yuko, and how to look them up with the REST API."
 ---
 
-The Yuko REST API doesn't have an endpoint to create or update customers. Yuko creates and updates customer records automatically from your Shopify store, so every store customer is available to the API without any extra step.
+The Yuko REST API doesn't have an endpoint to create or update customers. Yuko creates and updates customer records automatically from your Shopify store (through the store sync and Shopify customer webhooks), so store customers are available to the API without any extra step. A customer Yuko hasn't synced yet returns `404` with `"Customer not found"`.
 
-To work with a customer through the API, pass their store customer ID (for example the Shopify customer ID) as `customer_id`. See the [Customer Object](/customer-identity-object) for the fields Yuko returns.
+To work with a customer through the API, pass their store customer ID (for example the Shopify customer ID) as `customer_id` (or as the `{id}` path parameter when retrieving one customer). Yuko's internal customer UUID isn't accepted here. See the [Customer Object](/customer-identity-object) for the fields Yuko returns.
 
 | To do this | Use |
 | --- | --- |

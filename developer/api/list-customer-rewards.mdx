@@ -102,7 +102,7 @@ Example:
 
 **string\<uuid\>**
 
-The UUID of the customer this reward was issued to.
+Yuko's internal UUID for the customer this reward was issued to. This is not the platform customer ID you pass as `customer_id`.
 
 Example:
 
@@ -112,7 +112,7 @@ Example:
 
 **string\<uuid\> | null**
 
-The UUID of the loyalty reward definition that generated this reward.
+The UUID of the record that issued this reward, such as the catalogue reward that was redeemed.
 
 Example:
 
@@ -122,7 +122,7 @@ Example:
 
 **string | null**
 
-The type of reward issued, taken from the reward's `reward_type`.
+The type of discount issued. For rewards redeemed with points, this is the catalogue reward's `reward_type`. `null` when no type was recorded.
 
 Available options:
 

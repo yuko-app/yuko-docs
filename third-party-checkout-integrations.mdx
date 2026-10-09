@@ -72,7 +72,7 @@ Your checkout identifies the customer
 ```
 
 <Note>
-  Both API calls must be made from your **backend server** — never directly from the customer's browser. See [Security Rules](#security-rules) for details.
+  All Yuko API calls must be made from your **backend server** — never directly from the customer's browser. See [Security Rules](#security-rules) for details.
 </Note>
 
 ---
@@ -203,11 +203,11 @@ curl --request GET \
         "id": "90424fa7-e8a9-4ef4-b43a-72c9b2028db5",
         "name": "$5 off your next order",
         "description": "Redeem 500 points for a $5 discount.",
-        "reward_type": "fixed_discount",
+        "reward_type": "fixed",
         "points_cost": 500,
         "reward_rule": {
           "points_required": 500,
-          "discount_value": 5
+          "value": 5
         },
         "icon": null,
         "can_redeem": true,
@@ -217,11 +217,11 @@ curl --request GET \
         "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
         "name": "10% off your next order",
         "description": "Redeem 1000 points for 10% off.",
-        "reward_type": "percentage_discount",
+        "reward_type": "percentage",
         "points_cost": 1000,
         "reward_rule": {
           "points_required": 1000,
-          "discount_percentage": 10
+          "value": 10
         },
         "icon": null,
         "can_redeem": false,
@@ -233,7 +233,7 @@ curl --request GET \
         "id": "1fd80ced-326f-4082-951b-21a38632a603",
         "customer_id": "63a2c89a-9936-4bc0-9d5f-93db46110b76",
         "reward_id": "90424fa7-e8a9-4ef4-b43a-72c9b2028db5",
-        "reward_type": "fixed_discount",
+        "reward_type": "fixed",
         "status": "active",
         "discount_code": "YUKO-TVJ-BL1",
         "points_used": 500,
@@ -249,7 +249,7 @@ curl --request GET \
 ### Response fields
 
 <ResponseField name="data.points_balance" type="integer">
-  The customer's current redeemable points balance. Display this prominently at the top of your loyalty panel.
+  The customer's current redeemable points balance. Always `0` for customers who are excluded (banned) from the loyalty program. Display this prominently at the top of your loyalty panel.
 
   Example: `650`
 </ResponseField>
@@ -268,16 +268,16 @@ curl --request GET \
       Optional longer description of the reward.
     </ResponseField>
     <ResponseField name="reward_type" type="enum">
-      The type of discount. Possible values: `fixed_discount`, `percentage_discount`, `free_shipping`, `free_product`, `store_credit`.
+      The type of reward. Possible values: `fixed`, `percentage`, `free_shipping`, `free_product`, `store_credit`.
     </ResponseField>
     <ResponseField name="points_cost" type="integer">
-      How many points the customer must spend to redeem this reward.
+      How many points the customer must spend to redeem this reward (taken from `reward_rule.points_required`).
     </ResponseField>
     <ResponseField name="reward_rule" type="object">
-      The discount configuration. Structure varies by `reward_type`. For example, `fixed_discount` includes `discount_value`; `percentage_discount` includes `discount_percentage`.
+      The reward configuration, returned as stored. Structure varies by `reward_type`. Every reward includes `points_required`; `fixed`, `percentage` and `store_credit` rewards include `value` (the amount, percentage or credit amount).
     </ResponseField>
     <ResponseField name="icon" type="object | null">
-      The reward's icon, if one is set.
+      The reward's icon, or `null` if none is set. Contains `source` (`default` or `custom`), `slug`, `id` and `url`.
     </ResponseField>
     <ResponseField name="can_redeem" type="boolean">
       `true` if the customer has enough points. `false` if not.
@@ -289,7 +289,7 @@ curl --request GET \
 </ResponseField>
 
 <ResponseField name="data.customer_rewards" type="array">
-  Every reward already issued to the customer, newest first, in any status (including used and expired ones). Filter on `status === "active"` to find codes the customer can still apply. Each item is a [Customer Reward Object](/customer-reward-object).
+  Every reward already issued to the customer, newest first, in any status (including used and expired ones) and from any source (points redemptions as well as VIP tier, referral and membership rewards, so `reward_id` isn't always a catalogue reward ID). Filter on `status === "active"` to find codes the customer can still apply. Each item is a [Customer Reward Object](/customer-reward-object).
 
   <Expandable title="customer_rewards[] fields">
     <ResponseField name="discount_code" type="string | null">
@@ -330,7 +330,11 @@ For each item in customer_rewards[] where status === "active":
 
 This endpoint tells the customer how many loyalty points they will **earn** when they complete this purchase.
 
-This is a **public endpoint** — no Shopify Customer ID is required. It works for both logged-in customers and guests.
+No Shopify Customer ID is required (you still need the API key), so it works for both logged-in customers and guests.
+
+<Warning>
+  The request carries product and variant IDs only, with no prices or quantities, so the cart amount Yuko calculates with is always `0`. As a result the endpoint currently returns `points_earned: 0` for every request. With the display logic below, the earn message stays hidden. Confirm it returns non-zero values for the merchant's earn rules before you rely on it.
+</Warning>
 
 Full API reference → [`POST /points/estimate`](/developer/api/checkout-points-estimate)
 
@@ -347,14 +351,14 @@ POST https://api.yukoapp.com/api/v1/public/points/estimate
 ### Request body
 
 <ParamField body="customer" type="object">
-  Optional. Include only if the customer is logged in. Omit entirely for guest checkouts.
+  Optional. Include only if the customer is logged in. Omit entirely for guest checkouts. If you send it, include at least `id` or `email`.
 
   <Expandable title="customer fields">
     <ParamField body="customer.id" type="string">
       Shopify Customer ID. Used to look up the customer if `email` is not provided.
     </ParamField>
     <ParamField body="customer.email" type="string (email)">
-      Customer email address. Takes priority over `id` when both are provided.
+      Customer email address. Takes priority over `id` when both are provided; if no customer matches the email, `id` isn't tried.
     </ParamField>
   </Expandable>
 </ParamField>
@@ -418,18 +422,7 @@ curl --request POST \
   }'
 ```
 
-### Example response (200) — points earned
-
-```json
-{
-  "data": {
-    "points_earned": 120,
-    "message": "You will earn 120 points after completing this purchase"
-  }
-}
-```
-
-### Example response (200) — no points earned
+### Example response (200)
 
 ```json
 {
@@ -443,15 +436,15 @@ curl --request POST \
 ### Response fields
 
 <ResponseField name="data.points_earned" type="integer">
-  The number of loyalty points the customer will earn after completing the purchase.
+  The number of loyalty points the customer will earn after completing the purchase. Currently always `0` (see the warning above).
 
-  Example: `120`
+  Example: `0`
 </ResponseField>
 
 <ResponseField name="data.message" type="string">
   A ready-to-display string. You can show this directly in your UI without additional formatting.
 
-  Example: `"You will earn 120 points after completing this purchase"`
+  Example: `"You will earn 0 points after completing this purchase"`
 
   The message is always returned, even when `points_earned` is `0`, so check `points_earned` before showing it.
 </ResponseField>
@@ -480,6 +473,10 @@ When the customer clicks "Redeem" on an available reward, call this endpoint. Yu
 
 <Note>
   This endpoint is triggered by a **customer action** — not automatically at checkout load. Only call it when the customer explicitly clicks "Redeem" on a reward option.
+</Note>
+
+<Note>
+  The request has no points amount, so only rewards with a fixed points cost can be redeemed here. A reward whose `reward_rule.method` is `increment` (customer chooses how many points to spend) always fails with `Insufficient points balance`, even when `can_redeem` is `true`. Hide the Redeem button for those rewards.
 </Note>
 
 Full API reference → [`POST /customers/rewards/redeem`](/developer/api/redeem-reward)
@@ -541,7 +538,7 @@ A `201` status means the redemption was successful and a new coupon code has bee
   "data": {
     "coupon_code": "YUKO-TVJ-BL1",
     "points_spent": 500,
-    "reward_type": "fixed_discount",
+    "reward_type": "fixed",
     "discount_value": 5,
     "expires_at": "2026-06-01T00:00:00+00:00"
   }
@@ -562,20 +559,21 @@ A `201` status means the redemption was successful and a new coupon code has bee
   Example: `500`
 </ResponseField>
 
-<ResponseField name="data.reward_type" type="enum | null">
-  The type of reward that was redeemed. Possible values: `fixed_discount`, `percentage_discount`, `free_shipping`, `free_product`, `store_credit`.
+<ResponseField name="data.reward_type" type="enum">
+  The type of reward that was redeemed. Possible values: `fixed`, `percentage`, `free_shipping`, `free_product`, `store_credit`.
 </ResponseField>
 
-<ResponseField name="data.discount_value" type="number | null">
+<ResponseField name="data.discount_value" type="number">
   The discount amount or percentage associated with the coupon.
 
-  - For `fixed_discount`: this is the amount in the store's currency (e.g. `5` means 5 off)
-  - For `percentage_discount`: this is the percentage (e.g. `10` means 10% off)
-  - Will be `null` for `free_shipping` and `free_product` reward types
+  - For `fixed`: this is the amount in the store's currency (e.g. `5` means 5 off)
+  - For `percentage`: this is the percentage (e.g. `10` means 10% off)
+  - For `free_product`: the free product's price, or `0` if it isn't known
+  - `0` for `free_shipping` and `store_credit` reward types
 </ResponseField>
 
 <ResponseField name="data.expires_at" type="string (datetime) | null">
-  When the generated coupon expires. `null` if the reward has no expiry.
+  When the generated coupon expires. `null` if the reward has no expiry, and always `null` for `store_credit` rewards.
 
   Example: `"2026-06-01T00:00:00+00:00"`
 </ResponseField>
@@ -584,9 +582,11 @@ A `201` status means the redemption was successful and a new coupon code has bee
 
 | Code  | Scenario                            | What to do                                                                                                                                             |
 | ----- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `422` | Customer doesn't have enough points (`redemption_failed`) | This shouldn't happen if you used `can_redeem` from Endpoint 1 correctly. Show the customer a message: "You don't have enough points for this reward." |
-| `422` | Reward not found or is inactive (`redemption_failed`) | The reward may have been deactivated by the merchant. Refresh the rewards list by calling Endpoint 1 again.                                            |
-| `422` | Customer is excluded from the loyalty program, or loyalty is turned off (`redemption_failed`) | Hide the loyalty panel.                                                                                     |
+| `422` | Customer doesn't have enough points (`redemption_failed`, `Insufficient points balance`) | This shouldn't happen if you used `can_redeem` from Endpoint 1 correctly. Show the customer a message: "You don't have enough points for this reward." |
+| `422` | Reward not found or is inactive (`redemption_failed`, `Reward not found or inactive`) | The reward may have been deactivated by the merchant. Refresh the rewards list by calling Endpoint 1 again.                                            |
+| `422` | Customer is excluded from the loyalty program (`Customer banned`), or loyalty is turned off (`Loyalty not enabled`) (`redemption_failed`) | Hide the loyalty panel.                                                                                     |
+| `422` | The discount or store credit couldn't be created on Shopify (`redemption_failed`, e.g. `Failed to generate platform coupon`) | Show a generic error and let the customer retry or continue without the reward. |
+| `422` | `customer_id` or `reward_id` missing, or `reward_id` isn't a UUID (`validation_error`) | Fix the request body. |
 | `404` | Customer not found                  | The `customer_id` is not in Yuko.                                                                                                                      |
 | `401` | Invalid API key                     | Check the `Authorization` header.                                                                                                                      |
 
@@ -900,7 +900,7 @@ curl --request POST \
   }'
 ```
 
-Verify: `points_earned` returns a non-zero value if the merchant has active earning campaigns configured.
+Verify: the request returns HTTP 200 with `points_earned` and `message`. `points_earned` is currently always `0` (see the warning in Endpoint 2).
 
 ### Step 5 — Test Endpoint 3 — Redeem a reward
 
@@ -922,7 +922,7 @@ Verify:
 - Response is HTTP `201` (not 200)
 - `coupon_code` is returned and is a valid Shopify discount code
 - `points_spent` matches the `points_cost` of the reward you redeemed
-- `expires_at` is present (or `null` if the reward has no expiry)
+- `expires_at` is present (or `null` if the reward has no expiry or is store credit)
 
 ### Step 6 — Test Endpoint 2 for guest checkout
 

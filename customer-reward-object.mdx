@@ -3,7 +3,7 @@ title: "Customer Reward Object"
 description: "Fields returned for a reward issued to a customer by the Yuko REST API."
 ---
 
-A customer reward is a reward that has been issued to a specific customer, such as a discount code from redeeming points. Customer rewards are returned by [List customer rewards](/developer/api/list-customer-rewards) (`GET /public/customers/rewards`, scope `rewards` read). A new one is created when you [redeem a reward](/developer/api/redeem-reward).
+A customer reward is a reward that has been issued to a specific customer, such as a discount code from redeeming points, a referral reward or a VIP tier benefit. Customer rewards are returned by [List customer rewards](/developer/api/list-customer-rewards) (`GET /public/customers/rewards`, scope `rewards` read) and in the `customer_rewards` array of [Get redeemable rewards](/developer/api/get-redeemable-rewards). A new one is created when you [redeem a reward](/developer/api/redeem-reward).
 
 **id**
 
@@ -39,11 +39,11 @@ Example:
 
 **string | null**
 
-The type of discount issued, for example `fixed_discount`, `percentage_discount`, `free_shipping`, `free_product` or `store_credit`.
+The type of discount issued, for example `fixed`, `percentage`, `free_shipping`, `free_product`, `pos_fixed` or `pos_percentage`. For rewards redeemed with points, this is the catalogue reward's `reward_type`. `null` when no type was recorded for the reward. Store credit redemptions don't create a customer reward.
 
 Example:
 
-`"fixed_discount"`
+`"fixed"`
 
 **status**
 

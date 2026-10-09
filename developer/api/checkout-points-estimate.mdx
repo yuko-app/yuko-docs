@@ -4,7 +4,7 @@ title: "Points estimate"
 
 Estimates how many loyalty points a customer will earn for a given set of cart items, based on your active **Place an order** earn rules. Customer is optional, so guest checkouts are supported.
 
-<Note>The request carries product and variant IDs only, with no prices or quantities, so cart value isn't part of the calculation. Spend-based earn rules can therefore return `0` points. Test the endpoint against your own earn rules before showing the estimate to shoppers.</Note>
+<Warning>The request carries product and variant IDs only, with no prices or quantities, so the cart amount used in the calculation is always `0`. Every **Place an order** rule then falls at or below its minimum purchase, so the endpoint currently returns `0` points for every request, including fixed-points rules. Don't show this estimate to shoppers until you've confirmed it returns non-zero values for your earn rules.</Warning>
 
 **POST /public/points/estimate**
 
@@ -32,7 +32,7 @@ This endpoint requires the `points` scope with **Read Access**. Configure key sc
 
 **object | null**
 
-The customer placing the order. Optional — omit entirely for guest checkouts.
+The customer placing the order. Optional — omit entirely (or send `null`) for guest checkouts. If you send a `customer` object, include at least `id` or `email`; an object with neither returns a `500` error.
 
 Show child attributes
 
@@ -104,11 +104,11 @@ Hide child attributes
 
 **integer**
 
-The estimated number of loyalty points the customer will earn after completing the purchase.
+The estimated number of loyalty points the customer will earn after completing the purchase. Currently always `0` (see the warning above).
 
 Example:
 
-`120`
+`0`
 
 **data.message**
 
@@ -118,7 +118,7 @@ A human-readable message to display to the customer.
 
 Example:
 
-`"You will earn 120 points after completing this purchase"`
+`"You will earn 0 points after completing this purchase"`
 
 <RequestExample>
 
@@ -213,15 +213,6 @@ $data = json_decode($response, true);
 <ResponseExample>
 
 ```json 200
-{
-  "data": {
-    "points_earned": 120,
-    "message": "You will earn 120 points after completing this purchase"
-  }
-}
-```
-
-```json 200 (no eligible earn rule)
 {
   "data": {
     "points_earned": 0,

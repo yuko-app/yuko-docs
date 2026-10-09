@@ -99,7 +99,7 @@ The tier details of the change.
 
 **object | null**
 
-The tier the customer was in before the change, with `uuid` and `name`. `null` when the customer had no tier (for `vip_tier_entry`).
+The tier the customer was in before the change, with `uuid` and `name`. `null` when the customer had no tier (always for `vip_tier_entry`, and for a manual tier assignment to a customer with no tier). `name` is an empty string if the tier has since been deleted.
 
 Example:
 
@@ -109,7 +109,7 @@ Example:
 
 **object | null**
 
-The tier the customer is in after the change, with `uuid` and `name`.
+The tier the customer is in after the change, with `uuid` and `name`. `null` for a `vip_tier_downgrade` where the customer dropped out of all tiers.
 
 Example:
 

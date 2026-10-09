@@ -2,7 +2,7 @@
 title: "Redeem a reward"
 ---
 
-Exchanges a customer's loyalty points for a reward. Deducts the required points using FIFO logic, generates a coupon or discount code on the connected platform (e.g. Shopify), and returns the code to present to the customer. Redemption fails if loyalty is turned off for the store, the customer is banned, the reward is inactive, or the customer doesn't have enough points.
+Exchanges a customer's loyalty points for a reward. Deducts the required points using FIFO logic, generates a coupon or discount code on the connected platform (e.g. Shopify), and returns the code to present to the customer. Redemption fails with a `422` `redemption_failed` error if loyalty is turned off for the store (`Loyalty not enabled`), the customer is banned (`Customer banned`), the reward doesn't exist or is inactive (`Reward not found or inactive`), the customer doesn't have enough points (`Insufficient points balance`), or the discount or store credit can't be created on the platform (for example `Failed to generate platform coupon`).
 
 **POST /public/customers/rewards/redeem**
 
@@ -64,7 +64,7 @@ Hide child attributes
 
 **string | null**
 
-The generated coupon or discount code to apply at checkout. `null` for store credit rewards.
+The generated coupon or discount code to apply at checkout. `null` for store credit rewards, which are added to the customer's Shopify store credit balance instead.
 
 Example:
 
@@ -110,7 +110,7 @@ Example:
 
 **number**
 
-The discount amount or percentage associated with the coupon. `0` when the reward type has no discount value.
+The discount amount or percentage associated with the coupon. `0` when the reward type has no discount value, including store credit rewards.
 
 Example:
 

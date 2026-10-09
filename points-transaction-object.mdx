@@ -45,7 +45,7 @@ Example:
 
 **integer**
 
-The number of points added or removed. Always positive; use `entry_type` for the direction.
+The number of points added or removed. Always positive; use `entry_type` for the direction. For the `store_credit` credit entry recorded when a customer redeems a store credit reward, this is the store credit amount (rounded down to a whole number) rather than points.
 
 Example:
 
@@ -55,7 +55,7 @@ Example:
 
 **string**
 
-The action that created the transaction, for example `purchase` or `point_adjustment`.
+The action that created the transaction, for example `purchase`, `point_adjustment` (manual and REST API adjustments) or the reward type for redemptions.
 
 Example:
 

@@ -2,7 +2,7 @@
 title: "List booster campaigns"
 ---
 
-Retrieves a paginated list of your organisation's **active** booster campaigns. Results are sorted by `created_at` in descending order. Draft, completed, cancelled and disabled campaigns are not returned.
+Retrieves a paginated list of your organisation's **active** booster campaigns. Results are sorted by `created_at` in descending order. Draft, completed, cancelled and disabled campaigns are not returned. The list is filtered by status only, not by date, so check `starts_at`, `ends_at` and `schedule` to see whether a campaign is running right now.
 
 **GET /public/booster-campaigns**
 
@@ -180,7 +180,7 @@ Example:
 
 **data.created_at**
 
-**string\<date-time\>**
+**string\<date-time\> | null**
 
 Example:
 

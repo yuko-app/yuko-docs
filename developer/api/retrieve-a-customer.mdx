@@ -82,7 +82,7 @@ Example:
 
 **data.email**
 
-**string**
+**string | null**
 
 The customer's email address.
 
@@ -178,7 +178,7 @@ Hide child attributes
 
 **integer**
 
-The customer's current redeemable points balance. Always `0` for banned customers.
+The customer's current redeemable points balance. Always `0` for customers who are banned or excluded from the loyalty program by a customer tag.
 
 Example:
 

@@ -28,5 +28,5 @@ Most errors return an `error` object with a machine-readable `code` and a human-
 | 422 | `validation_error` | A required parameter is missing or invalid. |
 | 422 | `adjustment_failed` | A points adjustment couldn't be made, for example because of an insufficient points balance. |
 | 422 | `redemption_failed` | A reward couldn't be redeemed, for example because of an insufficient points balance or an inactive reward. |
-| 429 | | Your API key has exceeded its [rate limit](/developer/api/rate-limits). |
+| 429 | | Your API key has exceeded its [rate limit](/developer/api/rate-limits). The body is `{"message": "Too Many Attempts."}` and has no `error` object. |
 | 500 | `internal_error` | An internal error occurred in Yuko. Retry your request. If the issue persists, contact Yuko support. |

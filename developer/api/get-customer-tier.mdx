@@ -52,7 +52,7 @@ Hide child attributes
 
 **object | null**
 
-The customer's current VIP tier. `null` if the customer has not reached any tier threshold.
+The customer's current VIP tier. `null` if the customer has not reached any tier threshold or VIP tiers are turned off.
 
 Hide child attributes
 
@@ -102,13 +102,21 @@ Example:
 
 **object[]**
 
-The benefits associated with this tier.
+The benefits associated with this tier. Each item has `name` (string), `benefit_type` (one of `fixed`, `percentage`, `free_product`, `free_shipping`, `bonus_points`, `store_credit`, `custom`) and `benefit_value` (object whose shape depends on `benefit_type`).
+
+**data.current_tier.created_at**
+
+**string\<date-time\>**
+
+Example:
+
+`"2025-09-12T15:44:44+00:00"`
 
 **data.next_tier**
 
 **object | null**
 
-The next VIP tier the customer can reach. `null` if the customer is already at the highest tier.
+The next VIP tier the customer can reach, with the same fields as `current_tier`. `null` if the customer is already at the highest tier, hasn't been evaluated for tiers yet, or VIP tiers are turned off.
 
 Hide child attributes
 
@@ -144,17 +152,35 @@ Example:
 
 `2.0`
 
+**data.next_tier.icon**
+
+**object | null**
+
+The tier icon, or `null` if none is set. Same shape as `current_tier.icon`.
+
+Example:
+
+`null`
+
 **data.next_tier.benefits**
 
 **object[]**
 
-The benefits associated with the next tier.
+The benefits associated with the next tier. Same shape as `current_tier.benefits`.
+
+**data.next_tier.created_at**
+
+**string\<date-time\>**
+
+Example:
+
+`"2025-09-12T15:44:44+00:00"`
 
 **data.progress_to_next_tier**
 
 **object | null**
 
-The customer's progress toward the next tier. `null` if the customer is at the highest tier.
+The customer's progress toward the next tier. `null` if there's no `next_tier` or VIP tiers are turned off.
 
 Hide child attributes
 
@@ -162,7 +188,7 @@ Hide child attributes
 
 **integer**
 
-The customer's current qualifying value (points earned, spend, etc.).
+The customer's current qualifying value (points earned, amount spent or orders placed), rounded down to a whole number.
 
 Example:
 
@@ -192,7 +218,7 @@ Example:
 
 **number**
 
-The percentage of the way to the next tier.
+The percentage of the way to the next tier, rounded to 2 decimal places.
 
 Example:
 
@@ -202,7 +228,7 @@ Example:
 
 **string | null**
 
-The metric used to determine tier progression.
+The metric used to determine tier progression. Can be `null` even when VIP tiers are set up, so don't rely on it; the metric is set in your VIP tier settings.
 
 Available options:
 
@@ -333,6 +359,18 @@ $data = json_decode($response, true);
   "error": {
     "code": "not_found",
     "message": "Customer not found"
+  }
+}
+```
+
+```json 422
+{
+  "error": {
+    "code": "validation_error",
+    "message": "The customer id field is required.",
+    "details": {
+      "customer_id": ["The customer id field is required."]
+    }
   }
 }
 ```

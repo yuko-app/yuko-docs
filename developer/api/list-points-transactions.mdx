@@ -4,6 +4,8 @@ title: "List points transactions"
 
 Retrieves a paginated list of point transactions for a customer. Results are sorted by `created_at` in descending order.
 
+The list also includes the credit entry recorded when a customer redeems a store credit reward (`action_type` `store_credit`). For that entry, `points` is the store credit amount (rounded down to a whole number), not a number of points; the points spent appear as a separate `debit` entry.
+
 **GET /public/customers/transactions**
 
 #### **Authorizations**
@@ -130,7 +132,7 @@ Example:
 
 **string**
 
-The internal action that generated this transaction.
+The action that generated this transaction, for example `purchase`, `signup`, `point_adjustment` (manual or REST API adjustments) or the reward type for redemptions.
 
 Example:
 

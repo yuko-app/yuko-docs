@@ -4,7 +4,7 @@ title: "Create a points transaction"
 
 Add or remove points from a customer's balance. Pass a positive `points` value to credit points, or a negative value to debit them.
 
-A debit larger than the customer's current points balance is rejected with `adjustment_failed`. Adjustments for banned customers are also rejected. The transaction is recorded as a `point_adjustment` with `source` set to `rest_api`.
+A debit larger than the customer's current points balance is rejected with `adjustment_failed` (`Insufficient point balance`). Adjustments for banned customers are also rejected (`Customer is banned`). The transaction is recorded with `action_type` `point_adjustment` and `source` `rest_api`. Points credited through the API don't expire.
 
 **POST /public/customers/transactions**
 

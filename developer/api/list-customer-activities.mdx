@@ -44,7 +44,7 @@ Example:
 
 **string**
 
-Filter results to activities from the specified source. Common values include `loyalty_campaigns`, `loyalty_rewards`, `loyalty_customer_rewards`, `loyalty_transactions`, `loyalty_tiers`, `loyalty_tier_benefits`, `referral_transactions` and `users` (manual and API point adjustments).
+Filter results to activities from the specified source. Common values include `loyalty_campaigns`, `loyalty_rewards`, `loyalty_customer_rewards`, `loyalty_transactions`, `loyalty_tiers`, `loyalty_tier_benefits`, `events` (workflow point awards), `referral_transactions`, `referral_rewards`, `referral_advocates` and `users` (manual and API point adjustments). Exact match.
 
 Example:
 
@@ -54,7 +54,7 @@ Example:
 
 **string**
 
-Filter results to a specific activity type (e.g. `purchase`, `point_adjustment`, `reward_used`).
+Filter results to a specific activity type (e.g. `purchase`, `point_adjustment`, `reward_used`, `point_expiry`, `vip_tier_upgrade`). Exact match.
 
 Example:
 
@@ -158,7 +158,7 @@ Example:
 
 **integer**
 
-The number of points involved in this activity.
+The number of points involved in this activity, taken from `metadata.earning_value` (or `metadata.used_point` for redemptions). `0` when no points were involved.
 
 Example:
 
@@ -178,7 +178,7 @@ Example:
 
 **object**
 
-Additional details about the activity. Structure varies by `activity_type`.
+The full activity payload. Structure varies by `activity_type`. Returned as an empty array (`[]`) when the activity has no payload.
 
 **data.created_at**
 
@@ -299,9 +299,13 @@ $data = json_decode($response, true);
       "points": 100,
       "earning_type": "points",
       "metadata": {
-        "earning_value": 100,
+        "entry_type": "credit",
         "earning_type": "points",
-        "entry_type": "credit"
+        "earning_value": 100,
+        "expire_date": null,
+        "on_hold_until": null,
+        "campaign_uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "earn_transaction_uuid": "c3d4e5f6-a7b8-9012-cdef-a01234567890"
       },
       "created_at": "2026-02-15T08:30:00+00:00"
     },
@@ -316,7 +320,12 @@ $data = json_decode($response, true);
       "earning_type": "points",
       "metadata": {
         "description": "Bonus for completing a survey",
-        "source": "rest_api"
+        "source": "rest_api",
+        "transaction_uuid": "b8c9d0e1-f2a3-4567-bcde-f01234567890",
+        "point_ledger_uuid": "c9d0e1f2-a3b4-5678-cdef-a01234567890",
+        "entry_type": "credit",
+        "earning_type": "points",
+        "earning_value": 50
       },
       "created_at": "2026-02-10T12:00:00+00:00"
     }
@@ -338,6 +347,18 @@ $data = json_decode($response, true);
   "error": {
     "code": "not_found",
     "message": "Customer not found"
+  }
+}
+```
+
+```json 422
+{
+  "error": {
+    "code": "validation_error",
+    "message": "The customer id field is required.",
+    "details": {
+      "customer_id": ["The customer id field is required."]
+    }
   }
 }
 ```

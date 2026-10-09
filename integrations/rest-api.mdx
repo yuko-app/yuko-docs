@@ -24,7 +24,7 @@ Full endpoint reference is in the **API Reference** tab — this page covers set
 
 - Custom storefronts (Hydrogen, headless).
 - Server-side automations that need to read or write Yuko data.
-- Migrating customers from another loyalty program.
+- Moving points balances over from another loyalty program (customers must already exist in Yuko; they're synced from your store automatically).
 - Building admin tools that show Yuko data alongside your other systems.
 
 ## Before you start
@@ -49,7 +49,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
     - **Custom Key**: click **Next**, then on the **Customize API Scopes** screen set each scope to **No Access**, **Read Access** or **Read/Write Access**.
   </Step>
   <Step title="Create and copy the key">
-    Click **Create** (or **Create API Key** for a custom key). The **Your Private Key** popup shows the key, which starts with `py_`. This is the only time the key is visible, so copy it to a password manager or secrets store.
+    Click **Create** (or **Create API Key** for a custom key). The **Your Private Key** popup shows the key, which starts with `py_`. Copy it to a password manager or secrets store.
   </Step>
   <Step title="Authenticate requests">
     Send the key as a Bearer token in the `Authorization` header. Details: [Authentication](/developer/api/authentication).
@@ -58,7 +58,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 ## Managing keys
 
-The **API keys** list shows each key's name, masked token, status, scopes, when it was last used, and when it expires or was revoked. You can search by token name.
+The **API keys** list shows each key's name, masked token (use **Show token** or **Copy token** to see or copy the full key), status, scopes, when it was last used, and when it expires or was revoked. You can search by token name.
 
 To revoke a key, use the **Actions** column and confirm in the **Revoke API key** dialog. Any integration using the key loses access immediately, and this can't be undone.
 
@@ -76,7 +76,7 @@ All requests use Bearer token authentication. Each key only works for the scopes
 
 <Tip>**Give each key only the scopes it needs.** Use a **Custom Key** instead of full access where you can.</Tip>
 <Tip>**Rotate API keys regularly** and immediately when a developer leaves: create a new key, switch your integration to it, then revoke the old one.</Tip>
-<Tip>**Use webhooks instead of polling** for real-time data — the REST API is for reads and on-demand writes.</Tip>
+<Tip>**Cache configuration data** such as rewards, VIP tiers and earning rules instead of fetching it on every request. It rarely changes, and caching keeps you well under the rate limit.</Tip>
 <Tip>**Tag every key with a name** so you can revoke a single integration without breaking others.</Tip>
 
 ## FAQs
@@ -86,7 +86,7 @@ All requests use Bearer token authentication. Each key only works for the scopes
     Strongly recommended. It limits blast radius if one is leaked.
   </Accordion>
   <Accordion title="I lost my key. Can I see it again?">
-    No. The full key is shown only once, when you create it. Create a new key and revoke the old one.
+    Yes. In **Integrations → REST API**, use **Show token** or **Copy token** on the key in the **API keys** list. If you think a key has leaked, create a new key and revoke the old one.
   </Accordion>
   <Accordion title="What's the rate limit?">
     See [Rate Limits](/developer/api/rate-limits) in the API Reference.
