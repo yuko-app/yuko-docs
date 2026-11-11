@@ -84,6 +84,7 @@
                   "loyalty/ways-to-earn/tiktok-follow",
                   "loyalty/ways-to-earn/pinterest-follow",
                   "loyalty/ways-to-earn/visit-url",
+                  "loyalty/ways-to-earn/custom-action",
                   "loyalty/ways-to-earn/subscribe-to-sms",
                   "loyalty/ways-to-earn/subscribe-to-whatsapp"
                 ]
@@ -102,7 +103,7 @@
                 ]
               },
               {
-                "group": "Booster Campaigns",
+                "group": "Bonus Campaigns",
                 "pages": [
                   "loyalty/booster-campaigns/overview",
                   "loyalty/booster-campaigns/multiplier",
@@ -220,6 +221,7 @@
               "integrations/shopify-pos",
               "integrations/klaviyo",
               "integrations/omnisend",
+              "integrations/mailchimp",
               {
                 "group": "WhatsApp",
                 "pages": [
@@ -236,11 +238,12 @@
                   "integrations/botspace",
                   "integrations/askeva",
                   "integrations/whamaa",
-                  "integrations/convertway"
+                  "integrations/convertway",
+                  "integrations/wappcloud"
                 ]
               },
               "integrations/judgeme",
-              "integrations/checkout-boost",
+              "integrations/return-prime",
               "integrations/retainful"
             ]
           },

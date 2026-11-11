@@ -1,6 +1,6 @@
 ---
 title: Loyalty Settings
-description: Program-wide loyalty settings — point rounding and labels, cash value of points, which order statuses earn and revert points, login trigger, storefront languages, customer exclusions, Shopify order tags and reset.
+description: Program-wide loyalty settings — point rounding and labels, which order statuses earn and revert points (including returns), login trigger, storefront languages, customer exclusions, Shopify order tags and reset. Also covers the points to cash conversion rate.
 ---
 
 <Note>
@@ -10,6 +10,8 @@ description: Program-wide loyalty settings — point rounding and labels, cash v
 ## Introduction
 
 The **Settings** tab holds the rules that apply across your whole loyalty program: what points are called, how fractional points are rounded, which order status earns points and which status takes them back, and which customers are left out of the program.
+
+The **Points to cash conversion rate** is set on the **Programs** tab, under **Setup Overview**. See [Points to cash conversion rate](#points-to-cash-conversion-rate) below.
 
 Earning amounts, expiry and product exclusions are **not** set here. Those live on each [Way to Earn](/loyalty/ways-to-earn/overview) and [Way to Redeem](/loyalty/ways-to-redeem/overview).
 
@@ -21,7 +23,7 @@ Every store handles orders differently. Some want points the moment an order is 
 
 - During initial setup, before you launch the program.
 - When you rename points (for example *Stars* or *Coins*).
-- When you change when orders earn points (Paid, Fulfilled or Delivered).
+- When you change when orders earn points (Paid, Fulfilled or Delivered), or when they lose them (Refunded, Cancelled or Return closed).
 - When you want to keep staff, wholesale or test accounts out of the program.
 - When you need to wipe test data before going live.
 
@@ -32,9 +34,8 @@ Every store handles orders differently. Some want points the moment an order is 
 | **Rounding Type** | How fractional points are rounded: Round, Floor or Ceil |
 | **Point Label** | Singular and plural name for points |
 | **Store Credit Label** | Singular and plural name for store credit |
-| **Points to Cash Conversion Rate** | What 100 points are worth, used to show customers the value of their balance |
 | **Earning Status** | Which order status earns points: Paid, Fulfilled and/or Delivered |
-| **Revert Point Status** | Which order status takes points back: Refunded and/or Cancelled |
+| **Revert Point Status** | Which order status takes points back: Refunded, Cancelled and/or Return closed |
 | **Custom login trigger** | How logged-out customers are sent to log in from Yuko widgets |
 | **Primary language** / **Languages** | The storefront languages your loyalty widgets use |
 | **Exclude customers by tag** | Customer tags that keep customers out of the program |
@@ -58,17 +59,14 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
     Pick **Round** (the default), **Floor** (always round down) or **Ceil** (always round up). This decides what happens when a calculation produces a fraction of a point, for example 1 point per $1 on a $24.60 order.
   </Step>
   <Step title="Name your points and store credit">
-    - **Point Label** — **Singular** and **Plural** fields (defaults `point` and `points`). Customers see these in widgets and emails.
+    - **Point Label** — **Singular** and **Plural** fields (defaults `point` and `points`). Customers see these in widgets and emails, wherever the `[points_label]` shortcode is used.
     - **Store Credit Label** — **Singular** and **Plural** fields (defaults `store credit` and `store credits`).
-  </Step>
-  <Step title="Set the Points to Cash Conversion Rate">
-    Answer *"What are 100 points worth in your store?"*. Enter the cash value of 100 points, for example `1` for $1. Yuko uses this to show customers what their points balance is worth in notifications and emails.
   </Step>
   <Step title="Choose the Earning Status">
     Tick one or more of **Paid** (the default), **Fulfilled** and **Delivered**. An order earns points the first time it reaches any ticked status, and only once.
   </Step>
   <Step title="Choose the Revert Point Status">
-    Tick **Refunded**, **Cancelled** or both (both are ticked by default). When an order reaches a ticked status, the points it earned are taken back.
+    Tick one or more of **Refunded**, **Cancelled** and **Return closed**. **Refunded** and **Cancelled** are ticked by default. When an order reaches a ticked status, the points it earned are taken back. You must tick at least one.
   </Step>
   <Step title="Set a Custom login trigger (optional)">
     When a logged-out customer opens the launcher, spotlight or cart redeem widget, Yuko can start your store's own login flow instead of redirecting to the Shopify account page:
@@ -109,8 +107,9 @@ If you tick more than one, the order earns at whichever ticked status it reaches
 
 - **Refunded** — points are taken back when the order's payment status becomes refunded.
 - **Cancelled** — points are taken back when the order is cancelled.
+- **Return closed** — points are taken back when the order's return status in Shopify becomes **Returned**, that is, the return is closed. Use this if your store handles returns without refunding the payment, for example exchanges or returns for store credit.
 
-Both the base points and any VIP tier bonus points from that order are reverted. If the order's points are still in their [holding period](/loyalty/ways-to-earn/place-an-order#holding-period), they're cancelled before they ever reach the customer's balance.
+Each order is reverted once, even if it later reaches another ticked status. Both the base points and any VIP tier bonus points from that order are reverted. If the order's points are still in their [holding period](/loyalty/ways-to-earn/place-an-order#holding-period), they're cancelled before they ever reach the customer's balance.
 
 ### Excluded customers
 
@@ -120,23 +119,41 @@ A customer is excluded from the program if they have one of your excluded tags, 
 
 Order tags are written to the Shopify order, not the customer. Use them to filter orders in Shopify, build reports, or trigger Shopify Flow automations for loyalty orders.
 
-### Points to Cash Conversion Rate
-
-This rate is for display. Each reward defines its own points cost and value, so changing the rate doesn't change what any reward costs or gives.
 
 ### Decision guidance
 
 - **Paid** suits most stores. Choose **Fulfilled** or **Delivered** if you see many cancellations before shipping, or if you want points to arrive when the customer has the product.
 - Keep both **Refunded** and **Cancelled** ticked unless you have a clear reason to let customers keep points from those orders.
+- Tick **Return closed** if customers often return items without a refund.
 - For a return window, combine **Paid** with a **Holding period** on [Place an order](/loyalty/ways-to-earn/place-an-order) instead of switching to Delivered.
 - Pick a points name that fits your brand but stays obvious: *Points*, *Stars* and *Coins* all work.
 
 ### Limitations
 
 - Changing the Earning Status doesn't re-process past orders.
-- Revert Point Status works on the whole order. A partial refund doesn't take back a share of the points.
+- Revert Point Status works on the whole order. A partial refund or a partial return doesn't take back a share of the points.
 - Order tags and the Orders section are only available on Shopify stores.
 - There's no program-wide points expiry or product exclusion here. Set expiry on each Way to Earn and Way to Redeem, and product or collection exclusions on [Place an order](/loyalty/ways-to-earn/place-an-order).
+
+## Points to cash conversion rate
+
+The points to cash conversion rate is the value of 100 points in your store currency. Yuko uses it to show customers what their balance is worth in notifications and emails, and to calculate **Points Owed** in [Analytics](/analytics/reports).
+
+<Steps>
+  <Step title="Open Setup Overview">
+    Go to **Loyalty → Programs**. **Setup Overview** appears once the **Place an order** Way to Earn is active.
+  </Step>
+  <Step title="Edit the rate">
+    Next to **Points to cash conversion rate**, click **Edit**. The default rate is 1, that is, 100 points are worth 1 unit of your store currency.
+  </Step>
+  <Step title="Enter the value of 100 points">
+    Answer *"What are 100 points worth in your store?"* with an amount greater than 0, for example `1` for $1. Click **Save**.
+  </Step>
+</Steps>
+
+Setup Overview then shows the rate as, for example, *100 points = $1*, plus your **Reward value rate** and **Cost per point**.
+
+This rate is for display and reporting. Each reward defines its own points cost and value, so changing the rate doesn't change what any reward costs or gives.
 
 ## Backfill points for past orders
 
@@ -173,6 +190,12 @@ To run it, click **Reset customer activities**, type `RESET` in the confirmation
   </Accordion>
   <Accordion title="What happens to points from a refunded order?">
     If **Refunded** is ticked under Revert Point Status, Yuko takes back the points the order earned, including any VIP tier bonus. Points still on hold are cancelled instead.
+  </Accordion>
+  <Accordion title="Can I take back points when a customer returns an order without a refund?">
+    Yes. Tick **Return closed** under Revert Point Status. Yuko takes back the order's points when Shopify marks the return as closed (return status **Returned**).
+  </Accordion>
+  <Accordion title="Where did the Points to Cash Conversion Rate go?">
+    It moved to **Setup Overview** on the **Loyalty → Programs** tab. See [Points to cash conversion rate](#points-to-cash-conversion-rate).
   </Accordion>
   <Accordion title="Does Yuko tag customers in Shopify?">
     The tagging setting here tags **orders**, not customers. Use the **Earned orders** and **Redeemed orders** tags to label orders that earned or redeemed points.

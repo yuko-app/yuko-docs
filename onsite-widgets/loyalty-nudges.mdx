@@ -1,6 +1,6 @@
 ---
 title: Loyalty Nudges
-description: A strip pinned to the top or bottom of every storefront page that opens a loyalty drawer with the customer's points, VIP tier, rewards, ways to earn (including booster campaigns) and ways to redeem.
+description: A strip pinned to the top or bottom of every storefront page that opens a loyalty drawer with the customer's points, VIP tier, rewards, ways to earn (including bonus campaigns) and ways to redeem.
 ---
 
 <Note>
@@ -9,9 +9,9 @@ description: A strip pinned to the top or bottom of every storefront page that o
 
 ## Introduction
 
-Loyalty Nudges is a slim strip pinned to the top or bottom of every storefront page. When a customer taps it, a drawer slides open with their points balance, VIP tier, earned rewards, ways to earn (including active **booster campaigns**) and ways to redeem, without leaving the page.
+Loyalty Nudges is a slim strip pinned to the top or bottom of every storefront page. When a customer taps it, a drawer slides open with their points balance, VIP tier, earned rewards, ways to earn (including active **bonus campaigns**) and ways to redeem, without leaving the page.
 
-It's a natural home for [Booster Campaigns](/loyalty/booster-campaigns/overview): once a booster is live, shoppers see it on every page without you sending an email.
+It's a natural home for [Bonus Campaigns](/loyalty/booster-campaigns/overview): once a bonus campaign is live, shoppers see it on every page without you sending an email.
 
 ## What problem this solves
 
@@ -25,16 +25,16 @@ A loyalty program that only lives in the customer account is invisible to someon
 
 ## When to use
 
-- You run booster campaigns and want them visible on every page.
+- You run bonus campaigns and want them visible on every page.
 - You want a persistent loyalty surface that carries a short personalised message.
-- You want points, rewards, VIP and boosters together in one place on the storefront.
+- You want points, rewards, VIP and bonus campaigns together in one place on the storefront.
 
 ## Overview
 
 - A strip with separate **Logged-out text** and **Logged-in text**.
 - A drawer with four sections (**Header banner**, **Your rewards**, **Ways to earn** and **Ways to redeem**) that you can reorder by dragging and switch on or off.
 - The header banner has a **Member** version (points and tier) and a **Visitor** version (a "join our loyalty program" card). The rest of the drawer is the same for both, but visitors don't get action buttons until they join.
-- Booster campaigns can show all active boosters or a hand-picked list.
+- The drawer can show all active bonus campaigns or a hand-picked list.
 - **Visibility** controls for top or bottom placement, device and URL exclusions.
 - Colours, **Drawer Height** and **Custom CSS** on the **Styles** tab.
 - Each language has its own copy of the text. Use the **Editing language** picker.
@@ -70,8 +70,8 @@ All content settings are on the **Configuration** tab.
   <Step title="Arrange the drawer sections">
     In **Drawer sections**, drag **Header banner**, **Your rewards**, **Ways to earn** and **Ways to redeem** into order, tick the ones to show, and expand each one to edit its text (see the table below).
   </Step>
-  <Step title="Choose booster campaigns">
-    In **Booster campaigns**, keep **Show booster campaigns** on to show boosters inside Ways to earn. Under **Campaigns to show**, leave everything unselected to show every active booster, or select specific campaigns. The **Ways to earn** section must be on for boosters to appear.
+  <Step title="Choose bonus campaigns">
+    In **Bonus campaigns**, keep **Show bonus campaigns** on to show bonus campaigns inside Ways to earn. Leave every campaign in the list unselected to show every active bonus campaign, or select specific campaigns. The **Ways to earn** section must be on for bonus campaigns to appear.
   </Step>
   <Step title="Set visibility">
     In **Visibility**:
@@ -91,10 +91,10 @@ All content settings are on the **Configuration** tab.
 
 | Section | Settings |
 |---|---|
-| **Header banner** (Member) | **Points section heading** (default *Your Balance*), **Points balance text** (`[point_balance] [points_label]`), **Points worth text** (*Worth `[points_cash_value]`*), **Points multiplier benefit text** (`[multiplier_value]x multiplier`, shown only when the multiplier is greater than 1), and the **Points balance**, **Points worth value** and **VIP tier** toggles. |
+| **Header banner** (Member) | **Points section heading** (default *Your Balance*), **Points balance text** (`[point_balance] [points_label]`), **Points worth text** (*Worth `[points_cash_value]`*), and the **Points balance**, **Points worth value** and **VIP tier** toggles. |
 | **Header banner** (Visitor) | **Title** (default *Join Our Loyalty Program*), **Description**, **Create account button** (default *Join Now*) and **Sign in**. In **Sign in**, `[signin:Sign in]` becomes a sign-in link and the text inside becomes the link text. |
-| **Your rewards** | **Your Rewards heading**, **Apply button text (Your Rewards)** and **Expiration label (Your Rewards)** (*Expires on `[expiration_date]`*, hidden automatically when a reward doesn't expire). |
-| **Ways to earn** | **Ways to earn heading**, **Ways to earn — order** (**Booster campaigns first**, the default, or **Standard campaigns first**), **Edit date button text**, **Save date button text** and **Cancel button text** for birthday campaigns, and **Like**, **Follow**, **Share** and **Visit** button text for social and visit campaigns. |
+| **Your rewards** | **Your Rewards heading**, **Apply button text (Your Rewards)**, **Applied button text (Your Rewards)** (default *Applied*, shown with a tick once the coupon is in the cart) and **Expiration label (Your Rewards)** (*Expires on `[expiration_date]`*, hidden automatically when a reward doesn't expire). |
+| **Ways to earn** | **Ways to earn heading**, **Ways to earn — order** (**Bonus campaigns first**, the default, or **Standard campaigns first**), **Edit date button text**, **Save date button text** and **Cancel button text** for birthday campaigns, and **Like**, **Follow**, **Share** and **Visit** button text for social and visit campaigns. |
 | **Ways to redeem** | **Ways to redeem heading**, **Redeem button text (Ways to Redeem)**, **Insufficient points text** (*Needs `[points_needed]` more `[points_label]`*) and **Load more button**. |
 
 At least one of **Points balance**, **VIP tier** or **Your rewards** must stay on.
@@ -112,8 +112,8 @@ Loyalty Nudges renders on every page through the **Yuko App** embed, so there's 
   <Step title="Test as a member">
     Log in as a customer. The strip switches to your logged-in text, and the drawer shows their balance, tier and rewards.
   </Step>
-  <Step title="Test boosters">
-    With at least one active booster campaign, open the drawer and check that it appears under Ways to earn.
+  <Step title="Test bonus campaigns">
+    With at least one active bonus campaign, open the drawer and check that it appears under Ways to earn.
   </Step>
   <Step title="Test exclusions">
     Open a URL that matches one of your conditions and confirm the strip is hidden.
@@ -129,7 +129,6 @@ Loyalty Nudges renders on every page through the **Yuko App** embed, so there's 
 | `[point_balance]` | The customer's current points balance. |
 | `[points_label]` | Your points label from Loyalty → Settings. |
 | `[points_cash_value]` | What the balance is worth in your store currency. |
-| `[multiplier_value]` | The customer's VIP tier multiplier. |
 | `[expiration_date]` | A reward's expiry date. |
 | `[points_needed]` | How many more points a reward needs. |
 
@@ -140,8 +139,9 @@ See [all widget placeholders](/onsite-widgets/overview#placeholders).
 1. The **Yuko App** embed loads Loyalty Nudges on every page, unless the device or URL is excluded.
 2. Visitors see the logged-out strip. Members see the logged-in strip, personalised with their name and balance.
 3. Tapping the strip opens the drawer with the sections you enabled, in your order.
-4. Booster campaigns load live, filtered by your **Campaigns to show** selection, and show progress where the campaign type supports it.
-5. Members can apply rewards and redeem points straight from the drawer. Visitors can browse, then create an account or sign in.
+4. Bonus campaigns load live, filtered by your selection, and show progress where the campaign type supports it.
+5. Members can apply rewards and redeem points straight from the drawer. Applying or redeeming copies the discount code to the clipboard and adds it to the cart; for a free product reward, Yuko also adds the product. The button then shows your **Applied** text with a tick. If something goes wrong, an error appears under that reward for a few seconds.
+6. Visitors can browse, then create an account or sign in.
 
 ### Custom login trigger
 
@@ -150,8 +150,8 @@ By default, the visitor **Create account button** and sign-in link go to the Sho
 ### Decision guidance
 
 - **Top or bottom:** bottom is easier to reach on mobile and stays out of the way of sticky headers. Top is more prominent.
-- **All boosters or a hand-picked list:** start with all. Narrow the list if you run many campaigns at once.
-- **Boosters first or standard campaigns first:** boosters first puts time-limited offers at the top.
+- **All bonus campaigns or a hand-picked list:** start with all. Narrow the list if you run many campaigns at once.
+- **Bonus campaigns first or standard campaigns first:** bonus campaigns first puts time-limited offers at the top.
 
 ### Limitations
 
@@ -160,13 +160,13 @@ By default, the visitor **Create account button** and sign-in link go to the Sho
 
 ## Examples
 
-- **Double-points weekend:** the drawer opens with your Multiplier booster at the top of Ways to earn on every page.
-- **Spending-goal progress:** a Spending Goal booster shows each member how close they are to the bonus.
+- **Double-points weekend:** the drawer opens with your Multiplier bonus campaign at the top of Ways to earn on every page.
+- **Spending-goal progress:** a Spending Goal bonus campaign shows each member how close they are to the bonus.
 - **Personal strip:** *Hey Sarah, you have 240 points!* on every page reminds members of their balance.
 
 ## Best practices
 
-<Tip>**Turn on Loyalty Nudges before you launch a booster.** It's the simplest way to show the campaign on every page.</Tip>
+<Tip>**Turn on Loyalty Nudges before you launch a bonus campaign.** It's the simplest way to show the campaign on every page.</Tip>
 <Tip>**Personalise the logged-in text.** Use `[first_name]` and `[point_balance]` so the strip reads as personal.</Tip>
 <Tip>**Exclude pages where the strip competes.** Blog posts and dedicated landing pages are common choices.</Tip>
 <Tip>**Test on mobile first.** Most shoppers will open the drawer on a phone, so check the **Drawer Height** there.</Tip>
@@ -177,8 +177,8 @@ By default, the visitor **Create account button** and sign-in link go to the Sho
   <Accordion title="How is this different from Floating Rewards?">
     [Floating Rewards](/onsite-widgets/floating-launcher) is a corner button that opens a full panel with VIP, referrals, membership and activity. Loyalty Nudges is a full-width strip with a message, which opens a drawer focused on points, rewards, earning and redeeming. You can use either or both.
   </Accordion>
-  <Accordion title="Why don't I see my booster in the drawer?">
-    Check that the booster is active, **Show booster campaigns** is on, the **Ways to earn** section is on, and the booster is selected under **Campaigns to show** (or nothing is selected, so all show). The customer must also match the campaign's targeting.
+  <Accordion title="Why don't I see my bonus campaign in the drawer?">
+    Check that the campaign is active in **Loyalty → Programs → Bonus Campaigns**, **Show bonus campaigns** is on, the **Ways to earn** section is on, and the campaign is selected in the **Bonus campaigns** list (or nothing is selected, so all show). The customer must also match the campaign's targeting.
   </Accordion>
   <Accordion title="Can I show different text per language?">
     Yes. Use the **Editing language** picker at the top of the editor. Each of your store's published languages keeps its own copy of the text.

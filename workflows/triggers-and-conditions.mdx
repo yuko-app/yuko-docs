@@ -18,7 +18,7 @@ Inside the workflow, an **If / Else** node splits customers into a **Yes** and a
 
 ## Triggers
 
-The trigger list is grouped into **Loyalty**, **VIP Tiers**, **Referral**, **Membership** and **Orders**, and you can search it. A trigger only appears when its module is turned on. For example, booster triggers need Booster Campaigns, and membership triggers need Memberships.
+The trigger list is grouped into **Loyalty**, **VIP Tiers**, **Referral**, **Membership** and **Orders**, and you can search it. A trigger only appears when its module is turned on. For example, the **Booster Campaign** triggers need Bonus Campaigns turned on, and membership triggers need Memberships.
 
 ### Loyalty
 
@@ -37,10 +37,10 @@ The trigger list is grouped into **Loyalty**, **VIP Tiers**, **Referral**, **Mem
 | **Anniversary Reminder** | A customer's anniversary is coming up |
 | **Customer Anniversary** | On the customer's anniversary |
 | **One-time Campaign Points Awarded** | A customer receives points from a [One-time Campaign](/loyalty/one-time-campaigns) that has **Trigger workflow events** turned on |
-| **Benefit Unlocked** | A tier, booster or membership benefit is executed for a customer (including each recurring execution) |
-| **Booster Campaign Entered** | A customer takes their first qualifying action in a [booster campaign](/loyalty/booster-campaigns/overview) |
-| **Booster Campaign Progression** | A customer's progress toward a booster goal advances (streak step, milestone, spending goal) |
-| **Booster Campaign Rewarded** | A customer completes a booster campaign and its rewards are issued (fires once, even with several rewards) |
+| **Benefit Unlocked** | A tier, bonus campaign or membership benefit is executed for a customer (including each recurring execution) |
+| **Booster Campaign Entered** | A customer takes their first qualifying action in a [bonus campaign](/loyalty/booster-campaigns/overview) |
+| **Booster Campaign Progression** | A customer's progress toward a bonus campaign goal advances (streak step, milestone, spending goal) |
+| **Booster Campaign Rewarded** | A customer completes a bonus campaign and its rewards are issued (fires once, even with several rewards) |
 
 ### VIP Tiers
 
@@ -90,8 +90,8 @@ The fields depend on the trigger:
 | Fields | Triggers |
 |---|---|
 | **Email**, **First name**, **Last name**, **Phone number** | Every trigger except Benefit Unlocked |
-| **City**, **Country Code** | Order, loyalty, VIP, booster and membership triggers |
-| **Points Balance**, **Total Earned Points** | Loyalty, VIP and booster triggers |
+| **City**, **Country Code** | Order, loyalty, VIP, bonus campaign and membership triggers |
+| **Points Balance**, **Total Earned Points** | Loyalty, VIP and bonus campaign triggers |
 | **Point Source** | Earn Points, Redeem Points, Points Expired, Points Adjusted, One-time Campaign Points Awarded |
 | **Days Before** | Points Expiring Reminder, Reward Expiry Reminder, Birthday Reminder, Anniversary Reminder, VIP Tier Retention Warning |
 | **Campaign Identifier**, **Campaign Name** | One-time Campaign Points Awarded |
@@ -99,7 +99,7 @@ The fields depend on the trigger:
 | **Previous Tier Name** | VIP Tier Upgrade, VIP Tier Downgrade |
 | **Tier Progress %** | VIP Tier Entry, Upgrade, Downgrade, Retained, Retention Warning, Milestone Nudge, Period Start |
 | **Milestone %** | VIP Milestone Nudge |
-| **Booster Campaign Name**, **Booster Campaign Type**, **Booster Completed Actions**, **Booster Campaign Progress %** | Booster triggers |
+| **Booster Campaign Name**, **Booster Campaign Type**, **Booster Completed Actions**, **Booster Campaign Progress %** | Bonus campaign triggers |
 | **Benefit Module**, **Benefit Type** | Benefit Unlocked |
 | **Membership Name**, **Subscription Status** | Membership triggers |
 | **Referral Link** | Referral triggers and several loyalty triggers |
@@ -165,8 +165,8 @@ Each path continues to its own actions and ends in its own **Exit**.
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Why don't I see the membership or booster triggers?">
-    Triggers only appear when their module is active. Turn on Memberships or Booster Campaigns first.
+  <Accordion title="Why don't I see the membership or bonus campaign triggers?">
+    Triggers only appear when their module is active. Turn on Memberships or Bonus Campaigns first.
   </Accordion>
   <Accordion title="Is there a trigger for 'customer inactive for X days'?">
     No. For win-back flows, use **VIP Tier Retention Warning**, **VIP Tier Downgrade** or **Points Expiring Reminder**.

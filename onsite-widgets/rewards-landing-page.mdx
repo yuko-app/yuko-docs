@@ -1,6 +1,6 @@
 ---
 title: Rewards Landing Page
-description: A dedicated loyalty page on your storefront, built from seven Yuko theme blocks, that explains how to join, earn, redeem, reach VIP tiers and become a member.
+description: A dedicated loyalty page on your storefront. Pick one of eight ready-made templates and edit everything in Yuko, or use the Custom template and build the page from Yuko theme blocks.
 ---
 
 <Note>
@@ -9,9 +9,12 @@ description: A dedicated loyalty page on your storefront, built from seven Yuko 
 
 ## Introduction
 
-The Rewards Landing Page is the public home of your loyalty program. Yuko creates a Shopify page for it, and you build the page from seven **Yuko** theme blocks: Hero Banner, How It Works, Ways to Earn, Ways to Redeem, VIP Tiers, Membership and FAQ.
+The Rewards Landing Page is the public home of your loyalty program. Yuko creates a Shopify page for it, and you choose how it's built:
 
-You write the text in Yuko and style each block in the Shopify theme editor. The widget is marked **Recommended** on the Widgets list.
+- **A template** (Editorial, Heritage, Bloom, Signal, Arena, Pop, Indigo or Evergreen). Each template is a complete page design with its own layout, colours, typography and starting copy. You reorder sections, edit text and set colours, fonts and shapes in Yuko, with a live preview. There are no theme blocks to place.
+- **Custom.** The page is built from seven **Yuko** theme blocks that you add and style in the Shopify theme editor. You write the text in Yuko.
+
+The widget is marked **Recommended** on the Widgets list.
 
 ## What problem this solves
 
@@ -20,21 +23,21 @@ Emails, ads, social posts and footer links need somewhere to send people. The la
 ## Where it appears
 
 - A Shopify page titled **Loyalty Program** at `/pages/loyalty-info-page`, created by Yuko.
-- Any other page or template where you add the Yuko landing page blocks in the theme editor.
+- With the **Custom** template, also any other page or template where you add the Yuko landing page blocks in the theme editor.
 
 ## When to use
 
 - You link to your loyalty program from emails, ads or your site footer.
-- You want one page that covers joining, earning, redeeming, VIP tiers, membership and FAQs.
+- You want one page that covers joining, earning, redeeming, free products, VIP tiers, referrals, membership and FAQs.
 
 ## Overview
 
-- **Seven theme blocks**, each with its own colours, sizes and **Custom CSS** in the theme editor.
-- **Separate hero text** for visitors (**Anonymous**) and logged-in customers (**When customer is authenticated**).
-- **Automatic content:** earn rules, rewards, VIP tiers and membership plans come from your live Yuko setup.
-- **FAQ editor:** add, remove and reorder questions and answers.
-- **Add Block** buttons that open the theme editor with the right block ready to add.
-- **Per-language text:** use the **Editing language** picker.
+- **Eight templates plus Custom.** Switch at any time with **Change theme**.
+- **Config tab** (templates): a list of sections you drag into order and switch on or off. Click a section to edit its content, layout and background.
+- **Customization tab** (templates): page-wide **Colors**, **Typography**, **Shapes** and **Custom CSS**.
+- **Live preview** with **Guest** and **Logged in** views, on **Mobile** or **Desktop**.
+- **Automatic content:** earn rules, rewards, free products, VIP tiers, referral rewards and membership plans come from your live Yuko setup.
+- **Per-language text:** use the **Editing language** picker. Layout, colours and section order are shared by every language.
 
 ## Before you start
 
@@ -42,18 +45,24 @@ import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
 
 <BeforeYouStart />
 
-<Check>The **Yuko App** embed is turned on in your published theme. See [Theme App Embed](/installation-and-setup/theme-app-embed).</Check>
+<Check>The **Yuko App** embed is turned on in your published theme. It loads the landing page for every template. See [Theme App Embed](/installation-and-setup/theme-app-embed).</Check>
 
 ## Setup guide
 
-### 1. Create the page
+### 1. Create the page and choose a template
 
 <Steps>
   <Step title="Open the widget">
     Go to **Apps → Yuko Loyalty → Loyalty → Widgets** and click **Customize** on **Rewards Landing Page**.
   </Step>
   <Step title="Create the landing page">
-    The first time you open the widget, Yuko asks **Are you sure you want to create a landing page?** Click **Create**. Yuko creates a published Shopify page titled **Loyalty Program** with the handle `loyalty-info-page`. If a page with that handle already exists, Yuko uses it.
+    The first time you open the widget, Yuko shows **Create landing page**. Click **Create landing page**. Yuko creates a published Shopify page titled **Loyalty Program** with the handle `loyalty-info-page`. If a page with that handle already exists, Yuko uses it.
+  </Step>
+  <Step title="Choose a template">
+    In **Choose a template**, click **Use this template** on the design you want. Your choice is saved straight away. A new page starts on **Custom** (marked **Current**), so close the picker if you want to keep it.
+  </Step>
+  <Step title="Turn the widget on">
+    Switch the widget on with the toggle at the top of the editor. The page shows nothing on your storefront while the widget is off.
   </Step>
 </Steps>
 
@@ -61,28 +70,110 @@ import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
 If you delete the page in Shopify, click **Check landing page** next to the widget's status badge. Yuko confirms whether the page is still there, and offers to create it again the next time you open the widget.
 </Tip>
 
-### 2. Write the content in Yuko
+### 2. Edit a template
 
-Each section below matches one theme block. Expand a section to edit its text.
+Templates open on the **Config** tab.
+
+<Steps>
+  <Step title="Arrange the sections">
+    Drag sections by their handle to reorder them, and use each section's switch to show or hide it on the page.
+  </Step>
+  <Step title="Edit a section">
+    Click a section to open it. Its settings are grouped into accordions such as **Content**, **Guest**, **Logged in**, **Layout** and **Background**. Click the back arrow to return to the list. See [Template sections](#template-sections).
+  </Step>
+  <Step title="Set the redirect URL">
+    Under **General Settings**, set the **Logged-in User Redirect URL**: where logged-in customers go when they click a campaign or reward card, or the hero's redeem button. Leave it empty to use the customer account page (`/account`).
+  </Step>
+  <Step title="Style the page">
+    On the **Customization** tab, adjust **Colors**, **Typography**, **Shapes** and **Custom CSS**. See [Page-wide styling](#page-wide-styling).
+  </Step>
+  <Step title="Preview and save">
+    Switch the preview between **Guest** and **Logged in**, and between **Mobile** and **Desktop**. Click **Save** when you're happy.
+  </Step>
+</Steps>
+
+<Info>
+For templates, Yuko adds a small placeholder (`<div id="yuko-landing-page-root">`) to the **Loyalty Program** page's content, and the Yuko App embed builds the page there. Don't remove it in **Online Store → Pages**. If you switch to **Custom**, Yuko removes it for you.
+</Info>
+
+### Change template
+
+Click **Change theme** (next to the **Customization** and **Config** tabs, or on the **Template** card when you use Custom) and choose another design in **Change template**. If you move from a template to **Custom**, Yuko first asks **Use the Custom template?** because Custom pages are styled in the Shopify theme editor instead of in Yuko.
+
+<Warning>
+Switching templates loads that template's starting copy, colours, typography, section order and section settings into the editor, replacing what you've written. Nothing is saved until you click **Save**, so you can discard the change from the save bar. Switching to **Custom** puts back the text of your saved Custom page, or Yuko's default text if the page wasn't using Custom.
+</Warning>
+
+## The templates
+
+Templates are listed in this order in the picker. Every template has the same sections (Evergreen adds a **Closing banner**), but each has its own design, starting copy and a few options of its own.
+
+| Template | Colours you set | Options of its own |
+|---|---|---|
+| **Editorial** | Accent, Background, Card, Text and Description color | **Eyebrow** lines above the hero, referral and membership titles. Starts with Ways to Redeem and Free Products before Ways to Earn. |
+| **Heritage** | Accent, Background, Card, Text and Description color | **Eyebrow** lines above the hero, referral and membership titles. |
+| **Bloom** | Accent, Background, Card, Tint, Text and Description color | Hero **Eyebrow** lines, and a **Redeem button** label on Ways to Redeem cards. |
+| **Signal** | Primary, Background, Card, Text and Description color | An **Eyebrow** on every section. Logged-in hero can **Show progress to the next tier**, with **Next tier label** and **Progress text**. VIP Tiers can **Highlight current tier column**. |
+| **Arena** | Accent, Background, Text and Description color | **Eyebrow** lines above the hero and membership titles. Logged-in hero can **Show progress to the next tier** with **Progress text**. |
+| **Pop** | Pop color 1, Pop color 2, Pop color 3, Paper, Ink and Description color | Hero **Show starburst**. |
+| **Indigo** | Indigo, Paper, Card, Accent, Ink and Description color | Hero **Show offers band** and **Show denim texture**, **Eyebrow** lines above the hero and membership titles, and a **Side image** for Ways to Earn. |
+| **Evergreen** | Green, Cream, Card, Gold, Ink and Description color | An **Eyebrow** on most sections and a VIP Tiers **Footnote**. Hero **Show coin emblem**, a **Show sign-up strip** for guests, and a **Show member card** for logged-in customers with cash value, lifetime earned, redeemed, tier progress and a refer-a-friend button. Ways to Earn can **Show referral strip**. Adds a **Closing banner** section with its own guest and logged-in text. |
+| **Custom** | Set in the Shopify theme editor | Built from Yuko theme blocks. See [Custom template](#custom-template). |
+
+Each colour's help text in the editor says exactly which parts of the page it paints.
+
+## Template sections
 
 | Section | What you set |
 |---|---|
+| **Hero** | **Guest**: title, description, join button and sign-in button. **Logged in**: title, description, a button that scrolls to Ways to Earn and a redeem button, plus **Show points balance** with **Points balance label**, and **Show VIP tier** with **VIP tier label** (when VIP tiers are on). **Logo**, **Layout** (display style, card and text alignment, spacing, section height), **Side image** and **Background**. |
+| **How It Works** | **Content**: section title. **Steps**: **Steps Type** (**Numbers** or **Images**) and a heading, description and optional icon for each of the three steps. **Background**. |
+| **Ways to Earn** | **Content**: title, description and **Ways to earn — order** (**Bonus campaigns first** or **Standard campaigns first**). **Layout**: card spacing, icon size and more. **Background**. |
+| **Ways to Redeem** | **Content**: title, description and **Join button** (shown on each reward to customers who aren't signed in). **Layout** and **Background**. |
+| **Free Products** | **Content**: **Title**, **Description**, **Redeem button**, **Apply button** and **Not enough points text** (`[remaining]` is the points still needed). Shows your active free product rewards and is hidden on the storefront when there are none. **Layout** and **Background**. |
+| **VIP Tiers** | **Content**: title, description, **Current tier badge text**, **Join button** for guests, and **Tier progress text** (**Current tier text**, **Progress to next tier text**, **Top tier reached text**) for logged-in customers, and **Table view row labels** for each reward type. **Layout** and **Background**. |
+| **Referral** | **Guest** and **Logged in** titles, subtitles and button text, the referral **Form**, **Social Sharing** and **Get Link Button Text**. **Layout** and **Background**. |
+| **Membership** | **Title**, **Benefits title**, **Join button**, and **Pricing labels** (**Monthly interval label**, **Yearly interval label**). **Layout** (including a card image) and **Background**. |
+| **FAQ** | **Section Title**, **Section Description** and **FAQ Items**, each with a **Question** and **Answer**. Add items with **Add FAQ Item** and drag to reorder. **Background**. |
+| **Closing banner** (Evergreen) | **Guest** and **Logged in** title, text and button text, a logged-in **Button link**, and **Show coin icon**. **Background**. |
+
+**Background** lets you choose **Solid**, **Gradient** or **Image** for that section.
+
+## Page-wide styling
+
+On the **Customization** tab:
+
+- **Colors:** the template's own colour set (see [The templates](#the-templates)). Each starts at the template's default.
+- **Typography:** **Headings** (size and weight for **h1**, the hero title; **h2**, every other section title; **h3**, card titles; and **Letter spacing**) and **Body** (**Weight**, **Body size** and **Line height**).
+- **Shapes:** **Cards** and **Buttons**, each **Square**, **Shaved**, **Rounded** or **Circular**.
+- **Custom CSS:** applies to the whole landing page.
+
+## Custom template
+
+With **Custom**, the page is built from seven **Yuko** theme blocks: Hero Banner, How It Works, Ways to Earn, Ways to Redeem, VIP Tiers, Membership and FAQ. You write the text in Yuko and style each block in the Shopify theme editor. Free Products, Referral and the Customization tab aren't available with Custom.
+
+### Write the content in Yuko
+
+Each card below matches one theme block. Click **Expand** to edit its text.
+
+| Card | What you set |
+|---|---|
 | **Hero Section** | **Anonymous**: title (default *Join Our Rewards Program*), description, join button (*Join Now*) and sign-in button (*Sign In*). **When customer is authenticated**: title (*Welcome Back!*), description, and two buttons (*Earn `[points_label]`* and *Redeem Rewards*). |
 | **How It Works** | Section title (default *How It Works*) and the title and description for three steps (*Sign up*, *Earn*, *Redeem*). |
-| **Ways to Earn Points** | Title (default *Ways to Earn `[points_label]`*), description and **Ways to earn — order** (**Booster campaigns first** by default, or **Standard campaigns first**). |
-| **Ways to Redeem Points** | Title (default *Ways to Redeem `[points_label]`*) and description. |
-| **VIP Tiers** | Title, description, **Current tier badge text** (default *Current tier*) and **Points multiplier benefit text** (`[multiplier_value]x multiplier`, shown when the multiplier is greater than 1). |
+| **Ways to Earn Points** | Title (default *Ways to Earn `[points_label]`*), description and **Ways to earn — order** (**Bonus campaigns first** by default, or **Standard campaigns first**). |
+| **Ways to Redeem Points** | Title (default *Ways to Redeem `[points_label]`*), description and **Join button** (*Join to redeem*), shown on each reward to customers who aren't signed in. |
+| **VIP Tiers** | Title (default *VIP Tiers*), description, **Current tier badge text** (default *Current tier*), **Join button** (*Join to start earning*) and **Tier progress text** for logged-in customers. |
 | **Paid membership block** | **Title** (default *Become a member & save*), **Benefits title** (*Benefits:*), **Join button** (*Join the club*), and under **Pricing labels**, **Monthly interval label** (*month*) and **Yearly interval label** (*year*). |
 | **FAQ Section** | **Section Title** (default *Frequently Asked Questions*), **Section Description**, and **FAQ Items**, each with a **Question** and **Answer**. Add items with **Add FAQ Item**, drag to reorder and remove with the delete button. At least one item is required. |
-| **General Settings** | **Logged-in User Redirect URL**: where logged-in customers go when they click a campaign or reward card. Leave it empty to use the default customer account page. |
+| **General Settings** | **Logged-in User Redirect URL**: where logged-in customers go when they click a campaign or reward card, or the hero's redeem button. Leave it empty to use the customer account page. |
 
-Click **Save**, then switch the widget on.
+Click **Save**.
 
-### 3. Add the blocks to the page
+### Add the blocks to the page
 
 <Steps>
   <Step title="Click Add Block">
-    Each section in the editor has an **Add Block** button. It opens the Shopify theme editor on `/pages/loyalty-info-page` with that Yuko block ready to add.
+    Each card in the editor has an **Add Block** button. It opens the Shopify theme editor on `/pages/loyalty-info-page` with that Yuko block ready to add.
   </Step>
   <Step title="Place and style the block">
     Drop the block into a section, then adjust its settings in the theme editor sidebar (see below).
@@ -96,7 +187,7 @@ Click **Save**, then switch the widget on.
 The page uses your theme's page template. If other pages share that template, the blocks appear on them too. To avoid this, create a dedicated page template in your theme, assign it to the **Loyalty Program** page in **Online Store → Pages**, and add the blocks there.
 </Info>
 
-## Theme block settings
+### Theme block settings
 
 Every block has a **Custom CSS** field. Colours and sizes are set per block in the theme editor.
 
@@ -108,46 +199,54 @@ Every block has a **Custom CSS** field. Colours and sizes are set per block in t
 | **Yuko: Ways to Redeem** | **Reward Ordering** (**Ordering Ascending**, **Ordering Descending** or **Recent First**), plus the same colour, card, text, icon and **Join Button** settings as Ways to Earn. |
 | **Yuko: VIP Tiers** | Background colour and image, Heading and Text. **Tier Cards**: Card Background (Regular Tiers). **Current Tier**: Card Background, Border Color, Badge Background and Badge Text Color. **Tier Text**: tier name and description colours and sizes. **Benefits**: Benefit Text Color and Size, Tick Icon Size and Benefit Item Gap. |
 | **Yuko: Membership** | Section Background. **Card Styles**: Image, Image Background, Card background color, Section Radius, Title Text Color and Body Text Color. **Button Styles**: Button Color, Button Border Color, Button Text Color and Button Radius. |
-| **Yuko: FAQ** | Background Color, Heading Color, Question Color, Answer Color and Border Color. |
+| **Yuko: Loyalty FAQ** | Background Color, Heading Color, Question Color, Answer Color and Border Color. |
 
 ## How it works
 
 1. Yuko creates the **Loyalty Program** page at `/pages/loyalty-info-page`.
-2. You add Yuko blocks to the page in the theme editor. The **Yuko App** embed loads the scripts that fill them.
-3. The blocks pull your live earn rules, rewards, VIP tiers and membership plans from Yuko, so the page stays up to date.
-4. Visitors see the **Anonymous** hero with join and sign-in buttons. Logged-in customers see the authenticated hero.
-5. When a logged-in customer clicks a campaign or reward card, they go to the **Logged-in User Redirect URL**, or to the customer account page if it's empty.
+2. With a template, the **Yuko App** embed builds the page from your saved sections and styling. With Custom, it fills the Yuko blocks you placed in the theme editor.
+3. Content comes from your live Yuko setup: earn rules, rewards, free products, VIP tiers, referral rewards and membership plans. The page stays up to date as you change them.
+4. Guests see the join and sign-in buttons. Logged-in customers see the logged-in hero, their balance and their tier progress.
+5. When a logged-in customer clicks a campaign or reward card, or the hero's redeem button, they go to the **Logged-in User Redirect URL**, or to their customer account page if it's empty.
+6. In **Free Products**, a logged-in customer with enough points clicks the redeem button. Yuko spends the points, adds the free product to the cart, applies the code and copies it to the clipboard. The card then shows the code with an apply button, which shows a tick once the code is in the cart.
+7. Product prices and cash values are shown in the currency the shopper is browsing in.
 
 ## Examples
 
 - **Email destination:** link your welcome email's "See how it works" button to `/pages/loyalty-info-page`.
 - **Footer link:** add a "Rewards" link in your footer menu that points to the landing page.
-- **Short page:** use only Hero Banner, Ways to Earn and Ways to Redeem for a quick overview.
+- **Short page:** switch off How It Works, Referral and Membership for a quick overview of earning and redeeming.
 
 ## Best practices
 
-<Tip>**Lead with the hero.** Put the Hero Banner first so visitors see the join button straight away.</Tip>
+<Tip>**Pick a template first, then edit the copy.** Switching templates later replaces your text with the new template's starting copy.</Tip>
 <Tip>**Answer real questions.** Replace the default FAQ items with the questions your support team actually gets.</Tip>
-<Tip>**Check both hero versions.** Preview the page logged out and logged in.</Tip>
+<Tip>**Check both views.** Use the **Guest** and **Logged in** preview, then check the live page logged out and logged in.</Tip>
 <Tip>**Link to it everywhere.** Add it to your footer, welcome email and [Floating Rewards](/onsite-widgets/floating-launcher) content.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
+  <Accordion title="Which template should I choose?">
+    Open **Choose a template** (or **Change theme**) and compare the previews. Pick the one closest to your brand, then adjust its colours and fonts on the **Customization** tab. Choose **Custom** only if you want to build and style the page yourself in the Shopify theme editor.
+  </Accordion>
+  <Accordion title="My template page is blank on the storefront">
+    Check that the widget is switched on, the **Yuko App** embed is on, and the `<div id="yuko-landing-page-root">` placeholder is still in the page content under **Online Store → Pages → Loyalty Program**. If you removed it, choose your template again with **Change theme** and click **Save**.
+  </Accordion>
   <Accordion title="Can I use a different URL?">
-    Yuko creates the page at `/pages/loyalty-info-page`. You can also add the Yuko landing page blocks to any other page or template in the theme editor.
+    Yuko creates the page at `/pages/loyalty-info-page`. With the Custom template, you can also add the Yuko landing page blocks to any other page or template in the theme editor.
   </Accordion>
   <Accordion title="I deleted the page. How do I get it back?">
     Click **Check landing page** to confirm it's missing, then reopen the widget. Yuko offers to create the page again.
   </Accordion>
-  <Accordion title="Can I add custom styling?">
-    Yes. Every block has colour and size settings plus a **Custom CSS** field in the theme editor.
+  <Accordion title="Why is the Free Products section empty?">
+    It shows your active free product rewards and is hidden when you have none. Set one up in [Ways to Redeem](/loyalty/ways-to-redeem/overview).
   </Accordion>
-  <Accordion title="Why is my Membership block empty?">
-    The Membership block shows your paid membership plans. Set up a plan in [Memberships](/memberships/plans) first.
+  <Accordion title="Why is my Membership or VIP Tiers section empty?">
+    The Membership section shows your paid membership plans, and VIP Tiers shows your tiers. Set up a plan in [Memberships](/memberships/plans) or tiers in [VIP](/vip-tiers/overview) first.
   </Accordion>
   <Accordion title="Can I translate the page?">
-    Yes. Use the **Editing language** picker at the top of the widget editor to write the text for each of your store's published languages. Campaign and reward names are translated in [Translations](/account/translations).
+    Yes. Use the **Editing language** picker at the top of the widget editor to write the text for each of your store's published languages. Template, section order and styling are shared across languages. Campaign and reward names are translated in [Translations](/account/translations).
   </Accordion>
 </AccordionGroup>
 

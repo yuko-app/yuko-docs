@@ -1,6 +1,6 @@
 ---
 title: Customers
-description: Find customers, see their points, tier and activity, adjust balances, assign tiers, exclude them from the program and import points.
+description: Find customers, see their points, tier and activity, adjust balances, edit birthdays, refund unused rewards, assign tiers, exclude customers from the program and import points.
 ---
 
 <Note>
@@ -23,16 +23,20 @@ When a customer asks *"where are my points?"* you need to answer quickly. The Cu
 
 - Answering support questions about missing or incorrect points.
 - Giving a goodwill credit or removing points awarded in error.
+- Correcting a customer's birthday.
+- Returning points for a reward the customer redeemed by mistake and hasn't used.
 - Placing a customer in a VIP tier manually.
 - Removing a customer (for example a staff or test account) from the program.
 - Moving point balances in from a previous loyalty app.
 
 ## Overview
 
-- Searchable, sortable list with **Status**, **VIP Tier**, **Birthday**, **Membership**, point totals and **Referral Count**.
+- Searchable, sortable list with **Customer**, **Status**, **VIP Tier**, **Birthday**, **Membership**, point totals and **Referral Count**.
 - Filters for status, points balance, total earned, total redeemed, VIP tier, membership and referral count.
 - Customer detail page with **Activities**, **Active Rewards**, **Recent Orders**, a loyalty summary, VIP tier and referrals.
 - **Adjust balance** to credit or debit points, with optional expiry on credits.
+- **Edit birthday** to set, change or remove a customer's birthday.
+- **Refund** an unused reward the customer redeemed, returning the points to their balance.
 - **Assign tier** to override a customer's VIP tier.
 - **Exclude from program**, optionally resetting the customer's points, discounts and tags.
 - **Import customer points** from a CSV.
@@ -46,7 +50,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 ## The customer list
 
-The list shows these columns: **Name** (with email), **Phone**, **Status**, **VIP Tier**, **Birthday**, **Membership**, **Point Balance**, **Point Earned**, **Point Redeemed** and **Referral Count**. VIP Tier, Membership and Referral Count appear only when those programs are enabled.
+The list shows these columns: **Customer** (name, email and phone, with buttons to copy the email or phone), **Status**, **VIP Tier**, **Birthday**, **Membership**, **Point Balance**, **Point Earned**, **Point Redeemed** and **Referral Count**. VIP Tier, Membership and Referral Count appear only when those programs are enabled.
 
 **Status** is one of:
 
@@ -84,14 +88,15 @@ The list shows these columns: **Name** (with email), **Phone**, **Status**, **VI
 
 The detail page shows the customer's name and status badge, and three main sections:
 
-- **Activities** — every points credit, debit, redemption and tier change, newest first.
-- **Active Rewards** — reward codes the customer has and hasn't used yet.
+- **Activities** — every points credit, debit, redemption and tier change, newest first. A refunded reward's code is shown crossed out with a **Refunded** badge.
+- **Active Rewards** — reward codes the customer has and hasn't used yet, with the **Reward**, **Source**, **Coupon Code** and **Expires At**. Rewards the customer can get a refund for have a **Refund** button.
 - **Recent Orders** — the customer's latest orders.
 
 The side panel shows:
 
-- **Overview** — the **Loyalty point balance**, with the **Adjust balance** button.
-- **Loyalty summary** — **Points earned**, **Points spent**, **Points expired** and **Total orders**.
+- **Overview** — the customer's **Name**, **Email**, **Phone** and **Birthday**. Use the copy buttons to copy the email or phone, and the edit button next to **Birthday** to change it.
+- **Loyalty point balance** — the current balance, with the **Adjust balance** button.
+- **Loyalty summary** — **Points earned**, **Points spent** and **Points expired**. **Total orders** is added when your VIP tiers qualify on order count.
 - **VIP tier** — the current tier (marked **Manual** if assigned by hand), **Tier multiplier**, **Next tier**, **Progress to next tier** and **Highest tier reached**, with **Assign tier** and **Clear override**.
 - **Membership** — the customer's paid membership, if the Membership program is enabled.
 - **Referrals** — referrals made, completed, who referred them, and their referral link.
@@ -119,6 +124,45 @@ From the page header you can also open **View on Shopify** and **Exclude from pr
 </Steps>
 
 A debit can't remove more points than the customer has. Excluded customers can't have their balance adjusted.
+
+### Edit birthday
+
+<Steps>
+  <Step title="Open Edit birthday">
+    On the customer's detail page, click the edit button next to **Birthday** in the **Overview** card.
+  </Step>
+  <Step title="Enter the date">
+    Enter the **Day** (DD), **Month** (MM) and **Year** (YYYY). The year must be between 1900 and the current year, and the date can't be in the future. To remove the birthday, clear all three fields.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The new date shows on the customer's page and in the **Birthday** column.
+  </Step>
+</Steps>
+
+Customers can also add their own birthday from your storefront loyalty widgets, but only once. After a birthday is set, customers can't change it themselves. Edit it here if a customer asks for a correction. The birthday is used by the [Birthday](/loyalty/ways-to-earn/birthday) Way to Earn.
+
+### Refund a reward
+
+When a customer redeems points for a reward by mistake, you can cancel the reward and give the points back, as long as the code hasn't been used.
+
+<Steps>
+  <Step title="Find the reward">
+    On the customer's detail page, go to **Active Rewards** and click **Refund** on the reward.
+  </Step>
+  <Step title="Check the details">
+    The **Refund reward** window shows the points spent, when the reward was redeemed, the **Discount code**, **Source** and **Status**.
+  </Step>
+  <Step title="Add a reason (optional)">
+    Enter a **Reason (optional)**, up to 255 characters. It's shown to the customer in their activity history.
+  </Step>
+  <Step title="Confirm">
+    Click **Refund**. Yuko deletes the discount code in Shopify so it can't be used, and returns the points to the customer's balance.
+  </Step>
+</Steps>
+
+A refund can't be undone. The returned points appear in **Activities** as **Reward Revoked**. They expire on the latest expiry date of the points the customer originally spent. If any of those points had no expiry, or that latest date has already passed, the returned points don't expire.
+
+Only rewards the customer redeemed with points from **Ways to redeem** can be refunded. Automatically issued rewards, such as VIP tier, membership, referral or bonus campaign rewards, can't. A reward can't be refunded once its code has been used. Excluded customers, including customers with an excluded tag, can't have rewards refunded.
 
 ### Assign tier
 
@@ -177,7 +221,7 @@ Use these when your team works from Shopify's customer page, for example while h
 ## How it works
 
 - Customers sync from your Shopify store into Yuko. Every synced customer is listed, starting as a **Guest** until they take part in the program.
-- Every adjustment and import is written to the customer's points ledger and appears in **Activities**.
+- Every adjustment, reward refund and import is written to the customer's points ledger and appears in **Activities**.
 - Adjustments are direct changes to the balance. They don't trigger Ways to Earn.
 - Excluded customers stay on the list with the **Excluded** status but don't earn.
 - Customers with a tag listed under **Exclude customers by tag** in [Loyalty Settings](/loyalty/program-settings) don't earn either, but they keep their **Member** or **Guest** status on this list.
@@ -195,10 +239,12 @@ Use these when your team works from Shopify's customer page, for example while h
 - Import files must be CSV, 500 KB or less, with the exact headers listed above.
 - Import adds points; it doesn't overwrite existing balances.
 - A debit can't take a balance below zero.
+- Only unused rewards redeemed from Ways to redeem can be refunded.
 
 ## Examples
 
 - A support agent credits 200 points to a customer whose delivery was late, with the reason *Goodwill credit, delivery delay*.
+- A customer redeemed 500 points for the wrong reward. Support clicks **Refund** on the unused code in **Active Rewards**, and the customer redeems again for the reward they wanted.
 - A store migrating from another app imports a CSV of 12,000 customers and their old balances.
 - A merchant excludes staff accounts and ticks **Reset all points, discounts, and tiers** to clear what they'd earned.
 
@@ -218,6 +264,12 @@ Use these when your team works from Shopify's customer page, for example while h
   </Accordion>
   <Accordion title="Can I adjust points from Shopify's customer page?">
     Yes. Use the **Adjust points balance** button on the **Yuko Loyalty** block, or the Adjust balance action in **More actions**.
+  </Accordion>
+  <Accordion title="A customer redeemed the wrong reward. Can I give the points back?">
+    Yes, if they haven't used the code. Click **Refund** on the reward in **Active Rewards**. Yuko deletes the code and returns the points.
+  </Accordion>
+  <Accordion title="A customer entered the wrong birthday. How do they change it?">
+    Customers can only set their birthday once from the storefront. Edit it for them with the edit button next to **Birthday** on their detail page.
   </Accordion>
   <Accordion title="What happens to customers in my CSV who aren't in Yuko yet?">
     They're added as new customers and given the points.

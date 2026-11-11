@@ -1,6 +1,6 @@
 ---
 title: Integrations
-description: Connect Yuko to your email, WhatsApp, reviews, Shopify POS and automation tools, plus the REST API and Webhooks for custom builds.
+description: Connect Yuko to your email, WhatsApp, reviews, returns, Shopify POS and automation tools, plus the REST API and Webhooks for custom builds.
 ---
 
 <Note>
@@ -9,29 +9,31 @@ description: Connect Yuko to your email, WhatsApp, reviews, Shopify POS and auto
 
 ## What integrations do
 
-Integrations let Yuko exchange data with the rest of your stack. Loyalty data lands in your email tool, loyalty events send WhatsApp templates and start Shopify Flow workflows, reviews from your reviews app earn points, store staff redeem points at the till, and your developers can build on the REST API and webhooks.
+Integrations let Yuko exchange data with the rest of your stack. Loyalty data lands in your email tool, loyalty events send WhatsApp templates and start Shopify Flow workflows, reviews from your reviews app earn points, returns can be refunded as points, store staff redeem points at the till, and your developers can build on the REST API and webhooks.
 
 ## The Integrations page
 
-The Integrations page has a **category sidebar** on the left and a card grid on the right. Each card shows how the app connects (**OAuth** or **API Key**) and a **Connected** badge once it's set up. Cards are grouped into:
+The Integrations page has a **Categories** sidebar on the left and a card grid on the right. Each card shows how the app connects (**OAuth** or **API Key**) and a **Connected** badge once it's set up. The button on each card says **Connect**, **Manage** (connected), **View setup** (a setup guide) or **Learn more** (a recommended app).
 
-1. **Connected**: integrations you've already set up. Click a card to open its settings.
-2. **Available**: integrations you can connect. Click a card to start connecting.
-3. **Recommended**: third-party apps Yuko recommends. These open the partner's page in a new tab.
+- With **All** selected, you see your **Connected** integrations first, then every other integration grouped by category.
+- With a category selected, you see **Connected**, **Available** and **Recommended** apps in that category.
+- The selected category stays in the page address, so going back from an integration reopens the same category.
 
 ### Categories
 
 | Category | What lives here |
 |---|---|
-| **All** | Every integration, including Judge.me |
-| **Email & SMS** | Klaviyo, Omnisend, Retainful |
-| **WhatsApp** | 13 WhatsApp Business API providers |
-| **Shopify Flow** | Shopify Flow and Checkout Boost |
+| **All** | Every integration, grouped by category |
+| **Email & SMS** | Klaviyo, Mailchimp, Omnisend, Retainful |
+| **WhatsApp** | 14 WhatsApp Business API providers |
+| **Reviews** | Judge.me, plus Shopify Flow setup guides for Loox, Yotpo, Okendo, Stamped and Junip (Shopify stores only) |
+| **Shopify Flow** | Shopify Flow |
 | **Shopify POS** | Shopify POS (Shopify stores only) |
-| **Developer** | REST API, Webhooks |
-| **Recommended** | Recommended third-party apps (Shopify stores only) |
+| **Returns & Exchanges** | Return Prime (Shopify stores only) |
+| **Developer** | REST API, Webhook |
+| **Recommended** | Shopify themes and apps Yuko recommends. These open the partner's page in a new tab. (Shopify stores only) |
 
-A category only appears when it has at least one integration. Some integrations are available on select plans; cards you can't use yet show an upgrade badge.
+A category only appears when it has at least one integration, and each category shows how many integrations it holds. Some integrations are available on select plans; cards you can't use yet show an upgrade badge and their button is disabled.
 
 ## Developer tools
 
@@ -44,6 +46,8 @@ A category only appears when it has at least one integration. Some integrations 
   </Card>
 </CardGroup>
 
+<Note>The REST API needs approval from Yuko support before you can connect it. Clicking its card opens an **Approval required** page; click **Contact support** to start a chat, and once access is enabled the card takes you straight to setup.</Note>
+
 ## Predefined connectors
 
 ### Email & SMS
@@ -51,6 +55,9 @@ A category only appears when it has at least one integration. Some integrations 
 <CardGroup cols={2}>
   <Card title="Klaviyo" icon="envelope" href="/integrations/klaviyo">
     Sync loyalty profile properties and events for segments, personalisation and flows.
+  </Card>
+  <Card title="Mailchimp" icon="envelope" href="/integrations/mailchimp">
+    Sync loyalty merge fields and events into a Mailchimp audience.
   </Card>
   <Card title="Omnisend" icon="envelope" href="/integrations/omnisend">
     Sync loyalty data and events into Omnisend for email and SMS automations.
@@ -62,7 +69,7 @@ A category only appears when it has at least one integration. Some integrations 
 
 ### WhatsApp
 
-13 WhatsApp Business API providers. Connect one or several and send templates from Yuko workflows.
+14 WhatsApp Business API providers. Connect one or several and send templates from Yuko workflows.
 
 import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
@@ -86,11 +93,11 @@ import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
   </Card>
 </CardGroup>
 
-### Checkout
+### Returns & Exchanges
 
 <CardGroup cols={2}>
-  <Card title="Checkout Boost" icon="cart-shopping" href="/integrations/checkout-boost">
-    Creates a read-only REST API key and signed key for the Checkout Boost app. Listed under the Shopify Flow category.
+  <Card title="Return Prime" icon="rotate-left" href="/integrations/return-prime">
+    Refund approved returns to customers as loyalty points.
   </Card>
 </CardGroup>
 
@@ -98,25 +105,26 @@ import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
 <CardGroup cols={2}>
   <Card title="Judge.me" icon="star" href="/integrations/judgeme">
-    Award loyalty points when customers write Judge.me reviews. Shown under **All**.
+    Award loyalty points when customers write Judge.me reviews.
   </Card>
 </CardGroup>
 
-Using another reviews app? If it can trigger Shopify Flow, award points with the **Yuko Add Points for Review** action. See [Shopify Flow](/integrations/shopify-flow#the-add-points-for-review-action).
+Using Loox, Yotpo, Okendo, Stamped or Junip? Their cards in the **Reviews** category open a step-by-step guide for awarding points with the **Yuko Add Points for Review** action in Shopify Flow. Any other reviews app that can trigger Shopify Flow works the same way. See [Shopify Flow](/integrations/shopify-flow#the-add-points-for-review-action).
 
 ## How connectors work
 
-- Each connector authenticates with the partner by **OAuth** or **API Key**. A few, such as Shopify Flow, Shopify POS and Checkout Boost, just need a toggle.
-- Once connected, the integration moves to the **Connected** section and its page shows the connection status.
-- Many integrations let you choose what to send, for example which events go to Klaviyo, Omnisend, Retainful or Shopify Flow, or which Judge.me webhooks to register.
+- Each connector authenticates with the partner by **OAuth** or **API Key**. A few, such as Shopify Flow and Shopify POS, just need a toggle. Some need a second credential, such as WappCloud's **Access Token**.
+- Once connected, the integration moves to the **Connected** section and its page shows the connection status and date. For API key connections, an **API credentials** section shows part of the key in use, so you can match it against the one your provider issued.
+- Many integrations let you choose what to send, for example which events go to Klaviyo, Mailchimp, Omnisend, Retainful or Shopify Flow, or which Judge.me webhooks to register. Events for a module you've turned off are hidden from these lists.
 - To disconnect, open the integration, switch off its toggle and confirm in the dialog.
 
 ## Choosing your stack
 
-- **Email:** Klaviyo, Omnisend or Retainful.
-- **WhatsApp:** pick whichever of the 13 providers you already use. See the [WhatsApp overview](/integrations/whatsapp) for a comparison.
+- **Email:** Klaviyo, Mailchimp, Omnisend or Retainful.
+- **WhatsApp:** pick whichever of the 14 providers you already use. See the [WhatsApp overview](/integrations/whatsapp) for a comparison.
 - **In-store:** Shopify POS for redeeming points at the till.
-- **Reviews:** Judge.me, or any app that can run the Shopify Flow **Add Points for Review** action.
+- **Returns:** Return Prime to refund returns as points.
+- **Reviews:** Judge.me, or Loox, Yotpo, Okendo, Stamped, Junip or any other app that can run the Shopify Flow **Add Points for Review** action.
 - **Custom builds:** REST API and Webhooks for anything the connectors don't cover.
 
 ## Best practices

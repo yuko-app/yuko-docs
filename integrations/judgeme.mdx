@@ -63,10 +63,23 @@ Yuko awards points only for **published** reviews. A review that is still pendin
 1. A customer writes a review on your store using Judge.me.
 2. Judge.me sends the review event to Yuko.
 3. Yuko matches the reviewer to a Yuko customer, first by Shopify customer ID and then by email, and matches the reviewed product.
-4. If the review is published and the **Write a review** rule is active, Yuko awards the rule's points.
+4. If the review is published and the **Write a review** rule is active, Yuko awards the rule's points. If **Limit to verified purchase** is on in the rule, the review must also be verified in Judge.me (see below).
 5. If the review includes photos and **Enable Media Earning** is on in the **Write a review** rule, Yuko also awards the **Media earning value** as a bonus.
 
 The customer sees the points in their loyalty balance, and any points-earned email you have turned on is sent as usual.
+
+### Verified purchases
+
+Turn on **Limit to verified purchase** in the **Write a review** earn rule to reward only reviews from real buyers. For Judge.me reviews, Yuko uses the verification status Judge.me sends with the review. These statuses count as verified:
+
+- `buyer`
+- `confirmed-buyer`
+- `verified-purchase`
+- `semi-verified-purchase`
+- `admin`
+- `email`
+
+Reviews with any other status, or no status, don't earn points while the setting is on.
 
 ## Example use case
 
@@ -82,6 +95,7 @@ The customer sees the points in their loyalty balance, and any points-earned ema
 - **The reviewer must match a Yuko customer.** Reviews from people Yuko can't match by Shopify customer ID or email are skipped.
 - **The product must exist in Yuko.** Reviews for products Yuko hasn't synced are skipped.
 - **Only published reviews earn.**
+- **Verified-only is optional.** With **Limit to verified purchase** on, unverified Judge.me reviews don't earn.
 - **Points are set in the earn rule.** There's no per-review override.
 - **Points aren't reversed.** If a review is later deleted or unpublished in Judge.me, the points stay with the customer.
 - **No historical reviews.** Yuko only receives new and updated reviews after you connect. Reviews written before that don't earn points.
@@ -91,6 +105,9 @@ The customer sees the points in their loyalty balance, and any points-earned ema
 <AccordionGroup>
   <Accordion title="What if a review is deleted in Judge.me after points were awarded?">
     Yuko doesn't revoke the points automatically. If you need to reverse an award, adjust the customer's points manually from [Customers](/loyalty/customers).
+  </Accordion>
+  <Accordion title="Can I reward only reviews from verified buyers?">
+    Yes. Turn on **Limit to verified purchase** in the **Write a review** earn rule. Only Judge.me reviews that Judge.me marks as verified earn points. See [Verified purchases](#verified-purchases).
   </Accordion>
   <Accordion title="Can I award extra points for photo reviews?">
     Yes. Turn on **Enable Media Earning** in the **Write a review** earn rule and set a **Media earning value**. Judge.me reviews with photos earn that bonus on top of the base points.

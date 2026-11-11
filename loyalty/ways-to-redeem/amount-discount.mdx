@@ -76,6 +76,9 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
   <Step title="Set Expiry (optional)">
     Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). The code stops working after that time. Expiry is available on select plans.
   </Step>
+  <Step title="Add an Instruction note (optional)">
+    Under **Display Settings**, enter an **Instruction note** to show below the code in the customer's rewards, for example *Use this code at checkout*. Up to 500 characters. Leave it empty to hide it.
+  </Step>
   <Step title="Enable and save">
     Turn on **Status** in the side panel and click **Save**.
   </Step>
@@ -85,7 +88,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 1. The customer opens a loyalty widget (for example the Cart Redeem widget or the customer account page) and redeems this reward. With incremented points, they also choose how many points to spend.
 2. Yuko deducts the points and creates a Shopify discount code for that customer. The code can be used once.
-3. The customer applies the code at checkout. Widgets that apply it to the cart do this for them.
+3. On your storefront, the widget applies the code to the cart and copies it to the customer's clipboard. The customer can also click **Apply** on the reward later, or enter the code at checkout. On the customer account page, the customer copies the code and enters it at checkout.
 4. Yuko logs the redemption in the customer's activity.
 
 ### Decision guidance

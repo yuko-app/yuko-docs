@@ -25,6 +25,8 @@ Yuko has 11 built-in loyalty emails. They all start **inactive**. Switch on the 
 
 Settings in **bold** are delay fields in the email editor. Set them to **0** to send immediately (the default). The four reminders use a fixed number of days before the date and have no timing field in the editor.
 
+<Info>The default subjects and messages use `{{ points_label }}` rather than the word "points". It prints the **Point Label** from your [loyalty program settings](/loyalty/program-settings), singular or plural to match the amount. Every email can also use `{{ wallet_balance }}` to show the customer's current balance. See [Shortcodes Reference](/emails/shortcodes#wallet).</Info>
+
 ## Points earned
 
 **Sent when:** a customer earns points from any [way to earn](/loyalty/ways-to-earn/overview), including points credited by a workflow.
@@ -124,6 +126,8 @@ Settings in **bold** are delay fields in the email editor. Set them to **0** to 
 **Default subject:** *Your reward has expired*
 
 **Default message:** *"Your reward `{{ reward_name }}` (`{{ reward_code }}`) has expired. You still have `{{ points_balance }}` points to redeem for a new reward!"*
+
+<Tip>This default message types the word "points". If you've renamed your points, replace it with `{{ points_label }}`.</Tip>
 
 **Delay:** **Days after reward expired**.
 

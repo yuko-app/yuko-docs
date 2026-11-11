@@ -25,8 +25,9 @@ Most customers don't write reviews unless asked, and even fewer add photos. A po
 
 - Points for each product review.
 - Optional **Media Bonus**: extra points when the review includes media.
-- Optional **Limits**: verified purchases only, and one reward per order.
+- Optional **Limits**: verified purchases only, one reward per order, and a cap on how many reviews earn per day, week or month.
 - One reward per product per customer.
+- Optional **Media bonus text** to show the bonus in your loyalty widgets.
 - Optional points expiry and VIP tier multipliers.
 - Available on select plans.
 
@@ -55,13 +56,15 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
     Tick **Enable Media Earning**, then enter the **Media earning value**: additional points awarded when the customer includes media with their review (default 10).
   </Step>
   <Step title="Set Limits (optional)">
-    - **Limit to verified purchase** — reward only reviews of products purchased in the linked order.
-    - **Limit to one reward per order** — only the first rewarded review in an order earns points. The media bonus applies only to that same review.
-
-    Limits apply only to reviews collected by Yuko's own reviews module, not to reviews from Judge.me or the Shopify Flow action.
+    - **Limit to verified purchase** — reward only reviews from verified buyers. For Judge.me, that means reviews Judge.me marks as verified. Reviews sent through the Shopify Flow action can't be verified, so they don't earn while this is on.
+    - **Limit to one reward per order** — only the first rewarded review in an order earns points. The media bonus applies only to that same review. This applies only to reviews linked to an order; reviews from Judge.me or the Shopify Flow action aren't affected.
+    - **Earning interval** — **No limit** (the default), **Daily**, **Weekly** or **Monthly**. With an interval set, enter **Reviews rewarded per interval**: the most reviews a customer can earn points for in each interval (a whole number, at least 1).
   </Step>
   <Step title="Set Expiry (optional)">
     Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Set the Media bonus text (optional)">
+    When **Enable Media Earning** is ticked, a **Display Settings** card appears with **Media bonus text**. It's shown after this way to earn's points in all loyalty widgets, for example *1 point + 10 points with a photo*. Use `[media_bonus]` for the bonus amount and `[points_label]` for your points name (up to 100 characters). Leave it empty to use the default, `[media_bonus] [points_label] with a photo`.
   </Step>
   <Step title="Review the side panel">
     - **Status** — on by default.
@@ -79,23 +82,29 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 2. The review reaches Yuko:
    - **Judge.me** sends published reviews to Yuko automatically once the [integration](/integrations/judgeme) is connected. A review counts as having media when it includes pictures.
    - **Other reviews apps** use the Shopify Flow action **Add Points for Review**. Map the **Customer identifier** (customer ID or email), **Product ID** and **Photo Url** from your app's Flow trigger. If a photo URL is passed, the review counts as having media.
-3. Yuko matches the customer and product and awards **Points to earn for product review**.
+3. Yuko matches the customer and product, checks your **Limits**, and awards **Points to earn for product review**.
 4. If the media bonus is on and the review has media, Yuko awards the **Media earning value** as a separate entry.
 5. With **Tiers** on, the tier multiplier applies to both the base and media lines. Tier bonus points are added once per review.
 
 Each customer earns the base points once per product. If a customer first reviews without media and later adds media to the same review, they can still earn the media bonus once.
+
+### Earning interval
+
+With an **Earning interval** set, Yuko counts the reviews a customer earned base points for in the current day, week or month, in your store's timezone (weeks start on Monday). Once the customer reaches **Reviews rewarded per interval**, further reviews in that period earn nothing, including the media bonus. The count resets at the start of the next period.
 
 ### Decision guidance
 
 - **Make the media bonus worth it.** Photo reviews convert better than text-only ones, so reward them.
 - **Pair with your reviews app's review-request email** so customers know the reward exists.
 - **Use moderation in your reviews tool** to keep low-quality reviews from being published.
+- **Set an Earning interval** (for example 3 reviews a week) if you see customers posting many short reviews just for points.
 
 ### Limitations
 
 - Only published reviews earn. Unpublished Judge.me reviews are ignored.
 - Points aren't reversed if a review is later unpublished or deleted. Adjust the balance manually in [Customers](/loyalty/customers) if needed.
 - One base reward per customer per product, even if the customer submits several reviews.
+- Reviews that don't earn because of a limit aren't rewarded later, even after the period resets.
 - The Shopify Flow action needs a customer and product that Yuko can match. Unmatched runs don't award points.
 
 ## Examples
@@ -116,6 +125,9 @@ Each customer earns the base points once per product. If a customer first review
   </Accordion>
   <Accordion title="What happens if a review is deleted or unpublished?">
     The points stay with the customer. Yuko doesn't reverse review points automatically. Use **Adjust balance** in [Customers](/loyalty/customers) to remove them manually.
+  </Accordion>
+  <Accordion title="Can I limit how many reviews a customer is rewarded for?">
+    Yes. Under **Limits**, set an **Earning interval** (Daily, Weekly or Monthly) and the number of **Reviews rewarded per interval**.
   </Accordion>
   <Accordion title="Can a customer earn twice for the same product?">
     No. The base reward is paid once per customer per product, and the media bonus once per customer per product.

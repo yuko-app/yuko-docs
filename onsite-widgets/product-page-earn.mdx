@@ -1,6 +1,6 @@
 ---
 title: Product Page Earn Widget
-description: Show customers how many points they will earn on a product, directly on the product detail page.
+description: Show customers how many points they will earn on a product, plus an optional balance and redeem link, directly on the product detail page.
 ---
 
 <Note>
@@ -9,7 +9,7 @@ description: Show customers how many points they will earn on a product, directl
 
 ## Introduction
 
-The **Product page** widget shows the points a customer will earn by buying the product they're looking at, right on the product detail page.
+The **Product page** widget shows the points a customer will earn by buying the product they're looking at, right on the product detail page. You can also show the customer's points balance with a link to redeem, or a sign-in prompt for visitors.
 
 ## What problem this solves
 
@@ -27,6 +27,7 @@ Customers who don't realise they're earning won't change their behaviour because
 ## Overview
 
 - One message field with placeholders.
+- An optional balance row: points balance and a **Redeem** link for logged-in customers, a sign-in prompt for visitors.
 - Default or custom icon.
 - Styles tab with colours, padding, width, height and **Custom CSS**.
 - Updates when the customer switches variants.
@@ -48,6 +49,11 @@ import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
   </Step>
   <Step title="Edit the message">
     **Points earned on product page**. Default: `You'll earn [points_value] [points_label] on this purchase!`
+  </Step>
+  <Step title="Show the balance row (optional)">
+    Turn on **Show point balance / sign in info** to add a line under the message. Then edit:
+    - **Point balance & redeem (logged in)**: **Point balance** (default `You have [point_balance] [points_label] available.`) and **Redeem button** (default `Redeem`).
+    - **Log in to redeem (logged out)**: **Log in to redeem points** (default `Log in to redeem your [points_label] for rewards.`) and **Log in button** (default `Sign in to view balance`).
   </Step>
   <Step title="Choose an icon">
     Under **Customize product message icon**, keep **Default** or choose **Custom** to upload your own icon (JPG, PNG, GIF or WEBP, under 1 MB).
@@ -83,7 +89,8 @@ Open a product page on your live store and check that the message shows the calc
 |---|---|
 | `[points_value]` | Total points earned with the purchase. |
 | `[points_label]` | Your loyalty points label. |
-| `[points_cash_value]` | Cash value of the points earned. |
+| `[points_cash_value]` | Cash value of the points earned. In the **Point balance** text, the cash value of the customer's balance. |
+| `[point_balance]` | The customer's points balance (balance row only). |
 
 See the full [placeholder reference](#full-placeholder-reference) below.
 
@@ -91,7 +98,8 @@ See the full [placeholder reference](#full-placeholder-reference) below.
 
 1. A customer opens a product page that has the block.
 2. Yuko reads the selected variant's price and works out the points from your active earn rules.
-3. When the customer switches variants, the message updates to the new variant's price.
+3. When the customer switches variants, the message updates to the new variant's price. If the shopper browses in another currency, Yuko converts the price back to your store currency before calculating points.
+4. With **Show point balance / sign in info** on, logged-in customers see their balance and a **Redeem** link that opens the cart redeem modal, where they can redeem and apply rewards (see [Cart Redeem](/onsite-widgets/cart-redeem)). Logged-in customers with no points don't see the row. Visitors see the sign-in prompt, which uses your **Custom login trigger** if you've set one in [Loyalty → Settings](/loyalty/program-settings).
 
 ### Limitations
 

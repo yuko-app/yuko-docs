@@ -32,11 +32,11 @@ The left panel holds the email's settings and content fields. The right panel sh
 | **Email Title** | The heading at the top of the email. Rich text. |
 | **Email Message** | The main body. Rich text. |
 | **Email Footer** | Footer text below the message. Rich text. |
-| **CTA Button**: **CTA label** / **CTA URL** | An optional button. The label is up to 60 characters. The URL must point to your store's domain, or be a single shortcode such as `{{ redemption_link }}`. Fill in both fields, or leave both blank to hide the button. |
+| **CTA Button** | Tick **Use a CTA Button** to add a button, then fill in **CTA Button Text** (up to 60 characters) and **CTA URL**. The URL field already shows your store's address, so enter only the page path, for example `collections/all`. You can also enter a single shortcode such as `{{ redemption_link }}` as the whole link. Untick the box to remove the button. |
 | **Unsubscribe Text** | The unsubscribe link text, for example *"Unsubscribe"*. |
 | **Unsubscribe Description** | Text shown with the unsubscribe link. |
 
-You can use [shortcodes](/emails/shortcodes) such as `{{ first_name }}` or `{{ points_balance }}` in the subject, preview text and content fields. The **Available Template Variables** card at the bottom of the panel lists every shortcode for this email. Click the copy icon next to one and paste it into a field.
+You can use [shortcodes](/emails/shortcodes) such as `{{ first_name }}`, `{{ points_label }}` or `{{ wallet_balance }}` in the subject, preview text and content fields. The **Available Template Variables** card at the bottom of the panel lists every shortcode for this email. Click the copy icon next to one and paste it into a field. If the list is long, click the **Show … more** button at the bottom of the card to see all of it.
 
 ### Delay settings
 
@@ -94,7 +94,10 @@ Once you save an email in the Advanced Editor, it shows an **Advanced** badge in
     No. **Send Test Email** always goes to the email address on your Yuko account.
   </Accordion>
   <Accordion title="Why can't I save my CTA URL?">
-    The CTA URL must point to your store's domain (the editor shows which domain under the field). Links to other sites aren't allowed. Leave the field blank to hide the button.
+    The CTA URL must be a page on your store. The editor shows your store's address above the field, so enter only the path, such as `pages/rewards`. Links to other sites aren't allowed. If you don't want a button, untick **Use a CTA Button**.
+  </Accordion>
+  <Accordion title="Why is the CTA URL field greyed out?">
+    Your store isn't connected yet, so Yuko doesn't know which domain to use. The field shows *"Connect your store to enable CTA links."*
   </Accordion>
   <Accordion title="Can I translate an email into several languages?">
     Each email has one version. Write it in the language most of your customers use.

@@ -1,6 +1,6 @@
 ---
 title: WhatsApp Workflow Node
-description: Send an approved WhatsApp template at any step of a workflow through any of 13 connected WhatsApp providers, with shortcodes for personalisation.
+description: Send an approved WhatsApp template at any step of a workflow through any of 14 connected WhatsApp providers, with shortcodes for personalisation.
 ---
 
 <Note>
@@ -13,7 +13,7 @@ The WhatsApp node sends one WhatsApp template message to the customer when the w
 
 ## Supported providers
 
-The node supports **13** providers:
+The node supports **14** providers:
 
 | Provider | Integration guide |
 |---|---|
@@ -30,6 +30,7 @@ The node supports **13** providers:
 | AskEva | [AskEva](/integrations/askeva) |
 | Whamaa | [Whamaa](/integrations/whamaa) |
 | ConvertWay | [ConvertWay](/integrations/convertway) |
+| WappCloud | [WappCloud](/integrations/wappcloud) |
 
 ## Before you start
 
@@ -68,7 +69,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 | Zoko | Message Type (**Template**, **Rich Template (with media header)**, **Button Template (with interactive buttons)**), Template ID, Template Language, Template Argument Count |
 | WATI | Template Name, Broadcast Name, Channel Number, Client ID, Parameter Count |
 | DelightChat | Automation ID, Message Data Count, CTA Button Text, CTA Button URL |
-| Kwik Engage | Endpoint URL, Template Name, Language Code, Parameter Count, Add CTA Button / CTA Button Count |
+| Kwik Engage | Template Name, Language Code, Parameter Count, Add CTA Button / CTA Button Count |
 | Engati | Namespace, Endpoint URL, Template Name, Parameter Count |
 | QuickReply.ai | Template ID, Parameter Count, Media URL (Optional), Button Parameters (Optional) |
 | Interakt | Template Name, Language Code, Template Parameter Count, Callback Data, Add CTA Button / CTA Button Count |
@@ -77,6 +78,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 | AskEva | Template Name, Language Code, Parameter Count, Add CTA Button / CTA Button Count |
 | Whamaa | Template Name, Language Code, Parameter Count, Add CTA Button / CTA Button Count |
 | ConvertWay | Template Name, Language Code, Parameter Count, Add CTA Button / CTA Button Count |
+| WappCloud | Template Name, Add CTA Button / CTA Button Count, Parameter Count |
 
 ## Shortcodes
 
@@ -128,7 +130,7 @@ You can see each step's result and failure reason in [Analytics](/workflows/anal
     No. The wording is fixed in the approved template in your provider's dashboard. Yuko only fills the parameters.
   </Accordion>
   <Accordion title="Should I use this node or the Engati / kwikEngage nodes?">
-    Use the WhatsApp node. It supports Engati and Kwik Engage as providers, plus 11 others. See [Partner Nodes](/workflows/partner-nodes).
+    Use the WhatsApp node. It supports Engati and Kwik Engage as providers, plus 12 others. See [Partner Nodes](/workflows/partner-nodes).
   </Accordion>
 </AccordionGroup>
 

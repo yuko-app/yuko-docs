@@ -11,13 +11,13 @@ description: Award a one-off batch of points to a Shopify segment, tagged custom
 
 A one-time campaign is a **single, targeted points award** to a group of customers. Pick the audience, set the points, decide when it runs, and Yuko awards every matched customer once.
 
-Where a [Way to Earn](/loyalty/ways-to-earn/overview) rewards *every* qualifying action, and a [Booster Campaign](/loyalty/booster-campaigns/overview) *multiplies or adds* to those rewards over a period, a one-time campaign is the loyalty version of an email blast: **a one-shot event with a clear start, a clear end and a measurable audience**.
+Where a [Way to Earn](/loyalty/ways-to-earn/overview) rewards *every* qualifying action, and a [Bonus Campaign](/loyalty/booster-campaigns/overview) *multiplies or adds* to those rewards over a period, a one-time campaign is the loyalty version of an email blast: **a one-shot event with a clear start, a clear end and a measurable audience**.
 
 One-time Campaigns are available on select plans.
 
 ## Why you need them
 
-Boosters and Ways to Earn are structural: they change the *rules* of your program. One-time campaigns are tactical: they let you act right now.
+Bonus campaigns and Ways to Earn are structural: they change the *rules* of your program. One-time campaigns are tactical: they let you act right now.
 
 - *"We just launched and every balance is 0. Let's give everyone 200 points so day-one activity happens."*
 - *"A batch of orders shipped late. Let's give those customers 300 points to smooth things over."*
@@ -33,7 +33,7 @@ A coupon could do the same job, but every recipient has to remember and apply it
 - You want to reward a defined group (contest winners, beta testers, early adopters) that you've tagged in Shopify.
 - You want to reward a Shopify segment you've already built for email or ads.
 
-If you need a *rule that keeps rewarding*, use a [Way to Earn](/loyalty/ways-to-earn/overview). If you need a *multiplier or bonus over a period*, use a [Booster Campaign](/loyalty/booster-campaigns/overview). One-time campaigns award **once per matched customer** and then close.
+If you need a *rule that keeps rewarding*, use a [Way to Earn](/loyalty/ways-to-earn/overview). If you need a *multiplier or bonus over a period*, use a [Bonus Campaign](/loyalty/booster-campaigns/overview). One-time campaigns award **once per matched customer** and then close.
 
 ## Before you start
 
@@ -67,7 +67,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
     Turn on **Expiry**, then set **Expires after** (1 to 3,650) and a **Period** of **Days**, **Weeks** or **Months**. The awarded points expire that long after they're awarded.
   </Step>
   <Step title="Trigger workflow events (optional)">
-    Under **Workflow events**, tick **Trigger workflow events** to fire the **One-time Campaign Points Awarded** event for each customer who receives points. Any matching workflow can then send WhatsApp or email messages. See [Workflow events and identifiers](#workflow-events-and-identifiers).
+    Under **Workflow events**, tick **Trigger workflow events** to fire the **One-time Campaign Points Awarded** event for each customer who receives points. Then pick the **Workflow** that should send the message. Only workflows that use the **One-time Campaign Points Awarded** trigger are listed, so create that workflow first. See [Workflow events and identifiers](#workflow-events-and-identifiers).
   </Step>
   <Step title="Preview the audience">
     In **Estimated reach**, click **Preview audience**. Yuko shows how many customers match and the total points you're about to award. Nothing is awarded yet.
@@ -77,7 +77,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
   </Step>
 </Steps>
 
-The form checks your input before saving. For example: *Campaign name is required*, *Segment is required*, *Select at least one tag* and *Send time is required*. HTML isn't allowed in text fields.
+The form checks your input before saving. For example: *Campaign name is required*, *Segment is required*, *Select at least one tag*, *Select a workflow* and *Send time is required*. HTML isn't allowed in text fields.
 
 ### Audience types in detail
 
@@ -128,16 +128,22 @@ The per-customer log: customer, points, status and when they were processed.
 
 - Search by name or email, and filter by status: **Awarded**, **Skipped**, **Failed** or **Pending**.
 - Customers are **Skipped** (not failed) when, for example, they're excluded from the loyalty program or no longer exist in Yuko.
-- Once the campaign is **Completed** or **Completed with errors**, click **Export** to download a CSV with these columns: `customer_name`, `email`, `phone`, `platform_customer_id`, `point_balance`, `points_awarded`, `status`, `expiry_date` and `redemption_link`.
+- Once the campaign is **Completed** or **Completed with errors**, click **Export**. In **Export participants**, choose who to include, then click **Export** to download a CSV:
+  - **All participants**
+  - **Converted customers only**: customers who redeemed this campaign's points on an order.
+  - **Non-converted customers only**: customers who haven't. Use this list for a reminder send.
 
-The `redemption_link` column holds a personal, signed link parameter for each customer (it starts with `?customer_uuid=`). Add it to the end of your store URL in an SMS, WhatsApp or email send, and Yuko recognises the customer when they land on your store so they can redeem their points straight away.
+The CSV has these columns: `customer_name`, `email`, `phone`, `platform_customer_id`, `point_balance`, `points_awarded`, `status`, `expiry_date`, `redeem_parameters` and `full_redemption_link`.
+
+- `full_redemption_link` is a personal, signed link to your store for each customer. Use it in an SMS, WhatsApp or email send. When the customer opens it, Yuko recognises them so they can redeem their points straight away.
+- `redeem_parameters` is the same link without your store address (it starts with `customer_uuid=`). Use it if you want to add the parameters to a different page URL yourself.
 
 ### Conversions
 
 Shows **orders placed using coupons that were redeemed with points awarded by this campaign**:
 
 - **Revenue**, **Orders**, **Customers** and **Points redeemed** totals.
-- A table of each order with the customer, order number and discount code, points used, order total and date.
+- A table with the **Customer**, the **Order** (with the discount code used), **Points used** from this campaign, **Order total** and when it was **Placed**. Click a customer to open their Yuko page, or an order number to open the order in Shopify.
 
 The campaign list also shows **Orders** and **Revenue** for each campaign at a glance.
 
@@ -145,7 +151,21 @@ The campaign list also shows **Orders** and **Revenue** for each campaign at a g
 
 Tick **Trigger workflow events** to fire the **One-time Campaign Points Awarded** workflow trigger for every customer who receives points. Build a [workflow](/workflows/overview) on that trigger to send a WhatsApp or email message the moment the points land. The event carries the campaign name, the points awarded, their expiry date and the customer's details, so your messages can include them.
 
-To send different messages for different campaigns, add a condition to the workflow:
+<Steps>
+  <Step title="Create the workflow first">
+    In **Workflows**, create a workflow that starts with the **One-time Campaign Points Awarded** trigger and sends your message.
+  </Step>
+  <Step title="Select it on the campaign">
+    On the campaign, tick **Trigger workflow events** and pick the workflow under **Workflow**. Workflows that aren't running show their status next to the name.
+  </Step>
+  <Step title="Save the campaign">
+    When you save, Yuko adds a **Campaign Identifier equals** condition for this campaign to the selected workflow's trigger, so the workflow only sends for the campaigns linked to it. If you select the same workflow on several campaigns, it sends for each of them. If you switch a campaign to another workflow, Yuko removes the condition from the old one.
+  </Step>
+</Steps>
+
+<Note>If the workflow's trigger combines several filter groups with **OR**, Yuko can't add the condition and shows an error when you save. Switch the workflow's filters to **AND**, or add the **Campaign Identifier** condition yourself.</Note>
+
+You can also add conditions to the workflow yourself:
 
 - **Campaign Identifier** — matches the campaign's **Identifier**. Copy it from the campaign's Configuration tab.
 - **Campaign Name** — matches the campaign's name.
@@ -232,12 +252,13 @@ A one-time campaign quietly adds points to a customer's balance, but the custome
 
 For a 200-point award to all customers on BFCM morning:
 
-1. **2 days before.** Create the campaign, schedule it for 8:00 AM on BFCM, tick **Trigger workflow events** and preview the audience.
+1. **2 days before.** Create a workflow on the **One-time Campaign Points Awarded** trigger. Then create the campaign, schedule it for 8:00 AM on BFCM, tick **Trigger workflow events**, select the workflow and preview the audience.
 2. **Send time.** Yuko awards the points and fires **One-time Campaign Points Awarded** for each customer.
-3. **Minutes later.** Your workflow (filtered by **Campaign Identifier**) sends *"You now have new points. Redeem by Sunday."*
+3. **Minutes later.** Your workflow (filtered to this campaign by its **Campaign Identifier**) sends *"You now have new points. Redeem by Sunday."*
 4. **Same day.** Loyalty Nudges on the storefront show the fresh balance when customers visit.
 5. **After it runs.** Watch the **Conversions** tab for orders, revenue and points redeemed.
-6. **3 days later.** The points expire. Optionally send a last-call reminder to customers who haven't redeemed.
+6. **Before expiry.** Export **Non-converted customers only** and send a last-call reminder to customers who haven't redeemed.
+7. **3 days later.** The points expire.
 
 ## Limitations
 
@@ -250,8 +271,8 @@ For a 200-point award to all customers on BFCM morning:
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="How is a one-time campaign different from a Booster?">
-    Boosters change the earning rules over a period, for example *"2× points on all orders this weekend"*. One-time campaigns don't touch the rules; they award a fixed amount of points to a fixed audience once.
+  <Accordion title="How is a one-time campaign different from a Bonus Campaign?">
+    Bonus campaigns change the earning rules over a period, for example *"2× points on all orders this weekend"*. One-time campaigns don't touch the rules; they award a fixed amount of points to a fixed audience once.
   </Accordion>
   <Accordion title="Can I award the same customers twice?">
     Yes. Create a new campaign. Each campaign awards a customer only once, but nothing stops you running campaign A on Monday and campaign B to the same audience on Friday.
@@ -288,11 +309,11 @@ For a 200-point award to all customers on BFCM morning:
   <Card title="Backfill Points" icon="clock-rotate-left" href="/loyalty/backfill-points">
     Award points for orders placed before you launched Yuko.
   </Card>
-  <Card title="Booster Campaigns" icon="rocket" href="/loyalty/booster-campaigns/overview">
+  <Card title="Bonus Campaigns" icon="rocket" href="/loyalty/booster-campaigns/overview">
     Change the earning rules over a period instead of awarding a fixed amount.
   </Card>
   <Card title="Ways to Earn" icon="hand-holding-dollar" href="/loyalty/ways-to-earn/overview">
-    The always-on earning rules your boosters and one-time campaigns build on.
+    The always-on earning rules your bonus campaigns and one-time campaigns build on.
   </Card>
   <Card title="Triggers and conditions" icon="diagram-project" href="/workflows/triggers-and-conditions">
     Use the One-time Campaign Points Awarded trigger and campaign conditions.

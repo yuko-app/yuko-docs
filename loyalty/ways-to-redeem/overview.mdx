@@ -43,14 +43,26 @@ import RelatedRewards from '/snippets/related-rewards.mdx';
 | Minimum quantity of items | Yes | Yes | Yes | Yes | — | — | — |
 | Combine with other discounts | Yes | Yes | Yes | Yes | — | Yes | Yes |
 | Expiry | Yes | Yes | Yes | Yes | Yes | — | — |
+| Instruction note | Yes | Yes | Yes | Yes | — | — | — |
 
 ## How rewards work
 
 1. A customer has enough points for an active reward.
 2. The reward appears in your loyalty widgets (for example the Cart Redeem widget, the customer account page or the rewards landing page), or in the Yuko tile at Shopify POS for POS rewards.
 3. The customer redeems it. Yuko deducts the points and creates a single-use Shopify discount code for that customer. Store Credit is the exception: it adds Shopify store credit to the customer's account instead.
-4. The customer applies the code at checkout, or the cashier applies it at POS.
+4. In your storefront widgets, the code is applied to the cart straight away and copied to the customer's clipboard. For a Free Product reward, it also adds the product to the cart. At POS, the cashier applies the code.
 5. Yuko logs the redemption in the customer's activity.
+
+### What customers see after redeeming
+
+- Redeemed codes stay in the customer's rewards in your storefront loyalty widgets, with an **Apply** button. Clicking **Apply** applies the code to the cart and copies it to the clipboard.
+- When a code is already in the cart, its button shows **Applied** instead. You can change both button texts in your widget settings.
+- If applying fails, the error appears under the reward instead of inside the button.
+- The reward's **Instruction note**, if you set one, appears below the code.
+
+### How the launcher lists rewards
+
+In the Floating Rewards launcher, **Ways to redeem** splits rewards into two tabs, **Discounts** and **Free products**, when you have both kinds. Each tab shows how many rewards it holds. You can rename the tabs in the launcher's **Ways to redeem** settings. See [Floating Rewards](/onsite-widgets/floating-launcher).
 
 ## Common settings
 
@@ -60,9 +72,22 @@ Every reward has:
 - **Description** — short copy shown with the reward. POS rewards have no description.
 - **Status** — enable or disable the reward from the side panel.
 - **Icon** — **Default** or **Custom** (upload your own image, under 1MB).
+- **Instruction note** — under **Display Settings**, optional text shown below the code in the customer's rewards across all loyalty widgets, for example *Use this code at checkout*. Up to 500 characters. Leave it empty to hide it. POS rewards don't have this setting. Store Credit rewards have the field, but it isn't shown because store credit has no code.
 - **Rewards Summary** — a live summary of what you've configured.
 
 You can drag rewards in the list to change the order customers see them in.
+
+## Refunding an unused reward
+
+If a customer redeemed a reward by mistake, you can return their points.
+
+1. Go to **Customers** and open the customer.
+2. In **Active Rewards**, find the reward and click **Refund**.
+3. Optionally enter a **Reason (optional)**. It's shown to the customer in their activity history. Click **Refund** to confirm.
+
+Yuko deletes the discount code in Shopify, so it can no longer be used, and returns the points spent to the customer's balance. The redemption shows a **Refunded** badge in the customer's activity. This can't be undone.
+
+You can refund only rewards the customer redeemed with points and hasn't used yet. Rewards issued automatically, such as VIP tier, membership or referral rewards, can't be refunded. See [Customers](/loyalty/customers).
 
 ## Decision guidance
 

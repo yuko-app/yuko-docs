@@ -86,7 +86,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 1. A customer places an order.
 2. When the order reaches an **Earning Status** you ticked in [Loyalty Settings](/loyalty/program-settings) (Paid, Fulfilled or Delivered), Yuko checks it. Cancelled orders don't earn.
-3. Yuko works out the eligible order amount. If you excluded products or collections, only the remaining items count.
+3. Yuko works out the eligible order amount in your store's currency. If you excluded products or collections, only the remaining items count.
 4. Points are calculated with your earning method and rounded using your **Rounding Type**.
 5. If **Tiers** is on, the customer's VIP tier multiplier and any tier bonus points for this way to earn are added as a separate tier bonus entry.
 6. Points go to the customer's balance, or wait out the holding period first.
@@ -147,6 +147,9 @@ With **Tiers** on and VIP tiers enabled, a customer in a tier earns base points 
   </Accordion>
   <Accordion title="How do VIP multipliers work with this way to earn?">
     Turn on **Tiers** in the side panel. Customers in a VIP tier then earn the tier's multiplier (and any bonus points) on top of the base points, shown as a separate tier bonus entry.
+  </Accordion>
+  <Accordion title="What if a customer pays in another currency?">
+    Points are always calculated from the order amount in your store's currency, so a customer earns the same points whichever currency they check out in. Your loyalty widgets show amounts converted to the shopper's currency.
   </Accordion>
   <Accordion title="Do guest checkouts earn points?">
     No. Points need a customer record, so the order must be linked to a customer.

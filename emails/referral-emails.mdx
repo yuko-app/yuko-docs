@@ -19,7 +19,9 @@ Each email has a delay setting (**Days after Referrer welcome**, **Days after Fr
 
 ## Referrer welcome
 
-**Sent when:** a customer joins your referral program as a referrer.
+**Sent when:** a customer joins your referral program as a referrer. That includes customers who click **Get referral link** in a widget and customers enrolled automatically by your **Auto Enrollment** setting (see [Program Setup](/referrals/program-setup#6-choose-when-customers-are-enrolled)).
+
+<Note>Existing customers that Yuko enrolls in bulk after a customer sync (with **Enroll a customer after signup**) don't receive this email.</Note>
 
 **Default subject:** *Welcome to our referral program*
 
@@ -55,6 +57,8 @@ Each email has a delay setting (**Days after Referrer welcome**, **Days after Fr
 
 **Useful shortcodes:** `{{ discount_code }}`, `{{ reward_value }}`, `{{ reward_type }}`, `{{ friend_first_name }}`, `{{ total_referrals }}`, `{{ points_balance }}`.
 
+Every referral email can also use the [Wallet shortcodes](/emails/shortcodes#wallet), such as `{{ wallet_balance }}` and `{{ points_label }}`, for example to remind referrers of their points balance.
+
 <Tip>**Show their progress.** `{{ total_referrals }}` gives your best referrers a reason to keep sharing.</Tip>
 
 ## Best practices
@@ -70,6 +74,9 @@ Each email has a delay setting (**Days after Referrer welcome**, **Days after Fr
   </Accordion>
   <Accordion title="Is there an email when a referral is completed?">
     There's no built-in one, but you can build a workflow on the **Referral Completed** trigger.
+  </Accordion>
+  <Accordion title="Can I use referral events in Shopify Flow?">
+    Yes. Yuko sends **Yuko Referral Friend Reward Claimed**, **Yuko Referral Completed** and **Yuko Referral Advocate Rewarded** to Shopify Flow. See [Shopify Flow](/integrations/shopify-flow).
   </Accordion>
 </AccordionGroup>
 

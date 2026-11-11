@@ -7,7 +7,7 @@ description: Configure how customers earn points, from placing orders to birthda
 **Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn
 </Note>
 
-Ways to Earn (also called **campaigns**) are the rules that award points. Each type maps to one customer action, and you can have one way to earn of each type.
+Ways to Earn (also called **campaigns**) are the rules that award points. Each type maps to one customer action. You can have one way to earn of each type, except **Custom Action**, which you can add as many times as you need.
 
 To add one, click **Add another way** in the **Ways to earn** section (or **Create campaign** if you have none yet) and pick a type. Types you've already added don't appear in the picker, and types that aren't on your plan are marked with an upgrade badge.
 
@@ -42,6 +42,14 @@ To add one, click **Add another way** in the **Ways to earn** section (or **Crea
   </Card>
   <Card title="Subscribe to WhatsApp" icon="whatsapp" href="/loyalty/ways-to-earn/subscribe-to-whatsapp">
     Reward WhatsApp marketing opt-in (Shopify only).
+  </Card>
+</CardGroup>
+
+## Custom actions
+
+<CardGroup cols={2}>
+  <Card title="Custom Action" icon="code" href="/loyalty/ways-to-earn/custom-action">
+    Reward any action you define, like completing a survey. Points are credited through the REST API.
   </Card>
 </CardGroup>
 
@@ -88,16 +96,18 @@ Looking for **Refer a Friend**? Referrals are configured in the dedicated [Refer
 
 ## Settings every way to earn shares
 
-- **Campaign Name** and **Description** — shown to customers on the storefront. The name supports `[earn_value]` and `[points_label]` (Place an order also supports `[earn_from_amount]`).
+- **Campaign Name** and **Description** — shown to customers on the storefront. The name supports `[earn_value]` and `[points_label]` (Place an order also supports `[earn_from_amount]`). On a Custom Action, the name field is called **Action Name**.
 - **Points** — a whole number of at least 1.
 - **Expiry** — optional; set **Expire after** and a **Period** (Day, Week, Month or Year). Available on select plans.
 - **Status** — turn the way to earn on or off. New ways to earn are on by default.
 - **Icon** — **Default**, or **Custom** to upload your own (JPG, PNG, GIF or WEBP, under 1 MB).
 - **Tiers** — apply [VIP tier](/vip-tiers/overview) multipliers and bonus points to this way to earn.
 
+**Custom Action** also has **Hide from on-site displays**, which keeps the action out of your loyalty widgets while it keeps working through the API.
+
 ## How ways to earn work
 
-1. Yuko listens for the customer action (order reaches your Earning Status, account created, consent recorded, widget button clicked, and so on).
+1. Yuko listens for the customer action (order reaches your Earning Status, account created, consent recorded, widget button clicked, Custom Action credited through the API, and so on).
 2. It checks the customer isn't excluded from the program and hasn't already earned within the way to earn's limit.
 3. It calculates the points and rounds them using the **Rounding Type** in [Loyalty Settings](/loyalty/program-settings).
 4. If **Tiers** is on, it adds the tier's multiplier and bonus points as a separate tier bonus entry.
@@ -108,17 +118,19 @@ How often a customer can earn depends on the type:
 | Type | How often |
 |---|---|
 | Place an order | Once per order |
-| Write a review | Once per product |
+| Write a review | Once per product, with an optional limit per day, week or month |
 | Birthday, Anniversary | Once a year |
 | Daily Visit | Once per Earning interval (Daily, Weekly or Monthly) |
 | Visit URL | Once, or once per day, week or month (Frequency) |
+| Custom Action | Each time the API credits it, with an optional limit per day, week, month or year |
 | All other types | Once per customer |
 
 ## Managing ways to earn
 
 - **Reorder** ways to earn by dragging them in the list.
 - **Disable** a way to earn with its **Status** toggle to stop earning without losing its settings.
-- A way to earn used as the earning action by a [booster campaign](/loyalty/booster-campaigns/overview) can't be disabled or deleted. Disable or archive those booster campaigns first.
+- **Delete** a way to earn with the delete icon in the list. **Place an order** can be disabled but not deleted.
+- A way to earn used as the earning action by a [bonus campaign](/loyalty/booster-campaigns/overview) can't be disabled or deleted. Disable or archive those bonus campaigns first.
 
 ## Decision guidance
 
@@ -127,6 +139,7 @@ How often a customer can earn depends on the type:
 - Add **Write a review** if you collect reviews. It lifts submission rates.
 - Add **Subscribe to Newsletter**, **SMS** or **WhatsApp** to grow your owned channels.
 - Add **social** ways to earn only on networks where your customers actually spend time.
+- Add a **Custom Action** when you want to reward something your own tools track, like a survey or an event check-in.
 
 ## Best practices
 

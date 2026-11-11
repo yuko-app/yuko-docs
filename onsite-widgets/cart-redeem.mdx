@@ -67,6 +67,7 @@ Go to **Loyalty → Widgets**, find **Cart redeem message** under **Shopping Car
   <Step title="Existing rewards list">
     - **Existing rewards title**: default `Existing Rewards`
     - **Apply button**: default `Apply`
+    - **Applied button**: default `Applied`. Shown with a tick once the reward is applied to the cart.
     - **Expiration date label**: default `Expires on [expiration_date]`. Hidden automatically when a reward has no expiry.
   </Step>
   <Step title="Ways to redeem list">
@@ -82,7 +83,6 @@ Go to **Loyalty → Widgets**, find **Cart redeem message** under **Shopping Car
     - **Benefits title**: default `Benefits`
     - **Tiers title**: default `Upcoming Tiers`
     - **Tier entry threshold**: default `Earn [tier_entry_amount] [points_label]`
-    - **Points multiplier benefit text**: default `[multiplier_value]x multiplier`. Shown as the first benefit when the tier's multiplier is above 1.
   </Step>
   <Step title="Birthday prompt">
     - **Title**: default `Birthday Reward`. Used when your Birthday earn rule has no name.
@@ -150,7 +150,6 @@ The same setting is used by the Floating Rewards launcher and Loyalty Nudges.
 | `[points]` | Points (or spend) still needed to reach the next tier. |
 | `[tier_name]` | The next tier's name. |
 | `[tier_entry_amount]` | Points or spend needed to enter a tier. |
-| `[multiplier_value]` | A tier's points multiplier, for example 2. |
 
 ## How it works
 
@@ -158,7 +157,11 @@ The same setting is used by the Floating Rewards launcher and Loyalty Nudges.
 2. Logged-out shoppers see the login prompt, unless **Hide for logged out customers** is on.
 3. Logged-in customers with a zero balance don't see the widget.
 4. Clicking the **Rewards** button opens the redeem modal.
-5. **Redeem** turns points into a discount code for that customer. **Apply** adds the code to the cart.
+5. **Redeem** turns points into a discount code for that customer and applies it to the cart straight away. **Apply** adds an existing code to the cart.
+6. Either way, Yuko copies the code to the customer's clipboard, and the button switches to your **Applied button** text with a tick.
+7. For a free product reward, Yuko adds the product to the cart before applying the code. If the code is later removed from the cart, Yuko removes the product it added.
+8. If redeeming or applying fails, an error message appears under that reward for a few seconds.
+9. Free product prices and cash values are shown in the currency the shopper is browsing in.
 
 ### Limitations
 

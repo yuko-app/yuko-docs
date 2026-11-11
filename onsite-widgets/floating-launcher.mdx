@@ -34,6 +34,7 @@ Customers shouldn't have to hunt for a loyalty page to find out what they can ea
 - Ten editor tabs: **Customization**, **Home page**, **Floating Rewards button**, **Birthday**, **VIP**, **Your Rewards**, **Activity log**, **Ways to earn**, **Ways to redeem** and **Membership Detail**.
 - Most text tabs have two audiences: **Anonymous** (visitors without an account) and **With account** (logged-in members).
 - Home page sections can be dragged into a new order.
+- A **Bottom navigation** tab bar (on by default) lets customers jump between Home, Earn, Redeem and My rewards.
 - A **Deep link** opens the panel straight to a chosen section.
 - Each language has its own copy of the text. Use the **Editing language** picker at the top of the editor.
 - The widget renders inside a shadow DOM, so your theme's CSS doesn't leak into the panel and the panel's CSS doesn't leak into your theme. Use the **Custom CSS** section to style it.
@@ -53,7 +54,7 @@ import BeforeYouStart from '/snippets/before-you-start-widgets.mdx';
     Go to **Apps → Yuko Loyalty → Loyalty → Widgets** and click **Customize** on **Floating Rewards**. The editor opens on the **Home page** tab, with a live preview you can switch between mobile and desktop.
   </Step>
   <Step title="Set the look in Customization">
-    Work through the **Customization** accordions: Colors, Shapes, Placement, Visibility, Banner images, Custom CSS and Deep link. See [Customization](#customization) below.
+    Work through the **Customization** accordions: Colors, Shapes, Placement, Visibility, Banner images, Custom CSS, Deep link and Bottom navigation. See [Customization](#customization) below.
   </Step>
   <Step title="Configure the button">
     On the **Floating Rewards button** tab, pick a mode, text and icon for desktop and for mobile.
@@ -133,6 +134,19 @@ Open the panel directly on one section from a menu link, button, email or ad:
 | Your rewards | `#yuko-your-rewards` |
 | Activity | `#yuko-activity` |
 
+### Bottom navigation
+
+A tab bar at the bottom of the panel so customers can switch sections in one tap. **Show bottom navigation** is on by default. Each tab has its own settings:
+
+| Tab | Opens | Settings |
+|---|---|---|
+| **Home** | The panel's home page. Always shown. | **Label** and icon. |
+| **Earn** | Ways to earn. | **Show this tab**, **Label** and icon. |
+| **Redeem** | Ways to redeem. | **Show this tab**, **Label** and icon. |
+| **My rewards** | Your rewards. Only shown to logged-in customers. | **Show this tab**, **Label** and icon. |
+
+Labels can be up to 30 characters and accept `[points_label]`. Leave a label empty to use the default (the tab's name). For the icon, keep **Default** or upload your own.
+
 ## Floating Rewards button
 
 Set on separate **Desktop** and **Mobile** tabs:
@@ -149,7 +163,7 @@ The home page is what customers see when they open the panel. Switch between **A
 |---|---|---|
 | **Header** | Both | **Caption** and **Title**. Visitor defaults: *Welcome to* / `[store_name]`. Member defaults: *Welcome back!* / *You have `[point_balance]` `[points_label]`*. |
 | **Account creation** | Anonymous | **Title**, **Description**, **Join now button (Lists)**, **Create account** and **Sign in**. In **Sign in**, `[signin:Sign in]` becomes a sign-in link, and the text after the colon is the link text. |
-| **Featured booster** | Both | **Show a featured booster card on the home page**, **Booster campaign to feature** and **Booster text**. The reward summary comes from the selected [booster campaign](/loyalty/booster-campaigns/overview). Off by default. |
+| **Featured bonus campaign** | Both | **Show a featured booster card on the home page**, **Bonus campaign to feature** and **Booster text**. The reward summary comes from the selected [bonus campaign](/loyalty/booster-campaigns/overview). Off by default. |
 | **Your rewards** | With account | **Your rewards** and **Your rewards description**. |
 | **Points** | Both | **Title**, **Description**, **Ways to earn label** and **Ways to redeem label**, each with an icon (**Default** or **Upload your own icon**). |
 | **VIP** | Both | **Title**, **Description**, **Starting tier label** (default *Free Entry*), **Tier reach text**, **Next tier text**, **Earn points to reach text** and **Maximum tier reached text**. |
@@ -162,11 +176,11 @@ The home page is what customers see when they open the panel. Switch between **A
 | Tab | Settings |
 |---|---|
 | **Birthday** | **Title**, **Description**, **Day label**, **Month label**, **Year label** and **Save date button**. |
-| **VIP** | **VIP tiers header**, **Starting tier label**, **Tier reach text**, **Next tier text**, **Earn points to reach text**, **Maximum tier reached text**, **Benefits title** and **Points multiplier benefit text**. |
-| **Your Rewards** | **Page title**, **Apply discount button text**, **Expiration date text** and **No rewards available text**. |
+| **VIP** | Lists every tier with its threshold and benefits. **Benefits title** and **Tier reach text** for both audiences. **Anonymous** adds **Starting tier label**. **With account** adds **VIP tiers header**, **Maximum tier reached text**, **Next tier text** and **Earn points to reach text**. |
+| **Your Rewards** | **Page title**, **No rewards available text**, **Apply discount button text** (default *Apply*), **Applied button text** (default *Applied*, shown with a tick once the reward is in the cart) and **Expiration date text**. |
 | **Activity log** | **Page title**, **Balance notice text**, **No activity found text**, **Page info text**, **Previous button text** and **Next button text**. |
-| **Ways to earn** | **Page title**, **Ways to earn — order** (**Booster campaigns first** or **Standard campaigns first**), **No campaigns available text**, and the **Like**, **Follow**, **Share** and **Edit date** button text. |
-| **Ways to redeem** | **Page title**, **Redeem button text** and **No rewards available text**. |
+| **Ways to earn** | **Page title**, **No campaigns available text**, **Ways to earn — order** (**Bonus campaigns first** or **Standard campaigns first**), and the **Like**, **Follow**, **Share**, **Visit** (daily-visit campaigns) and **Edit date** button text. |
+| **Ways to redeem** | **Page title**, **Redeem button text**, **No rewards available text**, **Show description below reward name**, **Load more button text**, **Discounts tab text** (default *Discounts*) and **Free products tab text** (default *Free products*). The two tabs appear only when you have both discount and free product rewards. |
 | **Membership Detail** | **Page title**, **Plans section label**, **Benefits label**, **Monthly label**, **Yearly label**, **Renewal label**, **Become a member button text**, **Upgrade button text**, **Downgrade button text**, **Cancel membership button text** and **Action in progress text**. |
 
 Text fields accept placeholders:
@@ -182,6 +196,8 @@ import Placeholders from '/snippets/widget-placeholders.mdx';
 3. Visitors see the **Anonymous** home page, with prompts to create an account or sign in. Logged-in customers see the **With account** version, with their balance, rewards and activity.
 4. A URL ending in a `#yuko-<section>` deep link opens the panel straight to that section.
 5. Customers can apply earned rewards, redeem points, set their birthday and share their referral link from inside the panel.
+6. Redeeming or applying a reward copies the discount code to the clipboard and adds it to the cart. For a free product reward, Yuko also adds the product to the cart, and removes it again if the code is removed. The button then shows your **Applied button text** with a tick. If something goes wrong, an error appears under that reward for a few seconds.
+7. Prices and cash values are shown in the currency the shopper is browsing in.
 
 ### Custom login trigger
 
@@ -201,7 +217,7 @@ The same setting applies to Loyalty Nudges and the Cart redeem widget.
 ## Examples
 
 - **Menu link to rewards:** add a "Rewards" item to your main menu that links to `#yuko-ways-to-redeem`, so the panel opens on what customers can spend their points on.
-- **Booster spotlight:** turn on **Featured booster** during a double-points weekend so every panel opens with that offer at the top of the home page.
+- **Bonus campaign spotlight:** turn on **Featured bonus campaign** during a double-points weekend so every panel opens with that offer at the top of the home page.
 - **Clear of your chat app:** place Floating Rewards on the left and keep your support chat on the right, or raise **Bottom spacing** so the two don't overlap.
 
 ## Best practices

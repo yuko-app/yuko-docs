@@ -15,7 +15,7 @@ Each widget has a toggle to switch it on and a **Customize** button to edit its 
 
 Widgets render through three kinds of Shopify extension:
 
-- **Theme app extension**: the **Yuko App** app embed (Floating Rewards, Loyalty Nudges and automatic cart placement) and the Yuko theme blocks you add in the theme editor (product, cart and landing page blocks).
+- **Theme app extension**: the **Yuko App** app embed (Floating Rewards, Loyalty Nudges and automatic cart placement) and the Yuko theme blocks you add in the theme editor (product, cart, and landing page blocks for the Custom landing page template). Rewards Landing Page templates also load through the embed.
 - **Checkout UI extension**: blocks inside Shopify Checkout.
 - **Customer account UI extension**: blocks on the Order status, Orders and Profile pages, plus a full loyalty page, in Shopify's new customer accounts.
 
@@ -28,7 +28,7 @@ Widgets are grouped as they appear in the admin.
 | Widget | Where it appears | How it renders |
 |---|---|---|
 | [Floating Rewards](/onsite-widgets/floating-launcher) (Recommended) | A floating button and panel on every page | Yuko App embed |
-| [Rewards Landing Page](/onsite-widgets/rewards-landing-page) (Recommended) | A loyalty page at `/pages/loyalty-info-page` | Seven Yuko theme blocks |
+| [Rewards Landing Page](/onsite-widgets/rewards-landing-page) (Recommended) | A loyalty page at `/pages/loyalty-info-page` | One of eight templates through the Yuko App embed, or seven Yuko theme blocks with the Custom template |
 | [Loyalty Nudges](/onsite-widgets/loyalty-nudges) | A strip pinned to the top or bottom of every page | Yuko App embed |
 
 ### Shopping Cart
@@ -73,6 +73,17 @@ import Placeholders from '/snippets/widget-placeholders.mdx';
 
 <Placeholders />
 
+## Redeeming and applying rewards
+
+The widgets that let customers redeem or apply rewards (Floating Rewards, Loyalty Nudges, Cart redeem and the Rewards Landing Page) behave the same way:
+
+- **Redeeming** a reward creates the discount code and applies it to the cart straight away.
+- **Applying** a code also **copies it to the clipboard**, so customers can paste it at checkout if needed.
+- Once a code is in the cart, its button switches to the widget's **Applied** text (default *Applied*) with a tick. You can change that text in each widget's editor.
+- **Free product rewards:** Yuko adds the product to the cart before applying the code. If the code is removed from the cart, Yuko removes the product it added.
+- If redeeming or applying fails, an error appears under that reward for a few seconds instead of inside the button.
+- Product prices and cash values are shown in the currency the shopper is browsing in. Points are always calculated in your store currency.
+
 ## Languages and logged-out customers
 
 - **Languages:** every widget editor has an **Editing language** picker when your store publishes more than one language. Each language keeps its own copy of the widget text. See [Branding & Locale](/onsite-widgets/branding-and-locale).
@@ -84,7 +95,7 @@ import Placeholders from '/snippets/widget-placeholders.mdx';
 - **Add cart widgets** so customers see what they'll earn and can redeem before checkout.
 - **Add checkout widgets** if you're on Shopify Plus.
 - **Add the customer account widgets** so balances and rewards show up where customers check their orders.
-- **Add Loyalty Nudges** when you run booster campaigns and want them visible on every page.
+- **Add Loyalty Nudges** when you run [bonus campaigns](/loyalty/booster-campaigns/overview) and want them visible on every page.
 
 ## Best practices
 

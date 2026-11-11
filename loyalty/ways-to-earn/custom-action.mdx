@@ -1,0 +1,156 @@
+---
+title: Custom Action
+description: Reward customers for any action you define, such as completing a survey, and credit the points through the Yuko REST API.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Programs → Ways to earn → Add another way → **Custom Action**
+</Note>
+
+## Introduction
+
+A Custom Action rewards customers for something that happens outside the built-in ways to earn, such as completing a survey, attending an event or finishing an onboarding quiz. You define the action and the points in Yuko. Your own system then tells Yuko when a customer completed it, through the REST API, and Yuko credits the points.
+
+Custom actions are available on paid plans.
+
+## What problem this solves
+
+The built-in ways to earn cover orders, sign-ups, reviews, social actions and opt-ins. Many brands also want to reward actions that only their own tools can see. A Custom Action gives those actions a points value, limits and expiry, and keeps the earning inside your loyalty program.
+
+## When to use
+
+- You want to reward an action that happens in another tool, such as a survey, quiz, app or event check-in.
+- You have a developer or an automation tool that can send an HTTP request when the action happens.
+- You want to cap how often each customer can earn for the action.
+
+## Overview
+
+- You can add as many Custom Actions as you need, one for each action you want to reward.
+- Points are credited only through the REST API. Customers can't earn by clicking anything on your storefront.
+- Optional limit on how many times each customer can earn: per day, week, month or year.
+- Optional **Hide from on-site displays**, to keep the action out of your loyalty widgets.
+- Optional points expiry and VIP tier multipliers.
+- Available on paid plans.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>You have a Yuko API key with the `write:transactions` scope. Create one in **Integrations → REST API**. If that page shows **Approval required**, ask the Yuko team to turn on REST API access first. See [REST API](/integrations/rest-api).</Check>
+
+## Setup guide
+
+<Steps>
+  <Step title="Add the way to earn">
+    In your Shopify admin, go to **Apps → Yuko Loyalty → Loyalty → Programs**. In **Ways to earn**, click **Add another way** and pick **Custom Action**.
+  </Step>
+  <Step title="Fill in Basic Details">
+    - **Action Name** — the name of the action, shown to customers. Write it in the present tense, for example `Complete a survey`.
+    - **Description** — short copy shown with the action.
+  </Step>
+  <Step title="Choose whether customers see it (optional)">
+    Tick **Hide from on-site displays** to keep this action out of all your loyalty widgets. The action keeps working, and you can still credit points for it through the API. Leave it unticked to list the action in **Ways to earn** in your widgets.
+  </Step>
+  <Step title="Set the points">
+    Under **Earning points**, enter the points to award each time the action is credited (a whole number, at least 1).
+  </Step>
+  <Step title="Set a limit (recommended)">
+    Tick **Limit how many times each customer can earn points for completing this action**, then enter how many times per **day**, **week**, **month** or **year**. The limit must be a whole number of at least 1. When you first tick the box, it's set to 1 per year.
+
+    With **year**, choose the **Year calculation method**:
+    - **Rolling year (365-day window)** — the default. Counts the last 365 days.
+    - **Calendar year** — resets on January 1 in your store's timezone.
+
+    Yuko shows a reminder to set a limit, because without one a customer can earn every time the API is called.
+  </Step>
+  <Step title="Set Expiry (optional)">
+    Turn on **Expiry**, then set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
+  </Step>
+  <Step title="Review the side panel">
+    - **Status** — on by default. A disabled action can't be credited.
+    - **Icon** — **Default**, or **Custom** to upload your own.
+    - **Tiers** — turn on to apply VIP tier multipliers to this action.
+  </Step>
+  <Step title="Save and copy the URL">
+    Click **Save**. The **REST API** card then shows the URL for crediting points for this action. Click **Copy** to copy it. Before you save, the card shows *Save this action to get the URL for crediting points.*
+  </Step>
+</Steps>
+
+## How it works
+
+1. A customer completes the action in your own tool, such as a survey platform.
+2. Your system sends a `POST` request to the URL from the **REST API** card, with your API key and the customer's `identifier` (Shopify customer ID, Yuko customer ID, email address or phone number). See [Credit points for a custom action](/developer/api/credit-points-for-custom-action).
+3. Yuko checks that the action is enabled, that the customer exists and isn't excluded from the program, and that the customer hasn't reached the action's limit.
+4. Yuko credits the points to the customer's balance and records the activity. With **Tiers** on, the customer's tier multiplier applies.
+
+If the customer has reached the limit, the API returns a `limit_reached` error and no points are awarded. If the action is disabled, it returns `action_inactive`.
+
+### How limits are counted
+
+- **day**, **week** and **month** follow calendar periods in your store's timezone. Weeks start on Monday.
+- **year** uses the method you chose: the last 365 days, or the calendar year.
+- Yuko counts the times the customer earned from this action in the current period. Each Custom Action has its own count.
+
+### What customers see
+
+Unless you tick **Hide from on-site displays**, the action appears in **Ways to earn** in your loyalty widgets with its name, description and points. It has no button: customers learn how to complete the action from your own channels, and the points arrive once your system reports it.
+
+### Decision guidance
+
+- **Always set a limit** unless your own system already prevents repeat calls. For a one-off action, use 1 per year with **Calendar year**, or a long rolling window.
+- **Hide actions that aren't public**, such as rewards for internal events or staff-run activities.
+- **Use clear, present-tense names** like `Complete a survey` so customers know what to do.
+
+### Limitations
+
+- Points can only be credited through the REST API. There's no storefront button and no automatic trigger.
+- The customer must already exist in Yuko. Unknown customers return `not_found`.
+- Customers excluded from the loyalty program don't earn.
+
+## Examples
+
+- A skincare brand awards 50 points, once per calendar year, for completing its annual skin-profile survey. Its survey tool calls the URL when a response is submitted.
+- An outdoor store awards 100 points for checking in at an in-person event, limited to 1 per day, and hides the action from on-site displays.
+
+## Best practices
+
+<Tip>**Keep the API key on your server.** Call the URL from your backend or a server-side automation, never from storefront code.</Tip>
+<Tip>**Tell customers how to earn.** Since the action has no storefront button, explain it in the description or in the channel where the action happens.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How many Custom Actions can I create?">
+    As many as you need. Create one for each action you want to reward. Each has its own URL, points, limit and expiry.
+  </Accordion>
+  <Accordion title="Where do I find the URL to call?">
+    Open the Custom Action after saving it. The **REST API** card shows the URL, with a **Copy** button and a link to the API documentation. The last part of the URL is the action's ID.
+  </Accordion>
+  <Accordion title="What does Hide from on-site displays do?">
+    It removes the action from all your loyalty widgets. The action keeps working, so the API can still credit points for it.
+  </Accordion>
+  <Accordion title="What happens when a customer reaches the limit?">
+    The API returns a `limit_reached` error and Yuko awards no points. The customer can earn again in the next period.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Credit points for a custom action" icon="code" href="/developer/api/credit-points-for-custom-action">
+    API reference for crediting a Custom Action.
+  </Card>
+  <Card title="REST API" icon="key" href="/integrations/rest-api">
+    Create and manage your Yuko API keys.
+  </Card>
+</CardGroup>
+
+import RelatedLoyalty from '/snippets/related-loyalty.mdx';
+
+<RelatedLoyalty />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

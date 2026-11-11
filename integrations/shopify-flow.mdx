@@ -1,6 +1,6 @@
 ---
 title: Shopify Flow
-description: Send Yuko loyalty, VIP and referral events to Shopify Flow as triggers, and award review points from other apps with the Add Points for Review action.
+description: Send Yuko loyalty, VIP, referral and membership events to Shopify Flow as triggers, and add or debit points with Yuko's Flow actions.
 ---
 
 <Note>
@@ -9,11 +9,11 @@ description: Send Yuko loyalty, VIP and referral events to Shopify Flow as trigg
 
 ## Introduction
 
-The Shopify Flow integration sends Yuko events to [Shopify Flow](https://apps.shopify.com/flow) as workflow triggers. Anything Flow can do next, such as tagging a customer, notifying staff or updating a metafield, can run when a customer earns points, moves up a VIP tier or completes a referral.
+The Shopify Flow integration sends Yuko events to [Shopify Flow](https://apps.shopify.com/flow) as workflow triggers. Anything Flow can do next, such as tagging a customer, notifying staff or updating a metafield, can run when a customer earns points, moves up a VIP tier, completes a referral or changes their membership.
 
 Each trigger carries the customer's loyalty profile plus details about the event, so you can use them in Flow conditions and actions.
 
-Yuko also adds one Flow **action**, **Yuko Add Points for Review**, which lets other reviews apps award points through your **Write a review** earn rule.
+Yuko also adds three Flow **actions**: **Yuko Add Points for Review**, which lets other reviews apps award points through your **Write a review** earn rule, and **Yuko Add Points** and **Yuko Debit Points**, which credit or debit points from any Flow workflow.
 
 ## When to use
 
@@ -60,6 +60,14 @@ Yuko also adds one Flow **action**, **Yuko Add Points for Review**, which lets o
 | **Yuko Referral Friend Reward Claimed** | Friend reward unlocked | A referred friend claims their reward. |
 | **Yuko Referral Completed** | Referral Completed | A referral is completed. |
 | **Yuko Referral Advocate Rewarded** | Referrer Rewarded | The referrer receives their reward. |
+| **Yuko Membership Subscribed** | Membership Subscribed | A customer subscribes to a membership. |
+| **Yuko Membership Cancelled** | Membership Cancelled | A customer cancels their membership. |
+| **Yuko Membership Reactivated** | Membership Reactivated | A cancelled membership is reactivated. |
+| **Yuko Membership Paused** | Membership Paused | A customer pauses their membership. |
+| **Yuko Membership Upgraded** | Membership Upgraded | A customer moves to a higher membership. |
+| **Yuko Membership Downgraded** | Membership Downgraded | A customer moves to a lower membership. |
+
+In Yuko's **Events** list, events for a module you've turned off are hidden. If you'd already selected one, it's shown greyed out with *(module disabled)*.
 
 ## Trigger data
 
@@ -69,8 +77,8 @@ Every trigger passes two objects to Flow: **Yuko Customer** and **Yuko Payload**
 
 | Group | Fields |
 |---|---|
-| Profile | `yuko_email`, `yuko_first_name`, `yuko_last_name`, `yuko_phone_number`, `yuko_platform_customer_id`, `yuko_shopify_customer_id`, `yuko_joined_at`, `yuko_total_spent`, `yuko_date_of_birth`, `yuko_loyalty_anniversary_date` |
-| Points | `yuko_points_balance`, `yuko_points_as_cash_balance`, `yuko_lifetime_points_earned`, `yuko_points_expire_at`, `yuko_points_to_next_reward` |
+| Profile | `yuko_email`, `yuko_first_name`, `yuko_last_name`, `yuko_phone_number`, `yuko_platform_customer_id`, `yuko_shopify_customer_id`, `yuko_joined_at`, `yuko_date_of_birth`, `yuko_loyalty_anniversary_date` |
+| Points | `yuko_points_balance`, `yuko_points_as_cash_balance`, `yuko_wallet_balance`, `yuko_wallet_balance_as_cash`, `yuko_points_label`, `yuko_point_label`, `yuko_lifetime_points_earned`, `yuko_points_expire_at`, `yuko_points_to_next_reward` |
 | Points expiring soon | `yuko_points_expiring_in_30_days`, `yuko_points_expiring_in_7_days`, `yuko_points_expiring_in_30_days_as_cash_balance`, `yuko_points_expiring_in_7_days_as_cash_balance` |
 | VIP | `yuko_vip_tier`, `yuko_vip_tier_entry_date`, `yuko_vip_retention_expires_at`, `yuko_vip_qualifying_value`, `yuko_vip_next_tier`, `yuko_vip_next_tier_amount_needed`, `yuko_vip_progress_percentage`, `yuko_vip_at_risk`, `yuko_vip_is_entry_tier` |
 | Referrals | `yuko_referral_url`, `yuko_referral_code`, `yuko_total_referrals`, `yuko_successful_referrals` |
@@ -95,6 +103,13 @@ The 30-day expiring values include the points expiring in the next 7 days.
 | Referral Friend Reward Claimed | `yuko_friend_email`, `yuko_friend_first_name`, `yuko_referral_code_used`, `yuko_friend_reward_type`, `yuko_friend_reward_value`, `yuko_friend_reward_code`, `yuko_friend_reward_expires_at`, `yuko_friend_reward_description`, `yuko_referred_by`, `yuko_total_claims`, `yuko_total_conversions`, `yuko_claim_source` |
 | Referral Completed | `yuko_friend_email`, `yuko_friend_first_name`, `yuko_friend_order_id`, `yuko_friend_order_total`, `yuko_friend_discount_used`, `yuko_friend_discount_amount`, `yuko_advocate_reward_type`, `yuko_advocate_reward_value`, `yuko_advocate_reward_code`, `yuko_advocate_reward_expires_at`, `yuko_advocate_reward_status`, `yuko_stat_total_referrals`, `yuko_stat_successful_referrals`, `yuko_stat_total_earned`, `yuko_stat_pending_rewards` |
 | Referral Advocate Rewarded | `yuko_reward_type`, `yuko_reward_value`, `yuko_reward_code`, `yuko_reward_expires_at`, `yuko_triggered_by_friend`, `yuko_stat_total_referrals`, `yuko_stat_successful_referrals`, `yuko_stat_total_earned`, `yuko_points_awarded`, `yuko_new_points_balance`, `yuko_reward_description` |
+| Membership (all six triggers) | `yuko_organization_uuid`, `yuko_customer_uuid`, `yuko_membership_uuid`, `yuko_membership_name`, `yuko_membership_description`, `yuko_membership_price`, `yuko_membership_billing_interval`, `yuko_membership_billing_interval_count`, `yuko_membership_benefits` (comma-separated), `yuko_subscription_contract_uuid`, `yuko_platform_contract_id`, `yuko_subscription_status`, `yuko_next_billing_date`, `yuko_member_since` |
+| Membership Subscribed | `yuko_membership_tier_name`, `yuko_membership_tier_id`, `yuko_membership_icon_url`, `yuko_benefit_1` to `yuko_benefit_4`, `yuko_signup_reward_type`, `yuko_signup_reward_value`, `yuko_signup_reward_code`, `yuko_signup_reward_expires_at`, `yuko_signup_points_awarded`, `yuko_signup_source` |
+| Membership Cancelled | `yuko_membership_tier_name`, `yuko_months_as_member`, `yuko_benefits_ending_at`, `yuko_benefits_losing`, `yuko_total_savings_from_membership`, `yuko_cancellation_reason`, `yuko_points_balance_retained`, `yuko_vip_tier_retained` |
+| Membership Reactivated | `yuko_membership_tier_name`, `yuko_days_since_cancellation`, `yuko_benefits_restored`, `yuko_welcome_back_reward_type`, `yuko_welcome_back_reward_value`, `yuko_welcome_back_reward_code`, `yuko_points_balance` |
+| Membership Paused | `yuko_membership_tier_name`, `yuko_membership_tier_id` |
+| Membership Upgraded | `yuko_previous_membership_tier`, `yuko_previous_membership_price`, `yuko_new_membership_tier`, `yuko_new_membership_price`, `yuko_new_membership_billing_interval`, `yuko_new_benefits`, `yuko_upgrade_reward_type`, `yuko_upgrade_reward_value`, `yuko_upgrade_reward_code`, `yuko_upgrade_reward_expires_at` |
+| Membership Downgraded | `yuko_previous_membership_tier`, `yuko_previous_membership_price`, `yuko_new_membership_tier`, `yuko_new_membership_price`, `yuko_new_membership_billing_interval`, `yuko_benefits_lost`, `yuko_benefits_retained`, `yuko_upgrade_tier_name`, `yuko_upgrade_price_difference` |
 
 In the birthday and anniversary reminders, `yuko_birthday_points_awarded` and `yuko_anniversary_points_awarded` hold the points your earn rule is set to award.
 
@@ -125,7 +140,40 @@ If your reviews app can trigger Shopify Flow, use the **Yuko Add Points for Revi
 
 The action needs a customer and a product that already exist in Yuko; otherwise the run fails. Points are awarded once per customer per product, and the media bonus once.
 
+<Warning>Reviews sent through this action don't count as verified purchases. If **Limit to verified purchase** is on in your **Write a review** earn rule, these reviews don't earn points.</Warning>
+
+### Setup guides for popular reviews apps
+
+Yuko has step-by-step Flow guides for these apps. Go to **Integrations**, pick the **Reviews** category, and click **View setup** on the app's card. The guide shows the Flow trigger to use and the exact value to enter in each action field.
+
+| Reviews app | Flow trigger to start from |
+|---|---|
+| Loox | **New review** |
+| Stamped | **New Review** |
+| Okendo | **Okendo Review Created** |
+| Yotpo | **New Yotpo review** |
+| Junip | **Junip - Review Submitted** |
+
+Some apps' triggers don't include a photo field. For those, the guide tells you to enter `false` in **Photo Url**, so reviews earn the base points without the media bonus.
+
 <Info>Using Judge.me? Use the [Judge.me integration](/integrations/judgeme) instead. It connects directly without Shopify Flow.</Info>
+
+## The Add Points and Debit Points actions
+
+Use these actions to change a customer's points balance from any Shopify Flow workflow, for example to give bonus points when a customer gets a certain tag.
+
+| Action | Field | What to enter |
+|---|---|---|
+| **Yuko Add Points** | **Customer identifier** | The Shopify customer ID or email, for example `{{customer.id}}` or `{{customer.email}}`. |
+| | **Points** | Number of points to add, a whole number greater than 0. |
+| | **Expiry (days)** | Optional. The points expire this many days after they're added. Leave empty for no expiry. |
+| **Yuko Debit Points** | **Customer identifier** | The Shopify customer ID or email. |
+| | **Points** | Number of points to debit, a whole number greater than 0. |
+
+- Each run is recorded as a points adjustment in the customer's activity, with the reason *Credit points by Shopify Flow* or *Debited points by Shopify Flow*.
+- If the customer isn't in Yuko yet, Yuko looks them up in Shopify and adds them. If they can't be found, the run fails.
+- A debit fails without changing anything if the customer's balance is too low.
+- If Flow delivers the same action run twice, the points are only changed once.
 
 ## Example use cases
 
@@ -133,6 +181,7 @@ The action needs a customer and a product that already exist in Yuko; otherwise 
 - **Points expiry outreach:** **Yuko Points Expiring** → condition on `yuko_points_at_risk` → send an internal email to your retention team.
 - **Birthday prep:** **Yuko Loyalty Birthday Reminder** → add a `birthday-this-month` tag for a store-wide campaign.
 - **Referral alert:** **Yuko Referral Completed** → condition on `yuko_friend_order_total` → notify staff in Slack.
+- **Membership win-back:** **Yuko Membership Cancelled** → add a `membership-cancelled` customer tag for a win-back segment.
 
 ## Limitations
 

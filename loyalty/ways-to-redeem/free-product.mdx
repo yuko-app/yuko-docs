@@ -23,8 +23,9 @@ A free product feels more generous than a discount of the same value. It also pu
 
 ## Overview
 
-- One product per reward. Create more Free Product rewards to offer more products.
-- The reward is a discount code worth the selected product's price, applied to that product.
+- One product variant per reward. Create more Free Product rewards to offer more products.
+- The reward is a discount code worth the selected variant's price, applied to that variant.
+- Yuko adds the product to the cart when the code is applied, and removes it when the code is removed.
 - Optional **Coupon Prefix**.
 - Optional minimum purchase amount or minimum quantity of items.
 - Optional combinations with other discounts and an optional expiry.
@@ -47,7 +48,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
     Set the **Reward Name** (shortcodes `[points_required]` and `[points_label]` are supported) and a **Description**.
   </Step>
   <Step title="Pick the product">
-    Under **Product Selection**, use **Select Product** to search for and choose the product. A product is required.
+    Under **Product Selection**, click **Search products** and choose the product in the Shopify picker. Pick the exact variant you want to give away. If you select a whole product, Yuko uses its first variant. A product is required.
   </Step>
   <Step title="Complete the Reward Configuration">
     - **Points Required** — the points cost.
@@ -62,6 +63,9 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
   <Step title="Set Expiry (optional)">
     Turn on **Expiry** and set **Expire after** and a **Period** (Day, Week, Month or Year). Expiry is available on select plans.
   </Step>
+  <Step title="Add an Instruction note (optional)">
+    Under **Display Settings**, enter an **Instruction note** to show below the code in the customer's rewards, for example *Add the product to your cart and use this code at checkout to get it free.* Leave it empty to hide it.
+  </Step>
   <Step title="Enable and save">
     Turn on **Status** in the side panel and click **Save**.
   </Step>
@@ -70,9 +74,18 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 ## How it works
 
 1. The customer redeems the reward from a loyalty widget.
-2. Yuko deducts the points and creates a single-use Shopify discount code for that customer, worth the product's current price and applied only to that product.
-3. When the customer applies the reward from the storefront widget, Yuko adds the product to the cart if it isn't there already.
+2. Yuko deducts the points and creates a single-use Shopify discount code for that customer, worth the variant's current price and applied only to that variant.
+3. In your storefront widgets, Yuko adds the product to the cart if it isn't there already, applies the code and copies it to the clipboard. The same happens when the customer clicks **Apply** on the reward later.
 4. At checkout, the code makes that product free. Any minimum requirement must be met.
+
+### Automatic add and remove
+
+While a logged-in customer shops, Yuko keeps the free product in step with its code:
+
+- **Code applied, product missing** — if the customer applies the code another way (for example in the cart's discount field), Yuko adds the product to the cart.
+- **Code removed** — Yuko removes the free product it added.
+- **Product removed by the customer** — Yuko doesn't add it back while the code stays applied.
+- **Minimum requirement not met yet** — if the code doesn't apply to the cart, Yuko takes the product out again and tries once more after the customer adds items.
 
 ### Decision guidance
 
@@ -81,7 +94,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 ### Limitations
 
-- One product per reward.
+- One product variant per reward.
 - Shopify can't sell an out-of-stock product, so the customer can't check out with it until it's back in stock (unless you allow overselling).
 
 ## Examples
@@ -102,6 +115,9 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
   </Accordion>
   <Accordion title="Can I offer several free products in one reward?">
     No. Create one Free Product reward per product.
+  </Accordion>
+  <Accordion title="Why did the free product appear in or disappear from the cart?">
+    Yuko adds the free product when its reward code is applied and removes it when the code is removed. If the cart doesn't meet the reward's minimum requirement yet, the product is removed until the customer adds more items.
   </Accordion>
 </AccordionGroup>
 

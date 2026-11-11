@@ -1,6 +1,6 @@
 ---
 title: Referral Landing Page
-description: A dedicated referral page where visitors sign up for a referral link and logged-in customers copy and share theirs.
+description: A dedicated referral page, built from a ready-made template or from theme blocks, where visitors get a referral link and logged-in customers copy and share theirs.
 ---
 
 <Note>
@@ -9,7 +9,7 @@ description: A dedicated referral page where visitors sign up for a referral lin
 
 ## Introduction
 
-The **Referral Landing Page** is a dedicated page for your referral program. Visitors can sign up for a referral link, and logged-in customers can copy and share theirs. On the storefront, it's rendered by the **Yuko: Referral Signup** theme app block.
+The **Referral Landing Page** is a dedicated page for your referral program. Visitors can sign up for a referral link, and logged-in customers can copy and share theirs. You pick a design from a set of templates, edit the text and colours in Yuko, and Yuko keeps the Shopify page up to date.
 
 ## What problem this solves
 
@@ -18,14 +18,14 @@ Customers can't refer friends if they can't find their link. A dedicated page gi
 ## Where it appears
 
 - A Shopify page Yuko creates for you: **Referral Program**, at `/pages/referral-info-page`.
-- Any other page template where you add the **Yuko: Referral Signup** block.
+- With the **Custom** template, any other page template where you add the Yuko referral theme blocks.
 
 ## Overview
 
-- **Guest View** and **Logged In View**, each with its own text.
-- A configurable sign-up form for guests.
-- Optional social share buttons.
-- No Styles tab in Yuko. Colours, fonts, banner image and Custom CSS are set on the theme block.
+- **Templates:** eight ready-made designs (**Editorial**, **Heritage**, **Bloom**, **Signal**, **Arena**, **Pop**, **Indigo** and **Evergreen**), plus **Custom**.
+- **Sections** on template pages: **Hero**, **Refer a friend**, **How It Works** and **FAQ**. You can reorder them, hide them and edit each one.
+- **Guest** and **Logged in** text, a configurable sign-up form, optional social share buttons and an FAQ list.
+- **Custom** builds the page from Shopify theme blocks instead. Its styling is done in the theme editor.
 
 ## Before you start
 
@@ -34,24 +34,64 @@ Customers can't refer friends if they can't find their link. A dedicated page gi
 
 ## Setup guide
 
-### 1. Create the page
+### 1. Create the page and choose a template
 
 <Steps>
   <Step title="Open the widget">
-    Go to **Referral → Widgets** and open **Referral Landing Page**.
+    Go to **Referral → Widgets** and click **Customize** on **Referral Landing Page**.
   </Step>
   <Step title="Create the landing page">
-    If your store has no referral landing page yet, Yuko opens a **Create referral landing page** dialog. Click **Create** to add a Shopify page titled **Referral Program** at `/pages/referral-info-page`.
+    If your store has no referral landing page yet, Yuko opens a **Create landing page** dialog. Click **Create landing page** to add a Shopify page titled **Referral Program** at `/pages/referral-info-page`.
+  </Step>
+  <Step title="Choose a template">
+    Next, the **Choose a template** dialog opens. Pick a template. Yuko loads its layout, colours and starter text, and saves it.
   </Step>
 </Steps>
 
 Once the page exists, a **Check landing page** button appears next to the widget title. Use it to confirm the page is still in Shopify, for example if someone may have deleted it.
 
-### 2. Edit the content
+To switch designs later, click **Change theme**. On a template page it sits next to the **Customization** and **Config** tabs; on **Custom** it's on the **Template** card. Picking a template loads its layout, colours and starter text into the editor. Nothing changes on your store until you click **Save**.
+
+<Warning>
+Switching templates replaces your section order, colours and text with the new template's defaults. Copy any text you want to keep before you switch.
+</Warning>
+
+### 2. Edit a template page
+
+Template pages have two tabs next to a live preview. Use the **Guest** and **Logged in** buttons above the preview to switch views, and the preview's Mobile and Desktop switch to check both sizes.
+
+<Steps>
+  <Step title="Config: sections">
+    The **Config** tab (open by default) lists the page sections: **Hero**, **Refer a friend**, **How It Works** and **FAQ**. Drag sections to reorder them, use the switch on each row to show or hide it, and click a row to edit it.
+  </Step>
+  <Step title="Customization: colours">
+    The **Customization** tab has a **Colors** panel. The colour names depend on the template, for example **Accent color**, **Background color**, **Card color**, **Text color** and **Description color**.
+  </Step>
+  <Step title="Save and enable">
+    Click **Save**, then switch the toggle next to the widget title on.
+  </Step>
+</Steps>
+
+Each section's settings are grouped into panels:
+
+| Section | Panels and fields |
+|---|---|
+| **Hero** | **Guest**: **Title**, **Description**, **Log in button** and **Create account button** (leave a button empty to hide it). **Logged in**: **Title** and **Description**. **Reward cards**: **Show reward cards**, then a **Friend card** and a **Your card**, each with **Reward**, **Label** and **Note**. **Layout**: display style, card position, text and button alignment, spacing and section height. **Background**. |
+| **Refer a friend** | **Content**: the **Guest View**, **Logged In View** and **Social Sharing** fields (see below). **Layout & Design**: banner image, image position, text alignment, heading and text size, input border width, form corner radius and **Custom CSS**. **Background**. |
+| **How It Works** | **Content**: **Title**. **Steps**: **Steps Type** (**Numbers** or **Images**, with an image per step) and a **Title** and **Description** for each of the three steps. **Background**. |
+| **FAQ** | **Content**: **Section Title**, **Section Description** and **FAQ Items** (see below). **Background**. |
+
+Some templates add their own fields, such as an **Eyebrow** (a small label above a title; leave it empty to hide it).
+
+The hero starts with *Give `{{friend_reward}}`, get `{{referrer_reward}}`* as its title, and the reward cards show `{{friend_reward}}` (*For your friend*, *On their first order*) and `{{referrer_reward}}` (*For you*, *For every friend who orders*). The How It Works steps start as *Get your link*, *Share it* and *You both get rewarded*. Each template can start with its own wording.
+
+### 3. Edit the referral form and links
+
+These fields appear in the **Refer a friend** section on template pages, and as cards on the **Custom** template.
 
 <Steps>
   <Step title="Guest View">
-    | Field | Default |
+    | Field | Default on Custom |
     |---|---|
     | **Page Title** | `Refer a friend. You & your friend both get rewarded` |
     | **Page Subtitle** | `Get your personalized referral link. Once a friend uses your link and makes a successful purchase, you'll get a reward for your next order with us.` |
@@ -61,7 +101,7 @@ Once the page exists, a **Check landing page** button appears next to the widget
     For each form field you can edit the **Label** and **Placeholder**, mark it as a **Required field**, show or hide it, and drag fields into a new order.
   </Step>
   <Step title="Logged In View">
-    | Field | Default |
+    | Field | Default on Custom |
     |---|---|
     | **Page Title** | `Earn for every friend you refer` |
     | **Page Subtitle** | `Copy and share your personalized referral link with your friends` |
@@ -71,46 +111,80 @@ Once the page exists, a **Check landing page** button appears next to the widget
   <Step title="Social Sharing">
     Turn on **Enable Social Share** to show share buttons, and set **Or share via text** (default `Or share via:`). Only the channels enabled in **Referral → Program → Social Sharing Settings** appear on the storefront. The preview always shows every channel.
   </Step>
-  <Step title="Save and enable">
-    Click **Save**, then switch the toggle next to the widget title on.
+</Steps>
+
+Titles, subtitles, hero text, step text and FAQ answers accept `{{friend_reward}}` and `{{referrer_reward}}`, which are replaced with your reward titles.
+
+### 4. Edit the FAQ
+
+The FAQ answers common questions about your program on the landing page.
+
+- **Section Title** (default `Frequently Asked Questions`) and **Section Description** (default `Everything you need to know about our referral program`) are required.
+- Click **Add FAQ Item** to add a **Question** and **Answer**. You can add up to 15 items and need at least one.
+- Drag items by the handle to reorder them. Click **Remove** to delete one (Yuko asks you to confirm).
+
+New pages start with three items: *How does the referral program work?*, *What does my friend get?* and *What do I get for referring a friend?*. The answers use `{{friend_reward}}` and `{{referrer_reward}}`, so they stay in sync with your rewards.
+
+### 5. Use the Custom template (theme blocks)
+
+With **Custom**, the page is built from Shopify theme blocks, and all styling (colours, fonts, layout and section order) is set in the theme editor. Yuko asks you to confirm when you choose it, because the template designs and colour settings in Yuko don't apply.
+
+<Steps>
+  <Step title="Edit the text in Yuko">
+    The editor shows the **Guest View**, **Logged In View** and **Social Sharing** cards with a preview, and an **FAQ Section** card.
+  </Step>
+  <Step title="Add the blocks">
+    Click **Add block** next to **Configuration** to add the **Yuko: Referral Signup** block, and **Add block** on the **FAQ Section** card to add the **Yuko: Referral FAQ** block. Each button opens the theme editor on `/pages/referral-info-page` with the block ready to add.
+  </Step>
+  <Step title="Style the blocks">
+    Set colours, sizes and **Custom CSS** in each block's theme-editor settings. See [Referral widgets](/referrals/widget#storefront-blocks).
   </Step>
 </Steps>
 
-Titles and subtitles accept `{{friend_reward}}` and `{{referrer_reward}}`, which are replaced with your reward titles.
-
-### 3. Add or style the block in your theme
-
-The page Yuko creates is ready to use. To add the widget to another page, or to style it, click **Add block** in the widget editor, or follow these steps:
+To add the blocks to another page yourself:
 
 import SetupThemeBlock from '/snippets/setup-theme-app-block.mdx';
 
 <SetupThemeBlock />
 
-Choose the **Yuko: Referral Signup** block. Its theme-editor settings cover the banner image and position, text alignment, colours, heading and text size, border width, corner radius and Custom CSS. See [Referral widgets](/referrals/widget#yuko-referral-signup-theme-app-block).
+### 6. Verify
 
-### 4. Verify
-
-Open `/pages/referral-info-page` in a private window and sign up with a test email. Then log in as a customer and check that the Logged In View shows a referral link.
+Open `/pages/referral-info-page` in a private window and sign up with a test email. Then log in as a customer and check that the logged-in view shows a referral link.
 
 ## How it works
 
-1. A guest fills in the form and submits it. Yuko enrolls them as a referrer and shows their link.
-2. A logged-in customer clicks **Get referral link** (or sees their existing link) and copies it.
-3. If social sharing is on, customers can share through your enabled channels.
+1. With a template, Yuko adds a small placeholder to the **Referral Program** page, and the Yuko App embed draws the template there. With **Custom**, the page shows whatever theme blocks you add.
+2. A guest fills in the form and submits it. Yuko enrolls them as a referrer and shows their link.
+3. A logged-in customer clicks **Get referral link** (or sees their existing link) and copies it.
+4. If social sharing is on, customers can share through your enabled channels.
+
+### Limitations
+
+- Template pages need the **Yuko App** embed. Without it, the page is empty.
+- Each template has a fixed set of sections (Hero, Refer a friend, How It Works and FAQ). You can hide sections but not add new ones.
+- The **How It Works** section always has three steps.
+- Layout and colours are shared across languages. Text is set per language with the language picker.
 
 ## Best practices
 
 <Tip>**Link to the page from your navigation and emails.** A dedicated URL is easy to promote.</Tip>
 <Tip>**Keep the form short.** Email alone is enough to create a referral link.</Tip>
+<Tip>**Answer the real questions in the FAQ.** Say when the referrer is rewarded and who counts as a new customer, so fewer people contact support.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
   <Accordion title="I deleted the landing page. How do I get it back?">
-    Open the widget in Yuko. If the page no longer exists, the **Create referral landing page** dialog appears again.
+    Open the widget in Yuko. If the page no longer exists, the **Create landing page** dialog appears again.
+  </Accordion>
+  <Accordion title="Can I change the template after launch?">
+    Yes. Click **Change theme** and pick another template. Its layout, colours and starter text replace your current ones in the editor. Review them, then click **Save**.
   </Accordion>
   <Accordion title="Why are there no colour settings in Yuko?">
-    This widget is styled in the Shopify theme editor, through the **Yuko: Referral Signup** block settings.
+    You're on the **Custom** template. It's styled in the Shopify theme editor, through the **Yuko: Referral Signup** and **Yuko: Referral FAQ** block settings. Pick one of the other templates to set colours in Yuko.
+  </Accordion>
+  <Accordion title="How many FAQs can I add?">
+    Up to 15. The FAQ needs at least one item, a title and a description.
   </Accordion>
 </AccordionGroup>
 

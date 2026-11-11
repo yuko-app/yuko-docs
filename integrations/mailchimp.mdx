@@ -1,0 +1,147 @@
+---
+title: Mailchimp
+description: Sync customers and their loyalty data into a Mailchimp audience as merge fields, and send Yuko loyalty, VIP, referral and membership events to Mailchimp.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → Mailchimp
+</Note>
+
+## Introduction
+
+The Mailchimp integration sends Yuko data into one Mailchimp **audience**:
+
+1. **Profile fields**: Yuko adds its own merge fields to the audience (for example **Yuko Points Balance** and **Yuko VIP Tier**) and fills them in for each customer. Use them to segment the audience and personalise emails.
+2. **Events**: Yuko posts the loyalty events you choose, such as *Earn Points* or *VIP Tier Upgrade*, to the customer's member record. Use them to start Mailchimp customer journeys.
+
+Data only goes one way, from Yuko to Mailchimp.
+
+## When to use
+
+- Mailchimp is your main email tool.
+- You want segments based on points balance, VIP tier or referral details.
+- You want loyalty events to start Mailchimp customer journeys.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>You have a Mailchimp account with at least one **audience**. Yuko can't connect if the account has no audience.</Check>
+<Check>You have a Mailchimp **API key**. Create one in Mailchimp under **Profile → Extras → API keys**.</Check>
+
+<Note>A Mailchimp API key ends with your account's data center, for example `-us21`. Paste the whole key, including that ending. Yuko uses it to reach your Mailchimp account, so a key without it can't connect.</Note>
+
+## Connect Mailchimp
+
+<Steps>
+  <Step title="Open the Mailchimp integration">
+    Go to **Apps → Yuko Loyalty → Integrations**, pick the **Email & SMS** category and click **Mailchimp**.
+  </Step>
+  <Step title="Enter your API key">
+    Paste the key into **API Key** and click **Connect Integration**. Yuko checks the key and loads your audiences.
+  </Step>
+  <Step title="Choose an audience">
+    In the **Audience** section, select an audience and click **Save**. If you've just created an audience in Mailchimp, click **Refresh audience** to reload the list.
+  </Step>
+  <Step title="Wait for the profile fields">
+    After you save an audience, Yuko creates its profile fields in it as a Mailchimp batch operation. This runs in the background and can take a few minutes. The badge next to **Mailchimp audience** shows **Profile fields not ready** until it finishes. Click the refresh icon next to the badge to check again. When it shows **Profile fields ready**, continue.
+  </Step>
+  <Step title="Choose events">
+    Under **Events to send to Mailchimp**, tick the events you want, or use **Select All**, then click **Save**. The event list only appears once the profile fields are ready.
+  </Step>
+  <Step title="Send test events (optional)">
+    Click **Send Test Events**, then confirm. Yuko sends one sample event for each event you've ticked to your audience, so you can check them in Mailchimp.
+  </Step>
+</Steps>
+
+## Profile fields
+
+Yuko adds these merge fields to your audience. It also fills in Mailchimp's built-in **FNAME** and **LNAME** fields with the customer's first and last name.
+
+| Merge field name | Tag | Type |
+|---|---|---|
+| Yuko Joined At | `YK_JOINED` | Date |
+| Yuko Points Balance | `YK_PTSBAL` | Number |
+| Yuko Points As Cash Balance | `YK_PTCASH` | Number |
+| Yuko Lifetime Points Earned | `YK_LFEARN` | Number |
+| Yuko Points To Next Reward | `YK_PTNXRW` | Number |
+| Yuko Points Expiring In 30 Days | `YK_PTEX30` | Number |
+| Yuko Points Expiring In 30 Days As Cash Balance | `YK_PTEC30` | Number |
+| Yuko VIP Tier | `YK_VTIER` | Text |
+| Yuko VIP Retention Expires At | `YK_VRETEX` | Date |
+| Yuko VIP Next Tier | `YK_VNXTTR` | Text |
+| Yuko VIP Next Tier Amount Needed | `YK_VNXAMT` | Number |
+| Yuko VIP Progress Percentage | `YK_VPROG` | Number |
+| Yuko VIP At Risk | `YK_VRISK` | Dropdown |
+| Yuko Referral URL | `YK_REFURL` | Website |
+| Yuko Referral Code | `YK_REFCDE` | Text |
+| Yuko Membership Tier | `YK_MEMTIR` | Text |
+| Yuko Shopify Customer ID | `YK_SHPCID` | Text |
+
+Use the tag in Mailchimp merge tags, for example `*|YK_PTSBAL|*` to show the points balance in an email.
+
+The fields are refreshed each time Yuko sends one of your selected events for the customer. Fields for a module you've turned off, such as Referral, aren't filled in.
+
+## Events
+
+Yuko posts each selected event to the customer's member record in your audience. Mailchimp event names only allow letters, numbers, underscores and dashes, so Yuko sends the event title with a `YK_` prefix and underscores instead of spaces. For example:
+
+| Event in Yuko | Event name in Mailchimp |
+|---|---|
+| Earn Points | `YK_Earn_Points` |
+| Redeem Points | `YK_Redeem_Points` |
+| VIP Tier Upgrade | `YK_VIP_Tier_Upgrade` |
+| Referral Completed | `YK_Referral_Completed` |
+| Membership Subscribed | `YK_Membership_Subscribed` |
+
+The event list and the event properties are the same as for Klaviyo. See [Klaviyo trigger events](/integrations/klaviyo#trigger-events) for every event and its properties. Mailchimp stores event properties as text, so Yuko sends numbers and dates as text, `true`/`false` for yes/no values, and lists as comma-separated text.
+
+## How customers are added
+
+- Each event first adds or updates the customer as a member of your audience, matched by email address. Customers without an email address aren't sent.
+- Customers who aren't in the audience yet are added as **transactional** members. They aren't subscribed to your marketing emails, so they don't receive Mailchimp campaigns unless they opt in.
+- Existing members keep their current subscription status. Yuko only updates their merge fields and adds the event.
+- Customers are only added when Yuko sends an event for them. There's no bulk sync of existing customers to Mailchimp.
+
+## Change or disconnect
+
+- **Change audience:** select another audience and click **Save**. Yuko creates its profile fields in the new audience, and events go there from then on.
+- **Disconnect:** switch off the toggle in the **Connection** section and confirm **Disconnect**. Your audience, events and field setup in Yuko are cleared. The `YK_` merge fields stay in your Mailchimp audience; if you reconnect, Yuko reuses them and only creates any that are missing.
+
+## Best practices
+
+<Tip>**Wait for Profile fields ready before testing.** Events can only be chosen, and merge fields only filled in, once the fields exist in the audience.</Tip>
+<Tip>**Turn off Yuko's own email for the same moment** if a Mailchimp journey sends it, so customers don't get two emails.</Tip>
+<Tip>**Add fallbacks in Mailchimp merge tags** for customers whose fields are still empty.</Tip>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="Connecting fails with my API key. Why?">
+    Check that you copied the whole key, including the data center at the end (for example `-us21`), and that the key hasn't been revoked in Mailchimp. Also check that your Mailchimp account has at least one audience.
+  </Accordion>
+  <Accordion title="The badge still says Profile fields not ready.">
+    The batch operation can take a few minutes. Click the refresh icon next to the badge to check again. If it stays not ready, select the audience and click **Save** again to retry.
+  </Accordion>
+  <Accordion title="Why don't I see the events list?">
+    It only appears after you've saved an audience and its profile fields are ready.
+  </Accordion>
+  <Accordion title="Will customers start getting my Mailchimp campaigns?">
+    No. New members are added as transactional, not subscribed. They only receive campaigns if they subscribe.
+  </Accordion>
+  <Accordion title="Can I send data to more than one audience?">
+    No. Yuko sends to the one audience you've selected.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedIntegrations from '/snippets/related-integrations.mdx';
+
+<RelatedIntegrations />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

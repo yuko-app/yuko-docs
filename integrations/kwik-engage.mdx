@@ -23,13 +23,13 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
 <Check>You have an active Kwik Engage account with WhatsApp Business API.</Check>
 <Check>You have at least one **approved** Kwik Engage template.</Check>
-<Check>You have your Kwik Engage API endpoint URL and API key.</Check>
+<Check>You have your Kwik Engage API key.</Check>
 
 ## Connect Kwik Engage to Yuko
 
 <Steps>
   <Step title="Get your Kwik Engage API key">
-    Log in to your Kwik Engage dashboard, copy your API key, and note the API endpoint URL.
+    Log in to your Kwik Engage dashboard and copy your API key.
   </Step>
   <Step title="Open Kwik Engage in Yuko">
     In Shopify admin, go to **Apps → Yuko Loyalty → Integrations → Kwik Engage**.
@@ -44,11 +44,10 @@ For the provider-agnostic overview, see [WhatsApp](/integrations/whatsapp).
 
 ## Configure the Kwik Engage step in a workflow
 
-Kwik Engage splits body parameters from CTA button parameters — toggle CTA buttons on only if your approved template has them.
+Kwik Engage splits body parameters from CTA button parameters — toggle CTA buttons on only if your approved template has them. You don't enter an endpoint URL: Yuko sends every message to Kwik Engage's API for you.
 
 | Field | What it is | Example |
 |---|---|---|
-| **Endpoint URL** | Kwik Engage API endpoint URL | `https://api.kwikengage.ai/...` |
 | **Template Name** | Template identifier (no spaces) | `points_expiring_soon` |
 | **Language Code** | Template language | `en_US` or `hi_IN` |
 | **Parameter Count** | Number of body variables (1–10) | `2` |
@@ -63,9 +62,9 @@ Kwik Engage splits body parameters from CTA button parameters — toggle CTA but
 
 **Points expiring — visit-store button**
 
-1. In Kwik Engage, approve a template called `points_expiring_soon` with two body variables and one CTA button (URL = `https://shop.example.com/account?ref={dynamic}`). Note the endpoint URL.
+1. In Kwik Engage, approve a template called `points_expiring_soon` with two body variables and one CTA button (URL = `https://shop.example.com/account?ref={dynamic}`).
 2. In Yuko Workflows, build: **Trigger: Points Expiring Reminder** → **WhatsApp (Kwik Engage)**.
-3. Configure: Endpoint, Template Name = `points_expiring_soon`, Language = `en_US`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{points_balance}}`.
+3. Configure: Template Name = `points_expiring_soon`, Language = `en_US`, Parameter Count = `2`, Parameters = `{{first_name}}`, `{{points_balance}}`.
 4. Toggle **Add CTA Button**, set CTA Button Count = `1`, Button Param 1 = `rewards` (plain text works as well as shortcodes).
 5. Activate.
 
@@ -73,7 +72,7 @@ Kwik Engage splits body parameters from CTA button parameters — toggle CTA but
 
 - **Approved templates only.** Kwik Engage enforces Meta template approval.
 - **Template name must have no spaces.** Use underscores.
-- **Up to 10 CTA buttons.** That's the Kwik Engage-side limit.
+- **Up to 10 body parameters and 2 CTA buttons per step.**
 - **No template authoring inside Yuko.** Edit templates in the Kwik Engage dashboard.
 - **No per-message delivery status surfaced in Yuko.** Check the Kwik Engage dashboard for delivered / read events.
 
@@ -102,7 +101,7 @@ import RelatedWhatsAppProviders from '/snippets/related-whatsapp-providers.mdx';
 
 <CardGroup cols={2}>
   <Card title="WhatsApp overview" icon="comments" href="/integrations/whatsapp">
-    How Yuko's WhatsApp integration works across all 13 providers.
+    How Yuko's WhatsApp integration works across all 14 providers.
   </Card>
   <Card title="WhatsApp Workflow node" icon="comment" href="/workflows/whatsapp-node">
     Setup, shortcodes, and example workflows.

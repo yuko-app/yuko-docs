@@ -14,7 +14,7 @@ Placeholders are written in square brackets, for example `[points_label]`. Each 
 | Placeholder | Replaced with | Used in |
 |---|---|---|
 | `[points_value]` | Points the customer can earn on this product, cart or order. | Product page, Cart earn, Checkout earn, Order status earn |
-| `[first_name]` | The customer's first name (logged-in customers only). | Cart redeem greeting, Loyalty Nudges |
+| `[first_name]` | The customer's first name (logged-in customers only). | Cart redeem greeting, Loyalty Nudges, Rewards Landing Page hero (templates) |
 | `[customer_name]` | The customer's full name (logged-in customers only). | Loyalty Nudges |
 | `[points_needed]` | How many more points the customer needs for a reward. | Insufficient-points text (Cart redeem, Loyalty Nudges) |
 | `[expiration_date]` | The expiry date of an earned reward. Hidden automatically when the reward doesn't expire. `[discount_expiry_date]` works the same way. | Reward expiry text (Cart redeem, Loyalty Nudges, Floating Rewards) |
@@ -24,5 +24,6 @@ Placeholders are written in square brackets, for example `[points_label]`. Each 
 | `[next_tier]` | The name of the customer's next VIP tier. | VIP progress text |
 | `[tier_entry_amount]` | The threshold needed to enter a tier. | Cart redeem tier entry text |
 | `[tier_reach_level]` | The threshold needed to reach a tier. | Floating Rewards VIP text |
-| `[multiplier_value]` | The points multiplier for a VIP tier (e.g. *2*). Shown only when the multiplier is greater than 1. | Points multiplier benefit text |
+| `[remaining]` | Points still needed for a free product or the next VIP tier. | Rewards Landing Page (templates) |
+| `[points_balance]` | The customer's points balance (same as `[point_balance]`). | Rewards Landing Page hero (templates) |
 | `[renewal_date]` | The date a paid membership renews. | Floating Rewards membership text |

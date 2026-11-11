@@ -31,22 +31,41 @@ Available in every loyalty, referral and membership email.
 | `{{ zip }}` | Zip Code |
 | `{{ country }}` | Country (loyalty emails only) |
 
+## Wallet
+
+Added to **every** loyalty, referral and membership email.
+
+| Shortcode | Label | What it shows |
+|---|---|---|
+| `{{ wallet_balance }}` | Wallet Balance | The customer's current points balance when the email is sent. |
+| `{{ wallet_balance_as_cash }}` | Wallet Balance as Cash | That balance converted to money with your points-to-cash rate. |
+| `{{ points_label }}` | Points Label | Your plural points name, for example *points* or *coins*. |
+| `{{ point_label }}` | Point Label (Singular) | Your singular points name, for example *point* or *coin*. |
+
+The points names come from **Point Label** in your [loyalty program settings](/loyalty/program-settings). Use them instead of typing "points", so your emails stay right if you rename your points.
+
+In emails about a specific amount, `{{ points_label }}` follows that amount: the singular name for 1 or less and the plural name otherwise. In Points earned and the birthday and anniversary emails, it shows your **Store Credit Label** instead when the earn rule gives store credit.
+
+<Tip>`{{ wallet_balance }}` works in every email, including referral and membership emails, so you can show a customer's balance anywhere.</Tip>
+
 ## Loyalty: points and balance
 
 | Shortcode | Label | Available in |
 |---|---|---|
-| `{{ points_label }}` | Points label | Points earned, Point Expiry Reminder, Points expired, Birthday and Anniversary emails |
 | `{{ points_value }}` | Points value | Points earned, Birthday Reminder, Birthday award, Anniversary Reminder, Anniversary award |
 | `{{ points_balance }}` | Points Balance | All loyalty emails; Referrer reward issued |
 | `{{ total_earned_points }}` | Total Earned Points | All loyalty emails |
 | `{{ total_redeemed_points }}` | Total Redeemed Points | All loyalty emails |
 | `{{ points_to_next_reward }}` | Points to Next Reward | Points earned, Points redeemed, Point Expiry Reminder, Points expired; Friend reward unlocked |
 | `{{ total_orders }}` | Total Orders | Points earned, Points redeemed, Tier unlocked, Point Expiry Reminder, Points expired, Birthday and Anniversary emails |
-| `{{ points_value_as_cash }}` | Points Value as Cash | Points earned, Birthday Reminder, Anniversary Reminder |
-| `{{ points_balance_as_cash }}` | Points Balance as Cash | Points earned, Points redeemed, Birthday and Anniversary emails; Referrer reward issued |
+| `{{ points_value_as_cash }}` | Points Value as Cash | Points earned, Birthday Reminder, Birthday award, Anniversary Reminder |
+| `{{ points_balance_as_cash }}` | Points Balance as Cash | Points earned, Points redeemed, Point Expiry Reminder, Points expired, Birthday and Anniversary emails; Referrer reward issued |
 | `{{ earned_points_cash }}` | Earned Points as Cash | Points earned, Points redeemed, Tier unlocked, Point Expiry Reminder, Points expired, Birthday and Anniversary emails |
+| `{{ currency_symbol }}` | Currency Symbol | Every loyalty email except Reward expiry reminder and Reward expired; Friend reward unlocked, Referrer reward issued |
 
-The `*_as_cash` values convert points to money using your points-to-cash rate.
+The cash values (`*_as_cash` and `earned_points_cash`) convert points to money using the **Points to Cash Conversion Rate** in your [loyalty program settings](/loyalty/program-settings). They're printed in your store's currency format, so you don't need to add `{{ currency_symbol }}` in front of them.
+
+`{{ points_balance }}`, `{{ points_balance_as_cash }}` and `{{ earned_points_cash }}` are read when the email is sent, so a delayed email shows the customer's balance at sending time.
 
 ## Loyalty: event details
 
@@ -61,10 +80,11 @@ The `*_as_cash` values convert points to money using your points-to-cash rate.
 | `{{ customer_years }}` / `{{ customer_year_label }}` | Customer Years / Customer Year Label | Points earned, Tier unlocked, Anniversary Reminder, Anniversary award |
 | `{{ expiring_points }}` | Expiring Points | Point Expiry Reminder |
 | `{{ expiring_points_as_cash }}` | Expiring Points as Cash | Point Expiry Reminder |
-| `{{ points_expiry_at }}` | Expiry Date | Point Expiry Reminder |
+| `{{ points_expiry_at }}` | Expiry Date (Points Expiry Date in Birthday award) | Point Expiry Reminder, Birthday award |
 | `{{ days_until_expiry }}` | Days Until Expiry | Point Expiry Reminder, Reward expiry reminder |
 | `{{ expired_points }}` | Expired Points | Points expired |
 | `{{ expired_points_as_cash }}` | Expired Points as Cash | Points expired |
+| `{{ expired_date }}` | Expired Date | Points expired |
 | `{{ current_tier_name }}` | Current Tier Name | Tier unlocked |
 | `{{ next_tier_name }}` | Next Tier Name | Tier unlocked |
 | `{{ next_tier_threshold }}` | Next Tier Threshold | Tier unlocked |
@@ -143,6 +163,10 @@ Added to **every** email.
 
 <Tip>Use `{{ redemption_link }}` as the CTA URL in points-earned or points-expiring emails so customers can turn points into a reward in one click.</Tip>
 
+## Coupon block
+
+The [Advanced Editor](/emails/template-editor#advanced-editor) offers a **Coupon** block for every email trigger. It prints the unique discount code created by a [Coupon node](/workflows/action-nodes#coupon) earlier in the same workflow, so use it in workflow emails that have a Coupon node.
+
 ## Best practices
 
 <Tip>**Copy shortcodes from the editor.** The **Available Template Variables** card only lists shortcodes that work in the email you're editing. A shortcode from another email will print nothing.</Tip>
@@ -156,7 +180,7 @@ Added to **every** email.
     No. Use double curly braces: `{{ first_name }}`.
   </Accordion>
   <Accordion title="Can I use these shortcodes in workflow emails?">
-    Yes. A Send Email node in a [workflow](/workflows/action-nodes#send-email) gets the shortcodes for the workflow's trigger, plus the Redemption group.
+    Yes. A Send Email node in a [workflow](/workflows/action-nodes#send-email) gets the shortcodes for the workflow's trigger, plus the Wallet and Redemption groups and the **Coupon** block.
   </Accordion>
   <Accordion title="Is there a store name or store URL shortcode?">
     Not in loyalty, referral or membership emails. Type your store name directly, and use the CTA URL for links.

@@ -60,7 +60,9 @@ Creates a unique Shopify discount code for the customer at this step. Show it in
 | **Shipping Restrictions** (Free Shipping) | **All countries** or **Selected countries**, and **Exclude shipping rates over a certain amount** with a **Maximum shipping rate** |
 | **Combinations** | Whether the code combines with **Product discounts**, **Order discounts** and **Shipping discounts** |
 
-<Tip>**Pair Coupon with Send Email.** Put the Coupon node first, then add the **Coupon** block in the email and pick this node's identifier, so the customer sees their code.</Tip>
+<Tip>**Pair Coupon with Send Email.** Put the Coupon node first, then add the **Coupon** block in the email. In the block's settings, the **Coupon** dropdown lists the identifiers of the Coupon nodes in this workflow; the first one is selected for you, so pick the right one if you have several. The customer sees their code in the email.</Tip>
+
+The **Coupon** block works in workflow emails for every trigger, not only order triggers.
 
 ## Points Credit
 
@@ -90,7 +92,7 @@ Removes points from the customer's balance. Available on Shopify stores.
 
 If the customer doesn't have enough points, the step fails with *"Insufficient point balance"* and nothing is deducted. The customer doesn't continue to the next steps, and their subscriber status becomes **Failed**. You can see the reason in [Analytics](/workflows/analytics).
 
-<Tip>To avoid failed runs, put an **If / Else** with **Points Balance** *is at least* your debit amount before the Points Debit node (available on loyalty, VIP and booster triggers).</Tip>
+<Tip>To avoid failed runs, put an **If / Else** with **Points Balance** *is at least* your debit amount before the Points Debit node (available on loyalty, VIP and bonus campaign triggers).</Tip>
 
 ## Examples
 

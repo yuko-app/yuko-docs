@@ -28,12 +28,12 @@ The Program tab has these sections:
 | Section | What it controls |
 |---|---|
 | **Referrals Program Status** | Turns the program on or off. |
-| **Quick Start** | Setup checklist: **Set up referrer reward**, **Set up friend reward**, **Enable referral popup**. |
+| **Quick Start** | Setup checklist: **Set up referrer reward**, **Set up friend reward**, **Enable referral popup**. Its buttons (**Setup Referrer Reward**, **Setup Friend Reward**, **Go to setup**) take you straight to each step. |
 | **Referral Rewards** | The **Referrer Reward** and the **Friend Reward**. |
 | **Referrals Landing URL** | The page a referral link opens. |
 | **Social Sharing Settings** | Which share channels customers see, and the pre-filled messages. |
 | **Fraud Prevention** | **IP Address Match** and **Block Self-Referrals**. |
-| **Auto Enrollment** | **Enroll on first point earned**. |
+| **Auto Enrollment** | **Enroll customers**: when customers become referrers automatically. |
 | **UTM Tracking** | The **UTM Campaign** value added to referral links. |
 
 ## Before you start
@@ -109,15 +109,26 @@ Facebook doesn't let third-party apps pre-fill share messages, so there's no mes
   </Step>
 </Steps>
 
-### 6. Configure auto enrollment
+### 6. Choose when customers are enrolled
 
 <Steps>
-  <Step title="Enroll on first point earned">
-    Turn this on to enroll a customer in the referral program automatically the first time they earn loyalty points. Enrolled customers get a referral code and link without having to request one.
+  <Step title="Pick an Enroll customers option">
+    In **Auto Enrollment**, choose when customers become referrers and get their referral code and link:
+
+    | Option | Who is enrolled |
+    |---|---|
+    | **Enroll a customer after signup** | Every customer, as soon as they're created in your store. Customers who were missed at signup are enrolled the next time they place an order or earn points. |
+    | **Enroll only after the first order** | Customers who place an order. |
+    | **Enroll only after earning the first point** | Customers who earn loyalty points. |
+    | **Enroll only after opting in via the referral widgets** | Only customers who click **Get referral link** (or sign up) in a referral widget. This is the default. |
   </Step>
 </Steps>
 
-Customers who aren't enrolled can still join by clicking **Get referral link** in a referral widget.
+Whatever you pick, customers who aren't enrolled yet can still join by clicking **Get referral link** in a referral widget.
+
+<Note>
+Auto enrollment covers Shopify customers only. Points added by a customer import don't trigger it. With **Enroll a customer after signup**, Yuko also enrolls existing customers in bulk when it finishes syncing your Shopify customers.
+</Note>
 
 ### 7. Set the UTM campaign
 
@@ -139,7 +150,7 @@ Click **Save** in the save bar.
 
 ## How it works
 
-1. A customer becomes a referrer, either automatically (if **Enroll on first point earned** is on) or by clicking **Get referral link** in a referral widget. Yuko gives them a unique referral code and link.
+1. A customer becomes a referrer, either automatically (based on your **Enroll customers** setting) or by clicking **Get referral link** in a referral widget. Yuko gives them a unique referral code and link.
 2. The referrer shares the link through a widget or one of the enabled channels.
 3. A friend opens the link. The **Friend Welcome Popup** asks for their details (at least an email).
 4. Yuko checks the claim:
@@ -178,6 +189,9 @@ Click **Save** in the save bar.
   </Accordion>
   <Accordion title="Can I add utm_source or utm_medium to referral links?">
     No. Only **UTM Campaign** is configurable. Links copied or shared from the Referral Landing Page also add `utm_source=yuko_referral`, a `utm_medium` for the share channel (for example `copy_link`) and `utm_content` set to the referral code.
+  </Accordion>
+  <Accordion title="Can every customer get a referral link without asking for one?">
+    Yes. In **Auto Enrollment**, set **Enroll customers** to **Enroll a customer after signup**. Each customer gets a referral code and link automatically, so `{{ referral_link }}` works in your emails for everyone.
   </Accordion>
   <Accordion title="Where do customers find their referral link?">
     In the referral widgets (the Post-Purchase Widget and the Referral Landing Page), and in the referral sections of the Floating Rewards launcher and the customer account page. See [Referral widgets](/referrals/widget).

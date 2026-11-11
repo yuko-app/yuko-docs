@@ -1,0 +1,116 @@
+---
+title: Return Prime
+description: Refund approved Return Prime returns to customers as loyalty points instead of money or store credit.
+---
+
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Integrations → Return Prime
+</Note>
+
+## Introduction
+
+[Return Prime](https://apps.shopify.com/return-prime) handles returns and exchanges for Shopify stores. With this integration, you can refund a return as **Yuko loyalty points**. When you approve the return in Return Prime, Yuko credits the customer with points worth the amount they paid for the returned items.
+
+You choose which returns are refunded as points, request by request, in Return Prime.
+
+## When to use
+
+- You use Return Prime for returns.
+- You want to offer loyalty points as a refund option, which keeps the value in your store.
+
+## Before you start
+
+import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
+
+<BeforeYouStart />
+
+<Check>Return Prime is installed on your Shopify store.</Check>
+<Check>Your **Points to Cash Conversion Rate** is set in your loyalty program setup (**Loyalty → Programs**). Yuko uses it to turn the refund amount into points.</Check>
+
+## Connect Return Prime
+
+The setup guide on the Return Prime page in Yuko shows the same steps, with your webhook URL and a copy button.
+
+<Steps>
+  <Step title="Open Return Prime in Yuko">
+    Go to **Apps → Yuko Loyalty → Integrations**, pick the **Returns & Exchanges** category and click **Return Prime**. Keep this page open; you'll need the webhook URL from the setup guide.
+  </Step>
+  <Step title="Create an app in Return Prime">
+    In your Return Prime dashboard, go to **Settings → Integrations → Develop Apps**. Click **Create New App**, give it a name (for example, "Yuko Loyalty") and click **Save**.
+  </Step>
+  <Step title="Copy the API key">
+    Open the app and copy its **API key**.
+  </Step>
+  <Step title="Add the webhook">
+    Go to the app's **Webhooks** tab. Paste the **Webhook URL** from Yuko under **Where do you want to receive the webhooks?**, select the **Request approved** event and click **Save**.
+  </Step>
+  <Step title="Connect in Yuko">
+    Back in Yuko, paste the key into **API key** and click **Connect Integration**. The page shows **Connected**.
+  </Step>
+</Steps>
+
+After you connect, the Return Prime page in Yuko still shows the **Webhook URL** and the refund instructions.
+
+<Note>Yuko also uses the API key to check that each webhook really comes from Return Prime. If you create a new key in Return Prime, disconnect and connect again with the new key.</Note>
+
+## Refund a return as points
+
+Points are only credited for items you mark for Yuko in Return Prime. For each return you want to refund as points:
+
+<Steps>
+  <Step title="Open the return request">
+    In Return Prime, open the return request.
+  </Step>
+  <Step title="Set the refund mode before approving">
+    Edit the refund information, choose **Others** and enter `yuko_rp_credit` as the note. Save. On the Return Prime page in Yuko, click `yuko_rp_credit` to copy it.
+  </Step>
+  <Step title="Approve the request">
+    Approve the return. Return Prime sends the approval to Yuko, and Yuko credits the points.
+  </Step>
+</Steps>
+
+<Warning>Set the refund mode **before** you approve. Returns refunded with any other mode, such as store credit, the original payment method or bank transfer, don't earn points, so a customer is never refunded twice.</Warning>
+
+## How the points are worked out
+
+For each returned item marked `yuko_rp_credit`, Yuko works out what the customer paid:
+
+**price × returned quantity − discount**, plus tax when your prices don't include tax.
+
+Yuko then converts that amount into points with your **Points to Cash Conversion Rate**, so the points are worth the refund. For example, if 100 points are worth $1, a $25 refund becomes 2,500 points.
+
+- Each returned item is credited as its own points adjustment, with the reason *"Return refunded as points by Return Prime"*.
+- An item is credited only once per return request, even if Return Prime sends the approval again.
+- Only **returns** earn points. Exchanges are ignored.
+
+## Requirements and limitations
+
+- **Loyalty must be on.** If the loyalty program is turned off, nothing is credited.
+- **The order must be in Yuko.** Yuko only credits returns for orders it has synced.
+- **The customer must be in Yuko.** Yuko matches the Return Prime customer by Shopify customer ID first, then by email.
+- **Only approved returns.** Other Return Prime events are ignored.
+- **Shopify stores only.**
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="I approved a return but no points were credited. Why?">
+    Check that the refund mode was set to **Others** with the note `yuko_rp_credit` before you approved it, that the **Request approved** webhook is saved in your Return Prime app with the URL from Yuko, and that the order and customer exist in Yuko. Also check that your Points to Cash Conversion Rate is set.
+  </Accordion>
+  <Accordion title="Can I refund some items as points and others another way?">
+    Yes. Only the items whose refund mode is set to **Others** with `yuko_rp_credit` are credited as points.
+  </Accordion>
+  <Accordion title="Does the customer get notified?">
+    The credit is recorded as a points adjustment, so it shows in the customer's points history and balance. Return Prime doesn't send a points notification of its own.
+  </Accordion>
+</AccordionGroup>
+
+## Related
+
+import RelatedIntegrations from '/snippets/related-integrations.mdx';
+
+<RelatedIntegrations />
+
+import NeedHelp from '/snippets/need-help.mdx';
+
+<NeedHelp />

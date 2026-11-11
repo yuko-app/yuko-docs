@@ -37,7 +37,7 @@ Each tier has:
 
 - A name, description and icon.
 - A **Tier entry** threshold.
-- A **Default point multiplier**, plus optional **Campaign rewards** that override it for specific Ways to Earn.
+- A **Default point multiplier** and a **Tier multiplier label**, plus optional **Campaign rewards** that override the multiplier for specific Ways to Earn.
 - **Entry benefits** that customers receive when they enter the tier.
 
 New stores start with three tiers: **Bronze** (the default tier, 0 points, 1x), **Silver** (1,000 points, 2x) and **Gold** (5,000 points, 3x). The default qualification is **Total points earned** over a **Rolling year**. You can rename and change all of these.
@@ -129,6 +129,12 @@ Then set the **Qualification period type**:
   <Step title="Set the Default point multiplier">
     The multiplier applied to points earned by customers in this tier, for example `1.5` for 1.5x. Use **Campaign rewards** (next step) to override it for a specific Way to Earn.
   </Step>
+  <Step title="Edit the Tier multiplier label (optional)">
+    Under the multiplier, the **Tier multiplier label** is the text customers see for the multiplier. It's shown as the tier's first benefit in your storefront widgets, and in the tier's benefits list in VIP tier emails and workflows. It can be up to 255 characters. If you leave it empty, Yuko uses the default, `Earn [multiplier] [points_label]`, which shows as, for example, *Earn 2x points*.
+
+    - `[multiplier]` — the multiplier value, such as `2x`.
+    - `[points_label]` — your point label from [Loyalty Settings](/loyalty/program-settings), such as *points* or *coins*.
+  </Step>
   <Step title="Add campaign rewards (optional)">
     Under **Campaign rewards**, click **Add campaign reward** and fill in:
     - **Name**: shown on your storefront.
@@ -209,7 +215,7 @@ You can add an expiry, and with **Enable Holdings** you can hold each credit for
 
 ### On your storefront
 
-- The tier name, description, icon and benefits appear in [Floating Rewards](/onsite-widgets/floating-launcher), the [Rewards Landing Page](/onsite-widgets/rewards-landing-page) VIP block and the [Customer Account Page](/onsite-widgets/customer-account-page).
+- The tier name, description, icon and benefits appear in [Floating Rewards](/onsite-widgets/floating-launcher), the [Rewards Landing Page](/onsite-widgets/rewards-landing-page) VIP block and the [Customer Account Page](/onsite-widgets/customer-account-page). Each tier's **Tier multiplier label** (for example *Earn 2x points*) is listed first among its benefits.
 - **Free product** tier benefits are shown as product cards in Floating Rewards, [Cart Redeem](/onsite-widgets/cart-redeem) and [Loyalty Nudges](/onsite-widgets/loyalty-nudges).
 
 ### Notifications and automations
@@ -246,7 +252,7 @@ Under **Reset VIP Tiers**, click **Reset All Tiers** and confirm with **Reset Ti
 - A Way to Earn can have only one campaign reward per tier.
 - Each tier can have only one store credit benefit.
 - Tier multipliers apply only to Ways to Earn with **Tiers** turned on. They don't apply to points you add manually.
-- Multiplier booster campaigns can be set to **Ignore if customer earned VIP tier multiplier**. See [Booster campaigns](/loyalty/booster-campaigns/overview).
+- Multiplier bonus campaigns can be set to **Ignore if customer earned VIP tier multiplier**. See [Bonus campaigns](/loyalty/booster-campaigns/overview).
 
 ## Examples
 

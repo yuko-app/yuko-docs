@@ -78,7 +78,7 @@ Every eligible order earns the same flat amount, regardless of order value. Comb
 
 ### Based on Place-an-order campaign
 
-Points are computed per customer using your active Place-an-order earning rule and summed across all their eligible orders. If your rule is *1 pt per $1 spent*, a customer who spent $340 across 3 orders gets 340 pts.
+Points are computed per customer using your active Place-an-order earning rule and summed across all their eligible orders. Each order's current subtotal is used, less any minimum purchase set on the rule, and fractions of a point are rounded down. If your rule is *1 pt per $1 spent*, a customer who spent $340 across 3 orders gets 340 pts.
 
 **Best for:** matching historical spend so your best customers land in the right point neighbourhood.
 
@@ -96,6 +96,8 @@ Points are computed per customer using your active Place-an-order earning rule a
 ## What gets counted
 
 - **Paid, non-cancelled orders** only. Pending/refunded/voided orders are excluded.
+- **No returns.** Orders with a return in progress or a completed return are excluded.
+- **Orders that already earned points are skipped.** If an order already earned points from **Place an order** (and those points weren't reverted), the backfill skips it, so customers aren't paid twice for the same order.
 - **Only orders linked to a Shopify customer profile.** Guest orders without a linked customer are skipped and don't appear in the participants list.
 - **Excluded customers are skipped.** Customers excluded from the loyalty program don't receive backfilled points.
 - **All time, by default.** The backfill runs across your entire historical order history. If you need a specific date range instead, contact support.
@@ -107,6 +109,8 @@ The preview shows two numbers:
 1. **Order(s) matched** — how many past orders match right now.
 2. **Total points to award** — for flat mode only (the flat amount × matched orders). Campaign-based mode depends on each customer's order values, so exact totals appear on the detail page after the backfill runs.
 
+The preview count includes orders that already earned points from **Place an order**. Those orders are skipped when the backfill runs, so the final total can be lower.
+
 Use preview freely — nothing is awarded until you click **Run backfill**.
 
 ## Tracking the backfill after it runs
@@ -116,7 +120,7 @@ Backfills open the same detail view as any [one-time campaign](/loyalty/one-time
 - Progress with processed / total counts.
 - Status: `running` → `completed` (or **Completed with errors** if some awards failed).
 - Participants tab with per-customer **Awarded**, **Skipped** and **Failed** entries.
-- CSV export of the entire recipient list.
+- CSV export of all participants, or only customers who did or didn't redeem the backfilled points.
 - **Conversions** tab showing the orders, revenue and points redeemed with coupons from the backfilled points.
 
 The **Recent backfills** section on the Settings tab shows each run with its date, recipient count, points mode and status.
@@ -160,7 +164,7 @@ A silent backfill is a wasted backfill — the customer only feels the gesture i
 
 - **One backfill per store.** Contact support to run another.
 - **All-time only** in the self-serve UI. Date-range backfills go through support.
-- **Only paid, non-cancelled orders.** Refunds, cancellations, and pending orders are excluded from the count.
+- **Only paid, non-cancelled orders.** Refunds, cancellations, returns and pending orders are excluded from the count.
 - **Guest orders skipped.** No linked Shopify customer profile means no points target.
 - **Shopify only.** Backfill reads past orders from Shopify.
 - **No mid-run edits.** Once a backfill is `running` you can only cancel it, not tweak the math.
@@ -186,8 +190,11 @@ A silent backfill is a wasted backfill — the customer only feels the gesture i
   <Accordion title="Do backfilled points expire?">
     Only if you set an expiry when configuring the backfill. Without expiry, they behave like any other awarded points.
   </Accordion>
-  <Accordion title="Are refunded orders counted?">
-    No. Only paid, non-cancelled orders are counted.
+  <Accordion title="Are refunded or returned orders counted?">
+    No. Only paid, non-cancelled orders without a return are counted.
+  </Accordion>
+  <Accordion title="Will customers get points twice for orders placed after Yuko was installed?">
+    No. Orders that already earned points from **Place an order** are skipped by the backfill.
   </Accordion>
   <Accordion title="Are subscription orders counted?">
     Subscription orders are Shopify orders like any other, so yes — they're counted as long as they're paid and linked to a customer.

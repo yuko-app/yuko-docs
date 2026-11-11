@@ -30,7 +30,8 @@ This page documents the profile properties and the main events that Yuko sends.
 ## Overview
 
 - **Events** are opt-in per-event. You pick which events get forwarded after you connect.
-- **Profile properties** travel with each event. Every event Yuko sends refreshes that customer's profile properties. Customers are only created or updated in Klaviyo when Yuko sends an event for them; there's no bulk sync of existing customers.
+- **Profile properties** travel with each event. Every event Yuko sends refreshes that customer's profile properties.
+- **Sync customers** pushes all your existing customers to Klaviyo in one go, with their points, VIP tier and referral details. After that, new activity keeps syncing through events. See [Sync existing customers](#sync-existing-customers).
 - **One-way:** Yuko → Klaviyo. Yuko does not pull data from Klaviyo.
 - **Authentication:** OAuth or a Klaviyo Private API key.
 
@@ -41,7 +42,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 <BeforeYouStart />
 
 <Check>You have a Klaviyo account.</Check>
-<Check>You can sign in to Klaviyo to connect with OAuth, or you have a Klaviyo **Private API key** with the necessary scopes (Profiles + Events at minimum).</Check>
+<Check>You can sign in to Klaviyo to connect with OAuth, or you have a Klaviyo **Private API key** with full access to **Profiles**, **Lists** and **Events**.</Check>
 
 ## Connect Yuko to Klaviyo
 
@@ -60,13 +61,42 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
   <Step title="Test (optional)">
     Click **Send Test Events** to send sample events, then check them in Klaviyo. From then on, each selected event creates or updates the customer's Klaviyo profile with the `yuko_*` properties listed below.
   </Step>
+  <Step title="Sync existing customers (optional)">
+    Open **Sync customers** in the **Settings** section and click **Sync customers**. See below.
+  </Step>
 </Steps>
+
+## Sync existing customers
+
+Events only update customers who do something in your program. To get every existing customer into Klaviyo with their loyalty data straight away, run a customer sync.
+
+<Steps>
+  <Step title="Open Sync customers">
+    On the Klaviyo integration page, expand **Sync customers** in the **Settings** section. The badge shows the last result: **Not synced**, **Queued**, **Syncing**, **Synced**, **Synced with errors** or **Failed**.
+  </Step>
+  <Step title="Start the sync">
+    Click **Sync customers**, then **Start sync** in the **Sync customers to Klaviyo** dialog.
+  </Step>
+  <Step title="Wait for it to finish">
+    A progress bar shows the percentage complete and the number of customers. When it's done, you see **Last synced** with the date, the number of customers and any batches that failed.
+  </Step>
+</Steps>
+
+How the sync works:
+
+- It creates or updates a Klaviyo profile for every customer with an email or phone number.
+- Each profile gets the identifier fields and the loyalty, VIP tier, referral and personal-milestone profile properties listed below. Membership properties aren't included in the sync; they're added the next time Yuko sends a membership event for the customer.
+- Existing Klaviyo profile properties with the same names are overwritten.
+- Only one sync can run at a time. Large stores can take a while to finish.
+- If your API key is missing permissions, the sync fails with a message asking you to create a key with full access to **Profiles**, **Lists** and **Events** and reconnect Klaviyo.
 
 ---
 
 ## Profile properties
 
 Yuko writes the following properties to the customer's Klaviyo profile with every event it sends. Profiles are keyed by **email** and **external_id** (the Shopify customer ID). Properties refresh every time Yuko sends one of your selected events for the customer.
+
+Properties for a module you've turned off aren't sent. For example, with Referral off, the `yuko_referral_*`, `yuko_total_referrals` and `yuko_successful_referrals` properties are left out.
 
 Use these in Klaviyo segments and inside any email template (`{{ person.<property> }}`).
 
@@ -87,9 +117,12 @@ These are written at Klaviyo's top-level profile object (not under `properties`)
 | Property | Type | Description |
 |---|---|---|
 | `yuko_joined_at` | ISO 8601 string | When the customer first appeared in Yuko (account creation). |
-| `yuko_total_spent` | Number | Lifetime spend recorded on the Shopify customer. |
 | `yuko_points_balance` | Integer | **Current points balance.** Use this for the live balance in any email. |
 | `yuko_points_as_cash_balance` | Number | The points balance expressed in store currency, given your conversion ratio. |
+| `yuko_wallet_balance` | Integer | Same value as `yuko_points_balance`. |
+| `yuko_wallet_balance_as_cash` | Number | Same value as `yuko_points_as_cash_balance`. |
+| `yuko_points_label` | String | Your plural points name, for example *points* or *coins*. |
+| `yuko_point_label` | String | Your singular points name, for example *point* or *coin*. |
 | `yuko_lifetime_points_earned` | Integer | All points the customer has ever earned (excludes redemptions and adjustments). |
 | `yuko_points_expire_at` | ISO 8601 string | The date the customer's *next* batch of points will expire. Empty if no points are scheduled to expire. |
 | `yuko_points_to_next_reward` | String | How many more points the customer needs to qualify for their next claimable reward. |
@@ -163,7 +196,7 @@ Each event below shows up in Klaviyo as a **metric** (the name in **bold**). Use
 
 Properties listed are **in addition to the common event properties** above and are also accessible inside Klaviyo flows as `{{ event.<property> }}`.
 
-You can also forward **Reward Expired**, **Membership Paused**, **Benefit Unlocked**, **Booster Campaign Entered**, **Booster Campaign Progression** and **Booster Campaign Rewarded**. These carry the common event properties and the profile properties only.
+The loyalty, VIP, referral and membership events you can forward are documented below. Events such as **Reward Expired**, **Benefit Unlocked** and the **Booster Campaign** events from Bonus Campaigns aren't available to integrations.
 
 ### Loyalty events
 
@@ -611,6 +644,25 @@ This event fires on the **friend's** profile, not the advocate's.
 
 ### Membership events
 
+Every membership event also carries these properties, on top of the event-specific ones below:
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_organization_uuid` | String | Yuko organisation UUID. |
+| `yuko_customer_uuid` | String | Yuko customer UUID. |
+| `yuko_membership_uuid` | String | Membership plan UUID. |
+| `yuko_membership_name` | String | Membership plan name. |
+| `yuko_membership_description` | String | Plan description. |
+| `yuko_membership_price` | Number | Plan price. |
+| `yuko_membership_billing_interval` | String | Billing interval. |
+| `yuko_membership_billing_interval_count` | Integer | Number of intervals per billing cycle. |
+| `yuko_membership_benefits` | String | Plan benefit names, comma-separated. |
+| `yuko_subscription_contract_uuid` | String | Yuko subscription contract UUID. |
+| `yuko_platform_contract_id` | String | Shopify subscription contract ID. |
+| `yuko_subscription_status` | String | Contract status. |
+| `yuko_next_billing_date` | ISO 8601 string | Next billing date. |
+| `yuko_member_since` | ISO 8601 string | When the contract started. |
+
 #### Membership Subscribed
 
 - **Klaviyo metric:** *Membership Subscribed*
@@ -709,6 +761,17 @@ This event fires on the **friend's** profile, not the advocate's.
 | `yuko_welcome_back_reward_value` | Number | Reactivation bonus value. |
 | `yuko_welcome_back_reward_code` | String | Reactivation bonus code. |
 | `yuko_points_balance` | Integer | Current points balance. |
+
+#### Membership Paused
+
+- **Klaviyo metric:** *Membership Paused*
+- **Event slug:** `membership_paused`
+- **When it fires:** A customer pauses their membership.
+
+| Property | Type | Description |
+|---|---|---|
+| `yuko_membership_tier_name` | String | Plan name. |
+| `yuko_membership_tier_id` | String | Plan UUID. |
 
 ---
 

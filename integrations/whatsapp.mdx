@@ -1,6 +1,6 @@
 ---
 title: WhatsApp
-description: Send transactional loyalty messages via WhatsApp Business API through any of 13 supported platforms. Wired into Workflows for points-earned, reward-redeemed, tier-changed and other loyalty events.
+description: Send transactional loyalty messages via WhatsApp Business API through any of 14 supported platforms. Wired into Workflows for points-earned, reward-redeemed, tier-changed and other loyalty events.
 ---
 
 <Note>
@@ -11,24 +11,24 @@ description: Send transactional loyalty messages via WhatsApp Business API throu
 
 Yuko sends WhatsApp messages from inside [Workflows](/workflows/overview). You pick a WhatsApp Business API provider, connect it once, and use the **[WhatsApp node](/workflows/whatsapp-node)** in any workflow to send template messages — points-earned confirmations, reward redemption alerts, tier-change announcements, win-back messages, anything Workflows can trigger.
 
-Yuko is **provider-agnostic**. Your existing WhatsApp Business API account works as long as it's with one of the 13 supported platforms below.
+Yuko is **provider-agnostic**. Your existing WhatsApp Business API account works as long as it's with one of the 14 supported platforms below.
 
 ## What problem this solves
 
 WhatsApp has ~98% open rates. For transactional loyalty moments — a customer just hit a tier, points are about to expire, a referral just converted — email is too slow and SMS is too expensive. WhatsApp is the channel that matches the urgency and personal feel of those messages.
 
-But WhatsApp Business API is a closed ecosystem. You can't send messages directly; you have to go through a Business Solution Provider (BSP). Yuko connects to 13 BSPs so you can use whichever one you already have a contract with.
+But WhatsApp Business API is a closed ecosystem. You can't send messages directly; you have to go through a Business Solution Provider (BSP). Yuko connects to 14 BSPs so you can use whichever one you already have a contract with.
 
 ## When to use
 
 - You already have a WhatsApp Business API account with one of the supported providers.
 - You want to send transactional loyalty messages on WhatsApp (not marketing broadcasts).
 - You want to be able to switch providers later without rebuilding everything in Yuko.
-- You're running [Booster Campaigns](/loyalty/booster-campaigns/overview), [Streak](/loyalty/booster-campaigns/streak) or [Spending Goal](/loyalty/booster-campaigns/spending-goal) campaigns where last-call urgency moves the needle.
+- You're running [Bonus Campaigns](/loyalty/booster-campaigns/overview), [Streak](/loyalty/booster-campaigns/streak) or [Spending Goal](/loyalty/booster-campaigns/spending-goal) campaigns where last-call urgency moves the needle.
 
 ## Overview
 
-- Supports **13 WhatsApp Business API platforms** — no lock-in.
+- Supports **14 WhatsApp Business API platforms** — no lock-in.
 - Authentication via the provider's API key. QuickReply.ai uses a **Client ID** and **Secret Key** instead.
 - Used inside **Workflows** via the WhatsApp node.
 - Template values support **personalisation shortcodes** (e.g., `{{first_name}}`, `{{points_balance}}`, `{{reward_code}}`). The list you can pick from depends on the workflow's trigger.
@@ -60,6 +60,7 @@ You don't need to pick a single “best” provider — pick the one you already
 | AskEva | SEA / MENA | Templates with dynamic URL-suffix CTA buttons |
 | Whamaa | — | Templates with language code and up to 2 dynamic URL-suffix CTA buttons |
 | ConvertWay | — | Templates with language code and up to 2 dynamic URL-suffix CTA buttons |
+| WappCloud | — | Templates with up to 2 dynamic URL-suffix CTA buttons (needs an API Key + Access Token) |
 
 If you don't yet have a provider, evaluate them on: per-message pricing, template approval turnaround, regions covered, and what other channels they support beyond WhatsApp.
 
@@ -69,7 +70,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <BeforeYouStart />
 
-<Check>You have an active WhatsApp Business API account with one of the 13 supported providers.</Check>
+<Check>You have an active WhatsApp Business API account with one of the 14 supported providers.</Check>
 <Check>You have admin access to your provider's dashboard to retrieve API credentials.</Check>
 <Check>You have at least one **approved** WhatsApp template in your provider's dashboard.</Check>
 
@@ -77,7 +78,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 
 <Steps>
   <Step title="Generate API credentials">
-    In your WhatsApp provider's dashboard, generate an API key. **QuickReply.ai** needs a Client ID and Secret Key instead.
+    In your WhatsApp provider's dashboard, generate an API key. **QuickReply.ai** needs a Client ID and Secret Key instead, and **WappCloud** needs an API Key and an Access Token.
   </Step>
   <Step title="Open the provider integration in Yuko">
     In Shopify admin, go to **Apps → Yuko Loyalty → Integrations**, pick the **WhatsApp** category from the left sidebar, and click your provider's tile (e.g., **AISensy**, **WATI**, **Zoko**).
@@ -151,8 +152,8 @@ Being explicit about the limits saves a support ticket later:
   <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
     Build a workflow that triggers WhatsApp messages on loyalty events.
   </Card>
-  <Card title="Booster Campaigns" icon="rocket" href="/loyalty/booster-campaigns/overview">
-    Pair booster campaigns with WhatsApp last-call reminders.
+  <Card title="Bonus Campaigns" icon="rocket" href="/loyalty/booster-campaigns/overview">
+    Pair bonus campaigns with WhatsApp last-call reminders.
   </Card>
   <Card title="Klaviyo" icon="envelope" href="/integrations/klaviyo">
     Use Klaviyo for email; reserve WhatsApp for the urgency moment.

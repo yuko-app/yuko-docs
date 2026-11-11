@@ -29,7 +29,7 @@ Customers who decide to use their points at checkout shouldn't have to go back t
 - A checkout UI extension block on the `purchase.checkout.block.render` target, named **Yuko Redeem rewards**.
 - An **existing rewards** row: pick a code the customer already has and apply it.
 - A **redeem** row: pick a reward and redeem points for it. Rewards set to **Incremented points** show a points stepper.
-- A login prompt for guests.
+- A login prompt for guests, who see the rewards list with the **Redeem** button turned off.
 - A **Visibility** option to hide the widget for customers with specific tags.
 - No Styles tab; the block uses Shopify Checkout's own styling.
 
@@ -112,9 +112,10 @@ Choose the **Yuko Redeem rewards** block. By default it sits at the top of the o
    - an existing rewards row (when they have unused codes) to pick a code and click **Apply**;
    - a redeem row (when they can afford at least one reward) to pick a reward and click **Redeem**.
 3. For rewards set to **Incremented points**, a points stepper appears under the redeem row. It starts at the most the customer can redeem, moves in steps of the reward's points, and respects the reward's minimum and maximum. The **Summary text** shows what they'll get.
-4. Clicking **Redeem** creates the discount code and applies it to the checkout.
-5. **Guests** see the **Login link text** and **Login prompt text**. The link sends them to your store's login page and back to checkout afterwards. They also see the rewards list, so they know what logging in unlocks.
-6. The widget stays hidden if the customer has a hidden tag, or if there's nothing to show.
+4. Clicking **Redeem** creates the discount code and applies it to the checkout. For a free product reward, Yuko adds the product to the checkout too, and removes it again if the code is removed. The new code is then listed in the existing rewards row.
+5. If a code can't be applied, an error appears at the top of that row and the code stays in the existing rewards row so the customer can try again. If the checkout doesn't allow discount code changes, the redeem row shows *Discount codes can't be changed on this checkout.* and no points are spent. Store credit rewards aren't affected.
+6. **Guests** see the **Login link text** and **Login prompt text**. The link sends them to your store's login page and back to checkout afterwards. They also see the rewards list, read-only with the **Redeem** button turned off, so they know what logging in unlocks.
+7. The widget stays hidden if the customer has a hidden tag, or if there's nothing to show.
 
 ### Limitations
 
