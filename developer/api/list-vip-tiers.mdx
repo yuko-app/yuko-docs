@@ -1,7 +1,7 @@
 ---
 title: "List VIP tiers"
 api: "GET /public/tiers"
-description: "Retrieves all VIP tiers configured for your organisation, with their benefits."
+description: "Retrieves all VIP tiers configured for your store, with their benefits."
 ---
 
 Tiers are sorted by `threshold_value` in ascending order. Each tier includes its associated benefits.
@@ -25,6 +25,9 @@ Tiers are sorted by `threshold_value` in ascending order. Each tier includes its
     </ResponseField>
     <ResponseField name="multiplier" type="number">
       The points earning multiplier applied to customers in this tier.
+    </ResponseField>
+    <ResponseField name="multiplier_label" type="string">
+      The label shown for the multiplier on the storefront, with placeholders left in. Defaults to `Earn [multiplier] [points_label]`.
     </ResponseField>
     <ResponseField name="icon" type="object | null">
       The tier icon, or `null` if none is set. Always has four keys: `source` (`default` or `custom`), `slug` (built-in icons, otherwise `null`), `id` (custom uploads, otherwise `null`) and `url` (the custom upload URL, or the hosted SVG for a built-in icon).
@@ -106,6 +109,7 @@ $data = json_decode($response, true);
       "name": "Silver",
       "threshold_value": 500,
       "multiplier": 1.5,
+      "multiplier_label": "Earn [multiplier] [points_label]",
       "icon": null,
       "benefits": [
         {
@@ -121,6 +125,7 @@ $data = json_decode($response, true);
       "name": "Gold",
       "threshold_value": 1000,
       "multiplier": 2.0,
+      "multiplier_label": "Earn [multiplier] [points_label]",
       "icon": { "source": "custom", "slug": null, "id": "12", "url": "https://example.com/gold-icon.png" },
       "benefits": [
         {

@@ -3,10 +3,10 @@ title: "Customer Object"
 description: "Fields returned for a customer by the Yuko REST API, and how customers are identified."
 ---
 
-Yuko creates customer records automatically from your Shopify store. Each customer is linked to their store account by `platform` and `platform_customer_id`. The customer object is returned by [List customers](/developer/api/list-customers) and [Retrieve a customer](/developer/api/retrieve-a-customer), which require the `read:customers` scope.
+Yuko creates customer records automatically from your Shopify store. Each customer is linked to their store account by `platform` and `platform_customer_id`. The customer object is returned by [List customers](/developer/api/list-customers) and the retrieve endpoints ([by Shopify ID](/developer/api/retrieve-a-customer-by-shopify-id), [by Yuko ID](/developer/api/retrieve-a-customer-by-id), [by email](/developer/api/retrieve-a-customer-by-email) and [by phone](/developer/api/retrieve-a-customer-by-phone)), which require the `read:customers` scope.
 
 <Note>
-Whenever an endpoint asks for `customer_id`, pass the customer's ID from your store (the `platform_customer_id` below, for example the Shopify customer ID), not the Yuko `id`.
+Endpoints that act on a customer take an `identifier`, which can be the `platform_customer_id` (Shopify customer ID), the Yuko `id`, the `email` or the `phone`. See [Identifying customers](/create-or-update-a-customer-identity#identifying-customers).
 </Note>
 
 ## Properties
@@ -36,7 +36,7 @@ Whenever an endpoint asks for `customer_id`, pass the customer's ID from your st
 </ResponseField>
 
 <ResponseField name="platform_customer_id" type="string | null">
-  The customer's ID in your store. Use this value as `customer_id` in API requests.
+  The customer's ID in your store, for example the Shopify customer ID.
 </ResponseField>
 
 <ResponseField name="state" type="enum<string>">
@@ -48,15 +48,15 @@ Whenever an endpoint asks for `customer_id`, pass the customer's ID from your st
 </ResponseField>
 
 <ResponseField name="referral_code" type="string | null">
-  The customer's referral code, if they have one.
+  Only returned when the key has a `referrals` scope. The customer's referral code, if they have one.
 </ResponseField>
 
 <ResponseField name="referral_url" type="string | null">
-  The customer's referral link, if they have a referral code.
+  Only returned when the key has a `referrals` scope. The customer's referral link, if they have a referral code.
 </ResponseField>
 
 <ResponseField name="points" type="object">
-  The customer's points summary.
+  Only returned when the key has a `points` scope. The customer's points summary.
 
   <Expandable title="points properties">
     <ResponseField name="balance" type="integer">
@@ -72,11 +72,11 @@ Whenever an endpoint asks for `customer_id`, pass the customer's ID from your st
 </ResponseField>
 
 <ResponseField name="tier" type="object | null">
-  Returned by Retrieve a customer only. The customer's current VIP tier, with the same fields as `current_tier` in the [Membership Object](/membership-object). `null` if VIP tiers are turned off or the customer hasn't reached a tier.
+  Returned by the retrieve endpoints only, and only when the key has a `tiers` scope. The customer's current VIP tier, with the same fields as a tier in [List VIP tiers](/developer/api/list-vip-tiers). `null` if VIP tiers are turned off or the customer hasn't reached a tier.
 </ResponseField>
 
 <ResponseField name="membership" type="object">
-  Returned by Retrieve a customer only. The customer's loyalty membership summary.
+  Returned by the retrieve endpoints only. The customer's loyalty membership summary.
 
   <Expandable title="membership properties">
     <ResponseField name="status" type="string">

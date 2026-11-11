@@ -1,10 +1,10 @@
 ---
 title: "List earning rules"
 api: "GET /public/earning-rules"
-description: "Retrieves a paginated list of active earning rules (Ways to earn) for your organisation."
+description: "Retrieves a paginated list of active earning rules (Ways to earn) for your store."
 ---
 
-Results are sorted by `created_at`, newest first. Only active rules are returned.
+Results are sorted by `created_at`, newest first. Only active rules are returned, including rules marked **Hide from on-site displays** and [Custom Action](/developer/api/credit-points-for-custom-action) rules. A Custom Action rule's `id` is the `campaign` you pass to [Credit points for a custom action](/developer/api/credit-points-for-custom-action).
 
 <Info>Requires the `read:earning_rules` scope. See [Scopes](/developer/api/scopes).</Info>
 
@@ -28,10 +28,16 @@ Results are sorted by `created_at`, newest first. Only active rules are returned
       Unique UUID identifier for the earning rule.
     </ResponseField>
     <ResponseField name="name" type="string">
-      The display name of the earning rule.
+      The rule's display name, with placeholders such as `[earn_value]`, `[earn_from_amount]` and `[points_label]` filled in.
+    </ResponseField>
+    <ResponseField name="name_template" type="string">
+      The rule's name exactly as saved in Yuko, with placeholders left in.
     </ResponseField>
     <ResponseField name="description" type="string | null">
-      A short description shown to customers.
+      The description shown to customers, with placeholders filled in.
+    </ResponseField>
+    <ResponseField name="description_template" type="string | null">
+      The description exactly as saved in Yuko, with placeholders left in.
     </ResponseField>
     <ResponseField name="campaign_type" type="null">
       Currently always `null`. The API doesn't expose the earn rule's trigger (purchase, signup and so on); use `name` and `earning_rule` to identify the rule.
@@ -45,6 +51,7 @@ Results are sorted by `created_at`, newest first. Only active rules are returned
       - `earn_from_amount`: for `increment`, the spend amount that earns `earn_value` points.
       - `is_expire_enabled`, `expire_after`, `expire_period`: points expiry settings, if turned on.
       - `url`: for social follow/like rules, the handle or page the customer is asked to visit.
+      - `limit_interval`, `limit_count`, `limit_year_method`: for Custom Action rules, how many times (`limit_count`) a customer can earn per period (`limit_interval`: `none`, `daily`, `weekly`, `monthly` or `yearly`). For yearly limits, `limit_year_method` is `rolling` (the last 365 days) or `calendar`.
     </ResponseField>
     <ResponseField name="conditions" type="array | null">
       Optional conditions that limit when the rule applies, such as product, collection or customer restrictions.
@@ -138,7 +145,9 @@ $data = json_decode($response, true);
     {
       "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
       "name": "Place an order",
+      "name_template": "Place an order",
       "description": "Earn 5 points for every $1 spent.",
+      "description_template": "Earn [earn_value] [points_label] for every [earn_from_amount] spent.",
       "campaign_type": null,
       "earning_rule": {
         "type": "points",
@@ -155,7 +164,9 @@ $data = json_decode($response, true);
     {
       "id": "b2c3d4e5-f6a7-8901-bcde-f01234567890",
       "name": "Sign up",
+      "name_template": "Sign up",
       "description": "Earn 200 points when you create an account.",
+      "description_template": "Earn [earn_value] [points_label] when you create an account.",
       "campaign_type": null,
       "earning_rule": {
         "type": "points",

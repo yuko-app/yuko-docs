@@ -6,7 +6,7 @@ description: "The scopes a Yuko API key can carry and the scope each endpoint re
 Every REST API key carries a list of scopes that controls which endpoints it can call. The merchant sets them when creating the key in **Shopify admin → Apps → Yuko Loyalty → Integrations → REST API**:
 
 - **Full Access Key**: the highest access level each scope supports (read and write where available).
-- **Read-Only Key**: read access for every scope.
+- **Read-Only Key**: read access for every scope. It can't credit or debit points.
 - **Custom Key**: **No Access**, **Read Access** or **Read/Write Access** per scope.
 
 ## Scope format
@@ -20,40 +20,39 @@ Scopes are stored on the key as `read:<scope>` or `write:<scope>`, for example `
 
 | Scope | Label in Yuko | Access levels | What it allows |
 | :---- | :----------- | :------------ | :------------- |
-| `customers` | Customers | read, write | View customer profiles and points balances |
+| `customers` | Customers | read, write | View customers and list membership plans |
+| `rewards` | Rewards | read | View the reward catalogue and the rewards issued to a customer |
+| `transactions` | Transactions | write | Credit and debit customer points |
+| `activities` | Activities | read | View a customer's loyalty activity log |
+| `tiers` | Tiers | read | View VIP tiers, and add `tier` to single-customer responses |
+| `earning_rules` | Earning Rules | read | View the ways to earn |
+| `referrals` | Referrals | read | View the referral program, and add `referral_code` and `referral_url` to customer responses |
+| `points` | Points | read | Add the `points` summary (balance, earned, redeemed) to customer responses |
+| `booster_campaigns` | Booster Campaigns | read | View active booster campaigns |
 | `orders` | Orders | write | Not used by any endpoint in this reference |
-| `rewards` | Rewards | read, write | View the reward catalogue and redeem points for rewards |
-| `transactions` | Transactions | read, write | View points transaction history and manually adjust points |
-| `activities` | Activities | read | View the customer loyalty activity log |
-| `tiers` | Tiers | read | View VIP tier configuration and customer tier status |
-| `earning_rules` | Earning Rules | read | View points earning rules |
-| `referrals` | Referrals | read | View the referral program configuration and customer referrals |
-| `points` | Points | read | Estimate the points a cart will earn (checkout integrations) |
-| `booster_campaigns` | Booster Campaigns | read, write | View active booster campaigns (no write endpoints yet) |
+
+<Note>The `points`, `referrals` and `tiers` scopes also change what customer endpoints return. Without `points`, customer responses have no `points` object. Give your key these scopes if you need a customer's balance, referral link or tier.</Note>
 
 ## Endpoints by scope
 
 | Endpoint | Required scope |
 | :------- | :------------- |
 | [`GET /customers`](/developer/api/list-customers) | `read:customers` |
-| [`GET /customers/{id}`](/developer/api/retrieve-a-customer) | `read:customers` |
-| [`GET /customers/balance`](/developer/api/get-customer-balance) | `read:customers` |
-| [`GET /customers/memberships`](/developer/api/list-memberships) | `read:customers` |
-| [`GET /customers/tiers`](/developer/api/get-customer-tier) | `read:tiers` |
-| [`GET /customers/activities`](/developer/api/list-customer-activities) | `read:activities` |
-| [`GET /customers/referrals`](/developer/api/list-customer-referrals) | `read:referrals` |
+| [`GET /customers/by-id/{id}`](/developer/api/retrieve-a-customer-by-id) | `read:customers` |
+| [`GET /customers/by-shopify-id/{id}`](/developer/api/retrieve-a-customer-by-shopify-id) | `read:customers` |
+| [`GET /customers/by-email/{email}`](/developer/api/retrieve-a-customer-by-email) | `read:customers` |
+| [`GET /customers/by-phone/{phone}`](/developer/api/retrieve-a-customer-by-phone) | `read:customers` |
 | [`GET /customers/rewards`](/developer/api/list-customer-rewards) | `read:rewards` |
-| [`GET /customers/rewards/redeemable`](/developer/api/get-redeemable-rewards) | `read:rewards` |
-| [`POST /customers/rewards/redeem`](/developer/api/redeem-reward) | `write:rewards` |
-| [`GET /customers/transactions`](/developer/api/list-points-transactions) | `read:transactions` |
-| [`POST /customers/transactions`](/developer/api/create-a-points-transaction) | `write:transactions` |
+| [`GET /customers/activities`](/developer/api/list-customer-activities) | `read:activities` |
+| [`POST /customers/points/credit`](/developer/api/credit-points) | `write:transactions` |
+| [`POST /customers/points/credit/{campaign}`](/developer/api/credit-points-for-custom-action) | `write:transactions` |
+| [`POST /customers/points/debit`](/developer/api/debit-points) | `write:transactions` |
 | [`GET /rewards`](/developer/api/list-rewards) | `read:rewards` |
-| [`GET /rewards/{id}`](/developer/api/retrieve-a-reward) | `read:rewards` |
-| [`GET /tiers`](/developer/api/list-vip-tiers) | `read:tiers` |
 | [`GET /earning-rules`](/developer/api/list-ways-to-earn) | `read:earning_rules` |
-| [`GET /referrals/program`](/developer/api/get-referral-program) | `read:referrals` |
-| [`POST /points/estimate`](/developer/api/checkout-points-estimate) | `read:points` |
 | [`GET /booster-campaigns`](/developer/api/list-booster-campaigns) | `read:booster_campaigns` |
+| [`GET /tiers`](/developer/api/list-vip-tiers) | `read:tiers` |
+| [`GET /referrals/program`](/developer/api/get-referral-program) | `read:referrals` |
+| [`GET /memberships`](/developer/api/list-memberships) | `read:customers` |
 
 All paths are relative to `https://api.yukoapp.com/api/v1/public`.
 
@@ -70,4 +69,4 @@ If the key doesn't have the scope an endpoint needs, the API returns `403 Forbid
 }
 ```
 
-To fix it, create a new key with the scope you need (or ask the merchant to), then revoke the old key. A key's scopes can't be changed after it's created.
+A key's scopes can't be changed after it's created, and a store can only have one active key. To add a scope, revoke the old key, then create a new one with the scopes you need, and update your integration with it.

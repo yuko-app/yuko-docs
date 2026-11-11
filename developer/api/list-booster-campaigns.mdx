@@ -31,7 +31,10 @@ Results are sorted by `created_at`, newest first. Draft, completed, cancelled an
       The campaign name.
     </ResponseField>
     <ResponseField name="description" type="string | null">
-      The campaign description.
+      The campaign description, with placeholders such as `[title]`, `[reward]`, `[action]` and `[points_label]` filled in.
+    </ResponseField>
+    <ResponseField name="description_template" type="string | null">
+      The description exactly as saved in Yuko, with placeholders left in.
     </ResponseField>
     <ResponseField name="type" type="enum<string>">
       The booster campaign type. One of `multiplier`, `bonus_flat`, `spending_goal`, `order_frequency`, `streak`, `multi_action`, `dormant_reactivation`, `first_purchase_boost`, `product_collection_multiplier`.
@@ -52,7 +55,7 @@ Results are sorted by `created_at`, newest first. Draft, completed, cancelled an
       The product scope the campaign applies to.
     </ResponseField>
     <ResponseField name="display" type="object">
-      Storefront display settings, such as `show_in_widget` and `labels`. Always includes an `icon` object (or `null`) with `source`, `slug`, `id` and `url`, the same shape as a reward's icon.
+      Storefront display settings, such as `show_in_widget` and `labels`. Placeholders in `labels` are filled in; when `labels` is present, `labels_template` holds the labels exactly as saved. Always includes an `icon` object (or `null`) with `source`, `slug`, `id` and `url`, the same shape as a reward's icon.
     </ResponseField>
     <ResponseField name="config" type="object | null">
       Type-specific settings. Structure varies by `type`, for example `milestones` for spending goals and order frequency, or `actions` and `completion_logic` for multi-action challenges.
@@ -144,6 +147,7 @@ $data = json_decode($response, true);
       "uuid": "5b1f2c9e-7d3a-4e8b-9c11-2f6a8d4e0b73",
       "name": "Spend $100 this month",
       "description": "Earn bonus points when you spend $100 in 30 days.",
+      "description_template": "Earn bonus [points_label] when you spend $100 in 30 days.",
       "type": "spending_goal",
       "status": "active",
       "stackable": false,

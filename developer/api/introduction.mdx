@@ -39,3 +39,15 @@ All responses return JSON. Successful responses wrap the result in a `data` key;
 ## Authentication and scopes
 
 Authenticate with a REST API key as a Bearer token. Each key is limited to the scopes the merchant chose, written as `read:<scope>` or `write:<scope>`. See [Authentication](/developer/api/authentication) and [Scopes](/developer/api/scopes).
+
+## Identifying customers
+
+Look up a single customer by [Shopify ID](/developer/api/retrieve-a-customer-by-shopify-id), [Yuko ID](/developer/api/retrieve-a-customer-by-id), [email](/developer/api/retrieve-a-customer-by-email) or [phone](/developer/api/retrieve-a-customer-by-phone). Endpoints that act on a customer, such as [Credit points](/developer/api/credit-points), take an `identifier` that can be any of these. See [Identifying customers](/create-or-update-a-customer-identity#identifying-customers).
+
+## What you can do
+
+| Resource | Endpoints |
+| :------- | :-------- |
+| Customers | [List](/developer/api/list-customers) and retrieve customers, and list a customer's [rewards](/developer/api/list-customer-rewards) and [activities](/developer/api/list-customer-activities) |
+| Points | [Credit points](/developer/api/credit-points), [credit points for a custom action](/developer/api/credit-points-for-custom-action) and [debit points](/developer/api/debit-points) for a reward |
+| Program | List [rewards](/developer/api/list-rewards), [ways to earn](/developer/api/list-ways-to-earn), [booster campaigns](/developer/api/list-booster-campaigns), [VIP tiers](/developer/api/list-vip-tiers), [membership plans](/developer/api/list-memberships), and get the [referral program](/developer/api/get-referral-program) |

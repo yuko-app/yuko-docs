@@ -5,7 +5,7 @@ description: "How VIP tier changes appear in a customer's activities in the Yuko
 
 When a customer enters, moves up or down, or keeps a VIP tier, Yuko records it in the customer's activity log. These records are returned by [List customer activities](/developer/api/list-customer-activities) (`GET /public/customers/activities`, requires the `read:activities` scope) as [activities](/activity-object) with `source_type` set to `loyalty_tiers`. To get only tier changes, pass `source_type=loyalty_tiers`.
 
-To read a customer's current tier instead of the history, use [Get customer tier](/developer/api/get-customer-tier).
+To read a customer's current tier instead of the history, retrieve the customer (for example [by Shopify ID](/developer/api/retrieve-a-customer-by-shopify-id)) with a key that has the `tiers` scope, and read `tier`.
 
 ## Properties
 

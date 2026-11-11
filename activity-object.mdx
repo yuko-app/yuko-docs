@@ -12,15 +12,15 @@ An activity is an entry in a customer's loyalty activity log: points earned for 
 </ResponseField>
 
 <ResponseField name="customer_id" type="string<uuid>">
-  Yuko's internal UUID for the customer the activity belongs to. This is not the Shopify customer ID you pass as the `customer_id` query parameter.
+  Yuko's internal UUID for the customer the activity belongs to (the customer's `id`, not the Shopify customer ID).
 </ResponseField>
 
 <ResponseField name="activity_type" type="string">
-  The kind of activity, for example `purchase`, `point_adjustment` or `vip_tier_upgrade`. You can filter by this value with the `activity_type` query parameter.
+  The kind of activity, for example `purchase`, `point_adjustment`, `custom_action` or `vip_tier_upgrade`. You can filter by this value with the `activity_type` query parameter.
 </ResponseField>
 
 <ResponseField name="source_type" type="string">
-  What produced the activity, for example `loyalty_campaigns` (an earn rule), `loyalty_tiers` (a VIP tier change) or `users` (a manual adjustment). You can filter by this value with the `source_type` query parameter.
+  What produced the activity, for example `loyalty_campaigns` (an earn rule), `loyalty_tiers` (a VIP tier change) or `users` (a manual adjustment, including points credited or debited through the API, which have `source` `rest_api` in `metadata`). You can filter by this value with the `source_type` query parameter.
 </ResponseField>
 
 <ResponseField name="source_id" type="string<uuid> | null">

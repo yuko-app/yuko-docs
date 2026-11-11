@@ -1,143 +1,67 @@
 ---
-title: "Get customer membership"
-api: "GET /public/customers/memberships"
-description: "Returns a customer's loyalty membership summary, including points balance, current VIP tier and progress toward the next tier."
+title: "List membership plans"
+api: "GET /public/memberships"
+description: "Retrieves a paginated list of your store's active paid membership plans."
 ---
 
-If VIP tiers are turned off for the store, the tier fields are `null`.
+Only plans with the **Active** status are returned. They're sorted in the order they appear in Yuko. Learn more about plans in [Membership plans](/memberships/plans).
 
 <Info>Requires the `read:customers` scope. See [Scopes](/developer/api/scopes).</Info>
 
 ## Query parameters
 
-<ParamField query="customer_id" type="string" required>
-  The platform customer ID (for example, the Shopify customer ID). If you leave it out, this endpoint returns a `500` `internal_error` rather than a `422` validation error, so always send it.
+<ParamField query="per_page" type="integer" default={20}>
+  The number of results per page. Values above `100` are treated as `100`.
+</ParamField>
+
+<ParamField query="page" type="integer" default={1}>
+  The page number to retrieve. See [Classic pagination](/developer/api/classic-pagination).
 </ParamField>
 
 ## Response
 
-<ResponseField name="data" type="object">
-  The customer's membership summary.
+<ResponseField name="data" type="object[]">
+  The membership plans on this page.
 
-  <Expandable title="membership properties">
-    <ResponseField name="status" type="string">
-      The customer's loyalty membership status. Always `active`.
+  <Expandable title="membership plan properties">
+    <ResponseField name="id" type="string<uuid>">
+      The plan's unique identifier.
     </ResponseField>
-    <ResponseField name="member_since" type="string<date-time>">
-      When the customer was created in Yuko (ISO 8601).
+    <ResponseField name="name" type="string">
+      The plan's name.
     </ResponseField>
-    <ResponseField name="points" type="object">
-      The customer's current points summary.
-
-      <Expandable title="points properties">
-        <ResponseField name="balance" type="integer">
-          The customer's current redeemable points balance. Always `0` for customers who are banned or excluded from the loyalty program by a customer tag.
-        </ResponseField>
-        <ResponseField name="earned" type="integer">
-          Total points ever earned by the customer.
-        </ResponseField>
-        <ResponseField name="redeemed" type="integer">
-          Total points redeemed by the customer.
-        </ResponseField>
-      </Expandable>
+    <ResponseField name="description" type="string | null">
+      The plan's description.
     </ResponseField>
-    <ResponseField name="current_tier" type="object | null">
-      The customer's current VIP tier. `null` if the customer has not reached any tier threshold or VIP tiers are turned off.
-
-      <Expandable title="current_tier properties">
-        <ResponseField name="id" type="string<uuid>">
-          The tier's unique identifier.
-        </ResponseField>
-        <ResponseField name="name" type="string">
-          The tier's name.
-        </ResponseField>
-        <ResponseField name="threshold_value" type="integer">
-          The qualifying value needed to reach the tier.
-        </ResponseField>
-        <ResponseField name="multiplier" type="number">
-          The tier's multiplier.
-        </ResponseField>
-        <ResponseField name="icon" type="object | null">
-          The tier icon, or `null` if none is set. Contains `source` (`default` or `custom`), `slug` (built-in icons), `id` (custom uploads) and `url` (the image URL).
-        </ResponseField>
-        <ResponseField name="benefits" type="object[]">
-          The benefits associated with this tier.
-
-          <Expandable title="benefit properties">
-            <ResponseField name="name" type="string">
-              The benefit's name.
-            </ResponseField>
-            <ResponseField name="benefit_type" type="enum<string>">
-              The kind of benefit. One of `fixed`, `percentage`, `free_product`, `free_shipping`, `bonus_points`, `store_credit`, `custom`.
-            </ResponseField>
-            <ResponseField name="benefit_value" type="object">
-              The benefit's settings. Its shape depends on `benefit_type`.
-            </ResponseField>
-          </Expandable>
-        </ResponseField>
-        <ResponseField name="created_at" type="string<date-time>">
-          When the tier was created (ISO 8601).
-        </ResponseField>
-      </Expandable>
+    <ResponseField name="price" type="string | null">
+      The price charged each billing period, in your store's currency, as a decimal string (for example `"29.00"`).
     </ResponseField>
-    <ResponseField name="next_tier" type="object | null">
-      The next VIP tier the customer can reach, with the same fields as `current_tier`. `null` if the customer is already at the highest tier, hasn't been evaluated for tiers yet, or VIP tiers are turned off.
-
-      <Expandable title="next_tier properties">
-        <ResponseField name="id" type="string<uuid>">
-          The tier's unique identifier.
-        </ResponseField>
-        <ResponseField name="name" type="string">
-          The tier's name.
-        </ResponseField>
-        <ResponseField name="threshold_value" type="integer">
-          The qualifying value needed to reach the tier.
-        </ResponseField>
-        <ResponseField name="multiplier" type="number">
-          The tier's multiplier.
-        </ResponseField>
-        <ResponseField name="icon" type="object | null">
-          The tier icon, or `null` if none is set. Same shape as `current_tier.icon`.
-        </ResponseField>
-        <ResponseField name="benefits" type="object[]">
-          The benefits associated with the next tier. Same shape as `current_tier.benefits`.
-
-          <Expandable title="benefit properties">
-            <ResponseField name="name" type="string">
-              The benefit's name.
-            </ResponseField>
-            <ResponseField name="benefit_type" type="enum<string>">
-              The kind of benefit. One of `fixed`, `percentage`, `free_product`, `free_shipping`, `bonus_points`, `store_credit`, `custom`.
-            </ResponseField>
-            <ResponseField name="benefit_value" type="object">
-              The benefit's settings. Its shape depends on `benefit_type`.
-            </ResponseField>
-          </Expandable>
-        </ResponseField>
-        <ResponseField name="created_at" type="string<date-time>">
-          When the tier was created (ISO 8601).
-        </ResponseField>
-      </Expandable>
+    <ResponseField name="billing_interval" type="enum<string> | null">
+      The billing period unit. One of `DAY`, `WEEK`, `MONTH`, `YEAR`.
     </ResponseField>
-    <ResponseField name="progress_to_next_tier" type="object | null">
-      The customer's progress toward the next tier. `null` if there's no `next_tier` or VIP tiers are turned off.
+    <ResponseField name="billing_interval_count" type="integer">
+      How many `billing_interval` units are in each billing period. For example `3` with `MONTH` bills every 3 months.
+    </ResponseField>
+    <ResponseField name="benefits_count" type="integer">
+      The number of benefits on the plan.
+    </ResponseField>
+    <ResponseField name="created_at" type="string<date-time>">
+      When the plan was created (ISO 8601).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
-      <Expandable title="progress_to_next_tier properties">
-        <ResponseField name="current_value" type="integer">
-          The customer's current qualifying value (points earned, amount spent or orders placed), rounded down to a whole number.
-        </ResponseField>
-        <ResponseField name="required_value" type="integer">
-          The value required to reach the next tier.
-        </ResponseField>
-        <ResponseField name="remaining_value" type="integer">
-          The remaining value needed to reach the next tier.
-        </ResponseField>
-        <ResponseField name="progress_percentage" type="number">
-          The percentage of the way to the next tier, rounded to 2 decimal places.
-        </ResponseField>
-        <ResponseField name="threshold_type" type="enum<string> | null">
-          The metric used to determine tier progression. One of `total_earned_points`, `total_amount_spents`, `total_orders`. Can be `null` even when VIP tiers are set up, so don't rely on it; the metric is set in your VIP tier settings.
-        </ResponseField>
+<ResponseField name="meta" type="object">
+  <Expandable title="meta properties">
+    <ResponseField name="pagination" type="object">
+      Pagination details. See [Classic pagination](/developer/api/classic-pagination).
+
+      <Expandable title="pagination properties">
+        <ResponseField name="current_page" type="integer">The page returned.</ResponseField>
+        <ResponseField name="per_page" type="integer">The number of records per page.</ResponseField>
+        <ResponseField name="total" type="integer">The total number of records.</ResponseField>
+        <ResponseField name="last_page" type="integer">The number of the last page.</ResponseField>
+        <ResponseField name="has_more" type="boolean">`true` if there are more pages after this one.</ResponseField>
       </Expandable>
     </ResponseField>
   </Expandable>
@@ -149,23 +73,19 @@ If VIP tiers are turned off for the store, the tier fields are `null`.
 | :----- | :--- | :--- |
 | `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
 | `403` | `insufficient_scope` | The key doesn't have `read:customers`. |
-| `404` | `not_found` | No customer matches `customer_id`. Message: "Customer not found". |
-| `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
-| `500` | `internal_error` | `customer_id` was left out. Message: "An unexpected error occurred. Please try again later." |
+| `429` | | You exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>
 
 ```bash cURL
 curl --request GET \
-  --url "https://api.yukoapp.com/api/v1/public/customers/memberships?customer_id=9049402769586" \
+  --url "https://api.yukoapp.com/api/v1/public/memberships?per_page=20" \
   --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
 ```javascript JavaScript
-const customerId = "9049402769586";
-
 const response = await fetch(
-  `https://api.yukoapp.com/api/v1/public/customers/memberships?customer_id=${customerId}`,
+  "https://api.yukoapp.com/api/v1/public/memberships?per_page=20",
   {
     method: "GET",
     headers: {
@@ -178,10 +98,8 @@ const data = await response.json();
 ```
 
 ```php PHP
-$customerId = "9049402769586";
-
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://api.yukoapp.com/api/v1/public/customers/memberships?customer_id={$customerId}");
+curl_setopt($ch, CURLOPT_URL, "https://api.yukoapp.com/api/v1/public/memberships?per_page=20");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
@@ -199,109 +117,35 @@ $data = json_decode($response, true);
 
 ```json 200
 {
-  "data": {
-    "status": "active",
-    "member_since": "2024-06-01T10:00:00+00:00",
-    "points": {
-      "balance": 350,
-      "earned": 500,
-      "redeemed": 150
-    },
-    "current_tier": {
-      "id": "7fb39c85-3a3f-4247-8333-2e05a9c8ae28",
-      "name": "Silver",
-      "threshold_value": 500,
-      "multiplier": 1.5,
-      "icon": null,
-      "benefits": [
-        {
-          "name": "5% Discount on every order",
-          "benefit_type": "percentage",
-          "benefit_value": { "reward_type": "percentage", "method": "automatic", "discount_value": 5 }
-        }
-      ],
-      "created_at": "2025-09-12T15:44:44+00:00"
-    },
-    "next_tier": {
-      "id": "8ac40d96-4b4e-5358-9444-3f16bab9bf39",
-      "name": "Gold",
-      "threshold_value": 1000,
-      "multiplier": 2.0,
-      "icon": null,
-      "benefits": [
-        {
-          "name": "10% Discount on every order",
-          "benefit_type": "percentage",
-          "benefit_value": { "reward_type": "percentage", "method": "automatic", "discount_value": 10 }
-        }
-      ],
-      "created_at": "2025-09-12T15:44:44+00:00"
-    },
-    "progress_to_next_tier": {
-      "current_value": 650,
-      "required_value": 1000,
-      "remaining_value": 350,
-      "progress_percentage": 65.0,
-      "threshold_type": "total_earned_points"
+  "data": [
+    {
+      "id": "8a7b6c5d-4e3f-4a1b-9c8d-7e6f5a4b3c2d",
+      "name": "VIP Club",
+      "description": "Free shipping and bonus points every month",
+      "price": "29.00",
+      "billing_interval": "MONTH",
+      "billing_interval_count": 1,
+      "benefits_count": 3,
+      "created_at": "2026-03-01T09:00:00+00:00"
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "current_page": 1,
+      "per_page": 20,
+      "total": 1,
+      "last_page": 1,
+      "has_more": false
     }
   }
 }
 ```
 
-```json 200 (no tier yet)
-{
-  "data": {
-    "status": "active",
-    "member_since": "2026-01-10T08:00:00+00:00",
-    "points": {
-      "balance": 120,
-      "earned": 120,
-      "redeemed": 0
-    },
-    "current_tier": null,
-    "next_tier": {
-      "id": "7fb39c85-3a3f-4247-8333-2e05a9c8ae28",
-      "name": "Silver",
-      "threshold_value": 500,
-      "multiplier": 1.5,
-      "icon": null,
-      "benefits": [],
-      "created_at": "2025-09-12T15:44:44+00:00"
-    },
-    "progress_to_next_tier": {
-      "current_value": 120,
-      "required_value": 500,
-      "remaining_value": 380,
-      "progress_percentage": 24.0,
-      "threshold_type": "total_earned_points"
-    }
-  }
-}
-```
-
-```json 404
+```json 403
 {
   "error": {
-    "code": "not_found",
-    "message": "Customer not found"
-  }
-}
-```
-
-```json 500 (customer_id missing)
-{
-  "error": {
-    "code": "internal_error",
-    "message": "An unexpected error occurred. Please try again later."
-  }
-}
-```
-
-```json 401
-{
-  "error": {
-    "code": "invalid_token",
-    "message": "Invalid or revoked API token"
+    "code": "insufficient_scope",
+    "message": "Your API token does not have the required 'customers' scope for this action"
   }
 }
 ```

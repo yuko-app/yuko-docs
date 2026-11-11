@@ -4,7 +4,7 @@ api: "GET /public/rewards"
 description: "Retrieves a paginated list of active loyalty rewards in your reward catalogue."
 ---
 
-Shopify POS rewards aren't included. Results are sorted by `created_at`, newest first. To fetch a single reward, use [Retrieve a reward](/developer/api/retrieve-a-reward).
+Shopify POS rewards aren't included. Rewards marked **Hide from on-site displays** are still returned. Results are sorted by `created_at`, newest first. To spend a customer's points on one of these rewards from your own system, use [Debit points](/developer/api/debit-points).
 
 <Info>Requires the `read:rewards` scope. See [Scopes](/developer/api/scopes).</Info>
 
@@ -32,10 +32,16 @@ Shopify POS rewards aren't included. Results are sorted by `created_at`, newest 
       Unique identifier for the reward.
     </ResponseField>
     <ResponseField name="name" type="string">
-      The display name of the reward.
+      The reward's display name, with placeholders such as `[points_required]`, `[reward_value]` and `[points_label]` filled in.
+    </ResponseField>
+    <ResponseField name="name_template" type="string">
+      The reward's name exactly as saved in Yuko, with placeholders left in.
     </ResponseField>
     <ResponseField name="description" type="string | null">
-      A description of the reward shown to customers.
+      The description shown to customers, with placeholders filled in.
+    </ResponseField>
+    <ResponseField name="description_template" type="string | null">
+      The description exactly as saved in Yuko, with placeholders left in.
     </ResponseField>
     <ResponseField name="reward_type" type="enum<string>">
       The type of reward issued to the customer. One of `fixed`, `percentage`, `free_shipping`, `free_product`, `store_credit`.
@@ -47,7 +53,22 @@ Shopify POS rewards aren't included. Results are sorted by `created_at`, newest 
       The rule configuration for this reward. Structure varies by `reward_type`.
     </ResponseField>
     <ResponseField name="icon" type="object | null">
-      The reward's storefront icon, or `null` if none is set. Contains `source` (`default` or `custom`), `slug`, `id` and `url`. See [Retrieve a reward](/developer/api/retrieve-a-reward) for details.
+      The reward's storefront icon, or `null` if none is set.
+
+      <Expandable title="icon properties">
+        <ResponseField name="source" type="enum<string>">
+          `default` for a built-in icon, `custom` for an uploaded image.
+        </ResponseField>
+        <ResponseField name="slug" type="string | null">
+          The built-in icon's slug. `null` for custom icons.
+        </ResponseField>
+        <ResponseField name="id" type="string | null">
+          The uploaded image's ID. `null` for built-in icons.
+        </ResponseField>
+        <ResponseField name="url" type="string | null">
+          A URL to render the icon (an SVG for built-in icons, the uploaded image for custom icons).
+        </ResponseField>
+      </Expandable>
     </ResponseField>
     <ResponseField name="is_active" type="boolean">
       Whether this reward is currently active and available for redemption.
@@ -135,7 +156,9 @@ $data = json_decode($response, true);
     {
       "id": "90424fa7-e8a9-4ef4-b43a-72c9b2028db5",
       "name": "$5 off your next order",
+      "name_template": "[reward_value] off your next order",
       "description": "Redeem 500 points for a $5 discount.",
+      "description_template": "Redeem [points_required] [points_label] for a [reward_value] discount.",
       "reward_type": "fixed",
       "points_cost": 500,
       "reward_rule": {
@@ -150,7 +173,9 @@ $data = json_decode($response, true);
     {
       "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
       "name": "10% off your next order",
+      "name_template": "10% off your next order",
       "description": "Redeem 1000 points for 10% off.",
+      "description_template": "Redeem 1000 points for 10% off.",
       "reward_type": "percentage",
       "points_cost": 1000,
       "reward_rule": {

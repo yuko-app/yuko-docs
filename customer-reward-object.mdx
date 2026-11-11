@@ -3,7 +3,7 @@ title: "Customer Reward Object"
 description: "Fields returned for a reward issued to a customer by the Yuko REST API."
 ---
 
-A customer reward is a reward that has been issued to a specific customer, such as a discount code from redeeming points, a referral reward or a VIP tier benefit. Customer rewards are returned by [List customer rewards](/developer/api/list-customer-rewards) (`GET /public/customers/rewards`, requires the `read:rewards` scope) and in the `customer_rewards` array of [Get redeemable rewards](/developer/api/get-redeemable-rewards). A new one is created when you [redeem a reward](/developer/api/redeem-reward).
+A customer reward is a reward that has been issued to a specific customer, such as a discount code from redeeming points, a referral reward or a VIP tier benefit. Customer rewards are returned by [List customer rewards](/developer/api/list-customer-rewards) (`GET /public/customers/rewards`, requires the `read:rewards` scope). Points deducted with [Debit points](/developer/api/debit-points) don't create one, because Yuko doesn't issue a code for them.
 
 ## Properties
 
@@ -16,7 +16,7 @@ A customer reward is a reward that has been issued to a specific customer, such 
 </ResponseField>
 
 <ResponseField name="reward_id" type="string<uuid> | null">
-  The UUID of the record that issued the reward, such as the reward in your catalogue (see [Retrieve a reward](/developer/api/retrieve-a-reward)).
+  The UUID of the record that issued the reward, such as the reward in your catalogue (see [List rewards](/developer/api/list-rewards)).
 </ResponseField>
 
 <ResponseField name="reward_type" type="string | null">

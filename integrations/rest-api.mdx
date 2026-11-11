@@ -1,6 +1,6 @@
 ---
 title: REST API
-description: Read and write Yuko data programmatically — customers, points, rewards, tiers, referrals, memberships.
+description: Read Yuko data and credit or debit points programmatically, including customers, rewards, ways to earn, tiers, referrals and memberships.
 ---
 
 <Note>
@@ -12,18 +12,18 @@ description: Read and write Yuko data programmatically — customers, points, re
 
 The Yuko REST API exposes the same data the dashboard shows:
 
-- List and retrieve customers and their points balances, tiers, memberships and rewards.
-- Redeem rewards and add or deduct points.
-- List rewards, VIP tiers, earning rules, booster campaigns and the referral program.
-- Read activity feeds, points transactions and referrals.
-- Estimate the points a cart will earn at checkout.
+- List customers, and look one up by Shopify ID, Yuko ID, email or phone, with their points balance, referral link and VIP tier.
+- List the rewards issued to a customer and their loyalty activity.
+- Credit points, deduct a reward's points cost, and award points for a **Custom Action** earn rule.
+- List rewards, ways to earn, booster campaigns, VIP tiers and membership plans, and get the referral program.
 
 Full endpoint reference is in the **API Reference** tab — this page covers setup and best practices.
 
 ## When to use
 
 - Custom storefronts (Hydrogen, headless).
-- Server-side automations that need to read or write Yuko data.
+- Awarding points for actions that happen outside your store, such as completing a survey, through a [Custom Action](/developer/api/credit-points-for-custom-action).
+- Server-side automations that need to read Yuko data or adjust points.
 - Moving points balances over from another loyalty program (customers must already exist in Yuko; they're synced from your store automatically).
 - Building admin tools that show Yuko data alongside your other systems.
 
@@ -36,8 +36,11 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
 ## Setup
 
 <Steps>
-  <Step title="Open REST API settings">
-    Go to **Apps → Yuko Loyalty → Integrations → REST API** and click **Create new key**.
+  <Step title="Get REST API access">
+    Go to **Apps → Yuko Loyalty → Integrations → REST API**. If you see **Approval required**, click **Contact support** and ask the Yuko team to turn on REST API access for your store. Once it's approved, this page takes you straight to the setup.
+  </Step>
+  <Step title="Create a key">
+    Click **Create new key**. A store can have only one active key, so revoke the existing key first if there is one.
   </Step>
   <Step title="Name the key">
     Enter a **Private API Key Name** (for example, *Marketing Integration*) so you can tell your keys apart.
@@ -45,7 +48,7 @@ import BeforeYouStart from '/snippets/before-you-start-loyalty.mdx';
   <Step title="Choose the access level">
     Under **Select Access Level**, pick one:
     - **Full Access Key**: read and write access for every API scope.
-    - **Read-Only Key**: read-only access for every API scope.
+    - **Read-Only Key**: read-only access for every API scope. It can't credit or debit points.
     - **Custom Key**: click **Next**, then on the **Customize API Scopes** screen set each scope to **No Access**, **Read Access** or **Read/Write Access**.
   </Step>
   <Step title="Create and copy the key">
@@ -64,7 +67,7 @@ To revoke a key, use the **Actions** column and confirm in the **Revoke API key*
 
 ## Authentication and scopes
 
-All requests use Bearer token authentication. Each key only works for the scopes it was given; a request outside them returns `403 insufficient_scope`. See **[Authentication](/developer/api/authentication)** and **[Scopes](/developer/api/scopes)**.
+All requests use Bearer token authentication. Each key only works for the scopes it was given; a request outside them returns `403 insufficient_scope`. The **Points**, **Referrals** and **Tiers** scopes also decide whether customer responses include the points balance, referral link and VIP tier. See **[Authentication](/developer/api/authentication)** and **[Scopes](/developer/api/scopes)**.
 
 ## Pagination, errors, rate limits
 
@@ -75,18 +78,21 @@ All requests use Bearer token authentication. Each key only works for the scopes
 ## Best practices
 
 <Tip>**Give each key only the scopes it needs.** Use a **Custom Key** instead of full access where you can.</Tip>
-<Tip>**Rotate API keys regularly** and immediately when a developer leaves: create a new key, switch your integration to it, then revoke the old one.</Tip>
+<Tip>**Rotate your API key regularly** and immediately when a developer leaves. Because a store can have only one active key, revoke the old key, create a new one, and update your integration straight away. Requests fail in between.</Tip>
 <Tip>**Cache configuration data** such as rewards, VIP tiers and earning rules instead of fetching it on every request. It rarely changes, and caching keeps you well under the rate limit.</Tip>
-<Tip>**Tag every key with a name** so you can revoke a single integration without breaking others.</Tip>
+<Tip>**Name your key** after the system that uses it, so it's clear what breaks if you revoke it.</Tip>
 
 ## FAQs
 
 <AccordionGroup>
-  <Accordion title="Do I need a separate API key per integration?">
-    Strongly recommended. It limits blast radius if one is leaked.
+  <Accordion title="Can I create more than one API key?">
+    No. A store can have one active key at a time. To replace it, revoke the existing key, then create a new one.
+  </Accordion>
+  <Accordion title="Why does REST API say Approval required?">
+    REST API access is turned on per store by the Yuko team. Click **Contact support** on that page and we'll enable it for you.
   </Accordion>
   <Accordion title="I lost my key. Can I see it again?">
-    Yes. In **Integrations → REST API**, use **Show token** or **Copy token** on the key in the **API keys** list. If you think a key has leaked, create a new key and revoke the old one.
+    Yes. In **Integrations → REST API**, use **Show token** or **Copy token** on the key in the **API keys** list. If you think a key has leaked, revoke it and create a new one.
   </Accordion>
   <Accordion title="What's the rate limit?">
     See [Rate Limits](/developer/api/rate-limits) in the API Reference.

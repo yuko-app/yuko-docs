@@ -7,7 +7,9 @@ With classic pagination, a collection of records is broken down into pages which
 
 ## Page size
 
-List endpoints accept a `per_page` query parameter (default: `20`, maximum: `100`) that sets how many records are included in each page of results.
+List endpoints accept a `per_page` query parameter (default: `20`, maximum: `100`) that sets how many records are included in each page of results. Most endpoints treat values above `100` as `100`. [List customer rewards](/developer/api/list-customer-rewards) and [List customer activities](/developer/api/list-customer-activities) return a `422` validation error instead.
+
+[List VIP tiers](/developer/api/list-vip-tiers) and [Get referral program](/developer/api/get-referral-program) aren't paginated.
 
 ## Moving between pages
 

@@ -4,9 +4,9 @@ api: "GET /public/customers"
 description: "Retrieves a paginated list of your store's customers, newest first."
 ---
 
-Results are sorted by `created_at`, newest first. To fetch a single customer, use [Retrieve a customer](/developer/api/retrieve-a-customer).
+Results are sorted by `created_at`, newest first. To fetch a single customer, retrieve them [by Shopify ID](/developer/api/retrieve-a-customer-by-shopify-id), [by Yuko ID](/developer/api/retrieve-a-customer-by-id), [by email](/developer/api/retrieve-a-customer-by-email) or [by phone](/developer/api/retrieve-a-customer-by-phone).
 
-<Info>Requires the `read:customers` scope. See [Scopes](/developer/api/scopes).</Info>
+<Info>Requires the `read:customers` scope. The `points` and `referral_code`/`referral_url` fields are only included when the key also has the `points` and `referrals` scopes. See [Scopes](/developer/api/scopes).</Info>
 
 ## Query parameters
 
@@ -14,8 +14,8 @@ Results are sorted by `created_at`, newest first. To fetch a single customer, us
   Return only the customer whose email address exactly matches this value.
 </ParamField>
 
-<ParamField query="platform" type="enum<string>">
-  Return only customers synced from this platform. One of `shopify`, `woocommerce`.
+<ParamField query="platform" type="string">
+  Return only customers synced from this platform, for example `shopify`.
 </ParamField>
 
 <ParamField query="per_page" type="integer" default={20}>
@@ -60,13 +60,13 @@ Results are sorted by `created_at`, newest first. To fetch a single customer, us
       The customer's birthday in `YYYY-MM-DD` format, if collected.
     </ResponseField>
     <ResponseField name="referral_code" type="string | null">
-      The customer's referral code. `null` if the customer has no referral code yet.
+      Only returned when the key also has a `referrals` scope. The customer's referral code, or `null` if they don't have one yet.
     </ResponseField>
     <ResponseField name="referral_url" type="string | null">
-      The customer's referral link, built from the referral landing page URL plus `?ref=<referral_code>`. `null` if there's no referral code or no landing page URL is set.
+      Only returned when the key also has a `referrals` scope. The customer's referral link: the referral landing page URL plus `?ref=<referral_code>`. `null` if there's no referral code or no landing page URL is set.
     </ResponseField>
     <ResponseField name="points" type="object">
-      The customer's points totals.
+      Only returned when the key also has a `points` scope. The customer's points totals.
 
       <Expandable title="points properties">
         <ResponseField name="balance" type="integer">

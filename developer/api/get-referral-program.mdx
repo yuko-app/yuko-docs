@@ -1,7 +1,7 @@
 ---
 title: "Get referral program"
 api: "GET /public/referrals/program"
-description: "Retrieves the referral program configuration for your organisation."
+description: "Retrieves the referral program configuration for your store."
 ---
 
 The configuration includes referrer and friend reward settings, fraud protection rules and referral link settings.
@@ -55,7 +55,7 @@ The configuration includes referrer and friend reward settings, fraud protection
 | :----- | :--- | :--- |
 | `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
 | `403` | `insufficient_scope` | The key doesn't have `read:referrals`. |
-| `404` | `not_found` | No referral program is set up for your organisation. Message: `Referral program not found`. |
+| `404` | `not_found` | No referral program is set up for your store. Message: `Referral program not found`. |
 | `429` | | The key exceeded the [rate limit](/developer/api/rate-limits). |
 
 <RequestExample>

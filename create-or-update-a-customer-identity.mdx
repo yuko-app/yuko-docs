@@ -1,6 +1,6 @@
 ---
 title: "Creating and updating customers"
-description: "How customer records get into Yuko, and how to look them up with the REST API."
+description: "How customer records get into Yuko, and how to identify a customer in REST API requests."
 ---
 
 The Yuko REST API doesn't have an endpoint to create or update customers. Yuko creates and updates customer records automatically from your Shopify store (through the store sync and Shopify customer webhooks), so store customers are available to the API without any extra step.
@@ -9,14 +9,33 @@ The Yuko REST API doesn't have an endpoint to create or update customers. Yuko c
 A customer Yuko hasn't synced yet returns `404` with `"Customer not found"`.
 </Note>
 
-## Identifying a customer
+## Identifying customers
 
-To work with a customer through the API, pass their store customer ID (for example the Shopify customer ID) as `customer_id`, or as the `{id}` path parameter when retrieving one customer. Yuko's internal customer UUID isn't accepted here. See the [Customer Object](/customer-identity-object) for the fields Yuko returns.
+To fetch one customer, use the endpoint for the value you have:
+
+| You have | Use |
+| :------- | :-- |
+| Shopify customer ID | [Retrieve by Shopify ID](/developer/api/retrieve-a-customer-by-shopify-id) (`GET /public/customers/by-shopify-id/{id}`) |
+| Yuko customer `id` | [Retrieve by ID](/developer/api/retrieve-a-customer-by-id) (`GET /public/customers/by-id/{id}`) |
+| Email address | [Retrieve by email](/developer/api/retrieve-a-customer-by-email) (`GET /public/customers/by-email/{email}`) |
+| Phone number | [Retrieve by phone](/developer/api/retrieve-a-customer-by-phone) (`GET /public/customers/by-phone/{phone}`) |
+
+Endpoints that act on a customer, such as [Credit points](/developer/api/credit-points) or [List customer activities](/developer/api/list-customer-activities), take a single `identifier` parameter instead. Yuko works out which kind of value you sent:
+
+1. A value containing `@` is matched as an **email address** (in lowercase).
+2. A UUID is matched against Yuko's customer **`id`** and the Shopify customer ID.
+3. Any other value is matched against the **Shopify customer ID**.
+4. If nothing matches and the value looks like a phone number (7 to 20 digits, optionally with `+`, spaces, dashes or brackets), it's matched as a **phone number**.
+
+<Tip>The Shopify customer ID is the most reliable identifier. Emails and phone numbers can be missing or shared, and a lookup returns the first matching customer.</Tip>
+
+See the [Customer Object](/customer-identity-object) for the fields Yuko returns.
 
 ## Related endpoints
 
 | To do this | Use |
 | :--- | :--- |
 | Find customers | [List customers](/developer/api/list-customers) (`GET /public/customers`) |
-| Get one customer | [Retrieve a customer](/developer/api/retrieve-a-customer) (`GET /public/customers/{id}`) |
-| Add or deduct points | [Create a points transaction](/developer/api/create-a-points-transaction) (`POST /public/customers/transactions`) |
+| Add points | [Credit points](/developer/api/credit-points) (`POST /public/customers/points/credit`) |
+| Award a custom action | [Credit points for a custom action](/developer/api/credit-points-for-custom-action) (`POST /public/customers/points/credit/{campaign}`) |
+| Deduct points for a reward | [Debit points](/developer/api/debit-points) (`POST /public/customers/points/debit`) |

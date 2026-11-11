@@ -11,9 +11,9 @@ Most errors return an `error` object with a machine-readable `code` and a human-
 {
   "error": {
     "code": "validation_error",
-    "message": "The customer id field is required.",
+    "message": "The identifier field is required.",
     "details": {
-      "customer_id": ["The customer id field is required."]
+      "identifier": ["The identifier field is required."]
     }
   }
 }
@@ -25,11 +25,14 @@ Most errors return an `error` object with a machine-readable `code` and a human-
 | :----- | :--- | :--- |
 | `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
 | `403` | `insufficient_scope` | The API key doesn't have the scope this endpoint needs. |
-| `404` | `not_found` | The requested resource (for example the customer or reward) doesn't exist. |
+| `403` | `plan_upgrade_required` | The store's plan doesn't include this feature, for example custom actions. |
+| `404` | `not_found` | The requested resource (for example the customer, reward or custom action) doesn't exist. |
 | `422` | `validation_error` | A required parameter is missing or invalid. |
-| `422` | `adjustment_failed` | A points adjustment couldn't be made, for example because of an insufficient points balance. |
-| `422` | `redemption_failed` | A reward couldn't be redeemed, for example because of an insufficient points balance or an inactive reward. |
-| `429` | | Your API key has exceeded its [rate limit](/developer/api/rate-limits). The body has no `error` object (see below). |
+| `422` | `adjustment_failed` | Points couldn't be credited or debited, for example because of an insufficient points balance or because the customer is excluded from the loyalty program. |
+| `422` | `action_inactive` | The custom action is turned off. |
+| `422` | `limit_reached` | The customer has reached the custom action's earning limit. |
+| `422` | `credit_failed` | No points could be awarded for the custom action. |
+| `429` | | You exceeded the [rate limit](/developer/api/rate-limits). The body has no `error` object (see below). |
 | `500` | `internal_error` | An internal error occurred in Yuko. Retry your request. If the issue persists, contact Yuko support. |
 
 ## Rate limit errors

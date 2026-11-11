@@ -1,0 +1,234 @@
+---
+title: "Retrieve a customer by Shopify ID"
+api: "GET /public/customers/by-shopify-id/{id}"
+description: "Retrieves a single customer by their Shopify customer ID."
+---
+
+This is the usual way to look up a customer from a Shopify integration.
+
+The response includes the customer's current VIP tier and loyalty membership status. To fetch many customers at once, use [List customers](/developer/api/list-customers).
+
+<Info>Requires the `read:customers` scope. The `points`, `referral_code`/`referral_url` and `tier` fields are only included when the key also has the `points`, `referrals` and `tiers` scopes. See [Scopes](/developer/api/scopes).</Info>
+
+## Path parameters
+
+<ParamField path="id" type="string" required>
+  The Shopify customer ID (the numeric ID, not the `gid://shopify/Customer/…` GID). Returned as `platform_customer_id`.
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  The customer. Has the properties of the [Customer object](/customer-identity-object), plus `tier` and `membership`. Some fields depend on the key's other scopes, as noted below.
+
+  <Expandable title="customer properties">
+    <ResponseField name="id" type="string<uuid>">
+      Yuko's unique identifier for the customer.
+    </ResponseField>
+    <ResponseField name="first_name" type="string | null">
+      The customer's first name.
+    </ResponseField>
+    <ResponseField name="last_name" type="string | null">
+      The customer's last name.
+    </ResponseField>
+    <ResponseField name="email" type="string | null">
+      The customer's email address.
+    </ResponseField>
+    <ResponseField name="phone" type="string | null">
+      The customer's phone number.
+    </ResponseField>
+    <ResponseField name="platform" type="string">
+      The platform the customer was synced from, for example `shopify`.
+    </ResponseField>
+    <ResponseField name="platform_customer_id" type="string | null">
+      The customer's ID in your store, for example the Shopify customer ID.
+    </ResponseField>
+    <ResponseField name="state" type="enum<string>">
+      `member` for customers in the loyalty program, or `disabled` for customers you've banned from it. Customers excluded only by a customer tag still show `member`.
+    </ResponseField>
+    <ResponseField name="date_of_birth" type="string<date> | null">
+      The customer's birthday in `YYYY-MM-DD` format, if collected.
+    </ResponseField>
+    <ResponseField name="referral_code" type="string | null">
+      Only returned when the key also has a `referrals` scope. The customer's referral code, or `null` if they don't have one yet.
+    </ResponseField>
+    <ResponseField name="referral_url" type="string | null">
+      Only returned when the key also has a `referrals` scope. The customer's referral link: the referral landing page URL plus `?ref=<referral_code>`. `null` if there's no referral code or no landing page URL is set.
+    </ResponseField>
+    <ResponseField name="points" type="object">
+      Only returned when the key also has a `points` scope. The customer's points summary.
+
+      <Expandable title="points properties">
+        <ResponseField name="balance" type="integer">
+          Current redeemable points balance. Always `0` for customers who are banned or excluded from the loyalty program by a customer tag.
+        </ResponseField>
+        <ResponseField name="earned" type="integer">
+          Total points ever earned.
+        </ResponseField>
+        <ResponseField name="redeemed" type="integer">
+          Total points redeemed.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="tier" type="object | null">
+      Only returned when the key also has a `tiers` scope. The customer's current VIP tier, with the same fields as a tier in [List VIP tiers](/developer/api/list-vip-tiers). `null` if the customer hasn't reached a tier or VIP tiers are turned off.
+
+      <Expandable title="tier properties">
+        <ResponseField name="id" type="string<uuid>">
+          The tier's unique identifier.
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          The tier's name.
+        </ResponseField>
+        <ResponseField name="threshold_value" type="integer">
+          The qualifying value needed to reach the tier.
+        </ResponseField>
+        <ResponseField name="multiplier" type="number">
+          The tier's points multiplier.
+        </ResponseField>
+        <ResponseField name="multiplier_label" type="string">
+          The label shown for the multiplier, for example `Earn [multiplier] [points_label]`.
+        </ResponseField>
+        <ResponseField name="icon" type="object | null">
+          The tier's icon, or `null` if none is set.
+        </ResponseField>
+        <ResponseField name="benefits" type="object[]">
+          The tier's benefits, each with `name`, `benefit_type` and `benefit_value`.
+        </ResponseField>
+        <ResponseField name="created_at" type="string<date-time>">
+          When the tier was created.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="membership" type="object">
+      Loyalty membership summary.
+
+      <Expandable title="membership properties">
+        <ResponseField name="status" type="string">
+          Always `active`.
+        </ResponseField>
+        <ResponseField name="member_since" type="string<date-time>">
+          When the customer was created in Yuko (same as `created_at`).
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+    <ResponseField name="created_at" type="string<date-time>">
+      When the customer was created in Yuko (ISO 8601).
+    </ResponseField>
+    <ResponseField name="updated_at" type="string<date-time>">
+      When the customer was last updated in Yuko (ISO 8601).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Errors
+
+| Status | Code | When |
+| :----- | :--- | :--- |
+| `401` | `missing_token`, `invalid_token` | The API key is missing, wrong or revoked. |
+| `403` | `insufficient_scope` | The key doesn't have `read:customers`. |
+| `404` | `not_found` | No customer matches `id`. Message: "Customer not found". |
+| `429` | | You exceeded the [rate limit](/developer/api/rate-limits). |
+
+<RequestExample>
+
+```bash cURL
+curl --request GET \
+  --url "https://api.yukoapp.com/api/v1/public/customers/by-shopify-id/9049402769586" \
+  --header "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+```javascript JavaScript
+const customerId = "9049402769586";
+
+const response = await fetch(
+  `https://api.yukoapp.com/api/v1/public/customers/by-shopify-id/${encodeURIComponent(customerId)}`,
+  {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    },
+  }
+);
+
+const data = await response.json();
+```
+
+```php PHP
+$customerId = "9049402769586";
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, "https://api.yukoapp.com/api/v1/public/customers/by-shopify-id/" . rawurlencode($customerId));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Authorization: Bearer py_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+]);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+$data = json_decode($response, true);
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "data": {
+    "id": "63a2c89a-9936-4bc0-9d5f-93db46110b76",
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "email": "jane.smith@example.com",
+    "phone": "+14155552671",
+    "platform": "shopify",
+    "platform_customer_id": "9049402769586",
+    "state": "member",
+    "date_of_birth": "1990-04-12",
+    "referral_code": "JANE10",
+    "referral_url": "https://example.com/pages/refer?ref=JANE10",
+    "points": {
+      "balance": 350,
+      "earned": 500,
+      "redeemed": 150
+    },
+    "created_at": "2024-06-01T10:00:00+00:00",
+    "updated_at": "2026-02-15T08:30:00+00:00",
+    "tier": {
+      "id": "7fb39c85-3a3f-4247-8333-2e05a9c8ae28",
+      "name": "Silver",
+      "threshold_value": 500,
+      "multiplier": 1.5,
+      "multiplier_label": "Earn [multiplier] [points_label]",
+      "icon": null,
+      "benefits": [],
+      "created_at": "2025-09-12T15:44:44+00:00"
+    },
+    "membership": {
+      "status": "active",
+      "member_since": "2024-06-01T10:00:00+00:00"
+    }
+  }
+}
+```
+
+```json 404
+{
+  "error": {
+    "code": "not_found",
+    "message": "Customer not found"
+  }
+}
+```
+
+```json 401
+{
+  "error": {
+    "code": "invalid_token",
+    "message": "Invalid or revoked API token"
+  }
+}
+```
+
+</ResponseExample>

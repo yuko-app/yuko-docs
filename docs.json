@@ -283,24 +283,32 @@
                 "group": "Customers",
                 "pages": [
                   "developer/api/list-customers",
-                  "developer/api/retrieve-a-customer",
-                  "developer/api/get-customer-balance",
-                  "developer/api/list-memberships",
-                  "developer/api/get-customer-tier",
+                  "developer/api/retrieve-a-customer-by-shopify-id",
+                  "developer/api/retrieve-a-customer-by-id",
+                  "developer/api/retrieve-a-customer-by-email",
+                  "developer/api/retrieve-a-customer-by-phone",
                   "developer/api/list-customer-rewards",
-                  "developer/api/get-redeemable-rewards",
-                  "developer/api/redeem-reward",
-                  "developer/api/list-customer-activities",
-                  "developer/api/list-points-transactions",
-                  "developer/api/create-a-points-transaction",
-                  "developer/api/list-customer-referrals"
+                  "developer/api/list-customer-activities"
+                ]
+              },
+              {
+                "group": "Points",
+                "pages": [
+                  "developer/api/credit-points",
+                  "developer/api/credit-points-for-custom-action",
+                  "developer/api/debit-points"
                 ]
               },
               {
                 "group": "Rewards",
                 "pages": [
-                  "developer/api/list-rewards",
-                  "developer/api/retrieve-a-reward"
+                  "developer/api/list-rewards"
+                ]
+              },
+              {
+                "group": "Earning Rules",
+                "pages": [
+                  "developer/api/list-ways-to-earn"
                 ]
               },
               {
@@ -316,27 +324,15 @@
                 ]
               },
               {
-                "group": "Earning Rules",
-                "pages": [
-                  "developer/api/list-ways-to-earn"
-                ]
-              },
-              {
                 "group": "Referrals",
                 "pages": [
                   "developer/api/get-referral-program"
                 ]
               },
               {
-                "group": "Points",
+                "group": "Memberships",
                 "pages": [
-                  "developer/api/checkout-points-estimate"
-                ]
-              },
-              {
-                "group": "Apps & Integrations",
-                "pages": [
-                  "third-party-checkout-integrations"
+                  "developer/api/list-memberships"
                 ]
               }
             ]
@@ -344,14 +340,11 @@
           {
             "group": "Object Reference",
             "pages": [
+              "create-or-update-a-customer-identity",
               "customer-identity-object",
               "customer-reward-object",
-              "membership-object",
-              "points-transaction-object",
               "activity-object",
-              "vip-tier-change-object",
-              "create-or-update-a-customer-identity",
-              "retrieve-a-points-transaction"
+              "vip-tier-change-object"
             ]
           }
         ]
@@ -463,6 +456,62 @@
     {
       "source": "/account/security-and-access",
       "destination": "/account/overview"
+    },
+    {
+      "source": "/developer/api/retrieve-a-customer",
+      "destination": "/developer/api/retrieve-a-customer-by-shopify-id"
+    },
+    {
+      "source": "/developer/api/get-customer-balance",
+      "destination": "/developer/api/retrieve-a-customer-by-shopify-id"
+    },
+    {
+      "source": "/developer/api/get-customer-tier",
+      "destination": "/developer/api/retrieve-a-customer-by-shopify-id"
+    },
+    {
+      "source": "/developer/api/get-redeemable-rewards",
+      "destination": "/developer/api/list-rewards"
+    },
+    {
+      "source": "/developer/api/retrieve-a-reward",
+      "destination": "/developer/api/list-rewards"
+    },
+    {
+      "source": "/developer/api/redeem-reward",
+      "destination": "/developer/api/debit-points"
+    },
+    {
+      "source": "/developer/api/create-a-points-transaction",
+      "destination": "/developer/api/credit-points"
+    },
+    {
+      "source": "/developer/api/list-points-transactions",
+      "destination": "/developer/api/list-customer-activities"
+    },
+    {
+      "source": "/developer/api/list-customer-referrals",
+      "destination": "/developer/api/get-referral-program"
+    },
+    {
+      "source": "/developer/api/checkout-points-estimate",
+      "destination": "/developer/api/introduction"
+    },
+    {
+      "source": "/third-party-checkout-integrations",
+      "destination": "/integrations/rest-api"
+    },
+    {
+      "source": "/points-transaction-object",
+      "destination": "/activity-object"
+    },
+    {
+      "source": "/retrieve-a-points-transaction",
+      "destination": "/developer/api/list-customer-activities"
+    },
+    {
+      "source": "/membership-object",
+      "destination": "/customer-identity-object"
     }
   ],
   "api": {
