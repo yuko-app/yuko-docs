@@ -1,6 +1,6 @@
 ---
 title: Loyalty Settings
-description: Program-wide loyalty settings — point rounding and labels, which order statuses earn and revert points (including returns), login trigger, storefront languages, customer exclusions, Shopify order tags and reset. Also covers the points to cash conversion rate.
+description: Program-wide loyalty settings — point rounding and labels, which order statuses earn and revert points (including returns), login trigger, storefront languages, customer exclusions, Shopify order tags, backfilling points for past orders and reset. Also covers the points to cash conversion rate.
 ---
 
 <Note>
@@ -25,6 +25,7 @@ Every store handles orders differently. Some want points the moment an order is 
 - When you rename points (for example *Stars* or *Coins*).
 - When you change when orders earn points (Paid, Fulfilled or Delivered), or when they lose them (Refunded, Cancelled or Return closed).
 - When you want to keep staff, wholesale or test accounts out of the program.
+- When you want to award points for orders placed before loyalty was enabled (once per store).
 - When you need to wipe test data before going live.
 
 ## Overview
@@ -40,7 +41,7 @@ Every store handles orders differently. Some want points the moment an order is 
 | **Primary language** / **Languages** | The storefront languages your loyalty widgets use |
 | **Exclude customers by tag** | Customer tags that keep customers out of the program |
 | **Orders** (Shopify only) | Tags Yuko adds to Shopify orders that earned or redeemed points |
-| **Backfill points for past orders** | A one-time award for orders placed before loyalty was enabled |
+| **Backfill points for past orders** | A one-time award for orders placed before loyalty was enabled. See [Backfill points for past orders](#backfill-points-for-past-orders) |
 | **Reset customer activities** | Wipes all customer points and activity |
 
 ## Before you start
@@ -157,7 +158,147 @@ This rate is for display and reporting. Each reward defines its own points cost 
 
 ## Backfill points for past orders
 
-The Settings tab also holds **Backfill points for past orders**, a one-time award for orders customers placed before loyalty was enabled. See [Backfill Points](/loyalty/backfill-points).
+<Note>
+**Where to find this:** Shopify admin → Apps → Yuko Loyalty → Loyalty → Settings → **Backfill points for past orders**
+</Note>
+
+**Backfill points for past orders** is a one-time award of points for orders customers placed **before** loyalty was enabled. It solves the *"we just installed Yuko, what about all our existing customers' order history?"* problem: day-one balances reflect real historical loyalty instead of starting at zero.
+
+On the day you turn Yuko on, every customer has a 0 balance, including a customer who has spent $10,000 with you over the last three years. Your best customers open your loyalty page, see zero points, and conclude the program doesn't recognize them. A backfill fixes that in one run.
+
+Under the hood it's a specialized [One-time Campaign](/loyalty/one-time-campaigns) with `audience_type = past_orders`. It reuses the same participants tab, CSV export and status tracking. Because backfilling can only be done responsibly *once*, it lives on the loyalty **Settings** tab, below the **Save** button, and is locked to a single run per store.
+
+### When to backfill
+
+- You **just installed Yuko** and you have historical Shopify orders you want to honour.
+- You **migrated to Yuko** from another loyalty platform and want to seed balances from Shopify order history rather than matching the old provider's balances exactly.
+- You **relaunched loyalty** after having it disabled for a stretch and want to credit customers for orders in the meantime.
+
+If your goal is a *targeted gift to a specific segment*, use [One-time Campaigns](/loyalty/one-time-campaigns) instead. Those aren't locked and can run any number of times.
+
+### Before you run a backfill
+
+<Check>Your [Place an order](/loyalty/ways-to-earn/place-an-order) Way to Earn is configured the way you want it. If you'll use the campaign-based mode, this is the rule that drives the math.</Check>
+<Check>You've decided whether points should expire (recommended: backfilled points should feel like a welcome, not a permanent liability on your books).</Check>
+<Check>Past-order backfill is available on your plan (it's available on select plans).</Check>
+<Check>You understand that this is a **one-shot operation**. You get one backfill per store and then need to contact support to run another.</Check>
+
+### How to configure a backfill
+
+<Steps>
+  <Step title="Open the backfill">
+    Go to **Apps → Yuko Loyalty → Loyalty**, open the **Settings** tab, scroll to **Backfill points for past orders**, and click **Configure**.
+  </Step>
+  <Step title="Pick the points calculation">
+    - **Fixed points per customer** — a flat amount, entered in **Points per customer** (e.g., 100 pts). With **Award points for all orders**, the amount is awarded for each eligible order; with **First order only**, each customer gets it once.
+    - **Based on Place-an-order campaign** — Yuko computes points per customer using your active Place-an-order earning rule (e.g., 1 pt per $1 spent), summed across all their eligible orders.
+  </Step>
+  <Step title="Pick the order scope">
+    If a customer has multiple past orders, choose:
+    - **Award points for all orders** — accumulate across every eligible order (the typical choice).
+    - **First order only** — count each customer's earliest order only.
+  </Step>
+  <Step title="(Optional) Set points expiry">
+    Turn on **Points expiry** and set **Expires after** and a **Period** (Days, Weeks or Months), e.g. **60 days**, after which backfilled points expire. This creates redemption urgency and keeps the liability off your books long-term.
+  </Step>
+  <Step title="Preview">
+    Under **Estimated reach**, click **Preview** to see how many orders match and the total points to be awarded (for flat mode). Use this to sanity-check before you commit.
+  </Step>
+  <Step title="Run backfill">
+    Click **Run backfill**. Yuko processes past orders in the background. Each run is listed under **Recent backfills**; click **View** to open its detail page with the progress, the per-customer participants log and the success/failure counts.
+  </Step>
+</Steps>
+
+### Points calculation modes
+
+**Fixed points per customer.** Every eligible order earns the same flat amount, regardless of order value. Combine it with **First order only** to give each customer the amount exactly once. Simplest and most predictable. Best for goodwill gestures on program launch, migration greetings, and situations where you want equal treatment.
+
+*Example:* 150 pts with **First order only** → 3,200 customers → 480,000 total points awarded. With **Award points for all orders**, a customer with 3 eligible orders gets 450 pts.
+
+**Based on Place-an-order campaign.** Points are computed per customer using your active Place-an-order earning rule and summed across all their eligible orders. Each order's current subtotal is used, less any minimum purchase set on the rule, and fractions of a point are rounded down. If your rule is *1 pt per $1 spent*, a customer who spent $340 across 3 orders gets 340 pts. Best for matching historical spend so your best customers land in the right point neighbourhood.
+
+*Example:* Place-an-order rule = 1 pt per $1. Customer A spent $50, customer B spent $2,300. Backfill awards A = 50 pts, B = 2,300 pts. VIP tier thresholds get realistic day-one populations.
+
+<Tip>Before using **campaign-based** mode, double-check your Place-an-order rule. That's the exact rule the backfill uses. If your rule awards *2 pts per $1*, backfill will too.</Tip>
+
+| Order scope | Points math | Best for |
+|---|---|---|
+| **All orders** | Accumulates across every eligible order (in flat mode, the flat amount × the customer's eligible orders) | The typical choice. Matches how your Place-an-order rule works day-to-day |
+| **First order only** | Counts each customer's earliest order once | A flat, one-per-customer welcome, or only honouring the *fact* they were a customer |
+
+### What gets counted
+
+- **Paid, non-cancelled orders** only. Pending/refunded/voided orders are excluded.
+- **No returns.** Orders with a return in progress or a completed return are excluded.
+- **Orders that already earned points are skipped.** If an order already earned points from **Place an order** (and those points weren't reverted), the backfill skips it, so customers aren't paid twice for the same order.
+- **Only orders linked to a Shopify customer profile.** Guest orders without a linked customer are skipped and don't appear in the participants list.
+- **Excluded customers are skipped.** Customers excluded from the loyalty program don't receive backfilled points.
+- **All time, by default.** The backfill runs across your entire historical order history. If you need a specific date range instead, contact support.
+
+### Preview before you commit
+
+The preview shows two numbers:
+
+1. **Order(s) matched** — how many past orders match right now.
+2. **Total points to award** — for flat mode only (the flat amount × matched orders). Campaign-based mode depends on each customer's order values, so exact totals appear on the detail page after the backfill runs.
+
+The preview count includes orders that already earned points from **Place an order**. Those orders are skipped when the backfill runs, so the final total can be lower. Nothing is awarded until you click **Run backfill**.
+
+### Tracking the backfill after it runs
+
+Backfills open the same detail view as any [one-time campaign](/loyalty/one-time-campaigns#tracking-the-campaign):
+
+- Progress with processed / total counts.
+- Status: `running` → `completed` (or **Completed with errors** if some awards failed).
+- Participants tab with per-customer **Awarded**, **Skipped** and **Failed** entries.
+- CSV export of all participants, or only customers who did or didn't redeem the backfilled points.
+- **Conversions** tab showing the orders, revenue and points redeemed with coupons from the backfilled points.
+
+The **Recent backfills** list on the Settings tab shows each run with its date, recipient count, points mode and status.
+
+### The one-shot rule
+
+After a backfill runs, the **Configure** button is replaced by a **Past-order backfill already run** banner:
+
+> *You've already run a past-order backfill, so it can only be done once to avoid awarding points twice. Need to run it again or backfill a specific date range? Contact us.*
+
+This is a **deliberate safety rail**. Backfilling twice is one of the fastest ways to accidentally award every customer double points. If you legitimately need to backfill again (e.g., you want a specific date range you missed, or you re-imported historical orders after fixing a data issue), [contact support](https://yuko.so/support/).
+
+### Telling customers about the backfill
+
+A silent backfill is a wasted backfill. The customer only feels the gesture if you tell them.
+
+<CardGroup cols={2}>
+  <Card title="Klaviyo email announcement" icon="envelope" href="/integrations/klaviyo">
+    Right after the backfill runs, Klaviyo profiles get the updated `yuko_points_balance`. Send a broadcast that leads with the actual number, using the `yuko_points_balance` profile property.
+  </Card>
+  <Card title="WhatsApp" icon="comments" href="/integrations/whatsapp">
+    For VIP customers with meaningful balances, a WhatsApp template message tends to land harder than email.
+  </Card>
+  <Card title="Loyalty Nudges" icon="bell" href="/onsite-widgets/loyalty-nudges">
+    Surface the new balance on the storefront the next time the customer lands. The number *right there* on the page beats explaining it in copy.
+  </Card>
+  <Card title="Omnisend and other integrations" icon="paper-plane" href="/integrations/overview">
+    Any integration that reads Yuko customer data can gate the announcement on "has balance > 0" so only backfilled customers see it.
+  </Card>
+</CardGroup>
+
+### Backfill best practices
+
+<Tip>**Preview first, always.** The order count tells you whether the backfill matches what you expect before you spend real awards.</Tip>
+<Tip>**Use a short expiry** (30–60 days) on backfilled points. They're a welcome gift, not a permanent liability. Short expiry also drives the redemption → next-order chain sooner.</Tip>
+<Tip>**Announce the backfill within an hour of running it.** The point of a backfill is to greet customers with a balance; a silent backfill is invisible.</Tip>
+<Tip>**Match your Place-an-order rule to how you *would* have awarded historically** before choosing campaign-based mode. If your rule today is 2× what it used to be, campaign-based mode will over-award.</Tip>
+<Tip>**Do the migration bump too.** Pair the backfill with a small flat [one-time campaign](/loyalty/one-time-campaigns) so even customers who had zero past orders (e.g., newsletter-only subscribers) get a welcome touch.</Tip>
+
+### Backfill limitations
+
+- **One backfill per store.** Contact support to run another.
+- **All-time only** in the self-serve UI. Date-range backfills go through support.
+- **Only paid, non-cancelled orders.** Refunds, cancellations, returns and pending orders are excluded from the count.
+- **Guest orders skipped.** No linked Shopify customer profile means no points target.
+- **Shopify only.** Backfill reads past orders from Shopify.
+- **No mid-run edits.** Once a backfill is `running` you can only cancel it, not tweak the math.
 
 ## Reset customer activities
 
@@ -172,6 +313,7 @@ To run it, click **Reset customer activities**, type `RESET` in the confirmation
 - A fashion store keeps **Paid** as the Earning Status and adds a 14-day holding period on Place an order to cover returns.
 - A furniture brand switches the Earning Status to **Delivered** so points land when the customer receives their order.
 - A B2B and retail store adds the `wholesale` tag under **Exclude customers by tag** so trade accounts don't earn.
+- A store that just installed Yuko runs a one-time backfill based on its Place an order rule, so long-time customers start with a balance that reflects their order history.
 
 ## Best practices
 
@@ -202,6 +344,36 @@ To run it, click **Reset customer activities**, type `RESET` in the confirmation
   </Accordion>
   <Accordion title="What does Reset customer activities delete?">
     All customer points activity, transactions and balances, plus tier memberships and the customer discount codes Yuko created. Customers and your program setup stay.
+  </Accordion>
+  <Accordion title="How is backfill different from a one-time campaign?">
+    Same engine, different intent. A [one-time campaign](/loyalty/one-time-campaigns) targets a segment and awards a fixed amount, and you can run as many as you want. A backfill targets *past order history* and can be run **only once**. The guardrail exists so you don't accidentally double-credit historical orders.
+  </Accordion>
+  <Accordion title="Can I backfill only a specific date range?">
+    Not from the settings UI, which defaults to all time. If you need a specific range (e.g., "orders from Jan 1 2024 onwards"), [contact support](https://yuko.so/support/). That path supports date-scoped backfills.
+  </Accordion>
+  <Accordion title="I already ran a backfill and I need to run another one. Why?">
+    Common reasons: you imported additional historical orders after the first backfill, you want to add another date range, or you fixed a data-quality issue that had skipped some orders. All of those go through support.
+  </Accordion>
+  <Accordion title="What happens to customers who had 0 orders in the past?">
+    They're not touched by the backfill (there's no order to base it on). If you also want to greet them, pair the backfill with a small flat [one-time campaign](/loyalty/one-time-campaigns) to **All customers**.
+  </Accordion>
+  <Accordion title="Do backfilled points count toward VIP tier progression?">
+    Yes. Backfilled points are real points transactions in the customer's ledger, and tiers are re-evaluated when the points land. If your VIP tiers qualify on points earned, customers move into whatever tier the new total qualifies for.
+  </Accordion>
+  <Accordion title="Do backfilled points expire?">
+    Only if you set an expiry when configuring the backfill. Without expiry, they behave like any other awarded points.
+  </Accordion>
+  <Accordion title="Does the backfill count refunded or returned orders?">
+    No. Only paid, non-cancelled orders without a return are counted.
+  </Accordion>
+  <Accordion title="Will customers get points twice for orders placed after Yuko was installed?">
+    No. Orders that already earned points from **Place an order** are skipped by the backfill.
+  </Accordion>
+  <Accordion title="Does the backfill count subscription orders?">
+    Subscription orders are Shopify orders like any other, so yes. They're counted as long as they're paid and linked to a customer.
+  </Accordion>
+  <Accordion title="How long does a backfill take?">
+    It depends on how many past orders your store has, because Yuko reads them from Shopify in pages. Small stores finish quickly; stores with a long order history take longer. The detail page shows the progress.
   </Accordion>
 </AccordionGroup>
 

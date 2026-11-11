@@ -64,7 +64,6 @@
             "pages": [
               "loyalty/overview",
               "loyalty/program-settings",
-              "loyalty/backfill-points",
               {
                 "group": "Ways to Earn",
                 "pages": [
@@ -97,9 +96,7 @@
                   "loyalty/ways-to-redeem/percentage-discount",
                   "loyalty/ways-to-redeem/free-product",
                   "loyalty/ways-to-redeem/free-shipping",
-                  "loyalty/ways-to-redeem/store-credit",
-                  "loyalty/ways-to-redeem/pos-amount-discount",
-                  "loyalty/ways-to-redeem/pos-percentage-discount"
+                  "loyalty/ways-to-redeem/store-credit"
                 ]
               },
               {
@@ -187,6 +184,14 @@
             ]
           },
           {
+            "group": "Shopify POS",
+            "pages": [
+              "integrations/shopify-pos",
+              "loyalty/ways-to-redeem/pos-amount-discount",
+              "loyalty/ways-to-redeem/pos-percentage-discount"
+            ]
+          },
+          {
             "group": "Email Notifications",
             "pages": [
               "emails/overview",
@@ -218,7 +223,6 @@
               "integrations/rest-api",
               "integrations/webhooks",
               "integrations/shopify-flow",
-              "integrations/shopify-pos",
               "integrations/klaviyo",
               "integrations/omnisend",
               "integrations/mailchimp",
@@ -388,6 +392,10 @@
     ]
   },
   "redirects": [
+    {
+      "source": "/loyalty/backfill-points",
+      "destination": "/loyalty/program-settings#backfill-points-for-past-orders"
+    },
     {
       "source": "/quickstart",
       "destination": "/getting-started/quickstart"

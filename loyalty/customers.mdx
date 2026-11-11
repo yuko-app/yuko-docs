@@ -1,6 +1,6 @@
 ---
 title: Customers
-description: Find customers, see their points, tier and activity, adjust balances, edit birthdays, refund unused rewards, assign tiers, exclude customers from the program and import points.
+description: Find customers, see their points, tier and activity, adjust balances, edit birthdays, refund unused rewards, assign tiers, and exclude customers from the program.
 ---
 
 <Note>
@@ -27,7 +27,6 @@ When a customer asks *"where are my points?"* you need to answer quickly. The Cu
 - Returning points for a reward the customer redeemed by mistake and hasn't used.
 - Placing a customer in a VIP tier manually.
 - Removing a customer (for example a staff or test account) from the program.
-- Moving point balances in from a previous loyalty app.
 
 ## Overview
 
@@ -39,7 +38,6 @@ When a customer asks *"where are my points?"* you need to answer quickly. The Cu
 - **Refund** an unused reward the customer redeemed, returning the points to their balance.
 - **Assign tier** to override a customer's VIP tier.
 - **Exclude from program**, optionally resetting the customer's points, discounts and tags.
-- **Import customer points** from a CSV.
 - A **Yuko Loyalty** block and an **Adjust balance** action on the Shopify admin customer page.
 
 ## Before you start
@@ -183,30 +181,6 @@ Click **Exclude from program** in the page header. In the confirmation:
 
 Click **Exclude**. The customer's status becomes **Excluded** and they stop earning. To bring them back, click **Add to program**.
 
-## Import customer points
-
-Use import to bring in balances from another loyalty app or a spreadsheet.
-
-<Steps>
-  <Step title="Open the import">
-    On the Customers page, click **Import customer points**.
-  </Step>
-  <Step title="Check the customer sync">
-    Yuko checks that your customers have finished syncing from your store. If not, click **Go to Integrations** and wait for the sync to complete.
-  </Step>
-  <Step title="Upload your CSV">
-    Drag in or browse to a CSV file of **500 KB or less**. The file needs these headers: `platform_customer_id`, `customer_email`, `phone`, `points`.
-  </Step>
-  <Step title="Check the statistics">
-    Yuko validates the file and shows **Import Statistics**: **Total Rows**, **Invalid Rows** and **Skipped Rows**.
-  </Step>
-  <Step title="Confirm">
-    Click **Continue to Import**, tick **I confirm and want to proceed with the import**, and click **Confirm & Import**. Customers who already exist are given the points. Customers who don't exist yet are added.
-  </Step>
-</Steps>
-
-<Tip>**Migrating from another loyalty app?** If you'd rather base starting balances on real Shopify order history, use [Backfill Points](/loyalty/backfill-points). It calculates points from past orders using your Place an order rule.</Tip>
-
 ## In Shopify admin
 
 Yuko adds two extensions to the **customer page in your Shopify admin** (Shopify admin → Customers → a customer):
@@ -221,7 +195,7 @@ Use these when your team works from Shopify's customer page, for example while h
 ## How it works
 
 - Customers sync from your Shopify store into Yuko. Every synced customer is listed, starting as a **Guest** until they take part in the program.
-- Every adjustment, reward refund and import is written to the customer's points ledger and appears in **Activities**.
+- Every adjustment and reward refund is written to the customer's points ledger and appears in **Activities**.
 - Adjustments are direct changes to the balance. They don't trigger Ways to Earn.
 - Excluded customers stay on the list with the **Excluded** status but don't earn.
 - Customers with a tag listed under **Exclude customers by tag** in [Loyalty Settings](/loyalty/program-settings) don't earn either, but they keep their **Member** or **Guest** status on this list.
@@ -229,15 +203,11 @@ Use these when your team works from Shopify's customer page, for example while h
 ### Decision guidance
 
 - **Always add an Update reason** when adjusting points. It helps your team understand the history later.
-- **Use import for one-off migrations.** For ongoing syncs from another system, use the [REST API](/integrations/rest-api).
-- **Use Backfill Points instead of import** when you want balances to reflect actual order history.
 - **Exclude rather than debit** staff or test accounts, so they stop earning altogether.
 
 ### Limitations
 
 - There's no customer export from this page.
-- Import files must be CSV, 500 KB or less, with the exact headers listed above.
-- Import adds points; it doesn't overwrite existing balances.
 - A debit can't take a balance below zero.
 - Only unused rewards redeemed from Ways to redeem can be refunded.
 
@@ -245,7 +215,6 @@ Use these when your team works from Shopify's customer page, for example while h
 
 - A support agent credits 200 points to a customer whose delivery was late, with the reason *Goodwill credit, delivery delay*.
 - A customer redeemed 500 points for the wrong reward. Support clicks **Refund** on the unused code in **Active Rewards**, and the customer redeems again for the reward they wanted.
-- A store migrating from another app imports a CSV of 12,000 customers and their old balances.
 - A merchant excludes staff accounts and ticks **Reset all points, discounts, and tiers** to clear what they'd earned.
 
 ## Best practices
@@ -271,18 +240,12 @@ Use these when your team works from Shopify's customer page, for example while h
   <Accordion title="A customer entered the wrong birthday. How do they change it?">
     Customers can only set their birthday once from the storefront. Edit it for them with the edit button next to **Birthday** on their detail page.
   </Accordion>
-  <Accordion title="What happens to customers in my CSV who aren't in Yuko yet?">
-    They're added as new customers and given the points.
-  </Accordion>
-  <Accordion title="What's the difference between Import and Backfill Points?">
-    Import takes balances you supply in a CSV. [Backfill Points](/loyalty/backfill-points) calculates points from past Shopify orders using your Place an order rule, with no CSV needed.
-  </Accordion>
 </AccordionGroup>
 
 ## Related
 
 <CardGroup cols={2}>
-  <Card title="Backfill Points" icon="clock-rotate-left" href="/loyalty/backfill-points">
+  <Card title="Backfill points for past orders" icon="clock-rotate-left" href="/loyalty/program-settings#backfill-points-for-past-orders">
     Award points for orders placed before loyalty was enabled.
   </Card>
   <Card title="One-time Campaigns" icon="gift" href="/loyalty/one-time-campaigns">
